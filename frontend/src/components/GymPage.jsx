@@ -20,7 +20,8 @@ const GYM_EXERCISES = {
       sets: 4,
       reps: '10-12',
       tips: ['Keep back flat against pad', 'Squeeze at full extension', 'Control the negative'],
-      color: 'from-blue-600 to-indigo-500'
+      color: 'from-blue-600 to-indigo-500',
+      imageFolder: 'Leverage_Chest_Press'
     },
     {
       id: 'cable-crossover',
@@ -30,7 +31,8 @@ const GYM_EXERCISES = {
       sets: 3,
       reps: '12-15',
       tips: ['Slight forward lean', 'Bring hands together at waist height', 'Focus on the stretch'],
-      color: 'from-indigo-500 to-purple-500'
+      color: 'from-indigo-500 to-purple-500',
+      imageFolder: 'Cable_Crossover'
     },
     {
       id: 'pec-deck',
@@ -40,7 +42,8 @@ const GYM_EXERCISES = {
       sets: 4,
       reps: '12-15',
       tips: ['Keep slight bend in elbows', 'Don\'t let weight stack drop', 'Focus on mind-muscle connection'],
-      color: 'from-purple-500 to-fuchsia-500'
+      color: 'from-purple-500 to-fuchsia-500',
+      imageFolder: 'Butterfly'
     },
     {
       id: 'incline-smith',
@@ -50,7 +53,8 @@ const GYM_EXERCISES = {
       sets: 4,
       reps: '8-10',
       tips: ['Bench at 30-45 degrees', 'Bar paths to upper chest', 'Drive through palms'],
-      color: 'from-fuchsia-500 to-pink-500'
+      color: 'from-fuchsia-500 to-pink-500',
+      imageFolder: 'Smith_Machine_Incline_Bench_Press'
     }
   ],
   back: [
@@ -62,7 +66,8 @@ const GYM_EXERCISES = {
       sets: 4,
       reps: '10-12',
       tips: ['Pull to upper chest', 'Arch middle back slightly', 'Don\'t use momentum'],
-      color: 'from-emerald-600 to-teal-500'
+      color: 'from-emerald-600 to-teal-500',
+      imageFolder: 'Close-Grip_Front_Lat_Pulldown'
     },
     {
       id: 'seated-row',
@@ -72,7 +77,8 @@ const GYM_EXERCISES = {
       sets: 4,
       reps: '10-12',
       tips: ['Keep torso stationary', 'Squeeze shoulder blades together', 'Full stretch on return'],
-      color: 'from-teal-500 to-cyan-500'
+      color: 'from-teal-500 to-cyan-500',
+      imageFolder: 'Seated_Cable_Rows'
     },
     {
       id: 'assisted-pullup',
@@ -82,7 +88,8 @@ const GYM_EXERCISES = {
       sets: 3,
       reps: '8-10',
       tips: ['Wide overhand grip', 'Slow eccentric phase', 'Full range of motion'],
-      color: 'from-cyan-500 to-sky-500'
+      color: 'from-cyan-500 to-sky-500',
+      imageFolder: 'Band_Assisted_Pull-Up'
     },
     {
       id: 'straight-arm',
@@ -92,7 +99,8 @@ const GYM_EXERCISES = {
       sets: 3,
       reps: '12-15',
       tips: ['Keep arms straight but not locked', 'Hinge slightly at hips', 'Pull bar to thighs'],
-      color: 'from-sky-500 to-blue-500'
+      color: 'from-sky-500 to-blue-500',
+      imageFolder: 'Straight-Arm_Pulldown'
     }
   ],
   legs: [
@@ -104,7 +112,8 @@ const GYM_EXERCISES = {
       sets: 4,
       reps: '10-12',
       tips: ['Feet shoulder-width apart', 'Don\'t lock knees at top', 'Go deep but keep lower back flat'],
-      color: 'from-orange-600 to-amber-500'
+      color: 'from-orange-600 to-amber-500',
+      imageFolder: 'Leg_Press'
     },
     {
       id: 'leg-extension',
@@ -114,7 +123,8 @@ const GYM_EXERCISES = {
       sets: 4,
       reps: '12-15',
       tips: ['Adjust pad to ankle height', 'Hold contraction for 1s', 'Control the descent'],
-      color: 'from-amber-500 to-yellow-500'
+      color: 'from-amber-500 to-yellow-500',
+      imageFolder: 'Leg_Extensions'
     },
     {
       id: 'leg-curl',
@@ -124,7 +134,8 @@ const GYM_EXERCISES = {
       sets: 4,
       reps: '12-15',
       tips: ['Pad rests on back of ankle', 'Squeeze handles to stay planted', 'Full contraction'],
-      color: 'from-yellow-400 to-lime-500'
+      color: 'from-yellow-400 to-lime-500',
+      imageFolder: 'Seated_Leg_Curl'
     },
     {
       id: 'calf-raise',
@@ -134,7 +145,8 @@ const GYM_EXERCISES = {
       sets: 4,
       reps: '15-20',
       tips: ['Pause at the very top', 'Deep stretch at the bottom', 'Keep knees slightly bent'],
-      color: 'from-lime-500 to-green-500'
+      color: 'from-lime-500 to-green-500',
+      imageFolder: 'Standing_Calf_Raises'
     }
   ],
   shoulders: [
@@ -146,7 +158,8 @@ const GYM_EXERCISES = {
       sets: 4,
       reps: '10-12',
       tips: ['Grip slightly wider than shoulders', 'Don\'t lock out elbows', 'Controlled negative'],
-      color: 'from-red-600 to-rose-500'
+      color: 'from-red-600 to-rose-500',
+      imageFolder: 'Cable_Shoulder_Press'
     },
     {
       id: 'lateral-raise',
@@ -156,7 +169,8 @@ const GYM_EXERCISES = {
       sets: 4,
       reps: '12-15',
       tips: ['Cable behind your back', 'Lead with the elbows', 'Raise to shoulder height'],
-      color: 'from-rose-500 to-pink-500'
+      color: 'from-rose-500 to-pink-500',
+      imageFolder: 'Cable_Seated_Lateral_Raise'
     },
     {
       id: 'reverse-pec-deck',
@@ -166,7 +180,8 @@ const GYM_EXERCISES = {
       sets: 3,
       reps: '15-20',
       tips: ['Keep chest pressed to pad', 'Slight bend in elbows', 'Don\'t squeeze shoulder blades together'],
-      color: 'from-pink-500 to-fuchsia-500'
+      color: 'from-pink-500 to-fuchsia-500',
+      imageFolder: 'Reverse_Machine_Flyes'
     },
     {
       id: 'face-pull',
@@ -176,7 +191,8 @@ const GYM_EXERCISES = {
       sets: 3,
       reps: '15-20',
       tips: ['Pull rope towards eyes', 'Keep elbows high', 'Squeeze upper back'],
-      color: 'from-fuchsia-500 to-purple-500'
+      color: 'from-fuchsia-500 to-purple-500',
+      imageFolder: 'Face_Pull'
     }
   ],
   arms: [
@@ -188,7 +204,8 @@ const GYM_EXERCISES = {
       sets: 4,
       reps: '12-15',
       tips: ['Keep elbows tucked to sides', 'Spread rope at the bottom', 'Full lockout'],
-      color: 'from-stone-800 to-stone-600'
+      color: 'from-stone-800 to-stone-600',
+      imageFolder: 'Triceps_Pushdown_-_Rope_Attachment'
     },
     {
       id: 'cable-curl',
@@ -198,7 +215,8 @@ const GYM_EXERCISES = {
       sets: 4,
       reps: '10-12',
       tips: ['Keep elbows strictly at sides', 'Squeeze at the top', 'Control weight down'],
-      color: 'from-stone-600 to-stone-500'
+      color: 'from-stone-600 to-stone-500',
+      imageFolder: 'High_Cable_Curls'
     },
     {
       id: 'overhead-extension',
@@ -208,7 +226,8 @@ const GYM_EXERCISES = {
       sets: 3,
       reps: '12-15',
       tips: ['Lean forward slightly', 'Keep elbows pointed forward', 'Full stretch behind head'],
-      color: 'from-stone-500 to-zinc-500'
+      color: 'from-stone-500 to-zinc-500',
+      imageFolder: 'Triceps_Overhead_Extension_with_Rope'
     },
     {
       id: 'preacher-curl',
@@ -218,37 +237,59 @@ const GYM_EXERCISES = {
       sets: 3,
       reps: '10-12',
       tips: ['Armpits snug against pad', 'Don\'t let tension off at bottom', 'Squeeze hard at top'],
-      color: 'from-zinc-500 to-neutral-400'
+      color: 'from-zinc-500 to-neutral-400',
+      imageFolder: 'Machine_Preacher_Curls'
     }
   ]
 };
 
 function ExerciseCard({ exercise, index }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const baseUrl = `https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/${exercise.imageFolder}`;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.4 }}
-      className="bg-white rounded-3xl overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all group"
+      className="bg-white rounded-3xl overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all group flex flex-col"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Header / Graphic Area */}
-      <div className={`h-32 bg-gradient-to-br ${exercise.color} p-6 flex flex-col justify-between relative overflow-hidden`}>
-        <div className="absolute -right-4 -bottom-4 opacity-20 transform group-hover:scale-110 transition-transform duration-500">
-          <Activity size={120} strokeWidth={1} />
-        </div>
-        <div className="flex justify-between items-start relative z-10 w-full">
-          <span className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/10">
+      <div className={`h-48 bg-gradient-to-br ${exercise.color} relative overflow-hidden flex justify-center items-center`}>
+        {/* Render Exercise Image */}
+        {exercise.imageFolder && (
+          <img 
+            src={`${baseUrl}/${isHovered ? '1' : '0'}.jpg`} 
+            alt={exercise.name} 
+            className="h-full object-cover mix-blend-multiply opacity-90 transition-opacity duration-300"
+            loading="lazy"
+          />
+        )}
+        
+        {/* Preload the second frame so the animation is instant */}
+        {exercise.imageFolder && (
+          <img src={`${baseUrl}/1.jpg`} alt="preload" className="hidden" />
+        )}
+
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-stone-900/60 to-transparent pointer-events-none" />
+
+        <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10 w-auto">
+          <span className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/10 shadow-sm">
             {exercise.machine}
           </span>
-          <div className="bg-white/20 backdrop-blur-md rounded-full p-2 border border-white/10">
-            <Play size={16} className="text-white ml-0.5" />
+          <div className="bg-white/20 backdrop-blur-md rounded-full p-2 border border-white/10 shadow-sm">
+            <Play size={16} className={`text-white ml-0.5 transition-transform duration-300 ${isHovered ? 'scale-110' : ''}`} />
           </div>
         </div>
-        <h3 className="text-2xl font-black text-white relative z-10 leading-none">{exercise.name}</h3>
+        <h3 className="absolute bottom-4 left-4 right-4 text-xl md:text-2xl font-black text-white z-10 leading-tight drop-shadow-md">
+          {exercise.name}
+        </h3>
       </div>
 
       {/* Content Area */}
-      <div className="p-6 space-y-5">
+      <div className="p-6 space-y-5 flex-1">
         <div className="flex justify-between items-center pb-4 border-b border-stone-50">
           <div className="flex items-center space-x-2 text-stone-500">
             <Target size={16} className="text-amber-500" />
