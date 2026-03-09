@@ -191,16 +191,17 @@ function App() {
                 <p className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-4 flex items-center">
                    <User className="w-3 h-3 mr-2" /> Welcome back, {user}
                 </p>
-                <h1 className="text-5xl lg:text-7xl mb-6 leading-tight">Elevate your daily <span className="italic font-normal text-stone-400">fitness nutrition.</span></h1>
+                <h1 className="text-5xl lg:text-7xl mb-6 leading-tight">Professional nutrition <br/><span className="italic font-normal text-stone-400">simplified for everyone.</span></h1>
                 <p className="text-xl text-stone-500 font-medium leading-relaxed max-w-3xl">
-                  FitMeal AI is the premier smart meal planner for the global fitness community. Whether you are in Europe, the Middle East, or the USA, we curate balanced, macro-friendly suggestions tailored to your regional availability and lifestyle.
+                  FitMeal AI is a sophisticated nutritional engine designed for the modern lifestyle. We bridge the gap between regional food availability and individual fitness goals, providing clear, balanced, and actionable meal paths across the globe.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-                <div className="lg:col-span-4 sticky top-28">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+                {/* Fixed: Use lg:sticky to prevent mobile overlap */}
+                <div className="lg:col-span-4 lg:sticky lg:top-28">
                   <div className="p-8 bg-white border border-stone-100 rounded-3xl shadow-sm">
-                    <h3 className="text-2xl mb-6">Meal Targets</h3>
+                    <h3 className="text-2xl mb-6 font-serif">Plan Your Day</h3>
                     <MealForm onSubmit={handleGenerate} isLoading={isLoading} />
                   </div>
                 </div>
