@@ -40,21 +40,23 @@ const statsPath = path.join(__dirname, 'data', 'stats.json');
 // --- Helper for Cross-Storage User Counting ---
 async function getUserList() {
   if (supabase) {
-    const { data, error } = await supabase.from('users').select('name');
+    const { data, error } = await supabase.from('users').select('name, last_login');
     if (error) throw error;
-    return data.map(d => d.name);
+    return data; // returns [{name, last_login}]
   }
   if (fs.existsSync(statsPath)) {
     const stats = JSON.parse(fs.readFileSync(statsPath, 'utf8'));
-    return Array.isArray(stats.names) ? stats.names : [];
+    // Support both legacy (names[]) and new ({users: [{name, last_login}]}) formats
+    if (Array.isArray(stats.users)) return stats.users;
+    return (Array.isArray(stats.names) ? stats.names : []).map(n => ({ name: n, last_login: null }));
   }
   return [];
 }
 
 app.get('/api/stats', async (req, res) => {
   try {
-    const names = await getUserList();
-    res.json({ count: names.length });
+    const users = await getUserList();
+    res.json({ count: users.length });
   } catch (err) {
     res.json({ count: 0 });
   }
@@ -67,19 +69,30 @@ app.post('/api/login', async (req, res) => {
       return res.status(400).json({ error: 'Valid name required' });
     }
     const cleanName = name.trim();
-    const names = await getUserList();
-    const exists = names.some(n => n && n.toLowerCase() === cleanName.toLowerCase());
+    const users = await getUserList();
+    const now = new Date().toISOString();
+    const existing = users.find(u => u.name && u.name.toLowerCase() === cleanName.toLowerCase());
 
-    if (!exists) {
+    if (!existing) {
       if (supabase) {
-        await supabase.from('users').insert([{ name: cleanName }]);
+        await supabase.from('users').insert([{ name: cleanName, last_login: now }]);
       } else {
-        const stats = { names: [...names, cleanName] };
-        fs.writeFileSync(statsPath, JSON.stringify(stats, null, 2));
+        const updatedUsers = [...users, { name: cleanName, last_login: now }];
+        fs.writeFileSync(statsPath, JSON.stringify({ users: updatedUsers }, null, 2));
+      }
+    } else {
+      // Update last_login for returning user
+      if (supabase) {
+        await supabase.from('users').update({ last_login: now }).eq('name', existing.name);
+      } else {
+        const updatedUsers = users.map(u =>
+          u.name.toLowerCase() === cleanName.toLowerCase() ? { ...u, last_login: now } : u
+        );
+        fs.writeFileSync(statsPath, JSON.stringify({ users: updatedUsers }, null, 2));
       }
     }
 
-    res.json({ success: true, count: exists ? names.length : names.length + 1, isNew: !exists });
+    res.json({ success: true, count: existing ? users.length : users.length + 1, isNew: !existing });
   } catch (err) {
     console.error('Error in /api/login:', err.message);
     res.status(500).json({ error: 'Cloud storage error at /api/login.' });
@@ -88,8 +101,8 @@ app.post('/api/login', async (req, res) => {
 
 app.get('/api/admin/users', async (req, res) => {
   try {
-    const names = await getUserList();
-    res.json({ users: names });
+    const users = await getUserList();
+    res.json({ users }); // each user: {name, last_login}
   } catch (err) {
     res.status(500).json({ error: 'Failed to access editor database.' });
   }

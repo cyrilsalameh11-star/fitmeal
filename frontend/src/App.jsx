@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import MealForm from './components/MealForm';
 import MealCard from './components/MealCard';
+import ExplorePage from './components/ExplorePage';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, X, Menu, Phone, Mail, Instagram, Twitter, User, ArrowRight, Users } from 'lucide-react';
 
@@ -14,6 +15,7 @@ function App() {
   const [showShopModal, setShowShopModal] = useState(false);
   const [shopItems, setShopItems] = useState([]);
   const [activeTab, setActiveTab] = useState('planner');
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [currentFilters, setCurrentFilters] = useState(null);
   const [seenMealIds, setSeenMealIds] = useState(() => {
     try {
@@ -179,7 +181,6 @@ function App() {
         </div>
       </div>
 
-      {/* Professional Navbar */}
       <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-stone-100 px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-2">
@@ -188,9 +189,9 @@ function App() {
           </div>
           
           <div className="hidden md:flex space-x-10 text-sm font-bold uppercase tracking-widest text-stone-500">
-            <button onClick={() => setActiveTab('home')} className={`hover:text-stone-900 transition-colors ${activeTab === 'home' ? 'text-stone-900' : ''}`}>Home</button>
-            <button onClick={() => setActiveTab('planner')} className={`hover:text-stone-900 transition-colors ${activeTab === 'planner' ? 'text-stone-900' : ''}`}>Planner</button>
-            <button onClick={() => setActiveTab('contact')} className={`hover:text-stone-900 transition-colors ${activeTab === 'contact' ? 'text-stone-900' : ''}`}>Contact</button>
+            <button onClick={() => { setActiveTab('explore'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'explore' ? 'text-stone-900' : ''}`}>Explore</button>
+            <button onClick={() => { setActiveTab('planner'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'planner' ? 'text-stone-900' : ''}`}>Planner</button>
+            <button onClick={() => { setActiveTab('contact'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'contact' ? 'text-stone-900' : ''}`}>Contact</button>
           </div>
 
           <div className="flex items-center space-x-4">
@@ -198,9 +199,35 @@ function App() {
                 <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
                 <span className="text-[10px] font-bold uppercase tracking-widest text-stone-500">{userCount} users</span>
              </div>
-             <button className="md:hidden p-2 text-stone-500"><Menu className="w-6 h-6" /></button>
+             <button className="md:hidden p-2 text-stone-500" onClick={() => setShowMobileMenu(m => !m)}>
+               {showMobileMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+             </button>
           </div>
         </div>
+
+        {/* Mobile Dropdown Menu */}
+        <AnimatePresence>
+          {showMobileMenu && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="md:hidden bg-white border-t border-stone-100 px-6 py-4 space-y-3"
+            >
+              {[['explore', 'Explore'], ['planner', 'Planner'], ['contact', 'Contact']].map(([tab, label]) => (
+                <button
+                  key={tab}
+                  onClick={() => { setActiveTab(tab); setShowMobileMenu(false); }}
+                  className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold uppercase tracking-widest transition-colors ${
+                    activeTab === tab ? 'bg-stone-900 text-white' : 'text-stone-600 hover:bg-stone-50'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       <main className="max-w-7xl mx-auto px-6 py-12 lg:py-20">
@@ -274,21 +301,7 @@ function App() {
             </motion.div>
           )}
 
-          {activeTab === 'home' && (
-             <motion.div 
-               key="home"
-               initial={{ opacity: 0 }}
-               animate={{ opacity: 1 }}
-               exit={{ opacity: 0 }}
-               className="py-20 text-center space-y-10"
-             >
-                <h1 className="text-6xl lg:text-8xl mb-8">Nourish your <br/><span className="italic font-normal text-stone-400">global lifestyle.</span></h1>
-                <p className="text-xl text-stone-500 font-medium leading-relaxed max-w-2xl mx-auto">
-                   Explore curated database of regional restaurants, supermarket ready-meals, and automated macro calculation across 4 continents.
-                </p>
-                <button onClick={() => setActiveTab('planner')} className="px-12 py-5 bg-stone-900 text-white rounded-2xl font-bold uppercase tracking-widest text-sm hover:scale-105 transition-transform shadow-2xl">Start Planning</button>
-             </motion.div>
-          )}
+          {activeTab === 'explore' && <ExplorePage />}
 
           {activeTab === 'contact' && (
             <motion.div 

@@ -36,8 +36,12 @@ async function getSuggestions({ calorieTarget, proteinTarget, mealType, country 
     fetchUsdaMeals(mealType, 25),
   ]);
 
-  const offMeals = offResult.status === 'fulfilled' ? offResult.value : [];
-  const fdcMeals = usdaResult.status === 'fulfilled' ? usdaResult.value : [];
+  // Filter live OFF meals to the requested meal type (prevents chicken nuggets appearing in dessert)
+  const filteredOffMeals = offMeals.filter(m =>
+    !m.type || m.type.includes(mealType)
+  );
+  // Skip USDA for desserts (no dessert data there)
+  const filteredFdcMeals = mealType === 'dessert' ? [] : fdcMeals;
 
   // 2. Filter static data
   const targetCountry = country === 'US' ? 'USA' : country;
@@ -71,7 +75,7 @@ async function getSuggestions({ calorieTarget, proteinTarget, mealType, country 
     !excludeIds.includes(m.id)
   );
 
-  const supermarketPool = [...staticShopPool, ...offMeals]
+  const supermarketPool = [...staticShopPool, ...filteredOffMeals]
     .map(m => ({ ...m, _score: scoreMeal(m, calorieTarget, proteinTarget) }))
     .sort((a, b) => a._score - b._score);
 
@@ -99,7 +103,7 @@ async function getSuggestions({ calorieTarget, proteinTarget, mealType, country 
   // 4. Fill gaps if any pool was short
   const remainingCount = 6 - picked.length;
   if (remainingCount > 0) {
-    const fallbackPool = [...fastFoodPool, ...restaurantPool, ...supermarketPool, ...fdcMeals]
+    const fallbackPool = [...fastFoodPool, ...restaurantPool, ...supermarketPool, ...filteredFdcMeals]
       .filter(m => !usedIds.has(m.id))
       .sort((a, b) => (a._score || 99) - (b._score || 99));
     

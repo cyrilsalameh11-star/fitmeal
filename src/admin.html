@@ -77,7 +77,12 @@
                 const lastSync = document.getElementById('last-sync');
 
                 if (data.users && data.users.length > 0) {
-                    list.innerHTML = data.users.map((name, index) => `
+                    list.innerHTML = data.users.map((user, index) => {
+                        const name = typeof user === 'string' ? user : user.name;
+                        const lastLogin = (typeof user === 'object' && user.last_login)
+                            ? new Date(user.last_login).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })
+                            : '—';
+                        return `
                         <div class="px-10 py-6 flex items-center justify-between hover:bg-stone-50 transition-colors">
                             <div class="flex items-center space-x-4">
                                 <div class="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center text-stone-400 font-bold uppercase text-xs">
@@ -85,12 +90,18 @@
                                 </div>
                                 <div>
                                     <p class="text-lg font-bold text-stone-800">${name}</p>
-                                    <p class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Unique Identifier #${1000 + index}</p>
+                                    <p class="text-[10px] font-bold uppercase tracking-widest text-stone-400">User #${1000 + index}</p>
                                 </div>
                             </div>
-                            <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-widest rounded-full border border-emerald-100 italic">Active</span>
-                        </div>
-                    `).join('');
+                            <div class="flex items-center space-x-6">
+                                <div class="text-right hidden sm:block">
+                                    <p class="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-0.5">Last Seen</p>
+                                    <p class="text-sm font-semibold text-stone-700">${lastLogin}</p>
+                                </div>
+                                <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-widest rounded-full border border-emerald-100">Active</span>
+                            </div>
+                        </div>`;
+                    }).join('');
                     totalSpan.innerText = data.users.length;
                     statTotal.innerText = data.users.length;
                 } else {
