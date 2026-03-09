@@ -84,4 +84,18 @@ router.post('/swap', async (req, res) => {
   }
 });
 
+/**
+ * GET /api/restaurants
+ * Returns: { meals: array of all restaurant items }
+ */
+router.get('/restaurants', (req, res) => {
+  try {
+    const restaurantMeals = require('../data/restaurants');
+    res.json({ meals: restaurantMeals });
+  } catch (err) {
+    console.error('[/api/restaurants] Error:', err.message);
+    res.status(500).json({ error: 'Failed to fetch restaurant data.' });
+  }
+});
+
 module.exports = router;
