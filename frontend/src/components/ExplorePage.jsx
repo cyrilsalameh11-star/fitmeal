@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronUp, Loader } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import ALL_RESTAURANT_DATA from '../data/restaurantData';
 
 const COUNTRIES = [
   { id: 'France', flag: '🇫🇷', label: 'France' },
@@ -256,28 +257,8 @@ function AccordionFamily({ brand, items }) {
 
 export default function ExplorePage() {
   const [activeCountry, setActiveCountry] = useState('France');
-  const [restaurantData, setRestaurantData] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const brandMeta = BRANDS[activeCountry] || [];
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        setLoading(true);
-        const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-        const res = await fetch(`${baseUrl}/api/restaurants`);
-        if (!res.ok) throw new Error('Failed to fetch');
-        const data = await res.json();
-        setRestaurantData(data.meals || []);
-      } catch (err) {
-        console.error('Failed to load restaurant data:', err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchData();
-  }, []);
 
   return (
     <motion.div
@@ -320,28 +301,20 @@ export default function ExplorePage() {
           </p>
         </div>
 
-        {loading ? (
-          <div className="flex flex-col items-center justify-center py-20 text-stone-400">
-            <Loader size={32} className="animate-spin mb-4" />
-            <p>Loading global database...</p>
-          </div>
-        ) : (
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCountry}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              {brandMeta.map((brand) => {
-                // Filter items for this brand exactly from the master backend list
-                const itemsForBrand = restaurantData.filter(m => m.brand === brand.name);
-                return <AccordionFamily key={brand.name} brand={brand} items={itemsForBrand} />;
-              })}
-            </motion.div>
-          </AnimatePresence>
-        )}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeCountry}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {brandMeta.map((brand) => {
+              const itemsForBrand = ALL_RESTAURANT_DATA.filter(m => m.brand === brand.name);
+              return <AccordionFamily key={brand.name} brand={brand} items={itemsForBrand} />;
+            })}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </motion.div>
   );
