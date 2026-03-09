@@ -15,7 +15,14 @@ function App() {
   const [shopItems, setShopItems] = useState([]);
   const [activeTab, setActiveTab] = useState('planner');
   const [currentFilters, setCurrentFilters] = useState(null);
-  const [seenMealIds, setSeenMealIds] = useState(new Set());
+  const [seenMealIds, setSeenMealIds] = useState(() => {
+    try {
+      const saved = localStorage.getItem('fitmeal_seen_ids');
+      return saved ? new Set(JSON.parse(saved)) : new Set();
+    } catch {
+      return new Set();
+    }
+  });
 
   // Fetch initial stats
   useEffect(() => {
@@ -67,7 +74,11 @@ function App() {
       
       setCurrentFilters(target);
       setMeals(data.suggestions || []);
-      setSeenMealIds(new Set((data.suggestions || []).map(m => m.id)));
+      setSeenMealIds(prev => {
+        const nextSet = new Set([...prev, ...(data.suggestions || []).map(m => m.id)]);
+        localStorage.setItem('fitmeal_seen_ids', JSON.stringify(Array.from(nextSet)));
+        return nextSet;
+      });
     } catch (err) {
       setError(err.message);
     } finally {
@@ -99,6 +110,7 @@ function App() {
         setSeenMealIds(prev => {
           const updated = new Set(prev);
           updated.add(data.meal.id);
+          localStorage.setItem('fitmeal_seen_ids', JSON.stringify(Array.from(updated)));
           return updated;
         });
       }

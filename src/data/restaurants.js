@@ -70,6 +70,12 @@ const restaurantMeals = [
   { id: 'lb-abd-nammoura', name: 'Nammoura (Basmoussa, per piece)', brand: 'Abdallah', type: ['dessert'], calories: 180, protein: 3, carbs: 30, fat: 6, source: 'restaurant', tags: ['dessert', 'lebanese', 'sweet'], country: 'Lebanon' },
   { id: 'lb-abd-fatteh', name: 'Fatteh (Chickpeas, Yogurt, Nuts)', brand: 'Abdallah', type: ['lunch'], calories: 420, protein: 18, carbs: 45, fat: 20, source: 'restaurant', tags: ['lebanese', 'vegetarian'], country: 'Lebanon' },
 
+  // Malak al Taouk Lebanon
+  { id: 'lb-mt-sand-classic', name: 'Classic Tawouk Sandwich', brand: 'Malak al Taouk', type: ['lunch', 'snack', 'dinner'], calories: 650, protein: 45, carbs: 55, fat: 28, source: 'restaurant', tags: ['sandwich', 'chicken', 'lebanese'], country: 'Lebanon' },
+  { id: 'lb-mt-platter', name: 'Tawouk Platter (Chicken, Fries, Garlic)', brand: 'Malak al Taouk', type: ['lunch', 'dinner'], calories: 950, protein: 55, carbs: 70, fat: 45, source: 'restaurant', tags: ['chicken', 'lebanese'], country: 'Lebanon' },
+  { id: 'lb-mt-burger', name: 'Malak Burger', brand: 'Malak al Taouk', type: ['lunch', 'dinner'], calories: 850, protein: 35, carbs: 65, fat: 50, source: 'restaurant', tags: ['burger', 'beef'], country: 'Lebanon' },
+  { id: 'lb-mt-franji', name: 'Franji Tawouk (Baguette)', brand: 'Malak al Taouk', type: ['lunch', 'snack'], calories: 580, protein: 42, carbs: 50, fat: 22, source: 'restaurant', tags: ['sandwich', 'chicken', 'lebanese'], country: 'Lebanon' },
+
   // ═══════════════════════════════════════════════════════════════════════════
   // SPAIN
   // ═══════════════════════════════════════════════════════════════════════════
