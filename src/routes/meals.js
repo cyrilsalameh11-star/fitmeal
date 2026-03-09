@@ -11,6 +11,8 @@ const router = express.Router();
  * Body: { calorieTarget: number, proteinTarget: number, mealType: string }
  * Returns: { meals: MealSuggestion[] }
  */
+router.post('/suggestions', async (req, res) => {
+  try {
     const { calorieTarget, proteinTarget, mealType, country = 'France', dietary = [], brand = '' } = req.body;
 
     // Validation
