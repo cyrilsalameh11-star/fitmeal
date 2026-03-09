@@ -46,17 +46,68 @@ async function getSuggestions({ calorieTarget, proteinTarget, mealType, country 
   // Skip USDA for desserts (no dessert data there)
   const filteredFdcMeals = mealType === 'dessert' ? [] : fdcMeals;
 
+
   // 2. Filter static data
   const targetCountry = country === 'US' ? 'USA' : country;
   const dietaryFilters = Array.isArray(dietary) ? dietary : (dietary && dietary !== 'none' ? [dietary] : []);
 
-  // Filter restaurants (Regular Restaurants & Fast Food)
-  const allRestaurantPool = restaurantMeals.filter(m => 
-    m.type.includes(mealType) && 
+  // ── Tag-based dietary filter ───────────────────────────────────────────────
+  // Restaurant items use `tags[]` not `dietary[]`, so we map constraints to excluded tags.
+  const MEAT_TAGS       = ['beef', 'pork', 'chicken', 'fish', 'turkey', 'bacon', 'ham', 'hotdog', 'pork'];
+  const GLUTEN_TAGS     = ['burger', 'sandwich', 'sub', 'wrap', 'pizza', 'pasta', 'bakery', 'crepe', 'quiche'];
+  const LACTOSE_TAGS    = ['cheese', 'pizza'];  // items explicitly tagged cheese/pizza
+  const PORK_TAGS       = ['pork', 'bacon', 'ham'];
+  const HIGH_CARB_TYPES = ['burger', 'sandwich', 'sub', 'wrap', 'pizza', 'pasta', 'bakery', 'crepe', 'sweet'];
+
+  function matchesDietaryFilters(meal, filters) {
+    if (!filters || filters.length === 0) return true;
+    const tags = meal.tags || [];
+
+    for (const f of filters) {
+      if (f === 'vegetarian' || f === 'vegan') {
+        // Must not have any meat tags
+        if (tags.some(t => MEAT_TAGS.includes(t))) return false;
+        if (f === 'vegan') {
+          // Also exclude egg and cheese
+          if (tags.some(t => ['egg', 'cheese', 'vegetarian'].includes(t) && t === 'cheese')) return false;
+          // Vegan items: must be tagged vegan or have no animal products
+          const isVegan = tags.includes('vegan') || (!tags.some(t => [...MEAT_TAGS, 'egg', 'cheese'].includes(t)));
+          if (!isVegan) return false;
+        }
+      }
+      if (f === 'gluten_free') {
+        // Exclude items that typically contain gluten
+        if (tags.some(t => GLUTEN_TAGS.includes(t))) return false;
+      }
+      if (f === 'lactose_free') {
+        // Exclude items that contain cheese or dairy-heavy items
+        if (tags.some(t => LACTOSE_TAGS.includes(t))) return false;
+        if (meal.name && /cheese|cream|butter|yogurt|lait|fromage/i.test(meal.name)) return false;
+      }
+      if (f === 'halal') {
+        // Exclude pork and bacon
+        if (tags.some(t => PORK_TAGS.includes(t))) return false;
+      }
+      if (f === 'keto') {
+        // Item must be tagged keto, OR have low carb ratio
+        const isTaggedKeto = tags.includes('keto');
+        const isLowCarb = meal.carbs != null && meal.calories != null
+          ? (meal.carbs * 4) / (meal.calories || 1) < 0.25
+          : false;
+        if (!isTaggedKeto && !isLowCarb) return false;
+      }
+    }
+    return true;
+  }
+
+  // Filter restaurants
+  const allRestaurantPool = restaurantMeals.filter(m =>
+    m.type.includes(mealType) &&
     m.country === targetCountry &&
-    (dietaryFilters.length === 0 || dietaryFilters.every(d => m.dietary && m.dietary.includes(d))) &&
+    matchesDietaryFilters(m, dietaryFilters) &&
     !excludeIds.includes(m.id)
   );
+
 
   // Split into Fast Food vs Restaurant
   // We classify brands with "France/USA" or known chains as Fast Food
@@ -74,7 +125,7 @@ async function getSuggestions({ calorieTarget, proteinTarget, mealType, country 
   const staticShopPool = curatedSupermarketMeals.filter(m => 
     m.type.includes(mealType) && 
     m.country === targetCountry &&
-    (dietaryFilters.length === 0 || dietaryFilters.every(d => m.dietary && m.dietary.includes(d))) &&
+    matchesDietaryFilters(m, dietaryFilters) &&
     !excludeIds.includes(m.id)
   );
 

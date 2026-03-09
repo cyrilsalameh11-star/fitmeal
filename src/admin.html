@@ -8,21 +8,99 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #fbfaf8; }
-        h1, h2 { font-family: 'Merriweather', serif; }
+        h1, h2, .serif { font-family: 'Merriweather', serif; }
         .amber-glow { box-shadow: 0 0 20px rgba(245, 158, 11, 0.1); }
+        .fade-in { animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .shake { animation: shake 0.4s; }
+        @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
     </style>
 </head>
 <body class="min-h-screen text-stone-900 selection:bg-amber-100">
-    <!-- Header -->
+
+<!-- ═══════════════════════════════════════════════════════ LOGIN OVERLAY ══ -->
+<div id="login-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-stone-50">
+    <div class="w-full max-w-md mx-4">
+        <div class="text-center mb-10">
+            <div class="w-16 h-16 bg-stone-900 rounded-2xl flex items-center justify-center text-white font-serif italic text-3xl shadow-2xl mx-auto mb-6">F</div>
+            <h1 class="text-3xl font-black tracking-tight">Admin <span class="italic font-normal text-stone-400 serif">Access</span></h1>
+            <p class="text-stone-400 mt-2 text-sm">FitMeal Intelligence Dashboard</p>
+        </div>
+
+        <!-- Step 1: Password -->
+        <div id="step-password" class="bg-white rounded-3xl p-8 shadow-sm border border-stone-100 fade-in">
+            <div id="error-msg" class="hidden mb-4 px-4 py-3 bg-red-50 text-red-600 rounded-2xl text-sm font-semibold border border-red-100"></div>
+            <div class="space-y-4">
+                <div>
+                    <label class="text-xs font-bold uppercase tracking-widest text-stone-400 mb-2 block">Admin Password</label>
+                    <input id="password-input" type="password" placeholder="Enter password" autocomplete="current-password"
+                        class="w-full bg-stone-50 border border-stone-100 rounded-2xl px-5 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all text-lg"
+                        onkeydown="if(event.key==='Enter') attemptLogin()">
+                </div>
+                <button onclick="attemptLogin()" id="login-btn"
+                    class="w-full bg-stone-900 text-white font-black text-sm uppercase tracking-widest py-4 rounded-2xl hover:bg-black transition-all shadow-xl">
+                    Access Dashboard
+                </button>
+                <p class="text-center text-xs text-stone-400 mt-2" id="attempts-hint"></p>
+            </div>
+        </div>
+
+        <!-- Step 2: Reset (shown after 3 failed attempts) -->
+        <div id="step-reset" class="hidden bg-white rounded-3xl p-8 shadow-sm border border-stone-100 fade-in">
+            <div class="mb-6 px-4 py-3 bg-amber-50 text-amber-700 rounded-2xl text-sm font-semibold border border-amber-100">
+                🔒 Account locked after 3 failed attempts. Enter your admin email to receive a reset code.
+            </div>
+            <div id="reset-error" class="hidden mb-4 px-4 py-3 bg-red-50 text-red-600 rounded-2xl text-sm font-semibold border border-red-100"></div>
+            <div class="space-y-4">
+                <div>
+                    <label class="text-xs font-bold uppercase tracking-widest text-stone-400 mb-2 block">Admin Email</label>
+                    <input id="email-input" type="email" placeholder="your@email.com"
+                        class="w-full bg-stone-50 border border-stone-100 rounded-2xl px-5 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all text-lg"
+                        onkeydown="if(event.key==='Enter') sendReset()">
+                </div>
+                <button onclick="sendReset()" class="w-full bg-amber-500 text-white font-black text-sm uppercase tracking-widest py-4 rounded-2xl hover:bg-amber-600 transition-all shadow-xl">
+                    Send Reset Code
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 3: Enter OTP code -->
+        <div id="step-code" class="hidden bg-white rounded-3xl p-8 shadow-sm border border-stone-100 fade-in">
+            <div class="mb-6 px-4 py-3 bg-emerald-50 text-emerald-700 rounded-2xl text-sm font-semibold border border-emerald-100">
+                ✅ Code sent! Check your email and enter it below.
+            </div>
+            <div id="code-error" class="hidden mb-4 px-4 py-3 bg-red-50 text-red-600 rounded-2xl text-sm font-semibold border border-red-100"></div>
+            <div class="space-y-4">
+                <div>
+                    <label class="text-xs font-bold uppercase tracking-widest text-stone-400 mb-2 block">6-Digit Code</label>
+                    <input id="code-input" type="text" inputmode="numeric" maxlength="6" placeholder="123456"
+                        class="w-full bg-stone-50 border border-stone-100 rounded-2xl px-5 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all text-3xl tracking-widest font-black text-center"
+                        onkeydown="if(event.key==='Enter') verifyCode()">
+                </div>
+                <button onclick="verifyCode()" class="w-full bg-stone-900 text-white font-black text-sm uppercase tracking-widest py-4 rounded-2xl hover:bg-black transition-all shadow-xl">
+                    Verify & Enter
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ DASHBOARD ══════ -->
+<div id="dashboard" class="hidden">
     <header class="bg-white/80 backdrop-blur-md border-b border-stone-100 sticky top-0 z-10 px-6 py-6">
         <div class="max-w-5xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
                 <div class="w-10 h-10 bg-stone-900 rounded-xl flex items-center justify-center text-white font-serif italic text-xl shadow-lg">F</div>
                 <h1 class="text-2xl font-black tracking-tight">Admin <span class="text-stone-400 italic font-normal">Intelligence</span></h1>
             </div>
-            <div id="user-count-badge" class="bg-stone-100 px-4 py-1.5 rounded-full border border-stone-200 text-[10px] font-bold uppercase tracking-widest text-stone-500 flex items-center">
-                <div class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2 animate-pulse"></div>
-                <span id="user-total">0</span> Users Active
+            <div class="flex items-center space-x-3">
+                <div id="user-count-badge" class="bg-stone-100 px-4 py-1.5 rounded-full border border-stone-200 text-[10px] font-bold uppercase tracking-widest text-stone-500 flex items-center">
+                    <div class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2 animate-pulse"></div>
+                    <span id="user-total">0</span>&nbsp;Users Active
+                </div>
+                <button onclick="logout()" class="bg-red-50 text-red-600 border border-red-100 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-red-100 transition-all">
+                    Logout
+                </button>
             </div>
         </div>
     </header>
@@ -36,14 +114,12 @@
         <!-- Stats Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="p-10 bg-white border border-stone-100 rounded-3xl shadow-sm amber-glow">
-                <p class="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-2">Total Participants</p>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-2">Total Visitors</p>
                 <p id="stat-total" class="text-6xl font-black text-stone-900">0</p>
             </div>
             <div class="p-10 bg-white border border-stone-100 rounded-3xl shadow-sm">
                 <p class="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-2">Platform Status</p>
-                <p class="text-2xl font-bold text-emerald-600 flex items-center uppercase tracking-wide">
-                    Online
-                </p>
+                <p class="text-2xl font-bold text-emerald-600 uppercase tracking-wide">🟢 Online</p>
             </div>
             <div class="p-10 bg-stone-900 rounded-3xl shadow-xl text-white">
                 <p class="text-[10px] font-bold uppercase tracking-widest text-stone-500 mb-2">Last Sync</p>
@@ -54,68 +130,187 @@
         <!-- User List -->
         <div class="bg-white border border-stone-100 rounded-[2rem] overflow-hidden shadow-sm">
             <div class="px-10 py-8 border-b border-stone-50 flex justify-between items-center">
-                <h3 class="text-xl font-bold uppercase tracking-widest text-stone-400 text-xs">Registered Identifiers</h3>
+                <h3 class="text-xs font-bold uppercase tracking-widest text-stone-400">Registered Visitors</h3>
                 <button onclick="loadUsers()" class="p-2 hover:bg-stone-50 rounded-full transition-colors text-stone-400 hover:text-stone-900">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
                 </button>
             </div>
             <div id="user-list" class="divide-y divide-stone-50">
-                <!-- User rows will be injected here -->
-                <div class="p-12 text-center text-stone-400 italic">Connecting to cloud database...</div>
+                <div class="p-12 text-center text-stone-400 italic">Loading visitors...</div>
             </div>
         </div>
     </main>
+</div>
 
-    <script>
-        async function loadUsers() {
-            try {
-                const response = await fetch('/api/admin/users');
-                const data = await response.json();
-                const list = document.getElementById('user-list');
-                const totalSpan = document.getElementById('user-total');
-                const statTotal = document.getElementById('stat-total');
-                const lastSync = document.getElementById('last-sync');
+<script>
+    let failCount = 0;
+    let resetEmail = '';
 
-                if (data.users && data.users.length > 0) {
-                    list.innerHTML = data.users.map((user, index) => {
-                        const name = typeof user === 'string' ? user : user.name;
-                        const lastLogin = (typeof user === 'object' && user.last_login)
-                            ? new Date(user.last_login).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })
-                            : '—';
-                        return `
-                        <div class="px-10 py-6 flex items-center justify-between hover:bg-stone-50 transition-colors">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center text-stone-400 font-bold uppercase text-xs">
-                                    ${name.charAt(0)}
-                                </div>
-                                <div>
-                                    <p class="text-lg font-bold text-stone-800">${name}</p>
-                                    <p class="text-[10px] font-bold uppercase tracking-widest text-stone-400">User #${1000 + index}</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-6">
-                                <div class="text-right hidden sm:block">
-                                    <p class="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-0.5">Last Seen</p>
-                                    <p class="text-sm font-semibold text-stone-700">${lastLogin}</p>
-                                </div>
-                                <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-widest rounded-full border border-emerald-100">Active</span>
-                            </div>
-                        </div>`;
-                    }).join('');
-                    totalSpan.innerText = data.users.length;
-                    statTotal.innerText = data.users.length;
-                } else {
-                    list.innerHTML = '<div class="p-12 text-center text-stone-400 italic">No users found in the log.</div>';
-                }
-                lastSync.innerText = new Date().toLocaleTimeString();
-            } catch (err) {
-                console.error(err);
-                document.getElementById('user-list').innerHTML = '<div class="p-12 text-center text-red-400 italic">Technical error: Unable to retrieve logs.</div>';
+    // ── On load: check existing session ──────────────────────────────────────
+    (async () => {
+        try {
+            const r = await fetch('/api/admin/check');
+            const d = await r.json();
+            if (d.authenticated) showDashboard();
+        } catch(e) {}
+    })();
+
+    // ── Login ─────────────────────────────────────────────────────────────────
+    async function attemptLogin() {
+        const password = document.getElementById('password-input').value;
+        const btn = document.getElementById('login-btn');
+        btn.disabled = true;
+        btn.innerText = '...';
+
+        try {
+            const r = await fetch('/api/admin/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password }),
+                credentials: 'include'
+            });
+            const d = await r.json();
+            if (d.success) { showDashboard(); return; }
+
+            failCount++;
+            const errEl = document.getElementById('error-msg');
+            errEl.classList.remove('hidden');
+
+            if (d.lockout || failCount >= 3) {
+                errEl.innerText = '🔒 Too many failed attempts.';
+                setTimeout(() => {
+                    document.getElementById('step-password').classList.add('hidden');
+                    document.getElementById('step-reset').classList.remove('hidden');
+                    document.getElementById('step-reset').classList.add('fade-in');
+                }, 800);
+            } else {
+                const left = 3 - failCount;
+                errEl.innerText = `Incorrect password. ${left} attempt${left !== 1 ? 's' : ''} remaining.`;
+                document.getElementById('password-input').classList.add('shake');
+                setTimeout(() => document.getElementById('password-input').classList.remove('shake'), 400);
+                document.getElementById('attempts-hint').innerText = `${failCount}/3 attempts used`;
             }
+        } catch(e) {
+            document.getElementById('error-msg').classList.remove('hidden');
+            document.getElementById('error-msg').innerText = 'Connection error. Is the server running?';
         }
 
+        btn.disabled = false;
+        btn.innerText = 'Access Dashboard';
+    }
+
+    // ── Send Reset Code ───────────────────────────────────────────────────────
+    async function sendReset() {
+        resetEmail = document.getElementById('email-input').value.trim();
+        if (!resetEmail) return;
+
+        try {
+            const r = await fetch('/api/admin/reset', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: resetEmail })
+            });
+            const d = await r.json();
+            if (d.success) {
+                document.getElementById('step-reset').classList.add('hidden');
+                document.getElementById('step-code').classList.remove('hidden');
+                document.getElementById('step-code').classList.add('fade-in');
+            } else {
+                document.getElementById('reset-error').classList.remove('hidden');
+                document.getElementById('reset-error').innerText = d.error || 'Email not recognized.';
+            }
+        } catch(e) {
+            document.getElementById('reset-error').classList.remove('hidden');
+            document.getElementById('reset-error').innerText = 'Connection error.';
+        }
+    }
+
+    // ── Verify OTP ────────────────────────────────────────────────────────────
+    async function verifyCode() {
+        const code = document.getElementById('code-input').value.trim();
+        try {
+            const r = await fetch('/api/admin/verify-reset', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: resetEmail, code }),
+                credentials: 'include'
+            });
+            const d = await r.json();
+            if (d.success) { showDashboard(); return; }
+            document.getElementById('code-error').classList.remove('hidden');
+            document.getElementById('code-error').innerText = d.error || 'Invalid code.';
+        } catch(e) {
+            document.getElementById('code-error').classList.remove('hidden');
+            document.getElementById('code-error').innerText = 'Connection error.';
+        }
+    }
+
+    // ── Show Dashboard ────────────────────────────────────────────────────────
+    function showDashboard() {
+        document.getElementById('login-overlay').classList.add('hidden');
+        document.getElementById('dashboard').classList.remove('hidden');
+        document.getElementById('dashboard').classList.add('fade-in');
         loadUsers();
-        setInterval(loadUsers, 30000); // Auto refresh every 30s
-    </script>
+    }
+
+    // ── Logout ────────────────────────────────────────────────────────────────
+    async function logout() {
+        await fetch('/api/admin/logout', { method: 'POST', credentials: 'include' });
+        location.reload();
+    }
+
+    // ── Load Users ────────────────────────────────────────────────────────────
+    async function loadUsers() {
+        try {
+            const r = await fetch('/api/admin/users', { credentials: 'include' });
+            if (r.status === 401) { location.reload(); return; }
+            const data = await r.json();
+            const list = document.getElementById('user-list');
+            const totalSpan = document.getElementById('user-total');
+            const statTotal = document.getElementById('stat-total');
+            const lastSync = document.getElementById('last-sync');
+
+            if (data.users && data.users.length > 0) {
+                list.innerHTML = data.users.map((user, index) => {
+                    const name = typeof user === 'string' ? user : user.name;
+                    const lastLogin = (typeof user === 'object' && user.last_login)
+                        ? new Date(user.last_login).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })
+                        : '—';
+                    const initials = name.split(' ').map(n => n[0]).join('').slice(0,2).toUpperCase();
+                    const colors = ['bg-amber-100 text-amber-700','bg-blue-100 text-blue-700','bg-emerald-100 text-emerald-700','bg-purple-100 text-purple-700','bg-rose-100 text-rose-700'];
+                    const color = colors[index % colors.length];
+                    return `
+                    <div class="px-10 py-6 flex items-center justify-between hover:bg-stone-50 transition-colors">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 ${color} rounded-full flex items-center justify-center font-black text-xs">${initials}</div>
+                            <div>
+                                <p class="text-lg font-bold text-stone-800">${name}</p>
+                                <p class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Visitor #${1000 + index}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-6">
+                            <div class="text-right hidden sm:block">
+                                <p class="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-0.5">Last Seen</p>
+                                <p class="text-sm font-semibold text-stone-700">${lastLogin}</p>
+                            </div>
+                            <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-widest rounded-full border border-emerald-100">Active</span>
+                        </div>
+                    </div>`;
+                }).join('');
+                totalSpan.innerText = data.users.length;
+                statTotal.innerText = data.users.length;
+            } else {
+                list.innerHTML = '<div class="p-12 text-center text-stone-400 italic">No visitors yet — share your app!</div>';
+            }
+            lastSync.innerText = new Date().toLocaleTimeString();
+        } catch (err) {
+            document.getElementById('user-list').innerHTML = '<div class="p-12 text-center text-red-400 italic">Error: Unable to retrieve visitor logs.</div>';
+        }
+    }
+
+    setInterval(loadUsers, 30000);
+</script>
 </body>
 </html>
