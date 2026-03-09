@@ -11,9 +11,7 @@ const router = express.Router();
  * Body: { calorieTarget: number, proteinTarget: number, mealType: string }
  * Returns: { meals: MealSuggestion[] }
  */
-router.post('/suggestions', async (req, res) => {
-  try {
-    const { calorieTarget, proteinTarget, mealType, country = 'France', dietary = [] } = req.body;
+    const { calorieTarget, proteinTarget, mealType, country = 'France', dietary = [], brand = '' } = req.body;
 
     // Validation
     if (!calorieTarget || !mealType) {
@@ -41,6 +39,7 @@ router.post('/suggestions', async (req, res) => {
       mealType,
       country,
       dietary,
+      brand,
     });
 
     res.json({ suggestions });
@@ -57,7 +56,7 @@ router.post('/suggestions', async (req, res) => {
  */
 router.post('/swap', async (req, res) => {
   try {
-    const { calorieTarget, proteinTarget, mealType, excludeIds = [], country = 'France', dietary = [] } = req.body;
+    const { calorieTarget, proteinTarget, mealType, excludeIds = [], country = 'France', dietary = [], brand = '' } = req.body;
 
     if (!calorieTarget || !mealType) {
       return res.status(400).json({ error: 'calorieTarget and mealType are required.' });

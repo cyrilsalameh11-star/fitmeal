@@ -17,6 +17,7 @@ function App() {
   const [shopItems, setShopItems] = useState([]);
   const [activeTab, setActiveTab] = useState('planner');
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showAdminLogin, setShowAdminLogin] = useState(false);
   const [currentFilters, setCurrentFilters] = useState(null);
   const [seenMealIds, setSeenMealIds] = useState(() => {
     try {
@@ -112,6 +113,7 @@ function App() {
           mealType: mealToSwap.type[0], // Use first type
           country: mealToSwap.country,
           dietary: currentFilters?.dietary || [],
+          brand: currentFilters?.brand || '',
           excludeIds: excludeList
         })
       });
@@ -207,8 +209,11 @@ function App() {
           </div>
 
           <div className="flex items-center space-x-4">
-             <div className="hidden sm:flex items-center space-x-2 bg-stone-100 px-4 py-1.5 rounded-full border border-stone-200">
-                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+             <div 
+               onClick={() => setShowAdminLogin(true)}
+               className="hidden sm:flex items-center space-x-2 bg-stone-100 px-4 py-1.5 rounded-full border border-stone-200 cursor-help group hover:border-amber-200 transition-all"
+             >
+                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse group-hover:bg-amber-500" />
                 <span className="text-[10px] font-bold uppercase tracking-widest text-stone-500">{userCount} users</span>
              </div>
              <button className="md:hidden p-2 text-stone-500" onClick={() => setShowMobileMenu(m => !m)}>
@@ -408,6 +413,78 @@ function App() {
           </motion.div>
         )}
       </AnimatePresence>
+      {/* Admin Login Overlay (Confidential) */}
+      <AdminLoginOverlay 
+        isOpen={showAdminLogin} 
+        onClose={() => setShowAdminLogin(false)} 
+      />
+    </div>
+  );
+}
+
+function AdminLoginOverlay({ isOpen, onClose }) {
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  if (!isOpen) return null;
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    try {
+      const r = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
+      const d = await r.json();
+      if (d.success) {
+        window.location.href = '/admin';
+      } else {
+        setError(d.error || 'Access Denied');
+      }
+    } catch (err) {
+      setError('Connection failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-stone-900/40 backdrop-blur-sm p-6">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="bg-white rounded-[2.5rem] p-10 max-w-sm w-full shadow-2xl border border-stone-100 relative"
+      >
+        <button onClick={onClose} className="absolute top-6 right-6 text-stone-300 hover:text-stone-900 transition-colors">
+          <X size={20} />
+        </button>
+        <div className="text-center mb-8">
+          <div className="w-12 h-12 bg-stone-900 rounded-2xl flex items-center justify-center text-white font-serif italic text-2xl mx-auto mb-4">F</div>
+          <h3 className="text-xl font-bold uppercase tracking-widest">Confidential</h3>
+        </div>
+        <form onSubmit={handleLogin} className="space-y-4">
+          {error && <p className="text-xs font-bold text-red-500 text-center uppercase tracking-widest">{error}</p>}
+          <input 
+            type="password"
+            autoFocus
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="System Password"
+            className="w-full bg-stone-50 border border-stone-100 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all text-center font-bold"
+          />
+          <button 
+            type="submit" 
+            disabled={loading}
+            className="w-full bg-stone-900 text-white font-black py-4 rounded-2xl hover:bg-black transition-all shadow-xl disabled:opacity-50"
+          >
+            {loading ? '...' : 'SECURE ACCESS'}
+          </button>
+        </form>
+      </motion.div>
     </div>
   );
 }

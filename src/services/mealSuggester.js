@@ -29,7 +29,7 @@ function scoreMeal(meal, calorieTarget, proteinTarget) {
  * @param {string[]} params.excludeIds - meal IDs to exclude
  * @param {string} params.country - 'France' | 'Spain' | 'Lebanon' | 'USA'
  */
-async function getSuggestions({ calorieTarget, proteinTarget, mealType, country = 'France', dietary = 'none', excludeIds = [] }) {
+async function getSuggestions({ calorieTarget, proteinTarget, mealType, country = 'France', dietary = 'none', brand = '', excludeIds = [] }) {
   // 1. Gather live meals concurrently (Supermarkets)
   const [offResult, usdaResult] = await Promise.allSettled([
     fetchSupermarketMeals(mealType, country, 40),
@@ -105,6 +105,7 @@ async function getSuggestions({ calorieTarget, proteinTarget, mealType, country 
     m.type.includes(mealType) &&
     m.country === targetCountry &&
     matchesDietaryFilters(m, dietaryFilters) &&
+    (!brand || m.brand === brand) &&
     !excludeIds.includes(m.id)
   );
 
@@ -126,6 +127,7 @@ async function getSuggestions({ calorieTarget, proteinTarget, mealType, country 
     m.type.includes(mealType) && 
     m.country === targetCountry &&
     matchesDietaryFilters(m, dietaryFilters) &&
+    (!brand || m.brand === brand) &&
     !excludeIds.includes(m.id)
   );
 

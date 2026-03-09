@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
-import { Flame, Dumbbell, Sun, Moon, Apple, Cookie, Globe, Shield } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Flame, Dumbbell, Sun, Moon, Apple, Cookie, Globe, Shield, Store } from 'lucide-react';
+import { BRANDS } from '../data/metadata';
 
 export default function MealForm({ onSubmit, isLoading }) {
   const [target, setTarget] = useState({
@@ -8,8 +8,16 @@ export default function MealForm({ onSubmit, isLoading }) {
     proteinTarget: '40',
     mealType: 'lunch',
     country: 'France',
+    brand: '',
     dietary: []
   });
+
+  // Reset brand when country changes
+  useEffect(() => {
+    setTarget(prev => ({ ...prev, brand: '' }));
+  }, [target.country]);
+
+  const availableBrands = BRANDS[target.country] || [];
 
   const handleChange = (e) => {
     setTarget({
@@ -67,7 +75,7 @@ export default function MealForm({ onSubmit, isLoading }) {
           )}
         </div>
 
-        {/* Row 2: Regional & Dietary */}
+        {/* Row 2: Regional & Brand */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-3">
             <label className="flex items-center space-x-2 text-xs font-bold text-stone-400 uppercase tracking-widest">
@@ -89,48 +97,72 @@ export default function MealForm({ onSubmit, isLoading }) {
 
           <div className="space-y-3">
             <label className="flex items-center space-x-2 text-xs font-bold text-stone-400 uppercase tracking-widest">
-              <Shield className="w-4 h-4" />
-              <span>Dietary Filter</span>
+              <Store className="w-4 h-4" />
+              <span>Specific Brand (Optional)</span>
             </label>
-            <div className="flex flex-wrap gap-2 pt-1">
-              {[
-                { id: 'halal', label: 'Halal' },
-                { id: 'vegan', label: 'Vegan' },
-                { id: 'vegetarian', label: 'Vegetarian' },
-                { id: 'keto', label: 'Keto' },
-                { id: 'lactose_free', label: 'Lactose Free' },
-                { id: 'gluten_free', label: 'Gluten Free' }
-              ].map(opt => (
-                <button
-                  key={opt.id}
-                  type="button"
-                  onClick={() => {
-                    setTarget(prev => ({
-                      ...prev,
-                      dietary: prev.dietary.includes(opt.id)
-                        ? prev.dietary.filter(d => d !== opt.id)
-                        : [...prev.dietary, opt.id]
-                    }));
-                  }}
-                  className={`px-3 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider border transition-all ${
-                    target.dietary.includes(opt.id) 
-                      ? 'bg-stone-900 border-stone-900 text-white shadow-md' 
-                      : 'bg-stone-50 border-stone-100 text-stone-500 hover:border-amber-200'
-                  }`}
-                >
-                  {opt.label}
-                </button>
-              ))}
-              {target.dietary.length === 0 && (
-                <span className="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-stone-400 italic">
-                  Standard Diet
-                </span>
-              )}
+            <div className="relative">
+              <select 
+                name="brand" 
+                value={target.brand} 
+                onChange={handleChange}
+                className="w-full bg-stone-50 border border-stone-100 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-bold text-sm uppercase tracking-wider appearance-none"
+              >
+                <option value="">Any Global Brand</option>
+                {availableBrands.map(b => (
+                  <option key={b.name} value={b.name}>{b.name}</option>
+                ))}
+              </select>
+              <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-stone-300">
+                <ChevronDown size={16} />
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Row 3: Meal Type */}
+        {/* Row 3: Dietary */}
+        <div className="space-y-3">
+          <label className="flex items-center space-x-2 text-xs font-bold text-stone-400 uppercase tracking-widest">
+            <Shield className="w-4 h-4" />
+            <span>Dietary Filter</span>
+          </label>
+          <div className="flex flex-wrap gap-2 pt-1">
+            {[
+              { id: 'halal', label: 'Halal' },
+              { id: 'vegan', label: 'Vegan' },
+              { id: 'vegetarian', label: 'Vegetarian' },
+              { id: 'keto', label: 'Keto' },
+              { id: 'lactose_free', label: 'Lactose Free' },
+              { id: 'gluten_free', label: 'Gluten Free' }
+            ].map(opt => (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() => {
+                  setTarget(prev => ({
+                    ...prev,
+                    dietary: prev.dietary.includes(opt.id)
+                      ? prev.dietary.filter(d => d !== opt.id)
+                      : [...prev.dietary, opt.id]
+                  }));
+                }}
+                className={`px-3 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider border transition-all ${
+                  target.dietary.includes(opt.id) 
+                    ? 'bg-stone-900 border-stone-900 text-white shadow-md' 
+                    : 'bg-stone-50 border-stone-100 text-stone-500 hover:border-amber-200'
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+            {target.dietary.length === 0 && (
+              <span className="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-stone-400 italic">
+                Standard Diet
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Row 4: Meal Type */}
         <div className="space-y-4">
           <label className="flex items-center space-x-2 text-xs font-bold text-stone-400 uppercase tracking-widest text-center justify-center">
             <span>Meal Category Selection</span>
@@ -166,9 +198,7 @@ export default function MealForm({ onSubmit, isLoading }) {
         </div>
       </div>
 
-      <motion.button
-        whileHover={{ scale: 1.02, backgroundColor: '#000' }}
-        whileTap={{ scale: 0.98 }}
+      <button
         disabled={isLoading}
         type="submit"
         className="w-full py-6 rounded-3xl bg-stone-900 text-white font-black text-xl shadow-2xl hover:shadow-amber-100 transition-all flex items-center justify-center space-x-4 disabled:opacity-50 tracking-tighter"
@@ -181,7 +211,25 @@ export default function MealForm({ onSubmit, isLoading }) {
             <span>Generate Plan</span>
           </>
         )}
-      </motion.button>
+      </button>
     </form>
+  );
+}
+
+function ChevronDown({ size, className }) {
+  return (
+    <svg 
+      width={size} 
+      height={size} 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round" 
+      className={className}
+    >
+      <path d="m6 9 6 6 6-6"/>
+    </svg>
   );
 }
