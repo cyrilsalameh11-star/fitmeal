@@ -355,11 +355,9 @@ try {
     case 'status': await doStatus(); break;
     default:
       console.log('Usage: auto-memory-hook.mjs <import|sync|status>');
-      break;
+      process.exit(1);
   }
 } catch (err) {
   // Hooks must never crash Claude Code - fail silently
-  try { dim(`Error (non-critical): ${err.message}`); } catch (_) {}
+  dim(`Error (non-critical): ${err.message}`);
 }
-// Hooks must ALWAYS exit 0
-process.exitCode = 0;

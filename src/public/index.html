@@ -1,40 +1,97 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FitMeal — Meal Planner Fitness</title>
-  <meta name="description" content="Planifiez vos repas fitness avec des données de supermarchés français (Carrefour, Monoprix) et restaurants (McDonald's, Subway, KFC…). Calories, protéines, glucides, lipides." />
+  <title>FitMeal — Fitness Meal Planner</title>
+  <meta name="description" content="Plan your fitness meals with data from local restaurants and supermarkets. Track calories, protein, carbs, and fats." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>
-  <!-- Hero Header -->
-  <header class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <div class="logo">
-        <span class="logo-icon">🥗</span>
-        <span class="logo-text">FitMeal</span>
-      </div>
-      <h1 class="hero-title">Repas sur mesure<br /><span class="gradient-text">pour vos objectifs</span></h1>
-      <p class="hero-subtitle">Supermarchés français, restaurants, USDA — 3 suggestions adaptées à vos macros</p>
+  <!-- Identity Overlay -->
+  <div id="identityOverlay" class="identity-overlay">
+    <div class="identity-card animate-in">
+      <div class="identity-logo"><span>🥗</span> FitMeal</div>
+      <h1 class="identity-title">Custom Meals <br><span>for Your Goals</span></h1>
+      <p class="identity-subtitle">Sign in with your name to access your personalized fitness meal plans and shopping lists.</p>
+      
+      <form id="identityForm" class="identity-form">
+        <div class="input-group">
+          <input type="text" id="userNameInput" placeholder="Enter your name (e.g. Marc)" required minlength="2" autocomplete="given-name">
+          <div class="input-focus-bg"></div>
+        </div>
+        <button type="submit" id="identitySubmitBtn" class="btn-primary login-btn">
+          <span class="btn-text">Get Started</span>
+          <span class="btn-icon">✨</span>
+        </button>
+      </form>
+      
+      <div id="identityError" class="error-text hidden" style="color: var(--error-color); margin-top: 1rem; font-size: 0.9rem;"></div>
     </div>
-  </header>
+  </div>
 
-  <!-- Main App -->
-  <main class="app-main">
+  <div id="mainApp" class="app-container hidden">
+    <!-- Hero Header -->
+    <header class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <div class="logo">
+          <span class="logo-icon">🥗</span>
+          <span class="logo-text">FitMeal</span>
+        </div>
+        <h1 class="hero-title">Custom Meals<br /><span>for Your Goals</span></h1>
+        <p class="hero-subtitle">Personalized fitness meal planner using data from your favorite local restaurants and supermarkets.</p>
+        <div class="user-badge-wrapper" style="margin-top: 2rem;">
+          <span class="user-badge"><span id="userCount">0</span> webapp users</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main App -->
+    <main class="app-main">
     <!-- Input Form -->
     <section class="form-section card" id="formCard">
-      <h2 class="section-title">Vos objectifs</h2>
+      <h2 class="section-title">Your Goals</h2>
       <form id="mealForm" novalidate>
         <div class="form-grid">
+          <!-- Country Select -->
+          <div class="form-group">
+            <label for="countrySelect" class="form-label">
+              <span class="label-icon">🌍</span> Country
+            </label>
+            <div class="input-wrapper">
+              <select id="countrySelect" name="countrySelect" class="form-select" required>
+                <option value="France">France</option>
+                <option value="Lebanon">Lebanon</option>
+                <option value="USA">USA</option>
+                <option value="Spain">Spain</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dietary Restrictions -->
+          <div class="form-group">
+            <label for="dietarySelect" class="form-label">
+              <span class="label-icon">🥑</span> Dietary
+            </label>
+            <div class="input-wrapper">
+              <select id="dietarySelect" name="dietarySelect" class="form-select" required>
+                <option value="none">None</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="vegan">Vegan</option>
+                <option value="gluten-free">Gluten-Free</option>
+                <option value="keto">Keto</option>
+                <option value="halal">Halal</option>
+              </select>
+            </div>
+          </div>
           <!-- Calorie Target -->
           <div class="form-group">
             <label for="calorieTarget" class="form-label">
-              <span class="label-icon">🔥</span> Calories cibles
+              <span class="label-icon">🔥</span> Calorie Goal
             </label>
             <div class="input-wrapper">
               <input
@@ -42,7 +99,7 @@
                 id="calorieTarget"
                 name="calorieTarget"
                 class="form-input"
-                placeholder="ex. 600"
+                placeholder="e.g. 600"
                 min="50"
                 max="3000"
                 required
@@ -50,13 +107,13 @@
               />
               <span class="input-unit">kcal</span>
             </div>
-            <span class="input-hint" id="calorieHint">Entre 50 et 3000 kcal</span>
+            <span class="input-hint" id="calorieHint">Between 50 and 3000 kcal</span>
           </div>
 
           <!-- Protein Target -->
-          <div class="form-group">
+          <div class="form-group" id="proteinGroup">
             <label for="proteinTarget" class="form-label">
-              <span class="label-icon">💪</span> Protéines cibles
+              <span class="label-icon">💪</span> Protein Goal
             </label>
             <div class="input-wrapper">
               <input
@@ -64,7 +121,7 @@
                 id="proteinTarget"
                 name="proteinTarget"
                 class="form-input"
-                placeholder="ex. 40"
+                placeholder="e.g. 40"
                 min="1"
                 max="300"
                 required
@@ -72,27 +129,27 @@
               />
               <span class="input-unit">g</span>
             </div>
-            <span class="input-hint" id="proteinHint">Entre 1 et 300 g</span>
+            <span class="input-hint" id="proteinHint">Between 1 and 300 g</span>
           </div>
 
           <!-- Meal Type -->
           <div class="form-group full-width">
             <label class="form-label">
-              <span class="label-icon">🍽️</span> Type de repas
+              <span class="label-icon">🍽️</span> Meal Type
             </label>
-            <div class="meal-type-group" role="radiogroup" aria-label="Type de repas">
+            <div class="meal-type-group" role="radiogroup" aria-label="Meal type">
               <label class="meal-type-option" for="typeLunch">
                 <input type="radio" id="typeLunch" name="mealType" value="lunch" />
                 <span class="meal-type-card">
                   <span class="meal-type-icon">☀️</span>
-                  <span class="meal-type-label">Déjeuner</span>
+                  <span class="meal-type-label">Lunch</span>
                 </span>
               </label>
               <label class="meal-type-option" for="typeDinner">
                 <input type="radio" id="typeDinner" name="mealType" value="dinner" checked />
                 <span class="meal-type-card">
                   <span class="meal-type-icon">🌙</span>
-                  <span class="meal-type-label">Dîner</span>
+                  <span class="meal-type-label">Dinner</span>
                 </span>
               </label>
               <label class="meal-type-option" for="typeSnack">
@@ -100,6 +157,13 @@
                 <span class="meal-type-card">
                   <span class="meal-type-icon">🍎</span>
                   <span class="meal-type-label">Snack</span>
+                </span>
+              </label>
+              <label class="meal-type-option" for="typeDessert">
+                <input type="radio" id="typeDessert" name="mealType" value="dessert" />
+                <span class="meal-type-card">
+                  <span class="meal-type-icon">🍰</span>
+                  <span class="meal-type-label">Dessert</span>
                 </span>
               </label>
             </div>
@@ -111,16 +175,17 @@
 
         <!-- Submit -->
         <button type="submit" class="btn-primary" id="submitBtn">
-          <span class="btn-text">Trouver mes repas</span>
+          <span class="btn-text">Find my meals</span>
           <span class="btn-icon">→</span>
         </button>
+
       </form>
     </section>
 
     <!-- Results Section -->
     <section class="results-section hidden" id="resultsSection">
       <div class="results-header">
-        <h2 class="section-title">Vos suggestions</h2>
+        <h2 class="section-title">Your Suggestions</h2>
         <p class="results-meta" id="resultsMeta"></p>
       </div>
 
@@ -130,7 +195,7 @@
       </div>
 
       <button class="btn-secondary" id="searchAgainBtn">
-        ← Modifier mes objectifs
+        ← Modify my goals
       </button>
     </section>
   </main>
@@ -139,14 +204,15 @@
   <div class="modal-overlay hidden" id="shopModal" role="dialog" aria-modal="true" aria-labelledby="shopModalTitle">
     <div class="modal-card">
       <div class="modal-header">
-        <h3 id="shopModalTitle">🛒 Liste de courses</h3>
-        <button class="modal-close" id="shopModalClose" aria-label="Fermer">✕</button>
+        <h3 id="shopModalTitle">🛒 Shopping List</h3>
+        <button class="modal-close" id="shopModalClose" aria-label="Close">✕</button>
       </div>
+
       <div class="modal-body" id="shopModalBody">
         <!-- Items injected by JS -->
       </div>
       <div class="modal-footer">
-        <p class="modal-note">Disponible dans votre supermarché habituel</p>
+        <p class="modal-note">Available at your local store</p>
       </div>
     </div>
   </div>

@@ -58,12 +58,23 @@ function normaliseProduct(product) {
  * Fetch supermarket meal options from Open Food Facts for a given meal type.
  * Tries multiple keyword queries and deduplicates.
  * @param {string} mealType  - 'lunch' | 'dinner' | 'snack'
+ * @param {string} country   - 'France' | 'USA' | 'Spain' | 'Lebanon'
  * @param {number} maxItems  - max items to return (default 30)
  */
-async function fetchSupermarketMeals(mealType, maxItems = 30) {
+async function fetchSupermarketMeals(mealType, country = 'France', maxItems = 30) {
   const keywords = QUERY_KEYWORDS[mealType] || QUERY_KEYWORDS.lunch;
   const results = [];
   const seenIds = new Set();
+
+  // Mapping internal country names to OFF parameters
+  const countryConfig = {
+    'France': { cc: 'fr', lc: 'fr', brands: ['carrefour', 'monoprix', 'casino', 'leclerc', 'lidl', 'aldi'] },
+    'USA':    { cc: 'us', lc: 'en', brands: ['walmart', 'target', 'kroger', 'whole foods', 'trader joe'] },
+    'Spain':   { cc: 'es', lc: 'es', brands: ['mercadona', 'carrefour', 'lidl', 'dia', 'alcampo'] },
+    'Lebanon': { cc: 'lb', lc: 'en', brands: ['spinneys', 'carrefour'] }
+  };
+
+  const config = countryConfig[country] || countryConfig['France'];
 
   for (const keyword of keywords) {
     try {
@@ -73,30 +84,51 @@ async function fetchSupermarketMeals(mealType, maxItems = 30) {
           search_simple: 1,
           action: 'process',
           json: 1,
-          page_size: 12,
-          fields:
-            'code,product_name,product_name_fr,brands,quantity,nutriments,categories_tags',
-          // Prefer French products
-          lc: 'fr',
-          cc: 'fr',
+          page_size: 15,
+          fields: 'code,product_name,product_name_fr,brands,quantity,nutriments,categories_tags',
+          lc: config.lc,
+          cc: config.cc,
         },
         timeout: 8000,
       });
 
       const products = response.data?.products || [];
       for (const p of products) {
-        const meal = normaliseProduct(p);
-        if (meal && !seenIds.has(meal.id)) {
-          seenIds.add(meal.id);
-          results.push({ ...meal, type: [mealType] });
+        // Normalise manually to apply brand filter for the specific country
+        const n = p.nutriments || {};
+        const calories = Math.round(n['energy-kcal_100g'] || n['energy-kcal'] || 0);
+        const protein = Math.round(n.proteins_100g || n.proteins || 0);
+        if (!calories || !protein) continue;
+
+        const brandStr = (p.brands || '').toLowerCase();
+        const brandMatch = config.brands.some(b => brandStr.includes(b));
+        if (!brandMatch) continue;
+
+        const name = p.product_name_fr || p.product_name || 'Unknown Product';
+        const id = `off-${p.code || Math.random().toString(36).slice(2)}`;
+
+        if (!seenIds.has(id)) {
+          seenIds.add(id);
+          results.push({
+            id,
+            name: `${name}${p.quantity ? ` (${p.quantity})` : ''}`,
+            brand: p.brands.split(',')[0].trim(),
+            calories,
+            protein,
+            carbs: Math.round(n.carbohydrates_100g || n.carbohydrates || 0),
+            fat: Math.round(n.fat_100g || n.fat || 0),
+            source: 'supermarket',
+            type: [mealType],
+            country: country,
+            shoppingItems: [name],
+            tags: []
+          });
           if (results.length >= maxItems) break;
         }
       }
     } catch (err) {
-      // Non-fatal: log and continue with next keyword
-      console.warn(`[OFF] Warning fetching "${keyword}":`, err.message);
+      console.warn(`[OFF] Warning fetching "${keyword}" for ${country}:`, err.message);
     }
-
     if (results.length >= maxItems) break;
   }
 

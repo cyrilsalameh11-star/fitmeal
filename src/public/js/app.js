@@ -17,11 +17,95 @@ const shopModalBody = document.getElementById('shopModalBody');
 const shopModalClose = document.getElementById('shopModalClose');
 const skeletonTemplate = document.getElementById('skeletonTemplate');
 
+// Identity DOM
+const identityOverlay = document.getElementById('identityOverlay');
+const identityForm = document.getElementById('identityForm');
+const userNameInput = document.getElementById('userNameInput');
+const identityError = document.getElementById('identityError');
+const mainApp = document.getElementById('mainApp');
+
 // ── State ───────────────────────────────────────────────────────────────────
 let currentMeals = [];      // Array of currently shown meal objects
 let calorieTarget = 0;
 let proteinTarget = 0;
 let mealType = 'dinner';
+let countrySelect = 'France';
+let dietarySelect = 'none';
+
+// ── Initialization ──────────────────────────────────────────────────────────
+async function init() {
+  const savedName = localStorage.getItem('fitmeal_user');
+  if (savedName) {
+    showApp(savedName);
+  } else {
+    // Just fetch count for the overlay if needed, but we'll do it in showApp
+    refreshStats();
+  }
+}
+
+async function refreshStats() {
+  try {
+    const res = await fetch('/api/stats');
+    const data = await res.json();
+    document.getElementById('userCount').textContent = data.count.toLocaleString();
+  } catch (err) {
+    console.error('Failed to fetch user stats');
+    document.getElementById('userCount').textContent = '0';
+  }
+}
+
+function showApp(name) {
+  identityOverlay.classList.add('hidden');
+  mainApp.classList.remove('hidden');
+  refreshStats();
+  console.log(`Welcome back, ${name}`);
+}
+
+identityForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const name = userNameInput.value.trim();
+  if (name.length < 2) return;
+
+  identityError.classList.add('hidden');
+  const btn = document.getElementById('identitySubmitBtn');
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name })
+    });
+    const data = await res.json();
+    
+    if (data.success) {
+      localStorage.setItem('fitmeal_user', name);
+      showApp(name);
+    } else {
+      identityError.textContent = data.error || 'Login failed';
+      identityError.classList.remove('hidden');
+    }
+  } catch (err) {
+    identityError.textContent = 'Server connection failed';
+    identityError.classList.remove('hidden');
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+init();
+
+// ── Dynamic UI ──────────────────────────────────────────────────────────────
+document.querySelectorAll('input[name="mealType"]').forEach(radio => {
+  radio.addEventListener('change', (e) => {
+    const protGroup = document.getElementById('proteinGroup');
+    if (e.target.value === 'dessert') {
+      protGroup.classList.add('hidden');
+    } else {
+      protGroup.classList.remove('hidden');
+    }
+  });
+});
 
 // ── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -43,11 +127,11 @@ function setLoading(on) {
     icon.textContent = '↻';
     icon.style.animation = 'spin 1s linear infinite';
     icon.style.display = 'inline-block';
-    text.textContent = 'Recherche en cours…';
+    text.textContent = 'Searching...';
   } else {
     icon.textContent = '→';
     icon.style.animation = '';
-    text.textContent = 'Trouver mes repas';
+    text.textContent = 'Find my meals';
   }
 }
 
@@ -55,7 +139,7 @@ function setLoading(on) {
 
 const SOURCE_META = {
   restaurant: { label: '🍔 Restaurant', cls: 'source-restaurant' },
-  supermarket: { label: '🏪 Supermarché', cls: 'source-supermarket' },
+  supermarket: { label: '🏪 Supermarket', cls: 'source-supermarket' },
   usda:        { label: '🇺🇸 USDA', cls: 'source-usda' },
 };
 
@@ -112,41 +196,49 @@ function renderMealCard(meal, index) {
       <button
         class="btn-swap"
         id="swap-${meal.id}"
-        aria-label="Remplacer ce repas"
-        title="Ne pas aimer ce repas"
+        aria-label="Replace this meal"
+        title="Don't like this meal?"
       >🔄 Swap</button>
     </div>
 
-    <div class="macro-chips">
-      <div class="macro-chip cal">
-        <span class="macro-value">${meal.calories}</span>
-        <span class="macro-label">Calories</span>
+    <div class="macro-visuals">
+      <div class="macro-viz cal">
+        <div class="viz-ring" style="--pct: ${macroPercent(meal.calories, calorieTarget)}%">
+          <span class="viz-value">${meal.calories}</span>
+        </div>
+        <span class="viz-label">kcal</span>
       </div>
-      <div class="macro-chip prot">
-        <span class="macro-value">${meal.protein}g</span>
-        <span class="macro-label">Protéines</span>
+      <div class="macro-viz prot">
+        <div class="viz-ring" style="--pct: ${macroPercent(meal.protein, proteinTarget)}%">
+          <span class="viz-value">${meal.protein}g</span>
+        </div>
+        <span class="viz-label">Protein</span>
       </div>
-      <div class="macro-chip carb">
-        <span class="macro-value">${meal.carbs}g</span>
-        <span class="macro-label">Glucides</span>
+      <div class="macro-viz carb">
+        <div class="viz-ring" style="--pct: ${macroPercent(meal.carbs, 100)}%">
+          <span class="viz-value">${meal.carbs}g</span>
+        </div>
+        <span class="viz-label">Carbs</span>
       </div>
-      <div class="macro-chip fat">
-        <span class="macro-value">${meal.fat}g</span>
-        <span class="macro-label">Lipides</span>
+      <div class="macro-viz fat">
+        <div class="viz-ring" style="--pct: ${macroPercent(meal.fat, 50)}%">
+          <span class="viz-value">${meal.fat}g</span>
+        </div>
+        <span class="viz-label">Fat</span>
       </div>
     </div>
 
-    <div class="macro-bars">
-      ${renderMacroBar('Calories', meal.calories, 'kcal', maxCal, 'cal')}
-      ${renderMacroBar('Protéines', meal.protein, 'g', maxProt, 'prot')}
-      ${renderMacroBar('Glucides', meal.carbs, 'g', maxCarb, 'carb')}
-      ${renderMacroBar('Lipides', meal.fat, 'g', maxFat, 'fat')}
+    <div class="macro-bars-mini">
+       <div class="mini-bar-track"><div class="mini-bar-fill cal" style="width: ${macroPercent(meal.calories, calorieTarget)}%"></div></div>
+       <div class="mini-bar-track"><div class="mini-bar-fill prot" style="width: ${macroPercent(meal.protein, proteinTarget)}%"></div></div>
+       <div class="mini-bar-track"><div class="mini-bar-fill carb" style="width: ${macroPercent(meal.carbs, 100)}%"></div></div>
+       <div class="mini-bar-track"><div class="mini-bar-fill fat" style="width: ${macroPercent(meal.fat, 50)}%"></div></div>
     </div>
 
     ${hasShoppingList ? `
     <div class="card-actions">
-      <button class="btn-shop" id="shop-${meal.id}" aria-label="Voir la liste de courses">
-        🛒 Liste de courses
+      <button class="btn-shop" id="shop-${meal.id}" aria-label="View shopping list">
+        🛒 Shopping List
       </button>
     </div>
     ` : ''}
@@ -175,7 +267,7 @@ function escapeHtml(str) {
 
 function showSkeletons() {
   mealsGrid.innerHTML = '';
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 4; i++) {
     const clone = skeletonTemplate.content.cloneNode(true);
     mealsGrid.appendChild(clone);
   }
@@ -183,15 +275,21 @@ function showSkeletons() {
 
 // ── API Calls ───────────────────────────────────────────────────────────────
 
-async function fetchSuggestions(cal, prot, type) {
+async function fetchSuggestions(cal, prot, type, country, dietary) {
   const res = await fetch('/api/suggestions', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ calorieTarget: cal, proteinTarget: prot, mealType: type }),
+    body: JSON.stringify({ 
+      calorieTarget: cal, 
+      proteinTarget: prot, 
+      mealType: type,
+      country,
+      dietary
+    }),
   });
   if (!res.ok) {
-    const err = await res.json().catch(() => ({ error: 'Erreur serveur' }));
-    throw new Error(err.error || 'Erreur lors de la requête');
+    const err = await res.json().catch(() => ({ error: 'Server error' }));
+    throw new Error(err.error || 'Request failed');
   }
   return res.json();
 }
@@ -204,11 +302,13 @@ async function fetchSwap(excludeIds) {
       calorieTarget,
       proteinTarget,
       mealType,
+      country: countrySelect,
+      dietary: dietarySelect,
       excludeIds,
     }),
   });
   if (!res.ok) {
-    const err = await res.json().catch(() => ({ error: 'Aucune alternative trouvée' }));
+    const err = await res.json().catch(() => ({ error: 'No alternatives found' }));
     throw new Error(err.error);
   }
   return res.json();
@@ -223,23 +323,28 @@ form.addEventListener('submit', async (e) => {
   const calInput = document.getElementById('calorieTarget');
   const protInput = document.getElementById('proteinTarget');
   const typeInput = document.querySelector('input[name="mealType"]:checked');
+  const countryInput = document.getElementById('countrySelect');
+  const dietaryInput = document.getElementById('dietarySelect');
 
   // Validate
   const cal = Number(calInput.value);
   const prot = Number(protInput.value);
   const type = typeInput?.value || '';
+  const country = countryInput.value;
+  const dietary = dietaryInput.value;
 
   calInput.classList.remove('error');
   protInput.classList.remove('error');
 
   if (!cal || cal < 50 || cal > 3000) {
     calInput.classList.add('error');
-    showError('Entrez un objectif calorique entre 50 et 3000 kcal.');
+    showError('Enter a calorie goal between 50 and 3000 kcal.');
     return;
   }
-  if (!prot || prot < 1 || prot > 300) {
+  
+  if (type !== 'dessert' && (!prot || prot < 1 || prot > 300)) {
     protInput.classList.add('error');
-    showError('Entrez un objectif protéique entre 1 et 300 g.');
+    showError('Enter a protein goal between 1 and 300 g.');
     return;
   }
 
@@ -247,6 +352,8 @@ form.addEventListener('submit', async (e) => {
   calorieTarget = cal;
   proteinTarget = prot;
   mealType = type;
+  countrySelect = country;
+  dietarySelect = dietary;
 
   // Show results section with skeletons
   formCard.classList.add('hidden');
@@ -255,14 +362,14 @@ form.addEventListener('submit', async (e) => {
   setLoading(true);
 
   try {
-    const data = await fetchSuggestions(cal, prot, type);
+    const data = await fetchSuggestions(cal, prot, type, country, dietary);
     currentMeals = data.meals || [];
 
     mealsGrid.innerHTML = '';
 
     if (!currentMeals.length) {
       mealsGrid.innerHTML = `<p style="color:var(--text-muted); grid-column:1/-1; text-align:center; padding: 40px 0">
-        Aucun repas trouvé. Essayez d'ajuster vos objectifs.
+        No meals found. Try adjusting your goals.
       </p>`;
     } else {
       currentMeals.forEach((meal, i) => {
@@ -280,14 +387,14 @@ form.addEventListener('submit', async (e) => {
       });
     });
 
-    const mealTypeLabel = { lunch: 'Déjeuner', dinner: 'Dîner', snack: 'Snack' };
-    resultsMeta.textContent = `${mealTypeLabel[type] || type} — Objectif ${cal} kcal / ${prot}g de protéines`;
+    const mealTypeLabel = { lunch: 'Lunch', dinner: 'Dinner', snack: 'Snack', dessert: 'Dessert' };
+    resultsMeta.textContent = `${mealTypeLabel[type] || type} — Goal: ${cal} kcal / ${prot}g protein`;
 
   } catch (err) {
     mealsGrid.innerHTML = '';
     resultsSection.classList.add('hidden');
     formCard.classList.remove('hidden');
-    showError(err.message || 'Une erreur est survenue. Veuillez réessayer.');
+    showError(err.message || 'An error occurred. Please try again.');
   } finally {
     setLoading(false);
   }
@@ -316,7 +423,7 @@ async function swapMeal(mealId, cardEl) {
   } catch (err) {
     swapBtn.disabled = false;
     swapBtn.textContent = '🔄 Swap';
-    alert(err.message || 'Impossible de trouver une alternative.');
+    alert(err.message || 'Could not find an alternative.');
   }
 }
 
@@ -336,7 +443,7 @@ function openShopModal(meal) {
     shopModalBody.innerHTML += `
       <div class="shop-item" style="margin-top:12px; color:var(--text-muted)">
         <span class="shop-item-icon">🏪</span>
-        <span>Disponible chez ${escapeHtml(meal.store)}</span>
+        <span>Available at ${escapeHtml(meal.store)}</span>
       </div>
     `;
   }

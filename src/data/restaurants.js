@@ -164,39 +164,108 @@ const restaurantMeals = [
   { id: 'pret-fresh-fruit-pot', name: 'Pot de Fruits Frais', brand: 'Prêt à Manger', type: ['snack'], calories: 90, protein: 1, carbs: 20, fat: 0, source: 'restaurant', tags: ['snack', 'fruit', 'light'] },
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // Exki France
+  // FRANCE — BOULANGERIES (Paul, Brioche Dorée, etc.)
   // ═══════════════════════════════════════════════════════════════════════════
 
-  // Bowls & Hot Meals
-  { id: 'exki-bowl-poulet', name: 'Bowl Poulet Rôti & Légumes', brand: 'Exki', type: ['lunch', 'dinner'], calories: 460, protein: 38, carbs: 35, fat: 16, source: 'restaurant', tags: ['bowl', 'chicken', 'healthy'] },
-  { id: 'exki-bowl-salmon', name: 'Salmon Poké Bowl', brand: 'Exki', type: ['lunch', 'dinner'], calories: 490, protein: 34, carbs: 48, fat: 18, source: 'restaurant', tags: ['bowl', 'fish', 'healthy'] },
-  { id: 'exki-gnocchi-artichoke', name: 'Gnocchis Artichaut & Épinards', brand: 'Exki', type: ['lunch', 'dinner'], calories: 480, protein: 14, carbs: 68, fat: 18, source: 'restaurant', tags: ['bowl', 'vegetarian', 'pasta'] },
-  { id: 'exki-bulgur-salad', name: 'Salade Bulgur & Légumes Grillés', brand: 'Exki', type: ['lunch', 'dinner'], calories: 430, protein: 12, carbs: 58, fat: 16, source: 'restaurant', tags: ['salad', 'vegan', 'grains'] },
-  { id: 'exki-quinoa-legumes', name: 'Bowl Quinoa & Légumes de Saison', brand: 'Exki', type: ['lunch', 'dinner'], calories: 380, protein: 13, carbs: 54, fat: 12, source: 'restaurant', tags: ['bowl', 'vegan', 'quinoa'] },
-  { id: 'exki-poulet-curry', name: 'Poulet Curry Riz Basmati', brand: 'Exki', type: ['lunch', 'dinner'], calories: 510, protein: 36, carbs: 56, fat: 16, source: 'restaurant', tags: ['bowl', 'chicken', 'spicy'] },
+  { id: 'paul-panini-steak', name: 'Panini Steak (Bœuf, Fromage)', brand: 'Boulangerie Paul', type: ['lunch', 'dinner'], calories: 540, protein: 28, carbs: 58, fat: 22, source: 'restaurant', tags: ['sandwich', 'beef'], country: 'France' },
+  { id: 'paul-pavot-poulet', name: 'Sandwich Pavot Poulet', brand: 'Boulangerie Paul', type: ['lunch', 'snack'], calories: 480, protein: 24, carbs: 52, fat: 18, source: 'restaurant', tags: ['sandwich', 'chicken'], country: 'France' },
+  { id: 'bd-croque-monsieur', name: 'Croque Monsieur', brand: 'Brioche Dorée', type: ['lunch', 'snack'], calories: 410, protein: 18, carbs: 32, fat: 24, source: 'restaurant', tags: ['sandwich', 'ham'], country: 'France' },
+  { id: 'mk-baguette-jambon', name: 'Baguette Jambon Beurre', brand: 'Maison Kayser', type: ['lunch', 'snack'], calories: 512, protein: 21, carbs: 64, fat: 19, source: 'restaurant', tags: ['sandwich', 'ham'], country: 'France' },
 
-  // Salads
-  { id: 'exki-salade-chevre', name: 'Salade Chèvre Chaud & Noix', brand: 'Exki', type: ['lunch', 'dinner'], calories: 390, protein: 16, carbs: 22, fat: 26, source: 'restaurant', tags: ['salad', 'vegetarian'] },
-  { id: 'exki-salade-jean', name: 'Salade Le Jean (Jambon, Comté)', brand: 'Exki', type: ['lunch', 'dinner'], calories: 447, protein: 21, carbs: 40, fat: 21, source: 'restaurant', tags: ['salad', 'ham'] },
-  { id: 'exki-salade-thai', name: 'Salade Thaï Poulet & Coriandre', brand: 'Exki', type: ['lunch', 'dinner'], calories: 360, protein: 26, carbs: 30, fat: 14, source: 'restaurant', tags: ['salad', 'chicken', 'light'] },
-  { id: 'exki-greens-salad', name: 'Greens Salad (verte)', brand: 'Exki', type: ['snack', 'lunch'], calories: 120, protein: 4, carbs: 12, fat: 6, source: 'restaurant', tags: ['salad', 'vegan', 'light'] },
+  // ═══════════════════════════════════════════════════════════════════════════
+  // USA — RESTAURANTS & FAST FOOD
+  // ═══════════════════════════════════════════════════════════════════════════
 
-  // Sandwiches & Wraps
-  { id: 'exki-tartine-saumon', name: 'Tartine Saumon Fumé', brand: 'Exki', type: ['lunch', 'snack'], calories: 310, protein: 22, carbs: 28, fat: 12, source: 'restaurant', tags: ['fish', 'bread', 'sandwich'] },
-  { id: 'exki-wrap-falafel', name: 'Wrap Falafel Houmous', brand: 'Exki', type: ['lunch', 'snack'], calories: 430, protein: 14, carbs: 55, fat: 16, source: 'restaurant', tags: ['wrap', 'vegan'] },
-  { id: 'exki-croissant-jambon', name: 'Croissant Jambon Fromage', brand: 'Exki', type: ['lunch', 'snack'], calories: 390, protein: 20, carbs: 32, fat: 20, source: 'restaurant', tags: ['pastry', 'ham', 'snack'] },
+  // Chipotle
+  { id: 'us-chip-chicken-bowl', name: 'Chicken Burrito Bowl (Rice, Black Beans, Salsa)', brand: 'Chipotle', type: ['lunch', 'dinner'], calories: 660, protein: 52, carbs: 70, fat: 18, source: 'restaurant', tags: ['bowl', 'chicken', 'healthy'], country: 'USA' },
+  { id: 'us-chip-steak-tacos', name: 'Steak Tacos (3 pcs, Corn)', brand: 'Chipotle', type: ['lunch', 'dinner'], calories: 540, protein: 36, carbs: 45, fat: 24, source: 'restaurant', tags: ['tacos', 'beef'], country: 'USA' },
+  
+  // Sweetgreen
+  { id: 'us-sg-harvest-bowl', name: 'Harvest Bowl', brand: 'Sweetgreen', type: ['lunch', 'dinner'], calories: 705, protein: 36, carbs: 68, fat: 34, source: 'restaurant', tags: ['salad', 'bowl', 'chicken', 'healthy'], country: 'USA' },
+  { id: 'us-sg-kale-caesar', name: 'Kale Caesar (with Chicken)', brand: 'Sweetgreen', type: ['lunch', 'dinner'], calories: 420, protein: 31, carbs: 14, fat: 28, source: 'restaurant', tags: ['salad', 'chicken', 'healthy'], country: 'USA' },
 
-  // Soups
-  { id: 'exki-soup-lentil', name: 'Soupe Lentilles Corail', brand: 'Exki', type: ['lunch', 'dinner', 'snack'], calories: 220, protein: 12, carbs: 32, fat: 5, source: 'restaurant', tags: ['soup', 'vegan', 'light'] },
-  { id: 'exki-soup-tomate', name: 'Soupe Tomate Basilic', brand: 'Exki', type: ['lunch', 'dinner', 'snack'], calories: 180, protein: 4, carbs: 26, fat: 7, source: 'restaurant', tags: ['soup', 'vegan', 'light'] },
-  { id: 'exki-soup-poulet', name: 'Soupe Poulet & Légumes', brand: 'Exki', type: ['lunch', 'dinner', 'snack'], calories: 230, protein: 18, carbs: 22, fat: 7, source: 'restaurant', tags: ['soup', 'chicken', 'light'] },
+  // Cava
+  { id: 'us-cava-chicken-bowl', name: 'Greens & Grains Bowl (Chicken)', brand: 'Cava', type: ['lunch', 'dinner'], calories: 580, protein: 42, carbs: 55, fat: 22, source: 'restaurant', tags: ['bowl', 'chicken', 'mediterranean', 'healthy'], country: 'USA' },
 
-  // Desserts / Snacks
-  { id: 'exki-brownie', name: 'Brownie Chocolat Noisette', brand: 'Exki', type: ['snack'], calories: 280, protein: 5, carbs: 38, fat: 14, source: 'restaurant', tags: ['snack', 'sweet'] },
-  { id: 'exki-carrot-cake', name: 'Carrot Cake Maison', brand: 'Exki', type: ['snack'], calories: 320, protein: 5, carbs: 44, fat: 15, source: 'restaurant', tags: ['snack', 'sweet', 'cake'] },
-  { id: 'exki-fruit-pot', name: 'Coupe de Fruits Frais', brand: 'Exki', type: ['snack'], calories: 95, protein: 1, carbs: 22, fat: 0, source: 'restaurant', tags: ['snack', 'fruit', 'light'] },
-  { id: 'exki-yogurt-muesli', name: 'Yaourt Muesli & Miel', brand: 'Exki', type: ['snack'], calories: 270, protein: 10, carbs: 42, fat: 7, source: 'restaurant', tags: ['snack', 'yogurt'] },
+  // McDonald's USA
+  { id: 'us-mcd-quarter-pounder', name: 'Quarter Pounder with Cheese', brand: "McDonald's USA", type: ['lunch', 'dinner'], calories: 520, protein: 30, carbs: 42, fat: 26, source: 'restaurant', tags: ['burger', 'beef'], country: 'USA' },
+  { id: 'us-mcd-mcnuggets-10', name: 'Chicken McNuggets x10', brand: "McDonald's USA", type: ['snack', 'lunch'], calories: 410, protein: 23, carbs: 25, fat: 24, source: 'restaurant', tags: ['chicken', 'snack'], country: 'USA' },
+
+  // Chick-fil-A
+  { id: 'us-cfa-sandwich', name: 'Chicken Sandwich', brand: 'Chick-fil-A', type: ['lunch', 'dinner'], calories: 440, protein: 28, carbs: 41, fat: 19, source: 'restaurant', tags: ['sandwich', 'chicken'], country: 'USA' },
+  { id: 'us-cfa-grilled-nuggets', name: 'Grilled Nuggets x8', brand: 'Chick-fil-A', type: ['snack', 'lunch'], calories: 130, protein: 25, carbs: 1, fat: 3, source: 'restaurant', tags: ['chicken', 'healthy', 'low-carb'], country: 'USA' },
+
+  // Starbucks USA
+  { id: 'us-sbux-egg-bites', name: 'Egg White & Roasted Red Pepper Sous Vide', brand: 'Starbucks', type: ['snack'], calories: 170, protein: 12, carbs: 11, fat: 8, source: 'restaurant', tags: ['egg', 'breakfast', 'healthy'], country: 'USA' },
+  { id: 'us-sbux-turkey-pesto', name: 'Turkey, Provolone & Pesto Panini', brand: 'Starbucks', type: ['lunch', 'snack'], calories: 520, protein: 34, carbs: 54, fat: 19, source: 'restaurant', tags: ['sandwich', 'turkey'], country: 'USA' },
+
+  // Panda Express
+  { id: 'us-panda-orange-chicken', name: 'Orange Chicken (Serving)', brand: 'Panda Express', type: ['lunch', 'dinner'], calories: 490, protein: 25, carbs: 51, fat: 23, source: 'restaurant', tags: ['asian', 'chicken'], country: 'USA' },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // SPAIN — RESTAURANTS & TAPAS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  // VIPS
+  { id: 'es-vips-club', name: 'VIPS Club Sandwich', brand: 'VIPS', type: ['lunch', 'dinner'], calories: 920, protein: 42, carbs: 68, fat: 54, source: 'restaurant', tags: ['sandwich', 'chicken'], country: 'Spain' },
+  { id: 'es-vips-burger', name: 'Burger Pampera', brand: 'VIPS', type: ['lunch', 'dinner'], calories: 850, protein: 40, carbs: 52, fat: 55, source: 'restaurant', tags: ['burger', 'beef'], country: 'Spain' },
+
+  // 100 Montaditos
+  { id: 'es-100m-chicken', name: 'Montadito Pollo Kebab', brand: '100 Montaditos', type: ['snack', 'lunch'], calories: 240, protein: 12, carbs: 28, fat: 9, source: 'restaurant', tags: ['tapas', 'chicken'], country: 'Spain' },
+  { id: 'es-100m-lomo', name: 'Montadito Lomo con Queso', brand: '100 Montaditos', type: ['snack', 'lunch'], calories: 260, protein: 14, carbs: 28, fat: 11, source: 'restaurant', tags: ['tapas', 'pork'], country: 'Spain' },
+
+  // Goiko
+  { id: 'es-goiko-kevin', name: 'Kevin Bacon Burger', brand: 'Goiko', type: ['lunch', 'dinner'], calories: 1100, protein: 55, carbs: 45, fat: 75, source: 'restaurant', tags: ['burger', 'beef'], country: 'Spain' },
+
+  // 7-Eleven USA
+  { id: 'us-711-hotdog', name: 'Big Bite Hot Dog (no bun)', brand: '7-Eleven', type: ['snack', 'lunch'], calories: 290, protein: 12, carbs: 4, fat: 26, source: 'restaurant', tags: ['beef', 'snack'], country: 'USA' },
+  { id: 'us-711-taquito', name: 'Steak & Cheese Taquito', brand: '7-Eleven', type: ['snack'], calories: 240, protein: 7, carbs: 24, fat: 12, source: 'restaurant', tags: ['snack'], country: 'USA' },
+
+  // Dunkin' USA
+  { id: 'us-dunkin-egg', name: 'Egg & Cheese Wake-Up Wrap', brand: "Dunkin'", type: ['snack'], calories: 180, protein: 9, carbs: 15, fat: 9, source: 'restaurant', tags: ['egg', 'breakfast'], country: 'USA' },
+  { id: 'us-dunkin-bacon', name: 'Bacon, Egg & Cheese Croissant', brand: "Dunkin'", type: ['lunch', 'snack'], calories: 540, protein: 18, carbs: 37, fat: 35, source: 'restaurant', tags: ['sandwich', 'breakfast'], country: 'USA' },
+
+  // 100 Montaditos (Additional)
+  { id: 'es-100m-hotdog', name: 'Mini Perrito con Cebolla', brand: '100 Montaditos', type: ['snack'], calories: 210, protein: 8, carbs: 22, fat: 10, source: 'restaurant', tags: ['tapas'], country: 'Spain' },
+
+  // Granier Spain
+  { id: 'es-granier-flauta', name: 'Flauta de Jamón Serrano', brand: 'Granier', type: ['lunch', 'snack'], calories: 380, protein: 16, carbs: 48, fat: 14, source: 'restaurant', tags: ['sandwich', 'ham'], country: 'Spain' },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // GLOBAL DESSERTS & SWEETS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  // Lebanon
+  { id: 'leb-pinkberry-orig', name: 'Original Frozen Yogurt (Small)', brand: 'Pinkberry Lebanon', type: ['dessert', 'snack'], calories: 140, protein: 3, carbs: 29, fat: 0, source: 'restaurant', tags: ['dessert', 'frozen-yogurt'], country: 'Lebanon' },
+  { id: 'leb-dipndip-crepe', name: 'Fettuccine Crepe (Half)', brand: 'Dip n Dip', type: ['dessert'], calories: 450, protein: 6, carbs: 55, fat: 24, source: 'restaurant', tags: ['dessert', 'chocolate'], country: 'Lebanon' },
+
+  // USA
+  { id: 'us-dq-blizzard', name: 'Oreo Blizzard (Mini)', brand: 'Dairy Queen', type: ['dessert'], calories: 420, protein: 8, carbs: 62, fat: 16, source: 'restaurant', tags: ['dessert', 'ice-cream'], country: 'USA' },
+  { id: 'us-br-scoop', name: 'Jamoca Almond Fudge (1 scoop)', brand: 'Baskin Robbins', type: ['dessert', 'snack'], calories: 240, protein: 4, carbs: 28, fat: 13, source: 'restaurant', tags: ['dessert', 'ice-cream'], country: 'USA' },
+  { id: 'us-crumbl-choc', name: 'Milk Chocolate Chip Cookie (1/4 cookie)', brand: 'Crumbl Cookies', type: ['snack', 'dessert'], calories: 180, protein: 2, carbs: 24, fat: 9, source: 'restaurant', tags: ['dessert', 'cookie'], country: 'USA' },
+
+  // Spain
+  { id: 'es-llao-small', name: 'Llaollao Small with 1 topping', brand: 'Llaollao', type: ['dessert', 'snack'], calories: 210, protein: 5, carbs: 36, fat: 4, source: 'restaurant', tags: ['dessert', 'frozen-yogurt'], country: 'Spain' },
+  { id: 'es-valor-churros', name: 'Churros con Chocolate (2 pcs)', brand: 'Chocolatería Valor', type: ['dessert', 'snack'], calories: 380, protein: 4, carbs: 48, fat: 18, source: 'restaurant', tags: ['dessert', 'churros'], country: 'Spain' },
+
+  // France
+  { id: 'fr-laduree-macaron', name: 'Macarons (Assortment x3)', brand: 'Ladurée', type: ['dessert', 'snack'], calories: 270, protein: 4, carbs: 32, fat: 14, source: 'restaurant', tags: ['dessert', 'pastry'], country: 'France' },
+  { id: 'fr-amorino-gelato', name: 'Gelato Small Flower', brand: 'Amorino', type: ['dessert', 'snack'], calories: 220, protein: 3, carbs: 34, fat: 8, source: 'restaurant', tags: ['dessert', 'ice-cream'], country: 'France' }
 
 ];
 
-module.exports = restaurantMeals;
+// Automate country and dietary mapping for existing items
+const finalMeals = restaurantMeals.map(m => {
+  if (!m.country) m.country = 'France';
+  if (!m.dietary) {
+    m.dietary = [];
+    if (m.tags?.includes('vegan')) m.dietary.push('vegan', 'vegetarian');
+    if (m.tags?.includes('vegetarian')) m.dietary.push('vegetarian');
+    if (m.tags?.includes('keto')) m.dietary.push('keto');
+    if (m.tags?.includes('gluten-free')) m.dietary.push('gluten-free');
+    // For France, we won't blindly assume halal. 
+  }
+  return m;
+});
+
+module.exports = finalMeals;

@@ -13,21 +13,25 @@ const router = express.Router();
  */
 router.post('/suggestions', async (req, res) => {
   try {
-    const { calorieTarget, proteinTarget, mealType } = req.body;
+    const { calorieTarget, proteinTarget, mealType, country = 'France', dietary = 'none' } = req.body;
 
     // Validation
-    if (!calorieTarget || !proteinTarget || !mealType) {
-      return res.status(400).json({ error: 'calorieTarget, proteinTarget, and mealType are required.' });
+    if (!calorieTarget || !mealType) {
+      return res.status(400).json({ error: 'calorieTarget and mealType are required.' });
     }
-    if (!['lunch', 'dinner', 'snack'].includes(mealType)) {
-      return res.status(400).json({ error: 'mealType must be lunch, dinner, or snack.' });
+    if (mealType !== 'dessert' && !proteinTarget) {
+      return res.status(400).json({ error: 'proteinTarget is required for non-desserts.' });
+    }
+    if (!['lunch', 'dinner', 'snack', 'dessert'].includes(mealType)) {
+      return res.status(400).json({ error: 'mealType invalid.' });
     }
     const cal = Number(calorieTarget);
-    const prot = Number(proteinTarget);
+    const prot = mealType === 'dessert' ? 0 : Number(proteinTarget);
+
     if (isNaN(cal) || cal < 50 || cal > 3000) {
       return res.status(400).json({ error: 'calorieTarget must be between 50 and 3000.' });
     }
-    if (isNaN(prot) || prot < 1 || prot > 300) {
+    if (mealType !== 'dessert' && (isNaN(prot) || prot < 1 || prot > 300)) {
       return res.status(400).json({ error: 'proteinTarget must be between 1 and 300g.' });
     }
 
@@ -35,7 +39,9 @@ router.post('/suggestions', async (req, res) => {
       calorieTarget: cal,
       proteinTarget: prot,
       mealType,
-      count: 3,
+      country,
+      dietary,
+      count: 4,
     });
 
     res.json({ meals });
@@ -52,16 +58,18 @@ router.post('/suggestions', async (req, res) => {
  */
 router.post('/swap', async (req, res) => {
   try {
-    const { calorieTarget, proteinTarget, mealType, excludeIds = [] } = req.body;
+    const { calorieTarget, proteinTarget, mealType, excludeIds = [], country = 'France', dietary = 'none' } = req.body;
 
-    if (!calorieTarget || !proteinTarget || !mealType) {
-      return res.status(400).json({ error: 'calorieTarget, proteinTarget, and mealType are required.' });
+    if (!calorieTarget || !mealType) {
+      return res.status(400).json({ error: 'calorieTarget and mealType are required.' });
     }
 
     const meals = await getSuggestions({
       calorieTarget: Number(calorieTarget),
-      proteinTarget: Number(proteinTarget),
+      proteinTarget: mealType === 'dessert' ? 0 : Number(proteinTarget),
       mealType,
+      country,
+      dietary,
       excludeIds: Array.isArray(excludeIds) ? excludeIds : [],
       count: 1,
     });

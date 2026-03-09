@@ -71,7 +71,81 @@ const supermarketMeals = [
   { id: 'mnp-oeufs-durs', name: 'Œufs Durs Marinés x2', brand: 'Monoprix', type: ['snack'], calories: 160, protein: 14, carbs: 1, fat: 12, source: 'supermarket', store: 'Monoprix', shoppingItems: ['Œufs Durs Marinés — Monoprix'], tags: ['egg', 'snack', 'high-protein'] },
   { id: 'mnp-jambon-blanc', name: 'Jambon Blanc x3 tranches', brand: 'Monoprix', type: ['snack', 'lunch'], calories: 130, protein: 20, carbs: 1, fat: 5, source: 'supermarket', store: 'Monoprix', shoppingItems: ['Jambon Blanc — Monoprix (barquette 3 tranches)'], tags: ['ham', 'light', 'snack'] },
   { id: 'mnp-compote-pomme', name: 'Compote Pomme sans sucre ajouté', brand: 'Monoprix', type: ['snack'], calories: 70, protein: 0, carbs: 17, fat: 0, source: 'supermarket', store: 'Monoprix', shoppingItems: ['Compote Pomme — Monoprix (sans sucre)'], tags: ['snack', 'fruit', 'light'] },
-  { id: 'mnp-amandes-noisettes', name: 'Mix Amandes & Noisettes (30g)', brand: 'Monoprix', type: ['snack'], calories: 185, protein: 5, carbs: 5, fat: 17, source: 'supermarket', store: 'Monoprix', shoppingItems: ['Mix Amandes & Noisettes — Monoprix'], tags: ['snack', 'nuts'] },
+  // ═══════════════════════════════════════════════════════════════════════════
+  // AUCHAN (FRANCE)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  { id: 'auch-salade-pates', name: 'Salade Pâtes Poulet Rôti', brand: 'Auchan', type: ['lunch', 'dinner'], calories: 410, protein: 22, carbs: 48, fat: 14, source: 'supermarket', store: 'Auchan', shoppingItems: ['Salade Pâtes Poulet Rôti — Auchan'], tags: ['salad', 'chicken', 'pasta'], country: 'France' },
+  { id: 'auch-hachis-vegan', name: 'Hachis Parmentier Végétal', brand: 'Auchan Végétal', type: ['lunch', 'dinner'], calories: 360, protein: 18, carbs: 36, fat: 16, source: 'supermarket', store: 'Auchan', shoppingItems: ['Hachis Parmentier Végétal — Auchan'], tags: ['vegan', 'potato'], country: 'France', dietary: ['vegan', 'vegetarian'] },
+  { id: 'auch-skyr-myrtille', name: 'Skyr Myrtille (pot 150g)', brand: 'Auchan', type: ['snack'], calories: 110, protein: 12, carbs: 14, fat: 0, source: 'supermarket', store: 'Auchan', shoppingItems: ['Skyr Myrtille — Auchan'], tags: ['dairy', 'snack', 'light'], country: 'France' },
+  { id: 'auch-blanc-poulet', name: 'Blanc de Poulet (4 tranches)', brand: 'Auchan', type: ['snack', 'lunch'], calories: 140, protein: 30, carbs: 1, fat: 2, source: 'supermarket', store: 'Auchan', shoppingItems: ['Blanc de Poulet 4 Tranches — Auchan'], tags: ['chicken', 'high-protein', 'snack'], country: 'France' },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // LEBANON SUPERMARKETS (Spinneys, Charcutier Aoun, Carrefour LB)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  // Spinneys
+  { id: 'spin-chicken-taouk', name: 'Marinated Chicken Taouk (ready to grill 200g)', brand: 'Spinneys Fresh', type: ['lunch', 'dinner'], calories: 320, protein: 45, carbs: 4, fat: 14, source: 'supermarket', store: 'Spinneys', shoppingItems: ['Marinated Chicken Taouk 200g — Spinneys'], tags: ['chicken', 'high-protein'], country: 'Lebanon', dietary: ['halal', 'keto'] },
+  { id: 'spin-hummus', name: 'Traditional Hummus (150g)', brand: 'Spinneys Deli', type: ['snack', 'lunch'], calories: 380, protein: 12, carbs: 22, fat: 28, source: 'supermarket', store: 'Spinneys', shoppingItems: ['Traditional Hummus 150g — Spinneys Deli'], tags: ['vegan', 'dips'], country: 'Lebanon', dietary: ['vegan', 'vegetarian', 'halal'] },
+  { id: 'spin-labneh', name: 'Fresh Labneh (100g)', brand: 'Spinneys Dairy', type: ['snack', 'lunch'], calories: 150, protein: 6, carbs: 6, fat: 12, source: 'supermarket', store: 'Spinneys', shoppingItems: ['Fresh Labneh 100g — Spinneys'], tags: ['dairy', 'snack', 'vegetarian'], country: 'Lebanon', dietary: ['vegetarian', 'halal', 'keto'] },
+
+  // Charcutier Aoun
+  { id: 'ca-halloumi', name: 'Halloumi Cheese Light (100g)', brand: 'Charcutier Aoun Deli', type: ['lunch', 'snack'], calories: 250, protein: 22, carbs: 2, fat: 16, source: 'supermarket', store: 'Charcutier Aoun', shoppingItems: ['Halloumi Cheese Light 100g — Charcutier Aoun'], tags: ['cheese', 'vegetarian', 'high-protein'], country: 'Lebanon', dietary: ['vegetarian', 'halal', 'keto'] },
+  { id: 'ca-rosti-chicken', name: 'Roasted Chicken (Half)', brand: 'Charcutier Aoun Deli', type: ['lunch', 'dinner'], calories: 480, protein: 50, carbs: 0, fat: 28, source: 'supermarket', store: 'Charcutier Aoun', shoppingItems: ['Roasted Chicken Half — Charcutier Aoun'], tags: ['chicken', 'high-protein'], country: 'Lebanon', dietary: ['halal', 'keto'] },
+  { id: 'ca-mixed-nuts', name: 'Raw Mixed Nuts (50g)', brand: 'Alrifai (Aoun)', type: ['snack'], calories: 310, protein: 10, carbs: 10, fat: 26, source: 'supermarket', store: 'Charcutier Aoun', shoppingItems: ['Raw Mixed Nuts 50g — Alrifai'], tags: ['nuts', 'vegan', 'snack'], country: 'Lebanon', dietary: ['vegan', 'vegetarian', 'halal', 'keto'] },
+
+  // Carrefour Lebanon
+  { id: 'cflb-tuna-can', name: 'Tuna in Water (can)', brand: 'Carrefour', type: ['lunch', 'snack'], calories: 120, protein: 28, carbs: 0, fat: 1, source: 'supermarket', store: 'Carrefour Lebanon', shoppingItems: ['Tuna in Water — Carrefour'], tags: ['fish', 'high-protein', 'light'], country: 'Lebanon', dietary: ['halal', 'keto'] },
+  { id: 'cflb-chicken-shawarma', name: 'Chicken Shawarma Wrap (Deli)', brand: 'Carrefour Deli', type: ['lunch', 'dinner'], calories: 520, protein: 32, carbs: 48, fat: 22, source: 'supermarket', store: 'Carrefour Lebanon', shoppingItems: ['Chicken Shawarma Wrap — Carrefour Deli'], tags: ['wrap', 'chicken'], country: 'Lebanon', dietary: ['halal'] },
+  { id: 'cflb-greek-yogurt', name: 'Greek Yogurt Plain (150g)', brand: 'Carrefour', type: ['snack'], calories: 100, protein: 15, carbs: 6, fat: 2, source: 'supermarket', store: 'Carrefour Lebanon', shoppingItems: ['Greek Yogurt Plain 150g — Carrefour'], tags: ['dairy', 'snack', 'high-protein'], country: 'Lebanon', dietary: ['vegetarian', 'halal', 'keto'] },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // USA — SUPERMARKETS (Walmart, Trader Joe's, Whole Foods)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  // Walmart (Great Value)
+  { id: 'us-wm-chicken-breast', name: 'Frozen Grilled Chicken Breast Strips (140g)', brand: 'Walmart (Great Value)', type: ['lunch', 'dinner'], calories: 150, protein: 32, carbs: 0, fat: 2, source: 'supermarket', store: 'Walmart', shoppingItems: ['Great Value Grilled Chicken Strips 22oz'], tags: ['chicken', 'high-protein'], country: 'USA' },
+  { id: 'us-wm-greek-yogurt', name: 'Nonfat Greek Yogurt Plain (170g)', brand: 'Walmart (Great Value)', type: ['snack'], calories: 90, protein: 16, carbs: 5, fat: 0, source: 'supermarket', store: 'Walmart', shoppingItems: ['Great Value 0% Greek Yogurt 32oz'], tags: ['dairy', 'high-protein'], country: 'USA' },
+  { id: 'us-wm-tuna', name: 'Chunk Light Tuna in Water (can)', brand: 'Walmart (Great Value)', type: ['lunch', 'snack'], calories: 100, protein: 22, carbs: 0, fat: 1, source: 'supermarket', store: 'Walmart', shoppingItems: ['Great Value Chunk Light Tuna'], tags: ['fish', 'high-protein'], country: 'USA' },
+
+  // Trader Joe's
+  { id: 'us-tj-shrimp-bowl', name: 'Shrimp & Quinoa Bowl', brand: "Trader Joe's", type: ['lunch', 'dinner'], calories: 340, protein: 18, carbs: 42, fat: 12, source: 'supermarket', store: "Trader Joe's", shoppingItems: ["Trader Joe's Shrimp & Quinoa Bowl"], tags: ['bowl', 'fish', 'healthy'], country: 'USA' },
+  { id: 'us-tj-chicken-enchiladas', name: 'Chicken Enchiladas (2 pcs)', brand: "Trader Joe's", type: ['lunch', 'dinner'], calories: 360, protein: 24, carbs: 40, fat: 16, source: 'supermarket', store: "Trader Joe's", shoppingItems: ["Trader Joe's Chicken Enchiladas"], tags: ['mexican', 'chicken'], country: 'USA' },
+
+  // Whole Foods (365)
+  { id: 'us-wf-salmon', name: 'Atlantic Salmon Fillet (frozen, 150g)', brand: 'Whole Foods (365)', type: ['lunch', 'dinner'], calories: 310, protein: 30, carbs: 0, fat: 21, source: 'supermarket', store: 'Whole Foods', shoppingItems: ['365 Frozen Atlantic Salmon'], tags: ['fish', 'healthy'], country: 'USA' },
+
+  // Target (Good & Gather)
+  { id: 'us-tgt-chicken-salad', name: 'Rotisserie Style Chicken Breast (9oz)', brand: 'Target (Good & Gather)', type: ['lunch', 'dinner'], calories: 110, protein: 24, carbs: 0, fat: 1.5, source: 'supermarket', store: 'Target', shoppingItems: ['Good & Gather Rotisserie Chicken Breast'], tags: ['chicken', 'high-protein'], country: 'USA' },
+  { id: 'us-tgt-mixed-greens', name: 'Spring Mix Salad (Large)', brand: 'Target (Good & Gather)', type: ['lunch', 'dinner'], calories: 20, protein: 2, carbs: 3, fat: 0, source: 'supermarket', store: 'Target', shoppingItems: ['Good & Gather Spring Mix'], tags: ['salad', 'vegan', 'light'], country: 'USA' },
+
+  // Kroger
+  { id: 'us-kr-turkey', name: 'Oven Roasted Turkey Breast (2oz)', brand: 'Kroger', type: ['snack', 'lunch'], calories: 50, protein: 10, carbs: 1, fat: 1, source: 'supermarket', store: 'Kroger', shoppingItems: ['Kroger Deli Sliced Turkey'], tags: ['turkey', 'light'], country: 'USA' },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // SPAIN — SUPERMARKETS (Mercadona, Carrefour Spain)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  // Mercadona (Hacendado)
+  { id: 'es-mer-pollo-tiras', name: 'Tiras de Pollo Asado (150g)', brand: 'Mercadona (Hacendado)', type: ['lunch', 'snack'], calories: 180, protein: 38, carbs: 1, fat: 2, source: 'supermarket', store: 'Mercadona', shoppingItems: ['Hacendado Tiras de Pollo asado 99%'], tags: ['chicken', 'high-protein'], country: 'Spain' },
+  { id: 'es-mer-hummus', name: 'Hummus de Garbanzos (100g)', brand: 'Mercadona (Hacendado)', type: ['snack', 'lunch'], calories: 280, protein: 8, carbs: 14, fat: 22, source: 'supermarket', store: 'Mercadona', shoppingItems: ['Hacendado Hummus Receta Clásica'], tags: ['vegan', 'vegetarian'], country: 'Spain' },
+  { id: 'es-mer-salmorejo', name: 'Salmorejo Fresco (250ml)', brand: 'Mercadona (Hacendado)', type: ['lunch', 'snack'], calories: 180, protein: 4, carbs: 14, fat: 12, source: 'supermarket', store: 'Mercadona', shoppingItems: ['Hacendado Salmorejo Fresco'], tags: ['soup', 'vegan'], country: 'Spain' },
+
+  // Carrefour Spain
+  { id: 'es-crf-pavo', name: 'Pechuga de Pavo (100g)', brand: 'Carrefour España', type: ['snack', 'lunch'], calories: 95, protein: 18, carbs: 1, fat: 2, source: 'supermarket', store: 'Carrefour Spain', shoppingItems: ['Carrefour Pechuga de Pavo 90%'], tags: ['turkey', 'light'], country: 'Spain' }
+
 ];
 
-module.exports = supermarketMeals;
+const finalSupermarketMeals = supermarketMeals.map(m => {
+  if (!m.country) m.country = 'France';
+  if (!m.dietary) {
+    m.dietary = [];
+    if (m.tags?.includes('vegan')) m.dietary.push('vegan', 'vegetarian');
+    if (m.tags?.includes('vegetarian')) m.dietary.push('vegetarian');
+    if (m.tags?.includes('keto')) m.dietary.push('keto');
+    if (m.tags?.includes('gluten-free')) m.dietary.push('gluten-free');
+  }
+  return m;
+});
+
+module.exports = finalSupermarketMeals;

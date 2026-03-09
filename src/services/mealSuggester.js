@@ -14,6 +14,7 @@ const { fetchUsdaMeals } = require('./usda');
  */
 function scoreMeal(meal, calorieTarget, proteinTarget) {
   const calDiff = Math.abs(meal.calories - calorieTarget) / calorieTarget;
+  if (proteinTarget === 0) return calDiff;
   const protDiff = Math.abs(meal.protein - proteinTarget) / (proteinTarget || 1);
   // Protein match weighted more heavily for fitness users
   return calDiff * 0.4 + protDiff * 0.6;
@@ -30,9 +31,12 @@ function filterByTargets(meals, calorieTarget, proteinTarget) {
     const calOk =
       m.calories >= calorieTarget * (1 - CAL_TOLERANCE) &&
       m.calories <= calorieTarget * (1 + CAL_TOLERANCE);
+      
+    if (proteinTarget === 0) return calOk;
+
     const protOk =
       m.protein >= proteinTarget * (1 - PROT_TOLERANCE) &&
-      m.protein <= calorieTarget * (1 + PROT_TOLERANCE);
+      m.protein <= proteinTarget * (1 + PROT_TOLERANCE);
     return calOk || protOk; // at least one dimension matches
   });
 }
@@ -87,10 +91,10 @@ function pickDiverse(scored, count, excludeIds = []) {
  * @param {string[]} params.excludeIds - meal IDs to exclude (for swap)
  * @param {number} params.count - number of suggestions (default 3)
  */
-async function getSuggestions({ calorieTarget, proteinTarget, mealType, excludeIds = [], count = 3 }) {
+async function getSuggestions({ calorieTarget, proteinTarget, mealType, country = 'France', dietary = 'none', excludeIds = [], count = 3 }) {
   // 1. Gather live meals concurrently
   const [offResult, usdaResult] = await Promise.allSettled([
-    fetchSupermarketMeals(mealType, 40),
+    fetchSupermarketMeals(mealType, country, 40),
     fetchUsdaMeals(mealType, 25),
   ]);
 
@@ -108,12 +112,25 @@ async function getSuggestions({ calorieTarget, proteinTarget, mealType, excludeI
   // 3. Combine all sources (static first for reliability, then live API)
   const allMeals = [...restMeals, ...staticShopMeals, ...offMeals, ...fdcMeals];
 
+  // Apply country filter
+  const countryFiltered = allMeals.filter(m => {
+    let c = m.country || (m.source === 'usda' ? 'USA' : 'France');
+    if (c === 'US') c = 'USA';
+    const target = country === 'US' ? 'USA' : country;
+    return c === target;
+  });
+
+  // Apply dietary filter
+  const dietFiltered = dietary !== 'none' 
+    ? countryFiltered.filter(m => m.dietary && m.dietary.includes(dietary)) 
+    : countryFiltered;
+
   // 4. Filter + score
-  let candidates = filterByTargets(allMeals, calorieTarget, proteinTarget);
+  let candidates = filterByTargets(dietFiltered, calorieTarget, proteinTarget);
 
   // If strict filter yields too few, relax it
   if (candidates.length < count * 2) {
-    candidates = allMeals;
+    candidates = dietFiltered;
   }
 
   const scored = candidates
