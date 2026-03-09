@@ -33,7 +33,7 @@ export const BRANDS = {
     { name: "Dia", category: "Supermarket", logo: "https://www.dia.es/favicon.ico" }
   ],
   Lebanon: [
-    { name: "Cava", category: "Restaurant", logo: "https://www.cava.com/favicon.ico" },
+    { name: "CheeseOnTop", category: "Fast Food", logo: "https://cheeseontop.com/favicon.ico" },
     { name: "Malak Al Tawouk", category: "Fast Food", logo: "https://www.malakaltawouk.com/favicon.ico" },
     { name: "Zaatar w Zeit", category: "Fast Food", logo: "https://www.zaatarwzeit.net/favicon.ico" },
     { name: "Barbar", category: "Restaurant", logo: "https://www.barbar.com.lb/favicon.ico" },
@@ -45,6 +45,7 @@ export const BRANDS = {
     { name: "ABC Lebanon", category: "Supermarket", logo: "https://www.abc.com.lb/favicon.ico" }
   ],
   USA: [
+    { name: "Cava", category: "Restaurant", logo: "https://www.cava.com/favicon.ico" },
     { name: "Chipotle", category: "Fast Food", logo: "https://www.chipotle.com/favicon.ico" },
     { name: "Chick-fil-A", category: "Fast Food", logo: "https://www.chick-fil-a.com/favicon.ico" },
     { name: "Sweetgreen", category: "Fast Food", logo: "https://www.sweetgreen.com/favicon.ico" },

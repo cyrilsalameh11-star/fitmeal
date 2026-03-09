@@ -172,7 +172,7 @@ app.post('/api/admin/logout', (req, res) => {
 // GET /api/admin/check — lightweight session check
 app.get('/api/admin/check', (req, res) => {
   const token = req.cookies && req.cookies.admin_session;
-  res.json({ authenticated: !!(token && activeSessions.has(token)) });
+  res.json({ authenticated: !!(token && verifyAdminToken(token)) });
 });
 
 // POST /api/admin/reset — send reset code to admin email
@@ -231,7 +231,7 @@ app.get('/api/admin/users', requireAdminSession, async (req, res) => {
 
 // Serve professional admin dashboard
 app.get(['/admin', '/admin.html'], (req, res) => {
-  res.sendFile(path.join(__dirname, 'admin.html'));
+  res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
 // Fallback to index.html for SPA
