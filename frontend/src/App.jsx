@@ -38,21 +38,25 @@ function App() {
     e.preventDefault();
     if (userName.trim().length < 2) return;
 
+    // Instantly log the user in locally (fixes Safari/mobile block if API fails)
+    localStorage.setItem('fitmeal_username', userName);
+    setUser(userName);
+
     try {
       const resp = await fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: userName })
       });
-      const data = await resp.json();
+      
       if (resp.ok) {
-        localStorage.setItem('fitmeal_username', userName);
-        setUser(userName);
-        setUserCount(data.count);
+        const data = await resp.json();
+        if (data && data.count) {
+          setUserCount(data.count);
+        }
       }
     } catch (err) {
-      localStorage.setItem('fitmeal_username', userName);
-      setUser(userName); // Fallback for offline/dev
+      console.warn("Login API failed. User kept local.", err);
     }
   };
 
