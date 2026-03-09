@@ -46,23 +46,25 @@ export default function MealForm({ onSubmit, isLoading }) {
             </div>
           </div>
 
-          <div className="space-y-3">
-            <label className="flex items-center space-x-2 text-xs font-bold text-stone-400 uppercase tracking-widest">
-              <Dumbbell className="w-4 h-4" />
-              <span>Protein Target</span>
-            </label>
-            <div className="relative">
-              <input
-                type="number"
-                name="proteinTarget"
-                value={target.proteinTarget}
-                onChange={handleChange}
-                className="w-full bg-stone-50 border border-stone-100 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-serif text-2xl"
-                required
-              />
-              <span className="absolute right-6 top-1/2 -translate-y-1/2 text-sm font-bold text-stone-300">GRAMS</span>
+          {target.mealType !== 'dessert' && (
+            <div className="space-y-3">
+              <label className="flex items-center space-x-2 text-xs font-bold text-stone-400 uppercase tracking-widest">
+                <Dumbbell className="w-4 h-4" />
+                <span>Protein Target</span>
+              </label>
+              <div className="relative">
+                <input
+                  type="number"
+                  name="proteinTarget"
+                  value={target.proteinTarget}
+                  onChange={handleChange}
+                  className="w-full bg-stone-50 border border-stone-100 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-serif text-2xl"
+                  required
+                />
+                <span className="absolute right-6 top-1/2 -translate-y-1/2 text-sm font-bold text-stone-300">GRAMS</span>
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Row 2: Regional & Dietary */}

@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, X, Menu, Phone, Mail, Instagram, Twitter, User, ArrowRight, Users } from 'lucide-react';
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [userName, setUserName] = useState('');
+  const [user, setUser] = useState(() => localStorage.getItem('fitmeal_username') || null);
+  const [userName, setUserName] = useState(() => localStorage.getItem('fitmeal_username') || '');
   const [userCount, setUserCount] = useState(0);
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -37,10 +37,12 @@ function App() {
       });
       const data = await resp.json();
       if (resp.ok) {
+        localStorage.setItem('fitmeal_username', userName);
         setUser(userName);
         setUserCount(data.count);
       }
     } catch (err) {
+      localStorage.setItem('fitmeal_username', userName);
       setUser(userName); // Fallback for offline/dev
     }
   };
