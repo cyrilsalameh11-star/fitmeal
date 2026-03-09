@@ -229,11 +229,6 @@ app.get('/api/admin/users', requireAdminSession, async (req, res) => {
 });
 
 
-// Serve professional admin dashboard
-app.get(['/admin', '/admin.html'], (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'admin.html'));
-});
-
 // Fallback to index.html for SPA
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));

@@ -16,10 +16,6 @@
       "dest": "/src/server.js"
     },
     {
-      "src": "/admin(.*)",
-      "dest": "/src/server.js"
-    },
-    {
       "src": "/(.*)",
       "dest": "/src/public/$1",
       "continue": true
