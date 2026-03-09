@@ -21,78 +21,16 @@ function scoreMeal(meal, calorieTarget, proteinTarget) {
 }
 
 /**
- * Filter meals to those within tolerance of calorie and protein targets.
- */
-function filterByTargets(meals, calorieTarget, proteinTarget) {
-  const CAL_TOLERANCE = 0.30; // ±30%
-  const PROT_TOLERANCE = 0.40; // ±40%
-
-  return meals.filter((m) => {
-    const calOk =
-      m.calories >= calorieTarget * (1 - CAL_TOLERANCE) &&
-      m.calories <= calorieTarget * (1 + CAL_TOLERANCE);
-      
-    if (proteinTarget === 0) return calOk;
-
-    const protOk =
-      m.protein >= proteinTarget * (1 - PROT_TOLERANCE) &&
-      m.protein <= proteinTarget * (1 + PROT_TOLERANCE);
-    return calOk || protOk; // at least one dimension matches
-  });
-}
-
-/**
- * Pick N diverse suggestions:
- * - Try to include at least one from each source category
- * - Sort remaining by score
- */
-function pickDiverse(scored, count, excludeIds = []) {
-  // Exclude already-shown meals
-  const available = scored.filter((m) => !excludeIds.includes(m.id));
-
-  const restaurant = available.filter((m) => m.source === 'restaurant');
-  const supermarket = available.filter((m) => m.source === 'supermarket');
-  const usda = available.filter((m) => m.source === 'usda');
-
-  const picked = [];
-  const usedIds = new Set();
-
-  const addBest = (pool) => {
-    const item = pool.find((m) => !usedIds.has(m.id));
-    if (item) {
-      picked.push(item);
-      usedIds.add(item.id);
-    }
-  };
-
-  // One from each source first
-  addBest(restaurant);
-  addBest(supermarket);
-  addBest(usda);
-
-  // Fill remaining slots from the full sorted pool
-  for (const m of available) {
-    if (picked.length >= count) break;
-    if (!usedIds.has(m.id)) {
-      picked.push(m);
-      usedIds.add(m.id);
-    }
-  }
-
-  return picked.slice(0, count);
-}
-
-/**
- * Main entry point: get N meal suggestions.
+ * Main entry point: get 6 balanced meal suggestions.
  * @param {object} params
  * @param {number} params.calorieTarget
  * @param {number} params.proteinTarget
- * @param {string} params.mealType - 'lunch' | 'dinner' | 'snack'
- * @param {string[]} params.excludeIds - meal IDs to exclude (for swap)
- * @param {number} params.count - number of suggestions (default 3)
+ * @param {string} params.mealType - 'lunch' | 'dinner' | 'snack' | 'dessert'
+ * @param {string[]} params.excludeIds - meal IDs to exclude
+ * @param {string} params.country - 'France' | 'Spain' | 'Lebanon' | 'USA'
  */
-async function getSuggestions({ calorieTarget, proteinTarget, mealType, country = 'France', dietary = 'none', excludeIds = [], count = 3 }) {
-  // 1. Gather live meals concurrently
+async function getSuggestions({ calorieTarget, proteinTarget, mealType, country = 'France', dietary = 'none', excludeIds = [] }) {
+  // 1. Gather live meals concurrently (Supermarkets)
   const [offResult, usdaResult] = await Promise.allSettled([
     fetchSupermarketMeals(mealType, country, 40),
     fetchUsdaMeals(mealType, 25),
@@ -101,47 +39,77 @@ async function getSuggestions({ calorieTarget, proteinTarget, mealType, country 
   const offMeals = offResult.status === 'fulfilled' ? offResult.value : [];
   const fdcMeals = usdaResult.status === 'fulfilled' ? usdaResult.value : [];
 
-  // 2. Filter static data by meal type (restaurants + curated supermarkets)
-  const restMeals = restaurantMeals.filter(
-    (m) => m.type.includes(mealType) && !excludeIds.includes(m.id)
+  // 2. Filter static data
+  const targetCountry = country === 'US' ? 'USA' : country;
+
+  // Filter restaurants (Regular Restaurants & Fast Food)
+  const allRestaurantPool = restaurantMeals.filter(m => 
+    m.type.includes(mealType) && 
+    m.country === targetCountry &&
+    (dietary === 'none' || (m.dietary && m.dietary.includes(dietary))) &&
+    !excludeIds.includes(m.id)
   );
-  const staticShopMeals = curatedSupermarketMeals.filter(
-    (m) => m.type.includes(mealType) && !excludeIds.includes(m.id)
+
+  // Split into Fast Food vs Restaurant
+  // We classify brands with "France/USA" or known chains as Fast Food
+  const fastFoodChains = ["McDonald's", "Burger King", "KFC", "Subway", "100 Montaditos", "Goiko", "Chick-fil-A", "Chipotle", "Panda Express", "7-Eleven"];
+  
+  const fastFoodPool = allRestaurantPool.filter(m => 
+    fastFoodChains.some(chain => m.brand.includes(chain))
+  ).map(m => ({ ...m, _score: scoreMeal(m, calorieTarget, proteinTarget) })).sort((a,b) => a._score - b._score);
+
+  const restaurantPool = allRestaurantPool.filter(m => 
+    !fastFoodChains.some(chain => m.brand.includes(chain))
+  ).map(m => ({ ...m, _score: scoreMeal(m, calorieTarget, proteinTarget) })).sort((a,b) => a._score - b._score);
+
+  // Filter Supermarkets (Curated + OFF)
+  const staticShopPool = curatedSupermarketMeals.filter(m => 
+    m.type.includes(mealType) && 
+    m.country === targetCountry &&
+    !excludeIds.includes(m.id)
   );
 
-  // 3. Combine all sources (static first for reliability, then live API)
-  const allMeals = [...restMeals, ...staticShopMeals, ...offMeals, ...fdcMeals];
-
-  // Apply country filter
-  const countryFiltered = allMeals.filter(m => {
-    let c = m.country || (m.source === 'usda' ? 'USA' : 'France');
-    if (c === 'US') c = 'USA';
-    const target = country === 'US' ? 'USA' : country;
-    return c === target;
-  });
-
-  // Apply dietary filter
-  const dietFiltered = dietary !== 'none' 
-    ? countryFiltered.filter(m => m.dietary && m.dietary.includes(dietary)) 
-    : countryFiltered;
-
-  // 4. Filter + score
-  let candidates = filterByTargets(dietFiltered, calorieTarget, proteinTarget);
-
-  // If strict filter yields too few, relax it
-  if (candidates.length < count * 2) {
-    candidates = dietFiltered;
-  }
-
-  const scored = candidates
-    .map((m) => ({ ...m, _score: scoreMeal(m, calorieTarget, proteinTarget) }))
+  const supermarketPool = [...staticShopPool, ...offMeals]
+    .map(m => ({ ...m, _score: scoreMeal(m, calorieTarget, proteinTarget) }))
     .sort((a, b) => a._score - b._score);
 
-  // 5. Pick diverse set
-  const suggestions = pickDiverse(scored, count, excludeIds);
+  // 3. Selection Strategy: 2 Fast-Food, 2 Restaurant, 2 Supermarket
+  const picked = [];
+  const usedIds = new Set();
 
-  // 6. Clean up internal score field & ensure shoppingItems
-  return suggestions.map(({ _score, ...m }) => ({
+  const pickFromPool = (pool, count) => {
+    let p = 0;
+    for (const m of pool) {
+      if (p >= count) break;
+      if (!usedIds.has(m.id)) {
+        picked.push(m);
+        usedIds.add(m.id);
+        p++;
+      }
+    }
+  };
+
+  // Primary Pick (2-2-2)
+  pickFromPool(fastFoodPool, 2);
+  pickFromPool(restaurantPool, 2);
+  pickFromPool(supermarketPool, 2);
+
+  // 4. Fill gaps if any pool was short
+  const remainingCount = 6 - picked.length;
+  if (remainingCount > 0) {
+    const fallbackPool = [...fastFoodPool, ...restaurantPool, ...supermarketPool, ...fdcMeals]
+      .filter(m => !usedIds.has(m.id))
+      .sort((a, b) => (a._score || 99) - (b._score || 99));
+    
+    for (const m of fallbackPool) {
+      if (picked.length >= 6) break;
+      picked.push(m);
+      usedIds.add(m.id);
+    }
+  }
+
+  // 5. Final Formatting
+  return picked.map(({ _score, ...m }) => ({
     ...m,
     shoppingItems: m.shoppingItems || (m.source !== 'restaurant' ? [m.name] : []),
   }));

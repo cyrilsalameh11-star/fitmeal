@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion';
-import { Flame, Dumbbell, Utensils, Sun, Moon, Apple } from 'lucide-react';
+import { Flame, Dumbbell, Sun, Moon, Apple, Cookie, Globe, Shield } from 'lucide-react';
 import { useState } from 'react';
 
 export default function MealForm({ onSubmit, isLoading }) {
   const [target, setTarget] = useState({
-    calorieTarget: '',
-    proteinTarget: '',
-    mealType: 'dinner',
+    calorieTarget: '600',
+    proteinTarget: '40',
+    mealType: 'lunch',
+    country: 'France',
+    dietary: 'none'
   });
 
   const handleChange = (e) => {
@@ -22,27 +24,14 @@ export default function MealForm({ onSubmit, isLoading }) {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="glass rounded-3xl p-8 max-w-2xl mx-auto border border-white/40 shadow-2xl relative overflow-hidden"
-    >
-      {/* Decorative blurred blobs */}
-      <div className="absolute -top-24 -right-24 w-48 h-48 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-      <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-
-      <h2 className="text-3xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-500">
-        Design Your Perfect Meal
-      </h2>
-
-      <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Calories */}
-          <div className="space-y-2">
-            <label className="flex items-center space-x-2 text-sm font-medium text-gray-700">
-              <Flame className="w-4 h-4 text-orange-500" />
-              <span>Calorie Target</span>
+    <form onSubmit={handleSubmit} className="space-y-10">
+      <div className="space-y-8">
+        {/* Row 1: Targets */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="space-y-3">
+            <label className="flex items-center space-x-2 text-xs font-bold text-stone-400 uppercase tracking-widest">
+              <Flame className="w-4 h-4" />
+              <span>Daily Calorie Target</span>
             </label>
             <div className="relative">
               <input
@@ -50,20 +39,16 @@ export default function MealForm({ onSubmit, isLoading }) {
                 name="calorieTarget"
                 value={target.calorieTarget}
                 onChange={handleChange}
-                placeholder="e.g. 600"
-                min="50"
-                max="3000"
+                className="w-full bg-stone-50 border border-stone-100 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-serif text-2xl"
                 required
-                className="w-full pl-4 pr-12 py-3 bg-white/50 border border-white/60 rounded-xl focus:ring-2 focus:ring-purple-500 outline-none transition-all placeholder:text-gray-400 font-medium"
               />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-gray-500 font-medium">kcal</span>
+              <span className="absolute right-6 top-1/2 -translate-y-1/2 text-sm font-bold text-stone-300">KCAL</span>
             </div>
           </div>
 
-          {/* Protein */}
-          <div className="space-y-2">
-            <label className="flex items-center space-x-2 text-sm font-medium text-gray-700">
-              <Dumbbell className="w-4 h-4 text-blue-500" />
+          <div className="space-y-3">
+            <label className="flex items-center space-x-2 text-xs font-bold text-stone-400 uppercase tracking-widest">
+              <Dumbbell className="w-4 h-4" />
               <span>Protein Target</span>
             </label>
             <div className="relative">
@@ -72,35 +57,72 @@ export default function MealForm({ onSubmit, isLoading }) {
                 name="proteinTarget"
                 value={target.proteinTarget}
                 onChange={handleChange}
-                placeholder="e.g. 40"
-                min="1"
-                max="300"
+                className="w-full bg-stone-50 border border-stone-100 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-serif text-2xl"
                 required
-                className="w-full pl-4 pr-12 py-3 bg-white/50 border border-white/60 rounded-xl focus:ring-2 focus:ring-purple-500 outline-none transition-all placeholder:text-gray-400 font-medium"
               />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-gray-500 font-medium">g</span>
+              <span className="absolute right-6 top-1/2 -translate-y-1/2 text-sm font-bold text-stone-300">GRAMS</span>
             </div>
           </div>
         </div>
 
-        {/* Meal Type */}
-        <div className="space-y-3 pt-4 border-t border-gray-200/50">
-          <label className="flex items-center space-x-2 text-sm font-medium text-gray-700">
-            <Utensils className="w-4 h-4 text-emerald-500" />
-            <span>Meal Type</span>
+        {/* Row 2: Regional & Dietary */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="space-y-3">
+            <label className="flex items-center space-x-2 text-xs font-bold text-stone-400 uppercase tracking-widest">
+              <Globe className="w-4 h-4" />
+              <span>Regional Data</span>
+            </label>
+            <select 
+              name="country" 
+              value={target.country} 
+              onChange={handleChange}
+              className="w-full bg-stone-50 border border-stone-100 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-bold text-sm uppercase tracking-wider appearance-none"
+            >
+              <option value="France">France 🇫🇷</option>
+              <option value="Spain">Spain 🇪🇸</option>
+              <option value="Lebanon">Lebanon 🇱🇧</option>
+              <option value="USA">USA 🇺🇸</option>
+            </select>
+          </div>
+
+          <div className="space-y-3">
+            <label className="flex items-center space-x-2 text-xs font-bold text-stone-400 uppercase tracking-widest">
+              <Shield className="w-4 h-4" />
+              <span>Dietary Filter</span>
+            </label>
+            <select 
+              name="dietary" 
+              value={target.dietary} 
+              onChange={handleChange}
+              className="w-full bg-stone-50 border border-stone-100 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-bold text-sm uppercase tracking-wider appearance-none"
+            >
+              <option value="none">Standard Diet</option>
+              <option value="halal">Halal Certified</option>
+              <option value="vegan">Vegan</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="keto">Keto Friendly</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Row 3: Meal Type */}
+        <div className="space-y-4">
+          <label className="flex items-center space-x-2 text-xs font-bold text-stone-400 uppercase tracking-widest text-center justify-center">
+            <span>Meal Category Selection</span>
           </label>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { id: 'lunch', icon: Sun, label: 'Lunch', color: 'text-amber-500' },
-              { id: 'dinner', icon: Moon, label: 'Dinner', color: 'text-indigo-500' },
-              { id: 'snack', icon: Apple, label: 'Snack', color: 'text-red-500' },
+              { id: 'lunch', icon: Sun, label: 'Lunch' },
+              { id: 'dinner', icon: Moon, label: 'Dinner' },
+              { id: 'snack', icon: Apple, label: 'Snack' },
+              { id: 'dessert', icon: Cookie, label: 'Dessert' },
             ].map((type) => (
               <label
                 key={type.id}
-                className={`flex flex-col items-center justify-center p-4 rounded-xl cursor-pointer border-2 transition-all ${
+                className={`flex flex-col items-center justify-center p-6 rounded-3xl cursor-pointer border-2 transition-all ${
                   target.mealType === type.id
-                    ? 'border-purple-500 bg-purple-50/50 scale-[1.02] shadow-sm'
-                    : 'border-white/60 bg-white/30 hover:bg-white/50'
+                    ? 'border-stone-900 bg-stone-900 text-white shadow-xl scale-[1.05]'
+                    : 'border-stone-100 bg-stone-50 text-stone-400 hover:border-amber-200'
                 }`}
               >
                 <input
@@ -111,27 +133,30 @@ export default function MealForm({ onSubmit, isLoading }) {
                   onChange={handleChange}
                   className="sr-only"
                 />
-                <type.icon className={`w-6 h-6 mb-2 ${type.color}`} />
-                <span className="text-sm font-semibold text-gray-700">{type.label}</span>
+                <type.icon className="w-6 h-6 mb-3" />
+                <span className="text-xs font-bold uppercase tracking-widest">{type.label}</span>
               </label>
             ))}
           </div>
         </div>
+      </div>
 
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          disabled={isLoading}
-          type="submit"
-          className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed"
-        >
-          {isLoading ? (
-            <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin" />
-          ) : (
-            <span>Generate Meals ✨</span>
-          )}
-        </motion.button>
-      </form>
-    </motion.div>
+      <motion.button
+        whileHover={{ scale: 1.02, backgroundColor: '#000' }}
+        whileTap={{ scale: 0.98 }}
+        disabled={isLoading}
+        type="submit"
+        className="w-full py-6 rounded-3xl bg-stone-900 text-white font-black text-xl shadow-2xl hover:shadow-amber-100 transition-all flex items-center justify-center space-x-4 disabled:opacity-50 tracking-tighter"
+      >
+        {isLoading ? (
+          <div className="w-6 h-6 border-4 border-stone-700 border-t-white rounded-full animate-spin" />
+        ) : (
+          <>
+            <span className="font-serif italic font-normal text-amber-500 mr-2">fit.</span>
+            <span>Generate Plan</span>
+          </>
+        )}
+      </motion.button>
+    </form>
   );
 }

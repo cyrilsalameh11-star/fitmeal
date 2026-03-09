@@ -1,99 +1,89 @@
 import { motion } from 'framer-motion';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingBag, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 
-// For Nano Banana 2 & Stitch MCP - We use an idealized placeholder system
-// You can drop generated images into src/assets/generated/
 export default function MealCard({ meal, index, onShop }) {
   const [isHovered, setIsHovered] = useState(false);
   
   // Calculate macros ratio for the small bars
-  const totalMacros = meal.macros.protein + meal.macros.carbs + meal.macros.fat;
-  const pPct = (meal.macros.protein / totalMacros) * 100;
-  const cPct = (meal.macros.carbs / totalMacros) * 100;
-  const fPct = (meal.macros.fat / totalMacros) * 100;
+  const totalMacros = (meal.protein || 0) + (meal.carbs || 0) + (meal.fat || 0);
+  const pPct = totalMacros > 0 ? (meal.protein / totalMacros) * 100 : 0;
+  const cPct = totalMacros > 0 ? (meal.carbs / totalMacros) * 100 : 0;
+  const fPct = totalMacros > 0 ? (meal.fat / totalMacros) * 100 : 0;
+
+  // Source categorization for badges
+  const getSourceBadge = () => {
+    if (meal.source === 'restaurant') return 'bg-amber-100 text-amber-800 border-amber-200';
+    if (meal.source === 'supermarket') return 'bg-emerald-100 text-emerald-800 border-emerald-200';
+    return 'bg-blue-100 text-blue-800 border-blue-200';
+  };
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-      whileHover={{ y: -8, scale: 1.02 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="glass rounded-3xl overflow-hidden relative group cursor-pointer border border-white/50 hover:border-purple-300/50 transition-all duration-300 shadow-lg hover:shadow-2xl"
+      className="bg-white rounded-3xl overflow-hidden border border-stone-100 hover:border-amber-200 transition-all duration-300 shadow-sm hover:shadow-xl group"
     >
-      {/* 
-        Nano Banana 2 Placeholder Area 
-        This div is perfectly sized for 4:3 generated images 
-      */}
-      <div className="h-48 bg-gradient-to-br from-indigo-100 to-purple-50 relative overflow-hidden">
-        {meal.image ? (
-            <img src={meal.image} alt={meal.title} className="w-full h-full object-cover" />
-        ) : (
-            <div className="absolute inset-0 flex items-center justify-center text-5xl opacity-40 mix-blend-overlay group-hover:scale-110 transition-transform duration-500">
-              {meal.title.toLowerCase().includes('poulet') ? '🍗' : '🥗'}
-            </div>
-        )}
-        <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-700 shadow-sm border border-white/40">
-          {meal.source.brand}
+      <div className="p-8 space-y-6">
+        <div className="flex justify-between items-start">
+          <div className="space-y-1">
+            <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded border ${getSourceBadge()}`}>
+              {meal.brand || meal.source}
+            </span>
+            <h3 className="text-2xl font-serif leading-tight text-stone-800 group-hover:text-stone-900 transition-colors">
+              {meal.name}
+            </h3>
+          </div>
         </div>
-      </div>
-
-      <div className="p-6 relative bg-white/40 backdrop-blur-xl">
-        <h3 className="text-xl font-bold text-gray-800 mb-2 leading-tight">
-          {meal.title}
-        </h3>
         
-        <div className="flex items-end space-x-2 mb-6">
-          <span className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500">
-            {meal.macros.calories}
+        <div className="flex items-baseline space-x-2">
+          <span className="text-5xl font-black text-stone-900 leading-none">
+            {meal.calories}
           </span>
-          <span className="text-sm font-medium text-gray-500 mb-1">kcal</span>
+          <span className="text-sm font-bold text-stone-400 uppercase tracking-widest">Calories</span>
         </div>
 
-        {/* Macros */}
-        <div className="space-y-4">
-          <div className="flex justify-between text-sm font-medium">
-            <div className="flex flex-col">
-              <span className="text-blue-500">{meal.macros.protein}g</span>
-              <span className="text-gray-400 text-xs">Protein</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-amber-500">{meal.macros.carbs}g</span>
-              <span className="text-gray-400 text-xs">Carbs</span>
-            </div>
-            <div className="flex flex-col items-end">
-              <span className="text-rose-500">{meal.macros.fat}g</span>
-              <span className="text-gray-400 text-xs">Fat</span>
+        {/* Nutritional Breakdown */}
+        <div className="grid grid-cols-3 gap-4 pt-4">
+          <div className="space-y-1">
+            <p className="text-xs font-bold text-stone-400 uppercase tracking-widest leading-none">Protein</p>
+            <p className="text-xl font-bold text-stone-800">{meal.protein}g</p>
+            <div className="h-1 w-full bg-stone-100 rounded-full overflow-hidden">
+              <div className="h-full bg-stone-800" style={{ width: `${pPct}%` }} />
             </div>
           </div>
-
-          {/* Visual Bar */}
-          <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden flex">
-            <motion.div initial={{width: 0}} animate={{width: `${pPct}%`}} transition={{duration: 1, delay: 0.2}} className="bg-blue-500 h-full" />
-            <motion.div initial={{width: 0}} animate={{width: `${cPct}%`}} transition={{duration: 1, delay: 0.2}} className="bg-amber-500 h-full" />
-            <motion.div initial={{width: 0}} animate={{width: `${fPct}%`}} transition={{duration: 1, delay: 0.2}} className="bg-rose-500 h-full" />
+          <div className="space-y-1">
+            <p className="text-xs font-bold text-stone-400 uppercase tracking-widest leading-none">Carbs</p>
+            <p className="text-xl font-bold text-stone-800">{meal.carbs}g</p>
+            <div className="h-1 w-full bg-stone-100 rounded-full overflow-hidden">
+              <div className="h-full bg-amber-400" style={{ width: `${cPct}%` }} />
+            </div>
+          </div>
+          <div className="space-y-1">
+            <p className="text-xs font-bold text-stone-400 uppercase tracking-widest leading-none">Fat</p>
+            <p className="text-xl font-bold text-stone-800">{meal.fat}g</p>
+            <div className="h-1 w-full bg-stone-100 rounded-full overflow-hidden">
+              <div className="h-full bg-stone-300" style={{ width: `${fPct}%` }} />
+            </div>
           </div>
         </div>
-        
-        {/* Shopping Action */}
-        <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: isHovered ? 1 : 0, height: isHovered ? 'auto' : 0 }}
-            className="mt-4 pt-4 border-t border-gray-200/50"
-        >
-            <button 
-                onClick={(e) => {
-                    e.stopPropagation();
-                    onShop(meal);
-                }}
-                className="w-full py-2 bg-gradient-to-r from-emerald-400 to-teal-500 hover:from-emerald-500 hover:to-teal-600 text-white rounded-lg font-medium text-sm flex justify-center items-center shadow-md transition-colors"
-            >
-                <ShoppingCart className="w-4 h-4 mr-2" />
-                Add to List
-            </button>
-        </motion.div>
+
+        {/* Action Button */}
+        <div className="pt-6">
+          <button 
+            onClick={() => onShop(meal)}
+            className="w-full flex justify-between items-center px-6 py-4 bg-stone-900 text-white rounded-2xl font-bold text-sm tracking-widest uppercase hover:bg-stone-800 transition-all group/btn shadow-lg shadow-stone-200"
+          >
+            <span className="flex items-center">
+              <ShoppingBag className="w-4 h-4 mr-3" />
+              View Resources
+            </span>
+            <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+          </button>
+        </div>
       </div>
     </motion.div>
   );

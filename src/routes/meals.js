@@ -35,16 +35,15 @@ router.post('/suggestions', async (req, res) => {
       return res.status(400).json({ error: 'proteinTarget must be between 1 and 300g.' });
     }
 
-    const meals = await getSuggestions({
+    const suggestions = await getSuggestions({
       calorieTarget: cal,
       proteinTarget: prot,
       mealType,
       country,
       dietary,
-      count: 4,
     });
 
-    res.json({ meals });
+    res.json({ suggestions });
   } catch (err) {
     console.error('[/api/suggestions] Error:', err.message);
     res.status(500).json({ error: 'Failed to fetch meal suggestions. Please try again.' });
