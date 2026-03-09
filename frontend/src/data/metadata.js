@@ -41,8 +41,7 @@ export const BRANDS = {
     { name: "McDonald's", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=mcdonalds.com.lb&sz=64" },
     { name: "Dip n Dip", category: "Dessert", logo: "https://www.google.com/s2/favicons?domain=dipndip.com&sz=64" },
     { name: "Pinkberry", category: "Dessert", logo: "https://www.google.com/s2/favicons?domain=pinkberry.com&sz=64" },
-    { name: "Spinneys", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=spinneys-lebanon.com&sz=64" },
-    { name: "ABC Lebanon", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=abc.com.lb&sz=64" }
+    { name: "Spinneys", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=spinneys-lebanon.com&sz=64" }
   ],
   USA: [
     { name: "Cava", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=cava.com&sz=64" },
@@ -50,7 +49,6 @@ export const BRANDS = {
     { name: "Chick-fil-A", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=chick-fil-a.com&sz=64" },
     { name: "Sweetgreen", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=sweetgreen.com&sz=64" },
     { name: "Panda Express", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=pandaexpress.com&sz=64" },
-    { name: "Panera Bread", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=panerabread.com&sz=64" },
     { name: "McDonald's", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=mcdonalds.com&sz=64" },
     { name: "Burger King", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=burgerking.com&sz=64" },
     { name: "Subway", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=subway.com&sz=64" },
