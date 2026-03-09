@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import MealForm from './components/MealForm';
 import MealCard from './components/MealCard';
 import ExplorePage from './components/ExplorePage';
+import GymPage from './components/GymPage';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, X, Menu, Phone, Mail, Instagram, Twitter, User, ArrowRight, Users } from 'lucide-react';
+import { ShoppingBag, X, Menu, Phone, Mail, Instagram, Twitter, User, ArrowRight, Users, Dumbbell } from 'lucide-react';
 
 function App() {
   const [user, setUser] = useState(() => localStorage.getItem('fitmeal_username') || null);
@@ -201,6 +202,7 @@ function App() {
           <div className="hidden md:flex space-x-10 text-sm font-bold uppercase tracking-widest text-stone-500">
             <button onClick={() => { setActiveTab('explore'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'explore' ? 'text-stone-900' : ''}`}>Explore</button>
             <button onClick={() => { setActiveTab('planner'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'planner' ? 'text-stone-900' : ''}`}>Planner</button>
+            <button onClick={() => { setActiveTab('gym'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'gym' ? 'text-stone-900' : ''}`}><Dumbbell size={16} className="mr-1.5" />Gym</button>
             <button onClick={() => { setActiveTab('contact'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'contact' ? 'text-stone-900' : ''}`}>Contact</button>
           </div>
 
@@ -224,7 +226,7 @@ function App() {
               exit={{ opacity: 0, y: -10 }}
               className="md:hidden bg-white border-t border-stone-100 px-6 py-4 space-y-3"
             >
-              {[['explore', 'Explore'], ['planner', 'Planner'], ['contact', 'Contact']].map(([tab, label]) => (
+              {[['explore', 'Explore'], ['planner', 'Planner'], ['gym', 'Gym'], ['contact', 'Contact']].map(([tab, label]) => (
                 <button
                   key={tab}
                   onClick={() => { setActiveTab(tab); setShowMobileMenu(false); }}
@@ -242,6 +244,10 @@ function App() {
 
       <main className="max-w-7xl mx-auto px-6 py-12 lg:py-20">
         <AnimatePresence mode="wait">
+          {activeTab === 'gym' && (
+            <GymPage />
+          )}
+
           {activeTab === 'planner' && (
             <motion.div 
               key="planner"
