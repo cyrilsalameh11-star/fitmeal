@@ -8,7 +8,7 @@ export default function MealForm({ onSubmit, isLoading }) {
     proteinTarget: '40',
     mealType: 'lunch',
     country: 'France',
-    dietary: 'none'
+    dietary: []
   });
 
   const handleChange = (e) => {
@@ -90,18 +90,41 @@ export default function MealForm({ onSubmit, isLoading }) {
               <Shield className="w-4 h-4" />
               <span>Dietary Filter</span>
             </label>
-            <select 
-              name="dietary" 
-              value={target.dietary} 
-              onChange={handleChange}
-              className="w-full bg-stone-50 border border-stone-100 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-bold text-sm uppercase tracking-wider appearance-none"
-            >
-              <option value="none">Standard Diet</option>
-              <option value="halal">Halal Certified</option>
-              <option value="vegan">Vegan</option>
-              <option value="vegetarian">Vegetarian</option>
-              <option value="keto">Keto Friendly</option>
-            </select>
+            <div className="flex flex-wrap gap-2 pt-1">
+              {[
+                { id: 'halal', label: 'Halal' },
+                { id: 'vegan', label: 'Vegan' },
+                { id: 'vegetarian', label: 'Vegetarian' },
+                { id: 'keto', label: 'Keto' },
+                { id: 'lactose_free', label: 'Lactose Free' },
+                { id: 'gluten_free', label: 'Gluten Free' }
+              ].map(opt => (
+                <button
+                  key={opt.id}
+                  type="button"
+                  onClick={() => {
+                    setTarget(prev => ({
+                      ...prev,
+                      dietary: prev.dietary.includes(opt.id)
+                        ? prev.dietary.filter(d => d !== opt.id)
+                        : [...prev.dietary, opt.id]
+                    }));
+                  }}
+                  className={`px-3 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider border transition-all ${
+                    target.dietary.includes(opt.id) 
+                      ? 'bg-stone-900 border-stone-900 text-white shadow-md' 
+                      : 'bg-stone-50 border-stone-100 text-stone-500 hover:border-amber-200'
+                  }`}
+                >
+                  {opt.label}
+                </button>
+              ))}
+              {target.dietary.length === 0 && (
+                <span className="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-stone-400 italic">
+                  Standard Diet
+                </span>
+              )}
+            </div>
           </div>
         </div>
 

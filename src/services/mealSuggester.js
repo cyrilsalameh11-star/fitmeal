@@ -41,12 +41,13 @@ async function getSuggestions({ calorieTarget, proteinTarget, mealType, country 
 
   // 2. Filter static data
   const targetCountry = country === 'US' ? 'USA' : country;
+  const dietaryFilters = Array.isArray(dietary) ? dietary : (dietary && dietary !== 'none' ? [dietary] : []);
 
   // Filter restaurants (Regular Restaurants & Fast Food)
   const allRestaurantPool = restaurantMeals.filter(m => 
     m.type.includes(mealType) && 
     m.country === targetCountry &&
-    (dietary === 'none' || (m.dietary && m.dietary.includes(dietary))) &&
+    (dietaryFilters.length === 0 || dietaryFilters.every(d => m.dietary && m.dietary.includes(d))) &&
     !excludeIds.includes(m.id)
   );
 
@@ -66,6 +67,7 @@ async function getSuggestions({ calorieTarget, proteinTarget, mealType, country 
   const staticShopPool = curatedSupermarketMeals.filter(m => 
     m.type.includes(mealType) && 
     m.country === targetCountry &&
+    (dietaryFilters.length === 0 || dietaryFilters.every(d => m.dietary && m.dietary.includes(d))) &&
     !excludeIds.includes(m.id)
   );
 

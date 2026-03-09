@@ -14,6 +14,8 @@ function App() {
   const [showShopModal, setShowShopModal] = useState(false);
   const [shopItems, setShopItems] = useState([]);
   const [activeTab, setActiveTab] = useState('planner');
+  const [currentFilters, setCurrentFilters] = useState(null);
+  const [seenMealIds, setSeenMealIds] = useState(new Set());
 
   // Fetch initial stats
   useEffect(() => {
@@ -61,7 +63,9 @@ function App() {
         throw new Error(data.error || 'Failed to generate meals');
       }
       
+      setCurrentFilters(target);
       setMeals(data.suggestions || []);
+      setSeenMealIds(new Set((data.suggestions || []).map(m => m.id)));
     } catch (err) {
       setError(err.message);
     } finally {
@@ -72,14 +76,17 @@ function App() {
   const handleSwap = async (mealIndex) => {
     const mealToSwap = meals[mealIndex];
     try {
+      const excludeList = Array.from(seenMealIds);
       const resp = await fetch('/api/swap', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           calorieTarget: mealToSwap.calories,
+          proteinTarget: mealToSwap.protein,
           mealType: mealToSwap.type[0], // Use first type
           country: mealToSwap.country,
-          excludeIds: meals.map(m => m.id)
+          dietary: currentFilters?.dietary || [],
+          excludeIds: excludeList
         })
       });
       const data = await resp.json();
@@ -87,6 +94,11 @@ function App() {
         const newMeals = [...meals];
         newMeals[mealIndex] = data.meal;
         setMeals(newMeals);
+        setSeenMealIds(prev => {
+          const updated = new Set(prev);
+          updated.add(data.meal.id);
+          return updated;
+        });
       }
     } catch (err) {
       console.error("Swap failed", err);
