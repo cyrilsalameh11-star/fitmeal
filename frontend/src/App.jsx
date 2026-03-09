@@ -65,7 +65,7 @@ function App() {
       const resp = await fetch('/api/suggestions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(target)
+        body: JSON.stringify({ ...target, excludeIds: Array.from(seenMealIds) })
       });
       
       const data = await resp.json();
@@ -86,6 +86,12 @@ function App() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleResetWeek = () => {
+    setSeenMealIds(new Set());
+    localStorage.removeItem('fitmeal_seen_ids');
+    setMeals([]);
   };
 
   const handleSwap = async (mealIndex) => {
@@ -276,9 +282,18 @@ function App() {
 
                   {meals.length > 0 && (
                     <div className="space-y-10">
-                      <div className="flex items-center space-x-4 border-b border-stone-100 pb-6">
-                        <span className="bg-stone-900 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Plan</span>
-                        <h2 className="text-3xl">Suggested Menu</h2>
+                      <div className="flex items-center justify-between border-b border-stone-100 pb-6">
+                        <div className="flex items-center space-x-4">
+                          <span className="bg-stone-900 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Plan</span>
+                          <h2 className="text-3xl">Suggested Menu</h2>
+                        </div>
+                        <button
+                          onClick={handleResetWeek}
+                          className="text-xs font-bold uppercase tracking-widest text-stone-400 hover:text-red-500 transition-colors px-3 py-1.5 border border-stone-200 rounded-full hover:border-red-200"
+                          title="Clear seen meals and start fresh"
+                        >
+                          Reset Week
+                        </button>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {meals.map((meal, idx) => (

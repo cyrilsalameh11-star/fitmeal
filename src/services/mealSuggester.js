@@ -60,7 +60,7 @@ async function getSuggestions({ calorieTarget, proteinTarget, mealType, country 
 
   // Split into Fast Food vs Restaurant
   // We classify brands with "France/USA" or known chains as Fast Food
-  const fastFoodChains = ["McDonald's", "Burger King", "KFC", "Subway", "100 Montaditos", "Goiko", "Chick-fil-A", "Chipotle", "Panda Express", "7-Eleven"];
+  const fastFoodChains = ["McDonald's", "Burger King", "KFC", "Subway", "100 Montaditos", "Goiko", "Chick-fil-A", "Chipotle", "Panda Express", "7-Eleven", "Quick", "O'Tacos", "Chicken Street", "Peppe Chicken", "Five Guys", "Telepizza", "Cava", "Dip n Dip", "Pinkberry"];
   
   const fastFoodPool = allRestaurantPool.filter(m => 
     fastFoodChains.some(chain => m.brand.includes(chain))
