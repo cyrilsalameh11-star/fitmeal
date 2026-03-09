@@ -36,6 +36,9 @@ async function getSuggestions({ calorieTarget, proteinTarget, mealType, country 
     fetchUsdaMeals(mealType, 25),
   ]);
 
+  const offMeals = offResult.status === 'fulfilled' ? offResult.value : [];
+  const fdcMeals = usdaResult.status === 'fulfilled' ? usdaResult.value : [];
+
   // Filter live OFF meals to the requested meal type (prevents chicken nuggets appearing in dessert)
   const filteredOffMeals = offMeals.filter(m =>
     !m.type || m.type.includes(mealType)
