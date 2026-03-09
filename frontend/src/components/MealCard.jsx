@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
-import { ShoppingBag, ChevronRight } from 'lucide-react';
+import { ShoppingBag, ChevronRight, RefreshCw } from 'lucide-react';
 import { useState } from 'react';
 
-export default function MealCard({ meal, index, onShop }) {
+export default function MealCard({ meal, index, onShop, onSwap }) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isSwapping, setIsSwapping] = useState(false);
   
   // Calculate macros ratio for the small bars
   const totalMacros = (meal.protein || 0) + (meal.carbs || 0) + (meal.fat || 0);
@@ -18,6 +19,12 @@ export default function MealCard({ meal, index, onShop }) {
     return 'bg-blue-100 text-blue-800 border-blue-200';
   };
 
+  const handleSwapClick = async () => {
+    setIsSwapping(true);
+    await onSwap();
+    setIsSwapping(false);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -25,7 +32,7 @@ export default function MealCard({ meal, index, onShop }) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="bg-white rounded-3xl overflow-hidden border border-stone-100 hover:border-amber-200 transition-all duration-300 shadow-sm hover:shadow-xl group"
+      className="bg-white rounded-3xl overflow-hidden border border-stone-100 hover:border-amber-200 transition-all duration-300 shadow-sm hover:shadow-xl group relative"
     >
       <div className="p-8 space-y-6">
         <div className="flex justify-between items-start">
@@ -37,6 +44,14 @@ export default function MealCard({ meal, index, onShop }) {
               {meal.name}
             </h3>
           </div>
+          <button 
+            onClick={handleSwapClick}
+            disabled={isSwapping}
+            className={`p-2 rounded-full border border-stone-100 text-stone-400 hover:text-stone-900 hover:bg-stone-50 transition-all ${isSwapping ? 'animate-spin' : ''}`}
+            title="Swap Meal"
+          >
+            <RefreshCw className="w-4 h-4" />
+          </button>
         </div>
         
         <div className="flex items-baseline space-x-2">

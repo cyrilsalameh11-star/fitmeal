@@ -2,15 +2,46 @@ import { useState, useEffect } from 'react';
 import MealForm from './components/MealForm';
 import MealCard from './components/MealCard';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, X, Menu, Phone, Mail, Instagram, Twitter } from 'lucide-react';
+import { ShoppingBag, X, Menu, Phone, Mail, Instagram, Twitter, User, ArrowRight, Users } from 'lucide-react';
 
 function App() {
+  const [user, setUser] = useState(null);
+  const [userName, setUserName] = useState('');
+  const [userCount, setUserCount] = useState(0);
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showShopModal, setShowShopModal] = useState(false);
   const [shopItems, setShopItems] = useState([]);
   const [activeTab, setActiveTab] = useState('planner');
+
+  // Fetch initial stats
+  useEffect(() => {
+    fetch('/api/stats')
+      .then(res => res.json())
+      .then(data => setUserCount(data.count || 0))
+      .catch(() => {});
+  }, []);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    if (userName.trim().length < 2) return;
+
+    try {
+      const resp = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: userName })
+      });
+      const data = await resp.json();
+      if (resp.ok) {
+        setUser(userName);
+        setUserCount(data.count);
+      }
+    } catch (err) {
+      setUser(userName); // Fallback for offline/dev
+    }
+  };
 
   const handleGenerate = async (target) => {
     setIsLoading(true);
@@ -38,19 +69,86 @@ function App() {
     }
   };
 
+  const handleSwap = async (mealIndex) => {
+    const mealToSwap = meals[mealIndex];
+    try {
+      const resp = await fetch('/api/swap', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          calorieTarget: mealToSwap.calories,
+          mealType: mealToSwap.type[0], // Use first type
+          country: mealToSwap.country,
+          excludeIds: meals.map(m => m.id)
+        })
+      });
+      const data = await resp.json();
+      if (resp.ok && data.meal) {
+        const newMeals = [...meals];
+        newMeals[mealIndex] = data.meal;
+        setMeals(newMeals);
+      }
+    } catch (err) {
+      console.error("Swap failed", err);
+    }
+  };
+
   const handleShop = (meal) => {
     setShopItems(meal.shoppingItems || []);
     setShowShopModal(true);
   };
 
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-stone-50 flex flex-col items-center justify-center p-6 selection:bg-amber-100">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="max-w-md w-full text-center space-y-12"
+        >
+          <div className="space-y-4">
+            <div className="w-16 h-16 bg-stone-900 rounded-2xl flex items-center justify-center text-white font-serif italic text-3xl mx-auto shadow-xl">F</div>
+            <h1 className="text-4xl font-serif tracking-tight text-stone-900">Welcome to <span className="italic font-normal text-stone-400">FitMeal AI</span></h1>
+            <p className="text-stone-500 font-medium px-4">The intelligent nutrition companion for global residents and health enthusiasts.</p>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div className="text-left space-y-2">
+              <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 ml-4">Enter your first name</label>
+              <div className="relative">
+                <input 
+                  type="text" 
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
+                  placeholder="e.g. Cyril"
+                  className="w-full bg-white border border-stone-200 rounded-2xl px-6 py-5 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-serif text-lg text-stone-800 shadow-sm"
+                  required
+                />
+                <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-stone-900 rounded-xl flex items-center justify-center text-white hover:bg-stone-800 transition-colors shadow-lg">
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+            
+            <div className="flex items-center justify-center space-x-2 text-stone-400 bg-white/50 py-3 rounded-full border border-stone-100 px-6">
+              <Users className="w-4 h-4" />
+              <span className="text-xs font-bold uppercase tracking-widest">Joined by <span className="text-stone-900">{userCount}</span> users globally</span>
+            </div>
+          </form>
+        </motion.div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen font-sans selection:bg-amber-100 selection:text-amber-900">
+    <div className="min-h-screen font-sans selection:bg-amber-100 selection:text-amber-900 bg-stone-50">
       {/* Moving Band (Ticker) */}
       <div className="ticker-wrap border-b border-stone-800">
         <div className="ticker">
-          <span className="mx-8 font-bold text-amber-500">NEWS:</span> NEW MEALS ADDED FOR SPAIN & LEBANON 
+          <span className="mx-8 font-bold text-amber-500">NEWS:</span> DATA EXPANDED FOR LEBANON & SPAIN 
           <span className="mx-8">•</span> DID YOU KNOW? PROTEIN HELPS WITH SATIETY 
           <span className="mx-8">•</span> <span className="text-amber-500">MACRO TIP:</span> FIBER IS ESSENTIAL FOR DIGESTION
+          <span className="mx-8">•</span> NOW SERVING <span className="text-white">{userCount}</span> HEALTH ENTHUSIASTS
           <span className="mx-8">•</span> 6 TOTAL SUGGESTIONS NOW AVAILABLE FOR A BALANCED DIET
         </div>
       </div>
@@ -69,7 +167,13 @@ function App() {
             <button onClick={() => setActiveTab('contact')} className={`hover:text-stone-900 transition-colors ${activeTab === 'contact' ? 'text-stone-900' : ''}`}>Contact</button>
           </div>
 
-          <button className="md:hidden p-2 text-stone-500"><Menu className="w-6 h-6" /></button>
+          <div className="flex items-center space-x-4">
+             <div className="hidden sm:flex items-center space-x-2 bg-stone-100 px-4 py-1.5 rounded-full border border-stone-200">
+                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+                <span className="text-[10px] font-bold uppercase tracking-widest text-stone-500">{userCount} users</span>
+             </div>
+             <button className="md:hidden p-2 text-stone-500"><Menu className="w-6 h-6" /></button>
+          </div>
         </div>
       </nav>
 
@@ -83,10 +187,13 @@ function App() {
               exit={{ opacity: 0, y: -10 }}
               className="space-y-20"
             >
-              <div className="max-w-3xl">
-                <h1 className="text-5xl lg:text-7xl mb-6 leading-tight">Your daily dose of <span className="italic font-normal text-stone-400">fitness nutrition.</span></h1>
-                <p className="text-xl text-stone-500 font-medium leading-relaxed">
-                  The smart meal planner for the diaspora and health enthusiasts. Sourcing data from French supermarkets, Lebanese restaurants, and Spanish fast-food chains.
+              <div className="max-w-4xl">
+                <p className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-4 flex items-center">
+                   <User className="w-3 h-3 mr-2" /> Welcome back, {user}
+                </p>
+                <h1 className="text-5xl lg:text-7xl mb-6 leading-tight">Elevate your daily <span className="italic font-normal text-stone-400">fitness nutrition.</span></h1>
+                <p className="text-xl text-stone-500 font-medium leading-relaxed max-w-3xl">
+                  FitMeal AI is the premier smart meal planner for the global fitness community. Whether you are in Europe, the Middle East, or the USA, we curate balanced, macro-friendly suggestions tailored to your regional availability and lifestyle.
                 </p>
               </div>
 
@@ -108,7 +215,7 @@ function App() {
                   {isLoading && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       {[1, 2, 3, 4, 5, 6].map(i => (
-                        <div key={i} className="h-64 bg-stone-100 rounded-3xl animate-pulse"></div>
+                        <div key={i} className="h-64 bg-white border border-stone-100 rounded-3xl animate-pulse"></div>
                       ))}
                     </div>
                   )}
@@ -121,7 +228,7 @@ function App() {
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {meals.map((meal, idx) => (
-                          <MealCard key={idx} index={idx} meal={meal} onShop={handleShop} />
+                          <MealCard key={idx} index={idx} meal={meal} onShop={handleShop} onSwap={() => handleSwap(idx)} />
                         ))}
                       </div>
                     </div>
@@ -129,7 +236,7 @@ function App() {
 
                   {!isLoading && meals.length === 0 && (
                     <div className="h-96 border-2 border-dashed border-stone-200 rounded-3xl flex flex-col items-center justify-center text-stone-400 text-center px-12">
-                      <div className="w-16 h-16 bg-stone-50 rounded-full flex items-center justify-center mb-4">
+                      <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm">
                         <ShoppingBag className="w-8 h-8 opacity-20" />
                       </div>
                       <p className="text-lg">Select your targets to generate <br/>your personalized meal suggestions.</p>
@@ -140,6 +247,22 @@ function App() {
             </motion.div>
           )}
 
+          {activeTab === 'home' && (
+             <motion.div 
+               key="home"
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+               className="py-20 text-center space-y-10"
+             >
+                <h1 className="text-6xl lg:text-8xl mb-8">Nourish your <br/><span className="italic font-normal text-stone-400">global lifestyle.</span></h1>
+                <p className="text-xl text-stone-500 font-medium leading-relaxed max-w-2xl mx-auto">
+                   Explore curated database of regional restaurants, supermarket ready-meals, and automated macro calculation across 4 continents.
+                </p>
+                <button onClick={() => setActiveTab('planner')} className="px-12 py-5 bg-stone-900 text-white rounded-2xl font-bold uppercase tracking-widest text-sm hover:scale-105 transition-transform shadow-2xl">Start Planning</button>
+             </motion.div>
+          )}
+
           {activeTab === 'contact' && (
             <motion.div 
               key="contact"
@@ -148,20 +271,20 @@ function App() {
               exit={{ opacity: 0, scale: 0.98 }}
               className="max-w-4xl mx-auto py-20 text-center space-y-12"
             >
-              <h2 className="text-5xl lg:text-6xl mb-8">Let's stay <span className="italic font-normal text-stone-400">connected.</span></h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <h2 className="text-5xl lg:text-5xl mb-8">Let's stay <span className="italic font-normal text-stone-400">connected.</span></h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
                 <div className="p-10 bg-white border border-stone-100 rounded-3xl shadow-sm hover:border-amber-200 transition-colors">
-                  <Phone className="w-8 h-8 mx-auto mb-6 text-stone-400" />
+                  <Phone className="w-8 h-8 mb-6 text-stone-400" />
                   <h4 className="text-sm font-bold uppercase tracking-widest mb-2">WhatsApp</h4>
                   <p className="text-lg font-serif">+961 70 000 000</p>
                 </div>
                 <div className="p-10 bg-white border border-stone-100 rounded-3xl shadow-sm hover:border-amber-200 transition-colors">
-                  <Mail className="w-8 h-8 mx-auto mb-6 text-stone-400" />
+                  <Mail className="w-8 h-8 mb-6 text-stone-400" />
                   <h4 className="text-sm font-bold uppercase tracking-widest mb-2">Email</h4>
                   <p className="text-lg font-serif">hello@fitmeal.ai</p>
                 </div>
                 <div className="p-10 bg-white border border-stone-100 rounded-3xl shadow-sm hover:border-amber-200 transition-colors">
-                  <Instagram className="w-8 h-8 mx-auto mb-6 text-stone-400" />
+                  <Instagram className="w-8 h-8 mb-6 text-stone-400" />
                   <h4 className="text-sm font-bold uppercase tracking-widest mb-2">Social</h4>
                   <p className="text-lg font-serif">@fitmeal_ai</p>
                 </div>
