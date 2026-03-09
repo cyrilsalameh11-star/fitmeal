@@ -95,6 +95,11 @@ app.get('/api/admin/users', async (req, res) => {
   }
 });
 
+// Serve professional admin dashboard
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin.html'));
+});
+
 // Fallback to index.html for SPA
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
