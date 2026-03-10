@@ -22,6 +22,35 @@ const BRAND_COLORS = [
   'border-l-indigo-500'
 ];
 
+// Brand color palette for letter avatars (when logo unavailable)
+const AVATAR_COLORS = [
+  'bg-amber-500', 'bg-blue-500', 'bg-emerald-500',
+  'bg-rose-500', 'bg-purple-500', 'bg-orange-500', 'bg-indigo-500'
+];
+
+function BrandLogo({ brand, index }) {
+  const [failed, setFailed] = useState(false);
+  const colorClass = AVATAR_COLORS[index % AVATAR_COLORS.length];
+  const initial = brand.name.charAt(0).toUpperCase();
+
+  if (failed) {
+    return (
+      <div className={`w-full h-full rounded-lg ${colorClass} flex items-center justify-center text-white font-black text-lg`}>
+        {initial}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={brand.logo}
+      alt={brand.name}
+      className="w-full h-full object-contain"
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
 function BrandLine({ brand, items, index }) {
   const [isOpen, setIsOpen] = useState(false);
   const colorClass = BRAND_COLORS[index % BRAND_COLORS.length];
@@ -34,7 +63,7 @@ function BrandLine({ brand, items, index }) {
       >
         <div className="flex items-center space-x-5">
           <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center p-1.5 shadow-sm border border-stone-50 group-hover:scale-110 transition-transform">
-            <img src={brand.logo} alt={brand.name} className="w-full h-full object-contain" />
+            <BrandLogo brand={brand} index={index} />
           </div>
           <div className="text-left">
             <h3 className="text-base font-bold text-stone-800 tracking-tight">{brand.name}</h3>
@@ -71,7 +100,7 @@ function BrandLine({ brand, items, index }) {
                       {meal.calories}
                     </div>
                   </div>
-                  
+
                   <div className="space-y-3">
                     <div className="flex justify-between items-end">
                       <div className="flex space-x-3">
@@ -89,12 +118,12 @@ function BrandLine({ brand, items, index }) {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="h-1.5 bg-stone-100 rounded-full overflow-hidden">
-                      <motion.div 
+                      <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${Math.min(100, (meal.protein / 50) * 100)}%` }}
-                        className="h-full bg-amber-500 rounded-full" 
+                        className="h-full bg-amber-500 rounded-full"
                       />
                     </div>
                   </div>
@@ -133,8 +162,8 @@ export default function ExplorePage() {
           <button
             key={c.id}
             onClick={() => setActiveCountry(c.id)}
-            className={`flex items-center space-x-3 px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCountry === c.id 
-              ? 'bg-stone-900 text-white shadow-2xl scale-105 ring-4 ring-stone-100' 
+            className={`flex items-center space-x-3 px-8 py-4 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeCountry === c.id
+              ? 'bg-stone-900 text-white shadow-2xl scale-105 ring-4 ring-stone-100'
               : 'bg-white border border-stone-100 text-stone-400 hover:text-stone-600 hover:border-stone-300 shadow-sm'}`}
           >
             <span className="text-lg">{c.flag}</span>
@@ -156,16 +185,16 @@ export default function ExplorePage() {
           >
             {brandMeta.map((brand, idx) => {
               // Smart matching: Filter by country AND brand name (partial match for suffixes)
-              const itemsForBrand = ALL_RESTAURANT_DATA.filter(m => 
-                m.country === activeCountry && 
+              const itemsForBrand = ALL_RESTAURANT_DATA.filter(m =>
+                m.country === activeCountry &&
                 m.brand.toLowerCase().includes(brand.name.toLowerCase())
               );
-              
+
               return (
-                <BrandLine 
-                  key={brand.name} 
-                  brand={brand} 
-                  items={itemsForBrand} 
+                <BrandLine
+                  key={brand.name}
+                  brand={brand}
+                  items={itemsForBrand}
                   index={idx}
                 />
               );
