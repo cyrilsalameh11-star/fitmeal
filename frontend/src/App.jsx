@@ -9,6 +9,7 @@ import { ShoppingBag, X, Menu, Phone, Mail, Instagram, Twitter, User, ArrowRight
 function App() {
   const [user, setUser] = useState(() => localStorage.getItem('fitmeal_username') || null);
   const [userName, setUserName] = useState(() => localStorage.getItem('fitmeal_username') || '');
+  const [userEmail, setUserEmail] = useState(() => localStorage.getItem('fitmeal_email') || '');
   const [userCount, setUserCount] = useState(0);
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,24 +33,26 @@ function App() {
     fetch('/api/stats')
       .then(res => res.json())
       .then(data => setUserCount(data.count || 0))
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     if (userName.trim().length < 2) return;
+    if (!userEmail.trim().includes('@')) return;
 
     // Instantly log the user in locally (fixes Safari/mobile block if API fails)
-    localStorage.setItem('fitmeal_username', userName);
-    setUser(userName);
+    localStorage.setItem('fitmeal_username', userName.trim());
+    localStorage.setItem('fitmeal_email', userEmail.trim());
+    setUser(userName.trim());
 
     try {
       const resp = await fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: userName })
+        body: JSON.stringify({ name: userName.trim(), email: userEmail.trim() })
       });
-      
+
       if (resp.ok) {
         const data = await resp.json();
         if (data && data.count) {
@@ -72,13 +75,13 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...target, excludeIds: Array.from(seenMealIds) })
       });
-      
+
       const data = await resp.json();
-      
+
       if (!resp.ok) {
         throw new Error(data.error || 'Failed to generate meals');
       }
-      
+
       setCurrentFilters(target);
       setMeals(data.suggestions || []);
       setSeenMealIds(prev => {
@@ -141,7 +144,7 @@ function App() {
   if (!user) {
     return (
       <div className="min-h-screen bg-stone-50 flex flex-col items-center justify-center p-6 selection:bg-amber-100">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="max-w-md w-full text-center space-y-12"
@@ -152,16 +155,27 @@ function App() {
             <p className="text-stone-500 font-medium px-4">The intelligent nutrition companion for global residents and health enthusiasts.</p>
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-6">
+          <form onSubmit={handleLogin} className="space-y-4">
             <div className="text-left space-y-2">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 ml-4">Enter your first name</label>
+              <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 ml-4">First name</label>
+              <input
+                type="text"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+                placeholder="e.g. Cyril"
+                className="w-full bg-white border border-stone-200 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-serif text-lg text-stone-800 shadow-sm"
+                required
+              />
+            </div>
+            <div className="text-left space-y-2">
+              <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 ml-4">Email address</label>
               <div className="relative">
-                <input 
-                  type="text" 
-                  value={userName}
-                  onChange={(e) => setUserName(e.target.value)}
-                  placeholder="e.g. Cyril"
-                  className="w-full bg-white border border-stone-200 rounded-2xl px-6 py-5 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-serif text-lg text-stone-800 shadow-sm"
+                <input
+                  type="email"
+                  value={userEmail}
+                  onChange={(e) => setUserEmail(e.target.value)}
+                  placeholder="e.g. cyril@gmail.com"
+                  className="w-full bg-white border border-stone-200 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-serif text-lg text-stone-800 shadow-sm"
                   required
                 />
                 <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-stone-900 rounded-xl flex items-center justify-center text-white hover:bg-stone-800 transition-colors shadow-lg">
@@ -169,7 +183,7 @@ function App() {
                 </button>
               </div>
             </div>
-            
+
             <div className="flex items-center justify-center space-x-2 text-stone-400 bg-white/50 py-3 rounded-full border border-stone-100 px-6">
               <Users className="w-4 h-4" />
               <span className="text-xs font-bold uppercase tracking-widest">Joined by <span className="text-stone-900">{userCount}</span> users globally</span>
@@ -185,8 +199,8 @@ function App() {
       {/* Moving Band (Ticker) */}
       <div className="ticker-wrap border-b border-stone-800">
         <div className="ticker">
-          <span className="mx-8 font-bold text-amber-500">NEWS:</span> DATA EXPANDED FOR LEBANON & SPAIN 
-          <span className="mx-8">•</span> DID YOU KNOW? PROTEIN HELPS WITH SATIETY 
+          <span className="mx-8 font-bold text-amber-500">NEWS:</span> DATA EXPANDED FOR LEBANON & SPAIN
+          <span className="mx-8">•</span> DID YOU KNOW? PROTEIN HELPS WITH SATIETY
           <span className="mx-8">•</span> <span className="text-amber-500">MACRO TIP:</span> FIBER IS ESSENTIAL FOR DIGESTION
           <span className="mx-8">•</span> NOW SERVING <span className="text-white">{userCount}</span> HEALTH ENTHUSIASTS
           <span className="mx-8">•</span> 6 TOTAL SUGGESTIONS NOW AVAILABLE FOR A BALANCED DIET
@@ -199,7 +213,7 @@ function App() {
             <div className="w-8 h-8 bg-stone-900 rounded-lg flex items-center justify-center text-white font-bold italic">F</div>
             <span className="text-xl font-black font-serif tracking-tight">FitMeal AI</span>
           </div>
-          
+
           <div className="hidden md:flex space-x-10 text-sm font-bold uppercase tracking-widest text-stone-500">
             <button onClick={() => { setActiveTab('explore'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'explore' ? 'text-stone-900' : ''}`}>Explore</button>
             <button onClick={() => { setActiveTab('planner'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'planner' ? 'text-stone-900' : ''}`}>Planner</button>
@@ -208,13 +222,13 @@ function App() {
           </div>
 
           <div className="flex items-center space-x-4">
-             <div className="hidden sm:flex items-center space-x-2 bg-stone-100 px-4 py-1.5 rounded-full border border-stone-200">
-                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-                <span className="text-[10px] font-bold uppercase tracking-widest text-stone-500">{userCount} users</span>
-             </div>
-             <button className="md:hidden p-2 text-stone-500" onClick={() => setShowMobileMenu(m => !m)}>
-               {showMobileMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-             </button>
+            <div className="hidden sm:flex items-center space-x-2 bg-stone-100 px-4 py-1.5 rounded-full border border-stone-200">
+              <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+              <span className="text-[10px] font-bold uppercase tracking-widest text-stone-500">{userCount} users</span>
+            </div>
+            <button className="md:hidden p-2 text-stone-500" onClick={() => setShowMobileMenu(m => !m)}>
+              {showMobileMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
 
@@ -231,9 +245,8 @@ function App() {
                 <button
                   key={tab}
                   onClick={() => { setActiveTab(tab); setShowMobileMenu(false); }}
-                  className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold uppercase tracking-widest transition-colors ${
-                    activeTab === tab ? 'bg-stone-900 text-white' : 'text-stone-600 hover:bg-stone-50'
-                  }`}
+                  className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold uppercase tracking-widest transition-colors ${activeTab === tab ? 'bg-stone-900 text-white' : 'text-stone-600 hover:bg-stone-50'
+                    }`}
                 >
                   {label}
                 </button>
@@ -250,7 +263,7 @@ function App() {
           )}
 
           {activeTab === 'planner' && (
-            <motion.div 
+            <motion.div
               key="planner"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -259,9 +272,9 @@ function App() {
             >
               <div className="max-w-4xl">
                 <p className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-4 flex items-center">
-                   <User className="w-3 h-3 mr-2" /> Welcome back, {user}
+                  <User className="w-3 h-3 mr-2" /> Welcome back, {user}
                 </p>
-                <h1 className="text-5xl lg:text-7xl mb-6 leading-tight">Professional nutrition <br/><span className="italic font-normal text-stone-400">simplified for everyone.</span></h1>
+                <h1 className="text-5xl lg:text-7xl mb-6 leading-tight">Professional nutrition <br /><span className="italic font-normal text-stone-400">simplified for everyone.</span></h1>
                 <p className="text-xl text-stone-500 font-medium leading-relaxed max-w-3xl">
                   FitMeal AI is a sophisticated nutritional engine designed for the modern lifestyle. We bridge the gap between regional food availability and individual fitness goals, providing clear, balanced, and actionable meal paths across the globe.
                 </p>
@@ -319,7 +332,7 @@ function App() {
                       <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm">
                         <ShoppingBag className="w-8 h-8 opacity-20" />
                       </div>
-                      <p className="text-lg">Select your targets to generate <br/>your personalized meal suggestions.</p>
+                      <p className="text-lg">Select your targets to generate <br />your personalized meal suggestions.</p>
                     </div>
                   )}
                 </div>
@@ -330,7 +343,7 @@ function App() {
           {activeTab === 'explore' && <ExplorePage />}
 
           {activeTab === 'contact' && (
-            <motion.div 
+            <motion.div
               key="contact"
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -377,14 +390,14 @@ function App() {
       {/* Shopping Modal */}
       <AnimatePresence>
         {showShopModal && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/20 backdrop-blur-sm"
             onClick={() => setShowShopModal(false)}
           >
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
