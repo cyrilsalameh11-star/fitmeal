@@ -33,7 +33,7 @@ function BrandLogo({ brand, index }) {
   const colorClass = AVATAR_COLORS[index % AVATAR_COLORS.length];
   const initial = brand.name.charAt(0).toUpperCase();
 
-  if (failed) {
+  if (!brand.logo || failed) {
     return (
       <div className={`w-full h-full rounded-lg ${colorClass} flex items-center justify-center text-white font-black text-lg`}>
         {initial}
