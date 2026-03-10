@@ -36,6 +36,19 @@ function App() {
       .catch(() => { });
   }, []);
 
+  // Silently update last_login for returning users on every page load
+  useEffect(() => {
+    const savedName = localStorage.getItem('fitmeal_username');
+    const savedEmail = localStorage.getItem('fitmeal_email');
+    if (savedName) {
+      fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: savedName, email: savedEmail || '' })
+      }).catch(() => { });
+    }
+  }, []);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     if (userName.trim().length < 2) return;
