@@ -73,7 +73,7 @@ function normaliseItem(item, mealType) {
  * @param {number} maxItems
  */
 async function fetchUsdaMeals(mealType, maxItems = 20) {
-  const keywords = QUERY_KEYWORDS[mealType] || QUERY_KEYWORDS.lunch;
+  const keywords = (QUERY_KEYWORDS[mealType] || QUERY_KEYWORDS.lunch).slice(0, 2);
   const results = [];
   const seenIds = new Set();
 
@@ -86,7 +86,7 @@ async function fetchUsdaMeals(mealType, maxItems = 20) {
           pageSize: 6,
           dataType: 'SR Legacy,Survey (FNDDS)',
         },
-        timeout: 8000,
+        timeout: 2000,
       });
 
       const foods = response.data?.foods || [];

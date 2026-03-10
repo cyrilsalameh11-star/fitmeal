@@ -62,15 +62,15 @@ function normaliseProduct(product) {
  * @param {number} maxItems  - max items to return (default 30)
  */
 async function fetchSupermarketMeals(mealType, country = 'France', maxItems = 30) {
-  const keywords = QUERY_KEYWORDS[mealType] || QUERY_KEYWORDS.lunch;
+  const keywords = (QUERY_KEYWORDS[mealType] || QUERY_KEYWORDS.lunch).slice(0, 2);
   const results = [];
   const seenIds = new Set();
 
   // Mapping internal country names to OFF parameters
   const countryConfig = {
     'France': { cc: 'fr', lc: 'fr', brands: ['carrefour', 'monoprix', 'casino', 'leclerc', 'lidl', 'aldi'] },
-    'USA':    { cc: 'us', lc: 'en', brands: ['walmart', 'target', 'kroger', 'whole foods', 'trader joe'] },
-    'Spain':   { cc: 'es', lc: 'es', brands: ['mercadona', 'carrefour', 'lidl', 'dia', 'alcampo'] },
+    'USA': { cc: 'us', lc: 'en', brands: ['walmart', 'target', 'kroger', 'whole foods', 'trader joe'] },
+    'Spain': { cc: 'es', lc: 'es', brands: ['mercadona', 'carrefour', 'lidl', 'dia', 'alcampo'] },
     'Lebanon': { cc: 'lb', lc: 'en', brands: ['spinneys', 'carrefour'] }
   };
 
@@ -89,7 +89,7 @@ async function fetchSupermarketMeals(mealType, country = 'France', maxItems = 30
           lc: config.lc,
           cc: config.cc,
         },
-        timeout: 8000,
+        timeout: 2000,
       });
 
       const products = response.data?.products || [];

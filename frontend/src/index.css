@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:ital,wght@0,700;0,900;1,700&display=swap');
 
 @theme {
   --color-background: hsl(20 20% 98%);
@@ -9,19 +10,22 @@
   --color-primary-foreground: hsl(0 0% 100%);
   --color-border: hsl(20 20% 90%);
   --color-accent: hsl(38 60% 55%);
-  
+
   --font-serif: "Merriweather", serif;
   --font-sans: "Inter", sans-serif;
 
   --animate-marquee: marquee 30s linear infinite;
 
   @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-100%); }
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-100%);
+    }
   }
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:ital,wght@0,700;0,900;1,700&display=swap');
 
 @layer base {
   body {
@@ -29,7 +33,12 @@
     font-family: var(--font-sans);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-serif);
     @apply tracking-tight;
   }
@@ -39,12 +48,15 @@
   .glass {
     @apply bg-white/60 backdrop-blur-md border border-white/40 shadow-sm transition-all duration-300;
   }
+
   .glass-dark {
     @apply bg-stone-900/40 backdrop-blur-md border border-white/5 shadow-sm transition-all duration-300;
   }
+
   .ticker-wrap {
     @apply overflow-hidden bg-stone-950 text-stone-100 py-1.5 text-xs font-semibold uppercase tracking-widest whitespace-nowrap relative;
   }
+
   .ticker {
     @apply inline-block animate-marquee pl-[100%];
   }
