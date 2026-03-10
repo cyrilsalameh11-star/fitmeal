@@ -70,6 +70,23 @@ let supabase = null;
 if (supabaseUrl && supabaseKey) {
   supabase = createClient(supabaseUrl, supabaseKey);
   console.log('✅ Supabase Cloud Database initialized.');
+  // Auto-migrate: add missing columns if they don't exist
+  (async () => {
+    try {
+      await supabase.rpc('run_migration', { sql: 'SELECT 1' }).catch(() => { }); // test rpc availability
+      // Use raw REST to add columns
+      const headers = {
+        'apikey': supabaseKey,
+        'Authorization': `Bearer ${supabaseKey}`,
+        'Content-Type': 'application/json'
+      };
+      const axios = require('axios');
+      await axios.post(`${supabaseUrl}/rest/v1/rpc/exec_sql`,
+        { sql: 'ALTER TABLE users ADD COLUMN IF NOT EXISTS last_login timestamptz DEFAULT now(); ALTER TABLE users ADD COLUMN IF NOT EXISTS email text;' },
+        { headers }
+      ).catch(() => { }); // silently ignore if rpc not available
+    } catch (e) { /* ignore */ }
+  })();
 } else {
   console.warn('⚠️  Cloud DB not connected. Falling back to local storage (stats.json).');
 }
@@ -79,9 +96,14 @@ const statsPath = path.join(__dirname, 'data', 'stats.json');
 // --- Helper for Cross-Storage User Counting ---
 async function getUserList() {
   if (supabase) {
-    const { data, error } = await supabase.from('users').select('name, email, last_login').order('last_login', { ascending: false });
-    if (error) throw error;
-    return data; // returns [{name, email, last_login}]
+    // Try with last_login ordering first, fall back if column missing
+    let result = await supabase.from('users').select('name, email, last_login').order('last_login', { ascending: false });
+    if (result.error && result.error.message && result.error.message.includes('last_login')) {
+      // last_login column doesn't exist yet — fetch without it
+      result = await supabase.from('users').select('name, email');
+    }
+    if (result.error) throw result.error;
+    return result.data || [];
   }
   if (fs.existsSync(statsPath)) {
     const stats = JSON.parse(fs.readFileSync(statsPath, 'utf8'));
@@ -131,19 +153,32 @@ app.post('/api/login', async (req, res) => {
 
     if (supabase) {
       // Upsert by email (unique), or by name if no email
-      if (cleanEmail) {
-        await supabase.from('users').upsert(
-          [{ name: cleanName, email: cleanEmail, last_login: now }],
-          { onConflict: 'email' }
-        );
-      } else {
-        const { data: existing } = await supabase.from('users').select('name').eq('name', cleanName).single();
-        if (existing) {
-          await supabase.from('users').update({ last_login: now }).eq('name', cleanName);
+      // Try with last_login; fall back without it if column missing
+      const tryUpsert = async (withLastLogin) => {
+        const record = withLastLogin
+          ? { name: cleanName, email: cleanEmail || null, last_login: now }
+          : { name: cleanName, email: cleanEmail || null };
+        if (cleanEmail) {
+          const { error } = await supabase.from('users').upsert([record], { onConflict: 'email' });
+          return error;
         } else {
-          await supabase.from('users').insert([{ name: cleanName, last_login: now }]);
+          const { data: existing } = await supabase.from('users').select('name').eq('name', cleanName).maybeSingle();
+          if (existing) {
+            const update = withLastLogin ? { last_login: now } : {};
+            const { error } = await supabase.from('users').update(update).eq('name', cleanName);
+            return error;
+          } else {
+            const { error } = await supabase.from('users').insert([record]);
+            return error;
+          }
         }
+      };
+
+      let err = await tryUpsert(true);
+      if (err && err.message && err.message.includes('last_login')) {
+        err = await tryUpsert(false); // retry without last_login
       }
+      if (err) console.error('Login upsert error:', err.message);
     } else {
       const users = await getUserList();
       const existingIdx = users.findIndex(u =>
