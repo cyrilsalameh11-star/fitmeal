@@ -96,9 +96,28 @@ app.get('/api/stats', async (req, res) => {
     const users = await getUserList();
     res.json({ count: users.length });
   } catch (err) {
+    console.error('Error in /api/stats:', err.message);
     res.json({ count: 0 });
   }
 });
+
+// GET /api/debug — check Supabase connection (no auth needed, safe info only)
+app.get('/api/debug', async (req, res) => {
+  const connected = !!supabase;
+  let count = 0;
+  let error = null;
+  if (supabase) {
+    try {
+      const { data, error: err } = await supabase.from('users').select('name, email, last_login').order('last_login', { ascending: false });
+      if (err) error = err.message;
+      else count = data.length;
+    } catch (e) {
+      error = e.message;
+    }
+  }
+  res.json({ supabase_connected: connected, user_count: count, error });
+});
+
 
 app.post('/api/login', async (req, res) => {
   try {

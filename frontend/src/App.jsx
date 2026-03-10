@@ -45,7 +45,10 @@ function App() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: savedName, email: savedEmail || '' })
-      }).catch(() => { });
+      })
+        .then(res => res.json())
+        .then(data => { if (data && data.count) setUserCount(data.count); })
+        .catch(() => { });
     }
   }, []);
 
