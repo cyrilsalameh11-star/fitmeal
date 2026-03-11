@@ -50,7 +50,7 @@ export const BRANDS = {
     { name: "Carrefour Lebanon", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=carrefourlebanon.com&sz=64" },
     { name: "Roadster Diner", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=roadsterdiner.com&sz=64" },
     { name: "Crepaway", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=crepaway.com&sz=64" },
-    { name: "Abdallah", category: "Dessert", logo: null }
+    { name: "Abdallah", category: "Dessert", logo: "https://www.google.com/s2/favicons?domain=abdallah-chocolates.com&sz=64" }
   ],
   USA: [
     { name: "Cava", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=cava.com&sz=64" },
@@ -72,7 +72,7 @@ export const BRANDS = {
     { name: "Spinneys Dubai", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=spinneys.com&sz=64" },
     { name: "Carrefour UAE", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=carrefouruae.com&sz=64" },
     { name: "Choithrams", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=choithrams.com&sz=64" },
-    { name: "Al Farooj", category: "Fast Food", logo: null },
+    { name: "Al Farooj", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=alfarooj.com&sz=64" },
     { name: "McDonald's UAE", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=mcdonalds.com&sz=64" },
     { name: "KFC UAE", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=kfc.me&sz=64" }
   ],

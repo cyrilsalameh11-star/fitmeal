@@ -41,7 +41,7 @@ function BrandLogo({ brand, index }) {
   );
 }
 
-function BrandLine({ brand, items, index, setActiveTab }) {
+function BrandLine({ brand, items, index }) {
   const [isOpen, setIsOpen] = useState(false);
   const BRAND_COLORS = [
     'border-l-amber-500', 'border-l-blue-500', 'border-l-emerald-500',
@@ -87,45 +87,39 @@ function BrandLine({ brand, items, index, setActiveTab }) {
           >
             <div className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 bg-gradient-to-b from-stone-50/30 to-white">
               {items.map((meal) => (
-                <div key={meal.id} className="group bg-white rounded-2xl p-5 border border-stone-100 hover:border-amber-200 transition-all hover:shadow-md relative overflow-hidden flex flex-col justify-between cursor-pointer" onClick={() => { if(setActiveTab) setActiveTab('planner'); }}>
-                  <div className="flex-1">
-                    <div className="flex justify-between items-start mb-4">
-                      <p className="font-bold text-stone-800 text-sm leading-snug pr-8 group-hover:text-amber-600 transition-colors">{meal.name}</p>
-                      <div className="absolute top-4 right-4 bg-stone-50 px-2 py-1 rounded-lg border border-stone-100 text-[10px] font-black text-stone-500 shadow-sm group-hover:bg-amber-500 group-hover:text-white group-hover:border-amber-500 transition-colors">
-                        {meal.calories}
-                      </div>
-                    </div>
-
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-end">
-                        <div className="flex space-x-3">
-                          <div className="text-center">
-                            <p className="text-[8px] font-black text-stone-300 uppercase tracking-tighter">Prot</p>
-                            <p className="text-xs font-bold text-stone-700">{meal.protein}g</p>
-                          </div>
-                          <div className="text-center">
-                            <p className="text-[8px] font-black text-stone-300 uppercase tracking-tighter">Carb</p>
-                            <p className="text-xs font-bold text-stone-700">{meal.carbs}g</p>
-                          </div>
-                          <div className="text-center">
-                            <p className="text-[8px] font-black text-stone-300 uppercase tracking-tighter">Fat</p>
-                            <p className="text-xs font-bold text-stone-700">{meal.fat}g</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="h-1.5 bg-stone-100 rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${Math.min(100, (meal.protein / 50) * 100)}%` }}
-                          className="h-full bg-amber-500 rounded-full"
-                        />
-                      </div>
+                <div key={meal.id} className="group bg-white rounded-2xl p-5 border border-stone-100 hover:border-amber-200 transition-all hover:shadow-md relative overflow-hidden">
+                  <div className="flex justify-between items-start mb-4">
+                    <p className="font-bold text-stone-800 text-sm leading-snug pr-8">{meal.name}</p>
+                    <div className="absolute top-4 right-4 bg-stone-50 px-2 py-1 rounded-lg border border-stone-100 text-[10px] font-black text-stone-500 shadow-sm group-hover:bg-amber-500 group-hover:text-white group-hover:border-amber-500 transition-colors">
+                      {meal.calories}
                     </div>
                   </div>
-                  
-                  <div className="mt-4 pt-3 border-t border-stone-50 flex justify-end">
-                    <span className="text-[9px] font-black uppercase tracking-widest text-amber-500 bg-amber-50 px-2 py-1 rounded transition-transform group-hover:translate-x-1">Select & Plan &rarr;</span>
+
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-end">
+                      <div className="flex space-x-3">
+                        <div className="text-center">
+                          <p className="text-[8px] font-black text-stone-300 uppercase tracking-tighter">Prot</p>
+                          <p className="text-xs font-bold text-stone-700">{meal.protein}g</p>
+                        </div>
+                        <div className="text-center">
+                          <p className="text-[8px] font-black text-stone-300 uppercase tracking-tighter">Carb</p>
+                          <p className="text-xs font-bold text-stone-700">{meal.carbs}g</p>
+                        </div>
+                        <div className="text-center">
+                          <p className="text-[8px] font-black text-stone-300 uppercase tracking-tighter">Fat</p>
+                          <p className="text-xs font-bold text-stone-700">{meal.fat}g</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="h-1.5 bg-stone-100 rounded-full overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${Math.min(100, (meal.protein / 50) * 100)}%` }}
+                        className="h-full bg-amber-500 rounded-full"
+                      />
+                    </div>
                   </div>
                 </div>
               ))}
@@ -137,7 +131,7 @@ function BrandLine({ brand, items, index, setActiveTab }) {
   );
 }
 
-export default function ExplorePage({ setActiveTab }) {
+export default function ExplorePage() {
   const [activeCountry, setActiveCountry] = useState('France');
   const [allData, setAllData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -225,7 +219,6 @@ export default function ExplorePage({ setActiveTab }) {
                     brand={brand}
                     items={itemsForBrand}
                     index={idx}
-                    setActiveTab={setActiveTab}
                   />
                 );
               })}
