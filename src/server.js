@@ -376,8 +376,9 @@ app.get('/api/news', async (req, res) => {
   
   try {
     const feeds = [
-      'https://news.google.com/rss/search?q=Lebanon+(restaurant+OR+supermarket+OR+food+OR+FMCG+OR+Spinneys+OR+Carrefour)&hl=en-US&gl=US&ceid=US:en',
-      'https://news.google.com/rss/search?q=Liban+(restaurant+OR+supermarch%C3%A9+OR+alimentation+OR+Spinneys+OR+Carrefour)&hl=fr&gl=FR&ceid=FR:fr'
+      'https://news.google.com/rss/search?q=("Spinneys"+Iraq)+OR+("Grey+McKenzie"+Lebanon)+OR+("Grey+McKenzie+Group")&hl=en-US&gl=US&ceid=US:en',
+      'https://news.google.com/rss/search?q=Lebanon+(restaurant+OR+supermarket+OR+food+OR+FMCG+OR+Spinneys+OR+Carrefour+OR+"Grey+McKenzie")&hl=en-US&gl=US&ceid=US:en',
+      'https://news.google.com/rss/search?q=Liban+(restaurant+OR+supermarch%C3%A9+OR+alimentation+OR+Spinneys+OR+Carrefour+OR+"Grey+McKenzie")&hl=fr&gl=FR&ceid=FR:fr'
     ];
     
     let allItems = [];
@@ -391,13 +392,13 @@ app.get('/api/news', async (req, res) => {
     }
     
     const bannedWords = ['war', 'israel', 'strike', 'missile', 'hezbollah', 'politics', 'government', 'parliament', 'injured', 'killed', 'conflict', 'evacuate', 'mourn', 'gulf', 'iran', 'crisis', 'airstrike', 'military', 'army', 'death', 'casualty', 'bomb', 'drone', 'attack', 'protest', 'gaza', 'palestine', 'assassination', 'politician'];
-    const goodWords = ['food', 'restaurant', 'supermarket', 'market', 'fmcg', 'spinneys', 'carrefour', 'menu', 'chef', 'cuisine', 'dining', 'diet', 'grocery', 'retail', 'brand', 'eat', 'nourriture', 'supermarché', 'economie', 'business', 'startup', 'delivery', 'coffee', 'cafe'];
+    const goodWords = ['food', 'restaurant', 'supermarket', 'market', 'fmcg', 'spinneys', 'carrefour', 'menu', 'chef', 'cuisine', 'dining', 'diet', 'grocery', 'retail', 'brand', 'eat', 'nourriture', 'supermarché', 'economie', 'business', 'startup', 'delivery', 'coffee', 'cafe', 'grey mckenzie', 'iraq'];
 
     let formattedItems = allItems.filter(item => {
       const text = (item.title + ' ' + (item.contentSnippet || item.content || '')).toLowerCase();
       if(bannedWords.some(bw => text.includes(bw))) return false;
       const hasGood = goodWords.some(gw => text.includes(gw));
-      const mentionsLebanon = text.includes('lebanon') || text.includes('liban') || text.includes('beirut') || text.includes('beyrouth');
+      const mentionsLebanon = text.includes('lebanon') || text.includes('liban') || text.includes('beirut') || text.includes('beyrouth') || text.includes('spinneys') || text.includes('grey mckenzie');
       return hasGood && mentionsLebanon;
     }).map((item, index) => ({
       title: item.title,
@@ -421,8 +422,18 @@ app.get('/api/news', async (req, res) => {
     deduplicated.sort((a,b) => new Date(b.pubDate) - new Date(a.pubDate));
     
     // Fallback if the dynamic search somehow fails to yield enough fresh data
-    const finalItems = deduplicated.length >= 10 ? deduplicated.slice(0, 25) : fallbackItems;
-    res.json(finalItems);
+    const finalItems = deduplicated.length >= 10 ? deduplicated.slice(0, 24) : fallbackItems.slice(0, 24);
+    
+    // Always prepend the user's requested L'Orient Le Jour article
+    const pinnedArticle = {
+      title: "À Gemmayzé, une patronne mise sur la table avant la fête",
+      link: "https://www.lorientlejour.com/cuisine-liban-a-table/1496265/a-gemmayze-patronne-mise-sur-la-table-avant-la-fete.html",
+      pubDate: new Date().toISOString(), // Fresh date so it sorts well if needed, but we prepend it directly
+      contentSnippet: "Dans le quartier bouillonnant de Gemmayzé, l'entrepreneuriat culinaire féminin rayonne avec des concepts de restauration mettant en avant le terroir et l'authenticité.",
+      id: "fb-gemmayze-pinned"
+    };
+    
+    res.json([pinnedArticle, ...finalItems]);
   } catch (error) {
     console.error('Error fetching RSS:', error);
     res.json(fallbackItems);
