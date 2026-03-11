@@ -69,19 +69,19 @@ export const BRANDS = {
     { name: "Walmart", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=walmart.com&sz=64" }
   ],
   UAE: [
-    { name: "Spinneys Dubai", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=spinneys.com&sz=64" },
-    { name: "Carrefour UAE", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=carrefouruae.com&sz=64" },
-    { name: "Choithrams", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=choithrams.com&sz=64" },
-    { name: "Al Farooj", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=alfarooj.com&sz=64" },
-    { name: "McDonald's UAE", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=mcdonalds.com&sz=64" },
-    { name: "KFC UAE", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=kfc.me&sz=64" }
+    { name: "Spinneys Dubai", category: "Supermarket", logo: "https://www.spinneys.com/favicon.ico" },
+    { name: "Carrefour UAE", category: "Supermarket", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/1/12/Carrefour_logo_no_tag.svg/1024px-Carrefour_logo_no_tag.svg.png" },
+    { name: "Choithrams", category: "Supermarket", logo: "https://www.choithrams.com/assets/img/choithrams-logo.svg" },
+    { name: "Al Farooj", category: "Fast Food", logo: "https://pbs.twimg.com/profile_images/1118413157/farooj_logo_400x400.jpg" },
+    { name: "McDonald's UAE", category: "Fast Food", logo: "https://upload.wikimedia.org/wikipedia/commons/3/36/McDonald%27s_Golden_Arches.svg" },
+    { name: "KFC UAE", category: "Fast Food", logo: "https://upload.wikimedia.org/wikipedia/en/b/bf/KFC_logo.svg" }
   ],
   "Saudi Arabia": [
-    { name: "Panda", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=panda.com.sa&sz=64" },
-    { name: "Tamimi Markets", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=tamimimarkets.com&sz=64" },
-    { name: "Al Raya", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=alraya.com.sa&sz=64" },
-    { name: "Al Baik", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=albaik.com&sz=64" },
-    { name: "Calo", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=calo.app&sz=64" },
-    { name: "Kudu", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=kudu.com.sa&sz=64" }
+    { name: "Panda", category: "Supermarket", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/f/fa/Panda_Retail_Company_Logo.svg/1024px-Panda_Retail_Company_Logo.svg.png" },
+    { name: "Tamimi Markets", category: "Supermarket", logo: "https://media.glassdoor.com/sqll/1484048/tamimi-markets-squarelogo-1560759363110.png" },
+    { name: "Al Raya", category: "Supermarket", logo: "https://pbs.twimg.com/profile_images/1498263172151660548/h7wPoy-G_400x400.jpg" },
+    { name: "Al Baik", category: "Fast Food", logo: "https://upload.wikimedia.org/wikipedia/en/f/fa/Albaik_logo.svg" },
+    { name: "Calo", category: "Restaurant", logo: "https://images.crunchbase.com/image/upload/c_pad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/wuk4c4g5mquz1qj5q2f8" },
+    { name: "Kudu", category: "Fast Food", logo: "https://upload.wikimedia.org/wikipedia/en/b/b3/Kudu_Logo.png" }
   ]
 };

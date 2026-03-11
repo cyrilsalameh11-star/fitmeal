@@ -271,7 +271,7 @@ module.exports = [
   },
   {
     "id": "mcdonald's-uae-1773252504926-1",
-    "name": "McDonald's UAE item 1",
+    "name": "McArabia Chicken",
     "brand": "McDonald's UAE",
     "type": [
       "lunch",
@@ -289,7 +289,7 @@ module.exports = [
   },
   {
     "id": "mcdonald's-uae-1773252504926-2",
-    "name": "McDonald's UAE item 2",
+    "name": "Spicy McChicken",
     "brand": "McDonald's UAE",
     "type": [
       "lunch",
@@ -307,7 +307,7 @@ module.exports = [
   },
   {
     "id": "mcdonald's-uae-1773252504926-3",
-    "name": "McDonald's UAE item 3",
+    "name": "Chicken Mac",
     "brand": "McDonald's UAE",
     "type": [
       "lunch",
@@ -325,7 +325,7 @@ module.exports = [
   },
   {
     "id": "mcdonald's-uae-1773252504926-4",
-    "name": "McDonald's UAE item 4",
+    "name": "Double Cheeseburger",
     "brand": "McDonald's UAE",
     "type": [
       "lunch",
@@ -343,7 +343,7 @@ module.exports = [
   },
   {
     "id": "mcdonald's-uae-1773252504926-5",
-    "name": "McDonald's UAE item 5",
+    "name": "Big Tasty",
     "brand": "McDonald's UAE",
     "type": [
       "lunch",
@@ -361,7 +361,7 @@ module.exports = [
   },
   {
     "id": "mcdonald's-uae-1773252504926-6",
-    "name": "McDonald's UAE item 6",
+    "name": "Filet-O-Fish",
     "brand": "McDonald's UAE",
     "type": [
       "lunch",
@@ -379,7 +379,7 @@ module.exports = [
   },
   {
     "id": "mcdonald's-uae-1773252504926-7",
-    "name": "McDonald's UAE item 7",
+    "name": "Chicken McNuggets (9 pcs)",
     "brand": "McDonald's UAE",
     "type": [
       "lunch",
@@ -397,7 +397,7 @@ module.exports = [
   },
   {
     "id": "mcdonald's-uae-1773252504926-8",
-    "name": "McDonald's UAE item 8",
+    "name": "Grand Chicken Spicy",
     "brand": "McDonald's UAE",
     "type": [
       "lunch",
@@ -415,7 +415,7 @@ module.exports = [
   },
   {
     "id": "mcdonald's-uae-1773252504926-9",
-    "name": "McDonald's UAE item 9",
+    "name": "Fries (Large)",
     "brand": "McDonald's UAE",
     "type": [
       "lunch",
@@ -433,7 +433,7 @@ module.exports = [
   },
   {
     "id": "mcdonald's-uae-1773252504926-10",
-    "name": "McDonald's UAE item 10",
+    "name": "Apple Pie",
     "brand": "McDonald's UAE",
     "type": [
       "lunch",
@@ -451,7 +451,7 @@ module.exports = [
   },
   {
     "id": "mcdonald's-uae-1773252504926-11",
-    "name": "McDonald's UAE item 11",
+    "name": "McFlurry Oreo",
     "brand": "McDonald's UAE",
     "type": [
       "lunch",
@@ -469,7 +469,7 @@ module.exports = [
   },
   {
     "id": "mcdonald's-uae-1773252504926-12",
-    "name": "McDonald's UAE item 12",
+    "name": "Spicy Chicken Burger",
     "brand": "McDonald's UAE",
     "type": [
       "lunch",
@@ -487,7 +487,7 @@ module.exports = [
   },
   {
     "id": "mcdonald's-uae-1773252504926-13",
-    "name": "McDonald's UAE item 13",
+    "name": "McWrap Chicken Sweet Chilli",
     "brand": "McDonald's UAE",
     "type": [
       "lunch",
@@ -505,7 +505,7 @@ module.exports = [
   },
   {
     "id": "mcdonald's-uae-1773252504926-14",
-    "name": "McDonald's UAE item 14",
+    "name": "Halloumi Muffin",
     "brand": "McDonald's UAE",
     "type": [
       "lunch",
@@ -523,7 +523,7 @@ module.exports = [
   },
   {
     "id": "mcdonald's-uae-1773252504926-15",
-    "name": "McDonald's UAE item 15",
+    "name": "Hash Browns",
     "brand": "McDonald's UAE",
     "type": [
       "lunch",
