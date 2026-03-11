@@ -91,7 +91,13 @@ const MapPage = () => {
   // Get user details for pins
   const userName = localStorage.getItem('fitmeal_username') || 'Guest';
   const getInitials = (name) => {
-    return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    const parts = name.trim().split(/\s+/);
+    if (parts.length >= 2) {
+      return `${parts[0][0]}.${parts[parts.length - 1][0]}.`.toUpperCase();
+    } else if (parts.length === 1 && parts[0]) {
+      return `${parts[0][0]}.`.toUpperCase();
+    }
+    return 'G.';
   };
   
   // Consistent color gen based on name
