@@ -415,7 +415,7 @@ function PadelContent() {
         
         <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
           <a 
-            href="https://apps.apple.com/app/id1552553974" 
+            href="https://apps.apple.com/search?term=sportciety" 
             target="_blank" 
             rel="noopener noreferrer"
             className="group bg-stone-900 text-white px-8 py-4 rounded-2xl font-bold uppercase tracking-widest hover:bg-amber-500 hover:scale-105 active:scale-95 transition-all flex items-center justify-center text-sm shadow-xl shadow-stone-200"
@@ -423,7 +423,7 @@ function PadelContent() {
             <Smartphone className="mr-2 w-5 h-5 group-hover:rotate-12 transition-transform" /> App Store
           </a>
           <a 
-            href="https://play.google.com/store/apps/details?id=com.sportcietyapp.sportciety" 
+            href="https://play.google.com/store/search?q=sportciety&c=apps" 
             target="_blank" 
             rel="noopener noreferrer"
             className="group bg-white text-stone-900 border-2 border-stone-100 px-8 py-4 rounded-2xl font-bold uppercase tracking-widest hover:border-amber-500 hover:text-amber-600 hover:scale-105 active:scale-95 transition-all flex items-center justify-center text-sm shadow-lg shadow-stone-100"
@@ -465,7 +465,7 @@ function PilatesContent() {
           </div>
           <div className="mt-8 flex flex-col gap-3">
             <a 
-              href="https://apps.apple.com/app/id1200222044" 
+              href="https://apps.apple.com/search?term=in2" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group bg-stone-50 border border-stone-100 p-4 rounded-2xl text-xs font-bold uppercase tracking-widest flex items-center justify-between text-stone-900 hover:bg-white hover:border-amber-200 hover:shadow-md transition-all"
@@ -477,7 +477,7 @@ function PilatesContent() {
               <ArrowRight className="w-4 h-4 text-stone-300 group-hover:translate-x-1 transition-transform" />
             </a>
             <a 
-              href="https://play.google.com/store/apps/details?id=com.codefish.in2" 
+              href="https://play.google.com/store/search?q=in2&c=apps" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group bg-stone-50 border border-stone-100 p-4 rounded-2xl text-xs font-bold uppercase tracking-widest flex items-center justify-between text-stone-900 hover:bg-white hover:border-amber-200 hover:shadow-md transition-all"
@@ -502,7 +502,7 @@ function PilatesContent() {
           </div>
           <div className="mt-8 flex flex-col gap-3">
             <a 
-              href="https://apps.apple.com/app/id1450284566" 
+              href="https://apps.apple.com/search?term=posto%20nove" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group bg-stone-800/50 border border-stone-700/50 p-4 rounded-2xl text-xs font-bold uppercase tracking-widest flex items-center justify-between text-white hover:bg-stone-800 hover:border-amber-500/30 hover:shadow-lg transition-all"
@@ -514,7 +514,7 @@ function PilatesContent() {
               <ExternalLink className="w-4 h-4 text-stone-500 group-hover:scale-110 transition-transform" />
             </a>
             <a 
-              href="https://play.google.com/store/apps/details?id=com.glofox.postonove" 
+              href="https://play.google.com/store/search?q=posto%20nove&c=apps" 
               target="_blank" 
               rel="noopener noreferrer"
               className="group bg-stone-800/50 border border-stone-700/50 p-4 rounded-2xl text-xs font-bold uppercase tracking-widest flex items-center justify-between text-white hover:bg-stone-800 hover:border-amber-500/30 hover:shadow-lg transition-all"

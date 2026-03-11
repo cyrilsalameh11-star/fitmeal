@@ -331,28 +331,27 @@ app.get('/api/admin/users', requireAdminSession, async (req, res) => {
   }
 });
 
-// DELETE /api/admin/users/reset — PROTECTED
 app.delete('/api/admin/users/reset', requireAdminSession, async (req, res) => {
   try {
     if (supabase) {
-      // Supabase has no easy 'DELETE *' via JS without a match filter,
-      // so we use an inequality to match all rows where id is not null.
-      const { error } = await supabase.from('users').delete().neq('name', 'impossibledummyname_xyz123');
-      if (error) {
-         console.error('Supabase Reset Error:', error);
-         return res.status(500).json({ error: error.message });
-      }
+      // Clear users
+      const { error: userError } = await supabase.from('users').delete().neq('name', 'impossibledummyname_xyz123');
+      if (userError) throw userError;
+      
+      // Clear map pins (New requirement)
+      const { error: pinError } = await supabase.from('map_pins').delete().neq('restaurant_name', 'impossibledummyname_xyz123');
+      if (pinError) throw pinError;
     }
     
-    // Always clear the local file to stay perfectly synced
+    // Always clear the local stats file to stay synced
     if (fs.existsSync(statsPath)) {
       fs.writeFileSync(statsPath, JSON.stringify({ users: [] }, null, 2));
     }
     
-    res.json({ success: true, message: 'Database reset globally.' });
+    res.json({ success: true, message: 'Database and Map Pins reset globally.' });
   } catch (err) {
-    console.error('Failed to reset users database:', err.message);
-    res.status(500).json({ error: 'Failed to reset users.' });
+    console.error('Failed to reset database:', err.message);
+    res.status(500).json({ error: 'Failed to reset database.' });
   }
 });
 
