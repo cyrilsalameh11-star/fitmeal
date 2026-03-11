@@ -415,20 +415,20 @@ function PadelContent() {
         
         <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
           <a 
-            href="https://apps.apple.com/lb/app/sportciety/id1552553974" 
+            href="https://apps.apple.com/app/id1552553974" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="bg-stone-900 text-white px-6 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-amber-600 transition-colors flex items-center justify-center text-sm shadow-sm"
+            className="group bg-stone-900 text-white px-8 py-4 rounded-2xl font-bold uppercase tracking-widest hover:bg-amber-500 hover:scale-105 active:scale-95 transition-all flex items-center justify-center text-sm shadow-xl shadow-stone-200"
           >
-            <Smartphone className="mr-2 w-4 h-4" /> App Store
+            <Smartphone className="mr-2 w-5 h-5 group-hover:rotate-12 transition-transform" /> App Store
           </a>
           <a 
             href="https://play.google.com/store/apps/details?id=com.sportcietyapp.sportciety" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="bg-stone-900 text-white px-6 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-amber-600 transition-colors flex items-center justify-center text-sm shadow-sm"
+            className="group bg-white text-stone-900 border-2 border-stone-100 px-8 py-4 rounded-2xl font-bold uppercase tracking-widest hover:border-amber-500 hover:text-amber-600 hover:scale-105 active:scale-95 transition-all flex items-center justify-center text-sm shadow-lg shadow-stone-100"
           >
-            <Smartphone className="mr-2 w-4 h-4" /> Google Play
+            <Smartphone className="mr-2 w-5 h-5 group-hover:rotate-12 transition-transform" /> Google Play
           </a>
         </div>
       </div>
@@ -463,22 +463,30 @@ function PilatesContent() {
             <h2 className="text-2xl font-serif mb-3 group-hover:text-amber-600 transition-colors">IN2 Connect</h2>
             <p className="text-stone-500">Access classes at Exhale, Body Garage, and dozens of other premier studios across the country.</p>
           </div>
-          <div className="mt-8 flex flex-col gap-2">
+          <div className="mt-8 flex flex-col gap-3">
             <a 
-              href="https://apps.apple.com/lb/app/in2/id1200222044" 
+              href="https://apps.apple.com/app/id1200222044" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-xs font-bold uppercase tracking-widest flex items-center text-stone-900 hover:text-amber-600 transition-colors"
+              className="group bg-stone-50 border border-stone-100 p-4 rounded-2xl text-xs font-bold uppercase tracking-widest flex items-center justify-between text-stone-900 hover:bg-white hover:border-amber-200 hover:shadow-md transition-all"
             >
-              <Smartphone className="mr-2 w-4 h-4" /> App Store <ArrowRight className="ml-1 w-3 h-3 opacity-50" />
+              <div className="flex items-center">
+                <Smartphone className="mr-3 w-5 h-5 text-stone-400 group-hover:text-amber-500 group-hover:rotate-12 transition-all" /> 
+                App Store
+              </div>
+              <ArrowRight className="w-4 h-4 text-stone-300 group-hover:translate-x-1 transition-transform" />
             </a>
             <a 
               href="https://play.google.com/store/apps/details?id=com.codefish.in2" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-xs font-bold uppercase tracking-widest flex items-center text-stone-900 hover:text-amber-600 transition-colors"
+              className="group bg-stone-50 border border-stone-100 p-4 rounded-2xl text-xs font-bold uppercase tracking-widest flex items-center justify-between text-stone-900 hover:bg-white hover:border-amber-200 hover:shadow-md transition-all"
             >
-              <Smartphone className="mr-2 w-4 h-4" /> Google Play <ArrowRight className="ml-1 w-3 h-3 opacity-50" />
+              <div className="flex items-center">
+                <Smartphone className="mr-3 w-5 h-5 text-stone-400 group-hover:text-amber-500 group-hover:rotate-12 transition-all" /> 
+                Google Play
+              </div>
+              <ArrowRight className="w-4 h-4 text-stone-300 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
         </div>
@@ -492,22 +500,30 @@ function PilatesContent() {
             <h2 className="text-2xl font-serif mb-3 group-hover:text-amber-400 transition-colors">Posto Nove</h2>
             <p className="text-stone-400">A specialized luxury studio experience. Check their official site to book their proprietary classes.</p>
           </div>
-          <div className="mt-8 flex flex-col gap-2">
+          <div className="mt-8 flex flex-col gap-3">
             <a 
-              href="https://apps.apple.com/lb/app/posto-nove/id1450284566" 
+              href="https://apps.apple.com/app/id1450284566" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-xs font-bold uppercase tracking-widest flex items-center text-white hover:text-amber-400 transition-colors"
+              className="group bg-stone-800/50 border border-stone-700/50 p-4 rounded-2xl text-xs font-bold uppercase tracking-widest flex items-center justify-between text-white hover:bg-stone-800 hover:border-amber-500/30 hover:shadow-lg transition-all"
             >
-              <Smartphone className="mr-2 w-4 h-4" /> App Store <ExternalLink className="ml-1 w-3 h-3 opacity-50" />
+              <div className="flex items-center">
+                <Smartphone className="mr-3 w-5 h-5 text-stone-500 group-hover:text-amber-400 group-hover:rotate-12 transition-all" /> 
+                App Store
+              </div>
+              <ExternalLink className="w-4 h-4 text-stone-500 group-hover:scale-110 transition-transform" />
             </a>
             <a 
               href="https://play.google.com/store/apps/details?id=com.glofox.postonove" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-xs font-bold uppercase tracking-widest flex items-center text-white hover:text-amber-400 transition-colors"
+              className="group bg-stone-800/50 border border-stone-700/50 p-4 rounded-2xl text-xs font-bold uppercase tracking-widest flex items-center justify-between text-white hover:bg-stone-800 hover:border-amber-500/30 hover:shadow-lg transition-all"
             >
-              <Smartphone className="mr-2 w-4 h-4" /> Google Play <ExternalLink className="ml-1 w-3 h-3 opacity-50" />
+              <div className="flex items-center">
+                <Smartphone className="mr-3 w-5 h-5 text-stone-500 group-hover:text-amber-400 group-hover:rotate-12 transition-all" /> 
+                Google Play
+              </div>
+              <ExternalLink className="w-4 h-4 text-stone-500 group-hover:scale-110 transition-transform" />
             </a>
           </div>
         </div>
