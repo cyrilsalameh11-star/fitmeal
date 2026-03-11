@@ -415,7 +415,7 @@ function PadelContent() {
         
         <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
           <a 
-            href="https://apps.apple.com/us/app/sportciety/id1552553974" 
+            href="https://apps.apple.com/lb/app/sportciety/id1552553974" 
             target="_blank" 
             rel="noopener noreferrer"
             className="bg-stone-900 text-white px-6 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-amber-600 transition-colors flex items-center justify-center text-sm shadow-sm"
@@ -465,7 +465,7 @@ function PilatesContent() {
           </div>
           <div className="mt-8 flex flex-col gap-2">
             <a 
-              href="https://apps.apple.com/us/app/in2/id1200222044" 
+              href="https://apps.apple.com/lb/app/in2/id1200222044" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-xs font-bold uppercase tracking-widest flex items-center text-stone-900 hover:text-amber-600 transition-colors"
@@ -494,7 +494,7 @@ function PilatesContent() {
           </div>
           <div className="mt-8 flex flex-col gap-2">
             <a 
-              href="https://apps.apple.com/us/app/posto-nove/id1450284566" 
+              href="https://apps.apple.com/lb/app/posto-nove/id1450284566" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-xs font-bold uppercase tracking-widest flex items-center text-white hover:text-amber-400 transition-colors"
