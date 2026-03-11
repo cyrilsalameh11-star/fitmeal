@@ -377,8 +377,8 @@ app.get('/api/news', async (req, res) => {
   try {
     const feeds = [
       'https://news.google.com/rss/search?q=("Spinneys"+Iraq)+OR+("Grey+McKenzie"+Lebanon)+OR+("Grey+McKenzie+Group")&hl=en-US&gl=US&ceid=US:en',
-      'https://news.google.com/rss/search?q=Lebanon+(restaurant+OR+supermarket+OR+food+OR+FMCG+OR+Spinneys+OR+Carrefour+OR+"Grey+McKenzie")&hl=en-US&gl=US&ceid=US:en',
-      'https://news.google.com/rss/search?q=Liban+(restaurant+OR+supermarch%C3%A9+OR+alimentation+OR+Spinneys+OR+Carrefour+OR+"Grey+McKenzie")&hl=fr&gl=FR&ceid=FR:fr'
+      'https://news.google.com/rss/search?q=Lebanon+(restaurant+OR+supermarket+OR+food+OR+FMCG+OR+Spinneys+OR+Carrefour+OR+"Grey+McKenzie"+OR+"the961")&hl=en-US&gl=US&ceid=US:en',
+      'https://news.google.com/rss/search?q=Liban+(restaurant+OR+supermarch%C3%A9+OR+alimentation+OR+Spinneys+OR+Carrefour+OR+"Grey+McKenzie"+OR+"the961")&hl=fr&gl=FR&ceid=FR:fr'
     ];
     
     let allItems = [];
@@ -391,8 +391,8 @@ app.get('/api/news', async (req, res) => {
       }
     }
     
-    const bannedWords = ['war', 'israel', 'strike', 'missile', 'hezbollah', 'politics', 'government', 'parliament', 'injured', 'killed', 'conflict', 'evacuate', 'mourn', 'gulf', 'iran', 'crisis', 'airstrike', 'military', 'army', 'death', 'casualty', 'bomb', 'drone', 'attack', 'protest', 'gaza', 'palestine', 'assassination', 'politician', 'county', 'pennsylvania', 'ohio', 'indiana', 'tennessee', 'oregon', 'new hampshire', 'kentucky', 'usa', 'pa', 'mo', 'va', 'nh'];
-    const goodWords = ['food', 'restaurant', 'supermarket', 'market', 'fmcg', 'spinneys', 'carrefour', 'menu', 'chef', 'cuisine', 'dining', 'diet', 'grocery', 'retail', 'brand', 'eat', 'nourriture', 'supermarché', 'economie', 'business', 'startup', 'delivery', 'coffee', 'cafe', 'grey mckenzie', 'iraq'];
+    const bannedWords = ['world news in brief', 'in brief', 'war', 'israel', 'strike', 'missile', 'hezbollah', 'politics', 'government', 'parliament', 'injured', 'killed', 'conflict', 'evacuate', 'mourn', 'gulf', 'iran', 'crisis', 'airstrike', 'military', 'army', 'death', 'casualty', 'bomb', 'drone', 'attack', 'protest', 'gaza', 'palestine', 'assassination', 'politician', 'county', 'pennsylvania', 'ohio', 'indiana', 'tennessee', 'oregon', 'new hampshire', 'kentucky', 'usa', 'pa', 'mo', 'va', 'nh'];
+    const goodWords = ['the961', '961', 'food', 'restaurant', 'supermarket', 'market', 'fmcg', 'spinneys', 'carrefour', 'menu', 'chef', 'cuisine', 'dining', 'diet', 'grocery', 'retail', 'brand', 'eat', 'nourriture', 'supermarché', 'economie', 'business', 'startup', 'delivery', 'coffee', 'cafe', 'grey mckenzie', 'iraq'];
 
     let formattedItems = allItems.filter(item => {
       const text = (item.title + ' ' + (item.contentSnippet || item.content || '')).toLowerCase();
@@ -400,7 +400,7 @@ app.get('/api/news', async (req, res) => {
       const hasBanned = bannedWords.some(bw => new RegExp(`\\b${bw}\\b`, 'i').test(text));
       if(hasBanned) return false;
       const hasGood = goodWords.some(gw => text.includes(gw));
-      const mentionsLebanon = text.includes('lebanon') || text.includes('liban') || text.includes('beirut') || text.includes('beyrouth') || text.includes('spinneys') || text.includes('grey mckenzie');
+      const mentionsLebanon = text.includes('lebanon') || text.includes('liban') || text.includes('beirut') || text.includes('beyrouth') || text.includes('spinneys') || text.includes('grey mckenzie') || text.includes('the961');
       return hasGood && mentionsLebanon;
     }).map((item, index) => ({
       title: item.title,
@@ -410,21 +410,47 @@ app.get('/api/news', async (req, res) => {
       id: item.guid || `news-${index}`
     }));
     
-    // Sort and remove duplicates by title
+    // Sort and remove duplicates by title AND enforce distinct domains/sources
+    // Note: Google News RSS links often start with news.google.com/rss/articles...
+    // The source name is typically in the source tag, but rss-parser might not map it perfectly if it's deeply nested.
+    // However, google news titles often end with "- Source Name". e.g. "Some Title - The961"
     const deduplicated = [];
     const seenTitles = new Set();
+    const seenSources = new Set();
+
+    // Sort by date first so we get the newest articles from each source
+    formattedItems.sort((a,b) => new Date(b.pubDate) - new Date(a.pubDate));
+
     for(let it of formattedItems) {
-        const norm = it.title.toLowerCase();
-        if(!seenTitles.has(norm)) {
-            seenTitles.add(norm);
+        const normTitle = it.title.toLowerCase();
+        
+        // Google news appends ' - SourceName' to the end of the title.
+        // Let's try to extract it to use as a source identifier.
+        const titleParts = it.title.split(' - ');
+        let sourceName = 'unknown';
+        if (titleParts.length > 1) {
+            sourceName = titleParts[titleParts.length - 1].trim().toLowerCase();
+        }
+
+        // Also check actual URL hostname if it's a direct link
+        let hostname = sourceName;
+        try {
+            if (it.link && !it.link.includes('news.google.com')) {
+                hostname = new URL(it.link).hostname.replace('www.', '');
+            }
+        } catch(e) {}
+
+        const sourceId = hostname !== 'unknown' ? hostname : sourceName;
+
+        if(!seenTitles.has(normTitle) && !seenSources.has(sourceId)) {
+            seenTitles.add(normTitle);
+            seenSources.add(sourceId);
             deduplicated.push(it);
         }
     }
     
-    deduplicated.sort((a,b) => new Date(b.pubDate) - new Date(a.pubDate));
-    
     // Fallback if the dynamic search somehow fails to yield enough fresh data
-    const finalItems = deduplicated.length >= 10 ? deduplicated.slice(0, 24) : fallbackItems.slice(0, 24);
+    const finalItems = deduplicated.length >= 8 ? deduplicated.slice(0, 24) : fallbackItems.slice(0, 24);
     
     // Always prepend the user's requested L'Orient Le Jour article
     const pinnedArticle = {
