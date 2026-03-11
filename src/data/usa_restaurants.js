@@ -167,5 +167,23 @@ module.exports = [
   { id: 'us-wf-avocado', name: 'Hass Avocado (1/2)', brand: 'Whole Foods Market', type: ['snack', 'lunch'], calories: 160, protein: 2, carbs: 9, fat: 15, tags: ['vegan', 'keto', 'healthy'], country: 'USA' },
   { id: 'us-wf-turkey', name: 'Oven Roasted Turkey Breast (2oz)', brand: 'Whole Foods Market', type: ['lunch', 'snack'], calories: 60, protein: 12, carbs: 1, fat: 1, tags: ['turkey', 'keto'], country: 'USA' },
   { id: 'us-wf-hot-bar', name: 'Hot Bar: Vegan Mac & Cheese', brand: 'Whole Foods Market', type: ['lunch', 'dinner'], calories: 420, protein: 12, carbs: 55, fat: 18, tags: ['vegan', 'pasta'], country: 'USA' },
-  { id: 'us-wf-sushi', name: 'Brown Rice Salmon Avocado Roll', brand: 'Whole Foods Market', type: ['lunch'], calories: 340, protein: 14, carbs: 48, fat: 10, tags: ['fish', 'sushi', 'healthy'], country: 'USA' }
+  { id: 'us-wf-sushi', name: 'Brown Rice Salmon Avocado Roll', brand: 'Whole Foods Market', type: ['lunch'], calories: 340, protein: 14, carbs: 48, fat: 10, tags: ['fish', 'sushi', 'healthy'], country: 'USA' },
+
+  // In-N-Out Burger
+  { id: 'us-ino-double', name: 'Double-Double Burger', brand: 'In-N-Out', type: ['lunch', 'dinner'], calories: 670, protein: 37, carbs: 39, fat: 41, tags: ['burger', 'beef'], country: 'USA' },
+  { id: 'us-ino-cheeseburger', name: 'Cheeseburger', brand: 'In-N-Out', type: ['lunch', 'snack'], calories: 480, protein: 22, carbs: 39, fat: 27, tags: ['burger', 'beef'], country: 'USA' },
+  { id: 'us-ino-hamburger', name: 'Hamburger', brand: 'In-N-Out', type: ['lunch', 'snack'], calories: 390, protein: 16, carbs: 39, fat: 19, tags: ['burger', 'beef'], country: 'USA' },
+  { id: 'us-ino-animal-fries', name: 'Animal Style Fries', brand: 'In-N-Out', type: ['snack'], calories: 750, protein: 15, carbs: 80, fat: 45, tags: ['snack'], country: 'USA' },
+  { id: 'us-ino-protein-style', name: 'Double-Double (Protein Style)', brand: 'In-N-Out', type: ['lunch', 'dinner'], calories: 520, protein: 33, carbs: 11, fat: 39, tags: ['burger', 'beef', 'keto'], country: 'USA' },
+  { id: 'us-ino-shake', name: 'Strawberry Shake', brand: 'In-N-Out', type: ['dessert'], calories: 590, protein: 10, carbs: 114, fat: 12, tags: ['dessert', 'sweet'], country: 'USA' },
+
+  // Shake Shack
+  { id: 'us-shack-burger', name: 'ShackBurger (Single)', brand: 'Shake Shack', type: ['lunch', 'dinner'], calories: 530, protein: 30, carbs: 24, fat: 34, tags: ['burger', 'beef'], country: 'USA' },
+  { id: 'us-shack-smoke', name: 'SmokeShack (Single)', brand: 'Shake Shack', type: ['lunch', 'dinner'], calories: 610, protein: 35, carbs: 25, fat: 43, tags: ['burger', 'beef', 'bacon'], country: 'USA' },
+  { id: 'us-shack-shroom', name: '\'Shroom Burger', brand: 'Shake Shack', type: ['lunch', 'dinner'], calories: 490, protein: 18, carbs: 31, fat: 30, tags: ['burger', 'vegetarian'], country: 'USA' },
+  { id: 'us-shack-chicken', name: 'Chicken Shack', brand: 'Shake Shack', type: ['lunch', 'dinner'], calories: 550, protein: 33, carbs: 35, fat: 31, tags: ['sandwich', 'chicken'], country: 'USA' },
+  { id: 'us-shack-fries', name: 'Crinkle Cut Fries', brand: 'Shake Shack', type: ['snack'], calories: 470, protein: 5, carbs: 56, fat: 24, tags: ['snack', 'vegan'], country: 'USA' },
+  { id: 'us-shack-cheese-fries', name: 'Cheese Fries', brand: 'Shake Shack', type: ['snack'], calories: 710, protein: 12, carbs: 62, fat: 46, tags: ['snack', 'vegetarian', 'cheese'], country: 'USA' },
+  { id: 'us-shack-hotdog', name: 'Flat-Top Dog', brand: 'Shake Shack', type: ['lunch', 'snack'], calories: 350, protein: 14, carbs: 24, fat: 22, tags: ['hotdog', 'beef'], country: 'USA' },
+  { id: 'us-shack-shake', name: 'Vanilla Shake', brand: 'Shake Shack', type: ['dessert'], calories: 680, protein: 14, carbs: 75, fat: 36, tags: ['dessert', 'sweet'], country: 'USA' }
 ];

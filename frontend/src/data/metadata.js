@@ -18,7 +18,8 @@ export const BRANDS = {
     { name: "KFC", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=kfc.com&sz=64" },
     { name: "Auchan", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=auchan.fr&sz=64" },
     { name: "Carrefour", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=carrefour.fr&sz=64" },
-    { name: "Monoprix", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=monoprix.fr&sz=64" }
+    { name: "Monoprix", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=monoprix.fr&sz=64" },
+    { name: "Picard", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=picard.fr&sz=64" }
   ],
   Spain: [
     { name: "100 Montaditos", category: "Fast Food", logo: null },
@@ -41,7 +42,9 @@ export const BRANDS = {
     { name: "McDonald's", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=mcdonalds.com&sz=64" },
     { name: "Dip n Dip", category: "Dessert", logo: "https://www.google.com/s2/favicons?domain=dipndip.com&sz=64" },
     { name: "Pinkberry", category: "Dessert", logo: "https://www.google.com/s2/favicons?domain=pinkberry.com&sz=64" },
-    { name: "Spinneys", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=spinneys-lebanon.com&sz=64" }
+    { name: "Spinneys", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=spinneys-lebanon.com&sz=64" },
+    { name: "Charcutier", category: "Supermarket", logo: null },
+    { name: "Carrefour Lebanon", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=carrefourlebanon.com&sz=64" }
   ],
   USA: [
     { name: "Cava", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=cava.com&sz=64" },
@@ -53,8 +56,10 @@ export const BRANDS = {
     { name: "Burger King", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=burgerking.com&sz=64" },
     { name: "Subway", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=subway.com&sz=64" },
     { name: "7-Eleven", category: "Convenience", logo: "https://www.google.com/s2/favicons?domain=7-eleven.com&sz=64" },
+    { name: "In-N-Out", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=in-n-out.com&sz=64" },
+    { name: "Shake Shack", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=shakeshack.com&sz=64" },
     { name: "Whole Foods", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=wholefoodsmarket.com&sz=64" },
     { name: "Trader Joe's", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=traderjoes.com&sz=64" },
-    { name: "Safeway", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=safeway.com&sz=64" }
+    { name: "Walmart", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=walmart.com&sz=64" }
   ]
 };

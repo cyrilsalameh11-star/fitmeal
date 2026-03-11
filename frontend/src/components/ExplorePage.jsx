@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronDown, Utensils, ShoppingCart, IceCream } from 'lucide-react';
-import ALL_RESTAURANT_DATA from '../data/restaurantData';
+import { ChevronRight, ChevronDown, Utensils, ShoppingCart, IceCream, Loader2 } from 'lucide-react';
 import { COUNTRIES, BRANDS } from '../data/metadata';
 
 const CATEGORY_ICONS = {
@@ -12,24 +11,15 @@ const CATEGORY_ICONS = {
   "Convenience": <ShoppingCart size={14} />
 };
 
-const BRAND_COLORS = [
-  'border-l-amber-500',
-  'border-l-blue-500',
-  'border-l-emerald-500',
-  'border-l-rose-500',
-  'border-l-purple-500',
-  'border-l-orange-500',
-  'border-l-indigo-500'
-];
-
-// Brand color palette for letter avatars (when logo unavailable)
-const AVATAR_COLORS = [
-  'bg-amber-500', 'bg-blue-500', 'bg-emerald-500',
-  'bg-rose-500', 'bg-purple-500', 'bg-orange-500', 'bg-indigo-500'
-];
+// ... (BrandLogo and BrandLine components remain the same)
+// I'll keep them here for completeness since I'm replacing the whole file content block
 
 function BrandLogo({ brand, index }) {
   const [failed, setFailed] = useState(false);
+  const AVATAR_COLORS = [
+    'bg-amber-500', 'bg-blue-500', 'bg-emerald-500',
+    'bg-rose-500', 'bg-purple-500', 'bg-orange-500', 'bg-indigo-500'
+  ];
   const colorClass = AVATAR_COLORS[index % AVATAR_COLORS.length];
   const initial = brand.name.charAt(0).toUpperCase();
 
@@ -53,6 +43,10 @@ function BrandLogo({ brand, index }) {
 
 function BrandLine({ brand, items, index }) {
   const [isOpen, setIsOpen] = useState(false);
+  const BRAND_COLORS = [
+    'border-l-amber-500', 'border-l-blue-500', 'border-l-emerald-500',
+    'border-l-rose-500', 'border-l-purple-500', 'border-l-orange-500', 'border-l-indigo-500'
+  ];
   const colorClass = BRAND_COLORS[index % BRAND_COLORS.length];
 
   return (
@@ -139,20 +133,42 @@ function BrandLine({ brand, items, index }) {
 
 export default function ExplorePage() {
   const [activeCountry, setActiveCountry] = useState('France');
+  const [allData, setAllData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const brandMeta = BRANDS[activeCountry] || [];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const [resResp, superResp] = await Promise.all([
+          fetch('/api/restaurants'),
+          fetch('/api/supermarkets')
+        ]);
+        const resData = await resResp.json();
+        const superData = await superResp.json();
+        setAllData([...(resData.meals || []), ...(superData.meals || [])]);
+      } catch (error) {
+        console.error('Error fetching explore data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <motion.div
       key="explore"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="max-w-6xl mx-auto space-y-12 pb-20"
+      className="max-w-6xl mx-auto space-y-12 pb-20 px-4"
     >
       {/* Premium Header */}
       <div className="text-center space-y-4">
-        <h2 className="text-4xl lg:text-6xl font-serif tracking-tight">Global <span className="italic font-normal text-stone-400 text-5xl lg:text-7xl">Catalog.</span></h2>
+        <h2 className="text-4xl lg:text-6xl font-serif tracking-tight text-stone-900 text-balance">Global <span className="italic font-normal text-stone-400 text-5xl lg:text-7xl">Catalog.</span></h2>
         <p className="text-lg text-stone-500 font-medium max-w-2xl mx-auto">
-          Explore nutritional signatures for <span className="text-stone-900 border-b-2 border-amber-200">630+ real-world items</span> across top restaurant and grocery families.
+          Explore nutritional signatures for <span className="text-stone-900 border-b-2 border-amber-200">750+ real-world items</span> across top restaurant and grocery families.
         </p>
       </div>
 
@@ -173,34 +189,42 @@ export default function ExplorePage() {
       </div>
 
       {/* Brand Lines Layout */}
-      <div className="space-y-4">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeCountry}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 gap-1"
-          >
-            {brandMeta.map((brand, idx) => {
-              // Smart matching: Filter by country AND brand name (partial match for suffixes)
-              const itemsForBrand = ALL_RESTAURANT_DATA.filter(m =>
-                m.country === activeCountry &&
-                m.brand.toLowerCase().includes(brand.name.toLowerCase())
-              );
+      <div className="space-y-4 min-h-[400px]">
+        {isLoading ? (
+          <div className="flex flex-col items-center justify-center py-20 space-y-4">
+            <Loader2 className="animate-spin text-amber-500" size={40} />
+            <p className="text-stone-400 font-bold uppercase tracking-widest text-xs">Calibrating Data Pools...</p>
+          </div>
+        ) : (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeCountry}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.4 }}
+              className="grid grid-cols-1 gap-1"
+            >
+              {brandMeta.map((brand, idx) => {
+                const itemsForBrand = allData.filter(m =>
+                  m.country === activeCountry &&
+                  m.brand.toLowerCase().includes(brand.name.toLowerCase())
+                );
 
-              return (
-                <BrandLine
-                  key={brand.name}
-                  brand={brand}
-                  items={itemsForBrand}
-                  index={idx}
-                />
-              );
-            })}
-          </motion.div>
-        </AnimatePresence>
+                if (itemsForBrand.length === 0) return null;
+
+                return (
+                  <BrandLine
+                    key={brand.name}
+                    brand={brand}
+                    items={itemsForBrand}
+                    index={idx}
+                  />
+                );
+              })}
+            </motion.div>
+          </AnimatePresence>
+        )}
       </div>
     </motion.div>
   );

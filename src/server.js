@@ -361,6 +361,38 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+const axios = require('axios');
+const RSSParser = require('rss-parser');
+const parser = new RSSParser();
+
+// ... (existing code)
+
+// FMCG News Endpoint (RSS Proxy)
+app.get('/api/news', async (req, res) => {
+  try {
+    // Using a Lebanon business news feed as specified
+    const feed = await parser.parseURL('https://www.businessnews.com.lb/rss.aspx');
+    
+    // Filter articles for FMCG keywords (supermarket, restaurant, retail, etc.)
+    const filteredItems = feed.items.filter(item => {
+      const content = (item.title + ' ' + item.contentSnippet).toLowerCase();
+      return content.includes('supermarket') || 
+             content.includes('retail') || 
+             content.includes('restaurant') || 
+             content.includes('food') || 
+             content.includes('store') ||
+             content.includes('spinneys') ||
+             content.includes('carrefour') ||
+             content.includes('fmcg');
+    });
+
+    res.json(filteredItems);
+  } catch (error) {
+    console.error('Error fetching RSS:', error);
+    res.status(500).json({ error: 'Failed to fetch news' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`\n🥗  Fitness Meal Planner running at http://localhost:${PORT}\n`);
 });

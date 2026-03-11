@@ -99,4 +99,18 @@ router.get('/restaurants', (req, res) => {
   }
 });
 
+/**
+ * GET /api/supermarkets
+ * Returns: { meals: array of all curated supermarket items }
+ */
+router.get('/supermarkets', (req, res) => {
+  try {
+    const supermarketMeals = require('../data/supermarkets');
+    res.json({ meals: supermarketMeals });
+  } catch (err) {
+    console.error('[/api/supermarkets] Error:', err.message);
+    res.status(500).json({ error: 'Failed to fetch supermarket data.' });
+  }
+});
+
 module.exports = router;
