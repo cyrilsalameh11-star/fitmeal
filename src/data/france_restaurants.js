@@ -1,239 +1,4025 @@
 module.exports = [
-  // McDonald's France
-  { id: 'fr-mcd-hamburger', name: 'Hamburger', brand: "McDonald's France", type: ['snack', 'lunch'], calories: 261, protein: 13, carbs: 32, fat: 9, tags: ['burger', 'beef'], country: 'France' },
-  { id: 'fr-mcd-cheeseburger', name: 'Cheeseburger', brand: "McDonald's France", type: ['snack', 'lunch'], calories: 303, protein: 16, carbs: 33, fat: 12, tags: ['burger', 'beef'], country: 'France' },
-  { id: 'fr-mcd-double-cheese', name: 'Double Cheeseburger', brand: "McDonald's France", type: ['lunch', 'dinner'], calories: 440, protein: 29, carbs: 34, fat: 22, tags: ['burger', 'beef'], country: 'France' },
-  { id: 'fr-mcd-big-mac', name: 'Big Mac', brand: "McDonald's France", type: ['lunch', 'dinner'], calories: 508, protein: 27, carbs: 43, fat: 25, tags: ['burger', 'beef'], country: 'France' },
-  { id: 'fr-mcd-mcchicken', name: 'McChicken', brand: "McDonald's France", type: ['lunch', 'dinner'], calories: 439, protein: 21, carbs: 41, fat: 22, tags: ['burger', 'chicken'], country: 'France' },
-  { id: 'fr-mcd-royal-cheese', name: 'Royal Cheese', brand: "McDonald's France", type: ['lunch', 'dinner'], calories: 518, protein: 29, carbs: 40, fat: 28, tags: ['burger', 'beef'], country: 'France' },
-  { id: 'fr-mcd-filet-o-fish', name: 'Filet-O-Fish', brand: "McDonald's France", type: ['lunch', 'dinner'], calories: 327, protein: 15, carbs: 35, fat: 14, tags: ['burger', 'fish'], country: 'France' },
-  { id: 'fr-mcd-mcwrap-poulet', name: 'McWrap Poulet Croustillant', brand: "McDonald's France", type: ['lunch', 'dinner'], calories: 498, protein: 31, carbs: 44, fat: 21, tags: ['wrap', 'chicken'], country: 'France' },
-  { id: 'fr-mcd-salad-caesar', name: 'Salade Caesar Poulet', brand: "McDonald's France", type: ['lunch', 'dinner'], calories: 405, protein: 27, carbs: 20, fat: 24, tags: ['salad', 'chicken'], country: 'France' },
-  { id: 'fr-mcd-nuggets-9', name: 'Chicken McNuggets x9', brand: "McDonald's France", type: ['snack', 'lunch'], calories: 420, protein: 25, carbs: 27, fat: 24, tags: ['chicken', 'snack'], country: 'France' },
-  { id: 'fr-mcd-nuggets-6', name: 'Chicken McNuggets x6', brand: "McDonald's France", type: ['snack'], calories: 280, protein: 17, carbs: 18, fat: 16, tags: ['chicken', 'snack'], country: 'France' },
-  { id: 'fr-mcd-cbo', name: 'CBO (Chicken Bacon Onion)', brand: "McDonald's France", type: ['lunch', 'dinner'], calories: 650, protein: 32, carbs: 54, fat: 34, tags: ['burger', 'chicken', 'bacon'], country: 'France' },
-  { id: 'fr-mcd-280', name: 'Le 280 Original', brand: "McDonald's France", type: ['lunch', 'dinner'], calories: 730, protein: 38, carbs: 52, fat: 42, tags: ['burger', 'beef'], country: 'France' },
-  { id: 'fr-mcd-wrap-chèvre', name: 'McWrap Chèvre', brand: "McDonald's France", type: ['lunch', 'dinner'], calories: 510, protein: 24, carbs: 48, fat: 26, tags: ['wrap', 'vegetarian'], country: 'France' },
-  { id: 'fr-mcd-frites-m', name: 'Moyenne Frite', brand: "McDonald's France", type: ['snack', 'lunch'], calories: 330, protein: 4, carbs: 42, fat: 16, tags: ['snack', 'vegan'], country: 'France' },
-  { id: 'fr-mcd-mcflurry-mms', name: 'McFlurry M&M\'s', brand: "McDonald's France", type: ['dessert'], calories: 420, protein: 8, carbs: 64, fat: 14, tags: ['dessert', 'sweet'], country: 'France' },
-  { id: 'fr-mcd-sunday-choc', name: 'Sundae Chocolat', brand: "McDonald's France", type: ['dessert'], calories: 310, protein: 6, carbs: 48, fat: 10, tags: ['dessert', 'sweet'], country: 'France' },
-
-  // Burger King France
-  { id: 'fr-bk-whopper', name: 'Whopper', brand: 'Burger King France', type: ['lunch', 'dinner'], calories: 629, protein: 28, carbs: 49, fat: 35, tags: ['burger', 'beef'], country: 'France' },
-  { id: 'fr-bk-steakhouse', name: 'Steakhouse Burger', brand: 'Burger King France', type: ['lunch', 'dinner'], calories: 829, protein: 40, carbs: 56, fat: 50, tags: ['burger', 'beef'], country: 'France' },
-  { id: 'fr-bk-cheddar-lover', name: 'Cheddar Lover Burger', brand: 'Burger King France', type: ['lunch', 'dinner'], calories: 640, protein: 30, carbs: 42, fat: 38, tags: ['burger', 'beef'], country: 'France' },
-  { id: 'fr-bk-chicken-louisiane', name: 'Chicken Louisiane Steakhouse', brand: 'Burger King France', type: ['lunch', 'dinner'], calories: 846, protein: 42, carbs: 62, fat: 46, tags: ['burger', 'chicken'], country: 'France' },
-  { id: 'fr-bk-big-king-xxl', name: 'Big King XXL', brand: 'Burger King France', type: ['lunch', 'dinner'], calories: 950, protein: 52, carbs: 48, fat: 62, tags: ['burger', 'beef'], country: 'France' },
-  { id: 'fr-bk-crispy-chicken', name: 'Crispy Chicken', brand: 'Burger King France', type: ['lunch', 'dinner'], calories: 430, protein: 22, carbs: 45, fat: 18, tags: ['burger', 'chicken'], country: 'France' },
-  { id: 'fr-bk-double-whopper', name: 'Double Whopper', brand: 'Burger King France', type: ['lunch', 'dinner'], calories: 900, protein: 48, carbs: 50, fat: 55, tags: ['burger', 'beef'], country: 'France' },
-  { id: 'fr-bk-long-chicken', name: 'Long Chicken', brand: 'Burger King France', type: ['lunch', 'dinner'], calories: 580, protein: 26, carbs: 55, fat: 28, tags: ['burger', 'chicken'], country: 'France' },
-  { id: 'fr-bk-chili-cheese-fries', name: 'Chili Cheese Fries', brand: 'Burger King France', type: ['snack'], calories: 480, protein: 12, carbs: 45, fat: 28, tags: ['snack'], country: 'France' },
-  { id: 'fr-bk-onion-rings-9', name: 'Onion Rings x9', brand: 'Burger King France', type: ['snack'], calories: 340, protein: 4, carbs: 40, fat: 18, tags: ['snack', 'vegetarian'], country: 'France' },
-  { id: 'fr-bk-king-nuggets-9', name: 'King Nuggets x9', brand: 'Burger King France', type: ['snack', 'lunch'], calories: 410, protein: 22, carbs: 30, fat: 22, tags: ['chicken', 'snack'], country: 'France' },
-  { id: 'fr-bk-wrap-poulet', name: 'Wrap King Poulet', brand: 'Burger King France', type: ['lunch'], calories: 450, protein: 20, carbs: 45, fat: 20, tags: ['wrap', 'chicken'], country: 'France' },
-  { id: 'fr-bk-wrap-bacon', name: 'Wrap King Bacon', brand: 'Burger King France', type: ['lunch'], calories: 480, protein: 22, carbs: 42, fat: 24, tags: ['wrap', 'beef', 'bacon'], country: 'France' },
-  { id: 'fr-bk-master-cantal', name: 'Master Cantal', brand: 'Burger King France', type: ['lunch', 'dinner'], calories: 880, protein: 46, carbs: 55, fat: 52, tags: ['burger', 'beef'], country: 'France' },
-  { id: 'fr-bk-oreo-shake', name: 'King Shake Oreo', brand: 'Burger King France', type: ['dessert'], calories: 550, protein: 12, carbs: 75, fat: 20, tags: ['dessert', 'sweet'], country: 'France' },
-
-  // KFC France
-  { id: 'fr-kfc-boxmaster', name: 'Boxmaster Original', brand: 'KFC France', type: ['lunch', 'dinner'], calories: 657, protein: 36, carbs: 56, fat: 33, tags: ['burger', 'chicken'], country: 'France' },
-  { id: 'fr-kfc-tenders-5', name: 'Tenders x5', brand: 'KFC France', type: ['lunch', 'dinner'], calories: 464, protein: 37, carbs: 32, fat: 21, tags: ['chicken', 'high-protein'], country: 'France' },
-  { id: 'fr-kfc-twister', name: 'Twister Poulet', brand: 'KFC France', type: ['lunch', 'dinner'], calories: 498, protein: 26, carbs: 50, fat: 21, tags: ['wrap', 'chicken'], country: 'France' },
-  { id: 'fr-kfc-bucket-6', name: 'Bucket Original 6pc', brand: 'KFC France', type: ['lunch', 'dinner'], calories: 720, protein: 50, carbs: 38, fat: 38, tags: ['chicken', 'high-protein'], country: 'France' },
-  { id: 'fr-kfc-crunch', name: 'Crunch Burger', brand: 'KFC France', type: ['lunch', 'snack'], calories: 540, protein: 28, carbs: 46, fat: 26, tags: ['burger', 'chicken'], country: 'France' },
-  { id: 'fr-kfc-tower', name: 'Tower Burger', brand: 'KFC France', type: ['lunch', 'dinner'], calories: 710, protein: 38, carbs: 62, fat: 34, tags: ['burger', 'chicken'], country: 'France' },
-  { id: 'fr-kfc-zinger', name: 'Zinger Burger', brand: 'KFC France', type: ['lunch', 'dinner'], calories: 580, protein: 32, carbs: 50, fat: 26, tags: ['burger', 'chicken'], country: 'France' },
-  { id: 'fr-kfc-hot-wings-5', name: 'Hot Wings x5', brand: 'KFC France', type: ['snack'], calories: 380, protein: 24, carbs: 12, fat: 26, tags: ['chicken', 'snack'], country: 'France' },
-  { id: 'fr-kfc-cob-corn', name: 'Épi de Maïs', brand: 'KFC France', type: ['snack'], calories: 120, protein: 4, carbs: 22, fat: 2, tags: ['vegetarian', 'vegan'], country: 'France' },
-  { id: 'fr-kfc-frites-m', name: 'Moyenne Frite', brand: 'KFC France', type: ['snack'], calories: 310, protein: 4, carbs: 40, fat: 14, tags: ['vegan'], country: 'France' },
-  { id: 'fr-kfc-salade', name: 'Petite Salade', brand: 'KFC France', type: ['snack'], calories: 25, protein: 1, carbs: 4, fat: 0, tags: ['vegan', 'healthy'], country: 'France' },
-  { id: 'fr-kfc-kream-ball', name: 'Kream Ball Choc', brand: 'KFC France', type: ['dessert'], calories: 350, protein: 6, carbs: 46, fat: 16, tags: ['dessert', 'sweet'], country: 'France' },
-  { id: 'fr-kfc-tiramisu', name: 'Tiramisu', brand: 'KFC France', type: ['dessert'], calories: 280, protein: 5, carbs: 32, fat: 14, tags: ['dessert', 'sweet'], country: 'France' },
-  { id: 'fr-kfc-mega-box', name: 'Mega Box (Mix)', brand: 'KFC France', type: ['dinner'], calories: 1200, protein: 75, carbs: 90, fat: 65, tags: ['chicken', 'high-protein'], country: 'France' },
-  { id: 'fr-kfc-wrap-bacon', name: 'Twister Bacon', brand: 'KFC France', type: ['lunch', 'dinner'], calories: 540, protein: 30, carbs: 48, fat: 25, tags: ['wrap', 'chicken', 'bacon'], country: 'France' },
-
-  // Quick
-  { id: 'fr-quick-giant', name: 'Giant', brand: 'Quick', type: ['lunch', 'dinner'], calories: 530, protein: 26, carbs: 38, fat: 30, tags: ['burger', 'beef'], country: 'France' },
-  { id: 'fr-quick-giant-max', name: 'Giant Max', brand: 'Quick', type: ['lunch', 'dinner'], calories: 730, protein: 40, carbs: 42, fat: 45, tags: ['burger', 'beef'], country: 'France' },
-  { id: 'fr-quick-quick-n-toast', name: 'Quick N Toast', brand: 'Quick', type: ['lunch', 'dinner'], calories: 650, protein: 34, carbs: 44, fat: 36, tags: ['burger', 'beef', 'bacon'], country: 'France' },
-  { id: 'fr-quick-supreme-cheese', name: 'Suprême Cheese', brand: 'Quick', type: ['lunch', 'dinner'], calories: 680, protein: 36, carbs: 48, fat: 38, tags: ['burger', 'beef'], country: 'France' },
-  { id: 'fr-quick-long-bacon', name: 'Long Bacon', brand: 'Quick', type: ['lunch', 'dinner'], calories: 560, protein: 28, carbs: 44, fat: 30, tags: ['burger', 'beef', 'bacon'], country: 'France' },
-  { id: 'fr-quick-chicken-dips-6', name: 'Chicken Dips x6', brand: 'Quick', type: ['snack'], calories: 320, protein: 20, carbs: 22, fat: 16, tags: ['chicken', 'snack'], country: 'France' },
-  { id: 'fr-quick-cheeseburger', name: 'Cheeseburger', brand: 'Quick', type: ['snack'], calories: 310, protein: 16, carbs: 32, fat: 14, tags: ['burger', 'beef'], country: 'France' },
-  { id: 'fr-quick-rusty', name: 'Rusty (Rustic Fries)', brand: 'Quick', type: ['snack'], calories: 350, protein: 5, carbs: 45, fat: 16, tags: ['snack', 'vegan'], country: 'France' },
-  { id: 'fr-quick-wrap-poulet', name: 'Wrap Poulet', brand: 'Quick', type: ['lunch'], calories: 480, protein: 24, carbs: 46, fat: 22, tags: ['wrap', 'chicken'], country: 'France' },
-  { id: 'fr-quick-churros', name: 'Churros x5', brand: 'Quick', type: ['dessert'], calories: 280, protein: 4, carbs: 42, fat: 10, tags: ['dessert', 'sweet'], country: 'France' },
-  { id: 'fr-quick-magic-box', name: 'Magic Box Hamburger', brand: 'Quick', type: ['lunch'], calories: 420, protein: 18, carbs: 50, fat: 16, tags: ['burger', 'beef'], country: 'France' },
-  { id: 'fr-quick-supreme-chicken', name: 'Suprême Chicken', brand: 'Quick', type: ['lunch', 'dinner'], calories: 640, protein: 32, carbs: 55, fat: 32, tags: ['burger', 'chicken'], country: 'France' },
-  { id: 'fr-quick-mix-tapas', name: 'Mix Tapas (Cheese, Chicken)', brand: 'Quick', type: ['snack'], calories: 480, protein: 22, carbs: 40, fat: 26, tags: ['snack', 'chicken'], country: 'France' },
-  { id: 'fr-quick-milkshake', name: 'Milkshake Vanille', brand: 'Quick', type: ['dessert'], calories: 380, protein: 8, carbs: 62, fat: 10, tags: ['dessert', 'sweet'], country: 'France' },
-  { id: 'fr-quick-donuts', name: 'Donut Chocolat', brand: 'Quick', type: ['dessert'], calories: 250, protein: 3, carbs: 28, fat: 14, tags: ['dessert', 'sweet'], country: 'France' },
-
-  // O'Tacos
-  { id: 'fr-otacos-xl', name: 'O\'Tacos XL (Poulet, Viande Hachée)', brand: 'O\'Tacos', type: ['dinner'], calories: 1250, protein: 55, carbs: 120, fat: 60, tags: ['wrap', 'beef', 'chicken'], country: 'France' },
-  { id: 'fr-otacos-l', name: 'O\'Tacos L Mixte', brand: 'O\'Tacos', type: ['lunch', 'dinner'], calories: 810, protein: 42, carbs: 74, fat: 36, tags: ['wrap', 'beef', 'chicken'], country: 'France' },
-  { id: 'fr-otacos-m-poulet', name: 'O\'Tacos M Poulet', brand: 'O\'Tacos', type: ['lunch'], calories: 650, protein: 34, carbs: 60, fat: 28, tags: ['wrap', 'chicken'], country: 'France' },
-  { id: 'fr-otacos-m-cordon-bleu', name: 'O\'Tacos M Cordon Bleu', brand: 'O\'Tacos', type: ['lunch'], calories: 720, protein: 36, carbs: 65, fat: 34, tags: ['wrap', 'chicken', 'cheese'], country: 'France' },
-  { id: 'fr-otacos-m-merguez', name: 'O\'Tacos M Merguez', brand: 'O\'Tacos', type: ['lunch'], calories: 780, protein: 30, carbs: 62, fat: 45, tags: ['wrap', 'beef'], country: 'France' },
-  { id: 'fr-otacos-tenders-3', name: 'Tenders x3', brand: 'O\'Tacos', type: ['snack'], calories: 280, protein: 22, carbs: 20, fat: 12, tags: ['chicken', 'snack'], country: 'France' },
-  { id: 'fr-otacos-nuggets-6', name: 'Nuggets x6', brand: 'O\'Tacos', type: ['snack'], calories: 260, protein: 16, carbs: 18, fat: 14, tags: ['chicken', 'snack'], country: 'France' },
-  { id: 'fr-otacos-samoussa', name: 'Samoussa Fromage x3', brand: 'O\'Tacos', type: ['snack'], calories: 380, protein: 16, carbs: 40, fat: 18, tags: ['vegetarian', 'snack'], country: 'France' },
-  { id: 'fr-otacos-mozza-sticks', name: 'Bâtonnets Mozza x4', brand: 'O\'Tacos', type: ['snack'], calories: 320, protein: 14, carbs: 30, fat: 16, tags: ['vegetarian', 'snack'], country: 'France' },
-  { id: 'fr-otacos-jalapenos', name: 'Jalapeños Cheese x4', brand: 'O\'Tacos', type: ['snack'], calories: 290, protein: 12, carbs: 28, fat: 15, tags: ['vegetarian', 'snack'], country: 'France' },
-  { id: 'fr-otacos-frites-cheddar', name: 'Frites Cheddar Bacon', brand: 'O\'Tacos', type: ['snack'], calories: 550, protein: 16, carbs: 55, fat: 30, tags: ['snack', 'bacon'], country: 'France' },
-  { id: 'fr-otacos-bowl-poulet', name: 'O\'Bowl Poulet', brand: 'O\'Tacos', type: ['lunch'], calories: 600, protein: 40, carbs: 55, fat: 22, tags: ['bowl', 'chicken'], country: 'France' },
-  { id: 'fr-otacos-bowl-hache', name: 'O\'Bowl Viande Hachée', brand: 'O\'Tacos', type: ['lunch'], calories: 680, protein: 38, carbs: 52, fat: 32, tags: ['bowl', 'beef'], country: 'France' },
-  { id: 'fr-otacos-tiramisu', name: 'O\'Tiramisu Oreo', brand: 'O\'Tacos', type: ['dessert'], calories: 350, protein: 6, carbs: 42, fat: 18, tags: ['dessert', 'sweet'], country: 'France' },
-  { id: 'fr-otacos-muffin', name: 'Muffin Chocolat', brand: 'O\'Tacos', type: ['dessert'], calories: 420, protein: 6, carbs: 55, fat: 20, tags: ['dessert', 'sweet'], country: 'France' },
-
-  // Chicken Street
-  { id: 'fr-chs-street-burger', name: 'Street Burger Poulet', brand: 'Chicken Street', type: ['lunch', 'dinner'], calories: 620, protein: 38, carbs: 46, fat: 28, tags: ['burger', 'chicken'], country: 'France' },
-  { id: 'fr-chs-strips', name: 'Chicken Strips x4', brand: 'Chicken Street', type: ['snack', 'lunch'], calories: 480, protein: 34, carbs: 36, fat: 20, tags: ['chicken', 'snack'], country: 'France' },
-  { id: 'fr-chs-bowl-riz', name: 'Bowl Poulet Riz', brand: 'Chicken Street', type: ['lunch', 'dinner'], calories: 550, protein: 42, carbs: 52, fat: 18, tags: ['bowl', 'chicken', 'high-protein'], country: 'France' },
-  { id: 'fr-chs-wrap', name: 'Wrap Croustillant', brand: 'Chicken Street', type: ['lunch'], calories: 510, protein: 30, carbs: 48, fat: 20, tags: ['wrap', 'chicken'], country: 'France' },
-  { id: 'fr-chs-cheese-naan', name: 'Cheese Naan Poulet Tikka', brand: 'Chicken Street', type: ['lunch', 'dinner'], calories: 680, protein: 42, carbs: 55, fat: 30, tags: ['wrap', 'chicken', 'cheese'], country: 'France' },
-  { id: 'fr-chs-wings-6', name: 'Chicken Wings x6', brand: 'Chicken Street', type: ['snack', 'lunch'], calories: 450, protein: 28, carbs: 15, fat: 30, tags: ['chicken', 'snack'], country: 'France' },
-  { id: 'fr-chs-wrap-tenders', name: 'Wrap Tenders', brand: 'Chicken Street', type: ['lunch'], calories: 540, protein: 32, carbs: 50, fat: 22, tags: ['wrap', 'chicken'], country: 'France' },
-  { id: 'fr-chs-bucket-mix', name: 'Bucket Mixte (10 pieces)', brand: 'Chicken Street', type: ['dinner'], calories: 1100, protein: 85, carbs: 65, fat: 55, tags: ['chicken', 'high-protein'], country: 'France' },
-  { id: 'fr-chs-salade', name: 'Salade Poulet Croustillant', brand: 'Chicken Street', type: ['lunch'], calories: 420, protein: 30, carbs: 22, fat: 24, tags: ['salad', 'chicken'], country: 'France' },
-  { id: 'fr-chs-burger-double', name: 'Double Street Burger', brand: 'Chicken Street', type: ['lunch', 'dinner'], calories: 850, protein: 55, carbs: 52, fat: 45, tags: ['burger', 'chicken'], country: 'France' },
-  { id: 'fr-chs-frites', name: 'Portion de Frites', brand: 'Chicken Street', type: ['snack'], calories: 340, protein: 4, carbs: 45, fat: 16, tags: ['snack', 'vegan'], country: 'France' },
-  { id: 'fr-chs-frites-bacon', name: 'Frites Cheddar Bacon', brand: 'Chicken Street', type: ['snack'], calories: 560, protein: 16, carbs: 48, fat: 32, tags: ['snack', 'bacon'], country: 'France' },
-  { id: 'fr-chs-naan-kebab', name: 'Cheese Naan Kebab', brand: 'Chicken Street', type: ['lunch', 'dinner'], calories: 720, protein: 38, carbs: 58, fat: 38, tags: ['wrap', 'beef'], country: 'France' },
-  { id: 'fr-chs-tiramisu', name: 'Tiramisu Speculoos', brand: 'Chicken Street', type: ['dessert'], calories: 380, protein: 6, carbs: 45, fat: 20, tags: ['dessert', 'sweet'], country: 'France' },
-  { id: 'fr-chs-cookie', name: 'Cookie Pépites Choc', brand: 'Chicken Street', type: ['dessert'], calories: 250, protein: 3, carbs: 32, fat: 12, tags: ['dessert', 'sweet'], country: 'France' },
-
-  // Peppe Chicken
-  { id: 'fr-pep-burger-spicy', name: 'Peppe Burger Spicy', brand: 'Peppe Chicken', type: ['lunch', 'dinner'], calories: 640, protein: 36, carbs: 50, fat: 30, tags: ['burger', 'chicken', 'spicy'], country: 'France' },
-  { id: 'fr-pep-thighs-3', name: 'Chicken Thighs x3', brand: 'Peppe Chicken', type: ['lunch', 'dinner'], calories: 520, protein: 40, carbs: 28, fat: 26, tags: ['chicken', 'high-protein'], country: 'France' },
-  { id: 'fr-pep-sandwich', name: 'Peppe Sandwich Classic', brand: 'Peppe Chicken', type: ['lunch'], calories: 570, protein: 32, carbs: 44, fat: 24, tags: ['sandwich', 'chicken'], country: 'France' },
-  { id: 'fr-pep-loaded-fries', name: 'Loaded Fries (Chicken & Cheese)', brand: 'Peppe Chicken', type: ['lunch', 'dinner'], calories: 680, protein: 35, carbs: 65, fat: 32, tags: ['snack', 'chicken', 'cheese'], country: 'France' },
-  { id: 'fr-pep-tenders-4', name: 'Spicy Tenders x4', brand: 'Peppe Chicken', type: ['snack', 'lunch'], calories: 410, protein: 30, carbs: 26, fat: 18, tags: ['chicken', 'spicy'], country: 'France' },
-  { id: 'fr-pep-wings-6', name: 'BBQ Wings x6', brand: 'Peppe Chicken', type: ['snack'], calories: 460, protein: 28, carbs: 20, fat: 28, tags: ['chicken', 'snack'], country: 'France' },
-  { id: 'fr-pep-wrap', name: 'Wrap Nashville Hot', brand: 'Peppe Chicken', type: ['lunch'], calories: 590, protein: 34, carbs: 52, fat: 26, tags: ['wrap', 'chicken', 'spicy'], country: 'France' },
-  { id: 'fr-pep-burger-double', name: 'Double Peppe Burger', brand: 'Peppe Chicken', type: ['dinner'], calories: 880, protein: 55, carbs: 55, fat: 48, tags: ['burger', 'chicken'], country: 'France' },
-  { id: 'fr-pep-bowl', name: 'Chicken Salad Bowl', brand: 'Peppe Chicken', type: ['lunch'], calories: 430, protein: 35, carbs: 20, fat: 24, tags: ['bowl', 'chicken', 'healthy'], country: 'France' },
-  { id: 'fr-pep-mac-cheese', name: 'Mac & Cheese Poulet', brand: 'Peppe Chicken', type: ['lunch', 'dinner'], calories: 720, protein: 38, carbs: 68, fat: 34, tags: ['pasta', 'chicken', 'cheese'], country: 'France' },
-  { id: 'fr-pep-frites-douces', name: 'Frites de Patate Douce', brand: 'Peppe Chicken', type: ['snack'], calories: 320, protein: 3, carbs: 48, fat: 12, tags: ['snack', 'vegan'], country: 'France' },
-  { id: 'fr-pep-nuggets-9', name: 'Nuggets Maison x9', brand: 'Peppe Chicken', type: ['snack'], calories: 450, protein: 25, carbs: 35, fat: 24, tags: ['chicken', 'snack'], country: 'France' },
-  { id: 'fr-pep-colslaw', name: 'Coleslaw', brand: 'Peppe Chicken', type: ['snack'], calories: 150, protein: 2, carbs: 12, fat: 10, tags: ['vegetarian', 'snack'], country: 'France' },
-  { id: 'fr-pep-milkshake', name: 'Milkshake Fraise', brand: 'Peppe Chicken', type: ['dessert'], calories: 410, protein: 9, carbs: 65, fat: 12, tags: ['dessert', 'sweet'], country: 'France' },
-  { id: 'fr-pep-brownie', name: 'Brownie Pécans', brand: 'Peppe Chicken', type: ['dessert'], calories: 380, protein: 5, carbs: 42, fat: 22, tags: ['dessert', 'sweet'], country: 'France' },
-
-  // Subway France
-  { id: 'fr-sub-poulet-teriyaki', name: 'Sub Poulet Teriyaki 15cm', brand: 'Subway France', type: ['lunch', 'dinner'], calories: 323, protein: 24, carbs: 43, fat: 5, tags: ['sub', 'chicken'], country: 'France' },
-  { id: 'fr-sub-steak-cheese', name: 'Steak & Cheese 15cm', brand: 'Subway France', type: ['lunch', 'dinner'], calories: 303, protein: 21, carbs: 38, fat: 8, tags: ['sub', 'beef'], country: 'France' },
-  { id: 'fr-sub-turkey-ham', name: 'Sub Dinde & Jambon 15cm', brand: 'Subway France', type: ['lunch', 'dinner'], calories: 297, protein: 22, carbs: 38, fat: 5, tags: ['sub', 'turkey'], country: 'France' },
-  { id: 'fr-sub-veggie', name: 'Veggie Delite 15cm', brand: 'Subway France', type: ['lunch'], calories: 200, protein: 8, carbs: 38, fat: 2, tags: ['sub', 'vegetarian', 'vegan'], country: 'France' },
-  { id: 'fr-sub-tuna', name: 'Tuna 15cm', brand: 'Subway France', type: ['lunch', 'dinner'], calories: 360, protein: 20, carbs: 38, fat: 14, tags: ['sub', 'fish'], country: 'France' },
-  { id: 'fr-sub-roast-beef', name: 'Roast Beef 15cm', brand: 'Subway France', type: ['lunch', 'dinner'], calories: 290, protein: 24, carbs: 38, fat: 5, tags: ['sub', 'beef'], country: 'France' },
-  { id: 'fr-sub-italian-bmt', name: 'Italian BMT 15cm', brand: 'Subway France', type: ['lunch', 'dinner'], calories: 390, protein: 18, carbs: 40, fat: 16, tags: ['sub', 'pork'], country: 'France' },
-  { id: 'fr-sub-poulet-tikka', name: 'Poulet Tikka 15cm', brand: 'Subway France', type: ['lunch', 'dinner'], calories: 310, protein: 22, carbs: 42, fat: 6, tags: ['sub', 'chicken'], country: 'France' },
-  { id: 'fr-sub-vegan-patty', name: 'Vegan Patty 15cm', brand: 'Subway France', type: ['lunch'], calories: 380, protein: 18, carbs: 45, fat: 14, tags: ['sub', 'vegan', 'vegetarian'], country: 'France' },
-  { id: 'fr-sub-30cm-teriyaki', name: 'Poulet Teriyaki 30cm', brand: 'Subway France', type: ['lunch', 'dinner'], calories: 646, protein: 48, carbs: 86, fat: 10, tags: ['sub', 'chicken'], country: 'France' },
-  { id: 'fr-sub-30cm-steak', name: 'Steak & Cheese 30cm', brand: 'Subway France', type: ['dinner'], calories: 606, protein: 42, carbs: 76, fat: 16, tags: ['sub', 'beef'], country: 'France' },
-  { id: 'fr-sub-cookie-choc', name: 'Cookie Pépites Choc', brand: 'Subway France', type: ['dessert', 'snack'], calories: 210, protein: 2, carbs: 30, fat: 10, tags: ['dessert', 'sweet'], country: 'France' },
-  { id: 'fr-sub-cookie-mac', name: 'Cookie Macadamia', brand: 'Subway France', type: ['dessert', 'snack'], calories: 220, protein: 2, carbs: 28, fat: 11, tags: ['dessert', 'sweet'], country: 'France' },
-  { id: 'fr-sub-chips-lays', name: 'Lay\'s Nature (30g)', brand: 'Subway France', type: ['snack'], calories: 160, protein: 2, carbs: 15, fat: 10, tags: ['snack', 'vegan'], country: 'France' },
-  { id: 'fr-sub-salade-poulet', name: 'Salade Poulet Teriyaki', brand: 'Subway France', type: ['lunch'], calories: 240, protein: 22, carbs: 20, fat: 6, tags: ['salad', 'chicken', 'healthy'], country: 'France' },
-
-  // Prêt à Manger
-  { id: 'fr-pret-chicken-avo', name: 'Sandwich Poulet Avocat', brand: 'Prêt à Manger', type: ['lunch'], calories: 430, protein: 28, carbs: 36, fat: 18, tags: ['sandwich', 'chicken'], country: 'France' },
-  { id: 'fr-pret-protein-bowl', name: 'Bowl Protéiné Quinoa', brand: 'Prêt à Manger', type: ['lunch'], calories: 490, protein: 38, carbs: 42, fat: 14, tags: ['bowl', 'chicken', 'healthy'], country: 'France' },
-  { id: 'fr-pret-salmon-bowl', name: 'Bowl Saumon Riz Noir', brand: 'Prêt à Manger', type: ['lunch', 'dinner'], calories: 510, protein: 32, carbs: 50, fat: 20, tags: ['bowl', 'fish', 'healthy'], country: 'France' },
-  { id: 'fr-pret-soupe-potiron', name: 'Soupe Potiron', brand: 'Prêt à Manger', type: ['lunch', 'snack'], calories: 210, protein: 5, carbs: 28, fat: 9, tags: ['soup', 'vegetarian'], country: 'France' },
-  { id: 'fr-pret-skyr-fruits', name: 'Pot Skyr Fruits Rouges', brand: 'Prêt à Manger', type: ['snack', 'dessert'], calories: 140, protein: 12, carbs: 18, fat: 2, tags: ['snack', 'healthy', 'vegetarian'], country: 'France' },
-  { id: 'fr-pret-wrap-falafel', name: 'Wrap Falafel Vegan', brand: 'Prêt à Manger', type: ['lunch'], calories: 480, protein: 14, carbs: 62, fat: 18, tags: ['wrap', 'vegan', 'vegetarian'], country: 'France' },
-  { id: 'fr-pret-sand-jambon', name: 'Baguette Jambon Beurre', brand: 'Prêt à Manger', type: ['lunch'], calories: 460, protein: 20, carbs: 54, fat: 18, tags: ['sandwich', 'pork'], country: 'France' },
-  { id: 'fr-pret-salade-caesar', name: 'Salade Caesar', brand: 'Prêt à Manger', type: ['lunch'], calories: 410, protein: 26, carbs: 18, fat: 25, tags: ['salad', 'chicken'], country: 'France' },
-  { id: 'fr-pret-mac-cheese', name: 'Macaroni au Fromage', brand: 'Prêt à Manger', type: ['lunch', 'dinner'], calories: 580, protein: 22, carbs: 55, fat: 28, tags: ['pasta', 'vegetarian'], country: 'France' },
-  { id: 'fr-pret-choc-croissant', name: 'Croissant au Chocolat', brand: 'Prêt à Manger', type: ['snack', 'dessert'], calories: 340, protein: 6, carbs: 36, fat: 18, tags: ['bakery', 'sweet'], country: 'France' },
-  { id: 'fr-pret-porridge', name: 'Porridge Avoine', brand: 'Prêt à Manger', type: ['snack'], calories: 280, protein: 10, carbs: 45, fat: 6, tags: ['porridge', 'vegan'], country: 'France' },
-  { id: 'fr-pret-fruit-salad', name: 'Salade de Fruits Frais', brand: 'Prêt à Manger', type: ['snack', 'dessert'], calories: 90, protein: 1, carbs: 20, fat: 0, tags: ['fruit', 'vegan', 'healthy'], country: 'France' },
-  { id: 'fr-pret-sand-egg', name: 'Sandwich Œuf Mayo', brand: 'Prêt à Manger', type: ['lunch'], calories: 420, protein: 16, carbs: 38, fat: 22, tags: ['sandwich', 'vegetarian'], country: 'France' },
-  { id: 'fr-pret-soup-tomate', name: 'Soupe Tomate Basilic', brand: 'Prêt à Manger', type: ['lunch', 'snack'], calories: 180, protein: 4, carbs: 24, fat: 8, tags: ['soup', 'vegan'], country: 'France' },
-  { id: 'fr-pret-cookie-vegan', name: 'Cookie Vegan Chocolat', brand: 'Prêt à Manger', type: ['dessert', 'snack'], calories: 310, protein: 4, carbs: 42, fat: 14, tags: ['dessert', 'vegan', 'sweet'], country: 'France' },
-
-  // Boulangerie Paul
-  { id: 'fr-paul-croissant', name: 'Croissant au Beurre', brand: 'Boulangerie Paul', type: ['snack'], calories: 280, protein: 5, carbs: 30, fat: 16, tags: ['bakery', 'vegetarian'], country: 'France' },
-  { id: 'fr-paul-pain-choc', name: 'Pain au Chocolat', brand: 'Boulangerie Paul', type: ['snack', 'dessert'], calories: 320, protein: 6, carbs: 34, fat: 18, tags: ['bakery', 'vegetarian'], country: 'France' },
-  { id: 'fr-paul-sand-jambon', name: 'Sandwich Jambon Beurre', brand: 'Boulangerie Paul', type: ['lunch'], calories: 420, protein: 18, carbs: 42, fat: 18, tags: ['sandwich', 'pork'], country: 'France' },
-  { id: 'fr-paul-quiche', name: 'Quiche Lorraine', brand: 'Boulangerie Paul', type: ['lunch', 'dinner'], calories: 480, protein: 16, carbs: 32, fat: 32, tags: ['quiche', 'pork'], country: 'France' },
-  { id: 'fr-paul-salade-comp', name: 'Salade Composée', brand: 'Boulangerie Paul', type: ['lunch'], calories: 380, protein: 22, carbs: 28, fat: 20, tags: ['salad'], country: 'France' },
-  { id: 'fr-paul-tarte-pommes', name: 'Tarte aux Pommes', brand: 'Boulangerie Paul', type: ['dessert'], calories: 290, protein: 4, carbs: 42, fat: 12, tags: ['dessert', 'vegetarian'], country: 'France' },
-  { id: 'fr-paul-sand-poulet', name: 'Sandwich Poulet Crudités', brand: 'Boulangerie Paul', type: ['lunch'], calories: 440, protein: 24, carbs: 45, fat: 16, tags: ['sandwich', 'chicken'], country: 'France' },
-  { id: 'fr-paul-sand-thon', name: 'Sandwich Thon Mayo', brand: 'Boulangerie Paul', type: ['lunch'], calories: 460, protein: 20, carbs: 46, fat: 21, tags: ['sandwich', 'fish'], country: 'France' },
-  { id: 'fr-paul-fougasse', name: 'Fougasse Olives', brand: 'Boulangerie Paul', type: ['snack', 'lunch'], calories: 350, protein: 8, carbs: 48, fat: 14, tags: ['bakery', 'vegan'], country: 'France' },
-  { id: 'fr-paul-croque-msieu', name: 'Croque-Monsieur', brand: 'Boulangerie Paul', type: ['lunch'], calories: 410, protein: 22, carbs: 35, fat: 20, tags: ['sandwich', 'pork'], country: 'France' },
-  { id: 'fr-paul-eclair-choc', name: 'Éclair au Chocolat', brand: 'Boulangerie Paul', type: ['dessert'], calories: 250, protein: 5, carbs: 28, fat: 12, tags: ['dessert', 'vegetarian'], country: 'France' },
-  { id: 'fr-paul-macaron', name: 'Grand Macaron Framboise', brand: 'Boulangerie Paul', type: ['dessert'], calories: 230, protein: 4, carbs: 35, fat: 9, tags: ['dessert', 'vegetarian'], country: 'France' },
-  { id: 'fr-paul-salade-chevre', name: 'Salade Chèvre Chaud', brand: 'Boulangerie Paul', type: ['lunch'], calories: 460, protein: 18, carbs: 25, fat: 30, tags: ['salad', 'vegetarian'], country: 'France' },
-  { id: 'fr-paul-chausson', name: 'Chausson aux Pommes', brand: 'Boulangerie Paul', type: ['snack', 'dessert'], calories: 310, protein: 4, carbs: 38, fat: 15, tags: ['bakery', 'vegetarian'], country: 'France' },
-  { id: 'fr-paul-tarte-citron', name: 'Tartelette Citron', brand: 'Boulangerie Paul', type: ['dessert'], calories: 320, protein: 4, carbs: 40, fat: 16, tags: ['dessert', 'vegetarian'], country: 'France' },
-
-  // Carrefour
-  { id: 'fr-carref-escalope', name: 'Escalope de Poulet (100g)', brand: 'Carrefour', type: ['lunch', 'dinner'], calories: 165, protein: 31, carbs: 1, fat: 4, tags: ['chicken', 'healthy'], country: 'France' },
-  { id: 'fr-carref-saumon', name: 'Filet de Saumon (150g)', brand: 'Carrefour', type: ['lunch', 'dinner'], calories: 208, protein: 22, carbs: 0, fat: 13, tags: ['fish', 'healthy'], country: 'France' },
-  { id: 'fr-carref-skyr', name: 'Skyr Nature 0% (150g)', brand: 'Carrefour', type: ['snack'], calories: 68, protein: 11, carbs: 5, fat: 0, tags: ['snack', 'healthy', 'high-protein'], country: 'France' },
-  { id: 'fr-carref-lasagnes', name: 'Lasagnes Bolognaise Ready-Meal', brand: 'Carrefour', type: ['dinner'], calories: 430, protein: 24, carbs: 36, fat: 22, tags: ['beef', 'pasta'], country: 'France' },
-  { id: 'fr-carref-salade', name: 'Salade Poulet Crudités', brand: 'Carrefour', type: ['lunch'], calories: 350, protein: 28, carbs: 18, fat: 18, tags: ['salad', 'chicken'], country: 'France' },
-  { id: 'fr-carref-steak-hache', name: 'Steak Haché 5% (100g)', brand: 'Carrefour', type: ['dinner'], calories: 125, protein: 21, carbs: 0, fat: 5, tags: ['beef', 'healthy'], country: 'France' },
-  { id: 'fr-carref-pizzamar', name: 'Pizza Margherita (Surgelée)', brand: 'Carrefour', type: ['dinner'], calories: 850, protein: 35, carbs: 110, fat: 25, tags: ['pizza', 'vegetarian'], country: 'France' },
-  { id: 'fr-carref-taboule', name: 'Taboulé Oriental (200g)', brand: 'Carrefour', type: ['lunch'], calories: 320, protein: 8, carbs: 45, fat: 10, tags: ['salad', 'vegan'], country: 'France' },
-  { id: 'fr-carref-gnocchi', name: 'Gnocchi à Poêler (200g)', brand: 'Carrefour', type: ['dinner'], calories: 380, protein: 8, carbs: 65, fat: 8, tags: ['pasta', 'vegetarian'], country: 'France' },
-  { id: 'fr-carref-sushi', name: 'Plateau Sushi Mixte (12p)', brand: 'Carrefour', type: ['lunch', 'dinner'], calories: 420, protein: 18, carbs: 65, fat: 8, tags: ['sushi', 'fish'], country: 'France' },
-  { id: 'fr-carref-cordon', name: 'Cordon Bleu Poulet (100g)', brand: 'Carrefour', type: ['lunch', 'dinner'], calories: 220, protein: 14, carbs: 12, fat: 12, tags: ['chicken', 'cheese'], country: 'France' },
-  { id: 'fr-carref-jambon', name: 'Tranches Jambon Blanc (100g)', brand: 'Carrefour', type: ['snack', 'lunch'], calories: 110, protein: 20, carbs: 1, fat: 3, tags: ['pork', 'healthy'], country: 'France' },
-  { id: 'fr-carref-lentilles', name: 'Lentilles Préparées (200g)', brand: 'Carrefour', type: ['lunch', 'dinner'], calories: 210, protein: 14, carbs: 32, fat: 2, tags: ['vegan', 'healthy'], country: 'France' },
-  { id: 'fr-carref-yaourt', name: 'Yaourt Fruit Aromatisé (125g)', brand: 'Carrefour', type: ['snack', 'dessert'], calories: 115, protein: 4, carbs: 16, fat: 3, tags: ['snack', 'sweet'], country: 'France' },
-  { id: 'fr-carref-compote', name: 'Gourde Compote Pomme', brand: 'Carrefour', type: ['snack'], calories: 70, protein: 0, carbs: 16, fat: 0, tags: ['snack', 'vegan'], country: 'France' },
-
-  // Auchan
-  { id: 'fr-auchan-poulet-roti', name: 'Poulet Rôti (1/2)', brand: 'Auchan', type: ['dinner'], calories: 380, protein: 45, carbs: 0, fat: 22, tags: ['chicken', 'keto'], country: 'France' },
-  { id: 'fr-auchan-pizza-4f', name: 'Pizza 4 Fromages Fraîche', brand: 'Auchan', type: ['dinner'], calories: 720, protein: 28, carbs: 82, fat: 30, tags: ['pizza', 'vegetarian'], country: 'France' },
-  { id: 'fr-auchan-bowl-quinoa', name: 'Bowl Quinoa Légumes', brand: 'Auchan', type: ['lunch'], calories: 340, protein: 14, carbs: 48, fat: 12, tags: ['bowl', 'vegan'], country: 'France' },
-  { id: 'fr-auchan-yaourt-grec', name: 'Yaourt Grec (150g)', brand: 'Auchan', type: ['snack'], calories: 120, protein: 10, carbs: 6, fat: 6, tags: ['snack', 'vegetarian'], country: 'France' },
-  { id: 'fr-auchan-saumon-fume', name: 'Saumon Fumé (100g)', brand: 'Auchan', type: ['lunch', 'snack'], calories: 160, protein: 20, carbs: 0, fat: 9, tags: ['fish', 'keto'], country: 'France' },
-  { id: 'fr-auchan-filet-mignon', name: 'Filet Mignon Porc (150g)', brand: 'Auchan', type: ['dinner'], calories: 210, protein: 32, carbs: 0, fat: 8, tags: ['pork', 'healthy'], country: 'France' },
-  { id: 'fr-auchan-croque', name: 'Croque-Monsieur Prêt-à-cuire', brand: 'Auchan', type: ['lunch'], calories: 380, protein: 18, carbs: 36, fat: 18, tags: ['sandwich', 'pork'], country: 'France' },
-  { id: 'fr-auchan-pates-carbo', name: 'Box Pâtes Carbonara', brand: 'Auchan', type: ['lunch', 'dinner'], calories: 520, protein: 20, carbs: 55, fat: 24, tags: ['pasta', 'pork'], country: 'France' },
-  { id: 'fr-auchan-salade-pates', name: 'Salade de Pâtes Poulet', brand: 'Auchan', type: ['lunch'], calories: 410, protein: 16, carbs: 48, fat: 16, tags: ['salad', 'chicken'], country: 'France' },
-  { id: 'fr-auchan-oeufs-durs', name: 'Oeufs Durs x2', brand: 'Auchan', type: ['snack'], calories: 140, protein: 12, carbs: 1, fat: 10, tags: ['snack', 'vegetarian', 'keto'], country: 'France' },
-  { id: 'fr-auchan-fromage-blanc', name: 'Fromage Blanc 0% (200g)', brand: 'Auchan', type: ['snack'], calories: 90, protein: 16, carbs: 6, fat: 0, tags: ['snack', 'high-protein'], country: 'France' },
-  { id: 'fr-auchan-mousse-choc', name: 'Mousse au Chocolat (100g)', brand: 'Auchan', type: ['dessert'], calories: 180, protein: 4, carbs: 20, fat: 10, tags: ['dessert', 'sweet'], country: 'France' },
-  { id: 'fr-auchan-haricots', name: 'Poêlée Haricots Verts (200g)', brand: 'Auchan', type: ['dinner'], calories: 80, protein: 4, carbs: 12, fat: 1, tags: ['vegan'], country: 'France' },
-  { id: 'fr-auchan-riz-cantonnais', name: 'Riz Cantonnais (250g)', brand: 'Auchan', type: ['lunch', 'dinner'], calories: 450, protein: 16, carbs: 65, fat: 12, tags: ['rice', 'pork'], country: 'France' },
-  { id: 'fr-auchan-wrap-thon', name: 'Wrap Thon Crudités', brand: 'Auchan', type: ['lunch'], calories: 390, protein: 16, carbs: 44, fat: 16, tags: ['wrap', 'fish'], country: 'France' },
-
-  // Picard (Surgelés)
-  { id: 'fr-pic-lasagnes-bol', name: 'Lasagnes à la Bolognaise', brand: 'Picard', type: ['lunch', 'dinner'], calories: 144, protein: 8, carbs: 12, fat: 7, tags: ['beef', 'pasta', 'frozen'], country: 'France' },
-  { id: 'fr-pic-ratatouille', name: 'Ratatouille Cuisinée', brand: 'Picard', type: ['snack', 'lunch'], calories: 50, protein: 1, carbs: 4, fat: 3, tags: ['vegan', 'vegetables', 'frozen'], country: 'France' },
-  { id: 'fr-pic-hacao-shrimp', name: 'Hacao (Shrimp Dumplings)', brand: 'Picard', type: ['snack', 'lunch'], calories: 156, protein: 9, carbs: 21, fat: 3, tags: ['fish', 'snack', 'frozen'], country: 'France' },
-  { id: 'fr-pic-moelleux-choc', name: 'Moelleux au Chocolat', brand: 'Picard', type: ['dessert'], calories: 450, protein: 6, carbs: 40, fat: 30, tags: ['dessert', 'sweet', 'frozen'], country: 'France' },
-  { id: 'fr-pic-canelloni-ricotta', name: 'Cannelloni Ricotta Épinards', brand: 'Picard', type: ['lunch', 'dinner'], calories: 135, protein: 6, carbs: 12, fat: 7, tags: ['vegetarian', 'pasta', 'frozen'], country: 'France' },
-  { id: 'fr-pic-skyr-fruits', name: 'Mélange de Légumes Vapeur', brand: 'Picard', type: ['snack', 'lunch'], calories: 48, protein: 4, carbs: 6, fat: 1, tags: ['vegan', 'healthy', 'frozen'], country: 'France' },
-  { id: 'fr-pic-poulet-basquaise', name: 'Poulet à la Basquaise', brand: 'Picard', type: ['lunch', 'dinner'], calories: 95, protein: 12, carbs: 2, fat: 4, tags: ['chicken', 'healthy', 'frozen'], country: 'France' },
-  { id: 'fr-pic-saumon-riz', name: 'Saumon Atlantique & Riz', brand: 'Picard', type: ['lunch', 'dinner'], calories: 165, protein: 10, carbs: 15, fat: 7, tags: ['fish', 'healthy', 'frozen'], country: 'France' },
-  { id: 'fr-pic-parmentier-boeuf', name: 'Hachis Parmentier', brand: 'Picard', type: ['lunch', 'dinner'], calories: 110, protein: 7, carbs: 11, fat: 4, tags: ['beef', 'frozen'], country: 'France' },
-  { id: 'fr-pic-quiche-lorraine', name: 'Quiche Lorraine', brand: 'Picard', type: ['lunch', 'dinner'], calories: 285, protein: 11, carbs: 18, fat: 19, tags: ['pork', 'frozen'], country: 'France' },
-  { id: 'fr-pic-couscous-royal', name: 'Couscous Royal', brand: 'Picard', type: ['lunch', 'dinner'], calories: 125, protein: 8, carbs: 14, fat: 4, tags: ['beef', 'chicken', 'frozen'], country: 'France' },
-  { id: 'fr-pic-paella', name: 'Paella Royale', brand: 'Picard', type: ['lunch', 'dinner'], calories: 115, protein: 7, carbs: 15, fat: 3, tags: ['fish', 'chicken', 'frozen'], country: 'France' },
-  { id: 'fr-pic-brandade-morue', name: 'Brandade de Morue', brand: 'Picard', type: ['lunch', 'dinner'], calories: 105, protein: 6, carbs: 9, fat: 5, tags: ['fish', 'frozen'], country: 'France' },
-  { id: 'fr-pic-boeuf-bourguignon', name: 'Boeuf Bourguignon', brand: 'Picard', type: ['lunch', 'dinner'], calories: 110, protein: 11, carbs: 3, fat: 6, tags: ['beef', 'frozen'], country: 'France' },
-  { id: 'fr-pic-gratin-dauphinois', name: 'Gratin Dauphinois', brand: 'Picard', type: ['lunch', 'snack'], calories: 135, protein: 3, carbs: 14, fat: 7, tags: ['vegetarian', 'frozen'], country: 'France' },
-  { id: 'fr-pic-wok-poulet', name: 'Wok de Poulet & Curry', brand: 'Picard', type: ['lunch', 'dinner'], calories: 95, protein: 10, carbs: 8, fat: 2, tags: ['chicken', 'healthy', 'frozen'], country: 'France' },
-  { id: 'fr-pic-risotto-champ', name: 'Risotto aux Champignons', brand: 'Picard', type: ['lunch', 'dinner'], calories: 120, protein: 3, carbs: 18, fat: 4, tags: ['vegetarian', 'frozen'], country: 'France' },
-  { id: 'fr-pic-moussakas', name: 'Moussaka à l\'Agneau', brand: 'Picard', type: ['lunch', 'dinner'], calories: 130, protein: 6, carbs: 9, fat: 8, tags: ['lamb', 'frozen'], country: 'France' },
-  { id: 'fr-pic-tajine-poulet', name: 'Tajine de Poulet Citron', brand: 'Picard', type: ['lunch', 'dinner'], calories: 115, protein: 9, carbs: 11, fat: 3, tags: ['chicken', 'frozen'], country: 'France' },
-  { id: 'fr-pic-pennes-pesto', name: 'Pennes au Pesto', brand: 'Picard', type: ['lunch', 'dinner'], calories: 185, protein: 5, carbs: 24, fat: 7, tags: ['vegetarian', 'pasta', 'frozen'], country: 'France' },
-  { id: 'fr-pic-gnocchi-poeler', name: 'Gnocchis à Poêler', brand: 'Picard', type: ['lunch', 'snack'], calories: 175, protein: 4, carbs: 32, fat: 3, tags: ['vegetarian', 'frozen'], country: 'France' },
-  { id: 'fr-pic-veloute-potiron', name: 'Velouté de Potiron', brand: 'Picard', type: ['snack', 'lunch'], calories: 45, protein: 1, carbs: 7, fat: 1, tags: ['vegan', 'soup', 'frozen'], country: 'France' },
-  { id: 'fr-pic-soupe-oignon', name: 'Soupe à l\'Oignon', brand: 'Picard', type: ['snack', 'lunch'], calories: 55, protein: 2, carbs: 8, fat: 2, tags: ['vegetarian', 'soup', 'frozen'], country: 'France' },
-  { id: 'fr-pic-crepes-fromage', name: 'Galettes de Sarrasin Jambon Fromage', brand: 'Picard', type: ['lunch', 'snack'], calories: 185, protein: 8, carbs: 20, fat: 8, tags: ['pork', 'frozen'], country: 'France' },
-  { id: 'fr-pic-saumon-oseille', name: 'Saumon Sauce Oseille', brand: 'Picard', type: ['lunch', 'dinner'], calories: 155, protein: 13, carbs: 2, fat: 10, tags: ['fish', 'frozen'], country: 'France' },
-  { id: 'fr-pic-petit-sale-lentilles', name: 'Petit Salé aux Lentilles', brand: 'Picard', type: ['lunch', 'dinner'], calories: 120, protein: 9, carbs: 12, fat: 4, tags: ['pork', 'frozen'], country: 'France' },
-  { id: 'fr-pic-blanquette-veau', name: 'Blanquette de Veau', brand: 'Picard', type: ['lunch', 'dinner'], calories: 130, protein: 11, carbs: 5, fat: 7, tags: ['beef', 'frozen'], country: 'France' },
-  { id: 'fr-pic-boulettes-boeuf', name: 'Boulettes de Boeuf & Tomate', brand: 'Picard', type: ['lunch', 'dinner'], calories: 145, protein: 12, carbs: 6, fat: 8, tags: ['beef', 'frozen'], country: 'France' },
-  { id: 'fr-pic-filet-poulet-roti', name: 'Filets de Poulet Rôtis', brand: 'Picard', type: ['lunch', 'dinner'], calories: 120, protein: 24, carbs: 1, fat: 2, tags: ['chicken', 'healthy', 'frozen'], country: 'France' },
-  { id: 'fr-pic-chili-con-carne', name: 'Chili Con Carne', brand: 'Picard', type: ['lunch', 'dinner'], calories: 135, protein: 9, carbs: 15, fat: 4, tags: ['beef', 'frozen'], country: 'France' }
+  {
+    "id": "fr-mcd-hamburger",
+    "name": "Hamburger",
+    "brand": "McDonald's France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 261,
+    "protein": 13,
+    "carbs": 32,
+    "fat": 9,
+    "tags": [
+      "burger",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-mcd-cheeseburger",
+    "name": "Cheeseburger",
+    "brand": "McDonald's France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 303,
+    "protein": 16,
+    "carbs": 33,
+    "fat": 12,
+    "tags": [
+      "burger",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-mcd-double-cheese",
+    "name": "Double Cheeseburger",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 440,
+    "protein": 29,
+    "carbs": 34,
+    "fat": 22,
+    "tags": [
+      "burger",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-mcd-big-mac",
+    "name": "Big Mac",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 508,
+    "protein": 27,
+    "carbs": 43,
+    "fat": 25,
+    "tags": [
+      "burger",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-mcd-mcchicken",
+    "name": "McChicken",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 439,
+    "protein": 21,
+    "carbs": 41,
+    "fat": 22,
+    "tags": [
+      "burger",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-mcd-royal-cheese",
+    "name": "Royal Cheese",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 518,
+    "protein": 29,
+    "carbs": 40,
+    "fat": 28,
+    "tags": [
+      "burger",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-mcd-filet-o-fish",
+    "name": "Filet-O-Fish",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 327,
+    "protein": 15,
+    "carbs": 35,
+    "fat": 14,
+    "tags": [
+      "burger",
+      "fish"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-mcd-mcwrap-poulet",
+    "name": "McWrap Poulet Croustillant",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 498,
+    "protein": 31,
+    "carbs": 44,
+    "fat": 21,
+    "tags": [
+      "wrap",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-mcd-salad-caesar",
+    "name": "Salade Caesar Poulet",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 405,
+    "protein": 27,
+    "carbs": 20,
+    "fat": 24,
+    "tags": [
+      "salad",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-mcd-nuggets-9",
+    "name": "Chicken McNuggets x9",
+    "brand": "McDonald's France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 420,
+    "protein": 25,
+    "carbs": 27,
+    "fat": 24,
+    "tags": [
+      "chicken",
+      "snack"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-mcd-nuggets-6",
+    "name": "Chicken McNuggets x6",
+    "brand": "McDonald's France",
+    "type": [
+      "snack"
+    ],
+    "calories": 280,
+    "protein": 17,
+    "carbs": 18,
+    "fat": 16,
+    "tags": [
+      "chicken",
+      "snack"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-mcd-cbo",
+    "name": "CBO (Chicken Bacon Onion)",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 650,
+    "protein": 32,
+    "carbs": 54,
+    "fat": 34,
+    "tags": [
+      "burger",
+      "chicken",
+      "bacon"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-mcd-280",
+    "name": "Le 280 Original",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 730,
+    "protein": 38,
+    "carbs": 52,
+    "fat": 42,
+    "tags": [
+      "burger",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-mcd-wrap-chèvre",
+    "name": "McWrap Chèvre",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 510,
+    "protein": 24,
+    "carbs": 48,
+    "fat": 26,
+    "tags": [
+      "wrap",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-mcd-frites-m",
+    "name": "Moyenne Frite",
+    "brand": "McDonald's France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 330,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 16,
+    "tags": [
+      "snack",
+      "vegan"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-mcd-mcflurry-mms",
+    "name": "McFlurry M&M's",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert"
+    ],
+    "calories": 420,
+    "protein": 8,
+    "carbs": 64,
+    "fat": 14,
+    "tags": [
+      "dessert",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-mcd-sunday-choc",
+    "name": "Sundae Chocolat",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert"
+    ],
+    "calories": 310,
+    "protein": 6,
+    "carbs": 48,
+    "fat": 10,
+    "tags": [
+      "dessert",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-bk-whopper",
+    "name": "Whopper",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 629,
+    "protein": 28,
+    "carbs": 49,
+    "fat": 35,
+    "tags": [
+      "burger",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-bk-steakhouse",
+    "name": "Steakhouse Burger",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 829,
+    "protein": 40,
+    "carbs": 56,
+    "fat": 50,
+    "tags": [
+      "burger",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-bk-cheddar-lover",
+    "name": "Cheddar Lover Burger",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 640,
+    "protein": 30,
+    "carbs": 42,
+    "fat": 38,
+    "tags": [
+      "burger",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-bk-chicken-louisiane",
+    "name": "Chicken Louisiane Steakhouse",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 846,
+    "protein": 42,
+    "carbs": 62,
+    "fat": 46,
+    "tags": [
+      "burger",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-bk-big-king-xxl",
+    "name": "Big King XXL",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 950,
+    "protein": 52,
+    "carbs": 48,
+    "fat": 62,
+    "tags": [
+      "burger",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-bk-crispy-chicken",
+    "name": "Crispy Chicken",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 430,
+    "protein": 22,
+    "carbs": 45,
+    "fat": 18,
+    "tags": [
+      "burger",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-bk-double-whopper",
+    "name": "Double Whopper",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 900,
+    "protein": 48,
+    "carbs": 50,
+    "fat": 55,
+    "tags": [
+      "burger",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-bk-long-chicken",
+    "name": "Long Chicken",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 580,
+    "protein": 26,
+    "carbs": 55,
+    "fat": 28,
+    "tags": [
+      "burger",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-bk-chili-cheese-fries",
+    "name": "Chili Cheese Fries",
+    "brand": "Burger King France",
+    "type": [
+      "snack"
+    ],
+    "calories": 480,
+    "protein": 12,
+    "carbs": 45,
+    "fat": 28,
+    "tags": [
+      "snack"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-bk-onion-rings-9",
+    "name": "Onion Rings x9",
+    "brand": "Burger King France",
+    "type": [
+      "snack"
+    ],
+    "calories": 340,
+    "protein": 4,
+    "carbs": 40,
+    "fat": 18,
+    "tags": [
+      "snack",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-bk-king-nuggets-9",
+    "name": "King Nuggets x9",
+    "brand": "Burger King France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 410,
+    "protein": 22,
+    "carbs": 30,
+    "fat": 22,
+    "tags": [
+      "chicken",
+      "snack"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-bk-wrap-poulet",
+    "name": "Wrap King Poulet",
+    "brand": "Burger King France",
+    "type": [
+      "lunch"
+    ],
+    "calories": 450,
+    "protein": 20,
+    "carbs": 45,
+    "fat": 20,
+    "tags": [
+      "wrap",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-bk-wrap-bacon",
+    "name": "Wrap King Bacon",
+    "brand": "Burger King France",
+    "type": [
+      "lunch"
+    ],
+    "calories": 480,
+    "protein": 22,
+    "carbs": 42,
+    "fat": 24,
+    "tags": [
+      "wrap",
+      "beef",
+      "bacon"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-bk-master-cantal",
+    "name": "Master Cantal",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 880,
+    "protein": 46,
+    "carbs": 55,
+    "fat": 52,
+    "tags": [
+      "burger",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-bk-oreo-shake",
+    "name": "King Shake Oreo",
+    "brand": "Burger King France",
+    "type": [
+      "dessert"
+    ],
+    "calories": 550,
+    "protein": 12,
+    "carbs": 75,
+    "fat": 20,
+    "tags": [
+      "dessert",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-kfc-boxmaster",
+    "name": "Boxmaster Original",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 657,
+    "protein": 36,
+    "carbs": 56,
+    "fat": 33,
+    "tags": [
+      "burger",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-kfc-tenders-5",
+    "name": "Tenders x5",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 464,
+    "protein": 37,
+    "carbs": 32,
+    "fat": 21,
+    "tags": [
+      "chicken",
+      "high-protein"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-kfc-twister",
+    "name": "Twister Poulet",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 498,
+    "protein": 26,
+    "carbs": 50,
+    "fat": 21,
+    "tags": [
+      "wrap",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-kfc-bucket-6",
+    "name": "Bucket Original 6pc",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 50,
+    "carbs": 38,
+    "fat": 38,
+    "tags": [
+      "chicken",
+      "high-protein"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-kfc-crunch",
+    "name": "Crunch Burger",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "snack"
+    ],
+    "calories": 540,
+    "protein": 28,
+    "carbs": 46,
+    "fat": 26,
+    "tags": [
+      "burger",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-kfc-tower",
+    "name": "Tower Burger",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 710,
+    "protein": 38,
+    "carbs": 62,
+    "fat": 34,
+    "tags": [
+      "burger",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-kfc-zinger",
+    "name": "Zinger Burger",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 580,
+    "protein": 32,
+    "carbs": 50,
+    "fat": 26,
+    "tags": [
+      "burger",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-kfc-hot-wings-5",
+    "name": "Hot Wings x5",
+    "brand": "KFC France",
+    "type": [
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 24,
+    "carbs": 12,
+    "fat": 26,
+    "tags": [
+      "chicken",
+      "snack"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-kfc-cob-corn",
+    "name": "Épi de Maïs",
+    "brand": "KFC France",
+    "type": [
+      "snack"
+    ],
+    "calories": 120,
+    "protein": 4,
+    "carbs": 22,
+    "fat": 2,
+    "tags": [
+      "vegetarian",
+      "vegan"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-kfc-frites-m",
+    "name": "Moyenne Frite",
+    "brand": "KFC France",
+    "type": [
+      "snack"
+    ],
+    "calories": 310,
+    "protein": 4,
+    "carbs": 40,
+    "fat": 14,
+    "tags": [
+      "vegan"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-kfc-salade",
+    "name": "Petite Salade",
+    "brand": "KFC France",
+    "type": [
+      "snack"
+    ],
+    "calories": 25,
+    "protein": 1,
+    "carbs": 4,
+    "fat": 0,
+    "tags": [
+      "vegan",
+      "healthy"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-kfc-kream-ball",
+    "name": "Kream Ball Choc",
+    "brand": "KFC France",
+    "type": [
+      "dessert"
+    ],
+    "calories": 350,
+    "protein": 6,
+    "carbs": 46,
+    "fat": 16,
+    "tags": [
+      "dessert",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-kfc-tiramisu",
+    "name": "Tiramisu",
+    "brand": "KFC France",
+    "type": [
+      "dessert"
+    ],
+    "calories": 280,
+    "protein": 5,
+    "carbs": 32,
+    "fat": 14,
+    "tags": [
+      "dessert",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-kfc-mega-box",
+    "name": "Mega Box (Mix)",
+    "brand": "KFC France",
+    "type": [
+      "dinner"
+    ],
+    "calories": 1200,
+    "protein": 75,
+    "carbs": 90,
+    "fat": 65,
+    "tags": [
+      "chicken",
+      "high-protein"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-kfc-wrap-bacon",
+    "name": "Twister Bacon",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 540,
+    "protein": 30,
+    "carbs": 48,
+    "fat": 25,
+    "tags": [
+      "wrap",
+      "chicken",
+      "bacon"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-quick-giant",
+    "name": "Giant",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 530,
+    "protein": 26,
+    "carbs": 38,
+    "fat": 30,
+    "tags": [
+      "burger",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-quick-giant-max",
+    "name": "Giant Max",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 730,
+    "protein": 40,
+    "carbs": 42,
+    "fat": 45,
+    "tags": [
+      "burger",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-quick-quick-n-toast",
+    "name": "Quick N Toast",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 650,
+    "protein": 34,
+    "carbs": 44,
+    "fat": 36,
+    "tags": [
+      "burger",
+      "beef",
+      "bacon"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-quick-supreme-cheese",
+    "name": "Suprême Cheese",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 680,
+    "protein": 36,
+    "carbs": 48,
+    "fat": 38,
+    "tags": [
+      "burger",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-quick-long-bacon",
+    "name": "Long Bacon",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 560,
+    "protein": 28,
+    "carbs": 44,
+    "fat": 30,
+    "tags": [
+      "burger",
+      "beef",
+      "bacon"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-quick-chicken-dips-6",
+    "name": "Chicken Dips x6",
+    "brand": "Quick",
+    "type": [
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 20,
+    "carbs": 22,
+    "fat": 16,
+    "tags": [
+      "chicken",
+      "snack"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-quick-cheeseburger",
+    "name": "Cheeseburger",
+    "brand": "Quick",
+    "type": [
+      "snack"
+    ],
+    "calories": 310,
+    "protein": 16,
+    "carbs": 32,
+    "fat": 14,
+    "tags": [
+      "burger",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-quick-rusty",
+    "name": "Rusty (Rustic Fries)",
+    "brand": "Quick",
+    "type": [
+      "snack"
+    ],
+    "calories": 350,
+    "protein": 5,
+    "carbs": 45,
+    "fat": 16,
+    "tags": [
+      "snack",
+      "vegan"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-quick-wrap-poulet",
+    "name": "Wrap Poulet",
+    "brand": "Quick",
+    "type": [
+      "lunch"
+    ],
+    "calories": 480,
+    "protein": 24,
+    "carbs": 46,
+    "fat": 22,
+    "tags": [
+      "wrap",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-quick-churros",
+    "name": "Churros x5",
+    "brand": "Quick",
+    "type": [
+      "dessert"
+    ],
+    "calories": 280,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 10,
+    "tags": [
+      "dessert",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-quick-magic-box",
+    "name": "Magic Box Hamburger",
+    "brand": "Quick",
+    "type": [
+      "lunch"
+    ],
+    "calories": 420,
+    "protein": 18,
+    "carbs": 50,
+    "fat": 16,
+    "tags": [
+      "burger",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-quick-supreme-chicken",
+    "name": "Suprême Chicken",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 640,
+    "protein": 32,
+    "carbs": 55,
+    "fat": 32,
+    "tags": [
+      "burger",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-quick-mix-tapas",
+    "name": "Mix Tapas (Cheese, Chicken)",
+    "brand": "Quick",
+    "type": [
+      "snack"
+    ],
+    "calories": 480,
+    "protein": 22,
+    "carbs": 40,
+    "fat": 26,
+    "tags": [
+      "snack",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-quick-milkshake",
+    "name": "Milkshake Vanille",
+    "brand": "Quick",
+    "type": [
+      "dessert"
+    ],
+    "calories": 380,
+    "protein": 8,
+    "carbs": 62,
+    "fat": 10,
+    "tags": [
+      "dessert",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-quick-donuts",
+    "name": "Donut Chocolat",
+    "brand": "Quick",
+    "type": [
+      "dessert"
+    ],
+    "calories": 250,
+    "protein": 3,
+    "carbs": 28,
+    "fat": 14,
+    "tags": [
+      "dessert",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-otacos-xl",
+    "name": "O'Tacos XL (Poulet, Viande Hachée)",
+    "brand": "O'Tacos",
+    "type": [
+      "dinner"
+    ],
+    "calories": 1250,
+    "protein": 55,
+    "carbs": 120,
+    "fat": 60,
+    "tags": [
+      "wrap",
+      "beef",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-otacos-l",
+    "name": "O'Tacos L Mixte",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 810,
+    "protein": 42,
+    "carbs": 74,
+    "fat": 36,
+    "tags": [
+      "wrap",
+      "beef",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-otacos-m-poulet",
+    "name": "O'Tacos M Poulet",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch"
+    ],
+    "calories": 650,
+    "protein": 34,
+    "carbs": 60,
+    "fat": 28,
+    "tags": [
+      "wrap",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-otacos-m-cordon-bleu",
+    "name": "O'Tacos M Cordon Bleu",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch"
+    ],
+    "calories": 720,
+    "protein": 36,
+    "carbs": 65,
+    "fat": 34,
+    "tags": [
+      "wrap",
+      "chicken",
+      "cheese"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-otacos-m-merguez",
+    "name": "O'Tacos M Merguez",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch"
+    ],
+    "calories": 780,
+    "protein": 30,
+    "carbs": 62,
+    "fat": 45,
+    "tags": [
+      "wrap",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-otacos-tenders-3",
+    "name": "Tenders x3",
+    "brand": "O'Tacos",
+    "type": [
+      "snack"
+    ],
+    "calories": 280,
+    "protein": 22,
+    "carbs": 20,
+    "fat": 12,
+    "tags": [
+      "chicken",
+      "snack"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-otacos-nuggets-6",
+    "name": "Nuggets x6",
+    "brand": "O'Tacos",
+    "type": [
+      "snack"
+    ],
+    "calories": 260,
+    "protein": 16,
+    "carbs": 18,
+    "fat": 14,
+    "tags": [
+      "chicken",
+      "snack"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-otacos-samoussa",
+    "name": "Samoussa Fromage x3",
+    "brand": "O'Tacos",
+    "type": [
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 16,
+    "carbs": 40,
+    "fat": 18,
+    "tags": [
+      "vegetarian",
+      "snack"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-otacos-mozza-sticks",
+    "name": "Bâtonnets Mozza x4",
+    "brand": "O'Tacos",
+    "type": [
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 14,
+    "carbs": 30,
+    "fat": 16,
+    "tags": [
+      "vegetarian",
+      "snack"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-otacos-jalapenos",
+    "name": "Jalapeños Cheese x4",
+    "brand": "O'Tacos",
+    "type": [
+      "snack"
+    ],
+    "calories": 290,
+    "protein": 12,
+    "carbs": 28,
+    "fat": 15,
+    "tags": [
+      "vegetarian",
+      "snack"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-otacos-frites-cheddar",
+    "name": "Frites Cheddar Bacon",
+    "brand": "O'Tacos",
+    "type": [
+      "snack"
+    ],
+    "calories": 550,
+    "protein": 16,
+    "carbs": 55,
+    "fat": 30,
+    "tags": [
+      "snack",
+      "bacon"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-otacos-bowl-poulet",
+    "name": "O'Bowl Poulet",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch"
+    ],
+    "calories": 600,
+    "protein": 40,
+    "carbs": 55,
+    "fat": 22,
+    "tags": [
+      "bowl",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-otacos-bowl-hache",
+    "name": "O'Bowl Viande Hachée",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch"
+    ],
+    "calories": 680,
+    "protein": 38,
+    "carbs": 52,
+    "fat": 32,
+    "tags": [
+      "bowl",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-otacos-tiramisu",
+    "name": "O'Tiramisu Oreo",
+    "brand": "O'Tacos",
+    "type": [
+      "dessert"
+    ],
+    "calories": 350,
+    "protein": 6,
+    "carbs": 42,
+    "fat": 18,
+    "tags": [
+      "dessert",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-otacos-muffin",
+    "name": "Muffin Chocolat",
+    "brand": "O'Tacos",
+    "type": [
+      "dessert"
+    ],
+    "calories": 420,
+    "protein": 6,
+    "carbs": 55,
+    "fat": 20,
+    "tags": [
+      "dessert",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-chs-street-burger",
+    "name": "Street Burger Poulet",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 620,
+    "protein": 38,
+    "carbs": 46,
+    "fat": 28,
+    "tags": [
+      "burger",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-chs-strips",
+    "name": "Chicken Strips x4",
+    "brand": "Chicken Street",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 480,
+    "protein": 34,
+    "carbs": 36,
+    "fat": 20,
+    "tags": [
+      "chicken",
+      "snack"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-chs-bowl-riz",
+    "name": "Bowl Poulet Riz",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 550,
+    "protein": 42,
+    "carbs": 52,
+    "fat": 18,
+    "tags": [
+      "bowl",
+      "chicken",
+      "high-protein"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-chs-wrap",
+    "name": "Wrap Croustillant",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch"
+    ],
+    "calories": 510,
+    "protein": 30,
+    "carbs": 48,
+    "fat": 20,
+    "tags": [
+      "wrap",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-chs-cheese-naan",
+    "name": "Cheese Naan Poulet Tikka",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 680,
+    "protein": 42,
+    "carbs": 55,
+    "fat": 30,
+    "tags": [
+      "wrap",
+      "chicken",
+      "cheese"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-chs-wings-6",
+    "name": "Chicken Wings x6",
+    "brand": "Chicken Street",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 450,
+    "protein": 28,
+    "carbs": 15,
+    "fat": 30,
+    "tags": [
+      "chicken",
+      "snack"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-chs-wrap-tenders",
+    "name": "Wrap Tenders",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch"
+    ],
+    "calories": 540,
+    "protein": 32,
+    "carbs": 50,
+    "fat": 22,
+    "tags": [
+      "wrap",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-chs-bucket-mix",
+    "name": "Bucket Mixte (10 pieces)",
+    "brand": "Chicken Street",
+    "type": [
+      "dinner"
+    ],
+    "calories": 1100,
+    "protein": 85,
+    "carbs": 65,
+    "fat": 55,
+    "tags": [
+      "chicken",
+      "high-protein"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-chs-salade",
+    "name": "Salade Poulet Croustillant",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch"
+    ],
+    "calories": 420,
+    "protein": 30,
+    "carbs": 22,
+    "fat": 24,
+    "tags": [
+      "salad",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-chs-burger-double",
+    "name": "Double Street Burger",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 850,
+    "protein": 55,
+    "carbs": 52,
+    "fat": 45,
+    "tags": [
+      "burger",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-chs-frites",
+    "name": "Portion de Frites",
+    "brand": "Chicken Street",
+    "type": [
+      "snack"
+    ],
+    "calories": 340,
+    "protein": 4,
+    "carbs": 45,
+    "fat": 16,
+    "tags": [
+      "snack",
+      "vegan"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-chs-frites-bacon",
+    "name": "Frites Cheddar Bacon",
+    "brand": "Chicken Street",
+    "type": [
+      "snack"
+    ],
+    "calories": 560,
+    "protein": 16,
+    "carbs": 48,
+    "fat": 32,
+    "tags": [
+      "snack",
+      "bacon"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-chs-naan-kebab",
+    "name": "Cheese Naan Kebab",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 38,
+    "carbs": 58,
+    "fat": 38,
+    "tags": [
+      "wrap",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-chs-tiramisu",
+    "name": "Tiramisu Speculoos",
+    "brand": "Chicken Street",
+    "type": [
+      "dessert"
+    ],
+    "calories": 380,
+    "protein": 6,
+    "carbs": 45,
+    "fat": 20,
+    "tags": [
+      "dessert",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-chs-cookie",
+    "name": "Cookie Pépites Choc",
+    "brand": "Chicken Street",
+    "type": [
+      "dessert"
+    ],
+    "calories": 250,
+    "protein": 3,
+    "carbs": 32,
+    "fat": 12,
+    "tags": [
+      "dessert",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pep-burger-spicy",
+    "name": "Peppe Burger Spicy",
+    "brand": "Peppe Chicken",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 640,
+    "protein": 36,
+    "carbs": 50,
+    "fat": 30,
+    "tags": [
+      "burger",
+      "chicken",
+      "spicy"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pep-thighs-3",
+    "name": "Chicken Thighs x3",
+    "brand": "Peppe Chicken",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 520,
+    "protein": 40,
+    "carbs": 28,
+    "fat": 26,
+    "tags": [
+      "chicken",
+      "high-protein"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pep-sandwich",
+    "name": "Peppe Sandwich Classic",
+    "brand": "Peppe Chicken",
+    "type": [
+      "lunch"
+    ],
+    "calories": 570,
+    "protein": 32,
+    "carbs": 44,
+    "fat": 24,
+    "tags": [
+      "sandwich",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pep-loaded-fries",
+    "name": "Loaded Fries (Chicken & Cheese)",
+    "brand": "Peppe Chicken",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 680,
+    "protein": 35,
+    "carbs": 65,
+    "fat": 32,
+    "tags": [
+      "snack",
+      "chicken",
+      "cheese"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pep-tenders-4",
+    "name": "Spicy Tenders x4",
+    "brand": "Peppe Chicken",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 410,
+    "protein": 30,
+    "carbs": 26,
+    "fat": 18,
+    "tags": [
+      "chicken",
+      "spicy"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pep-wings-6",
+    "name": "BBQ Wings x6",
+    "brand": "Peppe Chicken",
+    "type": [
+      "snack"
+    ],
+    "calories": 460,
+    "protein": 28,
+    "carbs": 20,
+    "fat": 28,
+    "tags": [
+      "chicken",
+      "snack"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pep-wrap",
+    "name": "Wrap Nashville Hot",
+    "brand": "Peppe Chicken",
+    "type": [
+      "lunch"
+    ],
+    "calories": 590,
+    "protein": 34,
+    "carbs": 52,
+    "fat": 26,
+    "tags": [
+      "wrap",
+      "chicken",
+      "spicy"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pep-burger-double",
+    "name": "Double Peppe Burger",
+    "brand": "Peppe Chicken",
+    "type": [
+      "dinner"
+    ],
+    "calories": 880,
+    "protein": 55,
+    "carbs": 55,
+    "fat": 48,
+    "tags": [
+      "burger",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pep-bowl",
+    "name": "Chicken Salad Bowl",
+    "brand": "Peppe Chicken",
+    "type": [
+      "lunch"
+    ],
+    "calories": 430,
+    "protein": 35,
+    "carbs": 20,
+    "fat": 24,
+    "tags": [
+      "bowl",
+      "chicken",
+      "healthy"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pep-mac-cheese",
+    "name": "Mac & Cheese Poulet",
+    "brand": "Peppe Chicken",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 38,
+    "carbs": 68,
+    "fat": 34,
+    "tags": [
+      "pasta",
+      "chicken",
+      "cheese"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pep-frites-douces",
+    "name": "Frites de Patate Douce",
+    "brand": "Peppe Chicken",
+    "type": [
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 3,
+    "carbs": 48,
+    "fat": 12,
+    "tags": [
+      "snack",
+      "vegan"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pep-nuggets-9",
+    "name": "Nuggets Maison x9",
+    "brand": "Peppe Chicken",
+    "type": [
+      "snack"
+    ],
+    "calories": 450,
+    "protein": 25,
+    "carbs": 35,
+    "fat": 24,
+    "tags": [
+      "chicken",
+      "snack"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pep-colslaw",
+    "name": "Coleslaw",
+    "brand": "Peppe Chicken",
+    "type": [
+      "snack"
+    ],
+    "calories": 150,
+    "protein": 2,
+    "carbs": 12,
+    "fat": 10,
+    "tags": [
+      "vegetarian",
+      "snack"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pep-milkshake",
+    "name": "Milkshake Fraise",
+    "brand": "Peppe Chicken",
+    "type": [
+      "dessert"
+    ],
+    "calories": 410,
+    "protein": 9,
+    "carbs": 65,
+    "fat": 12,
+    "tags": [
+      "dessert",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pep-brownie",
+    "name": "Brownie Pécans",
+    "brand": "Peppe Chicken",
+    "type": [
+      "dessert"
+    ],
+    "calories": 380,
+    "protein": 5,
+    "carbs": 42,
+    "fat": 22,
+    "tags": [
+      "dessert",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-sub-poulet-teriyaki",
+    "name": "Sub Poulet Teriyaki 15cm",
+    "brand": "Subway France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 323,
+    "protein": 24,
+    "carbs": 43,
+    "fat": 5,
+    "tags": [
+      "sub",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-sub-steak-cheese",
+    "name": "Steak & Cheese 15cm",
+    "brand": "Subway France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 303,
+    "protein": 21,
+    "carbs": 38,
+    "fat": 8,
+    "tags": [
+      "sub",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-sub-turkey-ham",
+    "name": "Sub Dinde & Jambon 15cm",
+    "brand": "Subway France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 297,
+    "protein": 22,
+    "carbs": 38,
+    "fat": 5,
+    "tags": [
+      "sub",
+      "turkey"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-sub-veggie",
+    "name": "Veggie Delite 15cm",
+    "brand": "Subway France",
+    "type": [
+      "lunch"
+    ],
+    "calories": 200,
+    "protein": 8,
+    "carbs": 38,
+    "fat": 2,
+    "tags": [
+      "sub",
+      "vegetarian",
+      "vegan"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-sub-tuna",
+    "name": "Tuna 15cm",
+    "brand": "Subway France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 360,
+    "protein": 20,
+    "carbs": 38,
+    "fat": 14,
+    "tags": [
+      "sub",
+      "fish"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-sub-roast-beef",
+    "name": "Roast Beef 15cm",
+    "brand": "Subway France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 290,
+    "protein": 24,
+    "carbs": 38,
+    "fat": 5,
+    "tags": [
+      "sub",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-sub-italian-bmt",
+    "name": "Italian BMT 15cm",
+    "brand": "Subway France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 390,
+    "protein": 18,
+    "carbs": 40,
+    "fat": 16,
+    "tags": [
+      "sub",
+      "pork"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-sub-poulet-tikka",
+    "name": "Poulet Tikka 15cm",
+    "brand": "Subway France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 310,
+    "protein": 22,
+    "carbs": 42,
+    "fat": 6,
+    "tags": [
+      "sub",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-sub-vegan-patty",
+    "name": "Vegan Patty 15cm",
+    "brand": "Subway France",
+    "type": [
+      "lunch"
+    ],
+    "calories": 380,
+    "protein": 18,
+    "carbs": 45,
+    "fat": 14,
+    "tags": [
+      "sub",
+      "vegan",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-sub-30cm-teriyaki",
+    "name": "Poulet Teriyaki 30cm",
+    "brand": "Subway France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 646,
+    "protein": 48,
+    "carbs": 86,
+    "fat": 10,
+    "tags": [
+      "sub",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-sub-30cm-steak",
+    "name": "Steak & Cheese 30cm",
+    "brand": "Subway France",
+    "type": [
+      "dinner"
+    ],
+    "calories": 606,
+    "protein": 42,
+    "carbs": 76,
+    "fat": 16,
+    "tags": [
+      "sub",
+      "beef"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-sub-cookie-choc",
+    "name": "Cookie Pépites Choc",
+    "brand": "Subway France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 210,
+    "protein": 2,
+    "carbs": 30,
+    "fat": 10,
+    "tags": [
+      "dessert",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-sub-cookie-mac",
+    "name": "Cookie Macadamia",
+    "brand": "Subway France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 220,
+    "protein": 2,
+    "carbs": 28,
+    "fat": 11,
+    "tags": [
+      "dessert",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-sub-chips-lays",
+    "name": "Lay's Nature (30g)",
+    "brand": "Subway France",
+    "type": [
+      "snack"
+    ],
+    "calories": 160,
+    "protein": 2,
+    "carbs": 15,
+    "fat": 10,
+    "tags": [
+      "snack",
+      "vegan"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-sub-salade-poulet",
+    "name": "Salade Poulet Teriyaki",
+    "brand": "Subway France",
+    "type": [
+      "lunch"
+    ],
+    "calories": 240,
+    "protein": 22,
+    "carbs": 20,
+    "fat": 6,
+    "tags": [
+      "salad",
+      "chicken",
+      "healthy"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pret-chicken-avo",
+    "name": "Sandwich Poulet Avocat",
+    "brand": "Prêt à Manger",
+    "type": [
+      "lunch"
+    ],
+    "calories": 430,
+    "protein": 28,
+    "carbs": 36,
+    "fat": 18,
+    "tags": [
+      "sandwich",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pret-protein-bowl",
+    "name": "Bowl Protéiné Quinoa",
+    "brand": "Prêt à Manger",
+    "type": [
+      "lunch"
+    ],
+    "calories": 490,
+    "protein": 38,
+    "carbs": 42,
+    "fat": 14,
+    "tags": [
+      "bowl",
+      "chicken",
+      "healthy"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pret-salmon-bowl",
+    "name": "Bowl Saumon Riz Noir",
+    "brand": "Prêt à Manger",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 510,
+    "protein": 32,
+    "carbs": 50,
+    "fat": 20,
+    "tags": [
+      "bowl",
+      "fish",
+      "healthy"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pret-soupe-potiron",
+    "name": "Soupe Potiron",
+    "brand": "Prêt à Manger",
+    "type": [
+      "lunch",
+      "snack"
+    ],
+    "calories": 210,
+    "protein": 5,
+    "carbs": 28,
+    "fat": 9,
+    "tags": [
+      "soup",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pret-skyr-fruits",
+    "name": "Pot Skyr Fruits Rouges",
+    "brand": "Prêt à Manger",
+    "type": [
+      "snack",
+      "dessert"
+    ],
+    "calories": 140,
+    "protein": 12,
+    "carbs": 18,
+    "fat": 2,
+    "tags": [
+      "snack",
+      "healthy",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pret-wrap-falafel",
+    "name": "Wrap Falafel Vegan",
+    "brand": "Prêt à Manger",
+    "type": [
+      "lunch"
+    ],
+    "calories": 480,
+    "protein": 14,
+    "carbs": 62,
+    "fat": 18,
+    "tags": [
+      "wrap",
+      "vegan",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pret-sand-jambon",
+    "name": "Baguette Jambon Beurre",
+    "brand": "Prêt à Manger",
+    "type": [
+      "lunch"
+    ],
+    "calories": 460,
+    "protein": 20,
+    "carbs": 54,
+    "fat": 18,
+    "tags": [
+      "sandwich",
+      "pork"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pret-salade-caesar",
+    "name": "Salade Caesar",
+    "brand": "Prêt à Manger",
+    "type": [
+      "lunch"
+    ],
+    "calories": 410,
+    "protein": 26,
+    "carbs": 18,
+    "fat": 25,
+    "tags": [
+      "salad",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pret-mac-cheese",
+    "name": "Macaroni au Fromage",
+    "brand": "Prêt à Manger",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 580,
+    "protein": 22,
+    "carbs": 55,
+    "fat": 28,
+    "tags": [
+      "pasta",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pret-choc-croissant",
+    "name": "Croissant au Chocolat",
+    "brand": "Prêt à Manger",
+    "type": [
+      "snack",
+      "dessert"
+    ],
+    "calories": 340,
+    "protein": 6,
+    "carbs": 36,
+    "fat": 18,
+    "tags": [
+      "bakery",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pret-porridge",
+    "name": "Porridge Avoine",
+    "brand": "Prêt à Manger",
+    "type": [
+      "snack"
+    ],
+    "calories": 280,
+    "protein": 10,
+    "carbs": 45,
+    "fat": 6,
+    "tags": [
+      "porridge",
+      "vegan"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pret-fruit-salad",
+    "name": "Salade de Fruits Frais",
+    "brand": "Prêt à Manger",
+    "type": [
+      "snack",
+      "dessert"
+    ],
+    "calories": 90,
+    "protein": 1,
+    "carbs": 20,
+    "fat": 0,
+    "tags": [
+      "fruit",
+      "vegan",
+      "healthy"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pret-sand-egg",
+    "name": "Sandwich Œuf Mayo",
+    "brand": "Prêt à Manger",
+    "type": [
+      "lunch"
+    ],
+    "calories": 420,
+    "protein": 16,
+    "carbs": 38,
+    "fat": 22,
+    "tags": [
+      "sandwich",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pret-soup-tomate",
+    "name": "Soupe Tomate Basilic",
+    "brand": "Prêt à Manger",
+    "type": [
+      "lunch",
+      "snack"
+    ],
+    "calories": 180,
+    "protein": 4,
+    "carbs": 24,
+    "fat": 8,
+    "tags": [
+      "soup",
+      "vegan"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pret-cookie-vegan",
+    "name": "Cookie Vegan Chocolat",
+    "brand": "Prêt à Manger",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 310,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 14,
+    "tags": [
+      "dessert",
+      "vegan",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-paul-croissant",
+    "name": "Croissant au Beurre",
+    "brand": "Boulangerie Paul",
+    "type": [
+      "snack"
+    ],
+    "calories": 280,
+    "protein": 5,
+    "carbs": 30,
+    "fat": 16,
+    "tags": [
+      "bakery",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-paul-pain-choc",
+    "name": "Pain au Chocolat",
+    "brand": "Boulangerie Paul",
+    "type": [
+      "snack",
+      "dessert"
+    ],
+    "calories": 320,
+    "protein": 6,
+    "carbs": 34,
+    "fat": 18,
+    "tags": [
+      "bakery",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-paul-sand-jambon",
+    "name": "Sandwich Jambon Beurre",
+    "brand": "Boulangerie Paul",
+    "type": [
+      "lunch"
+    ],
+    "calories": 420,
+    "protein": 18,
+    "carbs": 42,
+    "fat": 18,
+    "tags": [
+      "sandwich",
+      "pork"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-paul-quiche",
+    "name": "Quiche Lorraine",
+    "brand": "Boulangerie Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 16,
+    "carbs": 32,
+    "fat": 32,
+    "tags": [
+      "quiche",
+      "pork"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-paul-salade-comp",
+    "name": "Salade Composée",
+    "brand": "Boulangerie Paul",
+    "type": [
+      "lunch"
+    ],
+    "calories": 380,
+    "protein": 22,
+    "carbs": 28,
+    "fat": 20,
+    "tags": [
+      "salad"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-paul-tarte-pommes",
+    "name": "Tarte aux Pommes",
+    "brand": "Boulangerie Paul",
+    "type": [
+      "dessert"
+    ],
+    "calories": 290,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 12,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-paul-sand-poulet",
+    "name": "Sandwich Poulet Crudités",
+    "brand": "Boulangerie Paul",
+    "type": [
+      "lunch"
+    ],
+    "calories": 440,
+    "protein": 24,
+    "carbs": 45,
+    "fat": 16,
+    "tags": [
+      "sandwich",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-paul-sand-thon",
+    "name": "Sandwich Thon Mayo",
+    "brand": "Boulangerie Paul",
+    "type": [
+      "lunch"
+    ],
+    "calories": 460,
+    "protein": 20,
+    "carbs": 46,
+    "fat": 21,
+    "tags": [
+      "sandwich",
+      "fish"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-paul-fougasse",
+    "name": "Fougasse Olives",
+    "brand": "Boulangerie Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 350,
+    "protein": 8,
+    "carbs": 48,
+    "fat": 14,
+    "tags": [
+      "bakery",
+      "vegan"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-paul-croque-msieu",
+    "name": "Croque-Monsieur",
+    "brand": "Boulangerie Paul",
+    "type": [
+      "lunch"
+    ],
+    "calories": 410,
+    "protein": 22,
+    "carbs": 35,
+    "fat": 20,
+    "tags": [
+      "sandwich",
+      "pork"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-paul-eclair-choc",
+    "name": "Éclair au Chocolat",
+    "brand": "Boulangerie Paul",
+    "type": [
+      "dessert"
+    ],
+    "calories": 250,
+    "protein": 5,
+    "carbs": 28,
+    "fat": 12,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-paul-macaron",
+    "name": "Grand Macaron Framboise",
+    "brand": "Boulangerie Paul",
+    "type": [
+      "dessert"
+    ],
+    "calories": 230,
+    "protein": 4,
+    "carbs": 35,
+    "fat": 9,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-paul-salade-chevre",
+    "name": "Salade Chèvre Chaud",
+    "brand": "Boulangerie Paul",
+    "type": [
+      "lunch"
+    ],
+    "calories": 460,
+    "protein": 18,
+    "carbs": 25,
+    "fat": 30,
+    "tags": [
+      "salad",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-paul-chausson",
+    "name": "Chausson aux Pommes",
+    "brand": "Boulangerie Paul",
+    "type": [
+      "snack",
+      "dessert"
+    ],
+    "calories": 310,
+    "protein": 4,
+    "carbs": 38,
+    "fat": 15,
+    "tags": [
+      "bakery",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-paul-tarte-citron",
+    "name": "Tartelette Citron",
+    "brand": "Boulangerie Paul",
+    "type": [
+      "dessert"
+    ],
+    "calories": 320,
+    "protein": 4,
+    "carbs": 40,
+    "fat": 16,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-carref-escalope",
+    "name": "Escalope de Poulet (100g)",
+    "brand": "Carrefour",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 165,
+    "protein": 31,
+    "carbs": 1,
+    "fat": 4,
+    "tags": [
+      "chicken",
+      "healthy"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-carref-saumon",
+    "name": "Filet de Saumon (150g)",
+    "brand": "Carrefour",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 208,
+    "protein": 22,
+    "carbs": 0,
+    "fat": 13,
+    "tags": [
+      "fish",
+      "healthy"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-carref-skyr",
+    "name": "Skyr Nature 0% (150g)",
+    "brand": "Carrefour",
+    "type": [
+      "snack"
+    ],
+    "calories": 68,
+    "protein": 11,
+    "carbs": 5,
+    "fat": 0,
+    "tags": [
+      "snack",
+      "healthy",
+      "high-protein"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-carref-lasagnes",
+    "name": "Lasagnes Bolognaise Ready-Meal",
+    "brand": "Carrefour",
+    "type": [
+      "dinner"
+    ],
+    "calories": 430,
+    "protein": 24,
+    "carbs": 36,
+    "fat": 22,
+    "tags": [
+      "beef",
+      "pasta"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-carref-salade",
+    "name": "Salade Poulet Crudités",
+    "brand": "Carrefour",
+    "type": [
+      "lunch"
+    ],
+    "calories": 350,
+    "protein": 28,
+    "carbs": 18,
+    "fat": 18,
+    "tags": [
+      "salad",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-carref-steak-hache",
+    "name": "Steak Haché 5% (100g)",
+    "brand": "Carrefour",
+    "type": [
+      "dinner"
+    ],
+    "calories": 125,
+    "protein": 21,
+    "carbs": 0,
+    "fat": 5,
+    "tags": [
+      "beef",
+      "healthy"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-carref-pizzamar",
+    "name": "Pizza Margherita (Surgelée)",
+    "brand": "Carrefour",
+    "type": [
+      "dinner"
+    ],
+    "calories": 850,
+    "protein": 35,
+    "carbs": 110,
+    "fat": 25,
+    "tags": [
+      "pizza",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-carref-taboule",
+    "name": "Taboulé Oriental (200g)",
+    "brand": "Carrefour",
+    "type": [
+      "lunch"
+    ],
+    "calories": 320,
+    "protein": 8,
+    "carbs": 45,
+    "fat": 10,
+    "tags": [
+      "salad",
+      "vegan"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-carref-gnocchi",
+    "name": "Gnocchi à Poêler (200g)",
+    "brand": "Carrefour",
+    "type": [
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 8,
+    "carbs": 65,
+    "fat": 8,
+    "tags": [
+      "pasta",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-carref-sushi",
+    "name": "Plateau Sushi Mixte (12p)",
+    "brand": "Carrefour",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 420,
+    "protein": 18,
+    "carbs": 65,
+    "fat": 8,
+    "tags": [
+      "sushi",
+      "fish"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-carref-cordon",
+    "name": "Cordon Bleu Poulet (100g)",
+    "brand": "Carrefour",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 220,
+    "protein": 14,
+    "carbs": 12,
+    "fat": 12,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-carref-jambon",
+    "name": "Tranches Jambon Blanc (100g)",
+    "brand": "Carrefour",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 110,
+    "protein": 20,
+    "carbs": 1,
+    "fat": 3,
+    "tags": [
+      "pork",
+      "healthy"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-carref-lentilles",
+    "name": "Lentilles Préparées (200g)",
+    "brand": "Carrefour",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 210,
+    "protein": 14,
+    "carbs": 32,
+    "fat": 2,
+    "tags": [
+      "vegan",
+      "healthy"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-carref-yaourt",
+    "name": "Yaourt Fruit Aromatisé (125g)",
+    "brand": "Carrefour",
+    "type": [
+      "snack",
+      "dessert"
+    ],
+    "calories": 115,
+    "protein": 4,
+    "carbs": 16,
+    "fat": 3,
+    "tags": [
+      "snack",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-carref-compote",
+    "name": "Gourde Compote Pomme",
+    "brand": "Carrefour",
+    "type": [
+      "snack"
+    ],
+    "calories": 70,
+    "protein": 0,
+    "carbs": 16,
+    "fat": 0,
+    "tags": [
+      "snack",
+      "vegan"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-auchan-poulet-roti",
+    "name": "Poulet Rôti (1/2)",
+    "brand": "Auchan",
+    "type": [
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 45,
+    "carbs": 0,
+    "fat": 22,
+    "tags": [
+      "chicken",
+      "keto"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-auchan-pizza-4f",
+    "name": "Pizza 4 Fromages Fraîche",
+    "brand": "Auchan",
+    "type": [
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 28,
+    "carbs": 82,
+    "fat": 30,
+    "tags": [
+      "pizza",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-auchan-bowl-quinoa",
+    "name": "Bowl Quinoa Légumes",
+    "brand": "Auchan",
+    "type": [
+      "lunch"
+    ],
+    "calories": 340,
+    "protein": 14,
+    "carbs": 48,
+    "fat": 12,
+    "tags": [
+      "bowl",
+      "vegan"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-auchan-yaourt-grec",
+    "name": "Yaourt Grec (150g)",
+    "brand": "Auchan",
+    "type": [
+      "snack"
+    ],
+    "calories": 120,
+    "protein": 10,
+    "carbs": 6,
+    "fat": 6,
+    "tags": [
+      "snack",
+      "vegetarian"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-auchan-saumon-fume",
+    "name": "Saumon Fumé (100g)",
+    "brand": "Auchan",
+    "type": [
+      "lunch",
+      "snack"
+    ],
+    "calories": 160,
+    "protein": 20,
+    "carbs": 0,
+    "fat": 9,
+    "tags": [
+      "fish",
+      "keto"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-auchan-filet-mignon",
+    "name": "Filet Mignon Porc (150g)",
+    "brand": "Auchan",
+    "type": [
+      "dinner"
+    ],
+    "calories": 210,
+    "protein": 32,
+    "carbs": 0,
+    "fat": 8,
+    "tags": [
+      "pork",
+      "healthy"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-auchan-croque",
+    "name": "Croque-Monsieur Prêt-à-cuire",
+    "brand": "Auchan",
+    "type": [
+      "lunch"
+    ],
+    "calories": 380,
+    "protein": 18,
+    "carbs": 36,
+    "fat": 18,
+    "tags": [
+      "sandwich",
+      "pork"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-auchan-pates-carbo",
+    "name": "Box Pâtes Carbonara",
+    "brand": "Auchan",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 520,
+    "protein": 20,
+    "carbs": 55,
+    "fat": 24,
+    "tags": [
+      "pasta",
+      "pork"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-auchan-salade-pates",
+    "name": "Salade de Pâtes Poulet",
+    "brand": "Auchan",
+    "type": [
+      "lunch"
+    ],
+    "calories": 410,
+    "protein": 16,
+    "carbs": 48,
+    "fat": 16,
+    "tags": [
+      "salad",
+      "chicken"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-auchan-oeufs-durs",
+    "name": "Oeufs Durs x2",
+    "brand": "Auchan",
+    "type": [
+      "snack"
+    ],
+    "calories": 140,
+    "protein": 12,
+    "carbs": 1,
+    "fat": 10,
+    "tags": [
+      "snack",
+      "vegetarian",
+      "keto"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-auchan-fromage-blanc",
+    "name": "Fromage Blanc 0% (200g)",
+    "brand": "Auchan",
+    "type": [
+      "snack"
+    ],
+    "calories": 90,
+    "protein": 16,
+    "carbs": 6,
+    "fat": 0,
+    "tags": [
+      "snack",
+      "high-protein"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-auchan-mousse-choc",
+    "name": "Mousse au Chocolat (100g)",
+    "brand": "Auchan",
+    "type": [
+      "dessert"
+    ],
+    "calories": 180,
+    "protein": 4,
+    "carbs": 20,
+    "fat": 10,
+    "tags": [
+      "dessert",
+      "sweet"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-auchan-haricots",
+    "name": "Poêlée Haricots Verts (200g)",
+    "brand": "Auchan",
+    "type": [
+      "dinner"
+    ],
+    "calories": 80,
+    "protein": 4,
+    "carbs": 12,
+    "fat": 1,
+    "tags": [
+      "vegan"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-auchan-riz-cantonnais",
+    "name": "Riz Cantonnais (250g)",
+    "brand": "Auchan",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 450,
+    "protein": 16,
+    "carbs": 65,
+    "fat": 12,
+    "tags": [
+      "rice",
+      "pork"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-auchan-wrap-thon",
+    "name": "Wrap Thon Crudités",
+    "brand": "Auchan",
+    "type": [
+      "lunch"
+    ],
+    "calories": 390,
+    "protein": 16,
+    "carbs": 44,
+    "fat": 16,
+    "tags": [
+      "wrap",
+      "fish"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-lasagnes-bol",
+    "name": "Lasagnes à la Bolognaise",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 144,
+    "protein": 8,
+    "carbs": 12,
+    "fat": 7,
+    "tags": [
+      "beef",
+      "pasta",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-ratatouille",
+    "name": "Ratatouille Cuisinée",
+    "brand": "Picard",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 50,
+    "protein": 1,
+    "carbs": 4,
+    "fat": 3,
+    "tags": [
+      "vegan",
+      "vegetables",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-hacao-shrimp",
+    "name": "Hacao (Shrimp Dumplings)",
+    "brand": "Picard",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 156,
+    "protein": 9,
+    "carbs": 21,
+    "fat": 3,
+    "tags": [
+      "fish",
+      "snack",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-moelleux-choc",
+    "name": "Moelleux au Chocolat",
+    "brand": "Picard",
+    "type": [
+      "dessert"
+    ],
+    "calories": 450,
+    "protein": 6,
+    "carbs": 40,
+    "fat": 30,
+    "tags": [
+      "dessert",
+      "sweet",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-canelloni-ricotta",
+    "name": "Cannelloni Ricotta Épinards",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 135,
+    "protein": 6,
+    "carbs": 12,
+    "fat": 7,
+    "tags": [
+      "vegetarian",
+      "pasta",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-skyr-fruits",
+    "name": "Mélange de Légumes Vapeur",
+    "brand": "Picard",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 48,
+    "protein": 4,
+    "carbs": 6,
+    "fat": 1,
+    "tags": [
+      "vegan",
+      "healthy",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-poulet-basquaise",
+    "name": "Poulet à la Basquaise",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 95,
+    "protein": 12,
+    "carbs": 2,
+    "fat": 4,
+    "tags": [
+      "chicken",
+      "healthy",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-saumon-riz",
+    "name": "Saumon Atlantique & Riz",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 165,
+    "protein": 10,
+    "carbs": 15,
+    "fat": 7,
+    "tags": [
+      "fish",
+      "healthy",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-parmentier-boeuf",
+    "name": "Hachis Parmentier",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 110,
+    "protein": 7,
+    "carbs": 11,
+    "fat": 4,
+    "tags": [
+      "beef",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-quiche-lorraine",
+    "name": "Quiche Lorraine",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 285,
+    "protein": 11,
+    "carbs": 18,
+    "fat": 19,
+    "tags": [
+      "pork",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-couscous-royal",
+    "name": "Couscous Royal",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 125,
+    "protein": 8,
+    "carbs": 14,
+    "fat": 4,
+    "tags": [
+      "beef",
+      "chicken",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-paella",
+    "name": "Paella Royale",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 115,
+    "protein": 7,
+    "carbs": 15,
+    "fat": 3,
+    "tags": [
+      "fish",
+      "chicken",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-brandade-morue",
+    "name": "Brandade de Morue",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 105,
+    "protein": 6,
+    "carbs": 9,
+    "fat": 5,
+    "tags": [
+      "fish",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-boeuf-bourguignon",
+    "name": "Boeuf Bourguignon",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 110,
+    "protein": 11,
+    "carbs": 3,
+    "fat": 6,
+    "tags": [
+      "beef",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-gratin-dauphinois",
+    "name": "Gratin Dauphinois",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "snack"
+    ],
+    "calories": 135,
+    "protein": 3,
+    "carbs": 14,
+    "fat": 7,
+    "tags": [
+      "vegetarian",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-wok-poulet",
+    "name": "Wok de Poulet & Curry",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 95,
+    "protein": 10,
+    "carbs": 8,
+    "fat": 2,
+    "tags": [
+      "chicken",
+      "healthy",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-risotto-champ",
+    "name": "Risotto aux Champignons",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 120,
+    "protein": 3,
+    "carbs": 18,
+    "fat": 4,
+    "tags": [
+      "vegetarian",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-moussakas",
+    "name": "Moussaka à l'Agneau",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 130,
+    "protein": 6,
+    "carbs": 9,
+    "fat": 8,
+    "tags": [
+      "lamb",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-tajine-poulet",
+    "name": "Tajine de Poulet Citron",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 115,
+    "protein": 9,
+    "carbs": 11,
+    "fat": 3,
+    "tags": [
+      "chicken",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-pennes-pesto",
+    "name": "Pennes au Pesto",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 185,
+    "protein": 5,
+    "carbs": 24,
+    "fat": 7,
+    "tags": [
+      "vegetarian",
+      "pasta",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-gnocchi-poeler",
+    "name": "Gnocchis à Poêler",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "snack"
+    ],
+    "calories": 175,
+    "protein": 4,
+    "carbs": 32,
+    "fat": 3,
+    "tags": [
+      "vegetarian",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-veloute-potiron",
+    "name": "Velouté de Potiron",
+    "brand": "Picard",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 45,
+    "protein": 1,
+    "carbs": 7,
+    "fat": 1,
+    "tags": [
+      "vegan",
+      "soup",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-soupe-oignon",
+    "name": "Soupe à l'Oignon",
+    "brand": "Picard",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 55,
+    "protein": 2,
+    "carbs": 8,
+    "fat": 2,
+    "tags": [
+      "vegetarian",
+      "soup",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-crepes-fromage",
+    "name": "Galettes de Sarrasin Jambon Fromage",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "snack"
+    ],
+    "calories": 185,
+    "protein": 8,
+    "carbs": 20,
+    "fat": 8,
+    "tags": [
+      "pork",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-saumon-oseille",
+    "name": "Saumon Sauce Oseille",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 155,
+    "protein": 13,
+    "carbs": 2,
+    "fat": 10,
+    "tags": [
+      "fish",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-petit-sale-lentilles",
+    "name": "Petit Salé aux Lentilles",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 120,
+    "protein": 9,
+    "carbs": 12,
+    "fat": 4,
+    "tags": [
+      "pork",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-blanquette-veau",
+    "name": "Blanquette de Veau",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 130,
+    "protein": 11,
+    "carbs": 5,
+    "fat": 7,
+    "tags": [
+      "beef",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-boulettes-boeuf",
+    "name": "Boulettes de Boeuf & Tomate",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 145,
+    "protein": 12,
+    "carbs": 6,
+    "fat": 8,
+    "tags": [
+      "beef",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-filet-poulet-roti",
+    "name": "Filets de Poulet Rôtis",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 120,
+    "protein": 24,
+    "carbs": 1,
+    "fat": 2,
+    "tags": [
+      "chicken",
+      "healthy",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "fr-pic-chili-con-carne",
+    "name": "Chili Con Carne",
+    "brand": "Picard",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 135,
+    "protein": 9,
+    "carbs": 15,
+    "fat": 4,
+    "tags": [
+      "beef",
+      "frozen"
+    ],
+    "country": "France"
+  },
+  {
+    "id": "amorino-1773252504918-1",
+    "name": "Amorino item 1",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 471,
+    "protein": 4,
+    "carbs": 51,
+    "fat": 21,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773252504918-2",
+    "name": "Amorino item 2",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 411,
+    "protein": 4,
+    "carbs": 55,
+    "fat": 19,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773252504918-3",
+    "name": "Amorino item 3",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 260,
+    "protein": 7,
+    "carbs": 45,
+    "fat": 18,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773252504918-4",
+    "name": "Amorino item 4",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 440,
+    "protein": 5,
+    "carbs": 45,
+    "fat": 10,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773252504918-5",
+    "name": "Amorino item 5",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 417,
+    "protein": 7,
+    "carbs": 60,
+    "fat": 6,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773252504918-6",
+    "name": "Amorino item 6",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 327,
+    "protein": 5,
+    "carbs": 52,
+    "fat": 22,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773252504918-7",
+    "name": "Amorino item 7",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 421,
+    "protein": 4,
+    "carbs": 53,
+    "fat": 17,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773252504918-8",
+    "name": "Amorino item 8",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 540,
+    "protein": 0,
+    "carbs": 35,
+    "fat": 11,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773252504918-9",
+    "name": "Amorino item 9",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 446,
+    "protein": 6,
+    "carbs": 28,
+    "fat": 10,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773252504918-10",
+    "name": "Amorino item 10",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 283,
+    "protein": 5,
+    "carbs": 45,
+    "fat": 19,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773252504918-11",
+    "name": "Amorino item 11",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 422,
+    "protein": 0,
+    "carbs": 36,
+    "fat": 14,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773252504918-12",
+    "name": "Amorino item 12",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 263,
+    "protein": 0,
+    "carbs": 30,
+    "fat": 12,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773252504918-13",
+    "name": "Amorino item 13",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 289,
+    "protein": 6,
+    "carbs": 63,
+    "fat": 10,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773252504918-14",
+    "name": "Amorino item 14",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 352,
+    "protein": 3,
+    "carbs": 61,
+    "fat": 20,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773252504918-15",
+    "name": "Amorino item 15",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 483,
+    "protein": 1,
+    "carbs": 28,
+    "fat": 13,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  }
 ];

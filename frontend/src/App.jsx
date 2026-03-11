@@ -384,7 +384,7 @@ function App() {
             </motion.div>
           )}
 
-          {activeTab === 'explore' && <ExplorePage />}
+          {activeTab === 'explore' && <ExplorePage setActiveTab={setActiveTab} />}
 
           {activeTab === 'news' && <NewsPage />}
 

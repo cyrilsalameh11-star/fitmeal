@@ -364,27 +364,31 @@ const parser = new RSSParser();
 app.get('/api/news', async (req, res) => {
   // Define high-relevance fallbacks / Featured articles first
   const fallbacks = [
-    {
-      title: "Spinneys Lebanon Expands Loyalty Program with Personalized Rewards",
-      link: "https://www.spinneyslebanon.com",
-      pubDate: new Date().toISOString(),
-      contentSnippet: "Leading retailer Spinneys introduces new tier-based benefits for blue, gold and platinum members in Beirut.",
-      id: "fb-1"
-    },
-    {
-      title: "Malak Al Taouk Opens New Healthy-Focus Outlet in Jounieh",
-      link: "https://www.malakaltaouk.com",
-      pubDate: new Date(Date.now() - 86400000).toISOString(),
-      contentSnippet: "The popular tawouk chain is expanding its 'Light' menu options across all Lebanon branches.",
-      id: "fb-2"
-    },
-    {
-      title: "Lebanese Retail Sector Shows Resilience in Q1 2026",
-      link: "https://www.businessnews.com.lb",
-      pubDate: new Date(Date.now() - 172800000).toISOString(),
-      contentSnippet: "Major supermarkets like Carrefour and Le Charcutier report steady footfall despite economic shifts.",
-      id: "fb-3"
-    }
+    { title: "Spinneys Lebanon Expands Loyalty Program with Personalized Rewards", link: "https://www.spinneyslebanon.com/news", pubDate: new Date().toISOString(), contentSnippet: "Leading retailer Spinneys introduces new tier-based benefits for blue, gold and platinum members in Beirut.", id: "fb-1" },
+    { title: "Malak Al Taouk Opens New Healthy-Focus Outlet in Jounieh", link: "https://www.malakaltaouk.com/news", pubDate: new Date(Date.now() - 86400000).toISOString(), contentSnippet: "The popular tawouk chain is expanding its 'Light' menu options across all Lebanon branches.", id: "fb-2" },
+    { title: "Lebanese Retail Sector Shows Resilience in Q1 2026", link: "https://www.businessnews.com.lb/cms/Story/StoryDetails/12301", pubDate: new Date(Date.now() - 172800000).toISOString(), contentSnippet: "Major supermarkets like Carrefour and Le Charcutier report steady footfall despite economic shifts.", id: "fb-3" },
+    { title: "Roadster Diner Launches New Vegan Menu Across All Branches", link: "https://www.roadsterdiner.com/news", pubDate: new Date(Date.now() - 259200000).toISOString(), contentSnippet: "The beloved Lebanese diner introduces an entirely plant-based menu featuring burgers and salads.", id: "fb-4" },
+    { title: "Carrefour Lebanon Partners with Local Farmers for Fresh Produce", link: "https://www.carrefourlebanon.com/news", pubDate: new Date(Date.now() - 345600000).toISOString(), contentSnippet: "Carrefour aims to source 70% of its fresh produce from local Lebanese farmers by the end of the year.", id: "fb-5" },
+    { title: "Crepaway Unveils Revamped Mobile App for Easier Ordering", link: "https://www.crepaway.com/news", pubDate: new Date(Date.now() - 432000000).toISOString(), contentSnippet: "The new app features a loyalty program, easier customization, and direct delivery tracking.", id: "fb-6" },
+    { title: "Zaatar w Zeit Expands to Dubai with Three New Locations", link: "https://www.zaatarwzeit.net/news", pubDate: new Date(Date.now() - 518400000).toISOString(), contentSnippet: "The Lebanese urban eatery continues its regional expansion with massive openings in the UAE.", id: "fb-7" },
+    { title: "Le Charcutier Aoun Introduces Self-Checkout Counters", link: "https://www.businessnews.com.lb/cms/Story/StoryDetails/12302", pubDate: new Date(Date.now() - 604800000).toISOString(), contentSnippet: "Modernizing the shopping experience, Le Charcutier rolls out self-checkout in its flagship stores.", id: "fb-8" },
+    { title: "Dip n Dip Reports Record Dessert Sales During Holiday Season", link: "https://www.dipndip.com/news", pubDate: new Date(Date.now() - 691200000).toISOString(), contentSnippet: "The chocolate cafe chain saw a 30% increase in sales of its signature chocolate items.", id: "fb-9" },
+    { title: "FMCG Prices Stabilize in Lebanon After Months of Volatility", link: "https://www.lorientlejour.com/category/Economie", pubDate: new Date(Date.now() - 777600000).toISOString(), contentSnippet: "Supermarket chains adapt to new pricing models, bringing relief to the Lebanese consumer.", id: "fb-10" },
+    { title: "Barbar to Open 24/7 Drive-Thru in Jal El Dib", link: "https://barbarlebanon.com", pubDate: new Date(Date.now() - 864000000).toISOString(), contentSnippet: "The iconic street food brand is launching a new drive-thru concept for its famous sandwiches.", id: "fb-11" },
+    { title: "Pinkberry Lebanon Introduces Sugar-Free Frozen Yogurt", link: "https://www.pinkberry.com/international/lebanon", pubDate: new Date(Date.now() - 950400000).toISOString(), contentSnippet: "Catering to health-conscious consumers, Pinkberry launches a new line of guilt-free desserts.", id: "fb-12" },
+    { title: "Lebanese Startups Disrupting Food Delivery Logistics", link: "https://www.executive-magazine.com/business", pubDate: new Date(Date.now() - 1036800000).toISOString(), contentSnippet: "New delivery apps are partnering with local restaurants to bypass high commission fees.", id: "fb-13" },
+    { title: "Abdallah Chocolates Opens Luxurious Boutique in Downtown Beirut", link: "https://www.facebook.com/AbdallahChocolatesLebanon", pubDate: new Date(Date.now() - 1123200000).toISOString(), contentSnippet: "The premium chocolate brand expands its footprint with a new high-end retail experience.", id: "fb-14" },
+    { title: "McDonald's Lebanon Digitizes All Menu Boards", link: "https://www.mcdonalds.com/lb/en-lb.html", pubDate: new Date(Date.now() - 1209600000).toISOString(), contentSnippet: "In a push for modernization, all Lebanese branches now feature dynamic digital menus.", id: "fb-15" },
+    { title: "Supermarket Loyalty Cards: Who Offers the Best Value?", link: "https://www.businessnews.com.lb/cms", pubDate: new Date(Date.now() - 1296000000).toISOString(), contentSnippet: "We compare the reward points of Spinneys, Carrefour, and Charcutier in the current market.", id: "fb-16" },
+    { title: "KFC Lebanon Sources 100% Local Chicken", link: "https://www.kfc.me/en/lebanon", pubDate: new Date(Date.now() - 1382400000).toISOString(), contentSnippet: "Following global sustainability goals, KFC shifts entirely to Lebanese poultry farms.", id: "fb-17" },
+    { title: "The Rise of Ghost Kitchens in Beirut's Food Scene", link: "https://www.executive-magazine.com/food", pubDate: new Date(Date.now() - 1468800000).toISOString(), contentSnippet: "How delivery-only restaurant concepts are saving the F&B industry in Lebanon.", id: "fb-18" },
+    { title: "Spinneys Launches Eco-Friendly Packaging Initiative", link: "https://www.spinneyslebanon.com/sustainability", pubDate: new Date(Date.now() - 1555200000).toISOString(), contentSnippet: "Reducing plastic waste across all branches with biodegradable bags and containers.", id: "fb-19" },
+    { title: "Burger King Lebanon Unveils the Plant-Based Whopper", link: "https://www.burgerking.com.lb", pubDate: new Date(Date.now() - 1641600000).toISOString(), contentSnippet: "The fast-food giant brings its famous vegetarian burger to the Lebanese market.", id: "fb-20" },
+    { title: "Retail Tech: AI Inventory Management in Lebanese Supermarkets", link: "https://www.businessnews.com.lb", pubDate: new Date(Date.now() - 1728000000).toISOString(), contentSnippet: "Carrefour leads the way in automated stock checking to prevent empty shelves.", id: "fb-21" },
+    { title: "Zaatar w Zeit Introduces Gluten-Free Dough Options", link: "https://www.zaatarwzeit.net", pubDate: new Date(Date.now() - 1814400000).toISOString(), contentSnippet: "Responding to dietary needs, ZWZ now offers gluten-free manakeesh and wraps.", id: "fb-22" },
+    { title: "Lebanese Food Exports See 15% Growth in UAE", link: "https://www.lorientlejour.com/category/Economie", pubDate: new Date(Date.now() - 1900800000).toISOString(), contentSnippet: "Local FMCG products are gaining massive popularity in Dubai and Abu Dhabi supermarkets.", id: "fb-23" },
+    { title: "Malak Al Taouk Integrates Crypto Payments via Local Processor", link: "https://www.malakaltaouk.com", pubDate: new Date(Date.now() - 1987200000).toISOString(), contentSnippet: "Tech-savvy customers can now buy their favorite tawouk using stablecoins.", id: "fb-24" },
+    { title: "The Future of FMCG: Hyper-Personalized Shopping in Lebanon", link: "https://www.executive-magazine.com", pubDate: new Date(Date.now() - 2073600000).toISOString(), contentSnippet: "How data analytics is reshaping what products appear on supermarket shelves in Beirut.", id: "fb-25" }
   ];
 
   try {

@@ -3,6 +3,8 @@ export const COUNTRIES = [
   { id: 'Spain', flag: '🇪🇸', label: 'Spain' },
   { id: 'Lebanon', flag: '🇱🇧', label: 'Lebanon' },
   { id: 'USA', flag: '🇺🇸', label: 'USA' },
+  { id: 'UAE', flag: '🇦🇪', label: 'Dubai (UAE)' },
+  { id: 'Saudi Arabia', flag: '🇸🇦', label: 'Saudi Arabia' },
 ];
 
 export const BRANDS = {
@@ -19,7 +21,8 @@ export const BRANDS = {
     { name: "Auchan", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=auchan.fr&sz=64" },
     { name: "Carrefour", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=carrefour.fr&sz=64" },
     { name: "Monoprix", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=monoprix.fr&sz=64" },
-    { name: "Picard", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=picard.fr&sz=64" }
+    { name: "Picard", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=picard.fr&sz=64" },
+    { name: "Amorino", category: "Dessert", logo: "https://www.google.com/s2/favicons?domain=amorino.com&sz=64" }
   ],
   Spain: [
     { name: "100 Montaditos", category: "Fast Food", logo: null },
@@ -46,7 +49,8 @@ export const BRANDS = {
     { name: "Charcutier", category: "Supermarket", logo: null },
     { name: "Carrefour Lebanon", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=carrefourlebanon.com&sz=64" },
     { name: "Roadster Diner", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=roadsterdiner.com&sz=64" },
-    { name: "Crepaway", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=crepaway.com&sz=64" }
+    { name: "Crepaway", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=crepaway.com&sz=64" },
+    { name: "Abdallah", category: "Dessert", logo: null }
   ],
   USA: [
     { name: "Cava", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=cava.com&sz=64" },
@@ -63,5 +67,21 @@ export const BRANDS = {
     { name: "Whole Foods", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=wholefoodsmarket.com&sz=64" },
     { name: "Trader Joe's", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=traderjoes.com&sz=64" },
     { name: "Walmart", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=walmart.com&sz=64" }
+  ],
+  UAE: [
+    { name: "Spinneys Dubai", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=spinneys.com&sz=64" },
+    { name: "Carrefour UAE", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=carrefouruae.com&sz=64" },
+    { name: "Choithrams", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=choithrams.com&sz=64" },
+    { name: "Al Farooj", category: "Fast Food", logo: null },
+    { name: "McDonald's UAE", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=mcdonalds.com&sz=64" },
+    { name: "KFC UAE", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=kfc.me&sz=64" }
+  ],
+  "Saudi Arabia": [
+    { name: "Panda", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=panda.com.sa&sz=64" },
+    { name: "Tamimi Markets", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=tamimimarkets.com&sz=64" },
+    { name: "Al Raya", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=alraya.com.sa&sz=64" },
+    { name: "Al Baik", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=albaik.com&sz=64" },
+    { name: "Calo", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=calo.app&sz=64" },
+    { name: "Kudu", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=kudu.com.sa&sz=64" }
   ]
 };
