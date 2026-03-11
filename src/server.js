@@ -391,12 +391,14 @@ app.get('/api/news', async (req, res) => {
       }
     }
     
-    const bannedWords = ['war', 'israel', 'strike', 'missile', 'hezbollah', 'politics', 'government', 'parliament', 'injured', 'killed', 'conflict', 'evacuate', 'mourn', 'gulf', 'iran', 'crisis', 'airstrike', 'military', 'army', 'death', 'casualty', 'bomb', 'drone', 'attack', 'protest', 'gaza', 'palestine', 'assassination', 'politician'];
+    const bannedWords = ['war', 'israel', 'strike', 'missile', 'hezbollah', 'politics', 'government', 'parliament', 'injured', 'killed', 'conflict', 'evacuate', 'mourn', 'gulf', 'iran', 'crisis', 'airstrike', 'military', 'army', 'death', 'casualty', 'bomb', 'drone', 'attack', 'protest', 'gaza', 'palestine', 'assassination', 'politician', 'county', 'pennsylvania', 'ohio', 'indiana', 'tennessee', 'oregon', 'new hampshire', 'kentucky', 'usa', 'pa', 'mo', 'va', 'nh'];
     const goodWords = ['food', 'restaurant', 'supermarket', 'market', 'fmcg', 'spinneys', 'carrefour', 'menu', 'chef', 'cuisine', 'dining', 'diet', 'grocery', 'retail', 'brand', 'eat', 'nourriture', 'supermarché', 'economie', 'business', 'startup', 'delivery', 'coffee', 'cafe', 'grey mckenzie', 'iraq'];
 
     let formattedItems = allItems.filter(item => {
       const text = (item.title + ' ' + (item.contentSnippet || item.content || '')).toLowerCase();
-      if(bannedWords.some(bw => text.includes(bw))) return false;
+      // Use regex word boundaries so 'usa' doesnt match 'thousand', 'pa' doesnt match 'party'
+      const hasBanned = bannedWords.some(bw => new RegExp(`\\b${bw}\\b`, 'i').test(text));
+      if(hasBanned) return false;
       const hasGood = goodWords.some(gw => text.includes(gw));
       const mentionsLebanon = text.includes('lebanon') || text.includes('liban') || text.includes('beirut') || text.includes('beyrouth') || text.includes('spinneys') || text.includes('grey mckenzie');
       return hasGood && mentionsLebanon;
