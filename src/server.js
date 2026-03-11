@@ -362,207 +362,70 @@ const parser = new RSSParser();
 
 // FMCG News Endpoint (RSS Proxy)
 app.get('/api/news', async (req, res) => {
-  const fallbacks = [
-  {
-    "title": "À Gemmayzé, une patronne mise sur la table avant la fête",
-    "link": "https://www.lorientlejour.com/cuisine-liban-a-table/1496265/a-gemmayze-patronne-mise-sur-la-table-avant-la-fete.html",
-    "pubDate": "2026-03-11T18:46:38.284Z",
-    "contentSnippet": "Dans le quartier bouillonnant de Gemmayzé, l'entrepreneuriat culinaire féminin rayonne.",
-    "id": "fb-0"
-  },
-  {
-    "title": "Malgré la crise, l’industrie agroalimentaire libanaise exporte et innove",
-    "link": "https://www.lorientlejour.com/article/1359754/malgre-la-crise-lindustrie-agroalimentaire-libanaise-exporte-et-innove.html",
-    "pubDate": "2023-11-20T00:00:00.000Z",
-    "contentSnippet": "Face aux défis économiques, les producteurs locaux multiplient les efforts.",
-    "id": "fb-1"
-  },
-  {
-    "title": "Banks in Gulf Evacuate Their Offices",
-    "link": "https://www.nytimes.com/2026/03/11/world/middleeast/citi-standard-chartered-evacuation.html",
-    "pubDate": "2026-03-11T18:28:45.000Z",
-    "contentSnippet": "After an overnight attack on a bank, Iranian officials signaled a new willingness to target economic centers and banks with ties to the United States....",
-    "id": "fb-2"
-  },
-  {
-    "title": "Lebanese residents are left in shock and fear as Israeli strikes reach the center of Beirut.",
-    "link": "https://www.nytimes.com/live/2026/03/11/world/iran-war-news-trump-oil-israel/lebanese-residents-left-in-shock-and-fear-as-israeli-strikes-reach-center-of-beirut",
-    "pubDate": "2026-03-11T18:10:38.000Z",
-    "contentSnippet": "Lebanese residents share their fears.",
-    "id": "fb-3"
-  },
-  {
-    "title": "Iran Soccer Players Seeking Asylum Are Part of a History of Athlete Defections",
-    "link": "https://www.nytimes.com/2026/03/11/sports/iran-women-soccer-defect.html",
-    "pubDate": "2026-03-11T17:49:53.000Z",
-    "contentSnippet": "Members of the Iranian soccer team who chose to remain in Australia this week are far from the first to travel to a competition and stay there....",
-    "id": "fb-4"
-  },
-  {
-    "title": "Iran holds a public mourning ceremony for commanders killed by strikes.",
-    "link": "https://www.nytimes.com/live/2026/03/11/world/iran-war-news-trump-oil-israel/iran-holds-public-mourning-ceremony-for-commanders",
-    "pubDate": "2026-03-11T17:14:02.000Z",
-    "contentSnippet": "Thousands of people mourned in a state-sanctioned ceremony, as people in Tehran described deepening anxiety and fear as the war continued....",
-    "id": "fb-5"
-  },
-  {
-    "title": "Iran’s Retaliatory Strikes Appear to Be Slowing",
-    "link": "https://www.nytimes.com/2026/03/11/world/middleeast/iran-weapons-missiles-israel-gulf.html",
-    "pubDate": "2026-03-11T16:10:53.000Z",
-    "contentSnippet": "U.S. officials say the country’s weapons have been diminished, slowing its attacks on Gulf nations and Israel. Iran may also be holding some weapons i...",
-    "id": "fb-6"
-  },
-  {
-    "title": "Israel sends an extra infantry brigade to Lebanon’s border.",
-    "link": "https://www.nytimes.com/live/2026/03/11/world/iran-war-news-trump-oil-israel/israel-sends-an-extra-infantry-battalion-to-lebanons-border",
-    "pubDate": "2026-03-11T18:35:01.000Z",
-    "contentSnippet": "Israel has reinforced its military along the Lebanese border.",
-    "id": "fb-7"
-  },
-  {
-    "title": "Iran Has Fired Widely Banned Cluster Munitions at Israel",
-    "link": "https://www.nytimes.com/2026/03/11/world/middleeast/iran-israel-cluster-munitions.html",
-    "pubDate": "2026-03-11T18:35:39.000Z",
-    "contentSnippet": "Accounts from Israeli officials and footage verified by The New York Times show that Iran has targeted Israel with the weapons. Experts say this has e...",
-    "id": "fb-8"
-  },
-  {
-    "title": "See where U.S. installations have been damaged in the war with Iran.",
-    "link": "https://www.nytimes.com/live/2026/world/us-israel-iran-attack-maps/see-where-us-installations-have-been-damaged-in-the-war-with-iran",
-    "pubDate": "2026-03-11T14:49:49.000Z",
-    "contentSnippet": "Maps show where U.S. targets were struck in the recent conflict.",
-    "id": "fb-9"
-  },
-  {
-    "title": "U.S. at Fault in Strike on School in Iran, Preliminary Inquiry Says",
-    "link": "https://www.nytimes.com/2026/03/11/us/politics/iran-school-missile-strike.html",
-    "pubDate": "2026-03-11T17:26:44.000Z",
-    "contentSnippet": "Outdated targeting data may have resulted in a mistaken missile strike, according to the ongoing military investigation, which undercuts President Tru...",
-    "id": "fb-10"
-  },
-  {
-    "title": "Trump’s Actions in Iran and Venezuela Show Limits of U.S. Sanctions",
-    "link": "https://www.nytimes.com/2026/03/11/us/politics/trump-sanctions-iran-venezuela.html",
-    "pubDate": "2026-03-11T14:20:04.000Z",
-    "contentSnippet": "America’s vast economic powers are able to wear down an adversary’s economy but are insufficient to topple leaders on their own....",
-    "id": "fb-11"
-  },
-  {
-    "title": "At Least 3 Ships Are Struck Around Strait of Hormuz, and Iran Claims One",
-    "link": "https://www.nytimes.com/2026/03/11/world/middleeast/ships-attack-strait-hormuz-iran.html",
-    "pubDate": "2026-03-11T17:03:49.000Z",
-    "contentSnippet": "Three vessels were hit in and around the Persian Gulf on Wednesday, according to a British maritime agency. Iran claimed responsibility for one....",
-    "id": "fb-12"
-  },
-  {
-    "title": "World Leaders Will Release 400 Million Barrels of Oil to Stabilize Prices",
-    "link": "https://www.nytimes.com/2026/03/11/business/energy-environment/iran-oil-reserves-release.html",
-    "pubDate": "2026-03-11T18:39:54.000Z",
-    "contentSnippet": "The members of the International Energy Agency will release 400 million barrels of oil, the largest such coordinated action on record....",
-    "id": "fb-13"
-  },
-  {
-    "title": "UK Bans Al Quds Protest March That Critics Say Supports Iranian Regime",
-    "link": "https://www.nytimes.com/2026/03/11/world/middleeast/uk-iran-al-quds-march-ban.html",
-    "pubDate": "2026-03-11T10:59:25.000Z",
-    "contentSnippet": "Britain’s government invoked rarely-used powers to ban a pro-Palestinian protest march scheduled for Sunday....",
-    "id": "fb-14"
-  },
-  {
-    "title": "Democrats Demand Accountability from Hegseth on Iranian School Strike",
-    "link": "https://www.nytimes.com/2026/03/11/world/middleeast/democrats-hegseth-minab-school-strike.html",
-    "pubDate": "2026-03-11T13:20:21.000Z",
-    "contentSnippet": "A majority of Senate Democrats called on Secretary of Defense Pete Hegseth to disclose whether the U.S. carried out the deadly attack....",
-    "id": "fb-15"
-  },
-  {
-    "title": "World Heritage Sites Hit in Airstrikes on Iran",
-    "link": "https://www.nytimes.com/2026/03/11/world/middleeast/iran-heritage-sites-damaged.html",
-    "pubDate": "2026-03-11T18:32:36.000Z",
-    "contentSnippet": "Revered cultural icons that have withstood the upheavals of history are being hit hard in the war being waged by Israel and the United States....",
-    "id": "fb-16"
-  },
-  {
-    "title": "Tehran’s Smothering Smoke Has Roots in ‘Mazut,’ an Unusually Dirty Fuel",
-    "link": "https://www.nytimes.com/2026/03/11/climate/tehran-air-pollution-mazut-oil.html",
-    "pubDate": "2026-03-11T15:41:06.000Z",
-    "contentSnippet": "The low-grade oil has been used to fuel power plants amid Iran’s international isolation. Tanks of mazut may now be burning near the city....",
-    "id": "fb-17"
-  },
-  {
-    "title": "Here’s the latest from the Middle East.",
-    "link": "https://www.nytimes.com/live/2026/03/11/world/iran-war-news-trump-oil-israel/heres-the-latest",
-    "pubDate": "2026-03-11T18:34:21.000Z",
-    "contentSnippet": "Live updates from reporters on the ground.",
-    "id": "fb-18"
-  },
-  {
-    "title": "This is what happened on March 10.",
-    "link": "https://www.nytimes.com/live/2026/world/us-israel-iran-attack-maps/this-is-what-happened-on-march-10",
-    "pubDate": "2026-03-11T04:25:07.000Z",
-    "contentSnippet": "Briefing of recent events.",
-    "id": "fb-19"
-  },
-  {
-    "title": "Iran’s New Supreme Leader Was Wounded Early in the War",
-    "link": "https://www.nytimes.com/2026/03/11/world/middleeast/khamenei-iran-leader-injured.html",
-    "pubDate": "2026-03-11T06:19:01.000Z",
-    "contentSnippet": "Officials say Mojtaba Khamenei’s legs were hurt, but the circumstances as well as the extent of his injuries were unclear. He has remained out of view...",
-    "id": "fb-20"
-  },
-  {
-    "title": "How Trump and His Advisers Miscalculated Iran’s Response",
-    "link": "https://www.nytimes.com/2026/03/10/us/politics/how-trump-miscalculated-iran-response.html",
-    "pubDate": "2026-03-11T03:15:17.000Z",
-    "contentSnippet": "In the lead-up to the U.S.-Israeli attack, President Trump downplayed the risks to the energy markets as a short-term concern that should not overshad...",
-    "id": "fb-21"
-  },
-  {
-    "title": "Missiles, Drones and Airstrikes Pound Middle East",
-    "link": "https://www.nytimes.com/2026/03/10/world/middleeast/iran-war-israel-middle-east-strikes.html",
-    "pubDate": "2026-03-11T01:13:35.000Z",
-    "contentSnippet": "The effects of the war are being felt through the Persian Gulf....",
-    "id": "fb-22"
-  },
-  {
-    "title": "Here’s What Happened in the War in the Middle East on Tuesday",
-    "link": "https://www.nytimes.com/2026/03/10/world/middleeast/iran-war-us-israel-lebanon-recap.html",
-    "pubDate": "2026-03-11T00:00:07.000Z",
-    "contentSnippet": "Trump administration officials cast the president as the sole arbiter on the U.S. war effort. International aid groups were warning of a growing human...",
-    "id": "fb-23"
-  },
-  {
-    "title": "U.S. Forces Attack Iranian Mine-Laying Ships Near the Strait of Hormuz",
-    "link": "https://www.nytimes.com/2026/03/10/world/middleeast/iran-mines-strait-of-hormuz.html",
-    "pubDate": "2026-03-11T01:33:06.000Z",
-    "contentSnippet": "A video posted by the U.S. Central Command showed munitions striking nine vessels, most of which were moored at the time. Whether any mines have been ...",
-    "id": "fb-24"
-  }
-];
-
+  // Load our high-quality clean fallback data first
+  const fs = require('fs');
+  const path = require('path');
+  let fallbackItems = [];
   try {
-    const feed = await parser.parseURL('https://www.businessnews.com.lb/rss.aspx');
-    
-    // Filter articles for FMCG keywords
-    const keywords = [
-      'supermarket', 'retail', 'restaurant', 'food', 'store', 'fmcg', 
-      'lebanon', 'beirut', 'spinneys', 'carrefour', 'charcutier', 
-      'roadster', 'crepaway', 'bartartine', 'taouk', 'zwz', 'zaatar', 
-      'dip n dip', 'pinkberry', 'abdallah', 'mcdonald'
+    const fallbacksPath = path.join(__dirname, '..', 'strict_news.json');
+    const fallbacksStr = fs.readFileSync(fallbacksPath, 'utf8');
+    fallbackItems = JSON.parse(fallbacksStr).slice(0, 25).map((x, i) => ({...x, id: `fb-${i}`}));
+  } catch(e) {
+    console.error("Could not load strict_news fallback", e);
+  }
+  
+  try {
+    const feeds = [
+      'https://news.google.com/rss/search?q=Lebanon+(restaurant+OR+supermarket+OR+food+OR+FMCG+OR+Spinneys+OR+Carrefour)&hl=en-US&gl=US&ceid=US:en',
+      'https://news.google.com/rss/search?q=Liban+(restaurant+OR+supermarch%C3%A9+OR+alimentation+OR+Spinneys+OR+Carrefour)&hl=fr&gl=FR&ceid=FR:fr'
     ];
     
-    let filteredItems = feed.items.filter(item => {
-      const content = (item.title + ' ' + (item.contentSnippet || '')).toLowerCase();
-      return keywords.some(keyword => content.includes(keyword));
-    });
+    let allItems = [];
+    for(const url of feeds) {
+      try {
+        const feed = await parser.parseURL(url);
+        allItems.push(...feed.items);
+      } catch(e) {
+        console.error("Failed fetching a feed", e.message);
+      }
+    }
+    
+    const bannedWords = ['war', 'israel', 'strike', 'missile', 'hezbollah', 'politics', 'government', 'parliament', 'injured', 'killed', 'conflict', 'evacuate', 'mourn', 'gulf', 'iran', 'crisis', 'airstrike', 'military', 'army', 'death', 'casualty', 'bomb', 'drone', 'attack', 'protest', 'gaza', 'palestine', 'assassination', 'politician'];
+    const goodWords = ['food', 'restaurant', 'supermarket', 'market', 'fmcg', 'spinneys', 'carrefour', 'menu', 'chef', 'cuisine', 'dining', 'diet', 'grocery', 'retail', 'brand', 'eat', 'nourriture', 'supermarché', 'economie', 'business', 'startup', 'delivery', 'coffee', 'cafe'];
 
-    // Merge, sort and return
-    const finalItems = [...filteredItems, ...fallbacks].sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+    let formattedItems = allItems.filter(item => {
+      const text = (item.title + ' ' + (item.contentSnippet || item.content || '')).toLowerCase();
+      if(bannedWords.some(bw => text.includes(bw))) return false;
+      const hasGood = goodWords.some(gw => text.includes(gw));
+      const mentionsLebanon = text.includes('lebanon') || text.includes('liban') || text.includes('beirut') || text.includes('beyrouth');
+      return hasGood && mentionsLebanon;
+    }).map((item, index) => ({
+      title: item.title,
+      link: item.link,
+      pubDate: item.pubDate || new Date().toISOString(),
+      contentSnippet: (item.contentSnippet || item.content || '').replace(/<[^>]*>?/g, '').substring(0, 150) + "...",
+      id: item.guid || `news-${index}`
+    }));
+    
+    // Sort and remove duplicates by title
+    const deduplicated = [];
+    const seenTitles = new Set();
+    for(let it of formattedItems) {
+        const norm = it.title.toLowerCase();
+        if(!seenTitles.has(norm)) {
+            seenTitles.add(norm);
+            deduplicated.push(it);
+        }
+    }
+    
+    deduplicated.sort((a,b) => new Date(b.pubDate) - new Date(a.pubDate));
+    
+    // Fallback if the dynamic search somehow fails to yield enough fresh data
+    const finalItems = deduplicated.length >= 10 ? deduplicated.slice(0, 25) : fallbackItems;
     res.json(finalItems);
   } catch (error) {
-    console.error('Error fetching RSS, returning fallbacks:', error);
-    // Return at least the fallbacks if the live feed fails
-    res.json(fallbacks);
+    console.error('Error fetching RSS:', error);
+    res.json(fallbackItems);
   }
 });
 
