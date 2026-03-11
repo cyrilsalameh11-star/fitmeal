@@ -71,7 +71,17 @@ app.get('/api/map/pins', async (req, res) => {
     }
     const { data, error } = await query;
     if (error) throw error;
-    res.json({ pins: data || [] });
+    
+    // Parse out the emoji from user_color if it was packed to bypass schema limitations
+    const parsedPins = (data || []).map(p => {
+      if (p.user_color && p.user_color.includes('|')) {
+        const parts = p.user_color.split('|');
+        return { ...p, user_color: parts[0], emoji: parts[1] };
+      }
+      return p;
+    });
+    
+    res.json({ pins: parsedPins });
   } catch (err) {
     console.error('Error fetching map pins:', err.message);
     res.status(500).json({ error: 'Failed to fetch pins' });
@@ -88,12 +98,23 @@ app.post('/api/map/pins', async (req, res) => {
       return res.status(400).json({ error: 'Missing required pin data' });
     }
 
+    // Pack emoji into user_color to avoid needing a SQL ALTER migration just for this feature
+    const packedColor = emoji ? `${user_color}|${emoji}` : user_color;
+
     const { data, error } = await supabase.from('map_pins').insert([{
-      city, lat, lng, restaurant_name, comment: comment || '', user_initials, user_color, emoji: emoji || null
+      city, lat, lng, restaurant_name, comment: comment || '', user_initials, user_color: packedColor
     }]).select();
     
     if (error) throw error;
-    res.json({ success: true, pin: data[0] });
+    
+    const newPin = data[0];
+    if (newPin.user_color && newPin.user_color.includes('|')) {
+        const parts = newPin.user_color.split('|');
+        newPin.user_color = parts[0];
+        newPin.emoji = parts[1];
+    }
+    
+    res.json({ success: true, pin: newPin });
   } catch (err) {
     console.error('Error saving map pin:', err.message);
     res.status(500).json({ error: 'Failed to save pin' });
