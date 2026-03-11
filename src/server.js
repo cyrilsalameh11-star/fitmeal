@@ -356,16 +356,9 @@ app.delete('/api/admin/users/reset', requireAdminSession, async (req, res) => {
 });
 
 
-// Fallback to index.html for SPA
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
 const axios = require('axios');
 const RSSParser = require('rss-parser');
 const parser = new RSSParser();
-
-// ... (existing code)
 
 // FMCG News Endpoint (RSS Proxy)
 app.get('/api/news', async (req, res) => {
@@ -418,6 +411,11 @@ app.get('/api/news', async (req, res) => {
     // Return at least the fallbacks if the live feed fails
     res.json(fallbacks);
   }
+});
+
+// Fallback to index.html for SPA
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {
