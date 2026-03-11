@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Award, ShoppingBag, CheckCircle2, ChevronRight, Zap, Target, Star, Gift } from 'lucide-react';
+import { Award, ShoppingBag, CheckCircle2, ChevronRight, Zap, Target, Star, Gift, ShoppingCart } from 'lucide-react';
 
 const COMPARISON_DATA = [
   {
