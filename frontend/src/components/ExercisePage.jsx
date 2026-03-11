@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Target, Activity, Zap, Play, CheckCircle2 } from 'lucide-react';
+import { Target, Activity, Zap, Play, CheckCircle2, Navigation, ExternalLink, MapPin, ArrowRight } from 'lucide-react';
 
 const MUSCLE_GROUPS = [
   { id: 'chest', label: 'Chest' },
@@ -324,7 +324,7 @@ function ExerciseCard({ exercise, index }) {
   );
 }
 
-export default function GymPage() {
+function GymContent() {
   const [activeGroup, setActiveGroup] = useState('chest');
   const exercises = GYM_EXERCISES[activeGroup] || [];
 
@@ -382,5 +382,151 @@ export default function GymPage() {
         </motion.div>
       </AnimatePresence>
     </motion.div>
+  );
+}
+
+function PadelContent() {
+  return (
+    <motion.div
+      key="padel"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      className="space-y-12"
+    >
+      <div className="max-w-3xl">
+        <p className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-3 flex items-center">
+          <Activity size={14} className="mr-2" /> Court Booking
+        </p>
+        <h1 className="text-4xl md:text-5xl lg:text-6xl mb-4 leading-tight">Lebanon Padel <br /><span className="italic font-normal text-stone-400">Community.</span></h1>
+        <p className="text-base md:text-lg text-stone-500 font-medium">Book your courts instantly through Sportciety, the premier padel booking platform in Lebanon.</p>
+      </div>
+
+      <div className="bg-white rounded-3xl p-8 md:p-12 border border-stone-100 shadow-sm flex flex-col md:flex-row items-center gap-8 justify-between">
+        <div className="space-y-6 max-w-lg">
+          <h2 className="text-3xl font-serif">Ready to play?</h2>
+          <p className="text-stone-500 text-lg">Browse available courts, join matches, and manage your bookings directly through the official Sportciety app.</p>
+          <ul className="space-y-3">
+            <li className="flex items-center text-stone-600 font-medium"><CheckCircle2 className="text-emerald-500 mr-3 w-5 h-5 flex-shrink-0" /> Real-time court availability</li>
+            <li className="flex items-center text-stone-600 font-medium"><CheckCircle2 className="text-emerald-500 mr-3 w-5 h-5 flex-shrink-0" /> Join active matches nearby</li>
+            <li className="flex items-center text-stone-600 font-medium"><CheckCircle2 className="text-emerald-500 mr-3 w-5 h-5 flex-shrink-0" /> Rent equipment on the go</li>
+          </ul>
+        </div>
+        
+        <a 
+          href="https://sportciety.com/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="bg-stone-900 text-white px-8 py-5 rounded-2xl font-bold uppercase tracking-widest hover:bg-amber-600 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center shrink-0 w-full md:w-auto justify-center"
+        >
+          Open Sportciety <ExternalLink className="ml-3 w-5 h-5" />
+        </a>
+      </div>
+    </motion.div>
+  );
+}
+
+function PilatesContent() {
+  return (
+    <motion.div
+      key="pilates"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      className="space-y-12"
+    >
+      <div className="max-w-3xl">
+        <p className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-3 flex items-center">
+          <Target size={14} className="mr-2" /> Reformer & Mat
+        </p>
+        <h1 className="text-4xl md:text-5xl lg:text-6xl mb-4 leading-tight">Premium Pilates <br /><span className="italic font-normal text-stone-400">Studios.</span></h1>
+        <p className="text-base md:text-lg text-stone-500 font-medium">Connect your mind and body at Lebanon's top rated pilates studios. Book easily using the standard IN2 app.</p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white rounded-3xl p-8 border border-stone-100 shadow-sm hover:shadow-lg transition-all group flex flex-col justify-between min-h-[300px]">
+          <div>
+            <div className="flex justify-between items-start mb-6">
+              <span className="bg-stone-100 text-stone-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Studios</span>
+              <MapPin className="text-stone-300 w-6 h-6" />
+            </div>
+            <h2 className="text-2xl font-serif mb-3 group-hover:text-amber-600 transition-colors">IN2 Connect</h2>
+            <p className="text-stone-500">Access classes at Exhale, Body Garage, and dozens of other premier studios across the country.</p>
+          </div>
+          <a 
+            href="https://in2.io/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="mt-8 text-sm font-bold uppercase tracking-widest flex items-center text-stone-900 group-hover:text-amber-600"
+          >
+            Go to IN2 Portal <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-2" />
+          </a>
+        </div>
+
+        <div className="bg-stone-900 text-white rounded-3xl p-8 border border-stone-800 shadow-sm hover:shadow-lg transition-all group flex flex-col justify-between min-h-[300px]">
+          <div>
+            <div className="flex justify-between items-start mb-6">
+              <span className="bg-stone-800 text-stone-300 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Featured</span>
+              <Zap className="text-amber-500 w-6 h-6" />
+            </div>
+            <h2 className="text-2xl font-serif mb-3 group-hover:text-amber-400 transition-colors">Posto Nove</h2>
+            <p className="text-stone-400">A specialized luxury studio experience. Check their official site to book their proprietary classes.</p>
+          </div>
+          <a 
+            href="https://www.postonove.com/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="mt-8 text-sm font-bold uppercase tracking-widest flex items-center text-white group-hover:text-amber-400"
+          >
+            Visit Posto Nove <ExternalLink className="ml-2 w-4 h-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+          </a>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+const EXERCISE_TABS = [
+  { id: 'gym', label: 'Gym' },
+  { id: 'padel', label: 'Padel' },
+  { id: 'pilates', label: 'Pilates' }
+];
+
+export default function ExercisePage() {
+  const [activeTab, setActiveTab] = useState('gym');
+
+  return (
+    <div className="space-y-10 lg:space-y-14">
+      {/* Top Level Exercise Navigation */}
+      <div className="relative">
+        <div className="flex border-b border-stone-200 justify-start w-full gap-8 overflow-x-auto scrollbar-hide">
+          {EXERCISE_TABS.map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`pb-4 text-sm font-bold uppercase tracking-widest whitespace-nowrap transition-all duration-300 relative ${
+                activeTab === tab.id 
+                  ? 'text-stone-900' 
+                  : 'text-stone-400 hover:text-stone-600'
+              }`}
+            >
+              {tab.label}
+              {activeTab === tab.id && (
+                <motion.div 
+                  layoutId="exerciseTabIndicator"
+                  className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-stone-900 z-10"
+                />
+              )}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <AnimatePresence mode="wait">
+        {activeTab === 'gym' && <GymContent key="gym-content" />}
+        {activeTab === 'padel' && <PadelContent key="padel-content" />}
+        {activeTab === 'pilates' && <PilatesContent key="pilates-content" />}
+      </AnimatePresence>
+    </div>
   );
 }

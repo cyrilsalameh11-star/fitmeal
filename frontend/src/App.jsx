@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import MealForm from './components/MealForm';
 import MealCard from './components/MealCard';
 import ExplorePage from './components/ExplorePage';
-import GymPage from './components/GymPage';
+import ExercisePage from './components/ExercisePage';
 import MapPage from './components/MapPage';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, X, Menu, Phone, Mail, Instagram, Twitter, User, ArrowRight, Users, Dumbbell, Map as MapIcon } from 'lucide-react';
@@ -234,15 +234,15 @@ function App() {
           <div className="hidden md:flex space-x-10 text-sm font-bold uppercase tracking-widest text-stone-500">
             <button onClick={() => { setActiveTab('explore'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'explore' ? 'text-stone-900' : ''}`}>Explore</button>
             <button onClick={() => { setActiveTab('planner'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'planner' ? 'text-stone-900' : ''}`}>Planner</button>
-            <button onClick={() => { setActiveTab('gym'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'gym' ? 'text-stone-900' : ''}`}><Dumbbell size={16} className="mr-1.5" />Gym</button>
+            <button onClick={() => { setActiveTab('exercise'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'exercise' ? 'text-stone-900' : ''}`}><Dumbbell size={16} className="mr-1.5" />Exercise</button>
             <button onClick={() => { setActiveTab('map'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'map' ? 'text-stone-900' : ''}`}><MapIcon size={16} className="mr-1.5" />Map</button>
             <button onClick={() => { setActiveTab('contact'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'contact' ? 'text-stone-900' : ''}`}>Contact</button>
           </div>
 
-          <div className="flex items-center space-x-4">
-            <div className="hidden sm:flex items-center space-x-2 bg-stone-100 px-4 py-1.5 rounded-full border border-stone-200">
-              <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-              <span className="text-[10px] font-bold uppercase tracking-widest text-stone-500">{userCount} users</span>
+          <div className="flex items-center space-x-2 sm:space-x-4">
+            <div className="flex items-center space-x-1 sm:space-x-2 bg-stone-100 px-2 sm:px-4 py-1.5 rounded-full border border-stone-200">
+              <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse flex-shrink-0" />
+              <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-stone-500 whitespace-nowrap">{userCount} users</span>
             </div>
             <button className="md:hidden p-2 text-stone-500" onClick={() => setShowMobileMenu(m => !m)}>
               {showMobileMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -259,7 +259,7 @@ function App() {
               exit={{ opacity: 0, y: -10 }}
               className="md:hidden bg-white border-t border-stone-100 px-6 py-4 space-y-3"
             >
-              {[['explore', 'Explore'], ['planner', 'Planner'], ['gym', 'Gym'], ['map', 'Map'], ['contact', 'Contact']].map(([tab, label]) => (
+              {[['explore', 'Explore'], ['planner', 'Planner'], ['exercise', 'Exercise'], ['map', 'Map'], ['contact', 'Contact']].map(([tab, label]) => (
                 <button
                   key={tab}
                   onClick={() => { setActiveTab(tab); setShowMobileMenu(false); }}
@@ -276,8 +276,8 @@ function App() {
 
       <main className="max-w-7xl mx-auto px-6 py-12 lg:py-20">
         <AnimatePresence mode="wait">
-          {activeTab === 'gym' && (
-            <GymPage />
+          {activeTab === 'exercise' && (
+            <ExercisePage />
           )}
 
           {activeTab === 'planner' && (
