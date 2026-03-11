@@ -100,6 +100,19 @@ app.post('/api/map/pins', async (req, res) => {
   }
 });
 
+app.delete('/api/map/pins/:id', async (req, res) => {
+  if (!supabase) return res.status(503).json({ error: 'Cloud database not connected' });
+  try {
+    const { id } = req.params;
+    const { error } = await supabase.from('map_pins').delete().eq('id', id);
+    if (error) throw error;
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Error deleting map pin:', err.message);
+    res.status(500).json({ error: 'Failed to delete pin' });
+  }
+});
+
 // ── Cloud Persistence (Supabase) ──────────────────────────────────────────
 require('dotenv').config();
 const { createClient } = require('@supabase/supabase-js');

@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaf
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet/dist/leaflet.css';
-import { MapPin, Navigation, MessageCircle, Search, Loader2 } from 'lucide-react';
+import { MapPin, Navigation, MessageCircle, Search, Loader2, Trash2 } from 'lucide-react';
 import { useMap } from 'react-leaflet';
 
 const cities = {
@@ -140,6 +140,18 @@ const MapPage = () => {
     setComment('');
     setSelectedEmoji(null);
     setShowPinModal(true);
+  };
+
+  const deletePin = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this pin?")) return;
+    try {
+      const resp = await fetch(`/api/map/pins/${id}`, { method: 'DELETE' });
+      if (resp.ok) {
+        setPins(prev => prev.filter(p => p.id !== id));
+      }
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const submitPin = async (e) => {
@@ -338,6 +350,11 @@ const MapPage = () => {
                     <span className="font-medium bg-stone-100 px-2 py-0.5 rounded-full" style={{ color: pin.user_color }}>
                       Added by {pin.user_initials}
                     </span>
+                    {getInitials(userName) === pin.user_initials && (
+                      <button onClick={(e) => { e.stopPropagation(); deletePin(pin.id); }} className="text-red-400 hover:text-red-600 transition-colors" title="Delete your pin">
+                        <Trash2 size={14} />
+                      </button>
+                    )}
                   </div>
                 </div>
               </Popup>
