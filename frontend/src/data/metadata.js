@@ -44,7 +44,9 @@ export const BRANDS = {
     { name: "Pinkberry", category: "Dessert", logo: "https://www.google.com/s2/favicons?domain=pinkberry.com&sz=64" },
     { name: "Spinneys", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=spinneys-lebanon.com&sz=64" },
     { name: "Charcutier", category: "Supermarket", logo: null },
-    { name: "Carrefour Lebanon", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=carrefourlebanon.com&sz=64" }
+    { name: "Carrefour Lebanon", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=carrefourlebanon.com&sz=64" },
+    { name: "Roadster Diner", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=roadsterdiner.com&sz=64" },
+    { name: "Crepaway", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=crepaway.com&sz=64" }
   ],
   USA: [
     { name: "Cava", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=cava.com&sz=64" },

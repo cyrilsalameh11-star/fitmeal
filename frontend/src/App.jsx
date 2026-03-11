@@ -260,9 +260,9 @@ function App() {
             <button onClick={() => { setActiveTab('explore'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'explore' ? 'text-stone-900' : ''}`}>Explore</button>
             <button onClick={() => { setActiveTab('exercise'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'exercise' ? 'text-stone-900' : ''}`}><Dumbbell size={16} className="mr-1.5" />Exercise</button>
             <button onClick={() => { setActiveTab('map'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'map' ? 'text-stone-900' : ''}`}><MapIcon size={16} className="mr-1.5" />Map</button>
-            <button onClick={() => { setActiveTab('contact'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'contact' ? 'text-stone-900' : ''}`}>Contact</button>
             <button onClick={() => { setActiveTab('news'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'news' ? 'text-stone-900' : ''}`}><Newspaper size={16} className="mr-1.5" />FMCG News</button>
             <button onClick={() => { setActiveTab('loyalty'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'loyalty' ? 'text-stone-900' : ''}`}><Award size={16} className="mr-1.5" />Loyalty Programs</button>
+            <button onClick={() => { setActiveTab('contact'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'contact' ? 'text-stone-900' : ''}`}>Contact Us</button>
           </div>
 
           <div className="flex items-center space-x-2 sm:space-x-4">
@@ -285,7 +285,7 @@ function App() {
               exit={{ opacity: 0, y: -10 }}
               className="md:hidden bg-white border-t border-stone-100 px-6 py-4 space-y-3"
             >
-              {[['planner', 'Planner'], ['explore', 'Explore'], ['exercise', 'Exercise'], ['map', 'Map'], ['contact', 'Contact'], ['news', 'FMCG News'], ['loyalty', 'Loyalty Programs']].map(([tab, label]) => (
+              {[['planner', 'Planner'], ['explore', 'Explore'], ['exercise', 'Exercise'], ['map', 'Map'], ['news', 'FMCG News'], ['loyalty', 'Loyalty Programs'], ['contact', 'Contact Us']].map(([tab, label]) => (
                 <button
                   key={tab}
                   onClick={() => { setActiveTab(tab); setShowMobileMenu(false); }}

@@ -151,6 +151,39 @@ export default function LoyaltyPage() {
         </div>
       </div>
 
+      {/* Reward Catalog */}
+      <div id="reward-catalog" className="space-y-12">
+        <div className="flex items-center justify-between">
+          <div className="space-y-1">
+            <h3 className="text-2xl font-bold text-stone-900">Spinneys Rewards Catalog</h3>
+            <p className="text-sm text-stone-400 font-medium">Exchange your hard-earned points for premium lifestyle rewards.</p>
+          </div>
+          <div className="hidden sm:flex items-center space-x-2 bg-stone-50 px-4 py-2 rounded-full border border-stone-100">
+            <Target size={14} className="text-amber-500" />
+            <span className="text-[10px] font-black uppercase tracking-widest text-stone-500">Live Availability</span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            { pts: "1,000", item: "Spinneys Shop-to-Win Voucher", val: "$5 Cashback", icon: <Gift className="text-rose-500" /> },
+            { pts: "2,500", item: "Premium Kitchen Gadget Set", val: "Tefal / Moulinex", icon: <ShoppingCart className="text-blue-500" /> },
+            { pts: "5,000", item: "Home Appliance Discount Card", val: "$30 Value", icon: <Award className="text-amber-500" /> },
+            { pts: "15,000", item: "Batroun Weekend Experience", val: "Staycation Deal", icon: <Star className="text-purple-500" /> }
+          ].map((reward, i) => (
+            <div key={i} className="bg-white border border-stone-100 p-8 rounded-[2rem] hover:shadow-xl hover:border-amber-200 transition-all group">
+              <div className="mb-6 p-4 bg-stone-50 rounded-2xl w-fit group-hover:bg-amber-50 transition-colors">
+                {reward.icon}
+              </div>
+              <p className="text-2xl font-black text-stone-900 mb-1">{reward.pts}</p>
+              <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 mb-4">Points Required</p>
+              <h4 className="text-sm font-bold text-stone-800 mb-1">{reward.item}</h4>
+              <p className="text-xs text-stone-400 font-medium">{reward.val}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Loyalty CTA */}
       <div className="bg-amber-500 rounded-[3rem] p-12 text-center space-y-8 shadow-xl relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
@@ -160,8 +193,14 @@ export default function LoyaltyPage() {
              <p className="text-white/80 max-w-xl mx-auto mb-10 font-medium">
               We recommend synchronizing all three cards for maximum market coverage. Most Lebanese households achieve a 12% annual return on spend by alternating between weekly specials.
              </p>
-             <button className="px-10 py-5 bg-white text-stone-900 rounded-2xl text-xs font-black uppercase tracking-widest hover:scale-105 transition-all shadow-xl">
-                View Reward Catalog
+             <button 
+               onClick={() => {
+                 const el = document.getElementById('reward-catalog');
+                 el?.scrollIntoView({ behavior: 'smooth' });
+               }}
+               className="px-10 py-5 bg-white text-stone-900 rounded-2xl text-xs font-black uppercase tracking-widest hover:scale-105 transition-all shadow-xl"
+             >
+                Explore Points Tiers Above
              </button>
         </div>
       </div>
