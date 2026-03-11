@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { MapPin, Navigation, MessageCircle } from 'lucide-react';
+import 'leaflet/dist/leaflet.css';
+import { MapPin, Navigation, MessageCircle, Search, Loader2 } from 'lucide-react';
+import { useMap } from 'react-leaflet';
 
 const cities = {
   Lebanon: { name: 'Beirut, Lebanon', lat: 33.8938, lng: 35.5018, zoom: 13 },
@@ -54,6 +56,17 @@ function PinInteraction({ onMapClick, selectedCity }) {
   return null;
 }
 
+// Helper to manually fly map to a specific location
+function MapFlyTo({ target }) {
+  const map = useMap();
+  useEffect(() => {
+    if (target) {
+      map.flyTo([target.lat, target.lng], 16, { animate: true, duration: 1.5 });
+    }
+  }, [target, map]);
+  return null;
+}
+
 const MapPage = () => {
   const [activeCityId, setActiveCityId] = useState('Lebanon');
   const [pins, setPins] = useState([]);
@@ -65,6 +78,15 @@ const MapPage = () => {
   const [pendingPin, setPendingPin] = useState(null);
   const [restaurantName, setRestaurantName] = useState('');
   const [comment, setComment] = useState('');
+  
+  // Search state
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchTarget, setSearchTarget] = useState(null);
+  
+  // Search timeout ref for debouncing
+  const searchTimeoutRef = React.useRef(null);
 
   // Get user details for pins
   const userName = localStorage.getItem('fitmeal_username') || 'Guest';
@@ -141,6 +163,60 @@ const MapPage = () => {
     }
   };
 
+  const handleSearchChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    
+    if (searchTimeoutRef.current) {
+      clearTimeout(searchTimeoutRef.current);
+    }
+    
+    if (!query.trim()) {
+      setSearchResults([]);
+      return;
+    }
+    
+    // Debounce search
+    searchTimeoutRef.current = setTimeout(async () => {
+      setIsSearching(true);
+      try {
+        // Build viewbox to prioritize current city bounds loosely
+        const { lat, lng } = selectedCity;
+        // Approx 0.1 degree is roughly 11km
+        const viewbox = `${lng - 0.1},${lat + 0.1},${lng + 0.1},${lat - 0.1}`;
+        
+        const resp = await fetch(
+          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&viewbox=${viewbox}&bounded=0&limit=5`
+        );
+        
+        if (resp.ok) {
+          const data = await resp.json();
+          setSearchResults(data);
+        }
+      } catch (err) {
+        console.error("Search failed", err);
+      } finally {
+        setIsSearching(false);
+      }
+    }, 500);
+  };
+
+  const handleSelectSearchResult = (result) => {
+    const lat = parseFloat(result.lat);
+    const lng = parseFloat(result.lon);
+    
+    setSearchQuery('');
+    setSearchResults([]);
+    setSearchTarget({ lat, lng });
+    
+    // Auto-open pin modal for this location
+    setPendingPin({ lat, lng });
+    // Use the first part of the display name as the default restaurant name
+    setRestaurantName(result.display_name.split(',')[0]);
+    setComment('');
+    setShowPinModal(true);
+  };
+
   return (
     <div className="flex flex-col h-full bg-stone-50 rounded-3xl overflow-hidden border border-stone-200 shadow-sm relative" style={{ minHeight: '80vh' }}>
       
@@ -154,20 +230,59 @@ const MapPage = () => {
           <p className="text-sm text-stone-500 font-medium">Click anywhere on the map to pin your favorite spots.</p>
         </div>
         
-        <div className="flex space-x-2 bg-stone-100 p-1 rounded-xl">
-          {Object.keys(cities).map(city => (
-            <button
-              key={city}
-              onClick={() => setActiveCityId(city)}
-              className={`px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wider transition-all duration-200 ${
-                activeCityId === city 
-                  ? 'bg-amber-600 text-white shadow-md' 
-                  : 'text-stone-500 hover:text-stone-800 hover:bg-stone-200'
-              }`}
-            >
-              {city}
-            </button>
-          ))}
+        <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+          {/* Search Bar */}
+          <div className="relative w-full md:w-64">
+            <div className="relative flex items-center">
+              <Search className="absolute left-3 w-4 h-4 text-stone-400" />
+              <input
+                type="text"
+                placeholder={`Search in ${activeCityId}...`}
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className="w-full bg-stone-100 border-none rounded-xl pl-9 pr-4 py-2 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all"
+              />
+              {isSearching && (
+                <Loader2 className="absolute right-3 w-4 h-4 text-stone-400 animate-spin" />
+              )}
+            </div>
+            
+            {/* Search Results Dropdown */}
+            {searchResults.length > 0 && (
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-stone-100 overflow-hidden max-h-60 overflow-y-auto">
+                {searchResults.map((result, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleSelectSearchResult(result)}
+                    className="w-full text-left px-4 py-3 hover:bg-stone-50 border-b border-stone-50 last:border-0 transition-colors"
+                  >
+                    <p className="text-sm font-medium text-stone-800 truncate" title={result.display_name.split(',')[0]}>
+                      {result.display_name.split(',')[0]}
+                    </p>
+                    <p className="text-xs text-stone-500 truncate" title={result.display_name}>
+                      {result.display_name}
+                    </p>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="flex space-x-2 bg-stone-100 p-1 rounded-xl">
+            {Object.keys(cities).map(city => (
+              <button
+                key={city}
+                onClick={() => setActiveCityId(city)}
+                className={`px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wider transition-all duration-200 ${
+                  activeCityId === city 
+                    ? 'bg-amber-600 text-white shadow-md' 
+                    : 'text-stone-500 hover:text-stone-800 hover:bg-stone-200'
+                }`}
+              >
+                {city}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -185,6 +300,7 @@ const MapPage = () => {
             url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
           />
           <PinInteraction onMapClick={handleMapClick} selectedCity={selectedCity} />
+          <MapFlyTo target={searchTarget} />
           
           {pins.map((pin) => (
             <Marker 
