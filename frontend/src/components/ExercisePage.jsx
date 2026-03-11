@@ -415,7 +415,7 @@ function PadelContent() {
         
         <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
           <a 
-            href="https://apps.apple.com/us/search?term=sportciety" 
+            href="https://apps.apple.com/us/app/sportciety/id1552553974" 
             target="_blank" 
             rel="noopener noreferrer"
             className="bg-stone-900 text-white px-6 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-amber-600 transition-colors flex items-center justify-center text-sm shadow-sm"
@@ -423,7 +423,7 @@ function PadelContent() {
             <Smartphone className="mr-2 w-4 h-4" /> App Store
           </a>
           <a 
-            href="https://play.google.com/store/search?q=sportciety&c=apps" 
+            href="https://play.google.com/store/apps/details?id=com.sportcietyapp.sportciety" 
             target="_blank" 
             rel="noopener noreferrer"
             className="bg-stone-900 text-white px-6 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-amber-600 transition-colors flex items-center justify-center text-sm shadow-sm"
@@ -465,7 +465,7 @@ function PilatesContent() {
           </div>
           <div className="mt-8 flex flex-col gap-2">
             <a 
-              href="https://apps.apple.com/us/search?term=in2" 
+              href="https://apps.apple.com/us/app/in2/id1200222044" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-xs font-bold uppercase tracking-widest flex items-center text-stone-900 hover:text-amber-600 transition-colors"
@@ -473,7 +473,7 @@ function PilatesContent() {
               <Smartphone className="mr-2 w-4 h-4" /> App Store <ArrowRight className="ml-1 w-3 h-3 opacity-50" />
             </a>
             <a 
-              href="https://play.google.com/store/search?q=in2&c=apps" 
+              href="https://play.google.com/store/apps/details?id=com.codefish.in2" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-xs font-bold uppercase tracking-widest flex items-center text-stone-900 hover:text-amber-600 transition-colors"
@@ -494,7 +494,7 @@ function PilatesContent() {
           </div>
           <div className="mt-8 flex flex-col gap-2">
             <a 
-              href="https://apps.apple.com/us/search?term=posto+nove" 
+              href="https://apps.apple.com/us/app/posto-nove/id1450284566" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-xs font-bold uppercase tracking-widest flex items-center text-white hover:text-amber-400 transition-colors"
@@ -502,7 +502,7 @@ function PilatesContent() {
               <Smartphone className="mr-2 w-4 h-4" /> App Store <ExternalLink className="ml-1 w-3 h-3 opacity-50" />
             </a>
             <a 
-              href="https://play.google.com/store/search?q=posto+nove&c=apps" 
+              href="https://play.google.com/store/apps/details?id=com.glofox.postonove" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-xs font-bold uppercase tracking-widest flex items-center text-white hover:text-amber-400 transition-colors"

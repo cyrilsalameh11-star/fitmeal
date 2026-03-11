@@ -33,7 +33,10 @@
                 <h1 class="text-2xl font-800 text-stone-900">User Directory</h1>
                 <p class="text-stone-400 font-medium">Tracking <span id="user-count" class="text-stone-900 font-bold">0</span> total visitors</p>
             </div>
-            <button onclick="logout()" class="px-4 py-2 border border-stone-100 rounded-xl text-stone-400 hover:text-stone-900 hover:border-stone-200 transition-all text-sm font-bold">Logout</button>
+            <div class="flex space-x-3">
+                <button onclick="resetDatabase()" class="px-4 py-2 bg-red-50 text-red-600 border border-red-100 rounded-xl hover:bg-red-600 hover:text-white transition-all text-sm font-bold">Reset Database</button>
+                <button onclick="logout()" class="px-4 py-2 border border-stone-100 rounded-xl text-stone-400 hover:text-stone-900 hover:border-stone-200 transition-all text-sm font-bold">Logout</button>
+            </div>
         </div>
 
         <div class="bg-white border border-stone-100 rounded-3xl overflow-hidden shadow-sm">
@@ -87,6 +90,23 @@
         async function logout() {
             await fetch('/api/admin/logout', { method: 'POST' });
             location.reload();
+        }
+
+        async function resetDatabase() {
+            if (!confirm("Are you sure you want to permanently delete ALL users and visitors? This cannot be undone.")) return;
+            try {
+                const r = await fetch('/api/admin/users/reset', { method: 'DELETE' });
+                const d = await r.json();
+                if (d.success) {
+                    alert("Database has been reset. User count is now 0.");
+                    loadUsers();
+                } else {
+                    alert("Error resetting database: " + (d.error || 'Unknown error'));
+                }
+            } catch(e) {
+                console.error(e);
+                alert("Network error.");
+            }
         }
 
         function showDashboard() {

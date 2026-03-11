@@ -9,7 +9,8 @@ import { ShoppingBag, X, Menu, Phone, Mail, Instagram, Twitter, User, ArrowRight
 
 function App() {
   const [user, setUser] = useState(() => localStorage.getItem('fitmeal_username') || null);
-  const [userName, setUserName] = useState(() => localStorage.getItem('fitmeal_username') || '');
+  const [userName, setUserName] = useState(() => localStorage.getItem('fitmeal_firstname') || '');
+  const [userLastName, setUserLastName] = useState(() => localStorage.getItem('fitmeal_lastname') || '');
   const [userEmail, setUserEmail] = useState(() => localStorage.getItem('fitmeal_email') || '');
   const [userCount, setUserCount] = useState(0);
   const [meals, setMeals] = useState([]);
@@ -56,18 +57,23 @@ function App() {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (userName.trim().length < 2) return;
+    if (userLastName.trim().length < 2) return;
     if (!userEmail.trim().includes('@')) return;
 
+    const fullName = `${userName.trim()} ${userLastName.trim()}`;
+
     // Instantly log the user in locally (fixes Safari/mobile block if API fails)
-    localStorage.setItem('fitmeal_username', userName.trim());
+    localStorage.setItem('fitmeal_username', fullName);
+    localStorage.setItem('fitmeal_firstname', userName.trim());
+    localStorage.setItem('fitmeal_lastname', userLastName.trim());
     localStorage.setItem('fitmeal_email', userEmail.trim());
-    setUser(userName.trim());
+    setUser(fullName);
 
     try {
       const resp = await fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: userName.trim(), email: userEmail.trim() })
+        body: JSON.stringify({ name: fullName, email: userEmail.trim() })
       });
 
       if (resp.ok) {
@@ -173,16 +179,29 @@ function App() {
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
-            <div className="text-left space-y-2">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 ml-4">First name</label>
-              <input
-                type="text"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-                placeholder="e.g. Cyril"
-                className="w-full bg-white border border-stone-200 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-serif text-lg text-stone-800 shadow-sm"
-                required
-              />
+            <div className="flex space-x-4">
+              <div className="text-left space-y-2 flex-1">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 ml-4">First name</label>
+                <input
+                  type="text"
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
+                  placeholder="e.g. Cyril"
+                  className="w-full bg-white border border-stone-200 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-serif text-lg text-stone-800 shadow-sm"
+                  required
+                />
+              </div>
+              <div className="text-left space-y-2 flex-1">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 ml-4">Last name</label>
+                <input
+                  type="text"
+                  value={userLastName}
+                  onChange={(e) => setUserLastName(e.target.value)}
+                  placeholder="e.g. Salameh"
+                  className="w-full bg-white border border-stone-200 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-serif text-lg text-stone-800 shadow-sm"
+                  required
+                />
+              </div>
             </div>
             <div className="text-left space-y-2">
               <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 ml-4">Email address</label>

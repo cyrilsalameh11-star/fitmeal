@@ -322,13 +322,37 @@ app.post('/api/admin/verify-reset', (req, res) => {
   return res.json({ success: true });
 });
 
-// GET /api/admin/users — PROTECTED
 app.get('/api/admin/users', requireAdminSession, async (req, res) => {
   try {
     const users = await getUserList();
     res.json({ users }); // each user: {name, last_login}
   } catch (err) {
     res.status(500).json({ error: 'Failed to access editor database.' });
+  }
+});
+
+// DELETE /api/admin/users/reset — PROTECTED
+app.delete('/api/admin/users/reset', requireAdminSession, async (req, res) => {
+  try {
+    if (supabase) {
+      // Supabase has no easy 'DELETE *' via JS without a match filter,
+      // so we use an inequality to match all rows where id is not null.
+      const { error } = await supabase.from('users').delete().neq('name', 'impossibledummyname_xyz123');
+      if (error) {
+         console.error('Supabase Reset Error:', error);
+         return res.status(500).json({ error: error.message });
+      }
+    }
+    
+    // Always clear the local file to stay perfectly synced
+    if (fs.existsSync(statsPath)) {
+      fs.writeFileSync(statsPath, JSON.stringify({ users: [] }, null, 2));
+    }
+    
+    res.json({ success: true, message: 'Database reset globally.' });
+  } catch (err) {
+    console.error('Failed to reset users database:', err.message);
+    res.status(500).json({ error: 'Failed to reset users.' });
   }
 });
 
