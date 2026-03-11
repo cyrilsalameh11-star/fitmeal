@@ -59,6 +59,47 @@ app.use(express.static(path.join(__dirname, 'public')));
 // API routes
 app.use('/api', mealsRouter);
 
+// ── Map Pins ────────────────────────────────────────────────────────────────
+app.get('/api/map/pins', async (req, res) => {
+  const city = req.query.city;
+  if (!supabase) return res.json({ pins: [] });
+  
+  try {
+    let query = supabase.from('map_pins').select('*').order('created_at', { ascending: false });
+    if (city) {
+      query = query.eq('city', city);
+    }
+    const { data, error } = await query;
+    if (error) throw error;
+    res.json({ pins: data || [] });
+  } catch (err) {
+    console.error('Error fetching map pins:', err.message);
+    res.status(500).json({ error: 'Failed to fetch pins' });
+  }
+});
+
+app.post('/api/map/pins', async (req, res) => {
+  if (!supabase) return res.status(503).json({ error: 'Cloud database not connected' });
+  
+  try {
+    const { city, lat, lng, restaurant_name, comment, user_initials, user_color } = req.body;
+    
+    if (!city || !lat || !lng || !restaurant_name || !user_initials || !user_color) {
+      return res.status(400).json({ error: 'Missing required pin data' });
+    }
+
+    const { data, error } = await supabase.from('map_pins').insert([{
+      city, lat, lng, restaurant_name, comment: comment || '', user_initials, user_color
+    }]).select();
+    
+    if (error) throw error;
+    res.json({ success: true, pin: data[0] });
+  } catch (err) {
+    console.error('Error saving map pin:', err.message);
+    res.status(500).json({ error: 'Failed to save pin' });
+  }
+});
+
 // ── Cloud Persistence (Supabase) ──────────────────────────────────────────
 require('dotenv').config();
 const { createClient } = require('@supabase/supabase-js');
