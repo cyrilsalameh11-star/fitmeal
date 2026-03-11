@@ -82,14 +82,14 @@ app.post('/api/map/pins', async (req, res) => {
   if (!supabase) return res.status(503).json({ error: 'Cloud database not connected' });
   
   try {
-    const { city, lat, lng, restaurant_name, comment, user_initials, user_color } = req.body;
+    const { city, lat, lng, restaurant_name, comment, user_initials, user_color, emoji } = req.body;
     
     if (!city || !lat || !lng || !restaurant_name || !user_initials || !user_color) {
       return res.status(400).json({ error: 'Missing required pin data' });
     }
 
     const { data, error } = await supabase.from('map_pins').insert([{
-      city, lat, lng, restaurant_name, comment: comment || '', user_initials, user_color
+      city, lat, lng, restaurant_name, comment: comment || '', user_initials, user_color, emoji: emoji || null
     }]).select();
     
     if (error) throw error;
@@ -123,7 +123,7 @@ if (supabaseUrl && supabaseKey) {
       };
       const axios = require('axios');
       await axios.post(`${supabaseUrl}/rest/v1/rpc/exec_sql`,
-        { sql: 'ALTER TABLE users ADD COLUMN IF NOT EXISTS last_login timestamptz DEFAULT now(); ALTER TABLE users ADD COLUMN IF NOT EXISTS email text;' },
+        { sql: 'ALTER TABLE users ADD COLUMN IF NOT EXISTS last_login timestamptz DEFAULT now(); ALTER TABLE users ADD COLUMN IF NOT EXISTS email text; ALTER TABLE map_pins ADD COLUMN IF NOT EXISTS emoji text;' },
         { headers }
       ).catch(() => { }); // silently ignore if rpc not available
     } catch (e) { /* ignore */ }

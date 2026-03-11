@@ -14,27 +14,29 @@ const cities = {
 };
 
 // Create a custom div icon for the marker with initials and color
-const createCustomIcon = (initials, color) => {
+const createCustomIcon = (initials, color, emoji) => {
+  const content = emoji || initials;
+  const fontSize = emoji ? '20px' : '14px';
   const markerHtmlStyles = `
     background-color: ${color};
-    width: 2rem;
-    height: 2rem;
+    width: 2.2rem;
+    height: 2.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     color: white;
     font-weight: bold;
-    font-size: 14px;
+    font-size: ${fontSize};
     border: 2px solid white;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
   `;
 
   return L.divIcon({
     className: 'custom-pin',
-    iconAnchor: [16, 32], // Point from center bottom
-    popupAnchor: [0, -32],
-    html: `<div style="${markerHtmlStyles}">${initials}</div>`
+    iconAnchor: [17, 35], // Point from center bottom
+    popupAnchor: [0, -35],
+    html: `<div style="${markerHtmlStyles}">${content}</div>`
   });
 };
 
@@ -67,6 +69,8 @@ function MapFlyTo({ target }) {
   return null;
 }
 
+const EMOJI_OPTIONS = ['🍔', '🍕', '🍣', '🥗', '☕', '🍦', '🥑', '🥩', '🍺', '🥐', '🌶️', '🍪'];
+
 const MapPage = () => {
   const [activeCityId, setActiveCityId] = useState('Lebanon');
   const [pins, setPins] = useState([]);
@@ -78,6 +82,7 @@ const MapPage = () => {
   const [pendingPin, setPendingPin] = useState(null);
   const [restaurantName, setRestaurantName] = useState('');
   const [comment, setComment] = useState('');
+  const [selectedEmoji, setSelectedEmoji] = useState(null);
   
   // Search state
   const [searchQuery, setSearchQuery] = useState('');
@@ -133,6 +138,7 @@ const MapPage = () => {
     setPendingPin(latlng);
     setRestaurantName('');
     setComment('');
+    setSelectedEmoji(null);
     setShowPinModal(true);
   };
 
@@ -148,7 +154,8 @@ const MapPage = () => {
         restaurant_name: restaurantName,
         comment: comment,
         user_initials: getInitials(userName),
-        user_color: getUserColor(userName)
+        user_color: getUserColor(userName),
+        emoji: selectedEmoji
       };
 
       const resp = await fetch('/api/map/pins', {
@@ -220,6 +227,7 @@ const MapPage = () => {
     // Use the first part of the display name as the default restaurant name
     setRestaurantName(result.display_name.split(',')[0]);
     setComment('');
+    setSelectedEmoji(null);
     setShowPinModal(true);
   };
 
@@ -312,11 +320,14 @@ const MapPage = () => {
             <Marker 
               key={pin.id || (pin.lat + '-' + pin.lng)} 
               position={[pin.lat, pin.lng]}
-              icon={createCustomIcon(pin.user_initials, pin.user_color)}
+              icon={createCustomIcon(pin.user_initials, pin.user_color, pin.emoji)}
             >
               <Popup className="custom-popup">
                 <div className="p-1 min-w-[150px]">
-                  <h4 className="font-bold text-stone-900 border-b border-stone-100 pb-2 mb-2">{pin.restaurant_name}</h4>
+                  <h4 className="font-bold text-stone-900 border-b border-stone-100 pb-2 mb-2 flex items-center justify-between">
+                    <span>{pin.restaurant_name}</span>
+                    {pin.emoji && <span className="text-lg ml-2">{pin.emoji}</span>}
+                  </h4>
                   {pin.comment && (
                     <p className="text-stone-600 text-sm italic mb-3 flex items-start">
                       <MessageCircle size={14} className="mr-1.5 mt-0.5 opacity-50 flex-shrink-0" />
@@ -348,7 +359,7 @@ const MapPage = () => {
         <div className="absolute inset-x-0 bottom-4 z-20 mx-auto px-4 w-full max-w-md pointer-events-none">
           <div className="bg-white rounded-2xl shadow-2xl p-6 border border-stone-100 pointer-events-auto">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-serif">Pin a Restaurant</h3>
+              <h3 className="text-lg font-serif">Pin a Spot</h3>
               <button 
                 onClick={() => { setShowPinModal(false); setPendingPin(null); }}
                 className="text-stone-400 hover:text-stone-700"
@@ -361,7 +372,7 @@ const MapPage = () => {
               <div>
                 <input
                   type="text"
-                  placeholder="Restaurant Name"
+                  placeholder="Restaurant or Spot Name"
                   required
                   autoFocus
                   value={restaurantName}
@@ -369,6 +380,30 @@ const MapPage = () => {
                   className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium text-stone-800"
                 />
               </div>
+              
+              <div>
+                <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2">Category Emoji (Optional)</label>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedEmoji(null)}
+                    className={`h-10 px-3 rounded-lg border flex items-center justify-center transition-all ${selectedEmoji === null ? 'bg-amber-100 border-amber-300 text-amber-800 font-medium' : 'bg-stone-50 border-stone-200 hover:bg-stone-100 text-stone-500'}`}
+                  >
+                    None
+                  </button>
+                  {EMOJI_OPTIONS.map(emoji => (
+                    <button
+                      key={emoji}
+                      type="button"
+                      onClick={() => setSelectedEmoji(emoji)}
+                      className={`w-10 h-10 rounded-lg border text-lg flex items-center justify-center transition-all ${selectedEmoji === emoji ? 'bg-amber-100 border-amber-300 shadow-sm scale-110' : 'bg-stone-50 border-stone-200 hover:bg-stone-100'}`}
+                    >
+                      {emoji}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <div>
                 <textarea
                   placeholder="Why do you love it here? (Optional)"
@@ -378,9 +413,10 @@ const MapPage = () => {
                   className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-amber-200 outline-none transition-all text-sm text-stone-800 resize-none"
                 />
               </div>
+              
               <button 
                 type="submit"
-                className="w-full bg-stone-900 hover:bg-stone-800 text-white font-bold py-3 rounded-xl transition-colors shadow-lg flex items-center justify-center"
+                className="w-full bg-stone-900 hover:bg-stone-800 text-white font-bold py-3 rounded-xl transition-colors shadow-lg flex items-center justify-center mt-2"
               >
                 <MapPin size={18} className="mr-2" />
                 Save Pin as {getInitials(userName)}
