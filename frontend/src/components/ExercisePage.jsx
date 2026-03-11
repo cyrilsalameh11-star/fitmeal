@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Target, Activity, Zap, Play, CheckCircle2, Navigation, ExternalLink, MapPin, ArrowRight } from 'lucide-react';
+import { Target, Activity, Zap, Play, CheckCircle2, Navigation, ExternalLink, MapPin, ArrowRight, Smartphone } from 'lucide-react';
 
 const MUSCLE_GROUPS = [
   { id: 'chest', label: 'Chest' },
@@ -413,14 +413,24 @@ function PadelContent() {
           </ul>
         </div>
         
-        <a 
-          href="https://sportciety.com/" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="bg-stone-900 text-white px-8 py-5 rounded-2xl font-bold uppercase tracking-widest hover:bg-amber-600 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center shrink-0 w-full md:w-auto justify-center"
-        >
-          Open Sportciety <ExternalLink className="ml-3 w-5 h-5" />
-        </a>
+        <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
+          <a 
+            href="https://apps.apple.com/us/search?term=sportciety" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="bg-stone-900 text-white px-6 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-amber-600 transition-colors flex items-center justify-center text-sm shadow-sm"
+          >
+            <Smartphone className="mr-2 w-4 h-4" /> App Store
+          </a>
+          <a 
+            href="https://play.google.com/store/search?q=sportciety&c=apps" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="bg-stone-900 text-white px-6 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-amber-600 transition-colors flex items-center justify-center text-sm shadow-sm"
+          >
+            <Smartphone className="mr-2 w-4 h-4" /> Google Play
+          </a>
+        </div>
       </div>
     </motion.div>
   );
@@ -453,14 +463,24 @@ function PilatesContent() {
             <h2 className="text-2xl font-serif mb-3 group-hover:text-amber-600 transition-colors">IN2 Connect</h2>
             <p className="text-stone-500">Access classes at Exhale, Body Garage, and dozens of other premier studios across the country.</p>
           </div>
-          <a 
-            href="https://in2.io/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="mt-8 text-sm font-bold uppercase tracking-widest flex items-center text-stone-900 group-hover:text-amber-600"
-          >
-            Go to IN2 Portal <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-2" />
-          </a>
+          <div className="mt-8 flex flex-col gap-2">
+            <a 
+              href="https://apps.apple.com/us/search?term=in2" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-xs font-bold uppercase tracking-widest flex items-center text-stone-900 hover:text-amber-600 transition-colors"
+            >
+              <Smartphone className="mr-2 w-4 h-4" /> App Store <ArrowRight className="ml-1 w-3 h-3 opacity-50" />
+            </a>
+            <a 
+              href="https://play.google.com/store/search?q=in2&c=apps" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-xs font-bold uppercase tracking-widest flex items-center text-stone-900 hover:text-amber-600 transition-colors"
+            >
+              <Smartphone className="mr-2 w-4 h-4" /> Google Play <ArrowRight className="ml-1 w-3 h-3 opacity-50" />
+            </a>
+          </div>
         </div>
 
         <div className="bg-stone-900 text-white rounded-3xl p-8 border border-stone-800 shadow-sm hover:shadow-lg transition-all group flex flex-col justify-between min-h-[300px]">
@@ -472,14 +492,24 @@ function PilatesContent() {
             <h2 className="text-2xl font-serif mb-3 group-hover:text-amber-400 transition-colors">Posto Nove</h2>
             <p className="text-stone-400">A specialized luxury studio experience. Check their official site to book their proprietary classes.</p>
           </div>
-          <a 
-            href="https://www.postonove.com/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="mt-8 text-sm font-bold uppercase tracking-widest flex items-center text-white group-hover:text-amber-400"
-          >
-            Visit Posto Nove <ExternalLink className="ml-2 w-4 h-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-          </a>
+          <div className="mt-8 flex flex-col gap-2">
+            <a 
+              href="https://apps.apple.com/us/search?term=posto+nove" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-xs font-bold uppercase tracking-widest flex items-center text-white hover:text-amber-400 transition-colors"
+            >
+              <Smartphone className="mr-2 w-4 h-4" /> App Store <ExternalLink className="ml-1 w-3 h-3 opacity-50" />
+            </a>
+            <a 
+              href="https://play.google.com/store/search?q=posto+nove&c=apps" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-xs font-bold uppercase tracking-widest flex items-center text-white hover:text-amber-400 transition-colors"
+            >
+              <Smartphone className="mr-2 w-4 h-4" /> Google Play <ExternalLink className="ml-1 w-3 h-3 opacity-50" />
+            </a>
+          </div>
         </div>
       </div>
     </motion.div>
