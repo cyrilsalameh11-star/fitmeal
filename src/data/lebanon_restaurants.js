@@ -2705,7 +2705,7 @@ module.exports = [
   },
   {
     "id": "abdallah-1773252504917-1",
-    "name": "Abdallah item 1",
+    "name": "Assorted Milk Chocolates",
     "brand": "Abdallah",
     "type": [
       "dessert",
@@ -2723,7 +2723,7 @@ module.exports = [
   },
   {
     "id": "abdallah-1773252504917-2",
-    "name": "Abdallah item 2",
+    "name": "Dark Chocolate Truffles",
     "brand": "Abdallah",
     "type": [
       "dessert",
@@ -2741,7 +2741,7 @@ module.exports = [
   },
   {
     "id": "abdallah-1773252504917-3",
-    "name": "Abdallah item 3",
+    "name": "Malban with Pistachio",
     "brand": "Abdallah",
     "type": [
       "dessert",
@@ -2759,7 +2759,7 @@ module.exports = [
   },
   {
     "id": "abdallah-1773252504917-4",
-    "name": "Abdallah item 4",
+    "name": "Nougat with Almonds",
     "brand": "Abdallah",
     "type": [
       "dessert",
@@ -2777,7 +2777,7 @@ module.exports = [
   },
   {
     "id": "abdallah-1773252504917-5",
-    "name": "Abdallah item 5",
+    "name": "Chocolate Covered Dates",
     "brand": "Abdallah",
     "type": [
       "dessert",
@@ -2795,7 +2795,7 @@ module.exports = [
   },
   {
     "id": "abdallah-1773252504917-6",
-    "name": "Abdallah item 6",
+    "name": "Marzipan Fruits",
     "brand": "Abdallah",
     "type": [
       "dessert",
@@ -2813,7 +2813,7 @@ module.exports = [
   },
   {
     "id": "abdallah-1773252504917-7",
-    "name": "Abdallah item 7",
+    "name": "Hazelnut Pralines",
     "brand": "Abdallah",
     "type": [
       "dessert",
@@ -2831,7 +2831,7 @@ module.exports = [
   },
   {
     "id": "abdallah-1773252504917-8",
-    "name": "Abdallah item 8",
+    "name": "Chocolate Caramels",
     "brand": "Abdallah",
     "type": [
       "dessert",
@@ -2849,7 +2849,7 @@ module.exports = [
   },
   {
     "id": "abdallah-1773252504917-9",
-    "name": "Abdallah item 9",
+    "name": "White Chocolate Raspberries",
     "brand": "Abdallah",
     "type": [
       "dessert",
@@ -2867,7 +2867,7 @@ module.exports = [
   },
   {
     "id": "abdallah-1773252504917-10",
-    "name": "Abdallah item 10",
+    "name": "Pistachio Croquant",
     "brand": "Abdallah",
     "type": [
       "dessert",
@@ -2885,7 +2885,7 @@ module.exports = [
   },
   {
     "id": "abdallah-1773252504917-11",
-    "name": "Abdallah item 11",
+    "name": "Almond Dragees",
     "brand": "Abdallah",
     "type": [
       "dessert",
@@ -2903,7 +2903,7 @@ module.exports = [
   },
   {
     "id": "abdallah-1773252504917-12",
-    "name": "Abdallah item 12",
+    "name": "Chocolate Wafer Rolls",
     "brand": "Abdallah",
     "type": [
       "dessert",
@@ -2921,7 +2921,7 @@ module.exports = [
   },
   {
     "id": "abdallah-1773252504917-13",
-    "name": "Abdallah item 13",
+    "name": "Coffee Beans in Chocolate",
     "brand": "Abdallah",
     "type": [
       "dessert",
@@ -2939,7 +2939,7 @@ module.exports = [
   },
   {
     "id": "abdallah-1773252504917-14",
-    "name": "Abdallah item 14",
+    "name": "Fruit Jellies (Pâtes de Fruits)",
     "brand": "Abdallah",
     "type": [
       "dessert",
@@ -2957,7 +2957,7 @@ module.exports = [
   },
   {
     "id": "abdallah-1773252504917-15",
-    "name": "Abdallah item 15",
+    "name": "Ghazal El Banat with Pistachio",
     "brand": "Abdallah",
     "type": [
       "dessert",

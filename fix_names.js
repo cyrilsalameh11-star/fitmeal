@@ -92,7 +92,7 @@ const processFile = (filePath) => {
   // Instead of full AST, let's just use eval on the array string if possible, 
   // or simple regex replacements for "name": "xyz item X"
   
-  let newContent = content.replace(/name:\s*["']([^"']+)["']/g, (match, currentName) => {
+  let newContent = content.replace(/["']?name["']?:\s*["']([^"']+)["']/g, (match, currentName) => {
     // Check if it's one of our generated names like "Panda item 1"
     const regex = /^(.+?)\s+(?:item|Specialty Item)\s+(\d+)$/i;
     const matchGenerated = currentName.match(regex);
@@ -100,7 +100,7 @@ const processFile = (filePath) => {
       const brand = matchGenerated[1];
       const index = parseInt(matchGenerated[2], 10) - 1;
       const newName = getReplacementName(brand, 'unknown', index);
-      return `name: "${newName}"`;
+      return `"name": "${newName}"`;
     }
     return match;
   });

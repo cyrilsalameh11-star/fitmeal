@@ -3754,7 +3754,7 @@ module.exports = [
   },
   {
     "id": "amorino-1773252504918-1",
-    "name": "Amorino item 1",
+    "name": "Pistachio Gelato",
     "brand": "Amorino",
     "type": [
       "dessert",
@@ -3772,7 +3772,7 @@ module.exports = [
   },
   {
     "id": "amorino-1773252504918-2",
-    "name": "Amorino item 2",
+    "name": "Amarena Cherry Gelato",
     "brand": "Amorino",
     "type": [
       "dessert",
@@ -3790,7 +3790,7 @@ module.exports = [
   },
   {
     "id": "amorino-1773252504918-3",
-    "name": "Amorino item 3",
+    "name": "Dark Chocolate Sorbet",
     "brand": "Amorino",
     "type": [
       "dessert",
@@ -3808,7 +3808,7 @@ module.exports = [
   },
   {
     "id": "amorino-1773252504918-4",
-    "name": "Amorino item 4",
+    "name": "Mango Alfonso Sorbet",
     "brand": "Amorino",
     "type": [
       "dessert",
@@ -3826,7 +3826,7 @@ module.exports = [
   },
   {
     "id": "amorino-1773252504918-5",
-    "name": "Amorino item 5",
+    "name": "Stracciatella Gelato",
     "brand": "Amorino",
     "type": [
       "dessert",
@@ -3844,7 +3844,7 @@ module.exports = [
   },
   {
     "id": "amorino-1773252504918-6",
-    "name": "Amorino item 6",
+    "name": "Hazelnut Chocolate Gelato",
     "brand": "Amorino",
     "type": [
       "dessert",
@@ -3862,7 +3862,7 @@ module.exports = [
   },
   {
     "id": "amorino-1773252504918-7",
-    "name": "Amorino item 7",
+    "name": "Vanilla Bourbon Gelato",
     "brand": "Amorino",
     "type": [
       "dessert",
@@ -3880,7 +3880,7 @@ module.exports = [
   },
   {
     "id": "amorino-1773252504918-8",
-    "name": "Amorino item 8",
+    "name": "Amorino Signature Crepe",
     "brand": "Amorino",
     "type": [
       "dessert",
@@ -3898,7 +3898,7 @@ module.exports = [
   },
   {
     "id": "amorino-1773252504918-9",
-    "name": "Amorino item 9",
+    "name": "Waffle with Nutella",
     "brand": "Amorino",
     "type": [
       "dessert",
@@ -3916,7 +3916,7 @@ module.exports = [
   },
   {
     "id": "amorino-1773252504918-10",
-    "name": "Amorino item 10",
+    "name": "Gelato Macaron (Vanilla)",
     "brand": "Amorino",
     "type": [
       "dessert",
@@ -3934,7 +3934,7 @@ module.exports = [
   },
   {
     "id": "amorino-1773252504918-11",
-    "name": "Amorino item 11",
+    "name": "Gelato Macaron (Chocolate)",
     "brand": "Amorino",
     "type": [
       "dessert",
@@ -3952,7 +3952,7 @@ module.exports = [
   },
   {
     "id": "amorino-1773252504918-12",
-    "name": "Amorino item 12",
+    "name": "Lemon Basil Sorbet",
     "brand": "Amorino",
     "type": [
       "dessert",
@@ -3970,7 +3970,7 @@ module.exports = [
   },
   {
     "id": "amorino-1773252504918-13",
-    "name": "Amorino item 13",
+    "name": "Strawberry Camarosa Sorbet",
     "brand": "Amorino",
     "type": [
       "dessert",
@@ -3988,7 +3988,7 @@ module.exports = [
   },
   {
     "id": "amorino-1773252504918-14",
-    "name": "Amorino item 14",
+    "name": "Caramel with Salted Butter Gelato",
     "brand": "Amorino",
     "type": [
       "dessert",
@@ -4006,7 +4006,7 @@ module.exports = [
   },
   {
     "id": "amorino-1773252504918-15",
-    "name": "Amorino item 15",
+    "name": "Coffee Gelato",
     "brand": "Amorino",
     "type": [
       "dessert",

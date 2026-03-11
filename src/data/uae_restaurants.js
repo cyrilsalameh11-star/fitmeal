@@ -1,7 +1,7 @@
 module.exports = [
   {
     "id": "al-farooj-1773252504926-1",
-    "name": "Al Farooj item 1",
+    "name": "Charcoal Grilled Chicken (Half)",
     "brand": "Al Farooj",
     "type": [
       "lunch",
@@ -19,7 +19,7 @@ module.exports = [
   },
   {
     "id": "al-farooj-1773252504926-2",
-    "name": "Al Farooj item 2",
+    "name": "Broasted Chicken (4 pcs)",
     "brand": "Al Farooj",
     "type": [
       "lunch",
@@ -37,7 +37,7 @@ module.exports = [
   },
   {
     "id": "al-farooj-1773252504926-3",
-    "name": "Al Farooj item 3",
+    "name": "Chicken Shawarma Wrap",
     "brand": "Al Farooj",
     "type": [
       "lunch",
@@ -55,7 +55,7 @@ module.exports = [
   },
   {
     "id": "al-farooj-1773252504926-4",
-    "name": "Al Farooj item 4",
+    "name": "Spicy Chicken Fillet Sandwich",
     "brand": "Al Farooj",
     "type": [
       "lunch",
@@ -73,7 +73,7 @@ module.exports = [
   },
   {
     "id": "al-farooj-1773252504926-5",
-    "name": "Al Farooj item 5",
+    "name": "Garlic Dip (Toum)",
     "brand": "Al Farooj",
     "type": [
       "lunch",
@@ -91,7 +91,7 @@ module.exports = [
   },
   {
     "id": "al-farooj-1773252504926-6",
-    "name": "Al Farooj item 6",
+    "name": "Fattoush Salad",
     "brand": "Al Farooj",
     "type": [
       "lunch",
@@ -109,7 +109,7 @@ module.exports = [
   },
   {
     "id": "al-farooj-1773252504926-7",
-    "name": "Al Farooj item 7",
+    "name": "Hummus with Meat",
     "brand": "Al Farooj",
     "type": [
       "lunch",
@@ -127,7 +127,7 @@ module.exports = [
   },
   {
     "id": "al-farooj-1773252504926-8",
-    "name": "Al Farooj item 8",
+    "name": "Chicken Tikka Skewers",
     "brand": "Al Farooj",
     "type": [
       "lunch",
@@ -145,7 +145,7 @@ module.exports = [
   },
   {
     "id": "al-farooj-1773252504926-9",
-    "name": "Al Farooj item 9",
+    "name": "Shish Tawook Sandwich",
     "brand": "Al Farooj",
     "type": [
       "lunch",
@@ -163,7 +163,7 @@ module.exports = [
   },
   {
     "id": "al-farooj-1773252504926-10",
-    "name": "Al Farooj item 10",
+    "name": "Mixed Grill Platter",
     "brand": "Al Farooj",
     "type": [
       "lunch",
@@ -181,7 +181,7 @@ module.exports = [
   },
   {
     "id": "al-farooj-1773252504926-11",
-    "name": "Al Farooj item 11",
+    "name": "Fries with Garlic Sauce",
     "brand": "Al Farooj",
     "type": [
       "lunch",
@@ -199,7 +199,7 @@ module.exports = [
   },
   {
     "id": "al-farooj-1773252504926-12",
-    "name": "Al Farooj item 12",
+    "name": "Crispy Chicken Salad",
     "brand": "Al Farooj",
     "type": [
       "lunch",
@@ -217,7 +217,7 @@ module.exports = [
   },
   {
     "id": "al-farooj-1773252504926-13",
-    "name": "Al Farooj item 13",
+    "name": "Cheese Rakakat",
     "brand": "Al Farooj",
     "type": [
       "lunch",
@@ -235,7 +235,7 @@ module.exports = [
   },
   {
     "id": "al-farooj-1773252504926-14",
-    "name": "Al Farooj item 14",
+    "name": "Zinger Wrap",
     "brand": "Al Farooj",
     "type": [
       "lunch",
@@ -253,7 +253,7 @@ module.exports = [
   },
   {
     "id": "al-farooj-1773252504926-15",
-    "name": "Al Farooj item 15",
+    "name": "Lentil Soup",
     "brand": "Al Farooj",
     "type": [
       "lunch",
@@ -541,7 +541,7 @@ module.exports = [
   },
   {
     "id": "kfc-uae-1773252504926-1",
-    "name": "KFC UAE item 1",
+    "name": "Zinger Burger",
     "brand": "KFC UAE",
     "type": [
       "lunch",
@@ -559,7 +559,7 @@ module.exports = [
   },
   {
     "id": "kfc-uae-1773252504926-2",
-    "name": "KFC UAE item 2",
+    "name": "Twister Wrap Spicy",
     "brand": "KFC UAE",
     "type": [
       "lunch",
@@ -577,7 +577,7 @@ module.exports = [
   },
   {
     "id": "kfc-uae-1773252504926-3",
-    "name": "KFC UAE item 3",
+    "name": "Dinner Meal (3 pcs)",
     "brand": "KFC UAE",
     "type": [
       "lunch",
@@ -595,7 +595,7 @@ module.exports = [
   },
   {
     "id": "kfc-uae-1773252504926-4",
-    "name": "KFC UAE item 4",
+    "name": "Mighty Zinger",
     "brand": "KFC UAE",
     "type": [
       "lunch",
@@ -613,7 +613,7 @@ module.exports = [
   },
   {
     "id": "kfc-uae-1773252504926-5",
-    "name": "KFC UAE item 5",
+    "name": "Super Meal",
     "brand": "KFC UAE",
     "type": [
       "lunch",
@@ -631,7 +631,7 @@ module.exports = [
   },
   {
     "id": "kfc-uae-1773252504926-6",
-    "name": "KFC UAE item 6",
+    "name": "Spicy Rizo",
     "brand": "KFC UAE",
     "type": [
       "lunch",
@@ -649,7 +649,7 @@ module.exports = [
   },
   {
     "id": "kfc-uae-1773252504926-7",
-    "name": "KFC UAE item 7",
+    "name": "Crispy Strips (5 pcs)",
     "brand": "KFC UAE",
     "type": [
       "lunch",
@@ -667,7 +667,7 @@ module.exports = [
   },
   {
     "id": "kfc-uae-1773252504926-8",
-    "name": "KFC UAE item 8",
+    "name": "Coleslaw (Large)",
     "brand": "KFC UAE",
     "type": [
       "lunch",
@@ -685,7 +685,7 @@ module.exports = [
   },
   {
     "id": "kfc-uae-1773252504926-9",
-    "name": "KFC UAE item 9",
+    "name": "Popcorn Chicken",
     "brand": "KFC UAE",
     "type": [
       "lunch",
@@ -703,7 +703,7 @@ module.exports = [
   },
   {
     "id": "kfc-uae-1773252504926-10",
-    "name": "KFC UAE item 10",
+    "name": "Zinger Shrimp Meal",
     "brand": "KFC UAE",
     "type": [
       "lunch",
@@ -721,7 +721,7 @@ module.exports = [
   },
   {
     "id": "kfc-uae-1773252504926-11",
-    "name": "KFC UAE item 11",
+    "name": "Krushers Cookies & Cream",
     "brand": "KFC UAE",
     "type": [
       "lunch",
@@ -739,7 +739,7 @@ module.exports = [
   },
   {
     "id": "kfc-uae-1773252504926-12",
-    "name": "KFC UAE item 12",
+    "name": "Cob玉米",
     "brand": "KFC UAE",
     "type": [
       "lunch",
@@ -757,7 +757,7 @@ module.exports = [
   },
   {
     "id": "kfc-uae-1773252504926-13",
-    "name": "KFC UAE item 13",
+    "name": "Garlic Mayo Dip",
     "brand": "KFC UAE",
     "type": [
       "lunch",
@@ -775,7 +775,7 @@ module.exports = [
   },
   {
     "id": "kfc-uae-1773252504926-14",
-    "name": "KFC UAE item 14",
+    "name": "Spicy Chicken Wing (4 pcs)",
     "brand": "KFC UAE",
     "type": [
       "lunch",
@@ -793,7 +793,7 @@ module.exports = [
   },
   {
     "id": "kfc-uae-1773252504926-15",
-    "name": "KFC UAE item 15",
+    "name": "Fries (Large)",
     "brand": "KFC UAE",
     "type": [
       "lunch",

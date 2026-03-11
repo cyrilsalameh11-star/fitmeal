@@ -1,7 +1,7 @@
 module.exports = [
   {
     "id": "al-baik-1773252504926-1",
-    "name": "Al Baik item 1",
+    "name": "Chicken Meal (4 pcs)",
     "brand": "Al Baik",
     "type": [
       "lunch",
@@ -19,7 +19,7 @@ module.exports = [
   },
   {
     "id": "al-baik-1773252504926-2",
-    "name": "Al Baik item 2",
+    "name": "Spicy Chicken Meal (4 pcs)",
     "brand": "Al Baik",
     "type": [
       "lunch",
@@ -37,7 +37,7 @@ module.exports = [
   },
   {
     "id": "al-baik-1773252504926-3",
-    "name": "Al Baik item 3",
+    "name": "Jumbo Shrimp Meal (10 pcs)",
     "brand": "Al Baik",
     "type": [
       "lunch",
@@ -55,7 +55,7 @@ module.exports = [
   },
   {
     "id": "al-baik-1773252504926-4",
-    "name": "Al Baik item 4",
+    "name": "Big Baik Sandwich",
     "brand": "Al Baik",
     "type": [
       "lunch",
@@ -73,7 +73,7 @@ module.exports = [
   },
   {
     "id": "al-baik-1773252504926-5",
-    "name": "Al Baik item 5",
+    "name": "Spicy Big Baik",
     "brand": "Al Baik",
     "type": [
       "lunch",
@@ -91,7 +91,7 @@ module.exports = [
   },
   {
     "id": "al-baik-1773252504926-6",
-    "name": "Al Baik item 6",
+    "name": "Chicken Fillet Burger",
     "brand": "Al Baik",
     "type": [
       "lunch",
@@ -109,7 +109,7 @@ module.exports = [
   },
   {
     "id": "al-baik-1773252504926-7",
-    "name": "Al Baik item 7",
+    "name": "Fish Fillet Meal",
     "brand": "Al Baik",
     "type": [
       "lunch",
@@ -127,7 +127,7 @@ module.exports = [
   },
   {
     "id": "al-baik-1773252504926-8",
-    "name": "Al Baik item 8",
+    "name": "Corn on the Cob",
     "brand": "Al Baik",
     "type": [
       "lunch",
@@ -145,7 +145,7 @@ module.exports = [
   },
   {
     "id": "al-baik-1773252504926-9",
-    "name": "Al Baik item 9",
+    "name": "Garlic Sauce",
     "brand": "Al Baik",
     "type": [
       "lunch",
@@ -163,7 +163,7 @@ module.exports = [
   },
   {
     "id": "al-baik-1773252504926-10",
-    "name": "Al Baik item 10",
+    "name": "Cocktail Sauce",
     "brand": "Al Baik",
     "type": [
       "lunch",
@@ -181,7 +181,7 @@ module.exports = [
   },
   {
     "id": "al-baik-1773252504926-11",
-    "name": "Al Baik item 11",
+    "name": "Baik Fries",
     "brand": "Al Baik",
     "type": [
       "lunch",
@@ -199,7 +199,7 @@ module.exports = [
   },
   {
     "id": "al-baik-1773252504926-12",
-    "name": "Al Baik item 12",
+    "name": "Spicy Chicken Nuggets (10 pcs)",
     "brand": "Al Baik",
     "type": [
       "lunch",
@@ -217,7 +217,7 @@ module.exports = [
   },
   {
     "id": "al-baik-1773252504926-13",
-    "name": "Al Baik item 13",
+    "name": "Chicken Nuggets (7 pcs)",
     "brand": "Al Baik",
     "type": [
       "lunch",
@@ -235,7 +235,7 @@ module.exports = [
   },
   {
     "id": "al-baik-1773252504926-14",
-    "name": "Al Baik item 14",
+    "name": "Fish Sandwich",
     "brand": "Al Baik",
     "type": [
       "lunch",
@@ -253,7 +253,7 @@ module.exports = [
   },
   {
     "id": "al-baik-1773252504926-15",
-    "name": "Al Baik item 15",
+    "name": "Hummus",
     "brand": "Al Baik",
     "type": [
       "lunch",
@@ -271,7 +271,7 @@ module.exports = [
   },
   {
     "id": "calo-1773252504926-1",
-    "name": "Calo item 1",
+    "name": "Grilled Salmon with Quinoa",
     "brand": "Calo",
     "type": [
       "lunch",
@@ -289,7 +289,7 @@ module.exports = [
   },
   {
     "id": "calo-1773252504926-2",
-    "name": "Calo item 2",
+    "name": "Beef Teriyaki Bowl",
     "brand": "Calo",
     "type": [
       "lunch",
@@ -307,7 +307,7 @@ module.exports = [
   },
   {
     "id": "calo-1773252504926-3",
-    "name": "Calo item 3",
+    "name": "Keto Chicken Parmesan",
     "brand": "Calo",
     "type": [
       "lunch",
@@ -325,7 +325,7 @@ module.exports = [
   },
   {
     "id": "calo-1773252504926-4",
-    "name": "Calo item 4",
+    "name": "Turkey Meatballs & Zoodles",
     "brand": "Calo",
     "type": [
       "lunch",
@@ -343,7 +343,7 @@ module.exports = [
   },
   {
     "id": "calo-1773252504926-5",
-    "name": "Calo item 5",
+    "name": "Sweet Potato Mash & Chicken",
     "brand": "Calo",
     "type": [
       "lunch",
@@ -361,7 +361,7 @@ module.exports = [
   },
   {
     "id": "calo-1773252504926-6",
-    "name": "Calo item 6",
+    "name": "Vegan Lentil Shepherd's Pie",
     "brand": "Calo",
     "type": [
       "lunch",
@@ -379,7 +379,7 @@ module.exports = [
   },
   {
     "id": "calo-1773252504926-7",
-    "name": "Calo item 7",
+    "name": "Chicken Pesto Pasta",
     "brand": "Calo",
     "type": [
       "lunch",
@@ -397,7 +397,7 @@ module.exports = [
   },
   {
     "id": "calo-1773252504926-8",
-    "name": "Calo item 8",
+    "name": "Spicy Thai Beef Salad",
     "brand": "Calo",
     "type": [
       "lunch",
@@ -415,7 +415,7 @@ module.exports = [
   },
   {
     "id": "calo-1773252504926-9",
-    "name": "Calo item 9",
+    "name": "Mediterranean Chicken Bowl",
     "brand": "Calo",
     "type": [
       "lunch",
@@ -433,7 +433,7 @@ module.exports = [
   },
   {
     "id": "calo-1773252504926-10",
-    "name": "Calo item 10",
+    "name": "Cauliflower Rice & Beef",
     "brand": "Calo",
     "type": [
       "lunch",
@@ -451,7 +451,7 @@ module.exports = [
   },
   {
     "id": "calo-1773252504926-11",
-    "name": "Calo item 11",
+    "name": "Overnight Oats with Berries",
     "brand": "Calo",
     "type": [
       "lunch",
@@ -469,7 +469,7 @@ module.exports = [
   },
   {
     "id": "calo-1773252504926-12",
-    "name": "Calo item 12",
+    "name": "Protein Pancakes",
     "brand": "Calo",
     "type": [
       "lunch",
@@ -487,7 +487,7 @@ module.exports = [
   },
   {
     "id": "calo-1773252504926-13",
-    "name": "Calo item 13",
+    "name": "Grilled Eggplant & Halloumi",
     "brand": "Calo",
     "type": [
       "lunch",
@@ -505,7 +505,7 @@ module.exports = [
   },
   {
     "id": "calo-1773252504926-14",
-    "name": "Calo item 14",
+    "name": "Miso Glazed Cod",
     "brand": "Calo",
     "type": [
       "lunch",
@@ -523,7 +523,7 @@ module.exports = [
   },
   {
     "id": "calo-1773252504926-15",
-    "name": "Calo item 15",
+    "name": "Healthy Chicken Tikka Masala",
     "brand": "Calo",
     "type": [
       "lunch",
@@ -541,7 +541,7 @@ module.exports = [
   },
   {
     "id": "kudu-1773252504926-1",
-    "name": "Kudu item 1",
+    "name": "Kudu Chicken Sandwich",
     "brand": "Kudu",
     "type": [
       "lunch",
@@ -559,7 +559,7 @@ module.exports = [
   },
   {
     "id": "kudu-1773252504926-2",
-    "name": "Kudu item 2",
+    "name": "Kudu Beef Sandwich",
     "brand": "Kudu",
     "type": [
       "lunch",
@@ -577,7 +577,7 @@ module.exports = [
   },
   {
     "id": "kudu-1773252504926-3",
-    "name": "Kudu item 3",
+    "name": "Philly Steak Sandwich",
     "brand": "Kudu",
     "type": [
       "lunch",
@@ -595,7 +595,7 @@ module.exports = [
   },
   {
     "id": "kudu-1773252504926-4",
-    "name": "Kudu item 4",
+    "name": "Breakfast Platter",
     "brand": "Kudu",
     "type": [
       "lunch",
@@ -613,7 +613,7 @@ module.exports = [
   },
   {
     "id": "kudu-1773252504926-5",
-    "name": "Kudu item 5",
+    "name": "Club Sandwich",
     "brand": "Kudu",
     "type": [
       "lunch",
@@ -631,7 +631,7 @@ module.exports = [
   },
   {
     "id": "kudu-1773252504926-6",
-    "name": "Kudu item 6",
+    "name": "Lattice Fries",
     "brand": "Kudu",
     "type": [
       "lunch",
@@ -649,7 +649,7 @@ module.exports = [
   },
   {
     "id": "kudu-1773252504926-7",
-    "name": "Kudu item 7",
+    "name": "Chicken Strips Meal",
     "brand": "Kudu",
     "type": [
       "lunch",
@@ -667,7 +667,7 @@ module.exports = [
   },
   {
     "id": "kudu-1773252504926-8",
-    "name": "Kudu item 8",
+    "name": "Spicy Kudu Chicken",
     "brand": "Kudu",
     "type": [
       "lunch",
@@ -685,7 +685,7 @@ module.exports = [
   },
   {
     "id": "kudu-1773252504926-9",
-    "name": "Kudu item 9",
+    "name": "Kudu Nuggets (10 pcs)",
     "brand": "Kudu",
     "type": [
       "lunch",
@@ -703,7 +703,7 @@ module.exports = [
   },
   {
     "id": "kudu-1773252504926-10",
-    "name": "Kudu item 10",
+    "name": "Halloumi Sandwich",
     "brand": "Kudu",
     "type": [
       "lunch",
@@ -721,7 +721,7 @@ module.exports = [
   },
   {
     "id": "kudu-1773252504926-11",
-    "name": "Kudu item 11",
+    "name": "Zesty Chicken Salad",
     "brand": "Kudu",
     "type": [
       "lunch",
@@ -739,7 +739,7 @@ module.exports = [
   },
   {
     "id": "kudu-1773252504926-12",
-    "name": "Kudu item 12",
+    "name": "Kudu Wrap",
     "brand": "Kudu",
     "type": [
       "lunch",
@@ -757,7 +757,7 @@ module.exports = [
   },
   {
     "id": "kudu-1773252504926-13",
-    "name": "Kudu item 13",
+    "name": "Hash Browns",
     "brand": "Kudu",
     "type": [
       "lunch",
@@ -775,7 +775,7 @@ module.exports = [
   },
   {
     "id": "kudu-1773252504926-14",
-    "name": "Kudu item 14",
+    "name": "Chocolate Cookie",
     "brand": "Kudu",
     "type": [
       "lunch",
@@ -793,7 +793,7 @@ module.exports = [
   },
   {
     "id": "kudu-1773252504926-15",
-    "name": "Kudu item 15",
+    "name": "Croissant",
     "brand": "Kudu",
     "type": [
       "lunch",

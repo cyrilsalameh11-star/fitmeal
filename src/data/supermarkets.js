@@ -2120,7 +2120,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-1",
-    "name": "Spinneys Dubai item 1",
+    "name": "Fresh Chicken Caesar Salad",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2138,7 +2138,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-2",
-    "name": "Spinneys Dubai item 2",
+    "name": "Quinoa & Feta Bowl",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2156,7 +2156,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-3",
-    "name": "Spinneys Dubai item 3",
+    "name": "Roast Beef Baguette",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2174,7 +2174,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-4",
-    "name": "Spinneys Dubai item 4",
+    "name": "Chicken Tikka Wrap",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2192,7 +2192,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-5",
-    "name": "Spinneys Dubai item 5",
+    "name": "Greek Salad with Olives",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2210,7 +2210,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-6",
-    "name": "Spinneys Dubai item 6",
+    "name": "Smoked Salmon Cream Cheese Sandwich",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2228,7 +2228,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-7",
-    "name": "Spinneys Dubai item 7",
+    "name": "Fresh Sushi Box (12 pcs)",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2246,7 +2246,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-8",
-    "name": "Spinneys Dubai item 8",
+    "name": "Hummus & Veggie Sticks",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2264,7 +2264,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-9",
-    "name": "Spinneys Dubai item 9",
+    "name": "Fruit Salad Bowl",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2282,7 +2282,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-10",
-    "name": "Spinneys Dubai item 10",
+    "name": "Overnight Chia Pudding",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2300,7 +2300,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-11",
-    "name": "Spinneys Dubai item 11",
+    "name": "Protein Bar (Chocolate)",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2318,7 +2318,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-12",
-    "name": "Spinneys Dubai item 12",
+    "name": "Cold Pressed Green Juice",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2336,7 +2336,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-13",
-    "name": "Spinneys Dubai item 13",
+    "name": "Grilled Chicken Breast (Ready to Eat)",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2354,7 +2354,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-14",
-    "name": "Spinneys Dubai item 14",
+    "name": "Mixed Nuts (Unsalted)",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2372,7 +2372,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-15",
-    "name": "Spinneys Dubai item 15",
+    "name": "Edamame Beans",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2390,7 +2390,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-16",
-    "name": "Spinneys Dubai item 16",
+    "name": "Labneh & Zaatar Croissant",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2408,7 +2408,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-17",
-    "name": "Spinneys Dubai item 17",
+    "name": "Falafel Wrap",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2426,7 +2426,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-18",
-    "name": "Spinneys Dubai item 18",
+    "name": "Tandoori Chicken Salad",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2444,7 +2444,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-19",
-    "name": "Spinneys Dubai item 19",
+    "name": "Poke Bowl (Salmon)",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2462,7 +2462,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-20",
-    "name": "Spinneys Dubai item 20",
+    "name": "Lentil Soup (Ready to Heat)",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2480,7 +2480,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-21",
-    "name": "Spinneys Dubai item 21",
+    "name": "Biryani (Ready Meal)",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2498,7 +2498,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-22",
-    "name": "Spinneys Dubai item 22",
+    "name": "Butter Chicken with Rice",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2516,7 +2516,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-23",
-    "name": "Spinneys Dubai item 23",
+    "name": "Pasta Bolognese (Ready Meal)",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2534,7 +2534,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-24",
-    "name": "Spinneys Dubai item 24",
+    "name": "Tuna Salad Sandwich",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2552,7 +2552,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-25",
-    "name": "Spinneys Dubai item 25",
+    "name": "Keto Cauliflower Rice Bowl",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2570,7 +2570,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-26",
-    "name": "Spinneys Dubai item 26",
+    "name": "Vegan Buddha Bowl",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2588,7 +2588,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-27",
-    "name": "Spinneys Dubai item 27",
+    "name": "Spinach Fatayer",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2606,7 +2606,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-28",
-    "name": "Spinneys Dubai item 28",
+    "name": "Cheese Manakish",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2624,7 +2624,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-29",
-    "name": "Spinneys Dubai item 29",
+    "name": "Fresh Mango Slices",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2642,7 +2642,7 @@ const supermarketMeals = [
   },
   {
     "id": "spinneys-dubai-1773252504934-30",
-    "name": "Spinneys Dubai item 30",
+    "name": "Almond Milk (Unsweetened)",
     "brand": "Spinneys Dubai",
     "type": [
       "snack",
@@ -2660,7 +2660,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-1",
-    "name": "Carrefour UAE item 1",
+    "name": "Fresh Chicken Caesar Salad",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -2678,7 +2678,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-2",
-    "name": "Carrefour UAE item 2",
+    "name": "Quinoa & Feta Bowl",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -2696,7 +2696,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-3",
-    "name": "Carrefour UAE item 3",
+    "name": "Roast Beef Baguette",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -2714,7 +2714,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-4",
-    "name": "Carrefour UAE item 4",
+    "name": "Chicken Tikka Wrap",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -2732,7 +2732,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-5",
-    "name": "Carrefour UAE item 5",
+    "name": "Greek Salad with Olives",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -2750,7 +2750,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-6",
-    "name": "Carrefour UAE item 6",
+    "name": "Smoked Salmon Cream Cheese Sandwich",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -2768,7 +2768,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-7",
-    "name": "Carrefour UAE item 7",
+    "name": "Fresh Sushi Box (12 pcs)",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -2786,7 +2786,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-8",
-    "name": "Carrefour UAE item 8",
+    "name": "Hummus & Veggie Sticks",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -2804,7 +2804,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-9",
-    "name": "Carrefour UAE item 9",
+    "name": "Fruit Salad Bowl",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -2822,7 +2822,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-10",
-    "name": "Carrefour UAE item 10",
+    "name": "Overnight Chia Pudding",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -2840,7 +2840,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-11",
-    "name": "Carrefour UAE item 11",
+    "name": "Protein Bar (Chocolate)",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -2858,7 +2858,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-12",
-    "name": "Carrefour UAE item 12",
+    "name": "Cold Pressed Green Juice",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -2876,7 +2876,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-13",
-    "name": "Carrefour UAE item 13",
+    "name": "Grilled Chicken Breast (Ready to Eat)",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -2894,7 +2894,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-14",
-    "name": "Carrefour UAE item 14",
+    "name": "Mixed Nuts (Unsalted)",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -2912,7 +2912,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-15",
-    "name": "Carrefour UAE item 15",
+    "name": "Edamame Beans",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -2930,7 +2930,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-16",
-    "name": "Carrefour UAE item 16",
+    "name": "Labneh & Zaatar Croissant",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -2948,7 +2948,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-17",
-    "name": "Carrefour UAE item 17",
+    "name": "Falafel Wrap",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -2966,7 +2966,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-18",
-    "name": "Carrefour UAE item 18",
+    "name": "Tandoori Chicken Salad",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -2984,7 +2984,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-19",
-    "name": "Carrefour UAE item 19",
+    "name": "Poke Bowl (Salmon)",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -3002,7 +3002,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-20",
-    "name": "Carrefour UAE item 20",
+    "name": "Lentil Soup (Ready to Heat)",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -3020,7 +3020,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-21",
-    "name": "Carrefour UAE item 21",
+    "name": "Biryani (Ready Meal)",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -3038,7 +3038,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-22",
-    "name": "Carrefour UAE item 22",
+    "name": "Butter Chicken with Rice",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -3056,7 +3056,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-23",
-    "name": "Carrefour UAE item 23",
+    "name": "Pasta Bolognese (Ready Meal)",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -3074,7 +3074,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-24",
-    "name": "Carrefour UAE item 24",
+    "name": "Tuna Salad Sandwich",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -3092,7 +3092,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-25",
-    "name": "Carrefour UAE item 25",
+    "name": "Keto Cauliflower Rice Bowl",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -3110,7 +3110,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504934-26",
-    "name": "Carrefour UAE item 26",
+    "name": "Vegan Buddha Bowl",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -3128,7 +3128,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504935-27",
-    "name": "Carrefour UAE item 27",
+    "name": "Spinach Fatayer",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -3146,7 +3146,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504935-28",
-    "name": "Carrefour UAE item 28",
+    "name": "Cheese Manakish",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -3164,7 +3164,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504935-29",
-    "name": "Carrefour UAE item 29",
+    "name": "Fresh Mango Slices",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -3182,7 +3182,7 @@ const supermarketMeals = [
   },
   {
     "id": "carrefour-uae-1773252504935-30",
-    "name": "Carrefour UAE item 30",
+    "name": "Almond Milk (Unsweetened)",
     "brand": "Carrefour UAE",
     "type": [
       "snack",
@@ -3200,7 +3200,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-1",
-    "name": "Choithrams item 1",
+    "name": "Fresh Chicken Caesar Salad",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3218,7 +3218,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-2",
-    "name": "Choithrams item 2",
+    "name": "Quinoa & Feta Bowl",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3236,7 +3236,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-3",
-    "name": "Choithrams item 3",
+    "name": "Roast Beef Baguette",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3254,7 +3254,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-4",
-    "name": "Choithrams item 4",
+    "name": "Chicken Tikka Wrap",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3272,7 +3272,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-5",
-    "name": "Choithrams item 5",
+    "name": "Greek Salad with Olives",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3290,7 +3290,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-6",
-    "name": "Choithrams item 6",
+    "name": "Smoked Salmon Cream Cheese Sandwich",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3308,7 +3308,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-7",
-    "name": "Choithrams item 7",
+    "name": "Fresh Sushi Box (12 pcs)",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3326,7 +3326,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-8",
-    "name": "Choithrams item 8",
+    "name": "Hummus & Veggie Sticks",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3344,7 +3344,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-9",
-    "name": "Choithrams item 9",
+    "name": "Fruit Salad Bowl",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3362,7 +3362,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-10",
-    "name": "Choithrams item 10",
+    "name": "Overnight Chia Pudding",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3380,7 +3380,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-11",
-    "name": "Choithrams item 11",
+    "name": "Protein Bar (Chocolate)",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3398,7 +3398,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-12",
-    "name": "Choithrams item 12",
+    "name": "Cold Pressed Green Juice",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3416,7 +3416,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-13",
-    "name": "Choithrams item 13",
+    "name": "Grilled Chicken Breast (Ready to Eat)",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3434,7 +3434,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-14",
-    "name": "Choithrams item 14",
+    "name": "Mixed Nuts (Unsalted)",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3452,7 +3452,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-15",
-    "name": "Choithrams item 15",
+    "name": "Edamame Beans",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3470,7 +3470,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-16",
-    "name": "Choithrams item 16",
+    "name": "Labneh & Zaatar Croissant",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3488,7 +3488,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-17",
-    "name": "Choithrams item 17",
+    "name": "Falafel Wrap",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3506,7 +3506,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-18",
-    "name": "Choithrams item 18",
+    "name": "Tandoori Chicken Salad",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3524,7 +3524,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-19",
-    "name": "Choithrams item 19",
+    "name": "Poke Bowl (Salmon)",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3542,7 +3542,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-20",
-    "name": "Choithrams item 20",
+    "name": "Lentil Soup (Ready to Heat)",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3560,7 +3560,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-21",
-    "name": "Choithrams item 21",
+    "name": "Biryani (Ready Meal)",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3578,7 +3578,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-22",
-    "name": "Choithrams item 22",
+    "name": "Butter Chicken with Rice",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3596,7 +3596,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-23",
-    "name": "Choithrams item 23",
+    "name": "Pasta Bolognese (Ready Meal)",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3614,7 +3614,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-24",
-    "name": "Choithrams item 24",
+    "name": "Tuna Salad Sandwich",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3632,7 +3632,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-25",
-    "name": "Choithrams item 25",
+    "name": "Keto Cauliflower Rice Bowl",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3650,7 +3650,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-26",
-    "name": "Choithrams item 26",
+    "name": "Vegan Buddha Bowl",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3668,7 +3668,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-27",
-    "name": "Choithrams item 27",
+    "name": "Spinach Fatayer",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3686,7 +3686,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-28",
-    "name": "Choithrams item 28",
+    "name": "Cheese Manakish",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3704,7 +3704,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-29",
-    "name": "Choithrams item 29",
+    "name": "Fresh Mango Slices",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3722,7 +3722,7 @@ const supermarketMeals = [
   },
   {
     "id": "choithrams-1773252504935-30",
-    "name": "Choithrams item 30",
+    "name": "Almond Milk (Unsweetened)",
     "brand": "Choithrams",
     "type": [
       "snack",
@@ -3740,7 +3740,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-1",
-    "name": "Panda item 1",
+    "name": "Chicken Shawarma Wrap",
     "brand": "Panda",
     "type": [
       "snack",
@@ -3758,7 +3758,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-2",
-    "name": "Panda item 2",
+    "name": "Beef Mutabal Meal",
     "brand": "Panda",
     "type": [
       "snack",
@@ -3776,7 +3776,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-3",
-    "name": "Panda item 3",
+    "name": "Hummus with Pita",
     "brand": "Panda",
     "type": [
       "snack",
@@ -3794,7 +3794,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-4",
-    "name": "Panda item 4",
+    "name": "Fresh Dates (Ajwa)",
     "brand": "Panda",
     "type": [
       "snack",
@@ -3812,7 +3812,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-5",
-    "name": "Panda item 5",
+    "name": "Cheese Sambousek",
     "brand": "Panda",
     "type": [
       "snack",
@@ -3830,7 +3830,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-6",
-    "name": "Panda item 6",
+    "name": "Meat Fatayer",
     "brand": "Panda",
     "type": [
       "snack",
@@ -3848,7 +3848,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-7",
-    "name": "Panda item 7",
+    "name": "Chicken Kabsa (Ready Meal)",
     "brand": "Panda",
     "type": [
       "snack",
@@ -3866,7 +3866,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-8",
-    "name": "Panda item 8",
+    "name": "Mandi Rice (Ready Meal)",
     "brand": "Panda",
     "type": [
       "snack",
@@ -3884,7 +3884,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-9",
-    "name": "Panda item 9",
+    "name": "Foul Medames (Ready to Heat)",
     "brand": "Panda",
     "type": [
       "snack",
@@ -3902,7 +3902,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-10",
-    "name": "Panda item 10",
+    "name": "Labneh Sandwich",
     "brand": "Panda",
     "type": [
       "snack",
@@ -3920,7 +3920,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-11",
-    "name": "Panda item 11",
+    "name": "Fresh Mixed Grill",
     "brand": "Panda",
     "type": [
       "snack",
@@ -3938,7 +3938,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-12",
-    "name": "Panda item 12",
+    "name": "Arabic Salad",
     "brand": "Panda",
     "type": [
       "snack",
@@ -3956,7 +3956,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-13",
-    "name": "Panda item 13",
+    "name": "Tabbouleh",
     "brand": "Panda",
     "type": [
       "snack",
@@ -3974,7 +3974,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-14",
-    "name": "Panda item 14",
+    "name": "Grape Leaves (Yalanji)",
     "brand": "Panda",
     "type": [
       "snack",
@@ -3992,7 +3992,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-15",
-    "name": "Panda item 15",
+    "name": "Dates & Nuts Energy Balls",
     "brand": "Panda",
     "type": [
       "snack",
@@ -4010,7 +4010,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-16",
-    "name": "Panda item 16",
+    "name": "Protein Yogurt (Plain)",
     "brand": "Panda",
     "type": [
       "snack",
@@ -4028,7 +4028,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-17",
-    "name": "Panda item 17",
+    "name": "Grilled Halloumi Cheese",
     "brand": "Panda",
     "type": [
       "snack",
@@ -4046,7 +4046,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-18",
-    "name": "Panda item 18",
+    "name": "Chicken Musakhan Roll",
     "brand": "Panda",
     "type": [
       "snack",
@@ -4064,7 +4064,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-19",
-    "name": "Panda item 19",
+    "name": "Mutabal Box",
     "brand": "Panda",
     "type": [
       "snack",
@@ -4082,7 +4082,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-20",
-    "name": "Panda item 20",
+    "name": "Baba Ghanoush",
     "brand": "Panda",
     "type": [
       "snack",
@@ -4100,7 +4100,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-21",
-    "name": "Panda item 21",
+    "name": "Lentil Soup",
     "brand": "Panda",
     "type": [
       "snack",
@@ -4118,7 +4118,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-22",
-    "name": "Panda item 22",
+    "name": "Spicy Tuna Sandwich",
     "brand": "Panda",
     "type": [
       "snack",
@@ -4136,7 +4136,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-23",
-    "name": "Panda item 23",
+    "name": "Turkey & Cheese Croissant",
     "brand": "Panda",
     "type": [
       "snack",
@@ -4154,7 +4154,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-24",
-    "name": "Panda item 24",
+    "name": "Fresh Orange Juice",
     "brand": "Panda",
     "type": [
       "snack",
@@ -4172,7 +4172,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-25",
-    "name": "Panda item 25",
+    "name": "Pomegranate Seeds Box",
     "brand": "Panda",
     "type": [
       "snack",
@@ -4190,7 +4190,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-26",
-    "name": "Panda item 26",
+    "name": "Camel Milk",
     "brand": "Panda",
     "type": [
       "snack",
@@ -4208,7 +4208,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-27",
-    "name": "Panda item 27",
+    "name": "Dates Maamoul",
     "brand": "Panda",
     "type": [
       "snack",
@@ -4226,7 +4226,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-28",
-    "name": "Panda item 28",
+    "name": "Basbousa Slice",
     "brand": "Panda",
     "type": [
       "snack",
@@ -4244,7 +4244,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-29",
-    "name": "Panda item 29",
+    "name": "Mixed Baklava",
     "brand": "Panda",
     "type": [
       "snack",
@@ -4262,7 +4262,7 @@ const supermarketMeals = [
   },
   {
     "id": "panda-1773252504935-30",
-    "name": "Panda item 30",
+    "name": "Keto Nut Mix",
     "brand": "Panda",
     "type": [
       "snack",
@@ -4280,7 +4280,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-1",
-    "name": "Tamimi Markets item 1",
+    "name": "Chicken Shawarma Wrap",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4298,7 +4298,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-2",
-    "name": "Tamimi Markets item 2",
+    "name": "Beef Mutabal Meal",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4316,7 +4316,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-3",
-    "name": "Tamimi Markets item 3",
+    "name": "Hummus with Pita",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4334,7 +4334,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-4",
-    "name": "Tamimi Markets item 4",
+    "name": "Fresh Dates (Ajwa)",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4352,7 +4352,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-5",
-    "name": "Tamimi Markets item 5",
+    "name": "Cheese Sambousek",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4370,7 +4370,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-6",
-    "name": "Tamimi Markets item 6",
+    "name": "Meat Fatayer",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4388,7 +4388,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-7",
-    "name": "Tamimi Markets item 7",
+    "name": "Chicken Kabsa (Ready Meal)",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4406,7 +4406,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-8",
-    "name": "Tamimi Markets item 8",
+    "name": "Mandi Rice (Ready Meal)",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4424,7 +4424,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-9",
-    "name": "Tamimi Markets item 9",
+    "name": "Foul Medames (Ready to Heat)",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4442,7 +4442,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-10",
-    "name": "Tamimi Markets item 10",
+    "name": "Labneh Sandwich",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4460,7 +4460,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-11",
-    "name": "Tamimi Markets item 11",
+    "name": "Fresh Mixed Grill",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4478,7 +4478,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-12",
-    "name": "Tamimi Markets item 12",
+    "name": "Arabic Salad",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4496,7 +4496,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-13",
-    "name": "Tamimi Markets item 13",
+    "name": "Tabbouleh",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4514,7 +4514,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-14",
-    "name": "Tamimi Markets item 14",
+    "name": "Grape Leaves (Yalanji)",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4532,7 +4532,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-15",
-    "name": "Tamimi Markets item 15",
+    "name": "Dates & Nuts Energy Balls",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4550,7 +4550,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-16",
-    "name": "Tamimi Markets item 16",
+    "name": "Protein Yogurt (Plain)",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4568,7 +4568,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-17",
-    "name": "Tamimi Markets item 17",
+    "name": "Grilled Halloumi Cheese",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4586,7 +4586,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-18",
-    "name": "Tamimi Markets item 18",
+    "name": "Chicken Musakhan Roll",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4604,7 +4604,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-19",
-    "name": "Tamimi Markets item 19",
+    "name": "Mutabal Box",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4622,7 +4622,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-20",
-    "name": "Tamimi Markets item 20",
+    "name": "Baba Ghanoush",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4640,7 +4640,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-21",
-    "name": "Tamimi Markets item 21",
+    "name": "Lentil Soup",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4658,7 +4658,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-22",
-    "name": "Tamimi Markets item 22",
+    "name": "Spicy Tuna Sandwich",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4676,7 +4676,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-23",
-    "name": "Tamimi Markets item 23",
+    "name": "Turkey & Cheese Croissant",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4694,7 +4694,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-24",
-    "name": "Tamimi Markets item 24",
+    "name": "Fresh Orange Juice",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4712,7 +4712,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-25",
-    "name": "Tamimi Markets item 25",
+    "name": "Pomegranate Seeds Box",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4730,7 +4730,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-26",
-    "name": "Tamimi Markets item 26",
+    "name": "Camel Milk",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4748,7 +4748,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-27",
-    "name": "Tamimi Markets item 27",
+    "name": "Dates Maamoul",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4766,7 +4766,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-28",
-    "name": "Tamimi Markets item 28",
+    "name": "Basbousa Slice",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4784,7 +4784,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-29",
-    "name": "Tamimi Markets item 29",
+    "name": "Mixed Baklava",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4802,7 +4802,7 @@ const supermarketMeals = [
   },
   {
     "id": "tamimi-markets-1773252504935-30",
-    "name": "Tamimi Markets item 30",
+    "name": "Keto Nut Mix",
     "brand": "Tamimi Markets",
     "type": [
       "snack",
@@ -4820,7 +4820,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-1",
-    "name": "Al Raya item 1",
+    "name": "Chicken Shawarma Wrap",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -4838,7 +4838,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-2",
-    "name": "Al Raya item 2",
+    "name": "Beef Mutabal Meal",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -4856,7 +4856,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-3",
-    "name": "Al Raya item 3",
+    "name": "Hummus with Pita",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -4874,7 +4874,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-4",
-    "name": "Al Raya item 4",
+    "name": "Fresh Dates (Ajwa)",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -4892,7 +4892,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-5",
-    "name": "Al Raya item 5",
+    "name": "Cheese Sambousek",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -4910,7 +4910,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-6",
-    "name": "Al Raya item 6",
+    "name": "Meat Fatayer",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -4928,7 +4928,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-7",
-    "name": "Al Raya item 7",
+    "name": "Chicken Kabsa (Ready Meal)",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -4946,7 +4946,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-8",
-    "name": "Al Raya item 8",
+    "name": "Mandi Rice (Ready Meal)",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -4964,7 +4964,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-9",
-    "name": "Al Raya item 9",
+    "name": "Foul Medames (Ready to Heat)",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -4982,7 +4982,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-10",
-    "name": "Al Raya item 10",
+    "name": "Labneh Sandwich",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5000,7 +5000,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-11",
-    "name": "Al Raya item 11",
+    "name": "Fresh Mixed Grill",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5018,7 +5018,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-12",
-    "name": "Al Raya item 12",
+    "name": "Arabic Salad",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5036,7 +5036,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-13",
-    "name": "Al Raya item 13",
+    "name": "Tabbouleh",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5054,7 +5054,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-14",
-    "name": "Al Raya item 14",
+    "name": "Grape Leaves (Yalanji)",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5072,7 +5072,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-15",
-    "name": "Al Raya item 15",
+    "name": "Dates & Nuts Energy Balls",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5090,7 +5090,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-16",
-    "name": "Al Raya item 16",
+    "name": "Protein Yogurt (Plain)",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5108,7 +5108,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-17",
-    "name": "Al Raya item 17",
+    "name": "Grilled Halloumi Cheese",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5126,7 +5126,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-18",
-    "name": "Al Raya item 18",
+    "name": "Chicken Musakhan Roll",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5144,7 +5144,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-19",
-    "name": "Al Raya item 19",
+    "name": "Mutabal Box",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5162,7 +5162,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-20",
-    "name": "Al Raya item 20",
+    "name": "Baba Ghanoush",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5180,7 +5180,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-21",
-    "name": "Al Raya item 21",
+    "name": "Lentil Soup",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5198,7 +5198,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-22",
-    "name": "Al Raya item 22",
+    "name": "Spicy Tuna Sandwich",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5216,7 +5216,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-23",
-    "name": "Al Raya item 23",
+    "name": "Turkey & Cheese Croissant",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5234,7 +5234,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-24",
-    "name": "Al Raya item 24",
+    "name": "Fresh Orange Juice",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5252,7 +5252,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-25",
-    "name": "Al Raya item 25",
+    "name": "Pomegranate Seeds Box",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5270,7 +5270,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-26",
-    "name": "Al Raya item 26",
+    "name": "Camel Milk",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5288,7 +5288,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-27",
-    "name": "Al Raya item 27",
+    "name": "Dates Maamoul",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5306,7 +5306,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-28",
-    "name": "Al Raya item 28",
+    "name": "Basbousa Slice",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5324,7 +5324,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-29",
-    "name": "Al Raya item 29",
+    "name": "Mixed Baklava",
     "brand": "Al Raya",
     "type": [
       "snack",
@@ -5342,7 +5342,7 @@ const supermarketMeals = [
   },
   {
     "id": "al-raya-1773252504935-30",
-    "name": "Al Raya item 30",
+    "name": "Keto Nut Mix",
     "brand": "Al Raya",
     "type": [
       "snack",
