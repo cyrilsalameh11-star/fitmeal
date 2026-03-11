@@ -247,18 +247,21 @@ function App() {
 
       <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-stone-100 px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center space-x-2">
+          <button 
+            onClick={() => { setActiveTab('planner'); setShowMobileMenu(false); }}
+            className="flex items-center space-x-2 group hover:opacity-80 transition-opacity"
+          >
             <div className="w-8 h-8 bg-stone-900 rounded-lg flex items-center justify-center text-white font-bold italic">F</div>
             <span className="text-xl font-black font-serif tracking-tight">FitMeal AI</span>
-          </div>
+          </button>
 
           <div className="hidden md:flex space-x-10 text-sm font-bold uppercase tracking-widest text-stone-500">
             <button onClick={() => { setActiveTab('planner'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'planner' ? 'text-stone-900' : ''}`}>Planner</button>
             <button onClick={() => { setActiveTab('explore'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'explore' ? 'text-stone-900' : ''}`}>Explore</button>
-            <button onClick={() => { setActiveTab('news'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'news' ? 'text-stone-900' : ''}`}><Newspaper size={16} className="mr-1.5" />FMCG News</button>
-            <button onClick={() => { setActiveTab('loyalty'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'loyalty' ? 'text-stone-900' : ''}`}><Award size={16} className="mr-1.5" />Loyalty Programs</button>
             <button onClick={() => { setActiveTab('exercise'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'exercise' ? 'text-stone-900' : ''}`}><Dumbbell size={16} className="mr-1.5" />Exercise</button>
             <button onClick={() => { setActiveTab('map'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'map' ? 'text-stone-900' : ''}`}><MapIcon size={16} className="mr-1.5" />Map</button>
+            <button onClick={() => { setActiveTab('news'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'news' ? 'text-stone-900' : ''}`}><Newspaper size={16} className="mr-1.5" />FMCG News</button>
+            <button onClick={() => { setActiveTab('loyalty'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'loyalty' ? 'text-stone-900' : ''}`}><Award size={16} className="mr-1.5" />Loyalty Programs</button>
             <button onClick={() => { setActiveTab('contact'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'contact' ? 'text-stone-900' : ''}`}>Contact</button>
           </div>
 
@@ -282,7 +285,7 @@ function App() {
               exit={{ opacity: 0, y: -10 }}
               className="md:hidden bg-white border-t border-stone-100 px-6 py-4 space-y-3"
             >
-              {[['news', 'FMCG News'], ['loyalty', 'Loyalty Programs'], ['explore', 'Explore'], ['planner', 'Planner'], ['exercise', 'Exercise'], ['map', 'Map'], ['contact', 'Contact']].map(([tab, label]) => (
+              {[['planner', 'Planner'], ['explore', 'Explore'], ['exercise', 'Exercise'], ['map', 'Map'], ['news', 'FMCG News'], ['loyalty', 'Loyalty Programs'], ['contact', 'Contact']].map(([tab, label]) => (
                 <button
                   key={tab}
                   onClick={() => { setActiveTab(tab); setShowMobileMenu(false); }}

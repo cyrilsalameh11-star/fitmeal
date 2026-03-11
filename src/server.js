@@ -374,16 +374,16 @@ app.get('/api/news', async (req, res) => {
     const feed = await parser.parseURL('https://www.businessnews.com.lb/rss.aspx');
     
     // Filter articles for FMCG keywords (supermarket, restaurant, retail, etc.)
+    const keywords = [
+      'supermarket', 'retail', 'restaurant', 'food', 'store', 'fmcg', 
+      'lebanon', 'beirut', 'spinneys', 'carrefour', 'charcutier', 
+      'roadster', 'crepaway', 'bartartine', 'taouk', 'zwz', 'zaatar', 
+      'dip n dip', 'pinkberry', 'abdallah', 'mcdonald'
+    ];
+    
     const filteredItems = feed.items.filter(item => {
-      const content = (item.title + ' ' + item.contentSnippet).toLowerCase();
-      return content.includes('supermarket') || 
-             content.includes('retail') || 
-             content.includes('restaurant') || 
-             content.includes('food') || 
-             content.includes('store') ||
-             content.includes('spinneys') ||
-             content.includes('carrefour') ||
-             content.includes('fmcg');
+      const content = (item.title + ' ' + (item.contentSnippet || '')).toLowerCase();
+      return keywords.some(keyword => content.includes(keyword));
     });
 
     res.json(filteredItems);
