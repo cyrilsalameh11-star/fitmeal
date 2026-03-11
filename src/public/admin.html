@@ -43,7 +43,8 @@
             <table class="w-full text-left">
                 <thead>
                     <tr class="border-b border-stone-50 bg-stone-50/50">
-                        <th class="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-stone-400">First Name / Nickname</th>
+                        <th class="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-stone-400">Name / Nickname</th>
+                        <th class="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-stone-400">Email Address</th>
                         <th class="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-stone-400">Last Active</th>
                     </tr>
                 </thead>
@@ -127,6 +128,7 @@
                     countEl.innerText = d.users.length;
                     tbody.innerHTML = d.users.map(u => {
                         const name = typeof u === 'string' ? u : (u.name || 'Anonymous');
+                        const email = typeof u === 'string' ? '-' : (u.email || '-');
                         const lastLogin = (u.last_login) 
                             ? new Date(u.last_login).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })
                             : 'Unknown';
@@ -139,6 +141,7 @@
                                         <span class="font-bold text-stone-800">${name}</span>
                                     </div>
                                 </td>
+                                <td class="px-8 py-6 text-sm font-medium text-stone-400">${email}</td>
                                 <td class="px-8 py-6 text-sm font-medium text-stone-500">${lastLogin}</td>
                             </tr>
                         `;
