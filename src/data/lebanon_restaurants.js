@@ -2972,5 +2972,275 @@ module.exports = [
     "dietary": [
       "healthy"
     ]
+  },
+  {
+    "id": "abdallah-1773314181348-1",
+    "name": "Abdallah item 1",
+    "brand": "Abdallah",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 305,
+    "protein": 0,
+    "carbs": 52,
+    "fat": 9,
+    "source": "restaurant",
+    "country": "Lebanon",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "abdallah-1773314181360-2",
+    "name": "Abdallah item 2",
+    "brand": "Abdallah",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 304,
+    "protein": 4,
+    "carbs": 54,
+    "fat": 16,
+    "source": "restaurant",
+    "country": "Lebanon",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "abdallah-1773314181360-3",
+    "name": "Abdallah item 3",
+    "brand": "Abdallah",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 334,
+    "protein": 5,
+    "carbs": 26,
+    "fat": 8,
+    "source": "restaurant",
+    "country": "Lebanon",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "abdallah-1773314181360-4",
+    "name": "Abdallah item 4",
+    "brand": "Abdallah",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 510,
+    "protein": 5,
+    "carbs": 65,
+    "fat": 9,
+    "source": "restaurant",
+    "country": "Lebanon",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "abdallah-1773314181360-5",
+    "name": "Abdallah item 5",
+    "brand": "Abdallah",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 508,
+    "protein": 4,
+    "carbs": 48,
+    "fat": 10,
+    "source": "restaurant",
+    "country": "Lebanon",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "abdallah-1773314181360-6",
+    "name": "Abdallah item 6",
+    "brand": "Abdallah",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 386,
+    "protein": 1,
+    "carbs": 65,
+    "fat": 5,
+    "source": "restaurant",
+    "country": "Lebanon",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "abdallah-1773314181360-7",
+    "name": "Abdallah item 7",
+    "brand": "Abdallah",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 480,
+    "protein": 5,
+    "carbs": 54,
+    "fat": 13,
+    "source": "restaurant",
+    "country": "Lebanon",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "abdallah-1773314181360-8",
+    "name": "Abdallah item 8",
+    "brand": "Abdallah",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 390,
+    "protein": 7,
+    "carbs": 23,
+    "fat": 9,
+    "source": "restaurant",
+    "country": "Lebanon",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "abdallah-1773314181360-9",
+    "name": "Abdallah item 9",
+    "brand": "Abdallah",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 347,
+    "protein": 7,
+    "carbs": 50,
+    "fat": 20,
+    "source": "restaurant",
+    "country": "Lebanon",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "abdallah-1773314181360-10",
+    "name": "Abdallah item 10",
+    "brand": "Abdallah",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 446,
+    "protein": 2,
+    "carbs": 47,
+    "fat": 13,
+    "source": "restaurant",
+    "country": "Lebanon",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "abdallah-1773314181360-11",
+    "name": "Abdallah item 11",
+    "brand": "Abdallah",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 309,
+    "protein": 6,
+    "carbs": 23,
+    "fat": 15,
+    "source": "restaurant",
+    "country": "Lebanon",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "abdallah-1773314181360-12",
+    "name": "Abdallah item 12",
+    "brand": "Abdallah",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 502,
+    "protein": 5,
+    "carbs": 37,
+    "fat": 15,
+    "source": "restaurant",
+    "country": "Lebanon",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "abdallah-1773314181360-13",
+    "name": "Abdallah item 13",
+    "brand": "Abdallah",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 289,
+    "protein": 7,
+    "carbs": 45,
+    "fat": 7,
+    "source": "restaurant",
+    "country": "Lebanon",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "abdallah-1773314181360-14",
+    "name": "Abdallah item 14",
+    "brand": "Abdallah",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 359,
+    "protein": 2,
+    "carbs": 45,
+    "fat": 21,
+    "source": "restaurant",
+    "country": "Lebanon",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "abdallah-1773314181360-15",
+    "name": "Abdallah item 15",
+    "brand": "Abdallah",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 516,
+    "protein": 7,
+    "carbs": 56,
+    "fat": 20,
+    "source": "restaurant",
+    "country": "Lebanon",
+    "dietary": [
+      "healthy"
+    ]
   }
 ];

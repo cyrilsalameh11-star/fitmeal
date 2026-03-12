@@ -4021,5 +4021,275 @@ module.exports = [
     "dietary": [
       "healthy"
     ]
+  },
+  {
+    "id": "amorino-1773314181360-1",
+    "name": "Amorino item 1",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 313,
+    "protein": 1,
+    "carbs": 36,
+    "fat": 19,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773314181360-2",
+    "name": "Amorino item 2",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 434,
+    "protein": 2,
+    "carbs": 34,
+    "fat": 21,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773314181360-3",
+    "name": "Amorino item 3",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 402,
+    "protein": 4,
+    "carbs": 53,
+    "fat": 18,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773314181360-4",
+    "name": "Amorino item 4",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 426,
+    "protein": 2,
+    "carbs": 69,
+    "fat": 11,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773314181360-5",
+    "name": "Amorino item 5",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 495,
+    "protein": 3,
+    "carbs": 62,
+    "fat": 5,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773314181360-6",
+    "name": "Amorino item 6",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 469,
+    "protein": 2,
+    "carbs": 55,
+    "fat": 16,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773314181360-7",
+    "name": "Amorino item 7",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 496,
+    "protein": 2,
+    "carbs": 35,
+    "fat": 14,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773314181360-8",
+    "name": "Amorino item 8",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 379,
+    "protein": 6,
+    "carbs": 50,
+    "fat": 13,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773314181360-9",
+    "name": "Amorino item 9",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 402,
+    "protein": 6,
+    "carbs": 25,
+    "fat": 21,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773314181360-10",
+    "name": "Amorino item 10",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 368,
+    "protein": 1,
+    "carbs": 33,
+    "fat": 7,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773314181360-11",
+    "name": "Amorino item 11",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 423,
+    "protein": 1,
+    "carbs": 52,
+    "fat": 15,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773314181360-12",
+    "name": "Amorino item 12",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 532,
+    "protein": 2,
+    "carbs": 60,
+    "fat": 23,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773314181360-13",
+    "name": "Amorino item 13",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 403,
+    "protein": 2,
+    "carbs": 50,
+    "fat": 11,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773314181360-14",
+    "name": "Amorino item 14",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 520,
+    "protein": 0,
+    "carbs": 35,
+    "fat": 14,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
+  },
+  {
+    "id": "amorino-1773314181360-15",
+    "name": "Amorino item 15",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 389,
+    "protein": 7,
+    "carbs": 55,
+    "fat": 23,
+    "source": "restaurant",
+    "country": "France",
+    "dietary": [
+      "healthy"
+    ]
   }
 ];
