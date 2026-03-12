@@ -23,11 +23,11 @@ const REELS_DATA = [
   { id: 10, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'C_vpzUGsTD7', type: 'reel', caption: 'Food finds this week'           },
 
   // ── baroodiesfoodies.dxb ──────────────────────────────────────
-  { id: 11, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: null,           type: 'reel', caption: 'Dubai FMCG trend watch'        },
-  { id: 12, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: null,           type: 'reel', caption: 'Best snacks in UAE'            },
-  { id: 13, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: null,           type: 'reel', caption: 'New health brands in Dubai'    },
-  { id: 14, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: null,           type: 'reel', caption: 'Carrefour vs Spinneys picks'   },
-  { id: 15, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: null,           type: 'reel', caption: 'Ramadan FMCG edition'          },
+  { id: 11, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUxdhBqDU_T', type: 'reel', caption: 'Dubai FMCG trend watch'        },
+  { id: 12, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUgGiWNEiZi', type: 'reel', caption: 'Best snacks in UAE'            },
+  { id: 13, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUKxO6VDczo', type: 'reel', caption: 'New health brands in Dubai'    },
+  { id: 14, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DRAC021kvno', type: 'reel', caption: 'Carrefour vs Spinneys picks'   },
+  { id: 15, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DQHOs10iAqW', type: 'reel', caption: 'Ramadan FMCG edition'          },
 
   // ── ellevousguide ─────────────────────────────────────────────
   { id: 16, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DIDny45TU9D', type: 'reel', caption: 'Tendances food du moment'       },
