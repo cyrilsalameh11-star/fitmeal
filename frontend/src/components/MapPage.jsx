@@ -7,10 +7,10 @@ import { MapPin, Navigation, MessageCircle, Search, Loader2, Trash2 } from 'luci
 import { useMap } from 'react-leaflet';
 
 const cities = {
-  Lebanon: { name: 'Beirut, Lebanon', lat: 33.8938, lng: 35.5018, zoom: 13 },
-  Paris: { name: 'Paris, France', lat: 48.8566, lng: 2.3522, zoom: 13 },
-  Madrid: { name: 'Madrid, Spain', lat: 40.4168, lng: -3.7038, zoom: 13 },
-  'New York': { name: 'New York, USA', lat: 40.7128, lng: -74.0060, zoom: 13 }
+  Lebanon:    { name: 'Beirut, Lebanon',   lat: 33.8938, lng: 35.5018,  zoom: 13, countryCode: 'lb' },
+  Paris:      { name: 'Paris, France',     lat: 48.8566, lng: 2.3522,   zoom: 13, countryCode: 'fr' },
+  Madrid:     { name: 'Madrid, Spain',     lat: 40.4168, lng: -3.7038,  zoom: 13, countryCode: 'es' },
+  'New York': { name: 'New York, USA',     lat: 40.7128, lng: -74.0060, zoom: 13, countryCode: 'us' },
 };
 
 // Create a custom div icon for the marker with initials and color
@@ -205,13 +205,8 @@ const MapPage = () => {
     searchTimeoutRef.current = setTimeout(async () => {
       setIsSearching(true);
       try {
-        // Build viewbox to prioritize current city bounds loosely
-        const { lat, lng } = selectedCity;
-        // Approx 0.1 degree is roughly 11km
-        const viewbox = `${lng - 0.1},${lat + 0.1},${lng + 0.1},${lat - 0.1}`;
-        
         const resp = await fetch(
-          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&viewbox=${viewbox}&bounded=0&limit=5`
+          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=${selectedCity.countryCode}&limit=5`
         );
         
         if (resp.ok) {
