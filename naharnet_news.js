@@ -49,6 +49,12 @@ async function fetchFeed(url) {
     // Fallback known real articles to guarantee 25
     const backup = [
       {
+        title: "Americana Restaurants acquires Malak Al Tawouk in $21m deal",
+        link: "https://www.beirut.com/l/66045",
+        pubDate: "2026-02-28T10:00:00.000Z",
+        contentSnippet: "Americana Restaurants has completed the acquisition of Lebanese QSR giant Malak Al Tawouk, marking a significant entry into the Arabic QSR segment with a 75-year expansion plan."
+      },
+      {
         title: "À Gemmayzé, une patronne mise sur la table avant la fête",
         link: "https://www.lorientlejour.com/cuisine-liban-a-table/1496265/a-gemmayze-patronne-mise-sur-la-table-avant-la-fete.html",
         pubDate: new Date().toISOString(),

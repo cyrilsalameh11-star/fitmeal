@@ -10,7 +10,10 @@ async function fetchStrictFmcg() {
   ];
 
   let allItems = [];
-  const bannedWords = ['war', 'israel', 'strike', 'missile', 'hezbollah', 'politics', 'government', 'parliament', 'injured', 'killed', 'conflict', 'evacuate', 'mourn', 'gulf', 'iran', 'crisis', 'airstrike', 'military', 'army', 'death', 'casualty', 'bomb', 'drone', 'attack', 'protest', 'gaza', 'palestine', 'assassination', 'politician'];
+  const bannedWords = [
+    'war', 'israel', 'strike', 'missile', 'hezbollah', 'politics', 'government', 'parliament', 'injured', 'killed', 'conflict', 'evacuate', 'mourn', 'gulf', 'iran', 'crisis', 'airstrike', 'military', 'army', 'death', 'casualty', 'bomb', 'drone', 'attack', 'protest', 'gaza', 'palestine', 'assassination', 'politician',
+    'tennessee', 'nashville', 'pennsylvania', 'lancaster', 'county', 'pa', 'tn', 'usa', 'united states', 'lebtown', 'lancasteronline', 'tennessean', 'wsmv', 'news channel 5'
+  ];
 
   for (const feedUrl of feeds) {
     try {
@@ -23,10 +26,18 @@ async function fetchStrictFmcg() {
 
   // Filter 
   const filtered = allItems.filter(item => {
-    const text = (item.title + ' ' + (item.contentSnippet || item.content || '')).toLowerCase();
+    const title = (item.title || '').toLowerCase();
+    const source = (item.source || '').toLowerCase();
+    const snippet = (item.contentSnippet || item.content || '').toLowerCase();
+    const text = (title + ' ' + snippet).toLowerCase();
     
     // Must NOT contain banned words
-    if(bannedWords.some(bw => text.includes(bw))) return false;
+    if(bannedWords.some(bw => text.includes(bw) || source.includes(bw))) return false;
+
+    // Must NOT be from known US local news patterns in titles
+    if(title.includes('tn') || title.includes('tenn.') || title.includes('pa.') || title.includes('county')) {
+        if(!title.includes('lebanon country')) return false; // subtle check
+    }
 
     // Must contain food/restaurant/market/brand keywords
     const goodWords = ['food', 'restaurant', 'supermarket', 'market', 'fmcg', 'spinneys', 'carrefour', 'menu', 'chef', 'cuisine', 'dining', 'diet', 'grocery', 'retail', 'brand', 'eat', 'nourriture', 'supermarché', 'economie', 'business', 'startup', 'delivery', 'coffee', 'cafe'];
