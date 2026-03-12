@@ -251,14 +251,20 @@ const MapPage = () => {
     }
 
     setDebugStatus("Fetching details for " + prediction.description);
-    placesService.current.getDetails({ placeId: prediction.place_id, fields: ['name', 'geometry', 'types'] }, (place, status) => {
+    // Remove fields restriction to see if that's the issue, and add more alerts
+    placesService.current.getDetails({ placeId: prediction.place_id }, (place, status) => {
       console.log("DEBUG: getDetails result", { status, place });
+      alert("DEBUG: Google API Result - Status: " + status + (place ? " | Place found!" : " | Place NULL"));
       setIsSearching(false);
       
-      if (status === window.google.maps.places.PlacesServiceStatus.OK && place.geometry) {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK && place && place.geometry) {
         setDebugStatus("Success: Flying to " + place.name);
-        const lat = place.geometry.location.lat();
-        const lng = place.geometry.location.lng();
+        // Fallback for location accessing
+        const location = place.geometry.location;
+        const lat = typeof location.lat === 'function' ? location.lat() : location.lat;
+        const lng = typeof location.lng === 'function' ? location.lng() : location.lng;
+        
+        console.log("DEBUG: Resolved Lat/Lng", lat, lng);
         
         // Smart Emoji Detection
         let detectedEmoji = null;
