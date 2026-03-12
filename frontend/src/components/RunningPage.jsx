@@ -11,10 +11,21 @@ const RUNNING_CITIES = {
     lng: 35.5012,
     zoom: 13,
     trails: [
-      // Corniche Beirut (Accurate-ish path Raouche -> Riviera -> Marina)
-      [[33.8912, 35.4715], [33.8967, 35.4698], [33.9056, 35.4674], [33.9015, 35.4682], [33.8967, 35.4745], [33.8998, 35.4856], [33.9034, 35.5012]],
-      // Dbayeh Marina loop coordinates
-      [[33.9385, 35.5786], [33.9421, 35.5821], [33.9455, 35.5798], [33.9468, 35.5755], [33.9425, 35.5712], [33.9385, 35.5786]]
+      // Corniche Beirut - High fidelity curve from Zaitunay Bay to Raouche
+      [
+        [33.9015, 35.4988], [33.9022, 35.4955], [33.9028, 35.4922], [33.9032, 35.4890], 
+        [33.9025, 35.4845], [33.9018, 35.4812], [33.9012, 35.4785], [33.9015, 35.4755],
+        [33.9032, 35.4722], [33.9055, 35.4695], [33.9062, 35.4678], [33.9058, 35.4655],
+        [33.9042, 35.4642], [33.9015, 35.4648], [33.8985, 35.4665], [33.8962, 35.4682],
+        [33.8935, 35.4695], [33.8915, 35.4712], [33.8895, 35.4735], [33.8875, 35.4765]
+      ],
+      // Dbayeh Marina loop - High fidelity
+      [
+        [33.9385, 35.5786], [33.9395, 35.5805], [33.9412, 35.5822], [33.9435, 35.5835], 
+        [33.9458, 35.5828], [33.9472, 35.5805], [33.9482, 35.5775], [33.9485, 35.5742],
+        [33.9478, 35.5715], [33.9455, 35.5695], [33.9425, 35.5685], [33.9402, 35.5698],
+        [33.9388, 35.5725], [33.9382, 35.5755], [33.9385, 35.5786]
+      ]
     ]
   },
   Paris: {
@@ -23,8 +34,13 @@ const RUNNING_CITIES = {
     lng: 2.3522,
     zoom: 13,
     trails: [
-      [[48.8617, 2.2900], [48.8601, 2.3021], [48.8576, 2.3211], [48.8532, 2.3498], [48.8505, 2.3612]],
-      [[48.8700, 2.2500], [48.8650, 2.2450], [48.8600, 2.2500], [48.8650, 2.2600], [48.8700, 2.2500]]
+      // Seine River Loop (Right & Left bank)
+      [
+        [48.8617, 2.2900], [48.8632, 2.3025], [48.8645, 2.3155], [48.8652, 2.3288], 
+        [48.8648, 2.3412], [48.8625, 2.3525], [48.8585, 2.3588], [48.8542, 2.3582],
+        [48.8512, 2.3525], [48.8505, 2.3412], [48.8525, 2.3288], [48.8552, 2.3155],
+        [48.8585, 2.3025], [48.8617, 2.2900]
+      ]
     ]
   },
   'New York': {
@@ -33,16 +49,27 @@ const RUNNING_CITIES = {
     lng: -73.9653,
     zoom: 14,
     trails: [
-      [[40.7900, -73.9660], [40.7880, -73.9600], [40.7820, -73.9580], [40.7800, -73.9640], [40.7820, -73.9700], [40.7900, -73.9660]]
+      // Central Park Full Loop (6-mile main loop)
+      [
+        [40.7681, -73.9818], [40.7648, -73.9733], [40.7712, -73.9678], [40.7785, -73.9625],
+        [40.7852, -73.9575], [40.7925, -73.9525], [40.7995, -73.9475], [40.8015, -73.9525],
+        [40.7965, -73.9585], [40.7895, -73.9635], [40.7825, -73.9685], [40.7755, -73.9735],
+        [40.7681, -73.9818]
+      ]
     ]
   },
   Madrid: {
     name: 'Madrid, Spain',
-    lat: 40.4113,
+    lat: 40.4133,
     lng: -3.6822,
     zoom: 15,
     trails: [
-      [[40.4180, -3.6850], [40.4185, -3.6780], [40.4100, -3.6750], [40.4080, -3.6820], [40.4180, -3.6850]]
+      // Retiro Park Perimeter high fidelity
+      [
+        [40.4185, -3.6885], [40.4202, -3.6825], [40.4215, -3.6765], [40.4185, -3.6735],
+        [40.4145, -3.6715], [40.4105, -3.6705], [40.4075, -3.6725], [40.4062, -3.6785],
+        [40.4075, -3.6845], [40.4115, -3.6885], [40.4185, -3.6885]
+      ]
     ]
   }
 };
@@ -84,7 +111,6 @@ export default function RunningContent() {
     e.preventDefault();
     if (!stravaUrl) return;
 
-    // Real-ish metrics for the demo
     const newRun = { 
       name: 'Community Run', 
       user: localStorage.getItem('fitmeal_username') || 'Guest', 
@@ -120,7 +146,6 @@ export default function RunningContent() {
       exit={{ opacity: 0, y: -10 }}
       className="space-y-10 md:space-y-12 pb-20"
     >
-      {/* Header */}
       <div className="max-w-3xl">
         <p className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-3 flex items-center">
           <Activity size={14} className="mr-2" /> Global Heatmaps
@@ -133,13 +158,9 @@ export default function RunningContent() {
         </p>
       </div>
 
-      {/* Main UI Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-        
-        {/* Left Column: Map & Controls */}
         <div className="lg:col-span-2 space-y-6">
           <div className="bg-stone-900 rounded-[2.5rem] p-3 shadow-2xl border border-stone-800 relative group overflow-hidden">
-            {/* City Toggles Over Map */}
             <div className="absolute top-8 left-8 z-[500] flex shrink-0 gap-2 overflow-x-auto max-w-[calc(100%-4rem)] scrollbar-hide py-1">
               {Object.keys(RUNNING_CITIES).map(id => (
                 <button
@@ -156,7 +177,6 @@ export default function RunningContent() {
               ))}
             </div>
 
-            {/* Map Container */}
             <div className="h-[500px] md:h-[600px] w-full rounded-[2rem] overflow-hidden">
               <MapContainer 
                 center={[city.lat, city.lng]} 
@@ -170,10 +190,8 @@ export default function RunningContent() {
                 />
                 <MapController target={city} />
                 
-                {/* Simulated Heatmap Trails */}
                 {city.trails.map((path, idx) => (
                   <div key={idx}>
-                    {/* Glow effect layers */}
                     <Polyline positions={path} pathOptions={{ color: '#f59e0b', weight: 12, opacity: 0.1, lineJoin: 'round' }} />
                     <Polyline positions={path} pathOptions={{ color: '#f59e0b', weight: 6, opacity: 0.3, lineJoin: 'round' }} />
                     <Polyline positions={path} pathOptions={{ color: '#ffffff', weight: 2, opacity: 0.8, lineJoin: 'round' }} />
@@ -182,7 +200,6 @@ export default function RunningContent() {
               </MapContainer>
             </div>
 
-            {/* Legend / Stats overlay */}
             <div className="absolute bottom-8 right-8 z-[500] bg-stone-900/80 backdrop-blur-md border border-stone-800 p-6 rounded-2xl space-y-4 shadow-xl pointer-events-none hidden md:block">
               <div className="flex items-center space-x-2">
                 <div className="w-3 h-3 rounded-full bg-amber-500 animate-pulse"></div>
@@ -196,9 +213,7 @@ export default function RunningContent() {
           </div>
         </div>
 
-        {/* Right Column: Share & Examples */}
         <div className="space-y-8">
-          {/* Share Box */}
           <div className="bg-white rounded-[2rem] p-8 border border-stone-100 shadow-sm space-y-6">
             <div className="flex items-center space-x-3">
               <div className="bg-amber-100 p-2 rounded-xl">
@@ -228,7 +243,6 @@ export default function RunningContent() {
             </form>
           </div>
 
-          {/* Dynamic Feed Examples */}
           <div className="space-y-4">
             <h4 className="text-[10px] font-black uppercase tracking-widest text-stone-400 ml-4 flex items-center">
               <Zap size={12} className="mr-2 text-amber-500" /> Recent Community Milestones
@@ -279,7 +293,6 @@ export default function RunningContent() {
         </div>
       </div>
 
-      {/* Discover nearby section */}
       <div className="bg-amber-50 rounded-[3rem] p-10 md:p-16 text-center space-y-8 border border-amber-100">
         <div className="mx-auto w-20 h-20 bg-white rounded-[2rem] shadow-xl flex items-center justify-center transform -rotate-12 hover:rotate-0 transition-transform duration-500">
           <MapIcon className="text-amber-600" size={32} />
