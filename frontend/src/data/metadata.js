@@ -38,7 +38,7 @@ export const BRANDS = {
   ],
   Lebanon: [
     { name: "CheeseOnTop", category: "Fast Food", logo: null },
-    { name: "Malak Al Tawouk", category: "Fast Food", logo: null },
+    { name: "Malak al Taouk", category: "Fast Food", logo: null },
     { name: "Zaatar w Zeit", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=zaatarwzeit.net&sz=64" },
     { name: "Barbar", category: "Restaurant", logo: null },
     { name: "Burger King", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=burgerking.com&sz=64" },

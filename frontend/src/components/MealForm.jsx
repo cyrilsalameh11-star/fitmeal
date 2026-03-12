@@ -92,6 +92,8 @@ export default function MealForm({ onSubmit, isLoading }) {
               <option value="Spain">Spain 🇪🇸</option>
               <option value="Lebanon">Lebanon 🇱🇧</option>
               <option value="USA">USA 🇺🇸</option>
+              <option value="UAE">UAE 🇦🇪</option>
+              <option value="Saudi Arabia">Saudi Arabia 🇸🇦</option>
             </select>
           </div>
 
