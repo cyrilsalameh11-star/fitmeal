@@ -498,10 +498,10 @@ app.get('/api/news', async (req, res) => {
     // Always prepend high-priority FMCG acquisition news
     const pinnedArticles = [
       {
-        title: "Americana Restaurants Acquires Malak Al Tawouk in Strategic Expansion",
-        link: "https://www.beirut.com/en/78234/americana-restaurants-acquires-malak-al-tawouk-in-strategic-expansion/",
+        title: "Americana Secures 75% of Malak Al Tawouk in Strategic Expansion",
+        link: "https://finance.yahoo.com/news/americana-secures-75-malak-al-100335765.html",
         pubDate: new Date().toISOString(),
-        contentSnippet: "In a major move for the Lebanese fast-food sector, Americana Restaurants has successfully completed the acquisition of the popular chain Malak Al Tawouk.",
+        contentSnippet: "Americana Restaurants has successfully completed the acquisition of a 75% stake in the popular Lebanese fast-food chain Malak Al Tawouk.",
         id: "fb-americana-pinned"
       },
       {
