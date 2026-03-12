@@ -90,7 +90,6 @@ const MapPage = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching]   = useState(false);
   const [searchTarget, setSearchTarget] = useState(null);
-  const [debugStatus, setDebugStatus] = useState('');
   const searchTimeoutRef = React.useRef(null);
   const autocompleteService = React.useRef(null);
   const placesService = React.useRef(null);
@@ -231,35 +230,19 @@ const MapPage = () => {
   };
 
   const handleSelectResult = (prediction) => {
-    console.log("DEBUG: handleSelectResult triggered", prediction);
-    alert("DEBUG: You clicked on " + (prediction.structured_formatting?.main_text || prediction.description));
-    
-    if (!window.google) {
-      console.error("DEBUG: google global not found");
-      return;
-    }
+    if (!window.google) return;
     
     // Lazy init if not already done
     if (!placesService.current) {
-      console.log("DEBUG: Initializing PlacesService lazily");
       placesService.current = new window.google.maps.places.PlacesService(document.createElement('div'));
     }
-    
-    if (!placesService.current) {
-      console.error("DEBUG: Failed to initialize placesService");
-      return;
-    }
+    if (!placesService.current) return;
 
-    setDebugStatus("Fetching details for " + prediction.description);
-    // Remove fields restriction to see if that's the issue, and add more alerts
+    setIsSearching(true);
     placesService.current.getDetails({ placeId: prediction.place_id }, (place, status) => {
-      console.log("DEBUG: getDetails result", { status, place });
-      alert("DEBUG: Google API Result - Status: " + status + (place ? " | Place found!" : " | Place NULL"));
       setIsSearching(false);
       
       if (status === window.google.maps.places.PlacesServiceStatus.OK && place && place.geometry) {
-        setDebugStatus("Success: Flying to " + place.name);
-        // Fallback for location accessing
         const location = place.geometry.location;
         const lat = typeof location.lat === 'function' ? location.lat() : location.lat;
         const lng = typeof location.lng === 'function' ? location.lng() : location.lng;
@@ -301,7 +284,6 @@ const MapPage = () => {
             Explore like a Local
           </h2>
           <p className="text-sm text-stone-500 font-medium">Click anywhere on the map to pin your favorite spots.</p>
-          {debugStatus && <p className="text-[10px] text-amber-600 font-bold bg-amber-50 px-2 py-1 rounded-md inline-block animate-pulse">DEBUG: {debugStatus}</p>}
         </div>
         
         <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
