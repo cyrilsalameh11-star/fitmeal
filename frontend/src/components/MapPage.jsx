@@ -70,12 +70,6 @@ function MapFlyTo({ target }) {
   return null;
 }
 
-// Helper to get map instance for PlacesService
-function MapReflector({ onMapReady }) {
-  const map = useMap();
-  useEffect(() => {
-    if (map) onMapReady(map);
-  }, [map, onMapReady]);
   return null;
 }
 
@@ -105,16 +99,15 @@ const MapPage = () => {
 
   // Initialize Google Services
   useEffect(() => {
-    if (window.google && !autocompleteService.current) {
-      autocompleteService.current = new window.google.maps.places.AutocompleteService();
+    if (window.google) {
+      if (!autocompleteService.current) {
+        autocompleteService.current = new window.google.maps.places.AutocompleteService();
+      }
+      if (!placesService.current) {
+        placesService.current = new window.google.maps.places.PlacesService(document.createElement('div'));
+      }
     }
   }, []);
-
-  const initPlacesService = (mapInstance) => {
-    if (window.google && !placesService.current) {
-      placesService.current = new window.google.maps.places.PlacesService(mapInstance);
-    }
-  };
 
   // Get user details for pins
   const userName = localStorage.getItem('fitmeal_username') || 'Guest';
@@ -240,6 +233,12 @@ const MapPage = () => {
   };
 
   const handleSelectResult = (prediction) => {
+    if (!window.google) return;
+    
+    // Lazy init if not already done
+    if (!placesService.current) {
+      placesService.current = new window.google.maps.places.PlacesService(document.createElement('div'));
+    }
     if (!placesService.current) return;
 
     setIsSearching(true);
@@ -354,7 +353,6 @@ const MapPage = () => {
           />
           <PinInteraction onMapClick={handleMapClick} selectedCity={selectedCity} />
           <MapFlyTo target={searchTarget} />
-          <MapReflector onMapReady={initPlacesService} />
           
           {pins.map((pin) => (
             <Marker 
