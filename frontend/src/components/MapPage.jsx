@@ -6,12 +6,12 @@ import 'leaflet/dist/leaflet.css';
 import { MapPin, Navigation, MessageCircle, Search, Loader2, Trash2 } from 'lucide-react';
 import { useMap } from 'react-leaflet';
 
-// bbox = west, south, east, north  (used to restrict Photon search per country)
+// Overpass bbox format: south,west,north,east
 const cities = {
-  Lebanon:    { name: 'Beirut, Lebanon',  lat: 33.8938, lng: 35.5018,  zoom: 13, bbox: '35.10,33.05,36.63,34.69' },
-  Paris:      { name: 'Paris, France',    lat: 48.8566, lng: 2.3522,   zoom: 13, bbox: '-5.14,41.33,9.56,51.09'  },
-  Madrid:     { name: 'Madrid, Spain',    lat: 40.4168, lng: -3.7038,  zoom: 13, bbox: '-9.30,35.17,4.33,43.79'  },
-  'New York': { name: 'New York, USA',    lat: 40.7128, lng: -74.0060, zoom: 13, bbox: '-125.0,24.4,-66.9,49.4'  },
+  Lebanon:    { name: 'Beirut, Lebanon',  lat: 33.8938, lng: 35.5018,  zoom: 13, ovBbox: '33.05,35.10,34.69,36.63' },
+  Paris:      { name: 'Paris, France',    lat: 48.8566, lng: 2.3522,   zoom: 13, ovBbox: '41.33,-5.14,51.09,9.56'  },
+  Madrid:     { name: 'Madrid, Spain',    lat: 40.4168, lng: -3.7038,  zoom: 13, ovBbox: '35.17,-9.30,43.79,4.33'  },
+  'New York': { name: 'New York, USA',    lat: 40.7128, lng: -74.0060, zoom: 13, ovBbox: '24.4,-125.0,49.4,-66.9'  },
 };
 
 // Create a custom div icon for the marker with initials and color
@@ -197,25 +197,37 @@ const MapPage = () => {
     searchTimeoutRef.current = setTimeout(async () => {
       setIsSearching(true);
       try {
-        const { lat, lng, bbox } = selectedCity;
-        const url = `https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&limit=6&lang=en&bbox=${bbox}&lat=${lat}&lon=${lng}`;
-        const resp = await fetch(url);
+        const { ovBbox } = selectedCity;
+        // Overpass QL: search any named node/way within the country bbox
+        const overpassQuery = `
+[out:json][timeout:8];
+(
+  node["name"~"${query.replace(/"/g, '')}",i](${ovBbox});
+  way["name"~"${query.replace(/"/g, '')}",i](${ovBbox});
+);
+out center 8;`.trim();
+
+        const resp = await fetch('https://overpass-api.de/api/interpreter', {
+          method: 'POST',
+          body: overpassQuery,
+        });
         if (resp.ok) {
           const data = await resp.json();
-          setSearchResults(data.features || []);
+          setSearchResults(data.elements || []);
         }
       } catch (err) {
         console.error('Search failed', err);
       } finally {
         setIsSearching(false);
       }
-    }, 400);
+    }, 500);
   };
 
-  const handleSelectResult = (feature) => {
-    const [lng, lat] = feature.geometry.coordinates;
-    const p = feature.properties;
-    const name = p.name || p.street || p.city || 'Unknown';
+  const handleSelectResult = (element) => {
+    // Overpass returns lat/lon for nodes, center for ways
+    const lat = element.lat ?? element.center?.lat;
+    const lng = element.lon ?? element.center?.lon;
+    const name = element.tags?.name || 'Unknown';
     setSearchQuery('');
     setSearchResults([]);
     setSearchTarget({ lat, lng });
@@ -259,18 +271,19 @@ const MapPage = () => {
             {/* Results dropdown */}
             {searchResults.length > 0 && (
               <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-xl border border-stone-100 overflow-hidden z-50 max-h-64 overflow-y-auto">
-                {searchResults.map((feature, idx) => {
-                  const p = feature.properties;
-                  const name = p.name || p.street || p.city || 'Unknown';
-                  const sub = [p.street, p.city, p.country].filter(Boolean).join(', ');
+                {searchResults.map((element, idx) => {
+                  const name = element.tags?.name || 'Unknown';
+                  const type = element.tags?.amenity || element.tags?.shop || element.tags?.tourism || '';
+                  const street = element.tags?.['addr:street'] || '';
+                  const sub = [type, street].filter(Boolean).join(' · ');
                   return (
                     <button
-                      key={idx}
-                      onClick={() => handleSelectResult(feature)}
+                      key={element.id || idx}
+                      onClick={() => handleSelectResult(element)}
                       className="w-full text-left px-4 py-3 hover:bg-amber-50 border-b border-stone-50 last:border-0 transition-colors"
                     >
                       <p className="text-sm font-semibold text-stone-800 truncate">{name}</p>
-                      <p className="text-xs text-stone-400 truncate">{sub}</p>
+                      {sub && <p className="text-xs text-stone-400 truncate capitalize">{sub}</p>}
                     </button>
                   );
                 })}
