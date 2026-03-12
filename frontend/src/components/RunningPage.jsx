@@ -316,7 +316,10 @@ export default function RunningContent() {
         <div className="mx-auto w-20 h-20 bg-white rounded-[2rem] shadow-xl flex items-center justify-center transform -rotate-12 hover:rotate-0 transition-transform duration-500">
           <MapIcon className="text-amber-600" size={32} />
         </div>
-        <div className="max-w-2xl mx-auto space-y-4">
+        {/* Verification Tag - v4.1 (Deep Inland Fix) */}
+      <div className="hidden" id="app-version-v4-1"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 py-12">
           <h2 className="text-3xl md:text-5xl font-serif">Run with friends.</h2>
           <p className="text-lg text-amber-900/60 font-medium leading-relaxed">
             Our algorithm matches you with similar-paced runners in your area. Open the map to find active meetups.
