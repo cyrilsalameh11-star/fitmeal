@@ -259,7 +259,7 @@ function App() {
           <div className="hidden md:flex space-x-10 text-sm font-bold uppercase tracking-widest text-stone-500">
             <button onClick={() => { setActiveTab('planner'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'planner' ? 'text-stone-900' : ''}`}>Planner</button>
             <button onClick={() => { setActiveTab('explore'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'explore' ? 'text-stone-900' : ''}`}>Explore</button>
-            <button onClick={() => { setActiveTab('calories'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'calories' ? 'text-stone-900' : ''}`}><Flame size={16} className="mr-1.5" />TLDR Calculator</button>
+            <button onClick={() => { setActiveTab('calories'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'calories' ? 'text-stone-900' : ''}`}><Flame size={16} className="mr-1.5" />TDEE Calculator</button>
             <button onClick={() => { setActiveTab('exercise'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'exercise' ? 'text-stone-900' : ''}`}><Dumbbell size={16} className="mr-1.5" />Exercise</button>
             <button onClick={() => { setActiveTab('map'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'map' ? 'text-stone-900' : ''}`}><MapIcon size={16} className="mr-1.5" />Map</button>
             <button onClick={() => { setActiveTab('news'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'news' ? 'text-stone-900' : ''}`}><Newspaper size={16} className="mr-1.5" />FMCG News</button>
@@ -287,7 +287,7 @@ function App() {
               exit={{ opacity: 0, y: -10 }}
               className="md:hidden bg-white border-t border-stone-100 px-6 py-4 space-y-3"
             >
-              {[['planner', 'Planner'], ['explore', 'Explore'], ['calories', 'TLDR Calculator'], ['exercise', 'Exercise'], ['map', 'Map'], ['news', 'FMCG News'], ['loyalty', 'Loyalty Programs'], ['contact', 'Contact Us']].map(([tab, label]) => (
+              {[['planner', 'Planner'], ['explore', 'Explore'], ['calories', 'TDEE Calculator'], ['exercise', 'Exercise'], ['map', 'Map'], ['news', 'FMCG News'], ['loyalty', 'Loyalty Programs'], ['contact', 'Contact Us']].map(([tab, label]) => (
                 <button
                   key={tab}
                   onClick={() => { setActiveTab(tab); setShowMobileMenu(false); }}
