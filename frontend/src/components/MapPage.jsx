@@ -70,9 +70,6 @@ function MapFlyTo({ target }) {
   return null;
 }
 
-  return null;
-}
-
 const EMOJI_OPTIONS = ['🍔', '🍕', '🍣', '🥗', '☕', '🍦', '🥑', '🥩', '🍺', '🥐', '🌶️', '🍪'];
 
 const MapPage = () => {
@@ -233,16 +230,28 @@ const MapPage = () => {
   };
 
   const handleSelectResult = (prediction) => {
-    if (!window.google) return;
+    console.log("DEBUG: handleSelectResult triggered", prediction);
+    alert("DEBUG: You clicked on " + (prediction.structured_formatting?.main_text || prediction.description));
+    
+    if (!window.google) {
+      console.error("DEBUG: google global not found");
+      return;
+    }
     
     // Lazy init if not already done
     if (!placesService.current) {
+      console.log("DEBUG: Initializing PlacesService lazily");
       placesService.current = new window.google.maps.places.PlacesService(document.createElement('div'));
     }
-    if (!placesService.current) return;
+    
+    if (!placesService.current) {
+      console.error("DEBUG: Failed to initialize placesService");
+      return;
+    }
 
     setIsSearching(true);
     placesService.current.getDetails({ placeId: prediction.place_id, fields: ['name', 'geometry', 'types'] }, (place, status) => {
+      console.log("DEBUG: getDetails result", { status, place });
       setIsSearching(false);
       if (status === window.google.maps.places.PlacesServiceStatus.OK && place.geometry) {
         const lat = place.geometry.location.lat();
