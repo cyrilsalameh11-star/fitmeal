@@ -3,51 +3,49 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { TrendingUp, ChevronLeft, ChevronRight, ExternalLink, Play } from 'lucide-react';
 
 // ─────────────────────────────────────────────────────────────────
-// REELS DATA — 6 per account = 30 total, recent → oldest
-// Displayed 6 per page (flat), balanced across accounts per page
+// REELS DATA — 6 accounts × 5 reels = 30 total
+// Interleaved: page N shows reel[N] from each account (1 per creator)
 // ─────────────────────────────────────────────────────────────────
-
-// Interleaved so each page of 6 is balanced across all 5 accounts
 const REELS_DATA = [
-  // PAGE 1 ── 6 reels, accounts: guide, baroodies, dxb, elle, laroutine, guide
-  { id: 1,  handle: 'guide.lb',             color: '#e11d48', shortcode: 'DJKSBtctQXD', type: 'reel', caption: 'Latest from Guide LB'           },
-  { id: 2,  handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DI6Q-OhTBjG', type: 'reel', caption: 'Latest taste test'              },
-  { id: 3,  handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUxdhBqDU_T', type: 'reel', caption: 'Dubai FMCG trend watch'         },
-  { id: 4,  handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DIDny45TU9D', type: 'reel', caption: '3 spots to work in Paris'        },
-  { id: 5,  handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DBoqxvJN6tF', type: 'reel', caption: 'Nouveautes rayon bouffe'          },
-  { id: 6,  handle: 'guide.lb',             color: '#e11d48', shortcode: 'DHqnOBkNWSL', type: 'reel', caption: 'Lebanese food trend'             },
+  // PAGE 1
+  { id: 1,  handle: 'guide.lb',             color: '#e11d48', shortcode: 'DUyUdKfDQfS', type: 'reel' },
+  { id: 2,  handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DUlZ_JQjMSh', type: 'reel' },
+  { id: 3,  handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DQjgZMhkqh2', type: 'reel' },
+  { id: 4,  handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DVti6aGDoWq', type: 'reel' },
+  { id: 5,  handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVTx-Bdje99', type: 'reel' },
+  { id: 6,  handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DVRqFx7jYld', type: 'reel' },
 
-  // PAGE 2 ── 6 reels
-  { id: 7,  handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DHtOYUiz7eJ', type: 'reel', caption: 'Beirut food review'              },
-  { id: 8,  handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUgGiWNEiZi', type: 'reel', caption: 'Best snacks in UAE'             },
-  { id: 9,  handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DHERxvyo2-l', type: 'reel', caption: 'Gluten free restaurant review'   },
-  { id: 10, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DCwueAztmjB', type: 'reel', caption: 'Haul FMCG de la semaine'         },
-  { id: 11, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DGIWmMmtoaB', type: 'reel', caption: 'Best spots in Beirut'            },
-  { id: 12, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DHadZeCtszb', type: 'reel', caption: 'Lebanese mezza haul'             },
+  // PAGE 2
+  { id: 7,  handle: 'guide.lb',             color: '#e11d48', shortcode: 'DUgGrZDDYpl', type: 'reel' },
+  { id: 8,  handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DVVlCUiDaG6', type: 'reel' },
+  { id: 9,  handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUxdhBqDU_T', type: 'reel' },
+  { id: 10, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DSzNG4tjAqu', type: 'reel' },
+  { id: 11, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVHRV8aDVMd', type: 'reel' },
+  { id: 12, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DVB4QnTDVF-', type: 'reel' },
 
-  // PAGE 3 ── 6 reels
-  { id: 13, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUKxO6VDczo', type: 'reel', caption: 'New health brands in Dubai'     },
-  { id: 14, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DGQbxnTIRHw', type: 'reel', caption: 'Paris food guide'                },
-  { id: 15, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'C82KnaYNbbh', type: 'reel', caption: 'Manger uniquement en distributeur'},
-  { id: 16, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DFa67tYtLtW', type: 'reel', caption: 'Must-try picks'                  },
-  { id: 17, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DENcjFmtmaE', type: 'reel', caption: 'New product review'             },
-  { id: 18, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DRAC021kvno', type: 'reel', caption: 'Carrefour vs Spinneys picks'    },
+  // PAGE 3
+  { id: 13, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DSkvVRjjcMY', type: 'p'    },
+  { id: 14, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DVMfhvYDRYS', type: 'reel' },
+  { id: 15, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUgGiWNEiZi', type: 'reel' },
+  { id: 16, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DRAQGGUjKy0', type: 'reel' },
+  { id: 17, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVG4b48jbNi', type: 'reel' },
+  { id: 18, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DU8mp01jZnu', type: 'reel' },
 
-  // PAGE 4 ── 6 reels
-  { id: 19, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DG6j6T4trj4', type: 'reel', caption: 'Best chocolate mousse in Paris'  },
-  { id: 20, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVY7nBRDT9M', type: 'reel', caption: 'Test produits tendance'          },
-  { id: 21, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DEXWCzEN_No', type: 'reel', caption: 'Guide LB essentials'             },
-  { id: 22, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DDpMl14t4xK', type: 'reel', caption: 'Trending Lebanese snacks'       },
-  { id: 23, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DQHOs10iAqW', type: 'reel', caption: 'Ramadan FMCG edition'           },
-  { id: 24, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'C_GaHuUogQk', type: 'reel', caption: 'Coolest brunch spot in Paris'    },
+  // PAGE 4
+  { id: 19, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DSC5LaRDTOI', type: 'reel' },
+  { id: 20, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DU-VE72jRn3', type: 'reel' },
+  { id: 21, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUKxO6VDczo', type: 'reel' },
+  { id: 22, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DQPkCGBjFqm', type: 'p'    },
+  { id: 23, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DU5DbZWDQ42', type: 'reel' },
+  { id: 24, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DUv5pNUjT4U', type: 'reel' },
 
-  // PAGE 5 ── 6 reels
-  { id: 25, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVHRV8aDVMd', type: 'reel', caption: 'Courses de la semaine'           },
-  { id: 26, handle: 'guide.lb',             color: '#e11d48', shortcode: 'C_2ZJi_NDLx', type: 'reel', caption: 'Hidden gems in Beirut'           },
-  { id: 27, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'C_vpzUGsTD7', type: 'reel', caption: 'Food finds this week'            },
-  { id: 28, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: null,           type: 'reel', caption: 'Dubai street food'              },
-  { id: 29, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DIrdZgNTybR', type: 'reel', caption: 'Adresses food a Paris'           },
-  { id: 30, handle: 'laroutineyt',          color: '#16a34a', shortcode: null,           type: 'reel', caption: 'Ma selection FMCG'              },
+  // PAGE 5
+  { id: 25, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DRzc-I5jaoJ', type: 'reel' },
+  { id: 26, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DUvLEl5DTd_', type: 'reel' },
+  { id: 27, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DRAC021kvno', type: 'reel' },
+  { id: 28, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DQE8Pp8jMHX', type: 'reel' },
+  { id: 29, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DUQzpVqDVlU', type: 'reel' },
+  { id: 30, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DUtE9gqDUeY', type: 'reel' },
 ];
 
 const ACCOUNTS = [
@@ -56,6 +54,7 @@ const ACCOUNTS = [
   { handle: 'baroodiesfoodies.dxb', color: '#0891b2', url: 'https://www.instagram.com/baroodiesfoodies.dxb/' },
   { handle: 'ellevousguide',        color: '#7c3aed', url: 'https://www.instagram.com/ellevousguide/'        },
   { handle: 'laroutineyt',          color: '#16a34a', url: 'https://www.instagram.com/laroutineyt/'          },
+  { handle: 'wondersbyaline',       color: '#f43f5e', url: 'https://www.instagram.com/wondersbyaline/'       },
 ];
 
 const REELS_PER_PAGE = 6;
