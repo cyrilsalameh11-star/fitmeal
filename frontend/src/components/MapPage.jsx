@@ -90,6 +90,7 @@ const MapPage = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching]   = useState(false);
   const [searchTarget, setSearchTarget] = useState(null);
+  const [debugStatus, setDebugStatus] = useState('');
   const searchTimeoutRef = React.useRef(null);
   const autocompleteService = React.useRef(null);
   const placesService = React.useRef(null);
@@ -249,11 +250,13 @@ const MapPage = () => {
       return;
     }
 
-    setIsSearching(true);
+    setDebugStatus("Fetching details for " + prediction.description);
     placesService.current.getDetails({ placeId: prediction.place_id, fields: ['name', 'geometry', 'types'] }, (place, status) => {
       console.log("DEBUG: getDetails result", { status, place });
       setIsSearching(false);
+      
       if (status === window.google.maps.places.PlacesServiceStatus.OK && place.geometry) {
+        setDebugStatus("Success: Flying to " + place.name);
         const lat = place.geometry.location.lat();
         const lng = place.geometry.location.lng();
         
@@ -274,6 +277,9 @@ const MapPage = () => {
         setComment('');
         setSelectedEmoji(detectedEmoji);
         setShowPinModal(true);
+      } else {
+        setDebugStatus("Error: Google API status " + status);
+        alert("Google API Error: " + status);
       }
     });
   };
@@ -289,6 +295,7 @@ const MapPage = () => {
             Explore like a Local
           </h2>
           <p className="text-sm text-stone-500 font-medium">Click anywhere on the map to pin your favorite spots.</p>
+          {debugStatus && <p className="text-[10px] text-amber-600 font-bold bg-amber-50 px-2 py-1 rounded-md inline-block animate-pulse">DEBUG: {debugStatus}</p>}
         </div>
         
         <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
@@ -317,7 +324,10 @@ const MapPage = () => {
                   return (
                     <button
                       key={prediction.place_id || idx}
-                      onClick={() => handleSelectResult(prediction)}
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        handleSelectResult(prediction);
+                      }}
                       className="w-full text-left px-4 py-3 hover:bg-amber-50 border-b border-stone-50 last:border-0 transition-colors"
                     >
                       <p className="text-sm font-semibold text-stone-800 truncate">{name}</p>
