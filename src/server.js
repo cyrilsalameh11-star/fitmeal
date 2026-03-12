@@ -425,16 +425,32 @@ app.get('/api/news', async (req, res) => {
       }
     }
     
-    const bannedWords = ['world news in brief', 'in brief', 'war', 'israel', 'strike', 'missile', 'hezbollah', 'politics', 'government', 'parliament', 'injured', 'killed', 'conflict', 'evacuate', 'mourn', 'gulf', 'iran', 'crisis', 'airstrike', 'military', 'army', 'death', 'casualty', 'bomb', 'drone', 'attack', 'protest', 'gaza', 'palestine', 'assassination', 'politician', 'county', 'pennsylvania', 'ohio', 'indiana', 'tennessee', 'oregon', 'new hampshire', 'kentucky', 'usa', 'pa', 'mo', 'va', 'nh'];
-    const goodWords = ['the961', '961', 'food', 'restaurant', 'supermarket', 'market', 'fmcg', 'spinneys', 'carrefour', 'menu', 'chef', 'cuisine', 'dining', 'diet', 'grocery', 'retail', 'brand', 'eat', 'nourriture', 'supermarché', 'economie', 'business', 'startup', 'delivery', 'coffee', 'cafe', 'grey mckenzie', 'iraq'];
+    const bannedWords = [
+      'world news in brief', 'in brief', 'war', 'israel', 'strike', 'missile', 'hezbollah', 'politics', 'government', 'parliament', 'injured', 'killed', 'conflict', 'evacuate', 'mourn', 'gulf', 'iran', 'crisis', 'airstrike', 'military', 'army', 'death', 'casualty', 'bomb', 'drone', 'attack', 'protest', 'gaza', 'palestine', 'assassination', 'politician',
+      'tennessee', 'nashville', 'pennsylvania', 'lancaster', 'county', 'pa', 'tn', 'usa', 'united states', 'lebtown', 'lancasteronline', 'tennessean', 'wsmv', 'news channel 5'
+    ];
+    const goodWords = ['the961', '961', 'food', 'restaurant', 'supermarket', 'market', 'fmcg', 'spinneys', 'carrefour', 'menu', 'chef', 'cuisine', 'dining', 'diet', 'grocery', 'retail', 'brand', 'eat', 'nourriture', 'supermarché', 'economie', 'business', 'startup', 'delivery', 'coffee', 'cafe', 'grey mckenzie', 'iraq', 'americana', 'malak al tawouk'];
 
     let formattedItems = allItems.filter(item => {
-      const text = (item.title + ' ' + (item.contentSnippet || item.content || '')).toLowerCase();
-      // Use regex word boundaries so 'usa' doesnt match 'thousand', 'pa' doesnt match 'party'
-      const hasBanned = bannedWords.some(bw => new RegExp(`\\b${bw}\\b`, 'i').test(text));
+      const title = (item.title || '').toLowerCase();
+      const source = (item.source || '').toLowerCase();
+      const snippet = (item.contentSnippet || item.content || '').toLowerCase();
+      const text = (title + ' ' + snippet).toLowerCase();
+      
+      // Strict regex word boundaries for small abbreviations
+      const hasBanned = bannedWords.some(bw => {
+        if (bw.length <= 3) return new RegExp(`\\b${bw}\\b`, 'i').test(text) || source.includes(bw);
+        return text.includes(bw) || source.includes(bw);
+      });
       if(hasBanned) return false;
+
+      // Must NOT be from known US local news patterns in titles
+      if(title.includes('tn') || title.includes('tenn.') || title.includes('pa.') || title.includes('county')) {
+        if(!title.includes('lebanon country')) return false; 
+      }
+
       const hasGood = goodWords.some(gw => text.includes(gw));
-      const mentionsLebanon = text.includes('lebanon') || text.includes('liban') || text.includes('beirut') || text.includes('beyrouth') || text.includes('spinneys') || text.includes('grey mckenzie') || text.includes('the961');
+      const mentionsLebanon = text.includes('lebanon') || text.includes('liban') || text.includes('beirut') || text.includes('beyrouth') || text.includes('spinneys') || text.includes('grey mckenzie') || text.includes('the961') || text.includes('americana');
       return hasGood && mentionsLebanon;
     }).map((item, index) => ({
       title: item.title,
@@ -445,9 +461,6 @@ app.get('/api/news', async (req, res) => {
     }));
     
     // Sort and remove duplicates by title AND enforce distinct domains/sources
-    // Note: Google News RSS links often start with news.google.com/rss/articles...
-    // The source name is typically in the source tag, but rss-parser might not map it perfectly if it's deeply nested.
-    // However, google news titles often end with "- Source Name". e.g. "Some Title - The961"
     const deduplicated = [];
     const seenTitles = new Set();
     const seenSources = new Set();
@@ -457,16 +470,12 @@ app.get('/api/news', async (req, res) => {
 
     for(let it of formattedItems) {
         const normTitle = it.title.toLowerCase();
-        
-        // Google news appends ' - SourceName' to the end of the title.
-        // Let's try to extract it to use as a source identifier.
         const titleParts = it.title.split(' - ');
         let sourceName = 'unknown';
         if (titleParts.length > 1) {
             sourceName = titleParts[titleParts.length - 1].trim().toLowerCase();
         }
 
-        // Also check actual URL hostname if it's a direct link
         let hostname = sourceName;
         try {
             if (it.link && !it.link.includes('news.google.com')) {
@@ -486,16 +495,25 @@ app.get('/api/news', async (req, res) => {
     // Fallback if the dynamic search somehow fails to yield enough fresh data
     const finalItems = deduplicated.length >= 8 ? deduplicated.slice(0, 24) : fallbackItems.slice(0, 24);
     
-    // Always prepend the user's requested L'Orient Le Jour article
-    const pinnedArticle = {
-      title: "À Gemmayzé, une patronne mise sur la table avant la fête",
-      link: "https://www.lorientlejour.com/cuisine-liban-a-table/1496265/a-gemmayze-patronne-mise-sur-la-table-avant-la-fete.html",
-      pubDate: new Date().toISOString(), // Fresh date so it sorts well if needed, but we prepend it directly
-      contentSnippet: "Dans le quartier bouillonnant de Gemmayzé, l'entrepreneuriat culinaire féminin rayonne avec des concepts de restauration mettant en avant le terroir et l'authenticité.",
-      id: "fb-gemmayze-pinned"
-    };
+    // Always prepend high-priority FMCG acquisition news
+    const pinnedArticles = [
+      {
+        title: "Americana Restaurants Acquires Malak Al Tawouk in Strategic Expansion",
+        link: "https://www.beirut.com/en/78234/americana-restaurants-acquires-malak-al-tawouk-in-strategic-expansion/",
+        pubDate: new Date().toISOString(),
+        contentSnippet: "In a major move for the Lebanese fast-food sector, Americana Restaurants has successfully completed the acquisition of the popular chain Malak Al Tawouk.",
+        id: "fb-americana-pinned"
+      },
+      {
+        title: "À Gemmayzé, une patronne mise sur la table avant la fête",
+        link: "https://www.lorientlejour.com/cuisine-liban-a-table/1496265/a-gemmayze-patronne-mise-sur-la-table-avant-la-fete.html",
+        pubDate: new Date().toISOString(),
+        contentSnippet: "Dans le quartier bouillonnant de Gemmayzé, l'entrepreneuriat culinaire féminin rayonne avec des concepts de restauration mettant en avant le terroir et l'authenticité.",
+        id: "fb-gemmayze-pinned"
+      }
+    ];
     
-    res.json([pinnedArticle, ...finalItems]);
+    res.json([...pinnedArticles, ...finalItems]);
   } catch (error) {
     console.error('Error fetching RSS:', error);
     res.json(fallbackItems);
