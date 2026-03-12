@@ -243,11 +243,20 @@ const MapPage = () => {
     if (!placesService.current) return;
 
     setIsSearching(true);
-    placesService.current.getDetails({ placeId: prediction.place_id }, (place, status) => {
+    placesService.current.getDetails({ placeId: prediction.place_id, fields: ['name', 'geometry', 'types'] }, (place, status) => {
       setIsSearching(false);
       if (status === window.google.maps.places.PlacesServiceStatus.OK && place.geometry) {
         const lat = place.geometry.location.lat();
         const lng = place.geometry.location.lng();
+        
+        // Smart Emoji Detection
+        let detectedEmoji = null;
+        const types = place.types || [];
+        if (types.includes('restaurant')) detectedEmoji = '🍔';
+        else if (types.includes('cafe')) detectedEmoji = '☕';
+        else if (types.includes('bar')) detectedEmoji = '🍺';
+        else if (types.includes('bakery')) detectedEmoji = '🥐';
+        else if (types.includes('night_club')) detectedEmoji = '🍺';
         
         setSearchQuery('');
         setSearchResults([]);
@@ -255,7 +264,7 @@ const MapPage = () => {
         setPendingPin({ lat, lng });
         setRestaurantName(place.name || 'Unknown');
         setComment('');
-        setSelectedEmoji(null);
+        setSelectedEmoji(detectedEmoji);
         setShowPinModal(true);
       }
     });
@@ -344,11 +353,8 @@ const MapPage = () => {
             url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
           />
           <PinInteraction onMapClick={handleMapClick} selectedCity={selectedCity} />
-          {/* Initialize PlacesService once map is ready */}
-          <div className="hidden">
-            <MapFlyTo target={searchTarget} />
-            <MapReflector onMapReady={initPlacesService} />
-          </div>
+          <MapFlyTo target={searchTarget} />
+          <MapReflector onMapReady={initPlacesService} />
           
           {pins.map((pin) => (
             <Marker 
