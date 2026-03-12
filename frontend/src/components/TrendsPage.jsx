@@ -3,118 +3,127 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { TrendingUp, ChevronLeft, ChevronRight, ExternalLink, Play } from 'lucide-react';
 
 // ─────────────────────────────────────────────────────────────────
-// REELS DATA — 25 entries, 5 per account, sorted recent → oldest
-// To update: grab the shortcode from each Instagram post URL
-//   e.g. instagram.com/reel/ABC123xyz/ → shortcode is "ABC123xyz"
-//   Set type to "reel" or "p" (post) accordingly
+// REELS DATA — 5 per account, ordered recent → oldest
+// shortcode: from instagram.com/reel/{shortcode}/ or /p/{shortcode}/
+// type: 'reel' | 'p'
 // ─────────────────────────────────────────────────────────────────
 const REELS_DATA = [
   // ── guide.lb ──────────────────────────────────────────────────
-  { id: 1,  account: 'guide.lb',              handle: 'guide.lb',              color: '#e11d48', shortcode: null, type: 'reel', caption: 'Best Lebanese supermarket finds this week' },
-  { id: 2,  account: 'guide.lb',              handle: 'guide.lb',              color: '#e11d48', shortcode: null, type: 'reel', caption: 'New FMCG launches in Beirut — March 2026'    },
-  { id: 3,  account: 'guide.lb',              handle: 'guide.lb',              color: '#e11d48', shortcode: null, type: 'reel', caption: 'Lebanese pantry staples ranked'              },
-  { id: 4,  account: 'guide.lb',              handle: 'guide.lb',              color: '#e11d48', shortcode: null, type: 'reel', caption: 'Top healthy snacks available in Lebanon'     },
-  { id: 5,  account: 'guide.lb',              handle: 'guide.lb',              color: '#e11d48', shortcode: null, type: 'reel', caption: 'Trending food products: Jan 2026'            },
+  { id: 1,  handle: 'guide.lb',             color: '#e11d48', shortcode: 'DJKSBtctQXD', type: 'reel', caption: 'Latest from Guide LB'          },
+  { id: 2,  handle: 'guide.lb',             color: '#e11d48', shortcode: 'DHqnOBkNWSL', type: 'reel', caption: 'Lebanese food trend'            },
+  { id: 3,  handle: 'guide.lb',             color: '#e11d48', shortcode: 'DGIWmMmtoaB', type: 'reel', caption: 'Best spots in Beirut'           },
+  { id: 4,  handle: 'guide.lb',             color: '#e11d48', shortcode: 'C_2ZJi_NDLx', type: 'reel', caption: 'Must-try picks'                 },
+  { id: 5,  handle: 'guide.lb',             color: '#e11d48', shortcode: 'CzgE2Y0NEbl', type: 'p',    caption: 'Supermarket finds'              },
 
   // ── baroodiesfoodies ──────────────────────────────────────────
-  { id: 6,  account: 'baroodiesfoodies',      handle: 'baroodiesfoodies',      color: '#d97706', shortcode: null, type: 'reel', caption: 'Street food meets supermarket — taste test'  },
-  { id: 7,  account: 'baroodiesfoodies',      handle: 'baroodiesfoodies',      color: '#d97706', shortcode: null, type: 'reel', caption: 'Best new condiments in Lebanon 2026'         },
-  { id: 8,  account: 'baroodiesfoodies',      handle: 'baroodiesfoodies',      color: '#d97706', shortcode: null, type: 'reel', caption: 'Protein snack haul — local brands only'      },
-  { id: 9,  account: 'baroodiesfoodies',      handle: 'baroodiesfoodies',      color: '#d97706', shortcode: null, type: 'reel', caption: 'Lebanese vs imported — which is better?'    },
-  { id: 10, account: 'baroodiesfoodies',      handle: 'baroodiesfoodies',      color: '#d97706', shortcode: null, type: 'reel', caption: 'Grocery haul: value picks under 50k LBP'    },
+  { id: 6,  handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DHtOYUiz7eJ', type: 'reel', caption: 'Latest taste test'             },
+  { id: 7,  handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DHadZeCtszb', type: 'reel', caption: 'Beirut street food haul'        },
+  { id: 8,  handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DENcjFmtmaE', type: 'reel', caption: 'New product review'            },
+  { id: 9,  handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DDpMl14t4xK', type: 'reel', caption: 'Trending Lebanese snacks'      },
+  { id: 10, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'C_vpzUGsTD7', type: 'reel', caption: 'Food finds this week'           },
 
   // ── baroodiesfoodies.dxb ──────────────────────────────────────
-  { id: 11, account: 'baroodiesfoodies.dxb',  handle: 'baroodiesfoodies.dxb',  color: '#0891b2', shortcode: null, type: 'reel', caption: 'Dubai FMCG trend watch — March 2026'        },
-  { id: 12, account: 'baroodiesfoodies.dxb',  handle: 'baroodiesfoodies.dxb',  color: '#0891b2', shortcode: null, type: 'reel', caption: 'Carrefour vs Spinneys: best value snacks'   },
-  { id: 13, account: 'baroodiesfoodies.dxb',  handle: 'baroodiesfoodies.dxb',  color: '#0891b2', shortcode: null, type: 'reel', caption: 'New health food brands hitting UAE shelves' },
-  { id: 14, account: 'baroodiesfoodies.dxb',  handle: 'baroodiesfoodies.dxb',  color: '#0891b2', shortcode: null, type: 'reel', caption: 'Top protein bars available in Dubai'        },
-  { id: 15, account: 'baroodiesfoodies.dxb',  handle: 'baroodiesfoodies.dxb',  color: '#0891b2', shortcode: null, type: 'reel', caption: 'Ramadan FMCG picks — Dubai edition'         },
+  { id: 11, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: null,           type: 'reel', caption: 'Dubai FMCG trend watch'        },
+  { id: 12, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: null,           type: 'reel', caption: 'Best snacks in UAE'            },
+  { id: 13, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: null,           type: 'reel', caption: 'New health brands in Dubai'    },
+  { id: 14, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: null,           type: 'reel', caption: 'Carrefour vs Spinneys picks'   },
+  { id: 15, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: null,           type: 'reel', caption: 'Ramadan FMCG edition'          },
 
   // ── ellevousguide ─────────────────────────────────────────────
-  { id: 16, account: 'ellevousguide',         handle: 'ellevousguide',         color: '#7c3aed', shortcode: null, type: 'reel', caption: 'French FMCG trends landing in Lebanon'      },
-  { id: 17, account: 'ellevousguide',         handle: 'ellevousguide',         color: '#7c3aed', shortcode: null, type: 'reel', caption: 'Luxury food gifts guide 2026'               },
-  { id: 18, account: 'ellevousguide',         handle: 'ellevousguide',         color: '#7c3aed', shortcode: null, type: 'reel', caption: 'Organic & bio: what is worth buying'       },
-  { id: 19, account: 'ellevousguide',         handle: 'ellevousguide',         color: '#7c3aed', shortcode: null, type: 'reel', caption: 'Healthy breakfast products ranked'          },
-  { id: 20, account: 'ellevousguide',         handle: 'ellevousguide',         color: '#7c3aed', shortcode: null, type: 'reel', caption: 'Imported vs local: dairy products'          },
+  { id: 16, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DIDny45TU9D', type: 'reel', caption: 'Tendances food du moment'       },
+  { id: 17, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DHERxvyo2-l', type: 'reel', caption: 'Guide produits FMCG'            },
+  { id: 18, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DGQbxnTIRHw', type: 'reel', caption: 'Nouveaux produits bio'          },
+  { id: 19, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DG6j6T4trj4', type: 'reel', caption: 'Snacks tendance'                },
+  { id: 20, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'C_GaHuUogQk', type: 'reel', caption: 'Produits a tester'             },
 
   // ── laroutineyt ───────────────────────────────────────────────
-  { id: 21, account: 'laroutineyt',           handle: 'laroutineyt',           color: '#16a34a', shortcode: null, type: 'reel', caption: 'Ma routine nutrition — produits FMCG'       },
-  { id: 22, account: 'laroutineyt',           handle: 'laroutineyt',           color: '#16a34a', shortcode: null, type: 'reel', caption: 'Les meilleurs snacks santé du moment'       },
-  { id: 23, account: 'laroutineyt',           handle: 'laroutineyt',           color: '#16a34a', shortcode: null, type: 'reel', caption: 'Courses de la semaine — haul FMCG'          },
-  { id: 24, account: 'laroutineyt',           handle: 'laroutineyt',           color: '#16a34a', shortcode: null, type: 'reel', caption: 'Test produits tendance — mars 2026'         },
-  { id: 25, account: 'laroutineyt',           handle: 'laroutineyt',           color: '#16a34a', shortcode: null, type: 'reel', caption: 'Routine alimentation saine — mes essentiels' },
+  { id: 21, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DBoqxvJN6tF', type: 'reel', caption: 'Ma routine nutrition'           },
+  { id: 22, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DCwueAztmjB', type: 'reel', caption: 'Haul FMCG de la semaine'        },
+  { id: 23, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'C82KnaYNbbh', type: 'reel', caption: 'Essentiels alimentation saine'  },
+  { id: 24, handle: 'laroutineyt',          color: '#16a34a', shortcode: null,           type: 'reel', caption: 'Test produits tendance'         },
+  { id: 25, handle: 'laroutineyt',          color: '#16a34a', shortcode: null,           type: 'reel', caption: 'Courses de la semaine'          },
 ];
 
 const ACCOUNTS = [
-  { handle: 'guide.lb',             color: '#e11d48', url: 'https://www.instagram.com/guide.lb/'              },
-  { handle: 'baroodiesfoodies',     color: '#d97706', url: 'https://www.instagram.com/baroodiesfoodies/'      },
-  { handle: 'baroodiesfoodies.dxb', color: '#0891b2', url: 'https://www.instagram.com/baroodiesfoodies.dxb/'  },
-  { handle: 'ellevousguide',        color: '#7c3aed', url: 'https://www.instagram.com/ellevousguide/'         },
-  { handle: 'laroutineyt',          color: '#16a34a', url: 'https://www.instagram.com/laroutineyt/'           },
+  { handle: 'guide.lb',             color: '#e11d48', url: 'https://www.instagram.com/guide.lb/'             },
+  { handle: 'baroodiesfoodies',     color: '#d97706', url: 'https://www.instagram.com/baroodiesfoodies/'     },
+  { handle: 'baroodiesfoodies.dxb', color: '#0891b2', url: 'https://www.instagram.com/baroodiesfoodies.dxb/' },
+  { handle: 'ellevousguide',        color: '#7c3aed', url: 'https://www.instagram.com/ellevousguide/'        },
+  { handle: 'laroutineyt',          color: '#16a34a', url: 'https://www.instagram.com/laroutineyt/'          },
 ];
 
-const REELS_PER_PAGE = 5;
-const TOTAL_PAGES    = 5;
+const TOTAL_PAGES = 5;
+
+// Returns 5 reels for the given page — 1 per account
+function getPageReels(page) {
+  return ACCOUNTS.map(acc => {
+    const reels = REELS_DATA.filter(r => r.handle === acc.handle);
+    return reels[page] || null;
+  }).filter(Boolean);
+}
+
+// Returns all reels for a single account, paginated 5 per page
+function getAccountReels(handle, page) {
+  return REELS_DATA.filter(r => r.handle === handle).slice(page * 5, (page + 1) * 5);
+}
 
 function ReelCard({ reel, index }) {
   const account = ACCOUNTS.find(a => a.handle === reel.handle);
-  const initial = reel.handle.charAt(0).toUpperCase();
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 14 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.07 }}
+      transition={{ delay: index * 0.06 }}
       className="bg-white rounded-[1.5rem] border border-stone-100 shadow-sm overflow-hidden flex flex-col"
     >
       {/* Account header */}
-      <div className="flex items-center gap-3 px-4 py-3 border-b border-stone-50">
+      <div className="flex items-center gap-2.5 px-4 py-3 border-b border-stone-50 flex-shrink-0">
         <div
-          className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-black flex-shrink-0"
+          className="w-7 h-7 rounded-full flex items-center justify-center text-white text-[10px] font-black flex-shrink-0"
           style={{ backgroundColor: reel.color }}
         >
-          {initial}
+          {reel.handle.charAt(0).toUpperCase()}
         </div>
-        <span className="text-xs font-black text-stone-700 tracking-wide">@{reel.handle}</span>
+        <span className="text-[11px] font-black text-stone-700 truncate">@{reel.handle}</span>
         <a
           href={account?.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="ml-auto text-stone-300 hover:text-stone-600 transition-colors"
+          className="ml-auto text-stone-300 hover:text-stone-600 transition-colors flex-shrink-0"
         >
-          <ExternalLink size={13} />
+          <ExternalLink size={12} />
         </a>
       </div>
 
       {/* Embed or fallback */}
       {reel.shortcode ? (
-        <div className="w-full" style={{ minHeight: 480 }}>
-          <iframe
-            src={`https://www.instagram.com/${reel.type}/${reel.shortcode}/embed/`}
-            className="w-full border-0"
-            style={{ minHeight: 480 }}
-            allowFullScreen
-            scrolling="no"
-            loading="lazy"
-          />
-        </div>
+        <iframe
+          src={`https://www.instagram.com/${reel.type}/${reel.shortcode}/embed/`}
+          className="w-full border-0 flex-1"
+          style={{ minHeight: 560 }}
+          allowFullScreen
+          allow="autoplay; encrypted-media"
+          scrolling="no"
+          loading="lazy"
+        />
       ) : (
         <div
-          className="flex flex-col items-center justify-center gap-4 px-6 py-12 flex-1"
-          style={{ background: `linear-gradient(135deg, ${reel.color}12, ${reel.color}06)` }}
+          className="flex flex-col items-center justify-center gap-4 px-5 py-14 flex-1"
+          style={{ background: `linear-gradient(135deg, ${reel.color}14, ${reel.color}05)` }}
         >
           <div
-            className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg"
+            className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg"
             style={{ backgroundColor: reel.color }}
           >
-            <Play size={22} className="text-white ml-1" />
+            <Play size={18} className="text-white ml-0.5" />
           </div>
-          <p className="text-sm text-stone-600 font-medium text-center leading-relaxed">{reel.caption}</p>
+          <p className="text-sm text-stone-500 font-medium text-center leading-relaxed">{reel.caption}</p>
           <a
             href={account?.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 px-5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest text-white transition-all hover:opacity-80 active:scale-95"
+            className="mt-1 px-5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest text-white transition-opacity hover:opacity-80"
             style={{ backgroundColor: reel.color }}
           >
             View on Instagram
@@ -129,19 +138,21 @@ export default function TrendsPage() {
   const [page,          setPage]          = useState(0);
   const [activeAccount, setActiveAccount] = useState('all');
 
-  const filtered = activeAccount === 'all'
-    ? REELS_DATA
-    : REELS_DATA.filter(r => r.handle === activeAccount);
+  const isAll      = activeAccount === 'all';
+  const totalPages = isAll
+    ? TOTAL_PAGES
+    : Math.ceil(REELS_DATA.filter(r => r.handle === activeAccount).length / 5) || 1;
 
-  const totalPages   = Math.min(TOTAL_PAGES, Math.ceil(filtered.length / REELS_PER_PAGE));
-  const currentReels = filtered.slice(page * REELS_PER_PAGE, (page + 1) * REELS_PER_PAGE);
+  const currentReels = isAll
+    ? getPageReels(page)
+    : getAccountReels(activeAccount, page);
 
   const goTo = (p) => {
     setPage(Math.max(0, Math.min(totalPages - 1, p)));
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleAccountFilter = (handle) => {
+  const handleFilter = (handle) => {
     setActiveAccount(handle);
     setPage(0);
   };
@@ -164,16 +175,16 @@ export default function TrendsPage() {
           <span className="italic font-normal text-stone-400">is watching.</span>
         </h1>
         <p className="text-base md:text-lg text-stone-500 font-medium">
-          FMCG reels and food trends curated from the top regional food creators.
+          FMCG reels and food trends from the top regional creators — one per creator per page.
         </p>
       </div>
 
-      {/* Account filter pills */}
+      {/* Account filter */}
       <div className="flex flex-wrap gap-2">
         <button
-          onClick={() => handleAccountFilter('all')}
+          onClick={() => handleFilter('all')}
           className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
-            activeAccount === 'all'
+            isAll
               ? 'bg-stone-900 text-white shadow-lg'
               : 'bg-white border border-stone-200 text-stone-500 hover:border-stone-400'
           }`}
@@ -183,7 +194,7 @@ export default function TrendsPage() {
         {ACCOUNTS.map(acc => (
           <button
             key={acc.handle}
-            onClick={() => handleAccountFilter(acc.handle)}
+            onClick={() => handleFilter(acc.handle)}
             className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
               activeAccount === acc.handle
                 ? 'text-white shadow-lg'
@@ -196,14 +207,14 @@ export default function TrendsPage() {
         ))}
       </div>
 
-      {/* Reel grid */}
+      {/* Grid — 5 columns on xl, 3 on lg, 2 on sm */}
       <AnimatePresence mode="wait">
         <motion.div
           key={`${page}-${activeAccount}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 items-start"
         >
           {currentReels.map((reel, i) => (
             <ReelCard key={reel.id} reel={reel} index={i} />
@@ -221,7 +232,6 @@ export default function TrendsPage() {
           >
             <ChevronLeft size={18} className="text-stone-600" />
           </button>
-
           <div className="flex gap-2">
             {Array.from({ length: totalPages }).map((_, i) => (
               <button
@@ -237,7 +247,6 @@ export default function TrendsPage() {
               </button>
             ))}
           </div>
-
           <button
             onClick={() => goTo(page + 1)}
             disabled={page === totalPages - 1}
@@ -261,7 +270,7 @@ export default function TrendsPage() {
               className="flex items-center gap-2 px-4 py-2.5 bg-white rounded-xl border border-stone-200 hover:shadow-md transition-all group"
             >
               <div
-                className="w-6 h-6 rounded-full flex items-center justify-center text-white text-[10px] font-black"
+                className="w-6 h-6 rounded-full flex items-center justify-center text-white text-[10px] font-black flex-shrink-0"
                 style={{ backgroundColor: acc.color }}
               >
                 {acc.handle.charAt(0).toUpperCase()}
