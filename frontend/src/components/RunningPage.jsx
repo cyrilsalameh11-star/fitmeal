@@ -11,21 +11,19 @@ const RUNNING_CITIES = {
     lng: 35.4835,
     zoom: 14,
     trails: [
-      // Beirut Corniche - ABSOLUTE LAND PATH (v5.0 - Extreme Safety)
-      // Manually shifted into the road/sidewalk zone to avoid map tile sea misalignments.
+      // Beirut Corniche — Zaitunay Bay → Corniche → Manara → Raouche
       [
-        [33.9010, 35.4988], [33.9000, 35.4965], [33.8995, 35.4940], [33.8992, 35.4920], [33.8990, 35.4900], 
-        [33.8988, 35.4880], [33.8985, 35.4860], [33.8982, 35.4840], [33.8980, 35.4820], [33.8978, 35.4800],
-        [33.8975, 35.4780], [33.8972, 35.4760], [33.8970, 35.4740], [33.8968, 35.4720], [33.8965, 35.4705],
-        [33.8960, 35.4695], [33.8950, 35.4688], [33.8940, 35.4685], [33.8930, 35.4682], [33.8920, 35.4680],
-        [33.8910, 35.4682], [33.8900, 35.4685], [33.8890, 35.4690], [33.8880, 35.4695], [33.8870, 35.4700],
-        [33.8860, 35.4705], [33.8850, 35.4715], [33.8840, 35.4725], [33.8830, 35.4735], [33.8820, 35.4738]
+        [33.8975, 35.4965], [33.8968, 35.4950], [33.8958, 35.4930], [33.8950, 35.4908], [33.8942, 35.4885],
+        [33.8935, 35.4862], [33.8928, 35.4840], [33.8920, 35.4818], [33.9005, 35.4700], [33.9010, 35.4692],
+        [33.9008, 35.4682], [33.9003, 35.4675], [33.8998, 35.4668], [33.8990, 35.4660], [33.8982, 35.4652],
+        [33.8975, 35.4645], [33.8965, 35.4638], [33.8955, 35.4630], [33.8945, 35.4622], [33.8935, 35.4615],
+        [33.8925, 35.4608], [33.8918, 35.4600], [33.8912, 35.4592], [33.8907, 35.4585], [33.8902, 35.4578]
       ],
-      // Dbayeh Marina loop - ABSOLUTE INLAND CENTER (v5.0)
+      // Dbayeh Marina — Waterfront City promenade loop
       [
-        [33.9315, 35.5820], [33.9315, 35.5840], [33.9325, 35.5845], [33.9335, 35.5840], [33.9340, 35.5830], 
-        [33.9340, 35.5815], [33.9335, 35.5805], [33.9325, 35.5800], [33.9315, 35.5805], [33.9310, 35.5815],
-        [33.9315, 35.5820]
+        [33.9340, 35.5825], [33.9338, 35.5835], [33.9335, 35.5845], [33.9330, 35.5850], [33.9325, 35.5852],
+        [33.9320, 35.5850], [33.9315, 35.5845], [33.9312, 35.5838], [33.9312, 35.5828], [33.9315, 35.5820],
+        [33.9320, 35.5815], [33.9325, 35.5818], [33.9330, 35.5820], [33.9335, 35.5822], [33.9340, 35.5825]
       ]
     ]
   },
@@ -96,11 +94,11 @@ const RUNNING_CITIES = {
 };
 
 const INITIAL_REAL_EXAMPLES = [
-  { name: 'Beirut Corniche 10K', user: 'Cyril S.', distance: '10.2km', time: '52:14', elevation: '28m', city: 'Beirut', link: 'https://www.strava.com/activities/2260195511' },
-  { name: 'Paris Marathon 2024', user: 'Marc L.', distance: '42.2km', time: '2:07:44', elevation: '148m', city: 'Paris', link: 'https://www.strava.com/activities/11124403666' },
-  { name: 'Central Park FKT', user: 'Sarah J.', distance: '9.8km', time: '44:32', elevation: '72m', city: 'New York', link: 'https://www.strava.com/activities/13706242302' },
-  { name: 'Retiro Perimeter', user: 'Jordi M.', distance: '5.1km', time: '22:15', elevation: '14m', city: 'Madrid', link: 'https://www.strava.com/activities/11333792661' },
-  { name: 'Dbayeh Marina Run', user: 'Rony G.', distance: '6.4km', time: '31:22', elevation: '8m', city: 'Dbayeh', link: 'https://www.strava.com/activities/8845610231' }
+  { name: 'Beirut Corniche 10K', user: 'Cyril S.', distance: '10.2km', time: '52:14', elevation: '28m', city: 'Beirut', link: 'https://www.strava.com/segments/explore?bounds=33.88,35.46,33.91,35.50' },
+  { name: 'Paris Seine Loop', user: 'Marc L.', distance: '42.2km', time: '2:07:44', elevation: '148m', city: 'Paris', link: 'https://www.strava.com/segments/612968' },
+  { name: 'Central Park Full Loop', user: 'Sarah J.', distance: '9.8km', time: '44:32', elevation: '72m', city: 'New York', link: 'https://www.strava.com/segments/616831' },
+  { name: 'Retiro Perimeter', user: 'Jordi M.', distance: '5.1km', time: '22:15', elevation: '14m', city: 'Madrid', link: 'https://www.strava.com/segments/explore?bounds=40.41,3.68,40.42,3.70' },
+  { name: 'Dbayeh Marina Run', user: 'Rony G.', distance: '6.4km', time: '31:22', elevation: '8m', city: 'Dbayeh', link: 'https://www.strava.com/segments/explore?bounds=33.92,35.57,33.94,35.59' }
 ];
 
 
@@ -316,10 +314,7 @@ export default function RunningContent() {
         <div className="mx-auto w-20 h-20 bg-white rounded-[2rem] shadow-xl flex items-center justify-center transform -rotate-12 hover:rotate-0 transition-transform duration-500">
           <MapIcon className="text-amber-600" size={32} />
         </div>
-        {/* Verification Tag - v5.0 (Absolute Land Guarantee) */}
-      <div className="hidden" id="app-version-v5-0"></div>
-      
-      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div>
           <h2 className="text-3xl md:text-5xl font-serif">Run with friends.</h2>
           <p className="text-lg text-amber-900/60 font-medium leading-relaxed">
             Our algorithm matches you with similar-paced runners in your area. Open the map to find active meetups.
