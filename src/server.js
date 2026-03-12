@@ -134,6 +134,34 @@ app.delete('/api/map/pins/:id', async (req, res) => {
   }
 });
 
+// ── Shared Running Runs ──────────────────────────────────────────────────────
+app.get('/api/running/runs', async (req, res) => {
+  if (!supabase) return res.json({ runs: [] });
+  try {
+    const { data, error } = await supabase.from('shared_runs').select('*').order('created_at', { ascending: false });
+    if (error) throw error;
+    res.json({ runs: data || [] });
+  } catch (err) {
+    console.error('Error fetching runs:', err.message);
+    res.status(500).json({ error: 'Failed to fetch runs' });
+  }
+});
+
+app.post('/api/running/runs', async (req, res) => {
+  if (!supabase) return res.status(503).json({ error: 'Cloud database not connected' });
+  try {
+    const { name, user, distance, time, elevation, city, link } = req.body;
+    const { data, error } = await supabase.from('shared_runs').insert([{
+      name, user, distance, time, elevation, city, link
+    }]).select();
+    if (error) throw error;
+    res.json({ success: true, run: data[0] });
+  } catch (err) {
+    console.error('Error saving run:', err.message);
+    res.status(500).json({ error: 'Failed to save run' });
+  }
+});
+
 // ── Cloud Persistence (Supabase) ──────────────────────────────────────────
 require('dotenv').config();
 const { createClient } = require('@supabase/supabase-js');
@@ -157,7 +185,7 @@ if (supabaseUrl && supabaseKey) {
       };
       const axios = require('axios');
       await axios.post(`${supabaseUrl}/rest/v1/rpc/exec_sql`,
-        { sql: 'ALTER TABLE users ADD COLUMN IF NOT EXISTS last_login timestamptz DEFAULT now(); ALTER TABLE users ADD COLUMN IF NOT EXISTS email text; ALTER TABLE map_pins ADD COLUMN IF NOT EXISTS emoji text;' },
+        { sql: 'ALTER TABLE users ADD COLUMN IF NOT EXISTS last_login timestamptz DEFAULT now(); ALTER TABLE users ADD COLUMN IF NOT EXISTS email text; ALTER TABLE map_pins ADD COLUMN IF NOT EXISTS emoji text; CREATE TABLE IF NOT EXISTS shared_runs (id uuid DEFAULT gen_random_uuid() PRIMARY KEY, created_at timestamptz DEFAULT now(), name text, "user" text, distance text, time text, elevation text, city text, link text);' },
         { headers }
       ).catch(() => { }); // silently ignore if rpc not available
     } catch (e) { /* ignore */ }
