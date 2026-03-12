@@ -94,11 +94,11 @@ const RUNNING_CITIES = {
 };
 
 const INITIAL_REAL_EXAMPLES = [
-  { name: 'Beirut Corniche 10K', user: 'Cyril S.', distance: '10.2km', time: '52:14', elevation: '28m', city: 'Beirut', link: 'https://www.strava.com/segments/explore?bounds=33.88,35.46,33.91,35.50' },
-  { name: 'Paris Seine Loop', user: 'Marc L.', distance: '42.2km', time: '2:07:44', elevation: '148m', city: 'Paris', link: 'https://www.strava.com/segments/612968' },
-  { name: 'Central Park Full Loop', user: 'Sarah J.', distance: '9.8km', time: '44:32', elevation: '72m', city: 'New York', link: 'https://www.strava.com/segments/616831' },
-  { name: 'Retiro Perimeter', user: 'Jordi M.', distance: '5.1km', time: '22:15', elevation: '14m', city: 'Madrid', link: 'https://www.strava.com/segments/explore?bounds=40.41,3.68,40.42,3.70' },
-  { name: 'Dbayeh Marina Run', user: 'Rony G.', distance: '6.4km', time: '31:22', elevation: '8m', city: 'Dbayeh', link: 'https://www.strava.com/segments/explore?bounds=33.92,35.57,33.94,35.59' }
+  { name: 'Beirut Corniche 10K', user: 'Cyril S.', distance: '10.2km', time: '52:14', elevation: '28m', city: 'Lebanon', link: 'https://www.strava.com/segments/explore?bounds=33.8902,35.4578,33.9010,35.4965' },
+  { name: 'Dbayeh Marina Run', user: 'Rony G.', distance: '6.4km', time: '31:22', elevation: '8m', city: 'Lebanon', link: 'https://www.strava.com/segments/explore?bounds=33.9312,35.5815,33.9340,35.5852' },
+  { name: 'Paris Seine Loop', user: 'Marc L.', distance: '8.4km', time: '42:10', elevation: '12m', city: 'Paris', link: 'https://www.strava.com/segments/explore?bounds=48.8508,2.3241,48.8622,2.3521' },
+  { name: 'Central Park Full Loop', user: 'Sarah J.', distance: '9.8km', time: '44:32', elevation: '72m', city: 'New York', link: 'https://www.strava.com/segments/explore?bounds=40.7655,-73.9825,40.8065,-73.9500' },
+  { name: 'Retiro Perimeter', user: 'Jordi M.', distance: '5.1km', time: '22:15', elevation: '14m', city: 'Madrid', link: 'https://www.strava.com/segments/explore?bounds=40.4062,-3.6895,40.4222,-3.6680' }
 ];
 
 
@@ -271,7 +271,7 @@ export default function RunningContent() {
             </h4>
             
             <div className="space-y-3">
-              {sharedRuns.slice(0, 10).map((ex, i) => (
+              {sharedRuns.filter(r => r.city === activeCityId).slice(0, 10).map((ex, i) => (
                 <motion.div 
                    key={ex.id || i}
                   initial={{ opacity: 0, x: 20 }}
