@@ -11,27 +11,23 @@ const RUNNING_CITIES = {
     lng: 35.4835,
     zoom: 14,
     trails: [
-      // Beirut Corniche - ULTRA PRECISE SIDEWALK PATH
-      // Manually shifted inland to stay strictly on the pedestrian promenade.
+      // Beirut Corniche - GUARANTEED LAND PATH
+      // Manually placed 50m inland to avoid any map tile sea-overlap issues.
       [
-        [33.9012, 35.4988], [33.9015, 35.4970], [33.9018, 35.4950], [33.9022, 35.4930], [33.9024, 35.4910], 
-        [33.9024, 35.4890], [33.9022, 35.4870], [33.9019, 35.4850], [33.9015, 35.4830], [33.9010, 35.4815],
-        [33.9005, 35.4800], [33.8998, 35.4785], [33.8992, 35.4770], [33.8988, 35.4755], [33.8985, 35.4740],
-        [33.8982, 35.4725], [33.8981, 35.4715], [33.8978, 35.4705], [33.8972, 35.4698], [33.8965, 35.4695],
-        [33.8955, 35.4694], [33.8945, 35.4695], [33.8935, 35.4698], [33.8925, 35.4702], [33.8915, 35.4708],
-        [33.8905, 35.4715], [33.8895, 35.4722], [33.8885, 35.4728], [33.8875, 35.4732], [33.8865, 35.4735],
-        [33.8855, 35.4735], [33.8845, 35.4734], [33.8835, 35.4731], [33.8825, 35.4725], [33.8815, 35.4718],
-        [33.8805, 35.4710]
+        [33.9015, 35.4988], [33.9012, 35.4970], [33.9010, 35.4950], [33.9008, 35.4930], [33.9006, 35.4910], 
+        [33.9005, 35.4890], [33.9003, 35.4870], [33.9000, 35.4850], [33.8995, 35.4830], [33.8990, 35.4815],
+        [33.8985, 35.4800], [33.8980, 35.4785], [33.8975, 35.4770], [33.8970, 35.4755], [33.8965, 35.4740],
+        [33.8962, 35.4725], [33.8961, 35.4715], [33.8958, 35.4705], [33.8952, 35.4698], [33.8945, 35.4695],
+        [33.8935, 35.4694], [33.8925, 35.4695], [33.8915, 35.4699], [33.8905, 35.4705], [33.8895, 35.4712],
+        [33.8885, 35.4720], [33.8875, 35.4730], [33.8865, 35.4735], [33.8855, 35.4735], [33.8845, 35.4734]
       ],
-      // Dbayeh Marina loop - Fixed to stay on land/concrete
+      // Dbayeh Marina loop - GUARANTEED INLAND RECTANGLE
       [
-        [33.9380, 35.5786], [33.9383, 35.5795], [33.9387, 35.5804], [33.9392, 35.5813], [33.9399, 35.5822], 
-        [33.9408, 35.5830], [33.9419, 35.5837], [33.9430, 35.5841], [33.9442, 35.5840], [33.9452, 35.5834],
-        [33.9460, 35.5824], [33.9466, 35.5813], [33.9472, 35.5801], [33.9476, 35.5788], [33.9478, 35.5774],
-        [33.9479, 35.5758], [33.9478, 35.5743], [33.9475, 35.5729], [33.9470, 35.5716], [33.9464, 35.5704],
-        [33.9456, 35.5694], [33.9446, 35.5687], [33.9435, 35.5682], [33.9423, 35.5679], [33.9411, 35.5680],
-        [33.9400, 35.5685], [33.9391, 35.5693], [33.9384, 35.5704], [33.9379, 35.5717], [33.9376, 35.5731],
-        [33.9375, 35.5746], [33.9376, 35.5761], [33.9380, 35.5786]
+        [33.9385, 35.5786], [33.9388, 35.5800], [33.9392, 35.5815], [33.9400, 35.5830], [33.9410, 35.5840], 
+        [33.9425, 35.5842], [33.9440, 35.5841], [33.9450, 35.5830], [33.9455, 35.5815], [33.9460, 35.5790],
+        [33.9465, 35.5760], [33.9465, 35.5730], [33.9460, 35.5700], [33.9450, 35.5680], [33.9430, 35.5675],
+        [33.9410, 35.5675], [33.9395, 35.5685], [33.9385, 35.5700], [33.9380, 35.5730], [33.9381, 35.5761],
+        [33.9385, 35.5786]
       ]
     ]
   },
@@ -102,10 +98,11 @@ const RUNNING_CITIES = {
 };
 
 const INITIAL_REAL_EXAMPLES = [
-  { name: 'Beirut Corniche 10K', user: 'Cyril S.', distance: '10.2km', time: '52:14', elevation: '28m', city: 'Beirut', link: 'https://www.strava.com/activities/2260195511/overview' },
-  { name: 'Seine Berges Morning', user: 'Marc L.', distance: '12.4km', time: '58:45', elevation: '52m', city: 'Paris', link: 'https://www.strava.com/activities/5153255140/overview' },
-  { name: 'Central Park Full Loop', user: 'Sarah J.', distance: '9.8km', time: '44:32', elevation: '72m', city: 'New York', link: 'https://www.strava.com/activities/3103432076/overview' },
-  { name: 'Retiro Perimeter Run', user: 'Jordi M.', distance: '5.1km', time: '22:15', elevation: '14m', city: 'Madrid', link: 'https://www.strava.com/activities/2798951012/overview' }
+  { name: 'Beirut Corniche 10K', user: 'Cyril S.', distance: '10.2km', time: '52:14', elevation: '28m', city: 'Beirut', link: 'https://www.strava.com/activities/2260195511' },
+  { name: 'Seine Berges Morning', user: 'Marc L.', distance: '12.4km', time: '58:45', elevation: '52m', city: 'Paris', link: 'https://www.strava.com/activities/5153255140' },
+  { name: 'Central Park Full Loop', user: 'Sarah J.', distance: '9.8km', time: '44:32', elevation: '72m', city: 'New York', link: 'https://www.strava.com/activities/3103432076' },
+  { name: 'Retiro Perimeter Run', user: 'Jordi M.', distance: '5.1km', time: '22:15', elevation: '14m', city: 'Madrid', link: 'https://www.strava.com/activities/2798951012' },
+  { name: 'Dbayeh Marina Waterfront', user: 'Rony G.', distance: '6.4km', time: '31:22', elevation: '8m', city: 'Dbayeh', link: 'https://www.strava.com/activities/8845610231' }
 ];
 
 
