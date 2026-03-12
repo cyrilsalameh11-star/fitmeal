@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaf
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet/dist/leaflet.css';
-import { MapPin, Navigation, MessageCircle, Search, Loader2, Trash2 } from 'lucide-react';
+import { MapPin, Navigation, MessageCircle, Search, Loader2, Trash2, ExternalLink } from 'lucide-react';
 import { useMap } from 'react-leaflet';
 
 const cities = {
@@ -221,18 +221,24 @@ const MapPage = () => {
     }, 500);
   };
 
+  const googleMapsUrl = (lat, lng, name) =>
+    `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name)}&center=${lat},${lng}`;
+
   const handleSelectSearchResult = (result) => {
     const lat = parseFloat(result.lat);
     const lng = parseFloat(result.lon);
-    
+    const name = result.display_name.split(',')[0];
+
     setSearchQuery('');
     setSearchResults([]);
     setSearchTarget({ lat, lng });
-    
-    // Auto-open pin modal for this location
+
+    // Open in Google Maps
+    window.open(googleMapsUrl(lat, lng, name), '_blank', 'noopener,noreferrer');
+
+    // Also fly to location and open pin modal
     setPendingPin({ lat, lng });
-    // Use the first part of the display name as the default restaurant name
-    setRestaurantName(result.display_name.split(',')[0]);
+    setRestaurantName(name);
     setComment('');
     setSelectedEmoji(null);
     setShowPinModal(true);
@@ -270,21 +276,36 @@ const MapPage = () => {
             
             {/* Search Results Dropdown */}
             {searchResults.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-stone-100 overflow-hidden max-h-60 overflow-y-auto">
-                {searchResults.map((result, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => handleSelectSearchResult(result)}
-                    className="w-full text-left px-4 py-3 hover:bg-stone-50 border-b border-stone-50 last:border-0 transition-colors"
-                  >
-                    <p className="text-sm font-medium text-stone-800 truncate" title={result.display_name.split(',')[0]}>
-                      {result.display_name.split(',')[0]}
-                    </p>
-                    <p className="text-xs text-stone-500 truncate" title={result.display_name}>
-                      {result.display_name}
-                    </p>
-                  </button>
-                ))}
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-stone-100 overflow-hidden max-h-60 overflow-y-auto z-50">
+                {searchResults.map((result, idx) => {
+                  const lat = parseFloat(result.lat);
+                  const lng = parseFloat(result.lon);
+                  const name = result.display_name.split(',')[0];
+                  return (
+                    <div
+                      key={idx}
+                      className="flex items-center border-b border-stone-50 last:border-0 hover:bg-stone-50 transition-colors group"
+                    >
+                      <button
+                        onClick={() => handleSelectSearchResult(result)}
+                        className="flex-1 text-left px-4 py-3"
+                      >
+                        <p className="text-sm font-medium text-stone-800 truncate" title={name}>{name}</p>
+                        <p className="text-xs text-stone-400 truncate" title={result.display_name}>{result.display_name}</p>
+                      </button>
+                      <a
+                        href={googleMapsUrl(lat, lng, name)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={e => e.stopPropagation()}
+                        title="Open in Google Maps"
+                        className="flex-shrink-0 px-3 py-3 text-stone-300 hover:text-[#4285F4] transition-colors"
+                      >
+                        <ExternalLink size={14} />
+                      </a>
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>
