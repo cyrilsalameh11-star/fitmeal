@@ -6,11 +6,12 @@ import 'leaflet/dist/leaflet.css';
 import { MapPin, Navigation, MessageCircle, Search, Loader2, Trash2 } from 'lucide-react';
 import { useMap } from 'react-leaflet';
 
+// bbox = west, south, east, north  (used to restrict Photon search per country)
 const cities = {
-  Lebanon:    { name: 'Beirut, Lebanon',   lat: 33.8938, lng: 35.5018,  zoom: 13, countryCode: 'lb' },
-  Paris:      { name: 'Paris, France',     lat: 48.8566, lng: 2.3522,   zoom: 13, countryCode: 'fr' },
-  Madrid:     { name: 'Madrid, Spain',     lat: 40.4168, lng: -3.7038,  zoom: 13, countryCode: 'es' },
-  'New York': { name: 'New York, USA',     lat: 40.7128, lng: -74.0060, zoom: 13, countryCode: 'us' },
+  Lebanon:    { name: 'Beirut, Lebanon',  lat: 33.8938, lng: 35.5018,  zoom: 13, bbox: '35.10,33.05,36.63,34.69' },
+  Paris:      { name: 'Paris, France',    lat: 48.8566, lng: 2.3522,   zoom: 13, bbox: '-5.14,41.33,9.56,51.09'  },
+  Madrid:     { name: 'Madrid, Spain',    lat: 40.4168, lng: -3.7038,  zoom: 13, bbox: '-9.30,35.17,4.33,43.79'  },
+  'New York': { name: 'New York, USA',    lat: 40.7128, lng: -74.0060, zoom: 13, bbox: '-125.0,24.4,-66.9,49.4'  },
 };
 
 // Create a custom div icon for the marker with initials and color
@@ -196,10 +197,13 @@ const MapPage = () => {
     searchTimeoutRef.current = setTimeout(async () => {
       setIsSearching(true);
       try {
-        const resp = await fetch(
-          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=${selectedCity.countryCode}&limit=6`
-        );
-        if (resp.ok) setSearchResults(await resp.json());
+        const { lat, lng, bbox } = selectedCity;
+        const url = `https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&limit=6&lang=en&bbox=${bbox}&lat=${lat}&lon=${lng}`;
+        const resp = await fetch(url);
+        if (resp.ok) {
+          const data = await resp.json();
+          setSearchResults(data.features || []);
+        }
       } catch (err) {
         console.error('Search failed', err);
       } finally {
@@ -208,15 +212,15 @@ const MapPage = () => {
     }, 400);
   };
 
-  const handleSelectResult = (result) => {
-    const lat = parseFloat(result.lat);
-    const lng = parseFloat(result.lon);
+  const handleSelectResult = (feature) => {
+    const [lng, lat] = feature.geometry.coordinates;
+    const p = feature.properties;
+    const name = p.name || p.street || p.city || 'Unknown';
     setSearchQuery('');
     setSearchResults([]);
     setSearchTarget({ lat, lng });
-    // Pre-fill pin modal with place name
     setPendingPin({ lat, lng });
-    setRestaurantName(result.display_name.split(',')[0]);
+    setRestaurantName(name);
     setComment('');
     setSelectedEmoji(null);
     setShowPinModal(true);
@@ -255,18 +259,21 @@ const MapPage = () => {
             {/* Results dropdown */}
             {searchResults.length > 0 && (
               <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-xl border border-stone-100 overflow-hidden z-50 max-h-64 overflow-y-auto">
-                {searchResults.map((result, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => handleSelectResult(result)}
-                    className="w-full text-left px-4 py-3 hover:bg-amber-50 border-b border-stone-50 last:border-0 transition-colors"
-                  >
-                    <p className="text-sm font-semibold text-stone-800 truncate">
-                      {result.display_name.split(',')[0]}
-                    </p>
-                    <p className="text-xs text-stone-400 truncate">{result.display_name}</p>
-                  </button>
-                ))}
+                {searchResults.map((feature, idx) => {
+                  const p = feature.properties;
+                  const name = p.name || p.street || p.city || 'Unknown';
+                  const sub = [p.street, p.city, p.country].filter(Boolean).join(', ');
+                  return (
+                    <button
+                      key={idx}
+                      onClick={() => handleSelectResult(feature)}
+                      className="w-full text-left px-4 py-3 hover:bg-amber-50 border-b border-stone-50 last:border-0 transition-colors"
+                    >
+                      <p className="text-sm font-semibold text-stone-800 truncate">{name}</p>
+                      <p className="text-xs text-stone-400 truncate">{sub}</p>
+                    </button>
+                  );
+                })}
               </div>
             )}
           </div>
