@@ -70,6 +70,15 @@ function MapFlyTo({ target }) {
   return null;
 }
 
+// Helper to get map instance for PlacesService
+function MapReflector({ onMapReady }) {
+  const map = useMap();
+  useEffect(() => {
+    if (map) onMapReady(map);
+  }, [map, onMapReady]);
+  return null;
+}
+
 const EMOJI_OPTIONS = ['🍔', '🍕', '🍣', '🥗', '☕', '🍦', '🥑', '🥩', '🍺', '🥐', '🌶️', '🍪'];
 
 const MapPage = () => {
@@ -91,6 +100,21 @@ const MapPage = () => {
   const [isSearching, setIsSearching]   = useState(false);
   const [searchTarget, setSearchTarget] = useState(null);
   const searchTimeoutRef = React.useRef(null);
+  const autocompleteService = React.useRef(null);
+  const placesService = React.useRef(null);
+
+  // Initialize Google Services
+  useEffect(() => {
+    if (window.google && !autocompleteService.current) {
+      autocompleteService.current = new window.google.maps.places.AutocompleteService();
+    }
+  }, []);
+
+  const initPlacesService = (mapInstance) => {
+    if (window.google && !placesService.current) {
+      placesService.current = new window.google.maps.places.PlacesService(mapInstance);
+    }
+  };
 
   // Get user details for pins
   const userName = localStorage.getItem('fitmeal_username') || 'Guest';
@@ -192,50 +216,49 @@ const MapPage = () => {
     setSearchQuery(query);
 
     if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
-    if (!query.trim()) { setSearchResults([]); return; }
+    if (!query.trim() || !autocompleteService.current) { setSearchResults([]); return; }
 
-    searchTimeoutRef.current = setTimeout(async () => {
+    searchTimeoutRef.current = setTimeout(() => {
       setIsSearching(true);
-      try {
-        const { ovBbox } = selectedCity;
-        // Overpass QL: search any named node/way within the country bbox
-        const overpassQuery = `
-[out:json][timeout:8];
-(
-  node["name"~"${query.replace(/"/g, '')}",i](${ovBbox});
-  way["name"~"${query.replace(/"/g, '')}",i](${ovBbox});
-);
-out center 8;`.trim();
+      
+      const request = {
+        input: query,
+        location: new window.google.maps.LatLng(selectedCity.lat, selectedCity.lng),
+        radius: 20000, // 20km radius preference
+        componentRestrictions: { country: activeCityId === 'Lebanon' ? 'lb' : activeCityId === 'Paris' ? 'fr' : activeCityId === 'Madrid' ? 'es' : 'us' }
+      };
 
-        const resp = await fetch('https://overpass-api.de/api/interpreter', {
-          method: 'POST',
-          body: overpassQuery,
-        });
-        if (resp.ok) {
-          const data = await resp.json();
-          setSearchResults(data.elements || []);
-        }
-      } catch (err) {
-        console.error('Search failed', err);
-      } finally {
+      autocompleteService.current.getPlacePredictions(request, (predictions, status) => {
         setIsSearching(false);
-      }
-    }, 500);
+        if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+          setSearchResults(predictions || []);
+        } else {
+          setSearchResults([]);
+        }
+      });
+    }, 400);
   };
 
-  const handleSelectResult = (element) => {
-    // Overpass returns lat/lon for nodes, center for ways
-    const lat = element.lat ?? element.center?.lat;
-    const lng = element.lon ?? element.center?.lon;
-    const name = element.tags?.name || 'Unknown';
-    setSearchQuery('');
-    setSearchResults([]);
-    setSearchTarget({ lat, lng });
-    setPendingPin({ lat, lng });
-    setRestaurantName(name);
-    setComment('');
-    setSelectedEmoji(null);
-    setShowPinModal(true);
+  const handleSelectResult = (prediction) => {
+    if (!placesService.current) return;
+
+    setIsSearching(true);
+    placesService.current.getDetails({ placeId: prediction.place_id }, (place, status) => {
+      setIsSearching(false);
+      if (status === window.google.maps.places.PlacesServiceStatus.OK && place.geometry) {
+        const lat = place.geometry.location.lat();
+        const lng = place.geometry.location.lng();
+        
+        setSearchQuery('');
+        setSearchResults([]);
+        setSearchTarget({ lat, lng });
+        setPendingPin({ lat, lng });
+        setRestaurantName(place.name || 'Unknown');
+        setComment('');
+        setSelectedEmoji(null);
+        setShowPinModal(true);
+      }
+    });
   };
 
   return (
@@ -271,15 +294,13 @@ out center 8;`.trim();
             {/* Results dropdown */}
             {searchResults.length > 0 && (
               <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-xl border border-stone-100 overflow-hidden z-50 max-h-64 overflow-y-auto">
-                {searchResults.map((element, idx) => {
-                  const name = element.tags?.name || 'Unknown';
-                  const type = element.tags?.amenity || element.tags?.shop || element.tags?.tourism || '';
-                  const street = element.tags?.['addr:street'] || '';
-                  const sub = [type, street].filter(Boolean).join(' · ');
+                {searchResults.map((prediction, idx) => {
+                  const name = prediction.structured_formatting?.main_text || prediction.description;
+                  const sub = prediction.structured_formatting?.secondary_text || '';
                   return (
                     <button
-                      key={element.id || idx}
-                      onClick={() => handleSelectResult(element)}
+                      key={prediction.place_id || idx}
+                      onClick={() => handleSelectResult(prediction)}
                       className="w-full text-left px-4 py-3 hover:bg-amber-50 border-b border-stone-50 last:border-0 transition-colors"
                     >
                       <p className="text-sm font-semibold text-stone-800 truncate">{name}</p>
@@ -323,7 +344,11 @@ out center 8;`.trim();
             url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
           />
           <PinInteraction onMapClick={handleMapClick} selectedCity={selectedCity} />
-          <MapFlyTo target={searchTarget} />
+          {/* Initialize PlacesService once map is ready */}
+          <div className="hidden">
+            <MapFlyTo target={searchTarget} />
+            <MapReflector onMapReady={initPlacesService} />
+          </div>
           
           {pins.map((pin) => (
             <Marker 
