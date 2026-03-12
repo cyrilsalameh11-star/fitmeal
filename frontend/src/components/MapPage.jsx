@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaf
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet/dist/leaflet.css';
-import { MapPin, Navigation, MessageCircle, Search, Loader2, Trash2, ExternalLink } from 'lucide-react';
+import { MapPin, Navigation, MessageCircle, Search, Trash2 } from 'lucide-react';
 import { useMap } from 'react-leaflet';
 
 const cities = {
@@ -86,12 +86,6 @@ const MapPage = () => {
   
   // Search state
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  const [isSearching, setIsSearching] = useState(false);
-  const [searchTarget, setSearchTarget] = useState(null);
-  
-  // Search timeout ref for debouncing
-  const searchTimeoutRef = React.useRef(null);
 
   // Get user details for pins
   const userName = localStorage.getItem('fitmeal_username') || 'Guest';
@@ -188,60 +182,26 @@ const MapPage = () => {
     }
   };
 
-  const handleSearchChange = (e) => {
-    const query = e.target.value;
-    setSearchQuery(query);
-    
-    if (searchTimeoutRef.current) {
-      clearTimeout(searchTimeoutRef.current);
-    }
-    
-    if (!query.trim()) {
-      setSearchResults([]);
-      return;
-    }
-    
-    // Debounce search
-    searchTimeoutRef.current = setTimeout(async () => {
-      setIsSearching(true);
-      try {
-        const resp = await fetch(
-          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=${selectedCity.countryCode}&limit=5`
-        );
-        
-        if (resp.ok) {
-          const data = await resp.json();
-          setSearchResults(data);
-        }
-      } catch (err) {
-        console.error("Search failed", err);
-      } finally {
-        setIsSearching(false);
-      }
-    }, 500);
+  const openGoogleMaps = (query) => {
+    const base = query.trim()
+      ? `${query} in ${selectedCity.name}`
+      : selectedCity.name;
+    window.open(
+      `https://www.google.com/maps/search/${encodeURIComponent(base)}`,
+      '_blank',
+      'noopener,noreferrer'
+    );
   };
 
-  const googleMapsUrl = (lat, lng, name) =>
-    `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name)}&center=${lat},${lng}`;
-
-  const handleSelectSearchResult = (result) => {
-    const lat = parseFloat(result.lat);
-    const lng = parseFloat(result.lon);
-    const name = result.display_name.split(',')[0];
-
+  const handleSearchFocus = () => {
+    openGoogleMaps(searchQuery);
     setSearchQuery('');
-    setSearchResults([]);
-    setSearchTarget({ lat, lng });
+  };
 
-    // Open in Google Maps
-    window.open(googleMapsUrl(lat, lng, name), '_blank', 'noopener,noreferrer');
-
-    // Also fly to location and open pin modal
-    setPendingPin({ lat, lng });
-    setRestaurantName(name);
-    setComment('');
-    setSelectedEmoji(null);
-    setShowPinModal(true);
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    openGoogleMaps(searchQuery);
+    setSearchQuery('');
   };
 
   return (
@@ -258,57 +218,20 @@ const MapPage = () => {
         </div>
         
         <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
-          {/* Search Bar */}
-          <div className="relative w-full md:w-64">
+          {/* Search Bar — opens Google Maps */}
+          <form onSubmit={handleSearchSubmit} className="relative w-full md:w-64">
             <div className="relative flex items-center">
-              <Search className="absolute left-3 w-4 h-4 text-stone-400" />
+              <Search className="absolute left-3 w-4 h-4 text-stone-400 pointer-events-none" />
               <input
                 type="text"
-                placeholder={`Search in ${activeCityId}...`}
+                placeholder={`Search in ${selectedCity.name}...`}
                 value={searchQuery}
-                onChange={handleSearchChange}
-                className="w-full bg-stone-100 border-none rounded-xl pl-9 pr-4 py-2 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all"
+                onChange={e => setSearchQuery(e.target.value)}
+                onFocus={handleSearchFocus}
+                className="w-full bg-stone-100 border-none rounded-xl pl-9 pr-4 py-2 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all cursor-pointer"
               />
-              {isSearching && (
-                <Loader2 className="absolute right-3 w-4 h-4 text-stone-400 animate-spin" />
-              )}
             </div>
-            
-            {/* Search Results Dropdown */}
-            {searchResults.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-stone-100 overflow-hidden max-h-60 overflow-y-auto z-50">
-                {searchResults.map((result, idx) => {
-                  const lat = parseFloat(result.lat);
-                  const lng = parseFloat(result.lon);
-                  const name = result.display_name.split(',')[0];
-                  return (
-                    <div
-                      key={idx}
-                      className="flex items-center border-b border-stone-50 last:border-0 hover:bg-stone-50 transition-colors group"
-                    >
-                      <button
-                        onClick={() => handleSelectSearchResult(result)}
-                        className="flex-1 text-left px-4 py-3"
-                      >
-                        <p className="text-sm font-medium text-stone-800 truncate" title={name}>{name}</p>
-                        <p className="text-xs text-stone-400 truncate" title={result.display_name}>{result.display_name}</p>
-                      </button>
-                      <a
-                        href={googleMapsUrl(lat, lng, name)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={e => e.stopPropagation()}
-                        title="Open in Google Maps"
-                        className="flex-shrink-0 px-3 py-3 text-stone-300 hover:text-[#4285F4] transition-colors"
-                      >
-                        <ExternalLink size={14} />
-                      </a>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
+          </form>
 
           <div className="flex space-x-2 bg-stone-100 p-1 rounded-xl">
             {Object.keys(cities).map(city => (
@@ -342,7 +265,6 @@ const MapPage = () => {
             url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
           />
           <PinInteraction onMapClick={handleMapClick} selectedCity={selectedCity} />
-          <MapFlyTo target={searchTarget} />
           
           {pins.map((pin) => (
             <Marker 
