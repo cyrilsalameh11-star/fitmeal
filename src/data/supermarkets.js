@@ -8597,6 +8597,34 @@ const supermarketMeals = [
     "dietary": [
       "healthy"
     ]
+  },
+  {
+    "id": "fr-snacks-rebelle-gummies",
+    "name": "Rebelle Gummies (Low Calories)",
+    "brand": "Favorite Snacks",
+    "type": ["snack"],
+    "calories": 75,
+    "protein": 2,
+    "carbs": 17,
+    "fat": 0,
+    "source": "supermarket",
+    "country": "France",
+    "tags": ["vegan", "gluten_free"],
+    "shoppingItems": ["Rebelle Gummies Low Calories — Supermarché"]
+  },
+  {
+    "id": "fr-snacks-brets-fromage-jura",
+    "name": "Brets Chips Fromage du Jura",
+    "brand": "Favorite Snacks",
+    "type": ["snack"],
+    "calories": 155,
+    "protein": 2,
+    "carbs": 15,
+    "fat": 10,
+    "source": "supermarket",
+    "country": "France",
+    "tags": ["vegetarian"],
+    "shoppingItems": ["Brets Chips Fromage du Jura — Supermarché"]
   }
 ];
 

@@ -22,7 +22,8 @@ export const BRANDS = {
     { name: "Carrefour", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=carrefour.fr&sz=64" },
     { name: "Monoprix", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=monoprix.fr&sz=64" },
     { name: "Picard", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=picard.fr&sz=64" },
-    { name: "Amorino", category: "Dessert", logo: "https://www.google.com/s2/favicons?domain=amorino.com&sz=64" }
+    { name: "Amorino", category: "Dessert", logo: "https://www.google.com/s2/favicons?domain=amorino.com&sz=64" },
+    { name: "Favorite Snacks", category: "Snack", logo: null }
   ],
   Spain: [
     { name: "100 Montaditos", category: "Fast Food", logo: null },
