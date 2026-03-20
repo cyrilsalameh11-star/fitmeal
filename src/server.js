@@ -185,7 +185,7 @@ if (supabaseUrl && supabaseKey) {
       };
       const axios = require('axios');
       await axios.post(`${supabaseUrl}/rest/v1/rpc/exec_sql`,
-        { sql: 'ALTER TABLE users ADD COLUMN IF NOT EXISTS last_login timestamptz DEFAULT now(); ALTER TABLE users ADD COLUMN IF NOT EXISTS email text; ALTER TABLE map_pins ADD COLUMN IF NOT EXISTS emoji text; CREATE TABLE IF NOT EXISTS shared_runs (id uuid DEFAULT gen_random_uuid() PRIMARY KEY, created_at timestamptz DEFAULT now(), name text, "user" text, distance text, time text, elevation text, city text, link text);' },
+        { sql: 'ALTER TABLE users ADD COLUMN IF NOT EXISTS last_login timestamptz DEFAULT now(); ALTER TABLE users ADD COLUMN IF NOT EXISTS email text; ALTER TABLE map_pins ADD COLUMN IF NOT EXISTS emoji text; CREATE TABLE IF NOT EXISTS shared_runs (id uuid DEFAULT gen_random_uuid() PRIMARY KEY, created_at timestamptz DEFAULT now(), name text, "user" text, distance text, time text, elevation text, city text, link text); CREATE TABLE IF NOT EXISTS news_cache (id integer PRIMARY KEY, articles jsonb, updated_at timestamptz DEFAULT now());' },
         { headers }
       ).catch(() => { }); // silently ignore if rpc not available
     } catch (e) { /* ignore */ }
@@ -418,133 +418,186 @@ app.delete('/api/admin/users/reset', requireAdminSession, async (req, res) => {
 });
 
 
-const axios = require('axios');
 const RSSParser = require('rss-parser');
 const parser = new RSSParser();
 
-// FMCG News Endpoint (RSS Proxy)
-app.get('/api/news', async (req, res) => {
-  // Load our high-quality clean fallback data first
-  const fs = require('fs');
-  const path = require('path');
-  let fallbackItems = [];
-  try {
-    const fallbacksPath = path.join(__dirname, '..', 'strict_news.json');
-    const fallbacksStr = fs.readFileSync(fallbacksPath, 'utf8');
-    fallbackItems = JSON.parse(fallbacksStr).slice(0, 25).map((x, i) => ({...x, id: `fb-${i}`}));
-  } catch(e) {
-    console.error("Could not load strict_news fallback", e);
+const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
+
+async function fetchLebanonFMCGNews() {
+  const feeds = [
+    // English — Lebanon-localised Google News
+    'https://news.google.com/rss/search?q=(Lebanon+OR+Beirut)+(FMCG+OR+food+OR+restaurant+OR+supermarket+OR+retail+OR+Spinneys+OR+Carrefour+OR+Americana+OR+"Malak+al+Tawouk"+OR+grocery+OR+chain+OR+brand+OR+Fattal+OR+"Bou+Khalil")&hl=en&gl=LB&ceid=LB:en',
+    // French — Liban focused
+    'https://news.google.com/rss/search?q=(Liban+OR+Beyrouth)+(alimentation+OR+restaurant+OR+supermarch%C3%A9+OR+%C3%A9picerie+OR+Carrefour+OR+Spinneys+OR+distribution+OR+marque+OR+commerce+OR+grande+surface)&hl=fr&gl=FR&ceid=FR:fr',
+    // Specific Lebanese FMCG brands
+    'https://news.google.com/rss/search?q=("Spinneys+Lebanon"+OR+"Malak+Al+Tawouk"+OR+"Americana+Lebanon"+OR+"Grey+McKenzie"+OR+"Fattal+Lebanon"+OR+"Bou+Khalil"+OR+"the961")&hl=en&gl=LB&ceid=LB:en',
+  ];
+
+  const bannedWords = [
+    'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
+    'conflict', 'evacuate', 'mourn', 'iran', 'airstrike', 'military', 'army', 'casualty',
+    'bomb', 'drone', 'attack', 'protest', 'gaza', 'palestine', 'assassination',
+    'tennessee', 'nashville', 'pennsylvania', 'lancaster', 'lebtown', 'lancasteronline',
+    'tennessean', 'wsmv', 'news channel 5', 'lebanon, pa', 'lebanon, tn', 'lebanon, oh',
+    'lebanon, mo', 'lebanon, in', 'lebanon, ky',
+  ];
+  const goodWords = [
+    'the961', '961', 'food', 'restaurant', 'supermarket', 'market', 'fmcg', 'spinneys',
+    'carrefour', 'menu', 'chef', 'cuisine', 'dining', 'diet', 'grocery', 'retail', 'brand',
+    'nourriture', 'supermarché', 'business', 'startup', 'delivery', 'coffee', 'cafe',
+    'grey mckenzie', 'americana', 'malak al tawouk', 'fattal', 'bou khalil',
+  ];
+
+  let allItems = [];
+  for (const url of feeds) {
+    try {
+      const feed = await parser.parseURL(url);
+      allItems.push(...feed.items);
+    } catch (e) {
+      console.error('Failed fetching feed:', e.message);
+    }
   }
-  
+
+  let formattedItems = allItems.filter(item => {
+    const title = (item.title || '').toLowerCase();
+    const snippet = (item.contentSnippet || item.content || '').toLowerCase();
+    const text = title + ' ' + snippet;
+
+    // Reject US "Lebanon" towns via pattern matching
+    if (/lebanon,?\s*(pa|tn|oh|mo|in|ky)/i.test(text)) return false;
+    if (/\b(lebanon county|lebanon township|city of lebanon)\b/i.test(text)) return false;
+
+    const hasBanned = bannedWords.some(bw => text.includes(bw));
+    if (hasBanned) return false;
+
+    const hasGood = goodWords.some(gw => text.includes(gw));
+    const mentionsLebanon = (
+      text.includes('lebanon') || text.includes('liban') ||
+      text.includes('beirut') || text.includes('beyrouth') ||
+      text.includes('spinneys') || text.includes('grey mckenzie') ||
+      text.includes('the961') || text.includes('americana') ||
+      text.includes('fattal') || text.includes('bou khalil')
+    );
+
+    return hasGood && mentionsLebanon;
+  }).map((item, index) => ({
+    title: item.title,
+    link: item.link,
+    // Use the real pubDate from the article — never fake it
+    pubDate: item.pubDate || null,
+    contentSnippet: (item.contentSnippet || item.content || '').replace(/<[^>]*>?/g, '').substring(0, 200) + '...',
+    id: item.guid || `news-${index}`,
+  }));
+
+  // Sort newest first (articles with no date go to the end)
+  formattedItems.sort((a, b) => {
+    if (!a.pubDate && !b.pubDate) return 0;
+    if (!a.pubDate) return 1;
+    if (!b.pubDate) return -1;
+    return new Date(b.pubDate) - new Date(a.pubDate);
+  });
+
+  // Deduplicate by title + source domain
+  const deduplicated = [];
+  const seenTitles = new Set();
+  const seenSources = new Set();
+
+  for (const it of formattedItems) {
+    const normTitle = it.title.toLowerCase();
+    let hostname = 'unknown';
+    try {
+      if (it.link && !it.link.includes('news.google.com')) {
+        hostname = new URL(it.link).hostname.replace('www.', '');
+      } else {
+        const parts = it.title.split(' - ');
+        if (parts.length > 1) hostname = parts[parts.length - 1].trim().toLowerCase();
+      }
+    } catch (e) {}
+
+    if (!seenTitles.has(normTitle) && !seenSources.has(hostname)) {
+      seenTitles.add(normTitle);
+      seenSources.add(hostname);
+      deduplicated.push(it);
+    }
+  }
+
+  return deduplicated.slice(0, 25);
+}
+
+// ── FMCG News (served from Supabase cache, refreshed every Sunday) ────────────
+app.get('/api/news', async (req, res) => {
+  // 1. Try Supabase cache
+  if (supabase) {
+    try {
+      const { data } = await supabase
+        .from('news_cache')
+        .select('articles, updated_at')
+        .eq('id', 1)
+        .maybeSingle();
+
+      if (data && Array.isArray(data.articles)) {
+        const ageMs = Date.now() - new Date(data.updated_at).getTime();
+        if (ageMs < NEWS_CACHE_TTL_MS) {
+          return res.json(data.articles);
+        }
+      }
+    } catch (e) {
+      console.error('News cache read failed, fetching live:', e.message);
+    }
+  }
+
+  // 2. Fetch live RSS
   try {
-    const feeds = [
-      'https://news.google.com/rss/search?q=("Spinneys"+Iraq)+OR+("Grey+McKenzie"+Lebanon)+OR+("Grey+McKenzie+Group")&hl=en-US&gl=US&ceid=US:en',
-      'https://news.google.com/rss/search?q=Lebanon+(restaurant+OR+supermarket+OR+food+OR+FMCG+OR+Spinneys+OR+Carrefour+OR+"Grey+McKenzie"+OR+"the961")&hl=en-US&gl=US&ceid=US:en',
-      'https://news.google.com/rss/search?q=Liban+(restaurant+OR+supermarch%C3%A9+OR+alimentation+OR+Spinneys+OR+Carrefour+OR+"Grey+McKenzie"+OR+"the961")&hl=fr&gl=FR&ceid=FR:fr'
-    ];
-    
-    let allItems = [];
-    for(const url of feeds) {
+    const articles = await fetchLebanonFMCGNews();
+
+    // Store in Supabase cache for next time
+    if (supabase && articles.length > 0) {
       try {
-        const feed = await parser.parseURL(url);
-        allItems.push(...feed.items);
-      } catch(e) {
-        console.error("Failed fetching a feed", e.message);
+        await supabase.from('news_cache').upsert([{
+          id: 1,
+          articles,
+          updated_at: new Date().toISOString(),
+        }]);
+      } catch (e) {
+        console.error('News cache write failed:', e.message);
       }
     }
-    
-    const bannedWords = [
-      'world news in brief', 'in brief', 'war', 'israel', 'strike', 'missile', 'hezbollah', 'politics', 'government', 'parliament', 'injured', 'killed', 'conflict', 'evacuate', 'mourn', 'gulf', 'iran', 'crisis', 'airstrike', 'military', 'army', 'death', 'casualty', 'bomb', 'drone', 'attack', 'protest', 'gaza', 'palestine', 'assassination', 'politician',
-      'tennessee', 'nashville', 'pennsylvania', 'lancaster', 'county', 'pa', 'tn', 'usa', 'united states', 'lebtown', 'lancasteronline', 'tennessean', 'wsmv', 'news channel 5'
-    ];
-    const goodWords = ['the961', '961', 'food', 'restaurant', 'supermarket', 'market', 'fmcg', 'spinneys', 'carrefour', 'menu', 'chef', 'cuisine', 'dining', 'diet', 'grocery', 'retail', 'brand', 'eat', 'nourriture', 'supermarché', 'economie', 'business', 'startup', 'delivery', 'coffee', 'cafe', 'grey mckenzie', 'iraq', 'americana', 'malak al tawouk'];
 
-    let formattedItems = allItems.filter(item => {
-      const title = (item.title || '').toLowerCase();
-      const source = (item.source || '').toLowerCase();
-      const snippet = (item.contentSnippet || item.content || '').toLowerCase();
-      const text = (title + ' ' + snippet).toLowerCase();
-      
-      // Strict regex word boundaries for small abbreviations
-      const hasBanned = bannedWords.some(bw => {
-        if (bw.length <= 3) return new RegExp(`\\b${bw}\\b`, 'i').test(text) || source.includes(bw);
-        return text.includes(bw) || source.includes(bw);
-      });
-      if(hasBanned) return false;
+    if (articles.length >= 5) return res.json(articles);
 
-      // Must NOT be from known US local news patterns in titles
-      if(title.includes('tn') || title.includes('tenn.') || title.includes('pa.') || title.includes('county')) {
-        if(!title.includes('lebanon country')) return false; 
-      }
-
-      const hasGood = goodWords.some(gw => text.includes(gw));
-      const mentionsLebanon = text.includes('lebanon') || text.includes('liban') || text.includes('beirut') || text.includes('beyrouth') || text.includes('spinneys') || text.includes('grey mckenzie') || text.includes('the961') || text.includes('americana');
-      return hasGood && mentionsLebanon;
-    }).map((item, index) => ({
-      title: item.title,
-      link: item.link,
-      pubDate: item.pubDate || new Date().toISOString(),
-      contentSnippet: (item.contentSnippet || item.content || '').replace(/<[^>]*>?/g, '').substring(0, 150) + "...",
-      id: item.guid || `news-${index}`
-    }));
-    
-    // Sort and remove duplicates by title AND enforce distinct domains/sources
-    const deduplicated = [];
-    const seenTitles = new Set();
-    const seenSources = new Set();
-
-    // Sort by date first so we get the newest articles from each source
-    formattedItems.sort((a,b) => new Date(b.pubDate) - new Date(a.pubDate));
-
-    for(let it of formattedItems) {
-        const normTitle = it.title.toLowerCase();
-        const titleParts = it.title.split(' - ');
-        let sourceName = 'unknown';
-        if (titleParts.length > 1) {
-            sourceName = titleParts[titleParts.length - 1].trim().toLowerCase();
-        }
-
-        let hostname = sourceName;
-        try {
-            if (it.link && !it.link.includes('news.google.com')) {
-                hostname = new URL(it.link).hostname.replace('www.', '');
-            }
-        } catch(e) {}
-
-        const sourceId = hostname !== 'unknown' ? hostname : sourceName;
-
-        if(!seenTitles.has(normTitle) && !seenSources.has(sourceId)) {
-            seenTitles.add(normTitle);
-            seenSources.add(sourceId);
-            deduplicated.push(it);
-        }
-    }
-    
-    // Fallback if the dynamic search somehow fails to yield enough fresh data
-    const finalItems = deduplicated.length >= 8 ? deduplicated.slice(0, 24) : fallbackItems.slice(0, 24);
-    
-    // Always prepend high-priority FMCG acquisition news
-    const pinnedArticles = [
-      {
-        title: "Americana Secures 75% of Malak Al Tawouk in Strategic Expansion",
-        link: "https://finance.yahoo.com/news/americana-secures-75-malak-al-100335765.html",
-        pubDate: new Date().toISOString(),
-        contentSnippet: "Americana Restaurants has successfully completed the acquisition of a 75% stake in the popular Lebanese fast-food chain Malak Al Tawouk.",
-        id: "fb-americana-pinned"
-      },
-      {
-        title: "À Gemmayzé, une patronne mise sur la table avant la fête",
-        link: "https://www.lorientlejour.com/cuisine-liban-a-table/1496265/a-gemmayze-patronne-mise-sur-la-table-avant-la-fete.html",
-        pubDate: new Date().toISOString(),
-        contentSnippet: "Dans le quartier bouillonnant de Gemmayzé, l'entrepreneuriat culinaire féminin rayonne avec des concepts de restauration mettant en avant le terroir et l'authenticité.",
-        id: "fb-gemmayze-pinned"
-      }
-    ];
-    
-    res.json([...pinnedArticles, ...finalItems]);
+    // 3. Fallback to strict_news.json if RSS returned too little
+    const fallbackStr = fs.readFileSync(path.join(__dirname, '..', 'strict_news.json'), 'utf8');
+    return res.json(JSON.parse(fallbackStr).slice(0, 25));
   } catch (error) {
     console.error('Error fetching RSS:', error);
-    res.json(fallbackItems);
+    try {
+      const fallbackStr = fs.readFileSync(path.join(__dirname, '..', 'strict_news.json'), 'utf8');
+      res.json(JSON.parse(fallbackStr).slice(0, 25));
+    } catch (e) {
+      res.json([]);
+    }
+  }
+});
+
+// ── Cron: refresh news cache every Sunday (triggered by Vercel Cron) ──────────
+app.get('/api/cron/refresh-news', async (req, res) => {
+  const auth = req.headers['authorization'];
+  if (!auth || auth !== `Bearer ${process.env.CRON_SECRET}`) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  try {
+    const articles = await fetchLebanonFMCGNews();
+    if (supabase && articles.length > 0) {
+      await supabase.from('news_cache').upsert([{
+        id: 1,
+        articles,
+        updated_at: new Date().toISOString(),
+      }]);
+    }
+    res.json({ success: true, count: articles.length, updated_at: new Date().toISOString() });
+  } catch (e) {
+    console.error('Cron refresh-news failed:', e.message);
+    res.status(500).json({ error: e.message });
   }
 });
 

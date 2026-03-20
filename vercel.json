@@ -1,5 +1,11 @@
 {
   "version": 2,
+  "crons": [
+    {
+      "path": "/api/cron/refresh-news",
+      "schedule": "0 21 * * 6"
+    }
+  ],
   "builds": [
     {
       "src": "src/server.js",
