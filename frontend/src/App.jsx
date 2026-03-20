@@ -34,6 +34,31 @@ function App() {
     }
   });
 
+  // Auto-reset seen meals every Sunday night
+  useEffect(() => {
+    const checkSundayReset = () => {
+      const now = new Date();
+      // Calculate the most recent Sunday at midnight
+      const lastSunday = new Date(now);
+      lastSunday.setDate(now.getDate() - now.getDay());
+      lastSunday.setHours(0, 0, 0, 0);
+
+      const lastResetStr = localStorage.getItem('fitmeal_last_reset');
+      const lastReset = lastResetStr ? new Date(lastResetStr) : null;
+
+      if (!lastReset || lastReset < lastSunday) {
+        setSeenMealIds(new Set());
+        localStorage.removeItem('fitmeal_seen_ids');
+        setMeals([]);
+        localStorage.setItem('fitmeal_last_reset', lastSunday.toISOString());
+      }
+    };
+
+    checkSundayReset();
+    const interval = setInterval(checkSundayReset, 60 * 60 * 1000); // check every hour
+    return () => clearInterval(interval);
+  }, []);
+
   // Fetch initial stats
   useEffect(() => {
     fetch('/api/stats')
@@ -354,18 +379,9 @@ function App() {
 
                   {meals.length > 0 && (
                     <div className="space-y-10">
-                      <div className="flex items-center justify-between border-b border-stone-100 pb-6">
-                        <div className="flex items-center space-x-4">
-                          <span className="bg-stone-900 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Plan</span>
-                          <h2 className="text-3xl">Suggested Menu</h2>
-                        </div>
-                        <button
-                          onClick={handleResetWeek}
-                          className="text-xs font-bold uppercase tracking-widest text-stone-400 hover:text-red-500 transition-colors px-3 py-1.5 border border-stone-200 rounded-full hover:border-red-200"
-                          title="Clear seen meals and start fresh"
-                        >
-                          Reset Week
-                        </button>
+                      <div className="flex items-center space-x-4 border-b border-stone-100 pb-6">
+                        <span className="bg-stone-900 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Plan</span>
+                        <h2 className="text-3xl">Suggested Menu</h2>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {meals.map((meal, idx) => (
