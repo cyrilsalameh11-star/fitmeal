@@ -1,6 +1,8 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Flame, TrendingDown, Target, Zap } from 'lucide-react';
+import { Flame, TrendingDown, Target, Zap, BookmarkCheck, Bookmark } from 'lucide-react';
+
+const STORAGE_KEY = 'fitmeal_tdee_profile';
 
 const ACTIVITY_LEVELS = [
   { id: 'sedentary',   label: 'Sedentary',  desc: 'Desk job, no exercise',   multiplier: 1.2   },
@@ -160,6 +162,36 @@ export default function CaloriePage() {
   const [age,       setAge]       = useState(25);
   const [activity,  setActivity]  = useState('moderate');
   const [deficitKg, setDeficitKg] = useState(0.5);
+  const [savedProfile, setSavedProfile] = useState(null);
+  const [justSaved, setJustSaved] = useState(false);
+
+  // Load saved profile on mount
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const p = JSON.parse(raw);
+        setGender(p.gender);
+        setWeight(p.weight);
+        setHeight(p.height);
+        setAge(p.age);
+        setActivity(p.activity);
+        setDeficitKg(p.deficitKg);
+        setSavedProfile(p);
+      }
+    } catch { }
+  }, []);
+
+  const currentProfile = { gender, weight, height, age, activity, deficitKg };
+  const isDirty = savedProfile && JSON.stringify(currentProfile) !== JSON.stringify(savedProfile);
+  const hasUnsaved = !savedProfile || isDirty;
+
+  const handleSave = () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(currentProfile));
+    setSavedProfile(currentProfile);
+    setJustSaved(true);
+    setTimeout(() => setJustSaved(false), 2000);
+  };
 
   const results = useMemo(() => {
     const w = parseFloat(weight) || 0;
@@ -370,6 +402,26 @@ export default function CaloriePage() {
               <Zap size={22} className="text-stone-400" />
             </div>
           </div>
+
+          {/* Save button */}
+          <button
+            onClick={handleSave}
+            className={`w-full flex items-center justify-center gap-2 py-4 rounded-[1.5rem] text-xs font-black uppercase tracking-widest transition-all ${
+              justSaved
+                ? 'bg-emerald-500 text-white'
+                : hasUnsaved
+                ? 'bg-stone-900 text-white hover:bg-stone-700'
+                : 'bg-stone-50 text-stone-400 border border-stone-100'
+            }`}
+          >
+            {justSaved ? (
+              <><BookmarkCheck size={15} /> Saved</>
+            ) : hasUnsaved ? (
+              <><Bookmark size={15} /> {savedProfile ? 'Update Target' : 'Save Target'}</>
+            ) : (
+              <><BookmarkCheck size={15} /> Target Saved</>
+            )}
+          </button>
         </div>
       </div>
     </motion.div>
