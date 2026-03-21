@@ -534,9 +534,13 @@ async function fetchLebanonFMCGNews() {
   function isTooSimilar(titleA, seenKeywordSets) {
     const kw = keyWords(titleA);
     if (kw.length === 0) return false;
+    const kwSet = new Set(kw);
     for (const seen of seenKeywordSets) {
       const overlap = kw.filter(w => seen.has(w)).length;
-      if (overlap / kw.length >= 0.45) return true; // 45% keyword overlap = same subject
+      // Check both directions: new/seen and seen/new — take the higher ratio
+      const ratioNew = overlap / kw.length;
+      const ratioSeen = overlap / seen.size;
+      if (Math.max(ratioNew, ratioSeen) >= 0.4) return true;
     }
     return false;
   }
