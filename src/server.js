@@ -445,9 +445,14 @@ async function fetchLebanonFMCGNews() {
     'west lebanon', 'east lebanon', 'lebanon borough', 'lebanon valley',
     // Humanitarian / food bank / aid
     'food bank', 'food pantry', 'food drive', 'food insecurity', 'food aid', 'food relief',
-    'world food', 'world food programme', 'wfp', 'hunger', 'famine', 'malnutrition',
-    'humanitarian', 'food crisis', 'food security', 'unicef', 'undp', 'refugee',
-    'donations', 'charity', 'nonprofit', 'ngo', 'aid organization', 'unhcr',
+    'food assistance', 'food voucher', 'food basket', 'food distribution', 'food parcel',
+    'world food', 'world food programme', 'world food program', 'wfp', 'hunger', 'famine',
+    'malnutrition', 'malnourish', 'humanitarian', 'food crisis', 'food security', 'food emergency',
+    'unicef', 'undp', 'unhcr', 'unrwa', 'unfao', 'fao ', 'wfp ',
+    'refugee', 'displaced', 'displacement', 'shelter', 'vulnerable population',
+    'livelihood', 'beneficiar', 'emergency relief', 'relief effort', 'aid worker',
+    'aid organization', 'aid agency', 'aid distribution',
+    'donations', 'charity', 'nonprofit', 'non-profit', 'ngo', 'ngos',
     // Banking / finance
     'bank', 'banking', 'central bank', 'banque', 'loan', 'credit', 'mortgage', 'interest rate',
     'stock market', 'nasdaq', 'forex', 'currency', 'imf', 'world bank',
@@ -482,7 +487,7 @@ async function fetchLebanonFMCGNews() {
     const text = title + ' ' + snippet;
 
     // Reject US "Lebanon" towns via pattern matching
-    if (/lebanon,?\s*(pa|tn|oh|mo|in|ky)/i.test(text)) return false;
+    if (/lebanon,?\s*(pa|tn|oh|mo|in|ky|va|or|il|ct|nj|ny|tx|ga|nc|sc|ms|ar|wi|mn|ia|ks|ne|sd|nd|mt|id|ut|az|nm|co|wy)/i.test(text)) return false;
     if (/\b(lebanon county|lebanon township|city of lebanon)\b/i.test(text)) return false;
 
     const hasBanned = bannedWords.some(bw => text.includes(bw));
@@ -492,9 +497,15 @@ async function fetchLebanonFMCGNews() {
     const mentionsLebanon = (
       text.includes('lebanon') || text.includes('liban') ||
       text.includes('beirut') || text.includes('beyrouth') ||
+      text.includes('gemmayze') || text.includes('achrafieh') ||
+      text.includes('saifi') || text.includes('naccache') ||
+      text.includes('dbayeh') || text.includes('badaro') ||
       text.includes('spinneys') || text.includes('grey mckenzie') ||
       text.includes('the961') || text.includes('americana') ||
-      text.includes('fattal') || text.includes('bou khalil')
+      text.includes('fattal') || text.includes('bou khalil') ||
+      text.includes('em sherif') || text.includes('cheese on top') ||
+      text.includes('zaatar w zeit') || text.includes('roadster') ||
+      text.includes('al abdallah') || text.includes('swiss butter')
     );
 
     return hasGood && mentionsLebanon;
