@@ -422,12 +422,15 @@ const RSSParser = require('rss-parser');
 const parser = new RSSParser();
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 13; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 14; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
   'conflict', 'evacuate', 'mourn', 'iran', 'airstrike', 'military', 'army', 'casualty',
   'bomb', 'drone', 'attack', 'protest', 'gaza', 'palestine', 'assassination',
+  'armée', 'armees', 'armee', 'sergent', 'soldat', 'soldats', 'troupes', 'troupe',
+  'combattant', 'combattants', 'guerre', 'guerres', 'bataillon', 'brigade', 'général',
+  'général', 'officier', 'militaire', 'militaires', 'défense', 'defense nationale',
   'tennessee', 'nashville', 'pennsylvania', 'lancaster', 'lebtown', 'lancasteronline',
   'tennessean', 'wsmv', 'news channel 5', 'lebanon, pa', 'lebanon, tn', 'lebanon, oh',
   'lebanon, mo', 'lebanon, in', 'lebanon, ky',
