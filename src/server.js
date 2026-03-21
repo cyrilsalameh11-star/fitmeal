@@ -423,6 +423,40 @@ const parser = new RSSParser();
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
+const NEWS_BANNED_WORDS = [
+  'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
+  'conflict', 'evacuate', 'mourn', 'iran', 'airstrike', 'military', 'army', 'casualty',
+  'bomb', 'drone', 'attack', 'protest', 'gaza', 'palestine', 'assassination',
+  'tennessee', 'nashville', 'pennsylvania', 'lancaster', 'lebtown', 'lancasteronline',
+  'tennessean', 'wsmv', 'news channel 5', 'lebanon, pa', 'lebanon, tn', 'lebanon, oh',
+  'lebanon, mo', 'lebanon, in', 'lebanon, ky',
+  'lebanon county', 'lebanon township', 'city of lebanon', 'north lebanon', 'south lebanon',
+  'west lebanon', 'east lebanon', 'lebanon borough', 'lebanon valley',
+  'food bank', 'food pantry', 'food drive', 'food insecurity', 'food aid', 'food relief',
+  'food assistance', 'food voucher', 'food basket', 'food distribution', 'food parcel',
+  'world food', 'world food programme', 'world food program', 'wfp', 'hunger', 'famine',
+  'malnutrition', 'malnourish', 'humanitarian', 'food crisis', 'food security', 'food emergency',
+  'unicef', 'undp', 'unhcr', 'unrwa', 'unfao', 'fao ', 'wfp ',
+  'refugee', 'displaced', 'displacement', 'shelter', 'vulnerable population',
+  'livelihood', 'beneficiar', 'emergency relief', 'relief effort', 'aid worker',
+  'aid organization', 'aid agency', 'aid distribution',
+  'donations', 'charity', 'nonprofit', 'non-profit', 'ngo', 'ngos',
+  'bank', 'banking', 'central bank', 'banque', 'loan', 'credit', 'mortgage', 'interest rate',
+  'stock market', 'nasdaq', 'forex', 'currency', 'imf', 'world bank',
+  'wkrn', 'lebanese-daily-news', 'lebanon daily news', 'discover the burgh', 'lakeexpo',
+  'towne post', 'valley news', 'mt. lebanon', 'mount lebanon', 'townpost',
+  'newspapers.com', 'lebanon plaza', 'lebanon pa', 'lebanon tn',
+  'retail theft', 'police arrest', 'water project', 'ministry of foreign', 'workshop',
+  'resilience of lebanon', 'bass pro', 'hobie', 'watercraft',
+];
+
+function isArticleBanned(article) {
+  const text = ((article.title || '') + ' ' + (article.contentSnippet || '')).toLowerCase();
+  if (/lebanon,?\s*(pa|tn|oh|mo|in|ky|va|or|il|ct|nj|ny|tx|ga|nc|sc|ms|ar|wi|mn|ia|ks|ne|sd|nd|mt|id|ut|az|nm|co|wy)/i.test(text)) return true;
+  if (/\b(lebanon county|lebanon township|city of lebanon)\b/i.test(text)) return true;
+  return NEWS_BANNED_WORDS.some(bw => text.includes(bw));
+}
+
 async function fetchLebanonFMCGNews() {
   const feeds = [
     // English — Lebanon-localised Google News
@@ -433,37 +467,7 @@ async function fetchLebanonFMCGNews() {
     'https://news.google.com/rss/search?q=("Spinneys+Lebanon"+OR+"Malak+Al+Tawouk"+OR+"Americana+Lebanon"+OR+"Grey+McKenzie"+OR+"Fattal+Lebanon"+OR+"Bou+Khalil"+OR+"the961"+OR+"Em+Sherif"+OR+"Cheese+On+Top"+OR+"Zaatar+w+Zeit"+OR+"Roadster+Diner"+OR+"Al+Abdallah"+OR+"Swiss+Butter")&hl=en&gl=LB&ceid=LB:en',
   ];
 
-  const bannedWords = [
-    'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
-    'conflict', 'evacuate', 'mourn', 'iran', 'airstrike', 'military', 'army', 'casualty',
-    'bomb', 'drone', 'attack', 'protest', 'gaza', 'palestine', 'assassination',
-    'tennessee', 'nashville', 'pennsylvania', 'lancaster', 'lebtown', 'lancasteronline',
-    'tennessean', 'wsmv', 'news channel 5', 'lebanon, pa', 'lebanon, tn', 'lebanon, oh',
-    'lebanon, mo', 'lebanon, in', 'lebanon, ky',
-    // US county / township
-    'lebanon county', 'lebanon township', 'city of lebanon', 'north lebanon', 'south lebanon',
-    'west lebanon', 'east lebanon', 'lebanon borough', 'lebanon valley',
-    // Humanitarian / food bank / aid
-    'food bank', 'food pantry', 'food drive', 'food insecurity', 'food aid', 'food relief',
-    'food assistance', 'food voucher', 'food basket', 'food distribution', 'food parcel',
-    'world food', 'world food programme', 'world food program', 'wfp', 'hunger', 'famine',
-    'malnutrition', 'malnourish', 'humanitarian', 'food crisis', 'food security', 'food emergency',
-    'unicef', 'undp', 'unhcr', 'unrwa', 'unfao', 'fao ', 'wfp ',
-    'refugee', 'displaced', 'displacement', 'shelter', 'vulnerable population',
-    'livelihood', 'beneficiar', 'emergency relief', 'relief effort', 'aid worker',
-    'aid organization', 'aid agency', 'aid distribution',
-    'donations', 'charity', 'nonprofit', 'non-profit', 'ngo', 'ngos',
-    // Banking / finance
-    'bank', 'banking', 'central bank', 'banque', 'loan', 'credit', 'mortgage', 'interest rate',
-    'stock market', 'nasdaq', 'forex', 'currency', 'imf', 'world bank',
-    // US local Lebanon news sources / towns
-    'wkrn', 'lebanese-daily-news', 'lebanon daily news', 'discover the burgh', 'lakeexpo',
-    'towne post', 'valley news', 'mt. lebanon', 'mount lebanon', 'townpost',
-    'newspapers.com', 'lebanon plaza', 'lebanon pa', 'lebanon tn',
-    // Non-FMCG / unrelated
-    'retail theft', 'police arrest', 'water project', 'ministry of foreign', 'workshop',
-    'resilience of lebanon', 'bass pro', 'hobie', 'watercraft',
-  ];
+  const bannedWords = NEWS_BANNED_WORDS;
   const goodWords = [
     'the961', '961', 'food', 'restaurant', 'supermarket', 'market', 'fmcg', 'spinneys',
     'carrefour', 'menu', 'chef', 'cuisine', 'dining', 'diet', 'grocery', 'retail', 'brand',
@@ -600,7 +604,8 @@ app.get('/api/news', async (req, res) => {
         .maybeSingle();
 
       if (data && Array.isArray(data.articles) && data.articles.length > 0) {
-        return res.json(data.articles);
+        const clean = data.articles.filter(a => !isArticleBanned(a));
+        if (clean.length > 0) return res.json(clean);
       }
     } catch (e) {
       console.error('News cache read failed, fetching live:', e.message);
