@@ -422,6 +422,7 @@ const RSSParser = require('rss-parser');
 const parser = new RSSParser();
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
+const NEWS_FILTER_VERSION = 4; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
@@ -588,11 +589,11 @@ app.get('/api/news', async (req, res) => {
     try {
       const { data } = await supabase
         .from('news_cache')
-        .select('articles, updated_at')
+        .select('articles, updated_at, filter_version')
         .eq('id', 1)
         .maybeSingle();
 
-      if (data && Array.isArray(data.articles) && data.articles.length > 0) {
+      if (data && Array.isArray(data.articles) && data.articles.length > 0 && data.filter_version === NEWS_FILTER_VERSION) {
         const clean = data.articles.filter(a => !isArticleBanned(a));
         if (clean.length > 0) return res.json(clean);
       }
@@ -611,6 +612,7 @@ app.get('/api/news', async (req, res) => {
         await supabase.from('news_cache').upsert([{
           id: 1,
           articles,
+          filter_version: NEWS_FILTER_VERSION,
           updated_at: new Date().toISOString(),
         }]);
       } catch (e) {
@@ -665,6 +667,7 @@ app.get('/api/cron/refresh-news', async (req, res) => {
       await supabase.from('news_cache').upsert([{
         id: 1,
         articles: merged,
+        filter_version: NEWS_FILTER_VERSION,
         updated_at: new Date().toISOString(),
       }]);
     }
