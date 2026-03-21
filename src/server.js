@@ -652,6 +652,24 @@ app.get('/api/news', async (req, res) => {
 });
 
 // ── Cron: refresh news cache every Sunday (triggered by Vercel Cron) ──────────
+app.get('/api/news/debug', async (req, res) => {
+  const RSSParser2 = require('rss-parser');
+  const p2 = new RSSParser2();
+  const feeds = [
+    { name: 'EN', url: 'https://news.google.com/rss/search?q=(Lebanon+OR+Beirut)+(food+OR+restaurant+OR+supermarket)&hl=en&gl=LB&ceid=LB:en' },
+    { name: 'FR', url: 'https://news.google.com/rss/search?q=(Liban+OR+Beyrouth)+(restaurant+OR+cuisine+OR+alimentation)&hl=fr&gl=FR&ceid=FR:fr' },
+  ];
+  const results = await Promise.allSettled(feeds.map(f => p2.parseURL(f.url)));
+  const out = results.map((r, i) => ({
+    feed: feeds[i].name,
+    status: r.status,
+    count: r.status === 'fulfilled' ? r.value.items.length : 0,
+    error: r.status === 'rejected' ? r.reason?.message : null,
+    titles: r.status === 'fulfilled' ? r.value.items.slice(0, 5).map(x => x.title) : [],
+  }));
+  res.json(out);
+});
+
 app.get('/api/cron/refresh-news', async (req, res) => {
   const auth = req.headers['authorization'];
   if (!auth || auth !== `Bearer ${process.env.CRON_SECRET}`) {
