@@ -447,7 +447,10 @@ async function fetchLebanonFMCGNews() {
     'food bank', 'food pantry', 'food drive', 'food insecurity', 'food aid', 'food relief',
     'world food', 'world food programme', 'wfp', 'hunger', 'famine', 'malnutrition',
     'humanitarian', 'food crisis', 'food security', 'unicef', 'undp', 'refugee',
-    'donations', 'charity', 'nonprofit', 'ngo', 'aid organization',
+    'donations', 'charity', 'nonprofit', 'ngo', 'aid organization', 'unhcr',
+    // Banking / finance
+    'bank', 'banking', 'central bank', 'banque', 'loan', 'credit', 'mortgage', 'interest rate',
+    'stock market', 'nasdaq', 'forex', 'currency', 'imf', 'world bank',
   ];
   const goodWords = [
     'the961', '961', 'food', 'restaurant', 'supermarket', 'market', 'fmcg', 'spinneys',
@@ -505,10 +508,30 @@ async function fetchLebanonFMCGNews() {
     return new Date(b.pubDate) - new Date(a.pubDate);
   });
 
-  // Deduplicate by title + source domain
+  // Deduplicate by title, source domain, AND subject similarity
+  const STOP_WORDS = new Set(['the','a','an','and','or','of','in','on','at','to','for','is','are','was','were','be','been','has','have','had','with','that','this','from','by','as','it','its','not','but','about','into','than','their','they','which','who','will','would','could','should','also','new','after','before','up','out','more','over','one','two','three','all','so','he','she','we','our','your','his','her','can','do','did']);
+
+  function keyWords(title) {
+    return title.toLowerCase()
+      .replace(/[^a-z0-9\s]/g, ' ')
+      .split(/\s+/)
+      .filter(w => w.length > 3 && !STOP_WORDS.has(w));
+  }
+
+  function isTooSimilar(titleA, seenKeywordSets) {
+    const kw = keyWords(titleA);
+    if (kw.length === 0) return false;
+    for (const seen of seenKeywordSets) {
+      const overlap = kw.filter(w => seen.has(w)).length;
+      if (overlap / kw.length >= 0.6) return true; // 60% keyword overlap = same subject
+    }
+    return false;
+  }
+
   const deduplicated = [];
   const seenTitles = new Set();
   const seenSources = new Set();
+  const seenKeywordSets = [];
 
   for (const it of formattedItems) {
     const normTitle = it.title.toLowerCase();
@@ -522,11 +545,14 @@ async function fetchLebanonFMCGNews() {
       }
     } catch (e) {}
 
-    if (!seenTitles.has(normTitle) && !seenSources.has(hostname)) {
-      seenTitles.add(normTitle);
-      seenSources.add(hostname);
-      deduplicated.push(it);
-    }
+    if (seenTitles.has(normTitle)) continue;
+    if (seenSources.has(hostname)) continue;
+    if (isTooSimilar(it.title, seenKeywordSets)) continue;
+
+    seenTitles.add(normTitle);
+    seenSources.add(hostname);
+    seenKeywordSets.push(new Set(keyWords(it.title)));
+    deduplicated.push(it);
   }
 
   return deduplicated.slice(0, 25);
