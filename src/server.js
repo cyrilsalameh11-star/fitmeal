@@ -426,7 +426,7 @@ const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 async function fetchLebanonFMCGNews() {
   const feeds = [
     // English — Lebanon-localised Google News
-    'https://news.google.com/rss/search?q=(Lebanon+OR+Beirut)+(FMCG+OR+food+OR+restaurant+OR+supermarket+OR+retail+OR+Spinneys+OR+Carrefour+OR+Americana+OR+"Malak+al+Tawouk"+OR+grocery+OR+chain+OR+brand+OR+Fattal+OR+"Bou+Khalil")&hl=en&gl=LB&ceid=LB:en',
+    'https://news.google.com/rss/search?q=(Lebanon+OR+Beirut+OR+Gemmayze+OR+Achrafieh+OR+Saifi+OR+Naccache+OR+Dbayeh+OR+Badaro)+(FMCG+OR+food+OR+restaurant+OR+supermarket+OR+retail+OR+Spinneys+OR+Carrefour+OR+Americana+OR+"Malak+al+Tawouk"+OR+grocery+OR+chain+OR+brand+OR+Fattal+OR+"Bou+Khalil")&hl=en&gl=LB&ceid=LB:en',
     // French — Liban focused
     'https://news.google.com/rss/search?q=(Liban+OR+Beyrouth)+(alimentation+OR+restaurant+OR+supermarch%C3%A9+OR+%C3%A9picerie+OR+Carrefour+OR+Spinneys+OR+distribution+OR+marque+OR+commerce+OR+grande+surface)&hl=fr&gl=FR&ceid=FR:fr',
     // Specific Lebanese FMCG brands
