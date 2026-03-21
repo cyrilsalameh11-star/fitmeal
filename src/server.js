@@ -421,8 +421,47 @@ app.delete('/api/admin/users/reset', requireAdminSession, async (req, res) => {
 const RSSParser = require('rss-parser');
 const parser = new RSSParser();
 
+// Pinned L'Orient Le Jour articles — always included at the top of the feed
+const PINNED_LORIENT_ARTICLES = [
+  {
+    title: "Pouloche s'installe à Sassine - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1494806/pouloche-sinstalle-a-sassine.html',
+    pubDate: 'Sat, 14 Feb 2026 08:00:00 GMT',
+    contentSnippet: "Pouloche ouvre une nouvelle adresse à Sassine, Beyrouth. Découvrez ce nouveau concept de restauration libanaise...",
+    id: 'pinned-lorient-1494806',
+  },
+  {
+    title: "Kiki's : manger sain sans renoncer au plaisir - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1492564/kikis-manger-sain-sans-renoncer-au-plaisir.html',
+    pubDate: 'Sun, 25 Jan 2026 08:00:00 GMT',
+    contentSnippet: "Kiki's, une nouvelle adresse à Beyrouth qui mise sur une cuisine saine et savoureuse...",
+    id: 'pinned-lorient-1492564',
+  },
+  {
+    title: "À Badaro, Bistrot Lobo mise sur le bistrot français version beyrouthine - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1491754/a-badaro-bistrot-lobo-mise-sur-le-bistrot-francais-version-beyrouthine.html',
+    pubDate: 'Sun, 18 Jan 2026 08:00:00 GMT',
+    contentSnippet: "Bistrot Lobo s'installe à Badaro et réinvente le bistrot français avec une touche beyrouthine...",
+    id: 'pinned-lorient-1491754',
+  },
+  {
+    title: "Izzyy ouvre son premier magasin de la cuisine familiale au réseau national - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1488252/izzyy-ouvre-son-premier-magasin-de-la-cuisine-familiale-au-reseau-national.html',
+    pubDate: 'Thu, 11 Dec 2025 08:00:00 GMT',
+    contentSnippet: "Izzyy inaugure son premier point de vente, proposant une cuisine familiale libanaise accessible à travers le réseau national...",
+    id: 'pinned-lorient-1488252',
+  },
+  {
+    title: "Céline, la nouvelle adresse sucrée de Saifi Village - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1483245/celine-la-nouvelle-adresse-sucree-de-saifi-village.html',
+    pubDate: 'Thu, 30 Oct 2025 08:00:00 GMT',
+    contentSnippet: "Céline s'installe à Saifi Village et propose une adresse gourmande dédiée aux douceurs et pâtisseries...",
+    id: 'pinned-lorient-1483245',
+  },
+];
+
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 16; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 35; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
@@ -456,6 +495,14 @@ const NEWS_BANNED_WORDS = [
   'bar association', 'soldier', 'chef de l\'arm', 'homologue', 'pigeons', 'sanctuary',
   'arrested', 'nude', 'war with', 'dire straits',
   'salt lake', 'saltlake', 'utah', 'salt lake magazine',
+  'recette', 'ingrédients', 'ingredients', 'préparation', 'preparation', 'cuisine is aussi',
+  'ayala', 'philstar', 'philippine', 'philippines',
+  'spinneys egypt', 'spinneys uae', 'spinneys dubai', 'spinneys emirates', 'spinneys saudi',
+  'spinneys oman', 'spinneys bahrain', 'spinneys kuwait', 'spinneys qatar', 'spinneys riyadh',
+  'spinneys luxury', 'new cairo', 'spinneys opens in', 'spinneys expands',
+  'by chef', 'with chef', 'crafts lebanese', 'insider\'s guide', 'guide to eating',
+  'belarus', 'belarusian', 'russia', 'russian', 'moscow', 'kremlin',
+  'tass.com', 'rt.com', 'sputnik', 'interfax', 'ria novosti',
 ];
 
 function isArticleBanned(article) {
@@ -473,10 +520,14 @@ async function fetchLebanonFMCGNews() {
     'https://news.google.com/rss/search?q=(Beyrouth+OR+Achrafieh+OR+Gemmayz+OR+Badaro+OR+libanais+OR+libanaise)+(restaurant+OR+bar+OR+cuisine+OR+table+OR+gastronomie+OR+bistrot+OR+chef+OR+brasserie+OR+adresse+OR+ouverture+OR+alimentation+OR+supermarch%C3%A9+OR+%C3%A9picerie)&hl=fr&gl=FR&ceid=FR:fr',
     // Specific Lebanese FMCG brands (unambiguous regardless of server location)
     'https://news.google.com/rss/search?q=("Malak+Al+Tawouk"+OR+"Americana+Lebanon"+OR+"Spinneys+Lebanon"+OR+"Grey+McKenzie"+OR+"Fattal+Lebanon"+OR+"Bou+Khalil"+OR+"the961"+OR+"Em+Sherif"+OR+"Cheese+On+Top"+OR+"Zaatar+w+Zeit"+OR+"Roadster+Diner"+OR+"Al+Abdallah"+OR+"Swiss+Butter")&hl=en&gl=LB&ceid=LB:en',
-    // L'Orient Le Jour — FMCG/retail/brand focus
-    'https://news.google.com/rss/search?q=site:lorientlejour.com+(supermarché+OR+enseigne+OR+marque+OR+ouverture+OR+franchise+OR+commerce+OR+grande+surface+OR+distribution+OR+épicerie+OR+chaîne+OR+retail)&hl=fr&gl=FR&ceid=FR:fr',
-    // L'Orient Today — FMCG/retail/brand focus
-    'https://news.google.com/rss/search?q=site:lorienttoday.com+(supermarket+OR+brand+OR+chain+OR+opens+OR+launch+OR+retail+OR+franchise+OR+grocery+OR+FMCG+OR+new+location+OR+expansion)&hl=en&gl=LB&ceid=LB:en',
+    // L'Orient Le Jour — by authors Nagi Morkos & Nada Alameddine (ouvertures section)
+    'https://news.google.com/rss/search?q=site:lorientlejour.com+(%22Nagi+Morkos%22+OR+%22Nada+Alameddine%22)&hl=fr&gl=FR&ceid=FR:fr',
+    // L'Orient Le Jour — cuisine section: openings & new addresses
+    'https://news.google.com/rss/search?q=site:lorientlejour.com/cuisine-liban-a-table+(%22nouvelle+adresse%22+OR+%22ouvre+ses+portes%22+OR+%22inaugure%22+OR+%22s%27installe%22+OR+%22nouveau+restaurant%22+OR+%22ouverture%22+OR+bistrot+OR+brasserie)&hl=fr&gl=FR&ceid=FR:fr',
+    // L'Orient Le Jour — cuisine section: bars, cafés, food concepts
+    'https://news.google.com/rss/search?q=site:lorientlejour.com/cuisine-liban-a-table+(bar+OR+caf%C3%A9+OR+lounge+OR+rooftop+OR+concept+OR+adresse+OR+enseigne+OR+terrasse)+(Beyrouth+OR+Beirut+OR+Achrafieh+OR+Gemmayz+OR+Badaro+OR+Sassine+OR+Monnot+OR+Hamra)&hl=fr&gl=FR&ceid=FR:fr',
+    // L'Orient Today — food & beverage section
+    'https://news.google.com/rss/search?q=site:today.lorientlejour.com+(restaurant+OR+bar+OR+cafe+OR+opening+OR+dining+OR+food+OR+new+location)+(Beirut+OR+Lebanon)&hl=en&gl=LB&ceid=LB:en',
   ];
 
   const bannedWords = NEWS_BANNED_WORDS;
@@ -492,6 +543,8 @@ async function fetchLebanonFMCGNews() {
     'mall', 'chips', 'snack', 'bar ', 'brunch', 'dîner', 'déjeuner', 'saveur', 'goût',
     'taqueria', 'nocturne', 'crepaway', 'eatery', 'trattoria', 'pizzeria', 'boulangerie',
     'pâtisserie', 'glacier', 'cantine', 'taverne', 'auberge', 'lounge', 'rooftop',
+    'nagi morkos', 'nada alameddine', 'sassine', 'starco', 'sodeco', 'monnot', 'hamra',
+    'mar mikhael', 'verdun', 'jounieh', 's\'installe', 'ouvre', 'inaugure',
   ];
 
   const results = await Promise.allSettled(feeds.map(url => parser.parseURL(url)));
@@ -509,6 +562,16 @@ async function fetchLebanonFMCGNews() {
     // Reject social media posts and non-articles
     if (title.length < 20) return false;
     if (/^(ig|instagram|twitter|tweet|facebook|tiktok)\s*[-–|]/i.test(item.title || '')) return false;
+
+    // Reject recipe articles: "[dish] de [Firstname Lastname]" pattern from L'Orient cuisine section
+    if (/^(le |la |les |l'|un |une )?[\w\s,'àâéèêëîïôùûüç]+ de [A-Z][a-zàâéèêëîïôùûüç]+ [A-Z][a-zàâéèêëîïôùûüç]/.test(item.title || '')) return false;
+
+    // Reject bare author profile pages (e.g. "Nagi MORKOS - L'Orient-Le Jour")
+    if (/^[A-ZÀ-Ü][a-zà-ü]+ [A-ZÀÉÈÊËÎÏÔÙÛÜ]+\s*[-–]\s*L'Orient/i.test(item.title || '')) return false;
+
+    // L'Orient Le Jour articles must be by Nagi Morkos or Nada Alameddine
+    const isLOrientLink = (item.link || '').includes('lorientlejour.com') || (item.link || '').includes('lorienttoday.com');
+    if (isLOrientLink && !text.includes('nagi morkos') && !text.includes('nada alameddine')) return false;
 
     // Reject US "Lebanon" towns via pattern matching
     if (/lebanon,?\s*(pa|tn|oh|mo|in|ky|va|or|il|ct|nj|ny|tx|ga|nc|sc|ms|ar|wi|mn|ia|ks|ne|sd|nd|mt|id|ut|az|nm|co|wy)/i.test(text)) return false;
@@ -532,8 +595,21 @@ async function fetchLebanonFMCGNews() {
       text.includes('al abdallah') || text.includes('swiss butter') ||
       text.includes('malak al tawouk') || text.includes('l\'orient') ||
       text.includes('commerce du levant') || text.includes('ici beyrouth') ||
-      text.includes('libanais') || text.includes('libanaise')
+      text.includes('libanais') || text.includes('libanaise') ||
+      text.includes('nagi morkos') || text.includes('nada alameddine') ||
+      text.includes('sassine') || text.includes('starco') || text.includes('sodeco') ||
+      text.includes('monnot') || text.includes('monot') || text.includes('hamra') ||
+      text.includes('mar mikhael') || text.includes('verdun') || text.includes('jounieh')
     );
+
+    // Spinneys articles must be from Lebanon, Syria or Iraq only
+    if (text.includes('spinneys')) {
+      const spinneysGeo = text.includes('lebanon') || text.includes('liban') ||
+        text.includes('beirut') || text.includes('beyrouth') ||
+        text.includes('syria') || text.includes('syrie') || text.includes('syrian') ||
+        text.includes('iraq') || text.includes('irak') || text.includes('iraqi') || text.includes('baghdad');
+      if (!spinneysGeo) return false;
+    }
 
     return hasGood && mentionsLebanon;
   }).map((item, index) => ({
@@ -545,11 +621,14 @@ async function fetchLebanonFMCGNews() {
     id: item.guid || `news-${index}`,
   }));
 
-  // Drop articles older than 6 months (keep null-date articles as they may be recent)
+  // L'Orient articles: keep up to 12 months; others: 6 months
   const sixMonthsAgo = Date.now() - 180 * 24 * 60 * 60 * 1000;
+  const twelveMonthsAgo = Date.now() - 365 * 24 * 60 * 60 * 1000;
   formattedItems = formattedItems.filter(a => {
     if (!a.pubDate) return true;
-    return new Date(a.pubDate).getTime() >= sixMonthsAgo;
+    const ts = new Date(a.pubDate).getTime();
+    const isLOrientArticle = (a.title || '').toLowerCase().includes("l'orient");
+    return ts >= (isLOrientArticle ? twelveMonthsAgo : sixMonthsAgo);
   });
 
   // Sort newest first (articles with no date go to the end)
@@ -595,7 +674,7 @@ async function fetchLebanonFMCGNews() {
   const seenKeywordSets = [];
   const brandCounts = {};
   let lorientCount = 0;
-  const LORIENT_MAX = 5;
+  const LORIENT_MAX = 20;
 
   for (const it of formattedItems) {
     const normTitle = it.title.toLowerCase();
@@ -611,11 +690,12 @@ async function fetchLebanonFMCGNews() {
       if (isTooSimilar(it.title, seenKeywordSets)) continue;
     }
 
-    // Max BRAND_MAX articles per major brand per fetch
+    // Max 1 article for Spinneys, BRAND_MAX for other brands
     const brandHit = BRAND_DEDUP_KEYS.find(b => normTitle.includes(b));
     if (brandHit) {
+      const maxForBrand = brandHit === 'spinneys' ? 1 : BRAND_MAX;
       brandCounts[brandHit] = (brandCounts[brandHit] || 0) + 1;
-      if (brandCounts[brandHit] > BRAND_MAX) continue;
+      if (brandCounts[brandHit] > maxForBrand) continue;
     }
 
     if (isLOrient) lorientCount++;
@@ -624,7 +704,64 @@ async function fetchLebanonFMCGNews() {
     deduplicated.push(it);
   }
 
-  return deduplicated.slice(0, 25);
+  // Merge pinned L'Orient articles, skip any already present by link or similar title
+  const existingLinks = new Set(deduplicated.map(a => a.link));
+  const existingTitles = new Set(deduplicated.map(a => a.title.toLowerCase()));
+  const pinnedToAdd = PINNED_LORIENT_ARTICLES.filter(
+    a => !existingLinks.has(a.link) && !existingTitles.has(a.title.toLowerCase())
+  );
+
+  // Merge all and sort by date descending (pinned articles have real dates now)
+  const merged = [...pinnedToAdd, ...deduplicated];
+  merged.sort((a, b) => {
+    if (!a.pubDate && !b.pubDate) return 0;
+    if (!a.pubDate) return 1;
+    if (!b.pubDate) return -1;
+    return new Date(b.pubDate) - new Date(a.pubDate);
+  });
+  const finalArticles = merged.slice(0, 50);
+
+  // Enrich with Google Maps place photos
+  const GMAPS_KEY = process.env.GOOGLE_MAPS_API_KEY;
+  if (GMAPS_KEY) {
+    const axios = require('axios');
+
+    function extractPlaceSearchTerm(title) {
+      // Strip source suffix: "- L'Orient-Le Jour", "- The961", etc.
+      let clean = title.replace(/\s*[-–]\s*(L'Orient[\w\s-]*|The\s*961|961|Daily Star|Annahar|Commerce du Levant|L'OLJ)\s*$/i, '').trim();
+      // French: extract name before common opening verbs
+      const frMatch = clean.match(/^(?:[ÀA]\s+[\w-]+,\s+)?([\w\s''ÀÂÉÈÊËÎÏÔÙÛÜÇàâéèêëîïôùûüç-]+?)(?:\s+(?:s'installe|ouvre|propose|inaugure|mise sur|arrive|débarque|rejoint|prend ses|accueille|signe))/i);
+      if (frMatch) return frMatch[1].trim() + ' Beirut';
+      // English: extract name before common opening verbs
+      const enMatch = clean.match(/^([\w\s''-]+?)(?:\s+(?:opens|launches|expands|arrives|unveils|introduces|now open|gets a))/i);
+      if (enMatch) return enMatch[1].trim() + ' Beirut';
+      // Fallback: first 3 words + Beirut
+      return clean.split(/\s+/).slice(0, 3).join(' ') + ' Beirut';
+    }
+
+    async function fetchPlacePhoto(searchTerm) {
+      try {
+        const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(searchTerm)}&key=${GMAPS_KEY}`;
+        const { data } = await axios.get(url, { timeout: 6000 });
+        if (data.results && data.results[0] && data.results[0].photos && data.results[0].photos[0]) {
+          const ref = data.results[0].photos[0].photo_reference;
+          return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=120&photoreference=${encodeURIComponent(ref)}&key=${GMAPS_KEY}`;
+        }
+      } catch (e) { /* silently skip */ }
+      return null;
+    }
+
+    const photoResults = await Promise.allSettled(
+      finalArticles.map(a => fetchPlacePhoto(extractPlaceSearchTerm(a.title)))
+    );
+    finalArticles.forEach((a, i) => {
+      if (photoResults[i].status === 'fulfilled' && photoResults[i].value) {
+        a.photoUrl = photoResults[i].value;
+      }
+    });
+  }
+
+  return finalArticles;
 }
 
 // ── FMCG News (served from Supabase cache, refreshed every Sunday) ────────────

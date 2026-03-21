@@ -7,7 +7,7 @@ export default function NewsPage() {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
   const articlesPerPage = 5;
-  const maxPages = 5;
+  const maxPages = 10;
 
   const fetchNews = async () => {
     setLoading(true);
@@ -89,36 +89,48 @@ export default function NewsPage() {
               className="space-y-6"
             >
               {currentArticles.map((article, idx) => (
-                <article 
+                <article
                   key={idx}
-                  className="group bg-white p-8 rounded-[2rem] border border-stone-100 shadow-sm hover:shadow-xl hover:border-amber-200 transition-all duration-500 relative overflow-hidden"
+                  className="group bg-white p-6 rounded-[2rem] border border-stone-100 shadow-sm hover:shadow-xl hover:border-amber-200 transition-all duration-500 relative overflow-hidden flex gap-5 items-start"
                 >
-                  <div className="absolute top-0 right-0 p-8 text-stone-50 group-hover:text-amber-50 transition-colors">
-                    <Newspaper size={80} strokeWidth={0.5} />
+                  <div className="absolute top-0 right-0 p-6 text-stone-50 group-hover:text-amber-50 transition-colors">
+                    <Newspaper size={72} strokeWidth={0.5} />
                   </div>
-                  
-                  <div className="relative z-10 space-y-4">
+
+                  {/* Place photo */}
+                  {article.photoUrl && (
+                    <div className="flex-shrink-0 w-20 h-20 rounded-2xl overflow-hidden border border-stone-100 shadow-sm mt-1">
+                      <img
+                        src={article.photoUrl}
+                        alt=""
+                        className="w-full h-full object-cover"
+                        onError={e => { e.currentTarget.parentElement.style.display = 'none'; }}
+                      />
+                    </div>
+                  )}
+
+                  <div className="relative z-10 space-y-3 flex-1 min-w-0">
                     <div className="flex items-center space-x-3 text-stone-400">
                       <Clock size={14} />
                       <span className="text-[10px] font-black uppercase tracking-widest">{formatDate(article.pubDate)}</span>
                     </div>
-                    
-                    <h3 className="text-2xl font-bold text-stone-800 leading-tight group-hover:text-amber-600 transition-colors">
+
+                    <h3 className="text-xl font-bold text-stone-800 leading-tight group-hover:text-amber-600 transition-colors">
                       {article.title}
                     </h3>
-                    
+
                     <p className="text-stone-500 leading-relaxed text-sm line-clamp-3">
                       {article.contentSnippet}
                     </p>
-                    
-                    <div className="pt-4 flex items-center justify-between">
-                      <a 
-                        href={article.link} 
-                        target="_blank" 
+
+                    <div className="pt-2 flex items-center justify-between">
+                      <a
+                        href={article.link}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center space-x-2 text-xs font-black uppercase tracking-widest text-stone-900 group-hover:text-amber-600 border-b-2 border-stone-100 group-hover:border-amber-200 pb-1 transition-all"
                       >
-                        <span>Read Case Study</span>
+                        <span>Read Article</span>
                         <ExternalLink size={12} />
                       </a>
                     </div>
