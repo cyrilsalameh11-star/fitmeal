@@ -12,7 +12,7 @@ export default function NewsPage() {
   const fetchNews = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/news');
+      const response = await fetch('/api/news', { cache: 'no-store' });
       const data = await response.json();
       setNews(data.slice(0, articlesPerPage * maxPages));
     } catch (error) {
