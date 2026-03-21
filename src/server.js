@@ -422,7 +422,7 @@ const RSSParser = require('rss-parser');
 const parser = new RSSParser();
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 7; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 8; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
@@ -496,6 +496,10 @@ async function fetchLebanonFMCGNews() {
     const title = (item.title || '').toLowerCase();
     const snippet = (item.contentSnippet || item.content || '').toLowerCase();
     const text = title + ' ' + snippet;
+
+    // Reject social media posts and non-articles
+    if (title.length < 20) return false;
+    if (/^(ig|instagram|twitter|tweet|facebook|tiktok)\s*[-–|]/i.test(item.title || '')) return false;
 
     // Reject US "Lebanon" towns via pattern matching
     if (/lebanon,?\s*(pa|tn|oh|mo|in|ky|va|or|il|ct|nj|ny|tx|ga|nc|sc|ms|ar|wi|mn|ia|ks|ne|sd|nd|mt|id|ut|az|nm|co|wy)/i.test(text)) return false;
