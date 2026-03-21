@@ -422,7 +422,7 @@ const RSSParser = require('rss-parser');
 const parser = new RSSParser();
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 4; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 5; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
@@ -464,7 +464,7 @@ async function fetchLebanonFMCGNews() {
     // English — Lebanon-localised Google News
     'https://news.google.com/rss/search?q=(Lebanon+OR+Beirut+OR+Gemmayze+OR+Achrafieh+OR+Saifi+OR+Naccache+OR+Dbayeh+OR+Badaro)+(FMCG+OR+food+OR+restaurant+OR+supermarket+OR+retail+OR+Spinneys+OR+Carrefour+OR+Americana+OR+"Malak+al+Tawouk"+OR+grocery+OR+chain+OR+brand+OR+Fattal+OR+"Bou+Khalil")&hl=en&gl=LB&ceid=LB:en',
     // French — Liban focused
-    'https://news.google.com/rss/search?q=(Liban+OR+Beyrouth)+(alimentation+OR+restaurant+OR+supermarch%C3%A9+OR+%C3%A9picerie+OR+Carrefour+OR+Spinneys+OR+distribution+OR+marque+OR+commerce+OR+grande+surface)&hl=fr&gl=FR&ceid=FR:fr',
+    'https://news.google.com/rss/search?q=(Liban+OR+Beyrouth+OR+Gemmayze+OR+Achrafieh+OR+Badaro)+(alimentation+OR+restaurant+OR+supermarch%C3%A9+OR+%C3%A9picerie+OR+Carrefour+OR+Spinneys+OR+distribution+OR+marque+OR+commerce+OR+grande+surface+OR+cuisine+OR+table+OR+gastronomie+OR+bistrot+OR+chef+OR+brasserie+OR+terrasse+OR+adresse+OR+ouverture)&hl=fr&gl=FR&ceid=FR:fr',
     // Specific Lebanese FMCG brands
     'https://news.google.com/rss/search?q=("Spinneys+Lebanon"+OR+"Malak+Al+Tawouk"+OR+"Americana+Lebanon"+OR+"Grey+McKenzie"+OR+"Fattal+Lebanon"+OR+"Bou+Khalil"+OR+"the961"+OR+"Em+Sherif"+OR+"Cheese+On+Top"+OR+"Zaatar+w+Zeit"+OR+"Roadster+Diner"+OR+"Al+Abdallah"+OR+"Swiss+Butter")&hl=en&gl=LB&ceid=LB:en',
   ];
@@ -475,6 +475,9 @@ async function fetchLebanonFMCGNews() {
     'carrefour', 'menu', 'chef', 'cuisine', 'dining', 'diet', 'grocery', 'retail', 'brand',
     'nourriture', 'supermarché', 'business', 'startup', 'delivery', 'coffee', 'cafe',
     'grey mckenzie', 'americana', 'malak al tawouk', 'fattal', 'bou khalil',
+    'table', 'gastronomie', 'bistrot', 'bistro', 'brasserie', 'terrasse', 'adresse',
+    'ouverture', 'patronne', 'patron', 'traiteur', 'épicerie', 'alimentation', 'boisson',
+    'em sherif', 'cheese on top', 'zaatar w zeit', 'roadster', 'al abdallah', 'swiss butter',
   ];
 
   let allItems = [];
