@@ -440,6 +440,14 @@ async function fetchLebanonFMCGNews() {
     'tennessee', 'nashville', 'pennsylvania', 'lancaster', 'lebtown', 'lancasteronline',
     'tennessean', 'wsmv', 'news channel 5', 'lebanon, pa', 'lebanon, tn', 'lebanon, oh',
     'lebanon, mo', 'lebanon, in', 'lebanon, ky',
+    // US county / township
+    'lebanon county', 'lebanon township', 'city of lebanon', 'north lebanon', 'south lebanon',
+    'west lebanon', 'east lebanon', 'lebanon borough', 'lebanon valley',
+    // Humanitarian / food bank / aid
+    'food bank', 'food pantry', 'food drive', 'food insecurity', 'food aid', 'food relief',
+    'world food', 'world food programme', 'wfp', 'hunger', 'famine', 'malnutrition',
+    'humanitarian', 'food crisis', 'food security', 'unicef', 'undp', 'refugee',
+    'donations', 'charity', 'nonprofit', 'ngo', 'aid organization',
   ];
   const goodWords = [
     'the961', '961', 'food', 'restaurant', 'supermarket', 'market', 'fmcg', 'spinneys',
