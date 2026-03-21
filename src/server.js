@@ -422,7 +422,7 @@ const RSSParser = require('rss-parser');
 const parser = new RSSParser();
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 10; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 11; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
@@ -484,14 +484,11 @@ async function fetchLebanonFMCGNews() {
     'pâtisserie', 'glacier', 'cantine', 'taverne', 'auberge', 'lounge', 'rooftop',
   ];
 
+  const results = await Promise.allSettled(feeds.map(url => parser.parseURL(url)));
   let allItems = [];
-  for (const url of feeds) {
-    try {
-      const feed = await parser.parseURL(url);
-      allItems.push(...feed.items);
-    } catch (e) {
-      console.error('Failed fetching feed:', e.message);
-    }
+  for (const result of results) {
+    if (result.status === 'fulfilled') allItems.push(...result.value.items);
+    else console.error('Failed fetching feed:', result.reason?.message);
   }
 
   let formattedItems = allItems.filter(item => {
