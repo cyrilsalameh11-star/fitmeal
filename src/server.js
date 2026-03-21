@@ -422,7 +422,7 @@ const RSSParser = require('rss-parser');
 const parser = new RSSParser();
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 9; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 10; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
@@ -480,6 +480,8 @@ async function fetchLebanonFMCGNews() {
     'em sherif', 'cheese on top', 'zaatar w zeit', 'roadster', 'al abdallah', 'swiss butter',
     'restauration', 'marché', 'distributeur', 'grande surface', 'enseigne', 'monoprix',
     'mall', 'chips', 'snack', 'bar ', 'brunch', 'dîner', 'déjeuner', 'saveur', 'goût',
+    'taqueria', 'nocturne', 'crepaway', 'eatery', 'trattoria', 'pizzeria', 'boulangerie',
+    'pâtisserie', 'glacier', 'cantine', 'taverne', 'auberge', 'lounge', 'rooftop',
   ];
 
   let allItems = [];
@@ -578,12 +580,13 @@ async function fetchLebanonFMCGNews() {
 
   const BRAND_DEDUP_KEYS = ['americana','spinneys','carrefour','malak al tawouk','fattal','bou khalil',
     'em sherif','cheese on top','zaatar w zeit','roadster','al abdallah','swiss butter','monoprix',
-    'crepaway','sagesse','burger king','mcdonald','kfc','pizza hut','starbucks','dunkin'];
+    'crepaway','burger king','mcdonald','kfc','pizza hut','starbucks','dunkin'];
+  const BRAND_MAX = 2; // max articles per brand per fetch
 
   const deduplicated = [];
   const seenTitles = new Set();
   const seenKeywordSets = [];
-  const seenBrands = new Set();
+  const brandCounts = {};
 
   for (const it of formattedItems) {
     const normTitle = it.title.toLowerCase();
@@ -591,10 +594,12 @@ async function fetchLebanonFMCGNews() {
     if (seenTitles.has(normTitle)) continue;
     if (isTooSimilar(it.title, seenKeywordSets)) continue;
 
-    // Max 1 article per major brand per fetch
+    // Max BRAND_MAX articles per major brand per fetch
     const brandHit = BRAND_DEDUP_KEYS.find(b => normTitle.includes(b));
-    if (brandHit && seenBrands.has(brandHit)) continue;
-    if (brandHit) seenBrands.add(brandHit);
+    if (brandHit) {
+      brandCounts[brandHit] = (brandCounts[brandHit] || 0) + 1;
+      if (brandCounts[brandHit] > BRAND_MAX) continue;
+    }
 
     seenTitles.add(normTitle);
     seenKeywordSets.push(new Set(keyWords(it.title)));
