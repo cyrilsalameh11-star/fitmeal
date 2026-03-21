@@ -422,7 +422,7 @@ const RSSParser = require('rss-parser');
 const parser = new RSSParser();
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 14; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 15; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
@@ -455,6 +455,7 @@ const NEWS_BANNED_WORDS = [
   'security', 'weak', 'assistance', 'insecurity', 'supporting', 'inspection',
   'bar association', 'soldier', 'chef de l\'arm', 'homologue', 'pigeons', 'sanctuary',
   'arrested', 'nude', 'war with', 'dire straits',
+  'salt lake', 'saltlake', 'utah', 'salt lake magazine',
 ];
 
 function isArticleBanned(article) {
@@ -472,6 +473,10 @@ async function fetchLebanonFMCGNews() {
     'https://news.google.com/rss/search?q=(Beyrouth+OR+Achrafieh+OR+Gemmayz+OR+Badaro+OR+libanais+OR+libanaise)+(restaurant+OR+bar+OR+cuisine+OR+table+OR+gastronomie+OR+bistrot+OR+chef+OR+brasserie+OR+adresse+OR+ouverture+OR+alimentation+OR+supermarch%C3%A9+OR+%C3%A9picerie)&hl=fr&gl=FR&ceid=FR:fr',
     // Specific Lebanese FMCG brands (unambiguous regardless of server location)
     'https://news.google.com/rss/search?q=("Malak+Al+Tawouk"+OR+"Americana+Lebanon"+OR+"Spinneys+Lebanon"+OR+"Grey+McKenzie"+OR+"Fattal+Lebanon"+OR+"Bou+Khalil"+OR+"the961"+OR+"Em+Sherif"+OR+"Cheese+On+Top"+OR+"Zaatar+w+Zeit"+OR+"Roadster+Diner"+OR+"Al+Abdallah"+OR+"Swiss+Butter")&hl=en&gl=LB&ceid=LB:en',
+    // L'Orient Le Jour — French food/restaurant section
+    'https://news.google.com/rss/search?q=site:lorientlejour.com+(restaurant+OR+bar+OR+cuisine+OR+chef+OR+table+OR+gastronomie+OR+bistrot+OR+adresse+OR+ouverture+OR+food)&hl=fr&gl=FR&ceid=FR:fr',
+    // L'Orient Today — English food/restaurant section
+    'https://news.google.com/rss/search?q=site:lorienttoday.com+(restaurant+OR+bar+OR+food+OR+cafe+OR+cuisine+OR+dining+OR+opens+OR+new+opening)&hl=en&gl=LB&ceid=LB:en',
   ];
 
   const bannedWords = NEWS_BANNED_WORDS;
@@ -589,12 +594,21 @@ async function fetchLebanonFMCGNews() {
   const seenTitles = new Set();
   const seenKeywordSets = [];
   const brandCounts = {};
+  let lorientCount = 0;
+  const LORIENT_MAX = 5;
 
   for (const it of formattedItems) {
     const normTitle = it.title.toLowerCase();
 
     if (seenTitles.has(normTitle)) continue;
-    if (isTooSimilar(it.title, seenKeywordSets)) continue;
+
+    // L'Orient Le Jour / L'Orient Today: allow up to LORIENT_MAX, skip similarity check for them
+    const isLOrient = normTitle.includes("l'orient") || (it.link || '').includes('lorient');
+    if (isLOrient) {
+      if (lorientCount >= LORIENT_MAX) continue;
+    } else {
+      if (isTooSimilar(it.title, seenKeywordSets)) continue;
+    }
 
     // Max BRAND_MAX articles per major brand per fetch
     const brandHit = BRAND_DEDUP_KEYS.find(b => normTitle.includes(b));
@@ -603,6 +617,7 @@ async function fetchLebanonFMCGNews() {
       if (brandCounts[brandHit] > BRAND_MAX) continue;
     }
 
+    if (isLOrient) lorientCount++;
     seenTitles.add(normTitle);
     seenKeywordSets.push(new Set(keyWords(it.title)));
     deduplicated.push(it);
