@@ -422,7 +422,7 @@ const RSSParser = require('rss-parser');
 const parser = new RSSParser();
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 11; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 12; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
@@ -461,12 +461,12 @@ function isArticleBanned(article) {
 
 async function fetchLebanonFMCGNews() {
   const feeds = [
-    // English — Lebanon-localised Google News
-    'https://news.google.com/rss/search?q=(Lebanon+OR+Beirut+OR+Gemmayze+OR+Achrafieh+OR+Saifi+OR+Naccache+OR+Dbayeh+OR+Badaro)+(FMCG+OR+food+OR+restaurant+OR+bar+OR+supermarket+OR+retail+OR+Spinneys+OR+Carrefour+OR+Americana+OR+"Malak+al+Tawouk"+OR+grocery+OR+chain+OR+brand+OR+Fattal+OR+"Bou+Khalil")&hl=en&gl=LB&ceid=LB:en',
-    // French — Liban focused
-    'https://news.google.com/rss/search?q=(Liban+OR+Beyrouth+OR+Gemmayze+OR+Achrafieh+OR+Badaro)+(alimentation+OR+restaurant+OR+bar+OR+supermarch%C3%A9+OR+%C3%A9picerie+OR+Carrefour+OR+Spinneys+OR+distribution+OR+marque+OR+commerce+OR+grande+surface+OR+cuisine+OR+table+OR+gastronomie+OR+bistrot+OR+chef+OR+brasserie+OR+terrasse+OR+adresse+OR+ouverture)&hl=fr&gl=FR&ceid=FR:fr',
-    // Specific Lebanese FMCG brands
-    'https://news.google.com/rss/search?q=("Spinneys+Lebanon"+OR+"Malak+Al+Tawouk"+OR+"Americana+Lebanon"+OR+"Grey+McKenzie"+OR+"Fattal+Lebanon"+OR+"Bou+Khalil"+OR+"the961"+OR+"Em+Sherif"+OR+"Cheese+On+Top"+OR+"Zaatar+w+Zeit"+OR+"Roadster+Diner"+OR+"Al+Abdallah"+OR+"Swiss+Butter")&hl=en&gl=LB&ceid=LB:en',
+    // English — Beirut-specific (avoids US Lebanon County from non-LB servers)
+    'https://news.google.com/rss/search?q=(Beirut+OR+Achrafieh+OR+Gemmayze+OR+Spinneys+OR+"Malak+Al+Tawouk"+OR+the961+OR+Naccache+OR+Dbayeh+OR+Badaro+OR+Saifi)+(food+OR+restaurant+OR+bar+OR+supermarket+OR+cafe+OR+grocery+OR+retail+OR+cuisine+OR+FMCG+OR+dining)&hl=en&gl=LB&ceid=LB:en',
+    // French — Beyrouth-specific (avoids ambiguous Liban results)
+    'https://news.google.com/rss/search?q=(Beyrouth+OR+Achrafieh+OR+Gemmayz+OR+Badaro+OR+libanais+OR+libanaise)+(restaurant+OR+bar+OR+cuisine+OR+table+OR+gastronomie+OR+bistrot+OR+chef+OR+brasserie+OR+adresse+OR+ouverture+OR+alimentation+OR+supermarch%C3%A9+OR+%C3%A9picerie)&hl=fr&gl=FR&ceid=FR:fr',
+    // Specific Lebanese FMCG brands (unambiguous regardless of server location)
+    'https://news.google.com/rss/search?q=("Malak+Al+Tawouk"+OR+"Americana+Lebanon"+OR+"Spinneys+Lebanon"+OR+"Grey+McKenzie"+OR+"Fattal+Lebanon"+OR+"Bou+Khalil"+OR+"the961"+OR+"Em+Sherif"+OR+"Cheese+On+Top"+OR+"Zaatar+w+Zeit"+OR+"Roadster+Diner"+OR+"Al+Abdallah"+OR+"Swiss+Butter")&hl=en&gl=LB&ceid=LB:en',
   ];
 
   const bannedWords = NEWS_BANNED_WORDS;
