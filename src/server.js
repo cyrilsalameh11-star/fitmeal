@@ -421,7 +421,7 @@ app.delete('/api/admin/users/reset', requireAdminSession, async (req, res) => {
 const RSSParser = require('rss-parser');
 const parser = new RSSParser();
 
-// Pinned L'Orient Le Jour articles — always included at the top of the feed
+// Pinned L'Orient Le Jour articles — merged with dynamic feed and sorted by date
 const PINNED_LORIENT_ARTICLES = [
   {
     title: "Pouloche s'installe à Sassine - L'Orient-Le Jour",
@@ -445,6 +445,13 @@ const PINNED_LORIENT_ARTICLES = [
     id: 'pinned-lorient-1491754',
   },
   {
+    title: "Dimanche : Kasr Fakhreddine, institution de la cuisine libanaise, s'installe à Beyrouth - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1490887/dimanche-kasr-fakhreddine-institution-de-la-cuisine-libanaise-sinstalle-a-beyrouth-la-maison-de-broummana-descend-en-ville.html',
+    pubDate: 'Sun, 11 Jan 2026 08:00:00 GMT',
+    contentSnippet: "Kasr Fakhreddine, institution de la cuisine libanaise traditionnelle, descend en ville et s'installe à Beyrouth...",
+    id: 'pinned-lorient-1490887',
+  },
+  {
     title: "Izzyy ouvre son premier magasin de la cuisine familiale au réseau national - L'Orient-Le Jour",
     link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1488252/izzyy-ouvre-son-premier-magasin-de-la-cuisine-familiale-au-reseau-national.html',
     pubDate: 'Thu, 11 Dec 2025 08:00:00 GMT',
@@ -458,10 +465,52 @@ const PINNED_LORIENT_ARTICLES = [
     contentSnippet: "Céline s'installe à Saifi Village et propose une adresse gourmande dédiée aux douceurs et pâtisseries...",
     id: 'pinned-lorient-1483245',
   },
+  {
+    title: "Les Chats du Quartier, un nouveau refuge à Saifi - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1481586/les-chats-du-quartier-un-nouveau-refuge-a-saifi.html',
+    pubDate: 'Wed, 15 Oct 2025 08:00:00 GMT',
+    contentSnippet: "Les Chats du Quartier ouvre ses portes à Saifi, un nouveau café-refuge au cœur de Beyrouth...",
+    id: 'pinned-lorient-1481586',
+  },
+  {
+    title: "Superchief, un nouveau souffle pour Monnot - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1479686/superchief-un-nouveau-souffle-pour-monnot.html',
+    pubDate: 'Sun, 28 Sep 2025 08:00:00 GMT',
+    contentSnippet: "Superchief s'installe à Monnot et apporte un nouveau souffle à ce quartier emblématique de Beyrouth...",
+    id: 'pinned-lorient-1479686',
+  },
+  {
+    title: "Ouverture de Mamaz Kitchen dans le nouvel hôtel Lost à Achrafieh - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1455681/ouverture-de-mamaz-kitchen-dans-le-nouvel-hotel-lost-a-achrafieh.html',
+    pubDate: 'Sat, 22 Feb 2025 08:00:00 GMT',
+    contentSnippet: "Mamaz Kitchen ouvre ses portes dans le nouvel hôtel Lost à Achrafieh, proposant une cuisine créative au cœur de Beyrouth...",
+    id: 'pinned-lorient-1455681',
+  },
+  {
+    title: "Beihouse, un concept unique en plein cœur de Gemmayze - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1454695/beihouse-un-concept-unique-en-plein-coeur-de-gemmayze.html',
+    pubDate: 'Thu, 13 Feb 2025 08:00:00 GMT',
+    contentSnippet: "Beihouse s'impose comme un concept unique et inédit au cœur du quartier de Gemmayze, Beyrouth...",
+    id: 'pinned-lorient-1454695',
+  },
+  {
+    title: "Couqley, un bistrot français entre tradition et ambition - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1453796/couqley-un-bistrot-francais-entre-tradition-et-ambition.html',
+    pubDate: 'Wed, 05 Feb 2025 08:00:00 GMT',
+    contentSnippet: "Couqley réinvente le bistrot français à Beyrouth, entre tradition culinaire et ambition gastronomique...",
+    id: 'pinned-lorient-1453796',
+  },
+  {
+    title: "The Chase Trattoria, une nouvelle ère pour une adresse emblématique de la place Sassine - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1452561/the-chase-trattoria-une-nouvelle-ere-pour-une-adresse-emblematique-de-la-place-sassine.html',
+    pubDate: 'Sat, 25 Jan 2025 08:00:00 GMT',
+    contentSnippet: "The Chase Trattoria marque une nouvelle ère pour cette adresse emblématique de la place Sassine à Beyrouth...",
+    id: 'pinned-lorient-1452561',
+  },
 ];
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 35; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 36; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
