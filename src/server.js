@@ -565,27 +565,15 @@ async function fetchLebanonFMCGNews() {
 
   const deduplicated = [];
   const seenTitles = new Set();
-  const seenSources = new Set();
   const seenKeywordSets = [];
 
   for (const it of formattedItems) {
     const normTitle = it.title.toLowerCase();
-    let hostname = 'unknown';
-    try {
-      if (it.link && !it.link.includes('news.google.com')) {
-        hostname = new URL(it.link).hostname.replace('www.', '');
-      } else {
-        const parts = it.title.split(' - ');
-        if (parts.length > 1) hostname = parts[parts.length - 1].trim().toLowerCase();
-      }
-    } catch (e) {}
 
     if (seenTitles.has(normTitle)) continue;
-    if (seenSources.has(hostname)) continue;
     if (isTooSimilar(it.title, seenKeywordSets)) continue;
 
     seenTitles.add(normTitle);
-    seenSources.add(hostname);
     seenKeywordSets.push(new Set(keyWords(it.title)));
     deduplicated.push(it);
   }
