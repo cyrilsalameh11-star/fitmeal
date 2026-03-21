@@ -451,6 +451,12 @@ async function fetchLebanonFMCGNews() {
     // Banking / finance
     'bank', 'banking', 'central bank', 'banque', 'loan', 'credit', 'mortgage', 'interest rate',
     'stock market', 'nasdaq', 'forex', 'currency', 'imf', 'world bank',
+    // US local Lebanon news sources / towns
+    'wkrn', 'lebanese-daily-news', 'lebanon daily news', 'discover the burgh', 'lakeexpo',
+    'towne post', 'valley news', 'mt. lebanon', 'mount lebanon', 'townpost',
+    // Non-FMCG / unrelated
+    'retail theft', 'police arrest', 'water project', 'ministry of foreign', 'workshop',
+    'resilience of lebanon', 'bass pro', 'hobie', 'watercraft',
   ];
   const goodWords = [
     'the961', '961', 'food', 'restaurant', 'supermarket', 'market', 'fmcg', 'spinneys',
@@ -523,7 +529,7 @@ async function fetchLebanonFMCGNews() {
     if (kw.length === 0) return false;
     for (const seen of seenKeywordSets) {
       const overlap = kw.filter(w => seen.has(w)).length;
-      if (overlap / kw.length >= 0.6) return true; // 60% keyword overlap = same subject
+      if (overlap / kw.length >= 0.45) return true; // 45% keyword overlap = same subject
     }
     return false;
   }
