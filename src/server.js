@@ -525,7 +525,9 @@ async function fetchLebanonFMCGNews() {
   const STOP_WORDS = new Set(['the','a','an','and','or','of','in','on','at','to','for','is','are','was','were','be','been','has','have','had','with','that','this','from','by','as','it','its','not','but','about','into','than','their','they','which','who','will','would','could','should','also','new','after','before','up','out','more','over','one','two','three','all','so','he','she','we','our','your','his','her','can','do','did']);
 
   function keyWords(title) {
-    return title.toLowerCase()
+    // Strip trailing " - Source Name" before computing keywords
+    const clean = title.replace(/\s+-\s+[^-]+$/, '');
+    return clean.toLowerCase()
       .replace(/[^a-z0-9\s]/g, ' ')
       .split(/\s+/)
       .filter(w => w.length > 3 && !STOP_WORDS.has(w));
