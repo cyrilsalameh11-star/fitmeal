@@ -448,6 +448,7 @@ const NEWS_BANNED_WORDS = [
   'newspapers.com', 'lebanon plaza', 'lebanon pa', 'lebanon tn',
   'retail theft', 'police arrest', 'water project', 'ministry of foreign', 'workshop',
   'resilience of lebanon', 'bass pro', 'hobie', 'watercraft',
+  'security', 'weak', 'assistance', 'insecurity', 'supporting', 'inspection',
 ];
 
 function isArticleBanned(article) {
