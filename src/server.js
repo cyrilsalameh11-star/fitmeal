@@ -588,11 +588,8 @@ app.get('/api/news', async (req, res) => {
         .eq('id', 1)
         .maybeSingle();
 
-      if (data && Array.isArray(data.articles)) {
-        const ageMs = Date.now() - new Date(data.updated_at).getTime();
-        if (ageMs < NEWS_CACHE_TTL_MS) {
-          return res.json(data.articles);
-        }
+      if (data && Array.isArray(data.articles) && data.articles.length > 0) {
+        return res.json(data.articles);
       }
     } catch (e) {
       console.error('News cache read failed, fetching live:', e.message);
@@ -639,15 +636,43 @@ app.get('/api/cron/refresh-news', async (req, res) => {
     return res.status(401).json({ error: 'Unauthorized' });
   }
   try {
-    const articles = await fetchLebanonFMCGNews();
-    if (supabase && articles.length > 0) {
+    const newArticles = await fetchLebanonFMCGNews();
+
+    // Read existing cached articles
+    let existingArticles = [];
+    if (supabase) {
+      try {
+        const { data } = await supabase
+          .from('news_cache')
+          .select('articles')
+          .eq('id', 1)
+          .maybeSingle();
+        if (data && Array.isArray(data.articles)) existingArticles = data.articles;
+      } catch (e) {
+        console.error('Cron: could not read existing cache:', e.message);
+      }
+    }
+
+    // Merge: new articles first, then existing ones not already present
+    const seenLinks = new Set(newArticles.map(a => a.link));
+    const seenTitles = new Set(newArticles.map(a => a.title.toLowerCase()));
+    const uniqueExisting = existingArticles.filter(
+      a => !seenLinks.has(a.link) && !seenTitles.has(a.title.toLowerCase())
+    );
+
+    // Sort merged list by date descending, cap at 25
+    const merged = [...newArticles, ...uniqueExisting]
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .slice(0, 25);
+
+    if (supabase && merged.length > 0) {
       await supabase.from('news_cache').upsert([{
         id: 1,
-        articles,
+        articles: merged,
         updated_at: new Date().toISOString(),
       }]);
     }
-    res.json({ success: true, count: articles.length, updated_at: new Date().toISOString() });
+    res.json({ success: true, new: newArticles.length, total: merged.length, updated_at: new Date().toISOString() });
   } catch (e) {
     console.error('Cron refresh-news failed:', e.message);
     res.status(500).json({ error: e.message });

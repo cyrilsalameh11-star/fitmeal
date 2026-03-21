@@ -8,3 +8,6 @@ build
 .hive-mind
 .mcp.json
 *.log
+
+.vercel
+.env*.local
