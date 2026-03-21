@@ -506,6 +506,13 @@ async function fetchLebanonFMCGNews() {
     id: item.guid || `news-${index}`,
   }));
 
+  // Drop articles older than 6 months (keep null-date articles as they may be recent)
+  const sixMonthsAgo = Date.now() - 180 * 24 * 60 * 60 * 1000;
+  formattedItems = formattedItems.filter(a => {
+    if (!a.pubDate) return true;
+    return new Date(a.pubDate).getTime() >= sixMonthsAgo;
+  });
+
   // Sort newest first (articles with no date go to the end)
   formattedItems.sort((a, b) => {
     if (!a.pubDate && !b.pubDate) return 0;
