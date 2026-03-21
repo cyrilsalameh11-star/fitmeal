@@ -510,7 +510,7 @@ const PINNED_LORIENT_ARTICLES = [
 ];
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 36; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 37; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
@@ -552,6 +552,8 @@ const NEWS_BANNED_WORDS = [
   'by chef', 'with chef', 'crafts lebanese', 'insider\'s guide', 'guide to eating',
   'belarus', 'belarusian', 'russia', 'russian', 'moscow', 'kremlin',
   'tass.com', 'rt.com', 'sputnik', 'interfax', 'ria novosti',
+  'беларус', 'россия', 'российск', 'министерство иностранных дел', 'республики беларусь',
+  'street food tour', 'food tour', 'best cuisine?', 'world\'s best cuisine',
 ];
 
 function isArticleBanned(article) {
