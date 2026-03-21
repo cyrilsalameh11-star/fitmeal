@@ -454,6 +454,7 @@ async function fetchLebanonFMCGNews() {
     // US local Lebanon news sources / towns
     'wkrn', 'lebanese-daily-news', 'lebanon daily news', 'discover the burgh', 'lakeexpo',
     'towne post', 'valley news', 'mt. lebanon', 'mount lebanon', 'townpost',
+    'newspapers.com', 'lebanon plaza', 'lebanon pa', 'lebanon tn',
     // Non-FMCG / unrelated
     'retail theft', 'police arrest', 'water project', 'ministry of foreign', 'workshop',
     'resilience of lebanon', 'bass pro', 'hobie', 'watercraft',
@@ -536,13 +537,12 @@ async function fetchLebanonFMCGNews() {
   function isTooSimilar(titleA, seenKeywordSets) {
     const kw = keyWords(titleA);
     if (kw.length === 0) return false;
-    const kwSet = new Set(kw);
     for (const seen of seenKeywordSets) {
       const overlap = kw.filter(w => seen.has(w)).length;
-      // Check both directions: new/seen and seen/new — take the higher ratio
       const ratioNew = overlap / kw.length;
       const ratioSeen = overlap / seen.size;
-      if (Math.max(ratioNew, ratioSeen) >= 0.4) return true;
+      // Reject if ratio-based OR if 3+ specific keywords match (catches long titles)
+      if (Math.max(ratioNew, ratioSeen) >= 0.4 || overlap >= 3) return true;
     }
     return false;
   }
