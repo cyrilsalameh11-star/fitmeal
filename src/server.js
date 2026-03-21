@@ -422,7 +422,7 @@ const RSSParser = require('rss-parser');
 const parser = new RSSParser();
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 5; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 6; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
@@ -441,7 +441,7 @@ const NEWS_BANNED_WORDS = [
   'refugee', 'displaced', 'displacement', 'shelter', 'vulnerable population',
   'livelihood', 'beneficiar', 'emergency relief', 'relief effort', 'aid worker',
   'aid organization', 'aid agency', 'aid distribution',
-  'donations', 'charity', 'nonprofit', 'non-profit', 'ngo', 'ngos',
+  'donations', 'charity', 'nonprofit', 'non-profit', ' ngo ', ' ngos ',
   'bank', 'banking', 'central bank', 'banque', 'loan', 'credit', 'mortgage', 'interest rate',
   'stock market', 'nasdaq', 'forex', 'currency', 'imf', 'world bank',
   'wkrn', 'lebanese-daily-news', 'lebanon daily news', 'discover the burgh', 'lakeexpo',
@@ -478,6 +478,8 @@ async function fetchLebanonFMCGNews() {
     'table', 'gastronomie', 'bistrot', 'bistro', 'brasserie', 'terrasse', 'adresse',
     'ouverture', 'patronne', 'patron', 'traiteur', 'épicerie', 'alimentation', 'boisson',
     'em sherif', 'cheese on top', 'zaatar w zeit', 'roadster', 'al abdallah', 'swiss butter',
+    'restauration', 'marché', 'distributeur', 'grande surface', 'enseigne', 'monoprix',
+    'mall', 'chips', 'snack', 'bar ', 'brunch', 'dîner', 'déjeuner', 'saveur', 'goût',
   ];
 
   let allItems = [];
@@ -514,7 +516,10 @@ async function fetchLebanonFMCGNews() {
       text.includes('fattal') || text.includes('bou khalil') ||
       text.includes('em sherif') || text.includes('cheese on top') ||
       text.includes('zaatar w zeit') || text.includes('roadster') ||
-      text.includes('al abdallah') || text.includes('swiss butter')
+      text.includes('al abdallah') || text.includes('swiss butter') ||
+      text.includes('malak al tawouk') || text.includes('l\'orient') ||
+      text.includes('commerce du levant') || text.includes('ici beyrouth') ||
+      text.includes('libanais') || text.includes('libanaise')
     );
 
     return hasGood && mentionsLebanon;
