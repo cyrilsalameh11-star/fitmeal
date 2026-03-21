@@ -630,19 +630,10 @@ app.get('/api/news', async (req, res) => {
       }
     }
 
-    if (articles.length >= 5) return res.json(articles);
-
-    // 3. Fallback to strict_news.json if RSS returned too little
-    const fallbackStr = fs.readFileSync(path.join(__dirname, '..', 'strict_news.json'), 'utf8');
-    return res.json(JSON.parse(fallbackStr).slice(0, 25));
+    return res.json(articles);
   } catch (error) {
     console.error('Error fetching RSS:', error);
-    try {
-      const fallbackStr = fs.readFileSync(path.join(__dirname, '..', 'strict_news.json'), 'utf8');
-      res.json(JSON.parse(fallbackStr).slice(0, 25));
-    } catch (e) {
-      res.json([]);
-    }
+    res.json([]);
   }
 });
 
