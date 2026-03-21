@@ -422,7 +422,7 @@ const RSSParser = require('rss-parser');
 const parser = new RSSParser();
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 12; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 13; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
@@ -450,6 +450,8 @@ const NEWS_BANNED_WORDS = [
   'retail theft', 'police arrest', 'water project', 'ministry of foreign', 'workshop',
   'resilience of lebanon', 'bass pro', 'hobie', 'watercraft',
   'security', 'weak', 'assistance', 'insecurity', 'supporting', 'inspection',
+  'bar association', 'soldier', 'chef de l\'arm', 'homologue', 'pigeons', 'sanctuary',
+  'arrested', 'nude', 'war with', 'dire straits',
 ];
 
 function isArticleBanned(article) {
@@ -652,23 +654,6 @@ app.get('/api/news', async (req, res) => {
 });
 
 // ── Cron: refresh news cache every Sunday (triggered by Vercel Cron) ──────────
-app.get('/api/news/debug', async (req, res) => {
-  const RSSParser2 = require('rss-parser');
-  const p2 = new RSSParser2();
-  const feeds = [
-    { name: 'EN', url: 'https://news.google.com/rss/search?q=(Lebanon+OR+Beirut)+(food+OR+restaurant+OR+supermarket)&hl=en&gl=LB&ceid=LB:en' },
-    { name: 'FR', url: 'https://news.google.com/rss/search?q=(Liban+OR+Beyrouth)+(restaurant+OR+cuisine+OR+alimentation)&hl=fr&gl=FR&ceid=FR:fr' },
-  ];
-  const results = await Promise.allSettled(feeds.map(f => p2.parseURL(f.url)));
-  const out = results.map((r, i) => ({
-    feed: feeds[i].name,
-    status: r.status,
-    count: r.status === 'fulfilled' ? r.value.items.length : 0,
-    error: r.status === 'rejected' ? r.reason?.message : null,
-    titles: r.status === 'fulfilled' ? r.value.items.slice(0, 5).map(x => x.title) : [],
-  }));
-  res.json(out);
-});
 
 app.get('/api/cron/refresh-news', async (req, res) => {
   const auth = req.headers['authorization'];
