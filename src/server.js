@@ -510,7 +510,7 @@ const PINNED_LORIENT_ARTICLES = [
 ];
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 37; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 38; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
@@ -777,17 +777,44 @@ async function fetchLebanonFMCGNews() {
   if (GMAPS_KEY) {
     const axios = require('axios');
 
+    // Manual overrides for known restaurants where auto-extraction fails
+    const PLACE_OVERRIDES = {
+      'al beiruti':    'Al Beiruti restaurant Beirut Lebanon',
+      'colonel beer':  'Colonel Beer brewery Batroun Lebanon',
+      'liza':          'Liza restaurant Beirut Lebanon',
+      'pouloche':      'Pouloche restaurant Sassine Beirut',
+      'bistrot lobo':  'Bistrot Lobo Badaro Beirut',
+      'superchief':    'Superchief bar Monnot Beirut',
+      'couqley':       'Couqley bistrot Beirut',
+      'beihouse':      'Beihouse Gemmayze Beirut',
+      'mamaz kitchen': 'Mamaz Kitchen Achrafieh Beirut',
+      'the chase':     'The Chase Sassine Beirut',
+      'izzyy':         'Izzyy restaurant Beirut',
+      "kiki's":        "Kiki's restaurant Beirut",
+      'kasr fakhreddine': 'Kasr Fakhreddine restaurant Beirut',
+    };
+
     function extractPlaceSearchTerm(title) {
+      const lower = title.toLowerCase();
+      // Check manual overrides first
+      for (const [key, val] of Object.entries(PLACE_OVERRIDES)) {
+        if (lower.includes(key)) return val;
+      }
       // Strip source suffix: "- L'Orient-Le Jour", "- The961", etc.
-      let clean = title.replace(/\s*[-–]\s*(L'Orient[\w\s-]*|The\s*961|961|Daily Star|Annahar|Commerce du Levant|L'OLJ)\s*$/i, '').trim();
+      let clean = title.replace(/\s*[-–]\s*(L'Orient[\w\s-]*|The\s*961|961|Daily Star|Annahar|Commerce du Levant|L'OLJ|Arabia)\s*$/i, '').trim();
       // French: extract name before common opening verbs
       const frMatch = clean.match(/^(?:[ÀA]\s+[\w-]+,\s+)?([\w\s''ÀÂÉÈÊËÎÏÔÙÛÜÇàâéèêëîïôùûüç-]+?)(?:\s+(?:s'installe|ouvre|propose|inaugure|mise sur|arrive|débarque|rejoint|prend ses|accueille|signe))/i);
-      if (frMatch) return frMatch[1].trim() + ' Beirut';
+      if (frMatch) return frMatch[1].trim() + ' Beirut Lebanon';
+      // English: extract name after "from" or "at" (catches "order from X", "fire at X")
+      const fromMatch = clean.match(/\bfrom\s+([A-Z][\w\s''-]{2,30}?)(?:\s+(?:exclusively|in\b|on\b|at\b|,|\.|$))/);
+      if (fromMatch) return fromMatch[1].trim() + ' Beirut Lebanon';
+      const atMatch = clean.match(/\bat\s+(?:the\s+)?([A-Z][\w\s''-]{2,30}?)(?:\s+(?:restaurant|bar|brewery|in\b|,|\.))/i);
+      if (atMatch) return atMatch[1].trim() + ' Beirut Lebanon';
       // English: extract name before common opening verbs
       const enMatch = clean.match(/^([\w\s''-]+?)(?:\s+(?:opens|launches|expands|arrives|unveils|introduces|now open|gets a))/i);
-      if (enMatch) return enMatch[1].trim() + ' Beirut';
+      if (enMatch) return enMatch[1].trim() + ' Beirut Lebanon';
       // Fallback: first 3 words + Beirut
-      return clean.split(/\s+/).slice(0, 3).join(' ') + ' Beirut';
+      return clean.split(/\s+/).slice(0, 3).join(' ') + ' Beirut Lebanon';
     }
 
     async function fetchPlacePhoto(searchTerm) {
