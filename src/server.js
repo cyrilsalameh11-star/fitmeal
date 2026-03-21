@@ -422,7 +422,7 @@ const RSSParser = require('rss-parser');
 const parser = new RSSParser();
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 8; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 9; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
@@ -512,7 +512,7 @@ async function fetchLebanonFMCGNews() {
     const mentionsLebanon = (
       text.includes('lebanon') || text.includes('liban') ||
       text.includes('beirut') || text.includes('beyrouth') ||
-      text.includes('gemmayze') || text.includes('achrafieh') ||
+      text.includes('gemmayze') || text.includes('gemmayz') || text.includes('achrafieh') ||
       text.includes('saifi') || text.includes('naccache') ||
       text.includes('dbayeh') || text.includes('badaro') ||
       text.includes('spinneys') || text.includes('grey mckenzie') ||
@@ -576,15 +576,25 @@ async function fetchLebanonFMCGNews() {
     return false;
   }
 
+  const BRAND_DEDUP_KEYS = ['americana','spinneys','carrefour','malak al tawouk','fattal','bou khalil',
+    'em sherif','cheese on top','zaatar w zeit','roadster','al abdallah','swiss butter','monoprix',
+    'crepaway','sagesse','burger king','mcdonald','kfc','pizza hut','starbucks','dunkin'];
+
   const deduplicated = [];
   const seenTitles = new Set();
   const seenKeywordSets = [];
+  const seenBrands = new Set();
 
   for (const it of formattedItems) {
     const normTitle = it.title.toLowerCase();
 
     if (seenTitles.has(normTitle)) continue;
     if (isTooSimilar(it.title, seenKeywordSets)) continue;
+
+    // Max 1 article per major brand per fetch
+    const brandHit = BRAND_DEDUP_KEYS.find(b => normTitle.includes(b));
+    if (brandHit && seenBrands.has(brandHit)) continue;
+    if (brandHit) seenBrands.add(brandHit);
 
     seenTitles.add(normTitle);
     seenKeywordSets.push(new Set(keyWords(it.title)));
