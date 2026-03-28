@@ -99,18 +99,17 @@ function ReelCard({ reel, index }) {
         </a>
       </div>
 
-      {/* Full-height phone-aspect embed */}
-      <div className="relative w-full" style={{ paddingBottom: '177.78%' /* 9:16 */ }}>
-        <iframe
-          src={`https://www.instagram.com/${reel.type}/${reel.shortcode}/embed/?cr=1&v=14&wp=320`}
-          className="absolute inset-0 w-full h-full border-0"
-          allowFullScreen
-          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-          scrolling="no"
-          loading="lazy"
-          title={`@${reel.handle} reel`}
-        />
-      </div>
+      {/* Embed */}
+      <iframe
+        src={`https://www.instagram.com/${reel.type}/${reel.shortcode}/embed/`}
+        className="w-full border-0 block"
+        style={{ height: '700px' }}
+        allowFullScreen
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+        scrolling="no"
+        loading="lazy"
+        title={`@${reel.handle}`}
+      />
     </motion.div>
   );
 }
