@@ -8,6 +8,7 @@ const CATEGORY_ICONS = {
   "Supermarket": <ShoppingCart size={14} />,
   "Dessert": <IceCream size={14} />,
   "Restaurant": <Utensils size={14} />,
+  "Boulangerie": <Utensils size={14} />,
   "Convenience": <ShoppingCart size={14} />,
   "Snack": <ShoppingCart size={14} />
 };

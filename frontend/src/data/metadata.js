@@ -23,6 +23,8 @@ export const BRANDS = {
     { name: "Monoprix", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=monoprix.fr&sz=64" },
     { name: "Picard", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=picard.fr&sz=64" },
     { name: "Amorino", category: "Dessert", logo: "https://www.google.com/s2/favicons?domain=amorino.com&sz=64" },
+    { name: "Paul", category: "Boulangerie", logo: "https://www.google.com/s2/favicons?domain=paul.fr&sz=64" },
+    { name: "Matsuri", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=matsuri.fr&sz=64" },
     { name: "Favorite Snacks", category: "Snack", logo: null }
   ],
   Spain: [

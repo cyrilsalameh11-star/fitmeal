@@ -4,12 +4,13 @@ import MealCard from './components/MealCard';
 import ExplorePage from './components/ExplorePage';
 import CaloriePage from './components/CaloriePage';
 import ExercisePage from './components/ExercisePage';
+import WeeklyCaloriesPage from './components/WeeklyCaloriesPage';
 import MapPage from './components/MapPage';
 import NewsPage from './components/NewsPage';
 import TrendsPage from './components/TrendsPage';
 import LoyaltyPage from './components/LoyaltyPage';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, X, Menu, Phone, Mail, Instagram, Twitter, User, ArrowRight, Users, Dumbbell, Map as MapIcon, Newspaper, Award, Flame, TrendingUp } from 'lucide-react';
+import { ShoppingBag, X, Menu, Phone, Mail, Instagram, Twitter, User, ArrowRight, Users, Dumbbell, Map as MapIcon, Newspaper, Award, Flame, TrendingUp, CalendarDays } from 'lucide-react';
 
 function App() {
   const [user, setUser] = useState(() => localStorage.getItem('fitmeal_username') || null);
@@ -286,6 +287,7 @@ function App() {
             <button onClick={() => { setActiveTab('planner'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'planner' ? 'text-stone-900' : ''}`}>Planner</button>
             <button onClick={() => { setActiveTab('explore'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'explore' ? 'text-stone-900' : ''}`}>Explore</button>
             <button onClick={() => { setActiveTab('calories'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'calories' ? 'text-stone-900' : ''}`}><Flame size={16} className="mr-1.5" />TDEE Calculator</button>
+            <button onClick={() => { setActiveTab('weekly'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'weekly' ? 'text-stone-900' : ''}`}><CalendarDays size={16} className="mr-1.5" />Weekly Calories</button>
             <button onClick={() => { setActiveTab('exercise'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'exercise' ? 'text-stone-900' : ''}`}><Dumbbell size={16} className="mr-1.5" />Exercise</button>
             <button onClick={() => { setActiveTab('map'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'map' ? 'text-stone-900' : ''}`}><MapIcon size={16} className="mr-1.5" />Map</button>
             <button onClick={() => { setActiveTab('news'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'news' ? 'text-stone-900' : ''}`}><Newspaper size={16} className="mr-1.5" />FMCG News</button>
@@ -314,7 +316,7 @@ function App() {
               exit={{ opacity: 0, y: -10 }}
               className="md:hidden bg-white border-t border-stone-100 px-6 py-4 space-y-3"
             >
-              {[['planner', 'Planner'], ['explore', 'Explore'], ['calories', 'TDEE Calculator'], ['exercise', 'Exercise'], ['map', 'Map'], ['news', 'FMCG News'], ['trends', 'Trends / Reels'], ['loyalty', 'Loyalty Programs'], ['contact', 'Contact Us']].map(([tab, label]) => (
+              {[['planner', 'Planner'], ['explore', 'Explore'], ['calories', 'TDEE Calculator'], ['weekly', 'Weekly Calories'], ['exercise', 'Exercise'], ['map', 'Map'], ['news', 'FMCG News'], ['trends', 'Trends / Reels'], ['loyalty', 'Loyalty Programs'], ['contact', 'Contact Us']].map(([tab, label]) => (
                 <button
                   key={tab}
                   onClick={() => { setActiveTab(tab); setShowMobileMenu(false); }}
@@ -407,6 +409,8 @@ function App() {
           {activeTab === 'explore' && <ExplorePage />}
 
           {activeTab === 'calories' && <CaloriePage />}
+
+          {activeTab === 'weekly' && <WeeklyCaloriesPage />}
 
           {activeTab === 'news' && <NewsPage />}
 
