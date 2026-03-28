@@ -422,6 +422,24 @@ const RSSParser = require('rss-parser');
 const parser = new RSSParser();
 
 // Pinned L'Orient Le Jour articles — merged with dynamic feed and sorted by date
+// Manually curated global FMCG articles — always surfaced at the top
+const PINNED_GLOBAL_ARTICLES = [
+  {
+    title: "Danone's $1bn Huel deal: why the multinational is betting big on meal replacements",
+    link: 'https://www.dairyreporter.com/Article/2026/03/23/danones-1bn-huel-deal-why-the-multinational-is-betting-big-on-meal-replacements/',
+    pubDate: 'Sun, 23 Mar 2026 08:00:00 GMT',
+    contentSnippet: "Danone has agreed to acquire Huel in a deal valued at around $1bn, marking a major strategic bet on the fast-growing meal replacement and functional nutrition category.",
+    id: 'pinned-global-danone-huel',
+  },
+  {
+    title: "Good Girl Snacks built a cult brand with zero paid ads — here's how",
+    link: 'https://www.shopify.com/blog/good-girl-snacks-zero-dollar-customer-acquisition',
+    pubDate: 'Mon, 17 Mar 2026 08:00:00 GMT',
+    contentSnippet: "Good Girl Snacks grew from a home kitchen experiment to a viral snack brand by leaning entirely on community, content, and word of mouth — spending nothing on paid customer acquisition.",
+    id: 'pinned-global-goodgirlsnacks',
+  },
+];
+
 const PINNED_LORIENT_ARTICLES = [
   {
     title: "Pouloche s'installe à Sassine - L'Orient-Le Jour",
@@ -510,7 +528,7 @@ const PINNED_LORIENT_ARTICLES = [
 ];
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 38; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 39; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
@@ -554,6 +572,7 @@ const NEWS_BANNED_WORDS = [
   'tass.com', 'rt.com', 'sputnik', 'interfax', 'ria novosti',
   'беларус', 'россия', 'российск', 'министерство иностранных дел', 'республики беларусь',
   'street food tour', 'food tour', 'best cuisine?', 'world\'s best cuisine',
+  'marseille', 'australia', 'australian',
 ];
 
 function isArticleBanned(article) {
@@ -761,9 +780,12 @@ async function fetchLebanonFMCGNews() {
   const pinnedToAdd = PINNED_LORIENT_ARTICLES.filter(
     a => !existingLinks.has(a.link) && !existingTitles.has(a.title.toLowerCase())
   );
+  const globalToAdd = PINNED_GLOBAL_ARTICLES.filter(
+    a => !existingLinks.has(a.link) && !existingTitles.has(a.title.toLowerCase())
+  );
 
   // Merge all and sort by date descending (pinned articles have real dates now)
-  const merged = [...pinnedToAdd, ...deduplicated];
+  const merged = [...globalToAdd, ...pinnedToAdd, ...deduplicated];
   merged.sort((a, b) => {
     if (!a.pubDate && !b.pubDate) return 0;
     if (!a.pubDate) return 1;
