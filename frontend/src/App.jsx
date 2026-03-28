@@ -273,7 +273,7 @@ function App() {
         </div>
       </div>
 
-      <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-stone-100 px-6 py-4">
+      <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-stone-100 px-6 py-4 shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <button 
             onClick={() => { setActiveTab('planner'); setShowMobileMenu(false); }}
@@ -283,17 +283,31 @@ function App() {
             <span className="text-xl font-black font-serif tracking-tight">FitMeal AI</span>
           </button>
 
-          <div className="hidden md:flex space-x-10 text-sm font-bold uppercase tracking-widest text-stone-500">
-            <button onClick={() => { setActiveTab('planner'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'planner' ? 'text-stone-900' : ''}`}>Planner</button>
-            <button onClick={() => { setActiveTab('explore'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'explore' ? 'text-stone-900' : ''}`}>Explore</button>
-            <button onClick={() => { setActiveTab('calories'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'calories' ? 'text-stone-900' : ''}`}><Flame size={16} className="mr-1.5" />TDEE Calculator</button>
-            <button onClick={() => { setActiveTab('weekly'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'weekly' ? 'text-stone-900' : ''}`}><CalendarDays size={16} className="mr-1.5" />Weekly Calories</button>
-            <button onClick={() => { setActiveTab('exercise'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'exercise' ? 'text-stone-900' : ''}`}><Dumbbell size={16} className="mr-1.5" />Exercise</button>
-            <button onClick={() => { setActiveTab('map'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'map' ? 'text-stone-900' : ''}`}><MapIcon size={16} className="mr-1.5" />Map</button>
-            <button onClick={() => { setActiveTab('news'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'news' ? 'text-stone-900' : ''}`}><Newspaper size={16} className="mr-1.5" />FMCG News</button>
-            <button onClick={() => { setActiveTab('trends'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'trends' ? 'text-stone-900' : ''}`}><TrendingUp size={16} className="mr-1.5" />Trends</button>
-            <button onClick={() => { setActiveTab('loyalty'); setShowMobileMenu(false); }} className={`flex items-center hover:text-stone-900 transition-colors ${activeTab === 'loyalty' ? 'text-stone-900' : ''}`}><Award size={16} className="mr-1.5" />Loyalty Programs</button>
-            <button onClick={() => { setActiveTab('contact'); setShowMobileMenu(false); }} className={`hover:text-stone-900 transition-colors ${activeTab === 'contact' ? 'text-stone-900' : ''}`}>Contact Us</button>
+          <div className="hidden md:flex space-x-8 text-[11px] font-black uppercase tracking-widest text-stone-400">
+            {[
+              ['planner', 'Planner', null],
+              ['explore', 'Explore', null],
+              ['calories', 'TDEE', <Flame size={13} />],
+              ['weekly', 'Weekly Cal.', <CalendarDays size={13} />],
+              ['exercise', 'Exercise', <Dumbbell size={13} />],
+              ['map', 'Map', <MapIcon size={13} />],
+              ['news', 'FMCG News', <Newspaper size={13} />],
+              ['trends', 'Trends', <TrendingUp size={13} />],
+              ['loyalty', 'Loyalty', <Award size={13} />],
+              ['contact', 'Contact', null],
+            ].map(([tab, label, icon]) => (
+              <button
+                key={tab}
+                onClick={() => { setActiveTab(tab); setShowMobileMenu(false); }}
+                className={`relative flex items-center gap-1.5 pb-1 transition-all duration-200 hover:text-stone-900 ${activeTab === tab ? 'text-stone-900' : ''}`}
+              >
+                {icon}
+                {label}
+                {activeTab === tab && (
+                  <motion.span layoutId="nav-underline" className="absolute -bottom-1 left-0 right-0 h-0.5 bg-amber-500 rounded-full" />
+                )}
+              </button>
+            ))}
           </div>
 
           <div className="flex items-center space-x-2 sm:space-x-4">
@@ -301,8 +315,12 @@ function App() {
               <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse flex-shrink-0" />
               <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-stone-500 whitespace-nowrap">{userCount} users</span>
             </div>
-            <button className="md:hidden p-2 text-stone-500" onClick={() => setShowMobileMenu(m => !m)}>
-              {showMobileMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <button
+              className="md:hidden flex items-center space-x-1.5 bg-stone-900 text-white px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-amber-500 transition-all duration-200 active:scale-95"
+              onClick={() => setShowMobileMenu(m => !m)}
+            >
+              {showMobileMenu ? <X className="w-3.5 h-3.5" /> : <Menu className="w-3.5 h-3.5" />}
+              <span>{showMobileMenu ? 'Close' : 'Menu'}</span>
             </button>
           </div>
         </div>
@@ -311,17 +329,22 @@ function App() {
         <AnimatePresence>
           {showMobileMenu && (
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="md:hidden bg-white border-t border-stone-100 px-6 py-4 space-y-3"
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden absolute top-full left-0 right-0 z-50 bg-stone-950 border-t border-stone-800 px-5 py-5 space-y-1 shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
             >
+              <p className="text-[9px] font-black uppercase tracking-[0.2em] text-stone-600 px-3 mb-3">Navigate</p>
               {[['planner', 'Planner'], ['explore', 'Explore'], ['calories', 'TDEE Calculator'], ['weekly', 'Weekly Calories'], ['exercise', 'Exercise'], ['map', 'Map'], ['news', 'FMCG News'], ['trends', 'Trends / Reels'], ['loyalty', 'Loyalty Programs'], ['contact', 'Contact Us']].map(([tab, label]) => (
                 <button
                   key={tab}
                   onClick={() => { setActiveTab(tab); setShowMobileMenu(false); }}
-                  className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold uppercase tracking-widest transition-colors ${activeTab === tab ? 'bg-stone-900 text-white' : 'text-stone-600 hover:bg-stone-50'
-                    }`}
+                  className={`w-full text-left px-4 py-3.5 rounded-xl text-sm font-bold uppercase tracking-widest transition-all duration-150 ${
+                    activeTab === tab
+                      ? 'bg-amber-500 text-white shadow-lg'
+                      : 'text-stone-400 hover:text-white hover:bg-stone-800'
+                  }`}
                 >
                   {label}
                 </button>
@@ -331,7 +354,7 @@ function App() {
         </AnimatePresence>
       </nav>
 
-      <main className="max-w-7xl mx-auto px-6 py-12 lg:py-20">
+      <main className="max-w-7xl mx-auto px-6 py-16 lg:py-28">
         <AnimatePresence mode="wait">
           {activeTab === 'exercise' && (
             <ExercisePage />
@@ -343,14 +366,14 @@ function App() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="space-y-20"
+              className="space-y-24"
             >
               <div className="max-w-4xl">
-                <p className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-4 flex items-center">
+                <p className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-6 flex items-center">
                   <User className="w-3 h-3 mr-2" /> Welcome back, {user}
                 </p>
-                <h1 className="text-5xl lg:text-7xl mb-6 leading-tight">Professional nutrition <br /><span className="italic font-normal text-stone-400">simplified for everyone.</span></h1>
-                <p className="text-xl text-stone-500 font-medium leading-relaxed max-w-3xl">
+                <h1 className="text-5xl lg:text-7xl mb-8 leading-[1.08] tracking-tight">Professional nutrition <br /><span className="italic font-normal text-stone-400">simplified for everyone.</span></h1>
+                <p className="text-xl text-stone-500 font-medium leading-[1.75] max-w-3xl">
                   FitMeal AI is a sophisticated nutritional engine designed for the modern lifestyle. We bridge the gap between regional food availability and individual fitness goals, providing clear, balanced, and actionable meal paths across the globe.
                 </p>
               </div>
@@ -358,7 +381,7 @@ function App() {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
                 {/* Fixed: Use lg:sticky to prevent mobile overlap */}
                 <div className="lg:col-span-4 lg:sticky lg:top-28">
-                  <div className="p-8 bg-white border border-stone-100 rounded-3xl shadow-sm">
+                  <div className="p-8 bg-white border border-stone-100 rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.07)] hover:shadow-[0_12px_48px_rgba(0,0,0,0.1)] transition-shadow duration-300">
                     <h3 className="text-2xl mb-6 font-serif">Plan Your Day</h3>
                     <MealForm onSubmit={handleGenerate} isLoading={isLoading} />
                   </div>
@@ -440,17 +463,17 @@ function App() {
             >
               <h2 className="text-5xl lg:text-5xl mb-8">Let's stay <span className="italic font-normal text-stone-400">connected.</span></h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-                <div className="p-10 bg-white border border-stone-100 rounded-3xl shadow-sm hover:border-amber-200 transition-colors">
+                <div className="p-10 bg-white border border-stone-100 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-amber-200 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] hover:-translate-y-1 transition-all duration-300">
                   <Phone className="w-8 h-8 mb-6 text-stone-400" />
                   <h4 className="text-sm font-bold uppercase tracking-widest mb-2">WhatsApp</h4>
                   <p className="text-lg font-serif">+961 70 000 000</p>
                 </div>
-                <div className="p-10 bg-white border border-stone-100 rounded-3xl shadow-sm hover:border-amber-200 transition-colors">
+                <div className="p-10 bg-white border border-stone-100 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-amber-200 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] hover:-translate-y-1 transition-all duration-300">
                   <Mail className="w-8 h-8 mb-6 text-stone-400" />
                   <h4 className="text-sm font-bold uppercase tracking-widest mb-2">Email</h4>
                   <p className="text-lg font-serif">hello@fitmeal.ai</p>
                 </div>
-                <div className="p-10 bg-white border border-stone-100 rounded-3xl shadow-sm hover:border-amber-200 transition-colors">
+                <div className="p-10 bg-white border border-stone-100 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-amber-200 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] hover:-translate-y-1 transition-all duration-300">
                   <Instagram className="w-8 h-8 mb-6 text-stone-400" />
                   <h4 className="text-sm font-bold uppercase tracking-widest mb-2">Social</h4>
                   <p className="text-lg font-serif">@fitmeal_ai</p>
