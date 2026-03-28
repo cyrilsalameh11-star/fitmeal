@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion';
-import { ShoppingBag, ChevronRight, RefreshCw } from 'lucide-react';
+import { ShoppingBag, ChevronRight, RefreshCw, PlusCircle, Check } from 'lucide-react';
 import { useState } from 'react';
+import { logMealToday } from './CalorieBar';
 
 export default function MealCard({ meal, index, onShop, onSwap }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isSwapping, setIsSwapping] = useState(false);
+  const [logged, setLogged] = useState(false);
   
   // Calculate macros ratio for the small bars
   const totalMacros = (meal.protein || 0) + (meal.carbs || 0) + (meal.fat || 0);
@@ -86,11 +88,27 @@ export default function MealCard({ meal, index, onShop, onSwap }) {
           </div>
         </div>
 
-        {/* Action Button */}
-        <div className="pt-6">
-          <button 
+        {/* Action Buttons */}
+        <div className="pt-6 space-y-3">
+          <button
+            onClick={() => {
+              const ok = logMealToday(meal.calories);
+              if (ok) { setLogged(true); setTimeout(() => setLogged(false), 2500); }
+            }}
+            className={`w-full flex justify-between items-center px-6 py-3.5 rounded-2xl font-bold text-sm tracking-widest uppercase transition-all ${
+              logged
+                ? 'bg-emerald-500 text-white'
+                : 'bg-amber-500 text-white hover:bg-amber-400'
+            }`}
+          >
+            <span className="flex items-center">
+              {logged ? <Check className="w-4 h-4 mr-3" /> : <PlusCircle className="w-4 h-4 mr-3" />}
+              {logged ? 'Logged!' : `Log ${meal.calories} kcal`}
+            </span>
+          </button>
+          <button
             onClick={() => onShop(meal)}
-            className="w-full flex justify-between items-center px-6 py-4 bg-stone-900 text-white rounded-2xl font-bold text-sm tracking-widest uppercase hover:bg-stone-800 transition-all group/btn shadow-lg shadow-stone-200"
+            className="w-full flex justify-between items-center px-6 py-3.5 bg-stone-900 text-white rounded-2xl font-bold text-sm tracking-widest uppercase hover:bg-stone-800 transition-all group/btn"
           >
             <span className="flex items-center">
               <ShoppingBag className="w-4 h-4 mr-3" />

@@ -1,812 +1,587 @@
 module.exports = [
   {
-    "id": "al-baik-1773314181381-1",
-    "name": "Al Baik item 1",
+    "id": "ksa-albaik-broast-meal-1pc-fries",
+    "name": "Broast Meal 1pc + Fries",
     "brand": "Al Baik",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 301,
-    "protein": 39,
-    "carbs": 20,
-    "fat": 21,
+    "type": ["lunch", "dinner"],
+    "calories": 620,
+    "protein": 32,
+    "carbs": 56,
+    "fat": 28,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Broast Meal 1pc + Fries — Al Baik"]
   },
   {
-    "id": "al-baik-1773314181381-2",
-    "name": "Al Baik item 2",
+    "id": "ksa-albaik-broast-meal-2pc-fries",
+    "name": "Broast Meal 2pc + Fries",
     "brand": "Al Baik",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 556,
-    "protein": 25,
-    "carbs": 43,
-    "fat": 6,
+    "type": ["lunch", "dinner"],
+    "calories": 900,
+    "protein": 56,
+    "carbs": 60,
+    "fat": 46,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Broast Meal 2pc + Fries — Al Baik"]
   },
   {
-    "id": "al-baik-1773314181381-3",
-    "name": "Al Baik item 3",
+    "id": "ksa-albaik-broast-1pc",
+    "name": "Broast 1pc",
     "brand": "Al Baik",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 494,
-    "protein": 29,
-    "carbs": 58,
-    "fat": 6,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-baik-1773314181381-4",
-    "name": "Al Baik item 4",
-    "brand": "Al Baik",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 496,
-    "protein": 17,
-    "carbs": 64,
-    "fat": 13,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-baik-1773314181381-5",
-    "name": "Al Baik item 5",
-    "brand": "Al Baik",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 430,
-    "protein": 35,
-    "carbs": 54,
-    "fat": 19,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-baik-1773314181381-6",
-    "name": "Al Baik item 6",
-    "brand": "Al Baik",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 404,
-    "protein": 20,
-    "carbs": 22,
-    "fat": 20,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-baik-1773314181381-7",
-    "name": "Al Baik item 7",
-    "brand": "Al Baik",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 384,
-    "protein": 36,
-    "carbs": 31,
-    "fat": 21,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-baik-1773314181381-8",
-    "name": "Al Baik item 8",
-    "brand": "Al Baik",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 378,
-    "protein": 25,
-    "carbs": 39,
-    "fat": 23,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-baik-1773314181381-9",
-    "name": "Al Baik item 9",
-    "brand": "Al Baik",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 456,
-    "protein": 33,
-    "carbs": 27,
-    "fat": 13,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-baik-1773314181381-10",
-    "name": "Al Baik item 10",
-    "brand": "Al Baik",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 445,
-    "protein": 36,
-    "carbs": 57,
-    "fat": 17,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-baik-1773314181381-11",
-    "name": "Al Baik item 11",
-    "brand": "Al Baik",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 389,
-    "protein": 17,
-    "carbs": 25,
-    "fat": 17,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-baik-1773314181381-12",
-    "name": "Al Baik item 12",
-    "brand": "Al Baik",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 443,
-    "protein": 22,
-    "carbs": 63,
-    "fat": 12,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-baik-1773314181381-13",
-    "name": "Al Baik item 13",
-    "brand": "Al Baik",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 454,
-    "protein": 37,
-    "carbs": 23,
-    "fat": 6,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-baik-1773314181381-14",
-    "name": "Al Baik item 14",
-    "brand": "Al Baik",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 438,
-    "protein": 23,
-    "carbs": 22,
-    "fat": 8,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-baik-1773314181381-15",
-    "name": "Al Baik item 15",
-    "brand": "Al Baik",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 457,
-    "protein": 36,
-    "carbs": 39,
-    "fat": 5,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "calo-1773314181381-1",
-    "name": "Calo item 1",
-    "brand": "Calo",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 596,
-    "protein": 17,
-    "carbs": 50,
-    "fat": 7,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "calo-1773314181381-2",
-    "name": "Calo item 2",
-    "brand": "Calo",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 419,
-    "protein": 16,
-    "carbs": 43,
-    "fat": 6,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "calo-1773314181381-3",
-    "name": "Calo item 3",
-    "brand": "Calo",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 471,
-    "protein": 10,
-    "carbs": 40,
-    "fat": 11,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "calo-1773314181381-4",
-    "name": "Calo item 4",
-    "brand": "Calo",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 306,
-    "protein": 21,
-    "carbs": 36,
-    "fat": 10,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "calo-1773314181381-5",
-    "name": "Calo item 5",
-    "brand": "Calo",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 303,
-    "protein": 35,
-    "carbs": 69,
-    "fat": 16,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "calo-1773314181381-6",
-    "name": "Calo item 6",
-    "brand": "Calo",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 510,
-    "protein": 18,
-    "carbs": 40,
+    "type": ["lunch", "dinner"],
+    "calories": 310,
+    "protein": 26,
+    "carbs": 14,
     "fat": 18,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Broast 1pc — Al Baik"]
   },
   {
-    "id": "calo-1773314181381-7",
-    "name": "Calo item 7",
-    "brand": "Calo",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 578,
-    "protein": 26,
-    "carbs": 48,
+    "id": "ksa-albaik-broast-2pc",
+    "name": "Broast 2pc",
+    "brand": "Al Baik",
+    "type": ["lunch", "dinner"],
+    "calories": 620,
+    "protein": 52,
+    "carbs": 28,
+    "fat": 36,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Broast 2pc — Al Baik"]
+  },
+  {
+    "id": "ksa-albaik-chicken-burger",
+    "name": "Chicken Burger",
+    "brand": "Al Baik",
+    "type": ["lunch", "dinner"],
+    "calories": 440,
+    "protein": 28,
+    "carbs": 42,
+    "fat": 18,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Chicken Burger — Al Baik"]
+  },
+  {
+    "id": "ksa-albaik-fish-fillet-meal",
+    "name": "Fish Fillet Meal",
+    "brand": "Al Baik",
+    "type": ["lunch", "dinner"],
+    "calories": 580,
+    "protein": 30,
+    "carbs": 54,
     "fat": 24,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Fish Fillet Meal — Al Baik"]
   },
   {
-    "id": "calo-1773314181381-8",
-    "name": "Calo item 8",
-    "brand": "Calo",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 473,
-    "protein": 30,
-    "carbs": 59,
+    "id": "ksa-albaik-shrimp-meal",
+    "name": "Shrimp Meal",
+    "brand": "Al Baik",
+    "type": ["lunch", "dinner"],
+    "calories": 560,
+    "protein": 28,
+    "carbs": 52,
+    "fat": 24,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Shrimp Meal — Al Baik"]
+  },
+  {
+    "id": "ksa-albaik-onion-rings-large",
+    "name": "Onion Rings Large",
+    "brand": "Al Baik",
+    "type": ["lunch", "dinner"],
+    "calories": 380,
+    "protein": 5,
+    "carbs": 48,
+    "fat": 20,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Onion Rings Large — Al Baik"]
+  },
+  {
+    "id": "ksa-albaik-french-fries-large",
+    "name": "French Fries Large",
+    "brand": "Al Baik",
+    "type": ["lunch", "dinner"],
+    "calories": 360,
+    "protein": 5,
+    "carbs": 48,
     "fat": 17,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["French Fries Large — Al Baik"]
   },
   {
-    "id": "calo-1773314181381-9",
-    "name": "Calo item 9",
-    "brand": "Calo",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 417,
-    "protein": 34,
-    "carbs": 43,
+    "id": "ksa-albaik-chicken-strips-3pc",
+    "name": "Chicken Strips 3pc",
+    "brand": "Al Baik",
+    "type": ["lunch", "dinner"],
+    "calories": 310,
+    "protein": 24,
+    "carbs": 20,
+    "fat": 15,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Chicken Strips 3pc — Al Baik"]
+  },
+  {
+    "id": "ksa-albaik-garlic-sauce",
+    "name": "Garlic Sauce",
+    "brand": "Al Baik",
+    "type": ["lunch", "dinner"],
+    "calories": 100,
+    "protein": 1,
+    "carbs": 2,
+    "fat": 10,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Garlic Sauce — Al Baik"]
+  },
+  {
+    "id": "ksa-albaik-coleslaw",
+    "name": "Coleslaw",
+    "brand": "Al Baik",
+    "type": ["lunch", "dinner"],
+    "calories": 140,
+    "protein": 1,
+    "carbs": 16,
+    "fat": 8,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Coleslaw — Al Baik"]
+  },
+  {
+    "id": "ksa-albaik-spicy-broast-1pc",
+    "name": "Spicy Broast 1pc",
+    "brand": "Al Baik",
+    "type": ["lunch", "dinner"],
+    "calories": 330,
+    "protein": 26,
+    "carbs": 16,
+    "fat": 19,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Spicy Broast 1pc — Al Baik"]
+  },
+  {
+    "id": "ksa-albaik-kids-broast-meal",
+    "name": "Kids Broast Meal",
+    "brand": "Al Baik",
+    "type": ["lunch", "dinner"],
+    "calories": 480,
+    "protein": 22,
+    "carbs": 44,
     "fat": 22,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Kids Broast Meal — Al Baik"]
   },
   {
-    "id": "calo-1773314181381-10",
-    "name": "Calo item 10",
-    "brand": "Calo",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 428,
-    "protein": 29,
-    "carbs": 38,
-    "fat": 17,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "calo-1773314181381-11",
-    "name": "Calo item 11",
-    "brand": "Calo",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 322,
-    "protein": 33,
+    "id": "ksa-albaik-pepsi-medium",
+    "name": "Pepsi Medium",
+    "brand": "Al Baik",
+    "type": ["lunch", "dinner"],
+    "calories": 180,
+    "protein": 0,
     "carbs": 46,
-    "fat": 9,
+    "fat": 0,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Pepsi Medium — Al Baik"]
   },
   {
-    "id": "calo-1773314181381-12",
-    "name": "Calo item 12",
+    "id": "ksa-calo-chicken-rice-bowl",
+    "name": "Chicken & Rice Bowl",
     "brand": "Calo",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 382,
+    "type": ["lunch", "dinner"],
+    "calories": 480,
+    "protein": 42,
+    "carbs": 46,
+    "fat": 12,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Chicken & Rice Bowl — Calo"]
+  },
+  {
+    "id": "ksa-calo-beef-kofta-plate",
+    "name": "Beef Kofta Plate",
+    "brand": "Calo",
+    "type": ["lunch", "dinner"],
+    "calories": 460,
+    "protein": 38,
+    "carbs": 34,
+    "fat": 18,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Beef Kofta Plate — Calo"]
+  },
+  {
+    "id": "ksa-calo-grilled-salmon-plate",
+    "name": "Grilled Salmon Plate",
+    "brand": "Calo",
+    "type": ["lunch", "dinner"],
+    "calories": 420,
     "protein": 36,
     "carbs": 28,
     "fat": 18,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Grilled Salmon Plate — Calo"]
   },
   {
-    "id": "calo-1773314181381-13",
-    "name": "Calo item 13",
+    "id": "ksa-calo-shakshuka-bowl",
+    "name": "Shakshuka Bowl",
     "brand": "Calo",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 392,
-    "protein": 38,
-    "carbs": 69,
-    "fat": 19,
+    "type": ["breakfast", "lunch"],
+    "calories": 320,
+    "protein": 18,
+    "carbs": 28,
+    "fat": 14,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Shakshuka Bowl — Calo"]
   },
   {
-    "id": "calo-1773314181381-14",
-    "name": "Calo item 14",
+    "id": "ksa-calo-high-protein-pancakes",
+    "name": "High Protein Pancakes",
     "brand": "Calo",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 340,
-    "protein": 39,
-    "carbs": 64,
-    "fat": 24,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "calo-1773314181381-15",
-    "name": "Calo item 15",
-    "brand": "Calo",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 374,
-    "protein": 15,
-    "carbs": 54,
-    "fat": 17,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kudu-1773314181381-1",
-    "name": "Kudu item 1",
-    "brand": "Kudu",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 444,
-    "protein": 20,
-    "carbs": 63,
-    "fat": 24,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kudu-1773314181381-2",
-    "name": "Kudu item 2",
-    "brand": "Kudu",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 584,
-    "protein": 13,
-    "carbs": 49,
-    "fat": 17,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kudu-1773314181381-3",
-    "name": "Kudu item 3",
-    "brand": "Kudu",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 473,
-    "protein": 12,
-    "carbs": 62,
-    "fat": 17,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kudu-1773314181381-4",
-    "name": "Kudu item 4",
-    "brand": "Kudu",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 426,
-    "protein": 26,
-    "carbs": 60,
+    "type": ["breakfast"],
+    "calories": 380,
+    "protein": 30,
+    "carbs": 42,
     "fat": 10,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["High Protein Pancakes — Calo"]
   },
   {
-    "id": "kudu-1773314181381-5",
-    "name": "Kudu item 5",
-    "brand": "Kudu",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 376,
-    "protein": 30,
-    "carbs": 51,
-    "fat": 12,
+    "id": "ksa-calo-chicken-caesar-wrap",
+    "name": "Chicken Caesar Wrap",
+    "brand": "Calo",
+    "type": ["lunch", "dinner"],
+    "calories": 410,
+    "protein": 34,
+    "carbs": 36,
+    "fat": 14,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Chicken Caesar Wrap — Calo"]
   },
   {
-    "id": "kudu-1773314181381-6",
-    "name": "Kudu item 6",
-    "brand": "Kudu",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 549,
-    "protein": 17,
-    "carbs": 55,
-    "fat": 9,
+    "id": "ksa-calo-overnight-oats",
+    "name": "Overnight Oats",
+    "brand": "Calo",
+    "type": ["breakfast"],
+    "calories": 340,
+    "protein": 16,
+    "carbs": 52,
+    "fat": 8,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Overnight Oats — Calo"]
   },
   {
-    "id": "kudu-1773314181381-7",
-    "name": "Kudu item 7",
-    "brand": "Kudu",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 590,
-    "protein": 14,
-    "carbs": 34,
-    "fat": 13,
+    "id": "ksa-calo-quinoa-power-bowl",
+    "name": "Quinoa Power Bowl",
+    "brand": "Calo",
+    "type": ["lunch", "dinner"],
+    "calories": 390,
+    "protein": 22,
+    "carbs": 44,
+    "fat": 14,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Quinoa Power Bowl — Calo"]
   },
   {
-    "id": "kudu-1773314181381-8",
-    "name": "Kudu item 8",
-    "brand": "Kudu",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 408,
-    "protein": 39,
-    "carbs": 35,
-    "fat": 23,
-    "source": "restaurant",
-    "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kudu-1773314181381-9",
-    "name": "Kudu item 9",
-    "brand": "Kudu",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 342,
-    "protein": 39,
-    "carbs": 47,
+    "id": "ksa-calo-chicken-tikka-masala",
+    "name": "Chicken Tikka Masala",
+    "brand": "Calo",
+    "type": ["lunch", "dinner"],
+    "calories": 450,
+    "protein": 38,
+    "carbs": 30,
     "fat": 18,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Chicken Tikka Masala — Calo"]
   },
   {
-    "id": "kudu-1773314181381-10",
-    "name": "Kudu item 10",
-    "brand": "Kudu",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 454,
-    "protein": 39,
-    "carbs": 67,
-    "fat": 5,
+    "id": "ksa-calo-greek-yogurt-parfait",
+    "name": "Greek Yogurt Parfait",
+    "brand": "Calo",
+    "type": ["breakfast", "snack"],
+    "calories": 280,
+    "protein": 18,
+    "carbs": 36,
+    "fat": 6,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Greek Yogurt Parfait — Calo"]
   },
   {
-    "id": "kudu-1773314181381-11",
-    "name": "Kudu item 11",
-    "brand": "Kudu",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 591,
-    "protein": 32,
-    "carbs": 27,
-    "fat": 11,
+    "id": "ksa-calo-spinach-feta-omelette",
+    "name": "Spinach & Feta Omelette",
+    "brand": "Calo",
+    "type": ["breakfast"],
+    "calories": 300,
+    "protein": 24,
+    "carbs": 6,
+    "fat": 20,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Spinach & Feta Omelette — Calo"]
   },
   {
-    "id": "kudu-1773314181381-12",
-    "name": "Kudu item 12",
+    "id": "ksa-calo-tuna-poke-bowl",
+    "name": "Tuna Poke Bowl",
+    "brand": "Calo",
+    "type": ["lunch", "dinner"],
+    "calories": 430,
+    "protein": 34,
+    "carbs": 44,
+    "fat": 12,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Tuna Poke Bowl — Calo"]
+  },
+  {
+    "id": "ksa-calo-lean-beef-veg",
+    "name": "Lean Beef & Veg",
+    "brand": "Calo",
+    "type": ["lunch", "dinner"],
+    "calories": 400,
+    "protein": 40,
+    "carbs": 22,
+    "fat": 16,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Lean Beef & Veg — Calo"]
+  },
+  {
+    "id": "ksa-calo-turkish-eggs-cilbir",
+    "name": "Turkish Eggs Cilbir",
+    "brand": "Calo",
+    "type": ["breakfast"],
+    "calories": 320,
+    "protein": 20,
+    "carbs": 18,
+    "fat": 18,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Turkish Eggs Cilbir — Calo"]
+  },
+  {
+    "id": "ksa-calo-beef-burger-bowl",
+    "name": "Beef Burger Bowl",
+    "brand": "Calo",
+    "type": ["lunch", "dinner"],
+    "calories": 470,
+    "protein": 38,
+    "carbs": 32,
+    "fat": 20,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Beef Burger Bowl — Calo"]
+  },
+  {
+    "id": "ksa-kudu-crispy-chicken-sandwich",
+    "name": "Crispy Chicken Sandwich",
     "brand": "Kudu",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 444,
+    "type": ["lunch", "dinner"],
+    "calories": 510,
     "protein": 30,
-    "carbs": 57,
-    "fat": 11,
+    "carbs": 50,
+    "fat": 20,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Crispy Chicken Sandwich — Kudu"]
   },
   {
-    "id": "kudu-1773314181381-13",
-    "name": "Kudu item 13",
+    "id": "ksa-kudu-beef-classic-burger",
+    "name": "Beef Classic Burger",
     "brand": "Kudu",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 505,
+    "type": ["lunch", "dinner"],
+    "calories": 520,
+    "protein": 28,
+    "carbs": 46,
+    "fat": 24,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Beef Classic Burger — Kudu"]
+  },
+  {
+    "id": "ksa-kudu-double-kudu-burger",
+    "name": "Double Kudu Burger",
+    "brand": "Kudu",
+    "type": ["lunch", "dinner"],
+    "calories": 720,
+    "protein": 46,
+    "carbs": 50,
+    "fat": 36,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Double Kudu Burger — Kudu"]
+  },
+  {
+    "id": "ksa-kudu-grilled-chicken-sandwich",
+    "name": "Grilled Chicken Sandwich",
+    "brand": "Kudu",
+    "type": ["lunch", "dinner"],
+    "calories": 420,
+    "protein": 34,
+    "carbs": 40,
+    "fat": 12,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Grilled Chicken Sandwich — Kudu"]
+  },
+  {
+    "id": "ksa-kudu-chicken-strips-meal",
+    "name": "Chicken Strips Meal",
+    "brand": "Kudu",
+    "type": ["lunch", "dinner"],
+    "calories": 680,
+    "protein": 36,
+    "carbs": 68,
+    "fat": 26,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Chicken Strips Meal — Kudu"]
+  },
+  {
+    "id": "ksa-kudu-fish-burger",
+    "name": "Fish Burger",
+    "brand": "Kudu",
+    "type": ["lunch", "dinner"],
+    "calories": 450,
+    "protein": 22,
+    "carbs": 46,
+    "fat": 20,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Fish Burger — Kudu"]
+  },
+  {
+    "id": "ksa-kudu-cheeseburger",
+    "name": "Cheeseburger",
+    "brand": "Kudu",
+    "type": ["lunch", "dinner"],
+    "calories": 460,
     "protein": 26,
-    "carbs": 26,
+    "carbs": 40,
+    "fat": 22,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Cheeseburger — Kudu"]
+  },
+  {
+    "id": "ksa-kudu-kids-meal",
+    "name": "Kids Meal",
+    "brand": "Kudu",
+    "type": ["lunch", "dinner"],
+    "calories": 520,
+    "protein": 22,
+    "carbs": 54,
+    "fat": 22,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Kids Meal — Kudu"]
+  },
+  {
+    "id": "ksa-kudu-onion-rings-medium",
+    "name": "Onion Rings Medium",
+    "brand": "Kudu",
+    "type": ["lunch", "dinner"],
+    "calories": 290,
+    "protein": 4,
+    "carbs": 36,
     "fat": 15,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Onion Rings Medium — Kudu"]
   },
   {
-    "id": "kudu-1773314181381-14",
-    "name": "Kudu item 14",
+    "id": "ksa-kudu-french-fries-large",
+    "name": "French Fries Large",
     "brand": "Kudu",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 341,
+    "type": ["lunch", "dinner"],
+    "calories": 360,
+    "protein": 5,
+    "carbs": 48,
+    "fat": 17,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["French Fries Large — Kudu"]
+  },
+  {
+    "id": "ksa-kudu-coleslaw",
+    "name": "Coleslaw",
+    "brand": "Kudu",
+    "type": ["lunch", "dinner"],
+    "calories": 140,
+    "protein": 1,
+    "carbs": 16,
+    "fat": 8,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Coleslaw — Kudu"]
+  },
+  {
+    "id": "ksa-kudu-mushroom-swiss-burger",
+    "name": "Mushroom Swiss Burger",
+    "brand": "Kudu",
+    "type": ["lunch", "dinner"],
+    "calories": 580,
     "protein": 32,
-    "carbs": 31,
-    "fat": 21,
+    "carbs": 46,
+    "fat": 28,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Mushroom Swiss Burger — Kudu"]
   },
   {
-    "id": "kudu-1773314181381-15",
-    "name": "Kudu item 15",
+    "id": "ksa-kudu-chicken-wrap-meal",
+    "name": "Chicken Wrap Meal",
     "brand": "Kudu",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 355,
-    "protein": 16,
-    "carbs": 58,
-    "fat": 23,
+    "type": ["lunch", "dinner"],
+    "calories": 660,
+    "protein": 34,
+    "carbs": 66,
+    "fat": 24,
     "source": "restaurant",
     "country": "Saudi Arabia",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Chicken Wrap Meal — Kudu"]
+  },
+  {
+    "id": "ksa-kudu-bbq-chicken-pizza-slice",
+    "name": "BBQ Chicken Pizza Slice",
+    "brand": "Kudu",
+    "type": ["lunch", "dinner"],
+    "calories": 310,
+    "protein": 16,
+    "carbs": 36,
+    "fat": 12,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["BBQ Chicken Pizza Slice — Kudu"]
+  },
+  {
+    "id": "ksa-kudu-vanilla-milkshake",
+    "name": "Vanilla Milkshake",
+    "brand": "Kudu",
+    "type": ["snack"],
+    "calories": 360,
+    "protein": 8,
+    "carbs": 58,
+    "fat": 12,
+    "source": "restaurant",
+    "country": "Saudi Arabia",
+    "shoppingItems": ["Vanilla Milkshake — Kudu"]
   }
 ];

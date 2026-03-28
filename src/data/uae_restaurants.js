@@ -1,812 +1,587 @@
 module.exports = [
   {
-    "id": "al-farooj-1773314181380-1",
-    "name": "Al Farooj item 1",
+    "id": "uae-farooj-whole-chicken",
+    "name": "Whole Farooj",
     "brand": "Al Farooj",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 549,
-    "protein": 11,
-    "carbs": 62,
-    "fat": 10,
+    "type": ["lunch", "dinner"],
+    "calories": 1420,
+    "protein": 148,
+    "carbs": 8,
+    "fat": 86,
     "source": "restaurant",
     "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Whole Farooj — Al Farooj"]
   },
   {
-    "id": "al-farooj-1773314181380-2",
-    "name": "Al Farooj item 2",
+    "id": "uae-farooj-half-chicken",
+    "name": "Half Farooj",
     "brand": "Al Farooj",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 414,
+    "type": ["lunch", "dinner"],
+    "calories": 710,
+    "protein": 74,
+    "carbs": 4,
+    "fat": 43,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Half Farooj — Al Farooj"]
+  },
+  {
+    "id": "uae-farooj-quarter-chicken",
+    "name": "Quarter Farooj",
+    "brand": "Al Farooj",
+    "type": ["lunch", "dinner"],
+    "calories": 355,
     "protein": 37,
-    "carbs": 62,
-    "fat": 18,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-farooj-1773314181381-3",
-    "name": "Al Farooj item 3",
-    "brand": "Al Farooj",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 543,
-    "protein": 24,
-    "carbs": 54,
-    "fat": 18,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-farooj-1773314181381-4",
-    "name": "Al Farooj item 4",
-    "brand": "Al Farooj",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 460,
-    "protein": 34,
-    "carbs": 39,
-    "fat": 18,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-farooj-1773314181381-5",
-    "name": "Al Farooj item 5",
-    "brand": "Al Farooj",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 421,
-    "protein": 10,
-    "carbs": 25,
-    "fat": 18,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-farooj-1773314181381-6",
-    "name": "Al Farooj item 6",
-    "brand": "Al Farooj",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 535,
-    "protein": 33,
-    "carbs": 46,
-    "fat": 10,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-farooj-1773314181381-7",
-    "name": "Al Farooj item 7",
-    "brand": "Al Farooj",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 544,
-    "protein": 10,
-    "carbs": 65,
-    "fat": 10,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-farooj-1773314181381-8",
-    "name": "Al Farooj item 8",
-    "brand": "Al Farooj",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 312,
-    "protein": 21,
-    "carbs": 38,
-    "fat": 13,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-farooj-1773314181381-9",
-    "name": "Al Farooj item 9",
-    "brand": "Al Farooj",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 313,
-    "protein": 29,
-    "carbs": 40,
-    "fat": 21,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-farooj-1773314181381-10",
-    "name": "Al Farooj item 10",
-    "brand": "Al Farooj",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 395,
-    "protein": 14,
-    "carbs": 49,
-    "fat": 5,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-farooj-1773314181381-11",
-    "name": "Al Farooj item 11",
-    "brand": "Al Farooj",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 403,
-    "protein": 29,
-    "carbs": 21,
-    "fat": 18,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-farooj-1773314181381-12",
-    "name": "Al Farooj item 12",
-    "brand": "Al Farooj",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 410,
-    "protein": 38,
-    "carbs": 68,
-    "fat": 5,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-farooj-1773314181381-13",
-    "name": "Al Farooj item 13",
-    "brand": "Al Farooj",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 377,
-    "protein": 32,
-    "carbs": 59,
-    "fat": 24,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-farooj-1773314181381-14",
-    "name": "Al Farooj item 14",
-    "brand": "Al Farooj",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 543,
-    "protein": 20,
-    "carbs": 45,
-    "fat": 16,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "al-farooj-1773314181381-15",
-    "name": "Al Farooj item 15",
-    "brand": "Al Farooj",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 356,
-    "protein": 35,
-    "carbs": 63,
-    "fat": 11,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "mcdonald's-uae-1773314181381-1",
-    "name": "McDonald's UAE item 1",
-    "brand": "McDonald's UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 512,
-    "protein": 31,
-    "carbs": 59,
-    "fat": 18,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "mcdonald's-uae-1773314181381-2",
-    "name": "McDonald's UAE item 2",
-    "brand": "McDonald's UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 498,
-    "protein": 34,
-    "carbs": 58,
-    "fat": 13,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "mcdonald's-uae-1773314181381-3",
-    "name": "McDonald's UAE item 3",
-    "brand": "McDonald's UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 446,
-    "protein": 32,
-    "carbs": 30,
-    "fat": 10,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "mcdonald's-uae-1773314181381-4",
-    "name": "McDonald's UAE item 4",
-    "brand": "McDonald's UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 472,
-    "protein": 33,
-    "carbs": 35,
-    "fat": 14,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "mcdonald's-uae-1773314181381-5",
-    "name": "McDonald's UAE item 5",
-    "brand": "McDonald's UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 598,
-    "protein": 14,
-    "carbs": 21,
-    "fat": 24,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "mcdonald's-uae-1773314181381-6",
-    "name": "McDonald's UAE item 6",
-    "brand": "McDonald's UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 353,
-    "protein": 29,
-    "carbs": 68,
-    "fat": 8,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "mcdonald's-uae-1773314181381-7",
-    "name": "McDonald's UAE item 7",
-    "brand": "McDonald's UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 415,
-    "protein": 21,
-    "carbs": 29,
-    "fat": 12,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "mcdonald's-uae-1773314181381-8",
-    "name": "McDonald's UAE item 8",
-    "brand": "McDonald's UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 575,
-    "protein": 22,
-    "carbs": 36,
-    "fat": 21,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "mcdonald's-uae-1773314181381-9",
-    "name": "McDonald's UAE item 9",
-    "brand": "McDonald's UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 308,
-    "protein": 26,
-    "carbs": 40,
-    "fat": 5,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "mcdonald's-uae-1773314181381-10",
-    "name": "McDonald's UAE item 10",
-    "brand": "McDonald's UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 360,
-    "protein": 22,
-    "carbs": 48,
-    "fat": 24,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "mcdonald's-uae-1773314181381-11",
-    "name": "McDonald's UAE item 11",
-    "brand": "McDonald's UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 598,
-    "protein": 14,
-    "carbs": 50,
-    "fat": 21,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "mcdonald's-uae-1773314181381-12",
-    "name": "McDonald's UAE item 12",
-    "brand": "McDonald's UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 564,
-    "protein": 20,
-    "carbs": 52,
-    "fat": 16,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "mcdonald's-uae-1773314181381-13",
-    "name": "McDonald's UAE item 13",
-    "brand": "McDonald's UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 591,
-    "protein": 29,
-    "carbs": 58,
-    "fat": 15,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "mcdonald's-uae-1773314181381-14",
-    "name": "McDonald's UAE item 14",
-    "brand": "McDonald's UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 346,
-    "protein": 24,
-    "carbs": 59,
-    "fat": 10,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "mcdonald's-uae-1773314181381-15",
-    "name": "McDonald's UAE item 15",
-    "brand": "McDonald's UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 356,
-    "protein": 23,
-    "carbs": 24,
-    "fat": 15,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kfc-uae-1773314181381-1",
-    "name": "KFC UAE item 1",
-    "brand": "KFC UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 310,
-    "protein": 23,
-    "carbs": 47,
-    "fat": 9,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kfc-uae-1773314181381-2",
-    "name": "KFC UAE item 2",
-    "brand": "KFC UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 398,
-    "protein": 33,
-    "carbs": 26,
-    "fat": 12,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kfc-uae-1773314181381-3",
-    "name": "KFC UAE item 3",
-    "brand": "KFC UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 593,
-    "protein": 37,
-    "carbs": 33,
-    "fat": 15,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kfc-uae-1773314181381-4",
-    "name": "KFC UAE item 4",
-    "brand": "KFC UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 442,
-    "protein": 24,
-    "carbs": 47,
-    "fat": 12,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kfc-uae-1773314181381-5",
-    "name": "KFC UAE item 5",
-    "brand": "KFC UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 343,
-    "protein": 29,
-    "carbs": 53,
-    "fat": 7,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kfc-uae-1773314181381-6",
-    "name": "KFC UAE item 6",
-    "brand": "KFC UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 539,
-    "protein": 12,
-    "carbs": 67,
-    "fat": 6,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kfc-uae-1773314181381-7",
-    "name": "KFC UAE item 7",
-    "brand": "KFC UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 301,
-    "protein": 15,
-    "carbs": 33,
-    "fat": 9,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kfc-uae-1773314181381-8",
-    "name": "KFC UAE item 8",
-    "brand": "KFC UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 511,
-    "protein": 28,
-    "carbs": 39,
-    "fat": 6,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kfc-uae-1773314181381-9",
-    "name": "KFC UAE item 9",
-    "brand": "KFC UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 487,
-    "protein": 10,
-    "carbs": 36,
-    "fat": 11,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kfc-uae-1773314181381-10",
-    "name": "KFC UAE item 10",
-    "brand": "KFC UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 548,
-    "protein": 37,
-    "carbs": 33,
-    "fat": 20,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kfc-uae-1773314181381-11",
-    "name": "KFC UAE item 11",
-    "brand": "KFC UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 340,
-    "protein": 38,
-    "carbs": 21,
-    "fat": 19,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kfc-uae-1773314181381-12",
-    "name": "KFC UAE item 12",
-    "brand": "KFC UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 452,
-    "protein": 36,
-    "carbs": 28,
-    "fat": 17,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kfc-uae-1773314181381-13",
-    "name": "KFC UAE item 13",
-    "brand": "KFC UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 404,
-    "protein": 15,
-    "carbs": 30,
-    "fat": 17,
-    "source": "restaurant",
-    "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "kfc-uae-1773314181381-14",
-    "name": "KFC UAE item 14",
-    "brand": "KFC UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 342,
-    "protein": 33,
-    "carbs": 64,
+    "carbs": 2,
     "fat": 22,
     "source": "restaurant",
     "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Quarter Farooj — Al Farooj"]
   },
   {
-    "id": "kfc-uae-1773314181381-15",
-    "name": "KFC UAE item 15",
+    "id": "uae-farooj-sandwich",
+    "name": "Farooj Sandwich",
+    "brand": "Al Farooj",
+    "type": ["lunch", "dinner"],
+    "calories": 480,
+    "protein": 34,
+    "carbs": 42,
+    "fat": 18,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Farooj Sandwich — Al Farooj"]
+  },
+  {
+    "id": "uae-farooj-chicken-wrap",
+    "name": "Chicken Wrap",
+    "brand": "Al Farooj",
+    "type": ["lunch", "dinner"],
+    "calories": 430,
+    "protein": 28,
+    "carbs": 44,
+    "fat": 15,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Chicken Wrap — Al Farooj"]
+  },
+  {
+    "id": "uae-farooj-mixed-grill-plate",
+    "name": "Mixed Grill Plate",
+    "brand": "Al Farooj",
+    "type": ["lunch", "dinner"],
+    "calories": 680,
+    "protein": 58,
+    "carbs": 38,
+    "fat": 30,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Mixed Grill Plate — Al Farooj"]
+  },
+  {
+    "id": "uae-farooj-chicken-rice-large",
+    "name": "Chicken Rice Large",
+    "brand": "Al Farooj",
+    "type": ["lunch", "dinner"],
+    "calories": 870,
+    "protein": 52,
+    "carbs": 98,
+    "fat": 28,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Chicken Rice Large — Al Farooj"]
+  },
+  {
+    "id": "uae-farooj-chicken-rice-small",
+    "name": "Chicken Rice Small",
+    "brand": "Al Farooj",
+    "type": ["lunch", "dinner"],
+    "calories": 510,
+    "protein": 30,
+    "carbs": 58,
+    "fat": 16,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Chicken Rice Small — Al Farooj"]
+  },
+  {
+    "id": "uae-farooj-shish-tawook-plate",
+    "name": "Shish Tawook Plate",
+    "brand": "Al Farooj",
+    "type": ["lunch", "dinner"],
+    "calories": 520,
+    "protein": 46,
+    "carbs": 40,
+    "fat": 18,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Shish Tawook Plate — Al Farooj"]
+  },
+  {
+    "id": "uae-farooj-grilled-kofta-plate",
+    "name": "Grilled Kofta Plate",
+    "brand": "Al Farooj",
+    "type": ["lunch", "dinner"],
+    "calories": 560,
+    "protein": 42,
+    "carbs": 38,
+    "fat": 24,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Grilled Kofta Plate — Al Farooj"]
+  },
+  {
+    "id": "uae-farooj-hummus-pita",
+    "name": "Hummus & Pita",
+    "brand": "Al Farooj",
+    "type": ["lunch", "dinner"],
+    "calories": 310,
+    "protein": 12,
+    "carbs": 38,
+    "fat": 12,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Hummus & Pita — Al Farooj"]
+  },
+  {
+    "id": "uae-farooj-fattoush-salad",
+    "name": "Fattoush Salad",
+    "brand": "Al Farooj",
+    "type": ["lunch", "dinner"],
+    "calories": 160,
+    "protein": 4,
+    "carbs": 22,
+    "fat": 7,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Fattoush Salad — Al Farooj"]
+  },
+  {
+    "id": "uae-farooj-french-fries",
+    "name": "French Fries",
+    "brand": "Al Farooj",
+    "type": ["lunch", "dinner"],
+    "calories": 340,
+    "protein": 4,
+    "carbs": 46,
+    "fat": 16,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["French Fries — Al Farooj"]
+  },
+  {
+    "id": "uae-farooj-lamb-ouzi-rice",
+    "name": "Lamb Ouzi Rice",
+    "brand": "Al Farooj",
+    "type": ["lunch", "dinner"],
+    "calories": 820,
+    "protein": 50,
+    "carbs": 88,
+    "fat": 28,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Lamb Ouzi Rice — Al Farooj"]
+  },
+  {
+    "id": "uae-farooj-mint-lemonade",
+    "name": "Mint Lemonade",
+    "brand": "Al Farooj",
+    "type": ["lunch", "dinner"],
+    "calories": 120,
+    "protein": 1,
+    "carbs": 30,
+    "fat": 0,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Mint Lemonade — Al Farooj"]
+  },
+  {
+    "id": "uae-mcd-mcarabia-chicken",
+    "name": "McArabia Chicken",
+    "brand": "McDonald's UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 558,
+    "protein": 34,
+    "carbs": 62,
+    "fat": 18,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["McArabia Chicken — McDonald's UAE"]
+  },
+  {
+    "id": "uae-mcd-mcarabia-kofta",
+    "name": "McArabia Kofta",
+    "brand": "McDonald's UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 530,
+    "protein": 28,
+    "carbs": 60,
+    "fat": 19,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["McArabia Kofta — McDonald's UAE"]
+  },
+  {
+    "id": "uae-mcd-big-mac",
+    "name": "Big Mac",
+    "brand": "McDonald's UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 550,
+    "protein": 25,
+    "carbs": 46,
+    "fat": 30,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Big Mac — McDonald's UAE"]
+  },
+  {
+    "id": "uae-mcd-quarter-pounder-cheese",
+    "name": "Quarter Pounder with Cheese",
+    "brand": "McDonald's UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 520,
+    "protein": 30,
+    "carbs": 42,
+    "fat": 26,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Quarter Pounder with Cheese — McDonald's UAE"]
+  },
+  {
+    "id": "uae-mcd-mcfalafel-wrap",
+    "name": "McFalafel Wrap",
+    "brand": "McDonald's UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 430,
+    "protein": 14,
+    "carbs": 54,
+    "fat": 17,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["McFalafel Wrap — McDonald's UAE"]
+  },
+  {
+    "id": "uae-mcd-crispy-chicken-sandwich",
+    "name": "Crispy Chicken Sandwich",
+    "brand": "McDonald's UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 500,
+    "protein": 27,
+    "carbs": 48,
+    "fat": 22,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Crispy Chicken Sandwich — McDonald's UAE"]
+  },
+  {
+    "id": "uae-mcd-filet-o-fish",
+    "name": "Filet-O-Fish",
+    "brand": "McDonald's UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 390,
+    "protein": 16,
+    "carbs": 42,
+    "fat": 18,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Filet-O-Fish — McDonald's UAE"]
+  },
+  {
+    "id": "uae-mcd-egg-mcmuffin",
+    "name": "Egg McMuffin",
+    "brand": "McDonald's UAE",
+    "type": ["breakfast"],
+    "calories": 300,
+    "protein": 17,
+    "carbs": 30,
+    "fat": 13,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Egg McMuffin — McDonald's UAE"]
+  },
+  {
+    "id": "uae-mcd-chicken-mcnuggets-9pc",
+    "name": "Chicken McNuggets 9pc",
+    "brand": "McDonald's UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 400,
+    "protein": 24,
+    "carbs": 26,
+    "fat": 24,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Chicken McNuggets 9pc — McDonald's UAE"]
+  },
+  {
+    "id": "uae-mcd-double-cheeseburger",
+    "name": "Double Cheeseburger",
+    "brand": "McDonald's UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 450,
+    "protein": 27,
+    "carbs": 36,
+    "fat": 24,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Double Cheeseburger — McDonald's UAE"]
+  },
+  {
+    "id": "uae-mcd-large-fries",
+    "name": "Large Fries",
+    "brand": "McDonald's UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 490,
+    "protein": 6,
+    "carbs": 66,
+    "fat": 22,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Large Fries — McDonald's UAE"]
+  },
+  {
+    "id": "uae-mcd-caesar-chicken-salad",
+    "name": "Caesar Chicken Salad",
+    "brand": "McDonald's UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 230,
+    "protein": 22,
+    "carbs": 10,
+    "fat": 12,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Caesar Chicken Salad — McDonald's UAE"]
+  },
+  {
+    "id": "uae-mcd-apple-pie",
+    "name": "Apple Pie",
+    "brand": "McDonald's UAE",
+    "type": ["snack"],
+    "calories": 250,
+    "protein": 3,
+    "carbs": 34,
+    "fat": 12,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Apple Pie — McDonald's UAE"]
+  },
+  {
+    "id": "uae-mcd-mcflurry-oreo",
+    "name": "McFlurry Oreo",
+    "brand": "McDonald's UAE",
+    "type": ["snack"],
+    "calories": 340,
+    "protein": 9,
+    "carbs": 54,
+    "fat": 10,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["McFlurry Oreo — McDonald's UAE"]
+  },
+  {
+    "id": "uae-mcd-cappuccino",
+    "name": "Cappuccino",
+    "brand": "McDonald's UAE",
+    "type": ["breakfast", "snack"],
+    "calories": 90,
+    "protein": 5,
+    "carbs": 10,
+    "fat": 4,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Cappuccino — McDonald's UAE"]
+  },
+  {
+    "id": "uae-kfc-original-recipe-2pc",
+    "name": "Original Recipe 2pc",
     "brand": "KFC UAE",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 591,
+    "type": ["lunch", "dinner"],
+    "calories": 500,
+    "protein": 40,
+    "carbs": 22,
+    "fat": 28,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Original Recipe 2pc — KFC UAE"]
+  },
+  {
+    "id": "uae-kfc-zinger-burger",
+    "name": "Zinger Burger",
+    "brand": "KFC UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 490,
+    "protein": 28,
+    "carbs": 48,
+    "fat": 20,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Zinger Burger — KFC UAE"]
+  },
+  {
+    "id": "uae-kfc-tower-burger",
+    "name": "Tower Burger",
+    "brand": "KFC UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 620,
+    "protein": 34,
+    "carbs": 54,
+    "fat": 28,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Tower Burger — KFC UAE"]
+  },
+  {
+    "id": "uae-kfc-chicken-popcorn-large",
+    "name": "Chicken Popcorn Large",
+    "brand": "KFC UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 480,
+    "protein": 30,
+    "carbs": 34,
+    "fat": 24,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Chicken Popcorn Large — KFC UAE"]
+  },
+  {
+    "id": "uae-kfc-hot-wings-6pc",
+    "name": "Hot Wings 6pc",
+    "brand": "KFC UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 380,
+    "protein": 26,
+    "carbs": 20,
+    "fat": 22,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Hot Wings 6pc — KFC UAE"]
+  },
+  {
+    "id": "uae-kfc-chicken-strips-3pc",
+    "name": "Chicken Strips 3pc",
+    "brand": "KFC UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 340,
+    "protein": 26,
+    "carbs": 22,
+    "fat": 16,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Chicken Strips 3pc — KFC UAE"]
+  },
+  {
+    "id": "uae-kfc-krunch-burger",
+    "name": "Krunch Burger",
+    "brand": "KFC UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 540,
+    "protein": 30,
+    "carbs": 52,
+    "fat": 22,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Krunch Burger — KFC UAE"]
+  },
+  {
+    "id": "uae-kfc-snack-box",
+    "name": "Snack Box",
+    "brand": "KFC UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 650,
+    "protein": 36,
+    "carbs": 58,
+    "fat": 28,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Snack Box — KFC UAE"]
+  },
+  {
+    "id": "uae-kfc-coleslaw",
+    "name": "Coleslaw",
+    "brand": "KFC UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 150,
+    "protein": 1,
+    "carbs": 18,
+    "fat": 8,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Coleslaw — KFC UAE"]
+  },
+  {
+    "id": "uae-kfc-corn-on-the-cob",
+    "name": "Corn on the Cob",
+    "brand": "KFC UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 140,
+    "protein": 4,
+    "carbs": 28,
+    "fat": 3,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Corn on the Cob — KFC UAE"]
+  },
+  {
+    "id": "uae-kfc-mashed-potato-gravy",
+    "name": "Mashed Potato with Gravy",
+    "brand": "KFC UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 130,
+    "protein": 3,
+    "carbs": 20,
+    "fat": 4,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Mashed Potato with Gravy — KFC UAE"]
+  },
+  {
+    "id": "uae-kfc-wicked-crunch-box",
+    "name": "Wicked Crunch Box",
+    "brand": "KFC UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 720,
     "protein": 38,
-    "carbs": 37,
+    "carbs": 64,
+    "fat": 32,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Wicked Crunch Box — KFC UAE"]
+  },
+  {
+    "id": "uae-kfc-pepsi-medium",
+    "name": "Pepsi Medium",
+    "brand": "KFC UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 180,
+    "protein": 0,
+    "carbs": 46,
+    "fat": 0,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Pepsi Medium — KFC UAE"]
+  },
+  {
+    "id": "uae-kfc-ultimate-box-meal",
+    "name": "Ultimate Box Meal",
+    "brand": "KFC UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 980,
+    "protein": 52,
+    "carbs": 88,
+    "fat": 42,
+    "source": "restaurant",
+    "country": "UAE",
+    "shoppingItems": ["Ultimate Box Meal — KFC UAE"]
+  },
+  {
+    "id": "uae-kfc-rice-gravy",
+    "name": "Rice & Gravy",
+    "brand": "KFC UAE",
+    "type": ["lunch", "dinner"],
+    "calories": 280,
+    "protein": 6,
+    "carbs": 52,
     "fat": 6,
     "source": "restaurant",
     "country": "UAE",
-    "dietary": [
-      "healthy"
-    ]
+    "shoppingItems": ["Rice & Gravy — KFC UAE"]
   }
 ];
