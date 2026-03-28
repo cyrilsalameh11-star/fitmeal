@@ -4,12 +4,14 @@ import GymContent from './GymContent';
 import PadelContent from './PadelContent';
 import PilatesContent from './PilatesContent';
 import RunningContent from './RunningPage';
+import SpinningContent from './SpinningContent';
 
 const EXERCISE_TABS = [
   { id: 'gym', label: 'Gym' },
   { id: 'padel', label: 'Padel' },
   { id: 'pilates', label: 'Pilates' },
-  { id: 'running', label: 'Running' }
+  { id: 'running', label: 'Running' },
+  { id: 'spinning', label: 'Spinning' },
 ];
 
 export default function ExercisePage() {
@@ -47,6 +49,7 @@ export default function ExercisePage() {
         {activeTab === 'padel' && <PadelContent key="padel-content" />}
         {activeTab === 'pilates' && <PilatesContent key="pilates-content" />}
         {activeTab === 'running' && <RunningContent key="running-content" />}
+        {activeTab === 'spinning' && <SpinningContent key="spinning-content" />}
       </AnimatePresence>
     </div>
   );

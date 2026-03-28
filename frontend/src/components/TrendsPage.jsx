@@ -78,61 +78,39 @@ function ReelCard({ reel, index }) {
       initial={{ opacity: 0, y: 14 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.06 }}
-      className="bg-white rounded-[1.5rem] border border-stone-100 shadow-sm overflow-hidden flex flex-col"
+      className="bg-stone-950 rounded-[1.5rem] border border-stone-800 shadow-xl overflow-hidden flex flex-col"
     >
       {/* Account header */}
-      <div className="flex items-center gap-2.5 px-4 py-3 border-b border-stone-50 flex-shrink-0">
+      <div className="flex items-center gap-2.5 px-4 py-3 flex-shrink-0">
         <div
           className="w-7 h-7 rounded-full flex items-center justify-center text-white text-[10px] font-black flex-shrink-0"
           style={{ backgroundColor: reel.color }}
         >
           {reel.handle.charAt(0).toUpperCase()}
         </div>
-        <span className="text-[11px] font-black text-stone-700 truncate">@{reel.handle}</span>
+        <span className="text-[11px] font-black text-stone-300 truncate">@{reel.handle}</span>
         <a
           href={account?.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="ml-auto text-stone-300 hover:text-stone-600 transition-colors flex-shrink-0"
+          className="ml-auto text-stone-600 hover:text-stone-300 transition-colors flex-shrink-0"
         >
           <ExternalLink size={12} />
         </a>
       </div>
 
-      {/* Embed or fallback */}
-      {reel.shortcode ? (
+      {/* Full-height phone-aspect embed */}
+      <div className="relative w-full" style={{ paddingBottom: '177.78%' /* 9:16 */ }}>
         <iframe
-          src={`https://www.instagram.com/${reel.type}/${reel.shortcode}/embed/`}
-          className="w-full border-0 flex-1"
-          style={{ minHeight: 560 }}
+          src={`https://www.instagram.com/${reel.type}/${reel.shortcode}/embed/?cr=1&v=14&wp=320`}
+          className="absolute inset-0 w-full h-full border-0"
           allowFullScreen
-          allow="autoplay; encrypted-media"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
           scrolling="no"
           loading="lazy"
+          title={`@${reel.handle} reel`}
         />
-      ) : (
-        <div
-          className="flex flex-col items-center justify-center gap-4 px-5 py-14 flex-1"
-          style={{ background: `linear-gradient(135deg, ${reel.color}14, ${reel.color}05)` }}
-        >
-          <div
-            className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg"
-            style={{ backgroundColor: reel.color }}
-          >
-            <Play size={18} className="text-white ml-0.5" />
-          </div>
-          <p className="text-sm text-stone-500 font-medium text-center leading-relaxed">{reel.caption}</p>
-          <a
-            href={account?.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-1 px-5 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest text-white transition-opacity hover:opacity-80"
-            style={{ backgroundColor: reel.color }}
-          >
-            View on Instagram
-          </a>
-        </div>
-      )}
+      </div>
     </motion.div>
   );
 }
@@ -215,7 +193,7 @@ export default function TrendsPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start"
+          className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 items-start"
         >
           {currentReels.map((reel, i) => (
             <ReelCard key={reel.id} reel={reel} index={i} />
