@@ -1,11 +1,6 @@
 {
   "version": 2,
-  "crons": [
-    {
-      "path": "/api/cron/refresh-news",
-      "schedule": "0 21 * * 6"
-    }
-  ],
+  "buildCommand": "npm install && npm run build",
   "builds": [
     {
       "src": "src/server.js",
@@ -22,16 +17,18 @@
       "dest": "/src/server.js"
     },
     {
-      "src": "/(.*)",
-      "dest": "/src/public/$1",
-      "continue": true
-    },
-    {
-      "handle": "filesystem"
+      "src": "/(.*\\.(js|css|png|svg|ico|jpg|jpeg|gif|webp|woff|woff2|ttf|eot|json)$)",
+      "dest": "/src/public/$1"
     },
     {
       "src": "/(.*)",
       "dest": "/src/public/index.html"
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/refresh-news",
+      "schedule": "0 21 * * 6"
     }
   ]
 }
