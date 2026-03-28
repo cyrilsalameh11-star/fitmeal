@@ -35,7 +35,7 @@ const REELS_DATA = [
   { id: 19, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DSC5LaRDTOI', type: 'reel' },
   { id: 20, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DU-VE72jRn3', type: 'reel' },
   { id: 21, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUKxO6VDczo', type: 'reel' },
-  { id: 22, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DQPkCGBjFqm', type: 'p'    },
+  { id: 22, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DR2V9vuDML-', type: 'reel' },
   { id: 23, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DU5DbZWDQ42', type: 'reel' },
   { id: 24, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DUv5pNUjT4U', type: 'reel' },
 
@@ -43,7 +43,7 @@ const REELS_DATA = [
   { id: 25, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DRzc-I5jaoJ', type: 'reel' },
   { id: 26, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DUvLEl5DTd_', type: 'reel' },
   { id: 27, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DRAC021kvno', type: 'reel' },
-  { id: 28, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DQE8Pp8jMHX', type: 'reel' },
+  { id: 28, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DUfYlnuAvxJ', type: 'reel' },
   { id: 29, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DUQzpVqDVlU', type: 'reel' },
   { id: 30, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DUtE9gqDUeY', type: 'reel' },
 ];
