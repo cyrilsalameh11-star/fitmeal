@@ -11,7 +11,7 @@ const REELS_DATA = [
   { id: 1,  handle: 'guide.lb',             color: '#e11d48', shortcode: 'DUyUdKfDQfS', type: 'reel' },
   { id: 2,  handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DUlZ_JQjMSh', type: 'reel' },
   { id: 3,  handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DQjgZMhkqh2', type: 'reel' },
-  { id: 4,  handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DVti6aGDoWq', type: 'reel' },
+  { id: 4,  handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DVti6aGDoWq', type: 'reel', blocked: true },
   { id: 5,  handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVTx-Bdje99', type: 'reel' },
   { id: 6,  handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DVRqFx7jYld', type: 'reel' },
 
@@ -19,7 +19,7 @@ const REELS_DATA = [
   { id: 7,  handle: 'guide.lb',             color: '#e11d48', shortcode: 'DUgGrZDDYpl', type: 'reel' },
   { id: 8,  handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DVVlCUiDaG6', type: 'reel' },
   { id: 9,  handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUxdhBqDU_T', type: 'reel' },
-  { id: 10, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DSzNG4tjAqu', type: 'reel' },
+  { id: 10, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DSzNG4tjAqu', type: 'reel', blocked: true },
   { id: 11, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVHRV8aDVMd', type: 'reel' },
   { id: 12, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DVB4QnTDVF-', type: 'reel' },
 
@@ -27,7 +27,7 @@ const REELS_DATA = [
   { id: 13, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DSkvVRjjcMY', type: 'p'    },
   { id: 14, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DVMfhvYDRYS', type: 'reel' },
   { id: 15, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUgGiWNEiZi', type: 'reel' },
-  { id: 16, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DRAQGGUjKy0', type: 'reel' },
+  { id: 16, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DRAQGGUjKy0', type: 'reel', blocked: true },
   { id: 17, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVG4b48jbNi', type: 'reel' },
   { id: 18, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DU8mp01jZnu', type: 'reel' },
 
@@ -35,7 +35,7 @@ const REELS_DATA = [
   { id: 19, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DSC5LaRDTOI', type: 'reel' },
   { id: 20, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DU-VE72jRn3', type: 'reel' },
   { id: 21, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUKxO6VDczo', type: 'reel' },
-  { id: 22, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DR2V9vuDML-', type: 'reel' },
+  { id: 22, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DR2V9vuDML-', type: 'reel', blocked: true },
   { id: 23, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DU5DbZWDQ42', type: 'reel' },
   { id: 24, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DUv5pNUjT4U', type: 'reel' },
 
@@ -43,7 +43,7 @@ const REELS_DATA = [
   { id: 25, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DRzc-I5jaoJ', type: 'reel' },
   { id: 26, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DUvLEl5DTd_', type: 'reel' },
   { id: 27, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DRAC021kvno', type: 'reel' },
-  { id: 28, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DUfYlnuAvxJ', type: 'reel' },
+  { id: 28, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DUfYlnuAvxJ', type: 'reel', blocked: true },
   { id: 29, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DUQzpVqDVlU', type: 'reel' },
   { id: 30, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DUtE9gqDUeY', type: 'reel' },
 ];
@@ -72,6 +72,7 @@ function getAccountReels(handle) {
 
 function ReelCard({ reel, index }) {
   const account = ACCOUNTS.find(a => a.handle === reel.handle);
+  const reelUrl = `https://www.instagram.com/${reel.type}/${reel.shortcode}/`;
 
   return (
     <motion.div
@@ -99,17 +100,46 @@ function ReelCard({ reel, index }) {
         </a>
       </div>
 
-      {/* Embed */}
-      <iframe
-        src={`https://www.instagram.com/${reel.type}/${reel.shortcode}/embed/`}
-        className="w-full border-0 block"
-        style={{ height: '700px' }}
-        allowFullScreen
-        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-        scrolling="no"
-        loading="lazy"
-        title={`@${reel.handle}`}
-      />
+      {/* Blocked accounts: show fallback instead of broken iframe */}
+      {reel.blocked ? (
+        <a
+          href={reelUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-col items-center justify-center gap-6 px-8 text-center no-underline"
+          style={{ height: '700px', background: `linear-gradient(160deg, ${reel.color}22 0%, #09090b 60%)` }}
+        >
+          <div
+            className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-2xl"
+            style={{ backgroundColor: reel.color }}
+          >
+            <Play size={28} className="text-white ml-1" />
+          </div>
+          <div className="space-y-2">
+            <p className="text-white font-black text-base">@{reel.handle}</p>
+            <p className="text-stone-400 text-xs font-medium leading-relaxed">
+              This account has embedding disabled.<br />Tap to watch on Instagram.
+            </p>
+          </div>
+          <span
+            className="px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest text-white"
+            style={{ backgroundColor: reel.color }}
+          >
+            Watch on Instagram ↗
+          </span>
+        </a>
+      ) : (
+        <iframe
+          src={`https://www.instagram.com/${reel.type}/${reel.shortcode}/embed/`}
+          className="w-full border-0 block"
+          style={{ height: '700px' }}
+          allowFullScreen
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+          scrolling="no"
+          loading="lazy"
+          title={`@${reel.handle}`}
+        />
+      )}
     </motion.div>
   );
 }
