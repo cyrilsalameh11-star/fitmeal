@@ -20,7 +20,7 @@ const SUPPLEMENTS = [
       'Reduces muscle soreness',
     ],
     tip: 'Mix with water for faster absorption, or with milk for a richer shake. Add a banana for carbs post-training.',
-    bulkUrl: 'https://www.bulk.com/fr/proteines/whey-proteine/',
+    bulkUrl: 'https://www.bulk.com/fr/proteine/proteine-whey',
   },
   {
     id: 'creatine',
@@ -40,7 +40,7 @@ const SUPPLEMENTS = [
       'Safe for long-term use',
     ],
     tip: 'No need to cycle on/off. Take 5g daily with water — timing doesn\'t matter much. Results appear after 2–4 weeks.',
-    bulkUrl: 'https://www.bulk.com/fr/creatine/',
+    bulkUrl: 'https://www.bulk.com/fr/nutrition-sportive/creatine',
   },
 ];
 
