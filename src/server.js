@@ -954,14 +954,9 @@ Be as accurate as possible. If you see multiple foods, estimate the total. If th
 
     const geminiJson = await geminiRes.json();
     if (!geminiRes.ok) {
-      const raw = geminiJson?.error?.message || '';
-      console.error('Gemini API error:', raw);
-      // Return a clean user-facing message
-      const isQuota = raw.includes('quota') || raw.includes('RESOURCE_EXHAUSTED') || geminiRes.status === 429;
-      const userMsg = isQuota
-        ? 'AI scanner is busy right now. Please wait a few seconds and try again.'
-        : 'Could not analyze image. Please try again.';
-      return res.status(500).json({ error: userMsg });
+      const msg = geminiJson?.error?.message || `Gemini API error ${geminiRes.status}`;
+      console.error('Gemini API error:', msg);
+      return res.status(500).json({ error: msg });
     }
 
     const text = (geminiJson.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
