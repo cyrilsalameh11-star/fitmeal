@@ -146,5 +146,53 @@ module.exports = [
   { id: 'es-alc-flan', name: 'Flan de Huevo (1 vaso)', brand: 'Alcampo', type: ['dessert'], calories: 140, protein: 5, carbs: 22, fat: 4, tags: ['dessert', 'vegetarian'], country: 'Spain' },
   { id: 'es-alc-yogur', name: 'Yogur Bífidus Natural', brand: 'Alcampo', type: ['snack'], calories: 85, protein: 5, carbs: 6, fat: 4, tags: ['vegetarian', 'healthy'], country: 'Spain' },
   { id: 'es-alc-mix-frutos', name: 'Mix Frutos Secos (30g)', brand: 'Alcampo', type: ['snack'], calories: 180, protein: 6, carbs: 5, fat: 16, tags: ['vegan', 'keto'], country: 'Spain' },
-  { id: 'es-alc-tortilla', name: 'Tortilla Francesa Precocida', brand: 'Alcampo', type: ['snack', 'lunch'], calories: 190, protein: 12, carbs: 2, fat: 14, tags: ['egg', 'vegetarian'], country: 'Spain' }
+  { id: 'es-alc-tortilla', name: 'Tortilla Francesa Precocida', brand: 'Alcampo', type: ['snack', 'lunch'], calories: 190, protein: 12, carbs: 2, fat: 14, tags: ['egg', 'vegetarian'], country: 'Spain' },
+
+  // ── Grosso Napoletano ─────────────────────────────────────────────────────
+  { id: 'es-gn-margherita', name: 'Margherita', brand: 'Grosso Napoletano', type: ['lunch', 'dinner'], calories: 750, protein: 28, carbs: 80, fat: 32, tags: ['pizza', 'vegetarian', 'italian'], country: 'Spain' },
+  { id: 'es-gn-diavola', name: 'Diavola (Salami Picante)', brand: 'Grosso Napoletano', type: ['lunch', 'dinner'], calories: 820, protein: 29, carbs: 82, fat: 38, tags: ['pizza', 'pork', 'spicy'], country: 'Spain' },
+  { id: 'es-gn-prosciutto-funghi', name: 'Prosciutto e Funghi', brand: 'Grosso Napoletano', type: ['lunch', 'dinner'], calories: 780, protein: 32, carbs: 80, fat: 34, tags: ['pizza', 'pork', 'mushroom'], country: 'Spain' },
+  { id: 'es-gn-quattro-formaggi', name: 'Quattro Formaggi', brand: 'Grosso Napoletano', type: ['lunch', 'dinner'], calories: 850, protein: 35, carbs: 78, fat: 42, tags: ['pizza', 'vegetarian', 'cheese'], country: 'Spain' },
+  { id: 'es-gn-carbonara', name: 'Carbonara Pizza (Guanciale, Egg Yolk, Pecorino)', brand: 'Grosso Napoletano', type: ['lunch', 'dinner'], calories: 880, protein: 34, carbs: 79, fat: 45, tags: ['pizza', 'pork', 'egg'], country: 'Spain' },
+  { id: 'es-gn-marinara', name: 'Marinara (Tomato, Ajo, Orégano)', brand: 'Grosso Napoletano', type: ['lunch', 'dinner'], calories: 620, protein: 20, carbs: 78, fat: 22, tags: ['pizza', 'vegan', 'light'], country: 'Spain' },
+  { id: 'es-gn-bianca-prosciutto', name: 'Bianca al Prosciutto (White Pizza)', brand: 'Grosso Napoletano', type: ['lunch', 'dinner'], calories: 720, protein: 30, carbs: 75, fat: 30, tags: ['pizza', 'pork'], country: 'Spain' },
+  { id: 'es-gn-trufa', name: 'Ofelia Tartufona (Trufa, Rúcula)', brand: 'Grosso Napoletano', type: ['lunch', 'dinner'], calories: 840, protein: 31, carbs: 81, fat: 40, tags: ['pizza', 'vegetarian', 'truffle'], country: 'Spain' },
+  { id: 'es-gn-carpaccio', name: 'Carpaccio de Ternera (Starter)', brand: 'Grosso Napoletano', type: ['starter'], calories: 280, protein: 24, carbs: 8, fat: 18, tags: ['beef', 'starter', 'light'], country: 'Spain' },
+  { id: 'es-gn-nutella', name: 'Focaccia Nutella (Dessert)', brand: 'Grosso Napoletano', type: ['dessert'], calories: 580, protein: 12, carbs: 68, fat: 28, tags: ['dessert', 'sweet'], country: 'Spain' },
+
+  // ── Malvón ────────────────────────────────────────────────────────────────
+  { id: 'es-mv-carne-suave', name: 'Empanada Carne Suave', brand: 'Malvón', type: ['lunch', 'snack'], calories: 280, protein: 10, carbs: 28, fat: 14, tags: ['empanada', 'beef', 'argentinian'], country: 'Spain' },
+  { id: 'es-mv-carne-picante', name: 'Empanada Carne Picante', brand: 'Malvón', type: ['lunch', 'snack'], calories: 290, protein: 11, carbs: 27, fat: 15, tags: ['empanada', 'beef', 'spicy'], country: 'Spain' },
+  { id: 'es-mv-pollo', name: 'Empanada Pollo al Horno', brand: 'Malvón', type: ['lunch', 'snack'], calories: 260, protein: 12, carbs: 26, fat: 12, tags: ['empanada', 'chicken'], country: 'Spain' },
+  { id: 'es-mv-jamon-queso', name: 'Empanada Jamón y Queso', brand: 'Malvón', type: ['lunch', 'snack'], calories: 310, protein: 12, carbs: 29, fat: 16, tags: ['empanada', 'pork', 'cheese'], country: 'Spain' },
+  { id: 'es-mv-atun', name: 'Empanada Atún', brand: 'Malvón', type: ['lunch', 'snack'], calories: 240, protein: 14, carbs: 25, fat: 10, tags: ['empanada', 'fish', 'light'], country: 'Spain' },
+  { id: 'es-mv-caprese', name: 'Empanada Caprese (Vegetariana)', brand: 'Malvón', type: ['lunch', 'snack'], calories: 250, protein: 9, carbs: 31, fat: 11, tags: ['empanada', 'vegetarian', 'cheese'], country: 'Spain' },
+  { id: 'es-mv-humita', name: 'Empanada Humita (Maíz y Queso)', brand: 'Malvón', type: ['lunch', 'snack'], calories: 270, protein: 9, carbs: 30, fat: 12, tags: ['empanada', 'vegetarian', 'corn'], country: 'Spain' },
+  { id: 'es-mv-bacon-quesos', name: 'Empanada Bacon y Quesos', brand: 'Malvón', type: ['lunch', 'snack'], calories: 340, protein: 13, carbs: 26, fat: 20, tags: ['empanada', 'pork', 'cheese'], country: 'Spain' },
+  { id: 'es-mv-pera-roquefort', name: 'Empanada Pera y Roquefort (Gourmet)', brand: 'Malvón', type: ['lunch', 'snack'], calories: 295, protein: 11, carbs: 28, fat: 15, tags: ['empanada', 'gourmet', 'cheese'], country: 'Spain' },
+  { id: 'es-mv-thai-chicken', name: 'Empanada Thai Chicken (Gourmet)', brand: 'Malvón', type: ['lunch', 'snack'], calories: 305, protein: 13, carbs: 26, fat: 16, tags: ['empanada', 'chicken', 'thai'], country: 'Spain' },
+
+  // ── Focacciamo ────────────────────────────────────────────────────────────
+  { id: 'es-fc-classica', name: 'La Classica (Prosciutto, Mozzarella, Pesto)', brand: 'Focacciamo', type: ['lunch', 'dinner'], calories: 620, protein: 28, carbs: 62, fat: 28, tags: ['focaccia', 'pork', 'italian'], country: 'Spain' },
+  { id: 'es-fc-deliziosa', name: 'La Deliziosa (Mortadela, Stracciatella, Pistacho)', brand: 'Focacciamo', type: ['lunch', 'dinner'], calories: 640, protein: 26, carbs: 64, fat: 30, tags: ['focaccia', 'pork', 'pistachio'], country: 'Spain' },
+  { id: 'es-fc-favolosa', name: 'La Favolosa (Mortadela Trufa, Grana Padano)', brand: 'Focacciamo', type: ['lunch', 'dinner'], calories: 680, protein: 25, carbs: 65, fat: 35, tags: ['focaccia', 'pork', 'truffle'], country: 'Spain' },
+  { id: 'es-fc-mediterranea', name: 'La Mediterránea (Prosciutto San Daniele, Stracciatella)', brand: 'Focacciamo', type: ['lunch', 'dinner'], calories: 650, protein: 30, carbs: 66, fat: 32, tags: ['focaccia', 'pork', 'italian'], country: 'Spain' },
+  { id: 'es-fc-saporita', name: 'La Saporita (Bresaola, Grana Padano, Rúcula)', brand: 'Focacciamo', type: ['lunch', 'dinner'], calories: 590, protein: 26, carbs: 62, fat: 28, tags: ['focaccia', 'beef', 'light'], country: 'Spain' },
+  { id: 'es-fc-stupenda', name: 'La Stupenda (Alcachofa, Tomate Seco, Mozzarella)', brand: 'Focacciamo', type: ['lunch', 'dinner'], calories: 540, protein: 20, carbs: 58, fat: 22, tags: ['focaccia', 'vegetarian', 'light'], country: 'Spain' },
+  { id: 'es-fc-diavola', name: 'La Diavola (Salami Picante, Stracciatella)', brand: 'Focacciamo', type: ['lunch', 'dinner'], calories: 520, protein: 20, carbs: 58, fat: 24, tags: ['focaccia', 'pork', 'spicy'], country: 'Spain' },
+  { id: 'es-fc-rossa', name: 'La Rossa (Tomate San Marzano, Grana Padano)', brand: 'Focacciamo', type: ['lunch', 'dinner'], calories: 520, protein: 18, carbs: 65, fat: 20, tags: ['focaccia', 'vegetarian'], country: 'Spain' },
+  { id: 'es-fc-tiramisu', name: 'Tiramisù', brand: 'Focacciamo', type: ['dessert'], calories: 340, protein: 8, carbs: 38, fat: 16, tags: ['dessert', 'italian', 'coffee'], country: 'Spain' },
+  { id: 'es-fc-cannolo', name: 'Cannolo Siciliano', brand: 'Focacciamo', type: ['dessert'], calories: 280, protein: 6, carbs: 32, fat: 14, tags: ['dessert', 'italian', 'ricotta'], country: 'Spain' },
+
+  // ── Little Dragon ─────────────────────────────────────────────────────────
+  { id: 'es-ld-xiaolongbao-cerdo', name: 'Xiaolongbao Cerdo — Soup Dumplings (x5)', brand: 'Little Dragon', type: ['lunch', 'dinner', 'starter'], calories: 380, protein: 14, carbs: 38, fat: 18, tags: ['dumplings', 'pork', 'chinese', 'shanghai'], country: 'Spain' },
+  { id: 'es-ld-xiaolongbao-trufa', name: 'Xiaolongbao Trufa y Cerdo (x5)', brand: 'Little Dragon', type: ['lunch', 'dinner', 'starter'], calories: 410, protein: 15, carbs: 40, fat: 20, tags: ['dumplings', 'pork', 'truffle', 'gourmet'], country: 'Spain' },
+  { id: 'es-ld-shengjian', name: 'Shengjian Bao — Dumplings Fritos (x5)', brand: 'Little Dragon', type: ['lunch', 'dinner'], calories: 450, protein: 16, carbs: 42, fat: 24, tags: ['dumplings', 'pork', 'fried', 'crispy'], country: 'Spain' },
+  { id: 'es-ld-wontons-picante', name: 'Wontons con Salsa Picante (x8)', brand: 'Little Dragon', type: ['lunch', 'dinner', 'starter'], calories: 320, protein: 12, carbs: 32, fat: 15, tags: ['wontons', 'pork', 'spicy', 'chinese'], country: 'Spain' },
+  { id: 'es-ld-noodles-cacahuete', name: 'Noodles Lamian con Salsa de Cacahuete y Cerdo', brand: 'Little Dragon', type: ['lunch', 'dinner'], calories: 520, protein: 22, carbs: 58, fat: 20, tags: ['noodles', 'pork', 'peanut', 'lamian'], country: 'Spain' },
+  { id: 'es-ld-pollo-picante', name: 'Pollo Picante', brand: 'Little Dragon', type: ['lunch', 'dinner'], calories: 380, protein: 28, carbs: 24, fat: 16, tags: ['chicken', 'spicy', 'chinese'], country: 'Spain' },
+  { id: 'es-ld-lamian', name: 'Lamian — Noodles Tirados a Mano', brand: 'Little Dragon', type: ['lunch', 'dinner'], calories: 380, protein: 12, carbs: 64, fat: 8, tags: ['noodles', 'vegan', 'chinese'], country: 'Spain' },
+  { id: 'es-ld-wontons-pollo', name: 'Wontons de Pollo en Caldo (x8)', brand: 'Little Dragon', type: ['lunch', 'dinner'], calories: 340, protein: 14, carbs: 36, fat: 14, tags: ['wontons', 'chicken', 'soup', 'light'], country: 'Spain' },
+  { id: 'es-ld-gyozas-verdura', name: 'Dumplings de Verdura (x6)', brand: 'Little Dragon', type: ['lunch', 'starter'], calories: 280, protein: 8, carbs: 40, fat: 10, tags: ['dumplings', 'vegan', 'chinese'], country: 'Spain' },
+  { id: 'es-ld-tofu-picante', name: 'Tofu y Verduras Salteados al Wok', brand: 'Little Dragon', type: ['lunch', 'dinner'], calories: 320, protein: 16, carbs: 28, fat: 14, tags: ['tofu', 'vegan', 'spicy', 'chinese'], country: 'Spain' }
 ];

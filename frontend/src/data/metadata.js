@@ -35,6 +35,10 @@ export const BRANDS = {
     { name: "McDonald's", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=mcdonalds.com&sz=64" },
     { name: "Telepizza", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=telepizza.es&sz=64" },
     { name: "The Good Burger", category: "Fast Food", logo: null },
+    { name: "Grosso Napoletano", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=grossonapoletano.com&sz=64" },
+    { name: "Malvón", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=malvon.es&sz=64" },
+    { name: "Focacciamo", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=focacciamo.es&sz=64" },
+    { name: "Little Dragon", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=littledragon.es&sz=64" },
     { name: "Mercadona", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=mercadona.es&sz=64" },
     { name: "Lidl", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=lidl.com&sz=64" },
     { name: "Dia", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=dia.es&sz=64" }
