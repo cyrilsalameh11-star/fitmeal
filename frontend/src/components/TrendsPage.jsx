@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TrendingUp, ChevronLeft, ChevronRight, ExternalLink, Play } from 'lucide-react';
 
@@ -147,10 +147,9 @@ function ReelCard({ reel, index }) {
         <iframe
           src={`https://www.instagram.com/${reel.type}/${reel.shortcode}/embed/`}
           className="w-full border-0 block"
-          style={{ height: '700px' }}
+          style={{ height: '740px' }}
           allowFullScreen
           allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-          scrolling="no"
           loading="lazy"
           title={`@${reel.handle}`}
         />
@@ -162,6 +161,19 @@ function ReelCard({ reel, index }) {
 export default function TrendsPage() {
   const [page,          setPage]          = useState(0);
   const [activeAccount, setActiveAccount] = useState('all');
+
+  // Load Instagram embed script once so iframes initialize with play buttons
+  useEffect(() => {
+    if (document.getElementById('ig-embed-script')) {
+      if (window.instgrm) window.instgrm.Embeds.process();
+      return;
+    }
+    const script = document.createElement('script');
+    script.id  = 'ig-embed-script';
+    script.src = 'https://www.instagram.com/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
 
   const isAll      = activeAccount === 'all';
   const totalPages = isAll ? TOTAL_PAGES : 1;

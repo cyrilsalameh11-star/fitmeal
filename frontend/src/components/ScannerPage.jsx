@@ -24,27 +24,36 @@ export default function ScannerPage() {
   const [error,    setError]    = useState(null);
   const [logged,   setLogged]   = useState(false);
 
-  // Resize + compress image to max 900px / 80% quality before sending
-  // Keeps payload under ~300KB regardless of phone camera resolution
+  // iOS-safe compression: FileReader → Image → Canvas → JPEG
+  // Uses readAsDataURL (not createObjectURL) which works on all iOS Safari versions
   const compressImage = useCallback((file) => {
-    return new Promise((resolve) => {
-      const img = new Image();
-      const objectUrl = URL.createObjectURL(file);
-      img.onload = () => {
-        const MAX = 900;
-        let { width, height } = img;
-        if (width > MAX || height > MAX) {
-          if (width > height) { height = Math.round((height * MAX) / width); width = MAX; }
-          else { width = Math.round((width * MAX) / height); height = MAX; }
-        }
-        const canvas = document.createElement('canvas');
-        canvas.width = width;
-        canvas.height = height;
-        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
-        URL.revokeObjectURL(objectUrl);
-        resolve(canvas.toDataURL('image/jpeg', 0.8));
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onerror = () => reject(new Error('Could not read image file'));
+      reader.onload = (e) => {
+        const originalDataUrl = e.target.result;
+        const img = new Image();
+        img.onerror = () => resolve(originalDataUrl); // fallback: send original
+        img.onload = () => {
+          try {
+            const MAX = 600; // aggressive — keeps payload ~80-120KB
+            let { width, height } = img;
+            if (width > MAX || height > MAX) {
+              if (width > height) { height = Math.round((height * MAX) / width); width = MAX; }
+              else { width = Math.round((width * MAX) / height); height = MAX; }
+            }
+            const canvas = document.createElement('canvas');
+            canvas.width  = width;
+            canvas.height = height;
+            canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+            resolve(canvas.toDataURL('image/jpeg', 0.6));
+          } catch {
+            resolve(originalDataUrl); // canvas failed (e.g. tainted) — send original
+          }
+        };
+        img.src = originalDataUrl;
       };
-      img.src = objectUrl;
+      reader.readAsDataURL(file);
     });
   }, []);
 
@@ -54,18 +63,28 @@ export default function ScannerPage() {
     setError(null);
     setLogged(false);
 
+    // Upfront size guard — raw file must be under 8MB
+    if (file.size > 8 * 1024 * 1024) {
+      setError('Photo too large. Please use a photo under 8MB.');
+      setLoading(false);
+      return;
+    }
+
     try {
       const dataUrl = await compressImage(file);
       setPreview(dataUrl);
-
       const base64 = dataUrl.split(',')[1];
+      if (!base64) throw new Error('Could not read image data. Please try again.');
 
       const res = await fetch('/api/analyze-food', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ imageBase64: base64, mimeType: 'image/jpeg' }),
       });
-      const data = await res.json();
+      const text = await res.text();
+      let data;
+      try { data = JSON.parse(text); }
+      catch { throw new Error('Unexpected response from server. Please try again.'); }
       if (!res.ok) throw new Error(data.error || 'Analysis failed');
       setResult(data);
     } catch (err) {
