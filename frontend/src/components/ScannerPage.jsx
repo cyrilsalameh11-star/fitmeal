@@ -1,7 +1,48 @@
 import { useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, Upload, RotateCcw, Zap, Check, ScanLine, ChevronRight, X, RefreshCw } from 'lucide-react';
+import { Camera, Upload, RotateCcw, Zap, Check, ScanLine, ChevronRight, X, RefreshCw, Clock, Trash2 } from 'lucide-react';
 import { logMealToday } from './CalorieBar';
+
+const HISTORY_KEY = 'fitmeal_scan_history';
+
+function saveToHistory(result) {
+  try {
+    const prev = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+    const entry = {
+      id: Date.now(),
+      dish: result.dish,
+      calories: result.calories,
+      protein: result.protein,
+      carbs: result.carbs,
+      fat: result.fat,
+      servingSize: result.servingSize,
+      confidence: result.confidence,
+      ts: new Date().toISOString(),
+    };
+    const updated = [entry, ...prev].slice(0, 30); // keep last 30
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(updated));
+  } catch {}
+}
+
+function readHistory() {
+  try { return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch { return []; }
+}
+
+function clearHistory() {
+  localStorage.removeItem(HISTORY_KEY);
+}
+
+function formatRelative(iso) {
+  const diff = Date.now() - new Date(iso).getTime();
+  const mins  = Math.floor(diff / 60000);
+  const hours = Math.floor(diff / 3600000);
+  const days  = Math.floor(diff / 86400000);
+  if (mins < 1)   return 'just now';
+  if (mins < 60)  return `${mins}m ago`;
+  if (hours < 24) return `${hours}h ago`;
+  if (days < 7)   return `${days}d ago`;
+  return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+}
 
 function MacroChip({ label, value, color }) {
   return (
@@ -14,19 +55,83 @@ function MacroChip({ label, value, color }) {
   );
 }
 
+function HistoryPanel({ onClose, onReLog }) {
+  const [items, setItems] = useState(readHistory);
+
+  function handleClear() {
+    clearHistory();
+    setItems([]);
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      className="p-6 space-y-4"
+    >
+      <div className="flex items-center justify-between">
+        <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 flex items-center gap-1.5">
+          <Clock size={11} /> Scan History
+        </p>
+        <div className="flex items-center gap-3">
+          {items.length > 0 && (
+            <button onClick={handleClear} className="text-stone-600 hover:text-red-400 transition-colors">
+              <Trash2 size={13} />
+            </button>
+          )}
+          <button onClick={onClose} className="text-stone-600 hover:text-white transition-colors">
+            <X size={16} />
+          </button>
+        </div>
+      </div>
+
+      {items.length === 0 ? (
+        <p className="text-stone-500 text-xs font-medium text-center py-8">No scans yet. Take a photo to get started.</p>
+      ) : (
+        <div className="space-y-2 max-h-96 overflow-y-auto pr-1">
+          {items.map((item) => (
+            <div key={item.id} className="bg-stone-900 rounded-2xl p-4 flex items-center gap-3">
+              <div className="flex-1 min-w-0">
+                <p className="text-white text-xs font-black truncate">{item.dish}</p>
+                <p className="text-stone-500 text-[10px] font-medium mt-0.5">{item.servingSize} · {formatRelative(item.ts)}</p>
+                <div className="flex items-center gap-3 mt-1.5">
+                  <span className="text-amber-400 text-xs font-black">{item.calories} kcal</span>
+                  <span className="text-stone-600 text-[10px]">P {item.protein}g · C {item.carbs}g · F {item.fat}g</span>
+                </div>
+              </div>
+              <button
+                onClick={() => onReLog(item.calories)}
+                className="flex-shrink-0 px-3 py-1.5 bg-stone-800 hover:bg-amber-500 text-stone-400 hover:text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all"
+              >
+                Log
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+    </motion.div>
+  );
+}
+
 function ClarifyingQuestions({ questions, answers, onChange }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      className="space-y-4 border-t border-stone-800 pt-5"
+      className="space-y-5 border-t border-stone-800 pt-5"
     >
-      <p className="text-[10px] font-black uppercase tracking-widest text-amber-400 flex items-center gap-1.5">
-        <Zap size={11} /> Help us be more precise
-      </p>
+      <div className="flex items-center gap-2">
+        <div className="w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+          <Zap size={11} className="text-amber-400" />
+        </div>
+        <p className="text-stone-300 text-xs font-medium leading-snug">
+          A few quick questions to sharpen the estimate:
+        </p>
+      </div>
       {questions.map((q, i) => (
-        <div key={i} className="space-y-2">
-          <p className="text-stone-300 text-xs font-bold">{q.q}</p>
+        <div key={i} className="space-y-2.5 pl-8">
+          <p className="text-white text-sm font-bold">{q.q}</p>
           <div className="flex flex-wrap gap-2">
             {q.options.map((opt) => {
               const selected = answers[q.q] === opt;
@@ -34,10 +139,10 @@ function ClarifyingQuestions({ questions, answers, onChange }) {
                 <button
                   key={opt}
                   onClick={() => onChange(q.q, opt)}
-                  className={`px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all ${
+                  className={`px-3.5 py-2 rounded-2xl text-xs font-bold transition-all border ${
                     selected
-                      ? 'bg-amber-500 text-white'
-                      : 'bg-stone-800 text-stone-400 hover:bg-stone-700 hover:text-stone-200'
+                      ? 'bg-amber-500 border-amber-500 text-white shadow-lg shadow-amber-500/20'
+                      : 'bg-stone-800 border-stone-700 text-stone-300 hover:border-stone-500 hover:text-white'
                   }`}
                 >
                   {opt}
@@ -54,15 +159,16 @@ function ClarifyingQuestions({ questions, answers, onChange }) {
 export default function ScannerPage() {
   const fileInputRef   = useRef(null);
   const cameraInputRef = useRef(null);
-  const lastBase64Ref  = useRef(null); // keep compressed image for refinement call
+  const lastBase64Ref  = useRef(null);
 
-  const [preview,  setPreview]  = useState(null);
-  const [loading,  setLoading]  = useState(false);
-  const [refining, setRefining] = useState(false);
-  const [result,   setResult]   = useState(null);
-  const [error,    setError]    = useState(null);
-  const [logged,   setLogged]   = useState(false);
-  const [answers,  setAnswers]  = useState({});
+  const [preview,     setPreview]     = useState(null);
+  const [loading,     setLoading]     = useState(false);
+  const [refining,    setRefining]    = useState(false);
+  const [result,      setResult]      = useState(null);
+  const [error,       setError]       = useState(null);
+  const [logged,      setLogged]      = useState(false);
+  const [answers,     setAnswers]     = useState({});
+  const [showHistory, setShowHistory] = useState(false);
 
   const compressImage = useCallback((file) => {
     return new Promise((resolve, reject) => {
@@ -80,13 +186,10 @@ export default function ScannerPage() {
               else { width = Math.round((width * MAX) / height); height = MAX; }
             }
             const canvas = document.createElement('canvas');
-            canvas.width  = width;
-            canvas.height = height;
+            canvas.width = width; canvas.height = height;
             canvas.getContext('2d').drawImage(img, 0, 0, width, height);
             resolve(canvas.toDataURL('image/jpeg', 0.55));
-          } catch {
-            reject(new Error('Could not compress image. Please try a different photo.'));
-          }
+          } catch { reject(new Error('Could not compress image.')); }
         };
         img.src = e.target.result;
       };
@@ -100,10 +203,10 @@ export default function ScannerPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ imageBase64: base64, mimeType: 'image/jpeg', answers: answersMap }),
     });
-    if (res.status === 413) throw new Error('Image too large for server. Please try a smaller photo.');
+    if (res.status === 413) throw new Error('Image too large. Please try a smaller photo.');
     const text = await res.text();
     let data;
-    try { data = JSON.parse(text); } catch { throw new Error('Unexpected response from server.'); }
+    try { data = JSON.parse(text); } catch { throw new Error('Unexpected server response.'); }
     if (!res.ok) throw new Error(data.error || 'Analysis failed');
     data.calories = Math.round(Number(data.calories) || 0);
     data.protein  = Math.round(Number(data.protein)  || 0);
@@ -118,6 +221,7 @@ export default function ScannerPage() {
     setError(null);
     setLogged(false);
     setAnswers({});
+    setShowHistory(false);
 
     if (file.size > 3 * 1024 * 1024) {
       setError('Photo too large. Please use a photo under 3MB.');
@@ -131,10 +235,10 @@ export default function ScannerPage() {
       const base64 = dataUrl.split(',')[1];
       if (!base64) throw new Error('Could not read image data.');
       if (base64.length > 2 * 1024 * 1024) throw new Error('Compressed image still too large. Try a different photo.');
-
       lastBase64Ref.current = base64;
       const data = await callAnalyze(base64);
       setResult(data);
+      saveToHistory(data);
     } catch (err) {
       setError(err.message || 'Could not analyze image. Please try again.');
     }
@@ -147,10 +251,9 @@ export default function ScannerPage() {
     try {
       const data = await callAnalyze(lastBase64Ref.current, answers);
       setResult(data);
+      saveToHistory(data);
       setAnswers({});
-    } catch (err) {
-      setError(err.message);
-    }
+    } catch (err) { setError(err.message); }
     setRefining(false);
   }
 
@@ -169,12 +272,18 @@ export default function ScannerPage() {
     if (ok) { setLogged(true); setTimeout(() => setLogged(false), 2500); }
   }
 
+  function handleReLog(calories) {
+    const ok = logMealToday(calories);
+    if (ok) setShowHistory(false);
+  }
+
   function reset() {
     setPreview(null);
     setResult(null);
     setError(null);
     setLogged(false);
     setAnswers({});
+    setShowHistory(false);
     lastBase64Ref.current = null;
     if (fileInputRef.current) fileInputRef.current.value = '';
     if (cameraInputRef.current) cameraInputRef.current.value = '';
@@ -229,7 +338,6 @@ export default function ScannerPage() {
             </div>
           )}
 
-          {/* Loading overlay */}
           {(loading || refining) && (
             <div className="absolute inset-0 bg-stone-950/80 backdrop-blur-sm flex flex-col items-center justify-center gap-4">
               <motion.div
@@ -244,7 +352,6 @@ export default function ScannerPage() {
             </div>
           )}
 
-          {/* Reset button */}
           {preview && !loading && !refining && (
             <button
               onClick={reset}
@@ -255,6 +362,13 @@ export default function ScannerPage() {
           )}
         </div>
 
+        {/* History panel */}
+        <AnimatePresence>
+          {showHistory && !preview && !loading && (
+            <HistoryPanel onClose={() => setShowHistory(false)} onReLog={handleReLog} />
+          )}
+        </AnimatePresence>
+
         {/* Result */}
         <AnimatePresence>
           {result && !loading && (
@@ -263,7 +377,7 @@ export default function ScannerPage() {
               animate={{ opacity: 1, y: 0 }}
               className="p-6 space-y-5"
             >
-              {/* Dish name + confidence */}
+              {/* Dish + confidence */}
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="text-white font-black text-lg leading-tight">{result.dish}</p>
@@ -274,7 +388,7 @@ export default function ScannerPage() {
                 </span>
               </div>
 
-              {/* Calories big number */}
+              {/* Calories */}
               <div className="bg-stone-900 rounded-2xl p-5 flex items-center justify-between">
                 <div>
                   <p className="text-5xl font-black text-white leading-none">{result.calories}</p>
@@ -287,7 +401,7 @@ export default function ScannerPage() {
                 </div>
               </div>
 
-              {/* Detected items */}
+              {/* Ingredient tags */}
               {result.items?.length > 0 && (
                 <div className="flex flex-wrap gap-2">
                   {result.items.map((item, i) => (
@@ -308,14 +422,10 @@ export default function ScannerPage() {
 
               {/* Clarifying questions */}
               {questions.length > 0 && (
-                <ClarifyingQuestions
-                  questions={questions}
-                  answers={answers}
-                  onChange={handleAnswerChange}
-                />
+                <ClarifyingQuestions questions={questions} answers={answers} onChange={handleAnswerChange} />
               )}
 
-              {/* Refine button — appears when all questions answered */}
+              {/* Refine button */}
               {allAnswered && (
                 <motion.button
                   initial={{ opacity: 0, y: 6 }}
@@ -357,29 +467,41 @@ export default function ScannerPage() {
           )}
         </AnimatePresence>
 
-        {/* Action buttons */}
+        {/* Action buttons — 3 columns */}
         {!preview && !loading && (
-          <div className="p-6 grid grid-cols-2 gap-3">
+          <div className="p-6 grid grid-cols-3 gap-3">
             <button
               onClick={() => cameraInputRef.current?.click()}
-              className="flex flex-col items-center justify-center gap-2 py-6 bg-amber-500 rounded-2xl hover:bg-amber-400 transition-all active:scale-95"
+              className="flex flex-col items-center justify-center gap-2 py-5 bg-amber-500 rounded-2xl hover:bg-amber-400 transition-all active:scale-95"
             >
-              <Camera size={22} className="text-white" />
-              <span className="text-[10px] font-black uppercase tracking-widest text-white">Take Photo</span>
+              <Camera size={20} className="text-white" />
+              <span className="text-[9px] font-black uppercase tracking-widest text-white">Camera</span>
             </button>
+
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="flex flex-col items-center justify-center gap-2 py-6 bg-stone-800 rounded-2xl hover:bg-stone-700 transition-all active:scale-95"
+              className="flex flex-col items-center justify-center gap-2 py-5 bg-stone-800 rounded-2xl hover:bg-stone-700 transition-all active:scale-95"
             >
-              <Upload size={22} className="text-stone-300" />
-              <span className="text-[10px] font-black uppercase tracking-widest text-stone-300">Upload Photo</span>
+              <Upload size={20} className="text-stone-300" />
+              <span className="text-[9px] font-black uppercase tracking-widest text-stone-300">Gallery</span>
             </button>
+
+            <button
+              onClick={() => setShowHistory(v => !v)}
+              className={`flex flex-col items-center justify-center gap-2 py-5 rounded-2xl transition-all active:scale-95 ${
+                showHistory ? 'bg-stone-600 text-white' : 'bg-stone-800 text-stone-300 hover:bg-stone-700'
+              }`}
+            >
+              <Clock size={20} />
+              <span className="text-[9px] font-black uppercase tracking-widest">History</span>
+            </button>
+
             <input ref={cameraInputRef} type="file" accept="image/*" capture="environment" className="hidden" onChange={handleFile} />
             <input ref={fileInputRef}   type="file" accept="image/*"                        className="hidden" onChange={handleFile} />
           </div>
         )}
 
-        {/* Re-scan button */}
+        {/* Re-scan */}
         {(result || error) && !loading && (
           <div className="px-6 pb-6">
             <button

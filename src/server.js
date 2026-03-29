@@ -924,31 +924,39 @@ app.post('/api/analyze-food', async (req, res) => {
 
     const { answers } = req.body; // optional: {question: answer} map for refinement
 
+    const { answers } = req.body;
     const hasAnswers = answers && Object.keys(answers).length > 0;
     const answersText = hasAnswers
-      ? `\n\nThe user has answered these clarifying questions:\n${Object.entries(answers).map(([q,a]) => `- ${q}: ${a}`).join('\n')}\nUse these answers to improve accuracy. Do NOT include questions in your response (set "questions": []).`
+      ? `\n\nThe user has provided the following context:\n${Object.entries(answers).map(([q,a]) => `- ${q}: ${a}`).join('\n')}\nUse this to give a more precise estimate. Set "questions": [] in your response.`
       : '';
 
-    const prompt = `You are a nutrition expert. Analyze this food photo and estimate the nutritional content.${answersText}
+    const prompt = `You are a nutrition expert specialising in Lebanese and Middle Eastern cuisine, as well as French and international food. Analyse this food photo and estimate the nutritional content using metric units only (grams, ml — never cups, oz, or inches).${answersText}
 
 Respond ONLY with a valid JSON object in exactly this format (no markdown, no explanation):
 {
-  "dish": "Name of the dish or food item",
+  "dish": "Name of the dish",
   "confidence": "high|medium|low",
-  "servingSize": "estimated portion size (e.g. 1 plate, 200g)",
-  "calories": 000,
-  "protein": 00,
-  "carbs": 00,
-  "fat": 00,
-  "items": ["ingredient 1", "ingredient 2"],
-  "tip": "One short nutrition tip about this meal",
+  "servingSize": "e.g. 1 plate (~350g) or 2 manakish or 1 bowl (~400ml)",
+  "calories": 0,
+  "protein": 0,
+  "carbs": 0,
+  "fat": 0,
+  "items": ["main ingredient 1", "main ingredient 2"],
+  "tip": "One practical nutrition tip relevant to this meal",
   "questions": [
-    {"q": "Short question to improve accuracy?", "options": ["Option A", "Option B", "Option C"]},
-    {"q": "Another question?", "options": ["Option A", "Option B", "Option C"]}
+    {"q": "Question text", "options": ["Option A", "Option B", "Option C"]}
   ]
 }
 
-${hasAnswers ? 'Since the user answered the questions, set "questions": [] and give a more precise estimate.' : 'Include 2 short clarifying questions with 3 tap-to-answer options each that would help refine the calorie estimate (e.g. portion size, cooking method, added sauces/dressings). Keep questions very short.'}
+${hasAnswers
+  ? 'The user has answered your questions — give a refined, accurate estimate now. Set "questions": [].'
+  : `Include exactly 2 clarifying questions that would most improve accuracy. Make them conversational and specific to what you see. Use metric units in options. Good question topics: portion size in grams, cooking method (grilled/fried/baked), added sauces or dressings (e.g. garlic sauce, tahini, olive oil), extras (bread, rice, fries). Bad questions: vague or irrelevant ones.
+
+Examples of good questions:
+- "How much did you eat roughly?" with options ["~200g (small)", "~350g (medium)", "~500g+ (large)"]
+- "Was the meat grilled or fried?" with options ["Grilled", "Fried", "Baked"]
+- "Did you add any sauce?" with options ["No sauce", "Garlic / toum", "Tahini", "Both"]`}
+
 If the image is not food, return calories: 0, dish: "Not food detected", questions: [].`;
 
     const geminiRes = await fetch(geminiUrl, {
