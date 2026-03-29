@@ -17,6 +17,10 @@
       "dest": "/src/server.js"
     },
     {
+      "src": "/admin.html",
+      "dest": "/src/public/admin.html"
+    },
+    {
       "src": "/(.*\\.(js|css|png|svg|ico|jpg|jpeg|gif|webp|woff|woff2|ttf|eot|json)$)",
       "dest": "/src/public/$1"
     },

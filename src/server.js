@@ -920,7 +920,7 @@ app.post('/api/analyze-food', async (req, res) => {
 
   try {
     // Use Gemini REST API directly
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${apiKey}`;
 
     const prompt = `You are a nutrition expert. Analyze this food photo and estimate the nutritional content.
 

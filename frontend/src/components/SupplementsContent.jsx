@@ -78,10 +78,13 @@ export default function SupplementsContent() {
         <p className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-3 flex items-center gap-2">
           <Zap size={14} /> Sports Nutrition
         </p>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl mb-4 leading-tight">
-          The essentials.<br /><span className="italic font-normal text-stone-400">Whey & Creatine.</span>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-3 leading-tight font-black text-stone-900">
+          The essentials.
         </h1>
-        <p className="text-base md:text-lg text-stone-500 font-medium leading-relaxed">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4 leading-tight font-black text-amber-500">
+          Whey &amp; Creatine.
+        </h2>
+        <p className="text-sm md:text-base text-stone-500 font-medium leading-relaxed">
           Two supplements with decades of research behind them. Everything else is noise.
         </p>
       </div>
