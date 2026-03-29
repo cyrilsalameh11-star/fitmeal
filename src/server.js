@@ -919,8 +919,8 @@ app.post('/api/analyze-food', async (req, res) => {
   if (!apiKey) return res.status(500).json({ error: 'AI API key not configured' });
 
   try {
-    // Use Gemini REST API directly — no SDK version issues
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+    // Use Gemini REST API directly — gemini-1.5-flash-8b has higher free tier quota
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-8b:generateContent?key=${apiKey}`;
 
     const prompt = `You are a nutrition expert. Analyze this food photo and estimate the nutritional content.
 
@@ -954,9 +954,14 @@ Be as accurate as possible. If you see multiple foods, estimate the total. If th
 
     const geminiJson = await geminiRes.json();
     if (!geminiRes.ok) {
-      const msg = geminiJson?.error?.message || `Gemini API error ${geminiRes.status}`;
-      console.error('Gemini API error:', msg);
-      return res.status(500).json({ error: msg });
+      const raw = geminiJson?.error?.message || '';
+      console.error('Gemini API error:', raw);
+      // Return a clean user-facing message
+      const isQuota = raw.includes('quota') || raw.includes('RESOURCE_EXHAUSTED') || geminiRes.status === 429;
+      const userMsg = isQuota
+        ? 'AI scanner is busy right now. Please wait a few seconds and try again.'
+        : 'Could not analyze image. Please try again.';
+      return res.status(500).json({ error: userMsg });
     }
 
     const text = (geminiJson.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
