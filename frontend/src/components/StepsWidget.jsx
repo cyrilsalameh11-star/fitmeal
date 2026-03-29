@@ -220,7 +220,7 @@ export default function StepsWidget() {
                 {[
                   { n: 1, t: 'Open the Shortcuts app (built into iPhone — search it in Spotlight if needed).' },
                   { n: 2, t: 'Tap + (top right) to create a new shortcut. Tap "Add Action".' },
-                  { n: 3, t: 'Search for "Find Health Samples". Select it. Set Type = Steps, Date = Today.' },
+                  { n: 3, t: 'Search for "Find Health Samples". Select it. Set Type = Steps. For the date filter, tap "is today" and change it to "is in the last" → set to 1 → Days.' },
                   { n: 4, t: 'Add a second action: search "Calculate Statistics". Set it to Sum, Input = Health Samples.' },
                   {
                     n: 5,
