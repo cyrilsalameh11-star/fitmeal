@@ -383,6 +383,8 @@ function App() {
                 </p>
               </div>
 
+              <StepsWidget />
+
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
                 {/* Fixed: Use lg:sticky to prevent mobile overlap */}
                 <div className="lg:col-span-4 lg:sticky lg:top-28 space-y-4">
@@ -390,7 +392,6 @@ function App() {
                     <h3 className="text-2xl mb-6 font-serif">Plan Your Day</h3>
                     <MealForm onSubmit={handleGenerate} isLoading={isLoading} />
                   </div>
-                  <StepsWidget />
                 </div>
 
                 <div className="lg:col-span-8 space-y-12">
