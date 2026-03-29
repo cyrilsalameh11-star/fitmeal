@@ -592,7 +592,7 @@ const PINNED_LORIENT_ARTICLES = [
 ];
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 40; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 41; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'printemps', 'galeries lafayette', 'grands magasins',
@@ -638,12 +638,18 @@ const NEWS_BANNED_WORDS = [
   'беларус', 'россия', 'российск', 'министерство иностранных дел', 'республики беларусь',
   'street food tour', 'food tour', 'best cuisine?', 'world\'s best cuisine',
   'marseille', 'australia', 'australian',
+  'chef de la diplomatie', 'chef de la diplom', 'chef de la diplomati',
+  'street food eyes', 'niche in lebanese', 'fast casual',
 ];
+
+const NEWS_BANNED_DOMAINS = ['qsrmedia'];
 
 function isArticleBanned(article) {
   const text = ((article.title || '') + ' ' + (article.contentSnippet || '')).toLowerCase();
+  const link = (article.link || '').toLowerCase();
   if (/lebanon,?\s*(pa|tn|oh|mo|in|ky|va|or|il|ct|nj|ny|tx|ga|nc|sc|ms|ar|wi|mn|ia|ks|ne|sd|nd|mt|id|ut|az|nm|co|wy)/i.test(text)) return true;
   if (/\b(lebanon county|lebanon township|city of lebanon)\b/i.test(text)) return true;
+  if (NEWS_BANNED_DOMAINS.some(d => link.includes(d))) return true;
   return NEWS_BANNED_WORDS.some(bw => text.includes(bw));
 }
 
