@@ -11,6 +11,7 @@ import MapPage from './components/MapPage';
 import NewsPage from './components/NewsPage';
 import TrendsPage from './components/TrendsPage';
 import LoyaltyPage from './components/LoyaltyPage';
+import StepsWidget from './components/StepsWidget';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, X, Menu, Phone, Mail, Instagram, Twitter, User, ArrowRight, Users, Dumbbell, Map as MapIcon, Newspaper, Award, Flame, TrendingUp, CalendarDays, ScanLine } from 'lucide-react';
 
@@ -384,11 +385,12 @@ function App() {
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
                 {/* Fixed: Use lg:sticky to prevent mobile overlap */}
-                <div className="lg:col-span-4 lg:sticky lg:top-28">
+                <div className="lg:col-span-4 lg:sticky lg:top-28 space-y-4">
                   <div className="p-8 bg-white border border-stone-100 rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.07)] hover:shadow-[0_12px_48px_rgba(0,0,0,0.1)] transition-shadow duration-300">
                     <h3 className="text-2xl mb-6 font-serif">Plan Your Day</h3>
                     <MealForm onSubmit={handleGenerate} isLoading={isLoading} />
                   </div>
+                  <StepsWidget />
                 </div>
 
                 <div className="lg:col-span-8 space-y-12">
