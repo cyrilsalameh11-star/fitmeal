@@ -926,10 +926,10 @@ app.post('/api/analyze-food', async (req, res) => {
     const identifyPrompt = `You are a nutrition expert specialising in Lebanese, Middle Eastern, French and international cuisine.
 
 Look at this food photo and:
-1. Identify the dish
-2. Ask 2 to 3 short clarifying questions that will allow you to give a MUCH more accurate calorie estimate later.
+1. Identify the dish precisely
+2. Ask 3 to 5 smart clarifying questions that will allow you to give a MUCH more accurate calorie estimate.
 
-Focus questions on the biggest sources of uncertainty: how many pieces/slices, portion size in grams, cooking method, added sauces or extras. Be specific to what you actually see — do not ask generic questions.
+Think like a nutritionist: the biggest sources of error are portion size, cooking method (grilled vs fried adds 100-300 kcal), sauces/oils, type of meat/protein, and extras like bread or rice. Ask about all relevant ones for what you see.
 
 Respond ONLY with this JSON (no markdown):
 {
@@ -937,21 +937,34 @@ Respond ONLY with this JSON (no markdown):
   "items": ["ingredient 1", "ingredient 2"],
   "questions": [
     {"q": "Question?", "options": ["Option A", "Option B", "Option C"]},
+    {"q": "Question?", "options": ["Option A", "Option B", "Option C"]},
     {"q": "Question?", "options": ["Option A", "Option B", "Option C"]}
   ]
 }
 
-Examples of GOOD questions for a pizza:
-- "How many slices did you eat?" → ["1 slice", "2 slices", "3+ slices"]
+ALWAYS ask about portion/quantity first. Then ask about the highest-calorie unknowns.
+
+Examples for pizza:
+- "How many slices did you eat?" → ["1 slice (~130g)", "2 slices (~260g)", "3+ slices (~390g+)"]
 - "What size was the pizza?" → ["Small (20cm)", "Medium (28cm)", "Large (33cm+)"]
-- "Any extra toppings or dips?" → ["Just cheese", "Extra meat", "Side dip / sauce"]
+- "What type of crust?" → ["Thin crust", "Regular", "Thick / stuffed crust"]
+- "Main topping?" → ["Cheese only", "Pepperoni / meat", "Mixed toppings"]
+- "Any dipping sauce?" → ["None", "Ranch / white sauce", "Extra tomato sauce"]
 
-Examples of GOOD questions for a mixed plate:
-- "How big was the portion?" → ["~200g (light)", "~350g (normal)", "~500g+ (large)"]
-- "Was the meat grilled or fried?" → ["Grilled", "Fried", "Baked/roasted"]
-- "Did you add any sauce?" → ["No sauce", "Garlic / toum", "Tahini", "Both"]
+Examples for grilled meat plate:
+- "How much meat roughly?" → ["~100g (small)", "~180g (normal)", "~280g+ (large)"]
+- "Type of meat?" → ["Chicken", "Beef / kofta", "Lamb", "Mixed"]
+- "Was it grilled or fried?" → ["Grilled", "Fried", "Baked/roasted"]
+- "What sides were included?" → ["Rice + salad", "Fries + salad", "Bread only", "No sides"]
+- "Any sauce added?" → ["No sauce", "Garlic / toum", "Tahini", "Both"]
 
-Use metric units only (grams, cm — never cups, oz, inches).
+Examples for a sandwich/wrap:
+- "How big was it?" → ["Small (~150g)", "Regular (~250g)", "Large (~350g+)"]
+- "What protein?" → ["Chicken", "Beef / shawarma", "Falafel", "Mixed"]
+- "What bread?" → ["Thin wrap / markouk", "Regular pita", "Thick bread / baguette"]
+- "Sauces inside?" → ["None", "Garlic sauce / toum", "Tahini", "Both + extras"]
+
+Use metric units only (grams, cm — never cups, oz, inches). Be specific to what you actually see.
 If not food: return dish: "Not food detected", items: [], questions: [].`;
 
     const answersText = answers && Object.keys(answers).length > 0
