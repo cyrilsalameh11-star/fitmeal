@@ -236,7 +236,7 @@ export default function StepsWidget() {
                   },
                   { n: 6, t: 'Tap the shortcut name at the top, rename it "FitNas Steps", then tap Done.' },
                   { n: 7, t: 'Run it once to test. You\'ll see a permission prompt for Health access — tap Allow.' },
-                  { n: 8, t: 'To auto-sync: tap the Automation tab → + → Time of Day → set Repeat to Every Hour → Run Immediately → choose "FitNas Steps" → Done.' },
+                  { n: 8, t: 'To auto-sync daily: tap the Automation tab (bottom of Shortcuts app) → + → Time of Day → pick a time (e.g. 9 PM) → set Repeat to Daily → Next → New Blank Automation → Add Action → search "FitNas Steps" → Done. Or just tap the shortcut manually anytime to sync.' },
                 ].map(s => (
                   <div key={s.n} className="flex gap-2.5 items-start">
                     <span className="flex-shrink-0 w-5 h-5 bg-stone-900 text-white rounded-full text-[8px] font-black flex items-center justify-center mt-0.5">{s.n}</span>
