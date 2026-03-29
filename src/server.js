@@ -418,21 +418,59 @@ app.delete('/api/admin/users/reset', requireAdminSession, async (req, res) => {
   }
 });
 
+// POST /api/admin/init-scan-table — one-time table creation via Management API
+// Called by admin page on load; silently succeeds or fails
+app.post('/api/admin/init-scan-table', requireAdminSession, async (req, res) => {
+  if (!supabase) return res.json({ ok: false, reason: 'no supabase' });
+  try {
+    // Try a lightweight insert of a dummy row to see if table exists
+    const { error } = await supabase
+      .from('scan_stats')
+      .select('date')
+      .limit(1);
+
+    if (!error) return res.json({ ok: true, reason: 'table exists' });
+
+    // Table missing — try Management API (needs SUPABASE_SERVICE_KEY or PAT)
+    const pat = process.env.SUPABASE_PAT || process.env.SUPABASE_SERVICE_KEY;
+    if (!pat) return res.json({ ok: false, reason: 'no PAT — create table manually in Supabase SQL editor: CREATE TABLE scan_stats (date DATE PRIMARY KEY, count INTEGER NOT NULL DEFAULT 0);' });
+
+    const projectRef = (process.env.SUPABASE_URL || '').match(/https:\/\/([^.]+)\.supabase\.co/)?.[1];
+    if (!projectRef) return res.json({ ok: false, reason: 'cannot parse project ref' });
+
+    const axios = require('axios');
+    await axios.post(
+      `https://api.supabase.com/v1/projects/${projectRef}/database/query`,
+      { query: 'CREATE TABLE IF NOT EXISTS scan_stats (date DATE PRIMARY KEY, count INTEGER NOT NULL DEFAULT 0);' },
+      { headers: { Authorization: `Bearer ${pat}`, 'Content-Type': 'application/json' } }
+    );
+    res.json({ ok: true, reason: 'table created' });
+  } catch (err) {
+    res.json({ ok: false, reason: err.message });
+  }
+});
+
 // GET /api/admin/scan-stats — daily scan counts (last 30 days)
 app.get('/api/admin/scan-stats', requireAdminSession, async (req, res) => {
+  if (!supabase) return res.json({ stats: [], tableReady: false });
   try {
-    if (!supabase) return res.json({ stats: [] });
     const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
     const { data, error } = await supabase
       .from('scan_stats')
       .select('date, count')
       .gte('date', thirtyDaysAgo)
       .order('date', { ascending: true });
-    if (error) throw error;
-    res.json({ stats: data || [] });
+
+    // Table doesn't exist yet — return empty, not an error
+    if (error) {
+      const isTableMissing = error.message?.includes('does not exist') || error.code === '42P01' || error.code === 'PGRST204';
+      if (isTableMissing) return res.json({ stats: [], tableReady: false });
+      throw error;
+    }
+    res.json({ stats: data || [], tableReady: true });
   } catch (err) {
     console.error('scan-stats error:', err.message);
-    res.status(500).json({ error: 'Failed to fetch scan stats.' });
+    res.json({ stats: [], tableReady: false }); // never crash the admin page
   }
 });
 
@@ -443,6 +481,13 @@ const parser = new RSSParser();
 // Pinned L'Orient Le Jour articles — merged with dynamic feed and sorted by date
 // Manually curated global FMCG articles — always surfaced at the top
 const PINNED_GLOBAL_ARTICLES = [
+  {
+    title: "Lebanon Food & Wellness — Latest Trends in the Lebanese Market",
+    link: 'https://www.facebook.com/watch/?v=1295239999380190',
+    pubDate: 'Sun, 29 Mar 2026 10:00:00 GMT',
+    contentSnippet: "A closer look at the latest food and wellness trends shaping the Lebanese consumer market — from emerging local brands to shifting habits in Beirut and beyond.",
+    id: 'pinned-global-fb-1295239999380190',
+  },
   {
     title: "Danone's $1bn Huel deal: why the multinational is betting big on meal replacements",
     link: 'https://www.dairyreporter.com/Article/2026/03/23/danones-1bn-huel-deal-why-the-multinational-is-betting-big-on-meal-replacements/',
@@ -547,9 +592,10 @@ const PINNED_LORIENT_ARTICLES = [
 ];
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 39; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 40; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
+  'printemps', 'galeries lafayette', 'grands magasins',
   'war', 'israel', 'strike', 'missile', 'hezbollah', 'parliament', 'injured', 'killed',
   'conflict', 'evacuate', 'mourn', 'iran', 'airstrike', 'military', 'army', 'casualty',
   'bomb', 'drone', 'attack', 'protest', 'gaza', 'palestine', 'assassination',
