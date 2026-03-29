@@ -1011,14 +1011,14 @@ Respond ONLY with this JSON (no markdown):
       data.carbs    = Math.round(Number(data.carbs)    || 0);
       data.fat      = Math.round(Number(data.fat)      || 0);
       if (supabase) {
-        const today = new Date().toISOString().slice(0, 10);
-        supabase.rpc('increment_scan', { target_date: today }).catch(() => {
-          supabase.from('scan_stats').select('count').eq('date', today).single()
-            .then(({ data: row }) => {
-              const newCount = (row?.count || 0) + 1;
-              supabase.from('scan_stats').upsert({ date: today, count: newCount }, { onConflict: 'date' }).catch(() => {});
-            }).catch(() => {});
-        });
+        (async () => {
+          try {
+            const today = new Date().toISOString().slice(0, 10);
+            const { data: row } = await supabase.from('scan_stats').select('count').eq('date', today).single();
+            const newCount = (row?.count || 0) + 1;
+            await supabase.from('scan_stats').upsert({ date: today, count: newCount }, { onConflict: 'date' });
+          } catch (e) { /* fire-and-forget, never block response */ }
+        })();
       }
     }
     res.json(data);
@@ -1141,22 +1141,16 @@ Respond ONLY with this JSON (no markdown):
       data.protein  = Math.round(Number(data.protein)  || 0);
       data.carbs    = Math.round(Number(data.carbs)    || 0);
       data.fat      = Math.round(Number(data.fat)      || 0);
-      // Track scan in Supabase
+      // Track scan in Supabase (fire-and-forget)
       if (supabase) {
-        const today = new Date().toISOString().slice(0, 10);
-        supabase.from('scan_stats').upsert(
-          { date: today, count: 1 },
-          { onConflict: 'date', ignoreDuplicates: false }
-        ).then(() => {}).catch(() => {});
-        // Use raw SQL increment via RPC if available, else just insert
-        supabase.rpc('increment_scan', { target_date: today }).catch(() => {
-          // fallback: fetch current count then update
-          supabase.from('scan_stats').select('count').eq('date', today).single()
-            .then(({ data: row }) => {
-              const newCount = (row?.count || 0) + 1;
-              supabase.from('scan_stats').upsert({ date: today, count: newCount }, { onConflict: 'date' }).catch(() => {});
-            }).catch(() => {});
-        });
+        (async () => {
+          try {
+            const today = new Date().toISOString().slice(0, 10);
+            const { data: row } = await supabase.from('scan_stats').select('count').eq('date', today).single();
+            const newCount = (row?.count || 0) + 1;
+            await supabase.from('scan_stats').upsert({ date: today, count: newCount }, { onConflict: 'date' });
+          } catch (e) { /* fire-and-forget */ }
+        })();
       }
     }
     res.json(data);
