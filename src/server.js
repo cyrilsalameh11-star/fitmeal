@@ -227,6 +227,41 @@ app.get('/api/stats', async (req, res) => {
   }
 });
 
+// ── Steps API ─────────────────────────────────────────────────────────────────
+// GET /api/steps?email=...          → { steps, date }
+// POST /api/steps { email, steps, date? } → { ok, steps }
+// Called by the StepsWidget (polling) and by the iOS Shortcut / Android automation.
+
+app.get('/api/steps', async (req, res) => {
+  const { email } = req.query;
+  const today = new Date().toISOString().slice(0, 10);
+  if (!email || !supabase) return res.json({ steps: 0, date: today });
+  try {
+    const { data } = await supabase
+      .from('steps_log')
+      .select('steps')
+      .eq('email', email.toLowerCase().trim())
+      .eq('date', today)
+      .single();
+    res.json({ steps: data?.steps || 0, date: today });
+  } catch { res.json({ steps: 0, date: today }); }
+});
+
+app.post('/api/steps', async (req, res) => {
+  const { email, steps, date } = req.body;
+  const day = date || new Date().toISOString().slice(0, 10);
+  if (!email || steps == null) return res.status(400).json({ error: 'Missing email or steps' });
+  const count = Math.max(0, Math.round(Number(steps)));
+  if (!supabase) return res.json({ ok: true, steps: count });
+  try {
+    await supabase.from('steps_log').upsert(
+      { email: email.toLowerCase().trim(), date: day, steps: count, updated_at: new Date().toISOString() },
+      { onConflict: 'email,date' }
+    );
+    res.json({ ok: true, steps: count });
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
 // GET /api/debug — check Supabase connection (no auth needed, safe info only)
 app.get('/api/debug', async (req, res) => {
   const connected = !!supabase;

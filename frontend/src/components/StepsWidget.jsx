@@ -1,9 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { Footprints, Play, Square, PencilLine, Check, X, RotateCcw } from 'lucide-react';
+import { Footprints, PencilLine, Check, X, RotateCcw, Smartphone, Info, ChevronDown, ChevronUp } from 'lucide-react';
 
 const GOAL = 10000;
-const STEP_KEY = 'fitmeal_steps_count';
-const DATE_KEY = 'fitmeal_steps_date';
 const RADIUS = 38;
 const CIRC = 2 * Math.PI * RADIUS;
 
@@ -11,14 +9,14 @@ function getTodayStr() {
   return new Date().toISOString().slice(0, 10);
 }
 
-function getStepColor(pct) {
-  if (pct >= 1)    return '#10b981'; // emerald — goal reached
-  if (pct >= 0.7)  return '#f59e0b'; // amber
-  if (pct >= 0.4)  return '#f97316'; // orange
-  return '#e5e7eb';                   // grey — early
+function getColor(pct) {
+  if (pct >= 1)   return '#10b981';
+  if (pct >= 0.7) return '#f59e0b';
+  if (pct >= 0.4) return '#f97316';
+  return '#d1d5db';
 }
 
-function getTrackColor(pct) {
+function getTrack(pct) {
   if (pct >= 1)   return '#d1fae5';
   if (pct >= 0.7) return '#fef3c7';
   if (pct >= 0.4) return '#ffedd5';
@@ -26,142 +24,110 @@ function getTrackColor(pct) {
 }
 
 export default function StepsWidget() {
-  const [steps, setSteps]           = useState(0);
-  const [tracking, setTracking]     = useState(false);
-  const [editMode, setEditMode]     = useState(false);
-  const [inputVal, setInputVal]     = useState('');
-  const [hasMobile, setHasMobile]   = useState(false);  // device has motion sensor
-  const [denied, setDenied]         = useState(false);
+  const email = localStorage.getItem('fitmeal_email') || '';
 
-  const stepsRef         = useRef(0);
-  const lastMagRef       = useRef(null);
-  const cooldownRef      = useRef(false);
-  const smoothedMagRef   = useRef(null);
+  const [steps,      setSteps]      = useState(0);
+  const [editMode,   setEditMode]   = useState(false);
+  const [inputVal,   setInputVal]   = useState('');
+  const [syncing,    setSyncing]    = useState(false);
+  const [showSetup,  setShowSetup]  = useState(false);
+  const [platform,   setPlatform]   = useState('ios'); // 'ios' | 'android'
 
-  // ── Load / reset daily count ─────────────────────────────────────────────
+  // ── Load from API ─────────────────────────────────────────────────────────
+  const fetchSteps = useCallback(async () => {
+    if (!email) return;
+    try {
+      const r = await fetch(`/api/steps?email=${encodeURIComponent(email)}`);
+      const d = await r.json();
+      if (typeof d.steps === 'number') setSteps(d.steps);
+    } catch { /* silent */ }
+  }, [email]);
+
   useEffect(() => {
-    const today = getTodayStr();
-    const saved = localStorage.getItem(DATE_KEY);
-    if (saved === today) {
-      const count = parseInt(localStorage.getItem(STEP_KEY) || '0', 10);
-      setSteps(count);
-      stepsRef.current = count;
-    } else {
-      localStorage.setItem(DATE_KEY, today);
-      localStorage.setItem(STEP_KEY, '0');
-    }
-    // Detect if device likely has a motion sensor (mobile/tablet)
-    setHasMobile(
-      typeof window !== 'undefined' &&
-      (typeof DeviceMotionEvent !== 'undefined') &&
-      /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
-    );
-  }, []);
+    fetchSteps();
+    const iv = setInterval(fetchSteps, 5 * 60 * 1000); // refresh every 5 min
+    return () => clearInterval(iv);
+  }, [fetchSteps]);
 
-  const persist = useCallback((count) => {
-    localStorage.setItem(STEP_KEY, String(count));
-    localStorage.setItem(DATE_KEY, getTodayStr());
+  // ── Save to API ───────────────────────────────────────────────────────────
+  const saveSteps = useCallback(async (count) => {
     setSteps(count);
-  }, []);
+    if (!email) return;
+    setSyncing(true);
+    try {
+      await fetch('/api/steps', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, steps: count }),
+      });
+    } catch { /* silent */ }
+    setSyncing(false);
+  }, [email]);
 
-  // ── Step detection algorithm ──────────────────────────────────────────────
-  // Uses a simple peak-detection on smoothed accelerometer magnitude.
-  // Threshold of ~1.8 m/s² delta above a rolling baseline catches a walking step.
-  const handleMotion = useCallback((e) => {
-    const a = e.accelerationIncludingGravity || e.acceleration;
-    if (!a || a.x == null) return;
-
-    const mag = Math.sqrt(a.x ** 2 + a.y ** 2 + a.z ** 2);
-
-    // Low-pass smooth
-    if (smoothedMagRef.current === null) smoothedMagRef.current = mag;
-    smoothedMagRef.current = smoothedMagRef.current * 0.8 + mag * 0.2;
-
-    if (lastMagRef.current !== null) {
-      const delta = mag - lastMagRef.current;
-      // Positive peak crossing
-      if (delta > 2.2 && !cooldownRef.current) {
-        stepsRef.current += 1;
-        persist(stepsRef.current);
-        cooldownRef.current = true;
-        setTimeout(() => { cooldownRef.current = false; }, 280);
-      }
-    }
-    lastMagRef.current = mag;
-  }, [persist]);
-
-  // ── Start tracking ────────────────────────────────────────────────────────
-  const startTracking = useCallback(async () => {
-    // iOS 13+ requires explicit permission request
-    if (typeof DeviceMotionEvent !== 'undefined' &&
-        typeof DeviceMotionEvent.requestPermission === 'function') {
-      try {
-        const result = await DeviceMotionEvent.requestPermission();
-        if (result !== 'granted') { setDenied(true); return; }
-      } catch {
-        setDenied(true);
-        return;
-      }
-    }
-    window.addEventListener('devicemotion', handleMotion, { passive: true });
-    setTracking(true);
-    setDenied(false);
-  }, [handleMotion]);
-
-  const stopTracking = useCallback(() => {
-    window.removeEventListener('devicemotion', handleMotion);
-    setTracking(false);
-  }, [handleMotion]);
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => window.removeEventListener('devicemotion', handleMotion);
-  }, [handleMotion]);
-
-  // ── Manual set ────────────────────────────────────────────────────────────
+  // ── Manual entry ──────────────────────────────────────────────────────────
   const applyManual = () => {
     const n = parseInt(inputVal, 10);
-    if (!isNaN(n) && n >= 0) {
-      stepsRef.current = n;
-      persist(n);
-    }
+    if (!isNaN(n) && n >= 0) saveSteps(n);
     setEditMode(false);
     setInputVal('');
   };
 
-  const reset = () => {
-    stepsRef.current = 0;
-    persist(0);
-    lastMagRef.current = null;
-    smoothedMagRef.current = null;
-  };
+  const resetSteps = () => saveSteps(0);
 
-  // ── Derived display values ────────────────────────────────────────────────
+  // ── Derived ───────────────────────────────────────────────────────────────
   const pct    = Math.min(steps / GOAL, 1);
   const offset = CIRC * (1 - pct);
-  const color  = getStepColor(pct);
-  const track  = getTrackColor(pct);
-  const kcal   = Math.round(steps * 0.04);           // ~0.04 kcal/step avg
-  const km     = (steps * 0.00078).toFixed(1);       // ~0.78 m/step avg
+  const color  = getColor(pct);
+  const track  = getTrack(pct);
+  const kcal   = Math.round(steps * 0.04);
+  const km     = (steps * 0.00078).toFixed(1);
+
+  // iOS Shortcut source — one-action shortcut that GETs today steps from Health
+  // and POSTs to jismeh.fit. User needs their own email in the shortcut.
+  const shortcutSteps = [
+    { n: 1, text: 'Open the Shortcuts app → tap "+" to create a new shortcut' },
+    { n: 2, text: 'Add action: "Find Health Samples Where" — set Type = Steps, Date = Today' },
+    { n: 3, text: 'Add action: "Calculate Statistics" — Minimum over Step Count → set to Sum' },
+    { n: 4, text: 'Add action: "Get Contents of URL" — set URL to:', code: 'https://jismeh.fit/api/steps', method: 'POST', body: `{"email":"${email || 'YOUR@EMAIL.COM'}","steps": [Calculated Result]}` },
+    { n: 5, text: 'Save & name it "Sync Steps to FitNas"' },
+    { n: 6, text: 'Optional: create an Automation → "Time of Day" → every hour → run this shortcut' },
+  ];
+
+  const androidSteps = [
+    { n: 1, text: 'Install MacroDroid (free) from the Play Store' },
+    { n: 2, text: 'Create a new Macro — Trigger: "Time → Every 1 hour"' },
+    { n: 3, text: 'Add Action: "HTTP Request" — method POST, URL:', code: 'https://jismeh.fit/api/steps' },
+    { n: 4, text: 'Set body (JSON): ', body: `{"email":"${email || 'YOUR@EMAIL.COM'}","steps": STEPS_COUNT}` },
+    { n: 5, text: 'For step count, use MacroDroid variable connected to Google Fit step counter' },
+    { n: 6, text: 'Alternatively: open FitNas, tap ✏ and enter today\'s steps from the Google Fit / Health Connect app' },
+  ];
 
   return (
     <div className="bg-white border border-stone-100 rounded-3xl p-5 shadow-sm">
-      {/* Header */}
+      {/* Header row */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-1.5">
           <Footprints className="w-3.5 h-3.5 text-stone-400" />
           <span className="text-[10px] font-black uppercase tracking-widest text-stone-400">Daily Steps</span>
+          {syncing && <span className="text-[9px] text-amber-400 font-bold animate-pulse">saving…</span>}
         </div>
         <div className="flex items-center gap-1">
           <button
+            onClick={() => setShowSetup(s => !s)}
+            className="p-1.5 rounded-xl text-stone-300 hover:text-stone-700 hover:bg-stone-50 transition-all"
+            title="Sync setup"
+          >
+            <Smartphone className="w-3.5 h-3.5" />
+          </button>
+          <button
             onClick={() => { setEditMode(true); setInputVal(String(steps)); }}
             className="p-1.5 rounded-xl text-stone-300 hover:text-stone-700 hover:bg-stone-50 transition-all"
-            title="Set step count manually"
+            title="Enter step count manually"
           >
             <PencilLine className="w-3.5 h-3.5" />
           </button>
           <button
-            onClick={reset}
+            onClick={resetSteps}
             className="p-1.5 rounded-xl text-stone-300 hover:text-red-400 hover:bg-red-50 transition-all"
             title="Reset today"
           >
@@ -170,62 +136,51 @@ export default function StepsWidget() {
         </div>
       </div>
 
-      {/* Ring + centre text */}
+      {/* Ring + stats */}
       <div className="flex items-center gap-5">
+        {/* Circular ring */}
         <div className="relative flex-shrink-0">
-          <svg width="92" height="92" viewBox="0 0 92 92">
-            {/* Track */}
+          <svg width="96" height="96" viewBox="0 0 96 96">
+            <circle cx="48" cy="48" r={RADIUS} fill="none" stroke={track} strokeWidth="7" />
             <circle
-              cx="46" cy="46" r={RADIUS}
-              fill="none"
-              stroke={track}
-              strokeWidth="7"
-            />
-            {/* Progress */}
-            <circle
-              cx="46" cy="46" r={RADIUS}
+              cx="48" cy="48" r={RADIUS}
               fill="none"
               stroke={color}
               strokeWidth="7"
               strokeLinecap="round"
               strokeDasharray={CIRC}
               strokeDashoffset={offset}
-              transform="rotate(-90 46 46)"
-              style={{ transition: 'stroke-dashoffset 0.6s ease, stroke 0.4s ease' }}
+              transform="rotate(-90 48 48)"
+              style={{ transition: 'stroke-dashoffset 0.7s cubic-bezier(.4,0,.2,1), stroke 0.4s ease' }}
             />
-            {/* Goal tick at 100% (top) */}
-            <circle cx="46" cy="8" r="3" fill={pct >= 1 ? color : '#e5e7eb'} />
+            {/* Goal dot at top when complete */}
+            {pct >= 1 && <circle cx="48" cy="10" r="4" fill={color} />}
           </svg>
-          {/* Centre labels */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none">
             <span
               className="font-black leading-none text-stone-900"
-              style={{ fontSize: steps >= 10000 ? '13px' : steps >= 1000 ? '14px' : '16px' }}
+              style={{ fontSize: steps >= 10000 ? '12px' : steps >= 1000 ? '14px' : '16px' }}
             >
               {steps.toLocaleString()}
             </span>
-            <span className="text-[8px] font-bold text-stone-400 mt-0.5 uppercase tracking-wider">
-              / {(GOAL / 1000).toFixed(0)}k
-            </span>
+            <span className="text-[8px] font-bold text-stone-400 mt-0.5 uppercase tracking-wider">/ 10k</span>
           </div>
         </div>
 
-        {/* Stats column */}
-        <div className="flex-1 space-y-2.5">
-          {/* Progress bar label */}
+        {/* Right column */}
+        <div className="flex-1 space-y-2.5 min-w-0">
           <div>
-            <div className="flex items-end justify-between mb-1">
+            <div className="flex justify-between items-end mb-1">
               <span className="text-[9px] font-black uppercase tracking-widest text-stone-400">Progress</span>
               <span className="text-[10px] font-bold" style={{ color }}>{Math.round(pct * 100)}%</span>
             </div>
             <div className="h-1.5 bg-stone-100 rounded-full overflow-hidden">
               <div
-                className="h-full rounded-full transition-all duration-500"
+                className="h-full rounded-full transition-all duration-700"
                 style={{ width: `${pct * 100}%`, background: color }}
               />
             </div>
           </div>
-          {/* Mini stats */}
           <div className="grid grid-cols-2 gap-2">
             <div className="bg-stone-50 rounded-xl px-2.5 py-2 text-center">
               <p className="text-xs font-black text-stone-800">{kcal}</p>
@@ -239,18 +194,23 @@ export default function StepsWidget() {
         </div>
       </div>
 
-      {/* Manual edit input */}
+      {/* Goal badge */}
+      {pct >= 1 && (
+        <div className="mt-3 text-center text-[9px] font-black uppercase tracking-widest rounded-xl py-1.5 bg-emerald-50 text-emerald-700">
+          Goal reached! 🎯
+        </div>
+      )}
+
+      {/* Manual edit */}
       {editMode && (
         <div className="mt-4 flex items-center gap-2">
           <input
-            type="number"
-            min="0"
-            max="99999"
+            type="number" min="0" max="99999"
             value={inputVal}
             onChange={e => setInputVal(e.target.value)}
             onKeyDown={e => { if (e.key === 'Enter') applyManual(); if (e.key === 'Escape') setEditMode(false); }}
             autoFocus
-            placeholder="Enter steps"
+            placeholder="Steps today"
             className="flex-1 border border-stone-200 rounded-xl px-3 py-2 text-sm font-bold text-stone-800 outline-none focus:ring-2 focus:ring-amber-200 transition-all"
           />
           <button onClick={applyManual} className="p-2 bg-stone-900 text-white rounded-xl hover:bg-stone-800 transition-all">
@@ -262,47 +222,84 @@ export default function StepsWidget() {
         </div>
       )}
 
-      {/* Tracking controls */}
-      {hasMobile && (
-        <div className="mt-3">
-          {!tracking ? (
-            <button
-              onClick={startTracking}
-              className="w-full flex items-center justify-center gap-1.5 py-2.5 bg-stone-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-amber-500 transition-all duration-200 active:scale-95"
-            >
-              <Play className="w-3 h-3 fill-current" /> Track with phone
-            </button>
-          ) : (
-            <button
-              onClick={stopTracking}
-              className="w-full flex items-center justify-center gap-1.5 py-2.5 bg-emerald-500 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-red-500 transition-all duration-200 active:scale-95"
-            >
-              <span className="w-2 h-2 bg-white rounded-sm inline-block" /> Tracking… tap to stop
-            </button>
-          )}
-          {denied && (
-            <p className="text-[9px] text-red-400 font-bold text-center mt-2">
-              Motion permission denied. Use the pencil icon to enter manually.
+      {/* Setup panel */}
+      {showSetup && (
+        <div className="mt-4 border-t border-stone-100 pt-4 space-y-3">
+          <div className="flex items-center gap-2 mb-2">
+            <Info className="w-3.5 h-3.5 text-stone-400 flex-shrink-0" />
+            <p className="text-[10px] text-stone-400 font-bold leading-snug">
+              Web apps can't read Health data directly. Set up a 1-time automation below to sync your steps automatically every hour.
             </p>
+          </div>
+
+          {/* Platform toggle */}
+          <div className="flex rounded-xl overflow-hidden border border-stone-100 text-[10px] font-black uppercase tracking-widest">
+            <button
+              onClick={() => setPlatform('ios')}
+              className={`flex-1 py-2 transition-all ${platform === 'ios' ? 'bg-stone-900 text-white' : 'text-stone-400 hover:bg-stone-50'}`}
+            >
+              iPhone (iOS)
+            </button>
+            <button
+              onClick={() => setPlatform('android')}
+              className={`flex-1 py-2 transition-all ${platform === 'android' ? 'bg-stone-900 text-white' : 'text-stone-400 hover:bg-stone-50'}`}
+            >
+              Android
+            </button>
+          </div>
+
+          {platform === 'ios' && (
+            <div className="space-y-2">
+              <p className="text-[9px] font-black uppercase tracking-widest text-stone-500">Apple Shortcuts Setup</p>
+              {shortcutSteps.map(s => (
+                <div key={s.n} className="flex gap-2.5 items-start">
+                  <span className="flex-shrink-0 w-4 h-4 bg-stone-900 text-white rounded-full text-[8px] font-black flex items-center justify-center mt-0.5">{s.n}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[10px] text-stone-600 leading-relaxed">{s.text}</p>
+                    {s.code && (
+                      <code className="text-[9px] bg-stone-100 text-stone-700 px-2 py-0.5 rounded-lg block mt-1 break-all font-mono">{s.code}</code>
+                    )}
+                    {s.body && (
+                      <code className="text-[9px] bg-amber-50 text-amber-800 px-2 py-0.5 rounded-lg block mt-1 break-all font-mono">{s.body}</code>
+                    )}
+                  </div>
+                </div>
+              ))}
+              <div className="mt-2 bg-stone-50 rounded-xl p-3">
+                <p className="text-[9px] text-stone-500 font-bold">Once set up, the shortcut will push your real Apple Health steps to FitNas every hour automatically. The ring above will update within 5 minutes.</p>
+              </div>
+            </div>
+          )}
+
+          {platform === 'android' && (
+            <div className="space-y-2">
+              <p className="text-[9px] font-black uppercase tracking-widest text-stone-500">Android (MacroDroid) Setup</p>
+              {androidSteps.map(s => (
+                <div key={s.n} className="flex gap-2.5 items-start">
+                  <span className="flex-shrink-0 w-4 h-4 bg-stone-900 text-white rounded-full text-[8px] font-black flex items-center justify-center mt-0.5">{s.n}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[10px] text-stone-600 leading-relaxed">{s.text}</p>
+                    {s.code && (
+                      <code className="text-[9px] bg-stone-100 text-stone-700 px-2 py-0.5 rounded-lg block mt-1 break-all font-mono">{s.code}</code>
+                    )}
+                    {s.body && (
+                      <code className="text-[9px] bg-amber-50 text-amber-800 px-2 py-0.5 rounded-lg block mt-1 break-all font-mono">{s.body}</code>
+                    )}
+                  </div>
+                </div>
+              ))}
+              <div className="mt-2 bg-stone-50 rounded-xl p-3">
+                <p className="text-[9px] text-stone-500 font-bold">For the quickest setup: just tap ✏ above to type in your step count from Google Health or Fit whenever you check the app.</p>
+              </div>
+            </div>
           )}
         </div>
       )}
 
-      {/* Desktop / non-mobile hint */}
-      {!hasMobile && !editMode && (
+      {!editMode && !showSetup && (
         <p className="mt-3 text-[9px] text-stone-300 font-bold uppercase tracking-widest text-center">
-          Tap ✏ to sync from Health app
+          tap <Smartphone className="w-2.5 h-2.5 inline" /> to sync · <PencilLine className="w-2.5 h-2.5 inline" /> to enter
         </p>
-      )}
-
-      {/* Goal reached badge */}
-      {pct >= 1 && (
-        <div
-          className="mt-3 text-center text-[9px] font-black uppercase tracking-widest rounded-xl py-1.5"
-          style={{ background: '#d1fae5', color: '#065f46' }}
-        >
-          Goal reached! 🎯
-        </div>
       )}
     </div>
   );
