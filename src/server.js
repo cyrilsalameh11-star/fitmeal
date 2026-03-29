@@ -919,8 +919,8 @@ app.post('/api/analyze-food', async (req, res) => {
   if (!apiKey) return res.status(500).json({ error: 'AI API key not configured' });
 
   try {
-    // Use Gemini REST API directly
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${apiKey}`;
+    // Use Gemini REST API directly — gemini-2.5-flash has free tier quota on this project
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
     const prompt = `You are a nutrition expert. Analyze this food photo and estimate the nutritional content.
 
