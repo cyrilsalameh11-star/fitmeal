@@ -31,12 +31,11 @@ export default function ScannerPage() {
       const reader = new FileReader();
       reader.onerror = () => reject(new Error('Could not read image file'));
       reader.onload = (e) => {
-        const originalDataUrl = e.target.result;
         const img = new Image();
-        img.onerror = () => resolve(originalDataUrl); // fallback: send original
+        img.onerror = () => reject(new Error('Could not load image. Please try a different photo.'));
         img.onload = () => {
           try {
-            const MAX = 600; // aggressive — keeps payload ~80-120KB
+            const MAX = 500; // 500px max — keeps base64 payload well under 300KB
             let { width, height } = img;
             if (width > MAX || height > MAX) {
               if (width > height) { height = Math.round((height * MAX) / width); width = MAX; }
@@ -46,12 +45,13 @@ export default function ScannerPage() {
             canvas.width  = width;
             canvas.height = height;
             canvas.getContext('2d').drawImage(img, 0, 0, width, height);
-            resolve(canvas.toDataURL('image/jpeg', 0.6));
+            const compressed = canvas.toDataURL('image/jpeg', 0.55);
+            resolve(compressed);
           } catch {
-            resolve(originalDataUrl); // canvas failed (e.g. tainted) — send original
+            reject(new Error('Could not compress image. Please try a different photo.'));
           }
         };
-        img.src = originalDataUrl;
+        img.src = e.target.result;
       };
       reader.readAsDataURL(file);
     });
@@ -63,9 +63,9 @@ export default function ScannerPage() {
     setError(null);
     setLogged(false);
 
-    // Upfront size guard — raw file must be under 8MB
-    if (file.size > 8 * 1024 * 1024) {
-      setError('Photo too large. Please use a photo under 8MB.');
+    // Upfront size guard — raw file must be under 3MB
+    if (file.size > 3 * 1024 * 1024) {
+      setError('Photo too large. Please use a photo under 3MB or take a new one.');
       setLoading(false);
       return;
     }
@@ -76,11 +76,17 @@ export default function ScannerPage() {
       const base64 = dataUrl.split(',')[1];
       if (!base64) throw new Error('Could not read image data. Please try again.');
 
+      // Guard: base64 payload must be under 2MB
+      if (base64.length > 2 * 1024 * 1024) {
+        throw new Error('Compressed image is still too large. Please try a different photo.');
+      }
+
       const res = await fetch('/api/analyze-food', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ imageBase64: base64, mimeType: 'image/jpeg' }),
       });
+      if (res.status === 413) throw new Error('Image too large for server. Please try a smaller photo.');
       const text = await res.text();
       let data;
       try { data = JSON.parse(text); }
