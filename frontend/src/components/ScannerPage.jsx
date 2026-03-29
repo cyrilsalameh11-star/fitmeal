@@ -203,11 +203,12 @@ export default function ScannerPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ imageBase64: base64, mimeType: 'image/jpeg', answers: answersMap }),
     });
-    if (res.status === 413) throw new Error('Image too large. Please try a smaller photo.');
+    if (res.status === 413) throw new Error('Image too large for server.');
     const text = await res.text();
+    if (!text) throw new Error('Empty response from server. Please try again.');
     let data;
-    try { data = JSON.parse(text); } catch { throw new Error('Unexpected server response.'); }
-    if (!res.ok) throw new Error(data.error || 'Analysis failed');
+    try { data = JSON.parse(text); } catch { throw new Error(`Server error: ${text.slice(0, 120)}`); }
+    if (!res.ok) throw new Error(data.error || `Server error ${res.status}`);
     data.calories = Math.round(Number(data.calories) || 0);
     data.protein  = Math.round(Number(data.protein)  || 0);
     data.carbs    = Math.round(Number(data.carbs)    || 0);
@@ -223,8 +224,8 @@ export default function ScannerPage() {
     setAnswers({});
     setShowHistory(false);
 
-    if (file.size > 3 * 1024 * 1024) {
-      setError('Photo too large. Please use a photo under 3MB.');
+    if (file.size > 20 * 1024 * 1024) {
+      setError('Photo too large. Please use a photo under 20MB.');
       setLoading(false);
       return;
     }
@@ -234,7 +235,7 @@ export default function ScannerPage() {
       setPreview(dataUrl);
       const base64 = dataUrl.split(',')[1];
       if (!base64) throw new Error('Could not read image data.');
-      if (base64.length > 2 * 1024 * 1024) throw new Error('Compressed image still too large. Try a different photo.');
+      // base64 of a 500px JPEG at 55% is ~30-80KB — well under Vercel's 4.5MB limit
       lastBase64Ref.current = base64;
       const data = await callAnalyze(base64);
       setResult(data);

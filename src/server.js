@@ -922,8 +922,6 @@ app.post('/api/analyze-food', async (req, res) => {
     // Use Gemini REST API directly — gemini-2.5-flash has free tier quota on this project
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
-    const { answers } = req.body; // optional: {question: answer} map for refinement
-
     const { answers } = req.body;
     const hasAnswers = answers && Object.keys(answers).length > 0;
     const answersText = hasAnswers
