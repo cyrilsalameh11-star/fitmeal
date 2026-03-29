@@ -9,7 +9,7 @@ import { TrendingUp, ChevronLeft, ChevronRight, ExternalLink, Play } from 'lucid
 const REELS_DATA = [
   // PAGE 1
   { id: 1,  handle: 'guide.lb',             color: '#e11d48', shortcode: 'DUyUdKfDQfS', type: 'reel' },
-  { id: 2,  handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DUlZ_JQjMSh', type: 'reel' },
+  { id: 2,  handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DWefGLFjdu1', type: 'reel' },
   { id: 3,  handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DQjgZMhkqh2', type: 'reel' },
   { id: 4,  handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DVti6aGDoWq', type: 'reel', blocked: true },
   { id: 5,  handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVTx-Bdje99', type: 'reel' },
@@ -18,7 +18,7 @@ const REELS_DATA = [
 
   // PAGE 2
   { id: 8,  handle: 'guide.lb',             color: '#e11d48', shortcode: 'DUgGrZDDYpl', type: 'reel' },
-  { id: 9,  handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DVVlCUiDaG6', type: 'reel' },
+  { id: 9,  handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DUlZ_JQjMSh', type: 'reel' },
   { id: 10, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUxdhBqDU_T', type: 'reel' },
   { id: 11, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DSzNG4tjAqu', type: 'reel', blocked: true },
   { id: 12, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVHRV8aDVMd', type: 'reel' },
@@ -27,7 +27,7 @@ const REELS_DATA = [
 
   // PAGE 3
   { id: 15, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DSkvVRjjcMY', type: 'p'    },
-  { id: 16, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DVMfhvYDRYS', type: 'reel' },
+  { id: 16, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DVVlCUiDaG6', type: 'reel' },
   { id: 17, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUgGiWNEiZi', type: 'reel' },
   { id: 18, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DRAQGGUjKy0', type: 'reel', blocked: true },
   { id: 19, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVG4b48jbNi', type: 'reel' },
@@ -36,7 +36,7 @@ const REELS_DATA = [
 
   // PAGE 4
   { id: 22, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DSC5LaRDTOI', type: 'reel' },
-  { id: 23, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DU-VE72jRn3', type: 'reel' },
+  { id: 23, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DVMfhvYDRYS', type: 'reel' },
   { id: 24, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUKxO6VDczo', type: 'reel' },
   { id: 25, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DR2V9vuDML-', type: 'reel', blocked: true },
   { id: 26, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DU5DbZWDQ42', type: 'reel' },
@@ -45,7 +45,7 @@ const REELS_DATA = [
 
   // PAGE 5
   { id: 29, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DRzc-I5jaoJ', type: 'reel' },
-  { id: 30, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DUvLEl5DTd_', type: 'reel' },
+  { id: 30, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DU-VE72jRn3', type: 'reel' },
   { id: 31, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DRAC021kvno', type: 'reel' },
   { id: 32, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DUfYlnuAvxJ', type: 'reel', blocked: true },
   { id: 33, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DUQzpVqDVlU', type: 'reel' },
@@ -54,7 +54,7 @@ const REELS_DATA = [
 
   // PAGE 6 (newinbeirut 6th reel)
   { id: 36, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DUyUdKfDQfS', type: 'reel' },
-  { id: 37, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DUlZ_JQjMSh', type: 'reel' },
+  { id: 37, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DUvLEl5DTd_', type: 'reel' },
   { id: 38, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DQjgZMhkqh2', type: 'reel' },
   { id: 39, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DVti6aGDoWq', type: 'reel', blocked: true },
   { id: 40, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVTx-Bdje99', type: 'reel' },
