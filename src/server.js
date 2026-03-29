@@ -922,7 +922,14 @@ app.post('/api/analyze-food', async (req, res) => {
     // Use Gemini REST API directly — gemini-2.5-flash has free tier quota on this project
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
-    const prompt = `You are a nutrition expert. Analyze this food photo and estimate the nutritional content.
+    const { answers } = req.body; // optional: {question: answer} map for refinement
+
+    const hasAnswers = answers && Object.keys(answers).length > 0;
+    const answersText = hasAnswers
+      ? `\n\nThe user has answered these clarifying questions:\n${Object.entries(answers).map(([q,a]) => `- ${q}: ${a}`).join('\n')}\nUse these answers to improve accuracy. Do NOT include questions in your response (set "questions": []).`
+      : '';
+
+    const prompt = `You are a nutrition expert. Analyze this food photo and estimate the nutritional content.${answersText}
 
 Respond ONLY with a valid JSON object in exactly this format (no markdown, no explanation):
 {
@@ -934,10 +941,15 @@ Respond ONLY with a valid JSON object in exactly this format (no markdown, no ex
   "carbs": 00,
   "fat": 00,
   "items": ["ingredient 1", "ingredient 2"],
-  "tip": "One short nutrition tip about this meal"
+  "tip": "One short nutrition tip about this meal",
+  "questions": [
+    {"q": "Short question to improve accuracy?", "options": ["Option A", "Option B", "Option C"]},
+    {"q": "Another question?", "options": ["Option A", "Option B", "Option C"]}
+  ]
 }
 
-Be as accurate as possible. If you see multiple foods, estimate the total. If the image is not food, return calories: 0 and dish: "Not food detected".`;
+${hasAnswers ? 'Since the user answered the questions, set "questions": [] and give a more precise estimate.' : 'Include 2 short clarifying questions with 3 tap-to-answer options each that would help refine the calorie estimate (e.g. portion size, cooking method, added sauces/dressings). Keep questions very short.'}
+If the image is not food, return calories: 0, dish: "Not food detected", questions: [].`;
 
     const geminiRes = await fetch(geminiUrl, {
       method: 'POST',

@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, Upload, RotateCcw, Zap, Check, ScanLine, ChevronRight, X } from 'lucide-react';
+import { Camera, Upload, RotateCcw, Zap, Check, ScanLine, ChevronRight, X, RefreshCw } from 'lucide-react';
 import { logMealToday } from './CalorieBar';
 
 function MacroChip({ label, value, color }) {
@@ -14,18 +14,56 @@ function MacroChip({ label, value, color }) {
   );
 }
 
-export default function ScannerPage() {
-  const fileInputRef  = useRef(null);
-  const cameraInputRef = useRef(null);
+function ClarifyingQuestions({ questions, answers, onChange }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="space-y-4 border-t border-stone-800 pt-5"
+    >
+      <p className="text-[10px] font-black uppercase tracking-widest text-amber-400 flex items-center gap-1.5">
+        <Zap size={11} /> Help us be more precise
+      </p>
+      {questions.map((q, i) => (
+        <div key={i} className="space-y-2">
+          <p className="text-stone-300 text-xs font-bold">{q.q}</p>
+          <div className="flex flex-wrap gap-2">
+            {q.options.map((opt) => {
+              const selected = answers[q.q] === opt;
+              return (
+                <button
+                  key={opt}
+                  onClick={() => onChange(q.q, opt)}
+                  className={`px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all ${
+                    selected
+                      ? 'bg-amber-500 text-white'
+                      : 'bg-stone-800 text-stone-400 hover:bg-stone-700 hover:text-stone-200'
+                  }`}
+                >
+                  {opt}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </motion.div>
+  );
+}
 
-  const [preview,  setPreview]  = useState(null);  // data URL for display
+export default function ScannerPage() {
+  const fileInputRef   = useRef(null);
+  const cameraInputRef = useRef(null);
+  const lastBase64Ref  = useRef(null); // keep compressed image for refinement call
+
+  const [preview,  setPreview]  = useState(null);
   const [loading,  setLoading]  = useState(false);
+  const [refining, setRefining] = useState(false);
   const [result,   setResult]   = useState(null);
   const [error,    setError]    = useState(null);
   const [logged,   setLogged]   = useState(false);
+  const [answers,  setAnswers]  = useState({});
 
-  // iOS-safe compression: FileReader → Image → Canvas → JPEG
-  // Uses readAsDataURL (not createObjectURL) which works on all iOS Safari versions
   const compressImage = useCallback((file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -35,7 +73,7 @@ export default function ScannerPage() {
         img.onerror = () => reject(new Error('Could not load image. Please try a different photo.'));
         img.onload = () => {
           try {
-            const MAX = 500; // 500px max — keeps base64 payload well under 300KB
+            const MAX = 500;
             let { width, height } = img;
             if (width > MAX || height > MAX) {
               if (width > height) { height = Math.round((height * MAX) / width); width = MAX; }
@@ -45,8 +83,7 @@ export default function ScannerPage() {
             canvas.width  = width;
             canvas.height = height;
             canvas.getContext('2d').drawImage(img, 0, 0, width, height);
-            const compressed = canvas.toDataURL('image/jpeg', 0.55);
-            resolve(compressed);
+            resolve(canvas.toDataURL('image/jpeg', 0.55));
           } catch {
             reject(new Error('Could not compress image. Please try a different photo.'));
           }
@@ -57,15 +94,33 @@ export default function ScannerPage() {
     });
   }, []);
 
+  async function callAnalyze(base64, answersMap = {}) {
+    const res = await fetch('/api/analyze-food', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ imageBase64: base64, mimeType: 'image/jpeg', answers: answersMap }),
+    });
+    if (res.status === 413) throw new Error('Image too large for server. Please try a smaller photo.');
+    const text = await res.text();
+    let data;
+    try { data = JSON.parse(text); } catch { throw new Error('Unexpected response from server.'); }
+    if (!res.ok) throw new Error(data.error || 'Analysis failed');
+    data.calories = Math.round(Number(data.calories) || 0);
+    data.protein  = Math.round(Number(data.protein)  || 0);
+    data.carbs    = Math.round(Number(data.carbs)    || 0);
+    data.fat      = Math.round(Number(data.fat)      || 0);
+    return data;
+  }
+
   const analyzeImage = useCallback(async (file) => {
     setLoading(true);
     setResult(null);
     setError(null);
     setLogged(false);
+    setAnswers({});
 
-    // Upfront size guard — raw file must be under 3MB
     if (file.size > 3 * 1024 * 1024) {
-      setError('Photo too large. Please use a photo under 3MB or take a new one.');
+      setError('Photo too large. Please use a photo under 3MB.');
       setLoading(false);
       return;
     }
@@ -74,30 +129,34 @@ export default function ScannerPage() {
       const dataUrl = await compressImage(file);
       setPreview(dataUrl);
       const base64 = dataUrl.split(',')[1];
-      if (!base64) throw new Error('Could not read image data. Please try again.');
+      if (!base64) throw new Error('Could not read image data.');
+      if (base64.length > 2 * 1024 * 1024) throw new Error('Compressed image still too large. Try a different photo.');
 
-      // Guard: base64 payload must be under 2MB
-      if (base64.length > 2 * 1024 * 1024) {
-        throw new Error('Compressed image is still too large. Please try a different photo.');
-      }
-
-      const res = await fetch('/api/analyze-food', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ imageBase64: base64, mimeType: 'image/jpeg' }),
-      });
-      if (res.status === 413) throw new Error('Image too large for server. Please try a smaller photo.');
-      const text = await res.text();
-      let data;
-      try { data = JSON.parse(text); }
-      catch { throw new Error('Unexpected response from server. Please try again.'); }
-      if (!res.ok) throw new Error(data.error || 'Analysis failed');
+      lastBase64Ref.current = base64;
+      const data = await callAnalyze(base64);
       setResult(data);
     } catch (err) {
       setError(err.message || 'Could not analyze image. Please try again.');
     }
     setLoading(false);
   }, [compressImage]);
+
+  async function handleRefine() {
+    if (!lastBase64Ref.current) return;
+    setRefining(true);
+    try {
+      const data = await callAnalyze(lastBase64Ref.current, answers);
+      setResult(data);
+      setAnswers({});
+    } catch (err) {
+      setError(err.message);
+    }
+    setRefining(false);
+  }
+
+  function handleAnswerChange(question, option) {
+    setAnswers(prev => ({ ...prev, [question]: option }));
+  }
 
   function handleFile(e) {
     const file = e.target.files?.[0];
@@ -115,15 +174,15 @@ export default function ScannerPage() {
     setResult(null);
     setError(null);
     setLogged(false);
+    setAnswers({});
+    lastBase64Ref.current = null;
     if (fileInputRef.current) fileInputRef.current.value = '';
     if (cameraInputRef.current) cameraInputRef.current.value = '';
   }
 
-  const confidenceColor = {
-    high:   'text-emerald-500',
-    medium: 'text-amber-500',
-    low:    'text-red-400',
-  };
+  const confidenceColor = { high: 'text-emerald-500', medium: 'text-amber-500', low: 'text-red-400' };
+  const questions = result?.questions || [];
+  const allAnswered = questions.length > 0 && questions.every(q => answers[q.q]);
 
   return (
     <motion.div
@@ -155,7 +214,6 @@ export default function ScannerPage() {
             <img src={preview} alt="Food" className="w-full h-full object-cover" />
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center gap-4 bg-stone-900">
-              {/* Decorative frame */}
               <div className="relative w-40 h-32">
                 {[['top-0 left-0','border-t-2 border-l-2 rounded-tl-2xl'],
                   ['top-0 right-0','border-t-2 border-r-2 rounded-tr-2xl'],
@@ -172,20 +230,22 @@ export default function ScannerPage() {
           )}
 
           {/* Loading overlay */}
-          {loading && (
+          {(loading || refining) && (
             <div className="absolute inset-0 bg-stone-950/80 backdrop-blur-sm flex flex-col items-center justify-center gap-4">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1.2, repeat: Infinity, ease: 'linear' }}
                 className="w-12 h-12 border-2 border-stone-700 border-t-amber-400 rounded-full"
               />
-              <p className="text-white text-xs font-black uppercase tracking-widest">Analyzing food...</p>
+              <p className="text-white text-xs font-black uppercase tracking-widest">
+                {refining ? 'Refining estimate...' : 'Analyzing food...'}
+              </p>
               <p className="text-stone-500 text-[10px]">Gemini AI is estimating your macros</p>
             </div>
           )}
 
           {/* Reset button */}
-          {preview && !loading && (
+          {preview && !loading && !refining && (
             <button
               onClick={reset}
               className="absolute top-4 right-4 w-9 h-9 bg-stone-900/80 backdrop-blur-sm rounded-full flex items-center justify-center text-stone-400 hover:text-white transition-colors"
@@ -246,13 +306,33 @@ export default function ScannerPage() {
                 </div>
               )}
 
+              {/* Clarifying questions */}
+              {questions.length > 0 && (
+                <ClarifyingQuestions
+                  questions={questions}
+                  answers={answers}
+                  onChange={handleAnswerChange}
+                />
+              )}
+
+              {/* Refine button — appears when all questions answered */}
+              {allAnswered && (
+                <motion.button
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  onClick={handleRefine}
+                  disabled={refining}
+                  className="w-full py-3.5 bg-stone-800 border border-amber-500/40 text-amber-400 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-stone-700 transition-all flex items-center justify-center gap-2"
+                >
+                  <RefreshCw size={13} /> Refine Estimate
+                </motion.button>
+              )}
+
               {/* Log button */}
               <button
                 onClick={handleLog}
                 className={`w-full py-4 rounded-2xl text-xs font-black uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${
-                  logged
-                    ? 'bg-emerald-500 text-white'
-                    : 'bg-amber-500 text-white hover:bg-amber-400'
+                  logged ? 'bg-emerald-500 text-white' : 'bg-amber-500 text-white hover:bg-amber-400'
                 }`}
               >
                 {logged
@@ -280,7 +360,6 @@ export default function ScannerPage() {
         {/* Action buttons */}
         {!preview && !loading && (
           <div className="p-6 grid grid-cols-2 gap-3">
-            {/* Camera capture (mobile) */}
             <button
               onClick={() => cameraInputRef.current?.click()}
               className="flex flex-col items-center justify-center gap-2 py-6 bg-amber-500 rounded-2xl hover:bg-amber-400 transition-all active:scale-95"
@@ -288,8 +367,6 @@ export default function ScannerPage() {
               <Camera size={22} className="text-white" />
               <span className="text-[10px] font-black uppercase tracking-widest text-white">Take Photo</span>
             </button>
-
-            {/* Upload from gallery */}
             <button
               onClick={() => fileInputRef.current?.click()}
               className="flex flex-col items-center justify-center gap-2 py-6 bg-stone-800 rounded-2xl hover:bg-stone-700 transition-all active:scale-95"
@@ -297,18 +374,16 @@ export default function ScannerPage() {
               <Upload size={22} className="text-stone-300" />
               <span className="text-[10px] font-black uppercase tracking-widest text-stone-300">Upload Photo</span>
             </button>
-
-            {/* Hidden inputs */}
             <input ref={cameraInputRef} type="file" accept="image/*" capture="environment" className="hidden" onChange={handleFile} />
             <input ref={fileInputRef}   type="file" accept="image/*"                        className="hidden" onChange={handleFile} />
           </div>
         )}
 
-        {/* Re-scan button after result */}
+        {/* Re-scan button */}
         {(result || error) && !loading && (
           <div className="px-6 pb-6">
             <button
-              onClick={() => { reset(); }}
+              onClick={reset}
               className="w-full py-3 bg-stone-800 text-stone-400 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-stone-700 hover:text-white transition-all flex items-center justify-center gap-2"
             >
               <RotateCcw size={13} /> Scan Another Meal
@@ -317,7 +392,6 @@ export default function ScannerPage() {
         )}
       </div>
 
-      {/* Disclaimer */}
       <p className="text-center text-[10px] text-stone-400 font-medium px-4">
         Estimates are AI-generated and may vary ±20%. For reference only.
       </p>
