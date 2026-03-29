@@ -184,6 +184,33 @@ export default function LoyaltyPage() {
         </div>
       </div>
 
+      {/* Spinneys Rewards Portal */}
+      <div className="bg-white border border-stone-100 rounded-[2.5rem] p-10 shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+          <div className="flex items-start space-x-5">
+            <div className="p-4 bg-blue-50 rounded-2xl flex-shrink-0">
+              <Gift className="text-blue-600" size={28} />
+            </div>
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 mb-1">Spinneys Portal</p>
+              <h3 className="text-xl font-bold text-stone-900 mb-2">Redeem Your Points</h3>
+              <p className="text-sm text-stone-500 font-medium max-w-md">
+                Browse the full Spinneys Rewards catalog, check your point balance, and redeem rewards directly on the official portal.
+              </p>
+            </div>
+          </div>
+          <a
+            href="https://spinneysrewards.com/SpinneysRewards/Default.aspx?pageid=3296"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-shrink-0 flex items-center space-x-2 px-7 py-4 bg-stone-900 text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-stone-700 transition-all"
+          >
+            <span>Open Portal</span>
+            <ChevronRight size={14} />
+          </a>
+        </div>
+      </div>
+
       {/* Loyalty CTA */}
       <div className="bg-amber-500 rounded-[3rem] p-12 text-center space-y-8 shadow-xl relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />

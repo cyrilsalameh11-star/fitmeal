@@ -186,7 +186,7 @@ if (supabaseUrl && supabaseKey) {
       };
       const axios = require('axios');
       await axios.post(`${supabaseUrl}/rest/v1/rpc/exec_sql`,
-        { sql: 'ALTER TABLE users ADD COLUMN IF NOT EXISTS last_login timestamptz DEFAULT now(); ALTER TABLE users ADD COLUMN IF NOT EXISTS email text; ALTER TABLE map_pins ADD COLUMN IF NOT EXISTS emoji text; CREATE TABLE IF NOT EXISTS shared_runs (id uuid DEFAULT gen_random_uuid() PRIMARY KEY, created_at timestamptz DEFAULT now(), name text, "user" text, distance text, time text, elevation text, city text, link text); CREATE TABLE IF NOT EXISTS news_cache (id integer PRIMARY KEY, articles jsonb, updated_at timestamptz DEFAULT now());' },
+        { sql: 'ALTER TABLE users ADD COLUMN IF NOT EXISTS last_login timestamptz DEFAULT now(); ALTER TABLE users ADD COLUMN IF NOT EXISTS email text; ALTER TABLE map_pins ADD COLUMN IF NOT EXISTS emoji text; CREATE TABLE IF NOT EXISTS shared_runs (id uuid DEFAULT gen_random_uuid() PRIMARY KEY, created_at timestamptz DEFAULT now(), name text, "user" text, distance text, time text, elevation text, city text, link text); CREATE TABLE IF NOT EXISTS news_cache (id integer PRIMARY KEY, articles jsonb, updated_at timestamptz DEFAULT now()); CREATE TABLE IF NOT EXISTS scan_stats (date DATE PRIMARY KEY, count INTEGER NOT NULL DEFAULT 0);' },
         { headers }
       ).catch(() => { }); // silently ignore if rpc not available
     } catch (e) { /* ignore */ }
@@ -415,6 +415,24 @@ app.delete('/api/admin/users/reset', requireAdminSession, async (req, res) => {
   } catch (err) {
     console.error('Failed to reset database:', err.message);
     res.status(500).json({ error: 'Failed to reset database.' });
+  }
+});
+
+// GET /api/admin/scan-stats — daily scan counts (last 30 days)
+app.get('/api/admin/scan-stats', requireAdminSession, async (req, res) => {
+  try {
+    if (!supabase) return res.json({ stats: [] });
+    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+    const { data, error } = await supabase
+      .from('scan_stats')
+      .select('date, count')
+      .gte('date', thirtyDaysAgo)
+      .order('date', { ascending: true });
+    if (error) throw error;
+    res.json({ stats: data || [] });
+  } catch (err) {
+    console.error('scan-stats error:', err.message);
+    res.status(500).json({ error: 'Failed to fetch scan stats.' });
   }
 });
 
@@ -910,6 +928,106 @@ app.get('/api/news', async (req, res) => {
   }
 });
 
+// ── Text-based Meal Describer (Gemini) ───────────────────────────────────────
+app.post('/api/describe-food', async (req, res) => {
+  const { description, mode = 'identify', answers } = req.body;
+  if (!description?.trim()) return res.status(400).json({ error: 'No description provided' });
+
+  const apiKey = process.env.GOOGLE_AI_API_KEY;
+  if (!apiKey) return res.status(500).json({ error: 'AI API key not configured' });
+
+  try {
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+
+    const identifyPrompt = `You are a nutrition expert specialising in Lebanese, Middle Eastern, French and international cuisine.
+
+The user says they ate: "${description.trim()}"
+
+Ask 2 to 4 smart clarifying questions to give a MUCH more accurate calorie estimate. Focus on the biggest unknowns: portion size, cooking method (grilled vs fried adds 100-300 kcal), sauces/oils, type of protein, extras like bread/rice/fries.
+
+Respond ONLY with this JSON (no markdown):
+{
+  "dish": "Inferred dish name",
+  "items": ["ingredient 1", "ingredient 2"],
+  "questions": [
+    {"q": "Question?", "options": ["Option A", "Option B", "Option C"]},
+    {"q": "Question?", "options": ["Option A", "Option B", "Option C"]}
+  ]
+}
+
+ALWAYS start with portion/quantity. Use metric units only (grams, cm — never cups, oz, inches). Keep to 2-3 questions maximum if the meal is already clear. Be smart about what matters most for calorie accuracy for Lebanese/Middle Eastern food.`;
+
+    const answersText = answers && Object.keys(answers).length > 0
+      ? Object.entries(answers).map(([q, a]) => `• ${q} → ${a}`).join('\n')
+      : '';
+
+    const estimatePrompt = `You are a nutrition expert specialising in Lebanese, Middle Eastern, French and international cuisine.
+
+The user described their meal as: "${description.trim()}"
+
+They answered the following questions:
+${answersText}
+
+Give a precise nutritional estimate using their description and answers. Use metric units only.
+
+Respond ONLY with this JSON (no markdown):
+{
+  "dish": "Name of the dish",
+  "confidence": "high|medium|low",
+  "servingSize": "e.g. 1 medium plate (~380g)",
+  "calories": 0,
+  "protein": 0,
+  "carbs": 0,
+  "fat": 0,
+  "items": ["ingredient 1", "ingredient 2"],
+  "tip": "One short practical nutrition tip about this meal"
+}`;
+
+    const prompt = mode === 'estimate' ? estimatePrompt : identifyPrompt;
+
+    const geminiRes = await fetch(geminiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+    });
+
+    const geminiJson = await geminiRes.json();
+    if (!geminiRes.ok) {
+      const msg = geminiJson?.error?.message || `Gemini API error ${geminiRes.status}`;
+      const isQuota = msg.includes('quota') || msg.includes('RESOURCE_EXHAUSTED') || geminiRes.status === 429;
+      return res.status(500).json({ error: isQuota ? 'API quota exceeded — please try again in a moment.' : msg });
+    }
+
+    const text = (geminiJson.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
+    if (!text) throw new Error('Empty response from Gemini');
+    let clean = text.replace(/^```json?\s*/i, '').replace(/\s*```$/i, '').trim();
+    const jsonMatch = clean.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error('No JSON in AI response');
+    const data = JSON.parse(jsonMatch[0]);
+
+    if (mode === 'estimate') {
+      data.calories = Math.round(Number(data.calories) || 0);
+      data.protein  = Math.round(Number(data.protein)  || 0);
+      data.carbs    = Math.round(Number(data.carbs)    || 0);
+      data.fat      = Math.round(Number(data.fat)      || 0);
+      if (supabase) {
+        const today = new Date().toISOString().slice(0, 10);
+        supabase.rpc('increment_scan', { target_date: today }).catch(() => {
+          supabase.from('scan_stats').select('count').eq('date', today).single()
+            .then(({ data: row }) => {
+              const newCount = (row?.count || 0) + 1;
+              supabase.from('scan_stats').upsert({ date: today, count: newCount }, { onConflict: 'date' }).catch(() => {});
+            }).catch(() => {});
+        });
+      }
+    }
+    res.json(data);
+  } catch (err) {
+    console.error('Food description error:', err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // ── Food Photo Analyzer (Gemini Vision) ──────────────────────────────────────
 app.post('/api/analyze-food', async (req, res) => {
   const { imageBase64, mimeType = 'image/jpeg', mode = 'identify', answers } = req.body;
@@ -1023,6 +1141,23 @@ Respond ONLY with this JSON (no markdown):
       data.protein  = Math.round(Number(data.protein)  || 0);
       data.carbs    = Math.round(Number(data.carbs)    || 0);
       data.fat      = Math.round(Number(data.fat)      || 0);
+      // Track scan in Supabase
+      if (supabase) {
+        const today = new Date().toISOString().slice(0, 10);
+        supabase.from('scan_stats').upsert(
+          { date: today, count: 1 },
+          { onConflict: 'date', ignoreDuplicates: false }
+        ).then(() => {}).catch(() => {});
+        // Use raw SQL increment via RPC if available, else just insert
+        supabase.rpc('increment_scan', { target_date: today }).catch(() => {
+          // fallback: fetch current count then update
+          supabase.from('scan_stats').select('count').eq('date', today).single()
+            .then(({ data: row }) => {
+              const newCount = (row?.count || 0) + 1;
+              supabase.from('scan_stats').upsert({ date: today, count: newCount }, { onConflict: 'date' }).catch(() => {});
+            }).catch(() => {});
+        });
+      }
     }
     res.json(data);
   } catch (err) {
