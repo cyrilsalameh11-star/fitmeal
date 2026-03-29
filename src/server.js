@@ -483,10 +483,10 @@ const parser = new RSSParser();
 const PINNED_GLOBAL_ARTICLES = [
   {
     title: "Lebanon Food & Wellness — Latest Trends in the Lebanese Market",
-    link: 'https://www.facebook.com/watch/?v=1295239999380190',
+    link: 'https://www.facebook.com/share/r/1B6kN893MZ/',
     pubDate: 'Sun, 29 Mar 2026 10:00:00 GMT',
     contentSnippet: "A closer look at the latest food and wellness trends shaping the Lebanese consumer market — from emerging local brands to shifting habits in Beirut and beyond.",
-    id: 'pinned-global-fb-1295239999380190',
+    id: 'pinned-global-fb-1B6kN893MZ',
   },
   {
     title: "Danone's $1bn Huel deal: why the multinational is betting big on meal replacements",

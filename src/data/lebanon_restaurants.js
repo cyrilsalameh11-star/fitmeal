@@ -3242,5 +3242,187 @@ module.exports = [
     "dietary": [
       "healthy"
     ]
+  },
+
+  // ── SwissButter ──────────────────────────────────────────────────────────────
+  {
+    "id": "lb-sb-beef-burger",
+    "name": "Classic Beef Burger",
+    "brand": "SwissButter",
+    "type": ["lunch", "dinner"],
+    "calories": 820,
+    "protein": 48,
+    "carbs": 52,
+    "fat": 42,
+    "tags": ["burger", "beef", "classic"],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-truffle-burger",
+    "name": "Truffle Mushroom Burger",
+    "brand": "SwissButter",
+    "type": ["lunch", "dinner"],
+    "calories": 930,
+    "protein": 50,
+    "carbs": 55,
+    "fat": 52,
+    "tags": ["burger", "beef", "truffle"],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-chicken-burger",
+    "name": "Crispy Chicken Burger",
+    "brand": "SwissButter",
+    "type": ["lunch", "dinner"],
+    "calories": 760,
+    "protein": 44,
+    "carbs": 58,
+    "fat": 34,
+    "tags": ["burger", "chicken", "crispy"],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-smash-burger",
+    "name": "Smash Double Patty Burger",
+    "brand": "SwissButter",
+    "type": ["lunch", "dinner"],
+    "calories": 1080,
+    "protein": 68,
+    "carbs": 54,
+    "fat": 62,
+    "tags": ["burger", "beef", "double"],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-bbq-burger",
+    "name": "BBQ Bacon Burger",
+    "brand": "SwissButter",
+    "type": ["lunch", "dinner"],
+    "calories": 970,
+    "protein": 55,
+    "carbs": 56,
+    "fat": 54,
+    "tags": ["burger", "beef", "bbq"],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-fries",
+    "name": "Swiss Fries (Regular)",
+    "brand": "SwissButter",
+    "type": ["snack", "side"],
+    "calories": 380,
+    "protein": 5,
+    "carbs": 52,
+    "fat": 18,
+    "tags": ["fries", "side"],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-truffle-fries",
+    "name": "Truffle Parmesan Fries",
+    "brand": "SwissButter",
+    "type": ["snack", "side"],
+    "calories": 490,
+    "protein": 9,
+    "carbs": 54,
+    "fat": 27,
+    "tags": ["fries", "truffle", "side"],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-onion-rings",
+    "name": "Crispy Onion Rings",
+    "brand": "SwissButter",
+    "type": ["snack", "side"],
+    "calories": 420,
+    "protein": 6,
+    "carbs": 56,
+    "fat": 21,
+    "tags": ["onion rings", "side"],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-milkshake-choc",
+    "name": "Chocolate Milkshake",
+    "brand": "SwissButter",
+    "type": ["dessert", "drink"],
+    "calories": 620,
+    "protein": 12,
+    "carbs": 88,
+    "fat": 24,
+    "tags": ["milkshake", "chocolate", "dessert"],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-milkshake-vanilla",
+    "name": "Vanilla Bean Milkshake",
+    "brand": "SwissButter",
+    "type": ["dessert", "drink"],
+    "calories": 580,
+    "protein": 11,
+    "carbs": 82,
+    "fat": 22,
+    "tags": ["milkshake", "vanilla", "dessert"],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-caesar-salad",
+    "name": "Caesar Salad with Grilled Chicken",
+    "brand": "SwissButter",
+    "type": ["lunch", "starter"],
+    "calories": 420,
+    "protein": 36,
+    "carbs": 18,
+    "fat": 24,
+    "tags": ["salad", "chicken", "healthy"],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-mac-cheese",
+    "name": "Signature Mac & Cheese",
+    "brand": "SwissButter",
+    "type": ["side", "lunch"],
+    "calories": 540,
+    "protein": 20,
+    "carbs": 60,
+    "fat": 26,
+    "tags": ["mac and cheese", "side", "comfort food"],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-coleslaw",
+    "name": "Creamy Coleslaw",
+    "brand": "SwissButter",
+    "type": ["side"],
+    "calories": 180,
+    "protein": 2,
+    "carbs": 14,
+    "fat": 13,
+    "tags": ["coleslaw", "side", "salad"],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-chocolate-lava",
+    "name": "Warm Chocolate Lava Cake",
+    "brand": "SwissButter",
+    "type": ["dessert"],
+    "calories": 520,
+    "protein": 7,
+    "carbs": 64,
+    "fat": 28,
+    "tags": ["dessert", "chocolate", "cake"],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-combo-meal",
+    "name": "Burger + Fries + Soft Drink Combo",
+    "brand": "SwissButter",
+    "type": ["lunch", "dinner"],
+    "calories": 1280,
+    "protein": 54,
+    "carbs": 138,
+    "fat": 52,
+    "tags": ["combo", "burger", "fries"],
+    "country": "Lebanon"
   }
 ];
