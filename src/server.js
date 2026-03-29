@@ -230,8 +230,121 @@ app.get('/api/stats', async (req, res) => {
 // ── Steps API ─────────────────────────────────────────────────────────────────
 // GET /api/steps?email=...                    → { steps, date }  (read)
 // GET /api/steps/sync?email=...&steps=NNN     → { ok, steps }    (iOS Shortcut — simple GET, no JSON needed)
+// GET /api/steps/shortcut?email=...           → .shortcut file   (auto-installs on iPhone via Safari)
 // POST /api/steps { email, steps, date? }     → { ok, steps }    (widget manual entry)
 // Called by the StepsWidget (polling) and by the iOS Shortcut / Android automation.
+
+// Download a pre-built .shortcut file with the user's email already embedded.
+// Open this URL in Safari on iPhone → iOS offers to install it in the Shortcuts app.
+app.get('/api/steps/shortcut', (req, res) => {
+  const email = (req.query.email || '').toLowerCase().trim();
+  if (!email) return res.status(400).send('Email required');
+
+  const uuid1 = 'B3A2C1D0-E4F5-6789-ABCD-EF0123456789'; // fixed UUID for action 1 output
+  const baseUrl = `https://jismeh.fit/api/steps/sync?email=${encodeURIComponent(email)}&steps=`;
+  // U+FFFC is the Object Replacement Character — Shortcuts uses it as variable placeholder
+  const placeholder = '\uFFFC';
+  const offset = baseUrl.length; // character position of the variable in the string
+
+  const plist = `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>WFWorkflowActions</key>
+  <array>
+    <dict>
+      <key>WFWorkflowActionIdentifier</key>
+      <string>is.workflow.actions.health.quantity.read</string>
+      <key>WFWorkflowActionParameters</key>
+      <dict>
+        <key>WFHealthQuantityType</key>
+        <dict>
+          <key>Value</key>
+          <dict>
+            <key>Identifier</key>
+            <string>HKQuantityTypeIdentifierStepCount</string>
+          </dict>
+          <key>WFSerializationType</key>
+          <string>WFQuantityTypeState</string>
+        </dict>
+        <key>WFHealthReadDate</key>
+        <dict>
+          <key>Value</key>
+          <dict>
+            <key>Identifier</key>
+            <string>Today</string>
+          </dict>
+          <key>WFSerializationType</key>
+          <string>WFDateFieldValue</string>
+        </dict>
+      </dict>
+      <key>WFWorkflowActionOutputName</key>
+      <string>Health Samples</string>
+      <key>WFWorkflowActionOutputUUID</key>
+      <string>${uuid1}</string>
+    </dict>
+    <dict>
+      <key>WFWorkflowActionIdentifier</key>
+      <string>is.workflow.actions.downloadurl</string>
+      <key>WFWorkflowActionParameters</key>
+      <dict>
+        <key>WFHTTPMethod</key>
+        <string>GET</string>
+        <key>WFURL</key>
+        <dict>
+          <key>WFSerializationType</key>
+          <string>WFTextTokenString</string>
+          <key>Value</key>
+          <dict>
+            <key>string</key>
+            <string>${baseUrl.replace(/&/g, '&amp;')}${placeholder}</string>
+            <key>attachmentsByRange</key>
+            <dict>
+              <key>{${offset}, 1}</key>
+              <dict>
+                <key>Aggrandizements</key>
+                <array/>
+                <key>OutputName</key>
+                <string>Health Samples</string>
+                <key>OutputUUID</key>
+                <string>${uuid1}</string>
+                <key>Type</key>
+                <string>ActionOutput</string>
+              </dict>
+            </dict>
+          </dict>
+        </dict>
+      </dict>
+    </dict>
+  </array>
+  <key>WFWorkflowClientVersion</key>
+  <string>1100.1</string>
+  <key>WFWorkflowMinimumClientVersion</key>
+  <integer>900</integer>
+  <key>WFWorkflowMinimumClientVersionString</key>
+  <string>900</string>
+  <key>WFWorkflowHasShortcutInputVariables</key>
+  <false/>
+  <key>WFWorkflowTypes</key>
+  <array/>
+  <key>WFWorkflowImportQuestions</key>
+  <array/>
+  <key>WFWorkflowInputContentItemClasses</key>
+  <array/>
+  <key>WFWorkflowIcon</key>
+  <dict>
+    <key>WFWorkflowIconStartColor</key>
+    <integer>4282601983</integer>
+    <key>WFWorkflowIconGlyphNumber</key>
+    <integer>59440</integer>
+  </dict>
+</dict>
+</plist>`;
+
+  res.setHeader('Content-Type', 'application/octet-stream');
+  res.setHeader('Content-Disposition', 'attachment; filename="FitNas Steps.shortcut"');
+  res.send(plist);
+});
 
 app.get('/api/steps', async (req, res) => {
   const { email } = req.query;
