@@ -919,9 +919,8 @@ app.post('/api/analyze-food', async (req, res) => {
   if (!apiKey) return res.status(500).json({ error: 'AI API key not configured' });
 
   try {
-    const { GoogleGenerativeAI } = require('@google/generative-ai');
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+    // Use Gemini REST API directly — no SDK version issues
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
     const prompt = `You are a nutrition expert. Analyze this food photo and estimate the nutritional content.
 
@@ -940,20 +939,33 @@ Respond ONLY with a valid JSON object in exactly this format (no markdown, no ex
 
 Be as accurate as possible. If you see multiple foods, estimate the total. If the image is not food, return calories: 0 and dish: "Not food detected".`;
 
-    const result = await model.generateContent([
-      prompt,
-      { inlineData: { mimeType, data: imageBase64 } }
-    ]);
+    const geminiRes = await fetch(geminiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{
+          parts: [
+            { text: prompt },
+            { inline_data: { mime_type: mimeType, data: imageBase64 } }
+          ]
+        }]
+      })
+    });
 
-    const text = result.response.text().trim();
-    // Extract JSON — handle markdown fences, leading text, trailing text
+    const geminiJson = await geminiRes.json();
+    if (!geminiRes.ok) {
+      const msg = geminiJson?.error?.message || `Gemini API error ${geminiRes.status}`;
+      console.error('Gemini API error:', msg);
+      return res.status(500).json({ error: msg });
+    }
+
+    const text = (geminiJson.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
+    if (!text) throw new Error('Empty response from Gemini');
+
     let clean = text.replace(/^```json?\s*/i, '').replace(/\s*```$/i, '').trim();
-    // If Gemini wrapped JSON in prose, extract the {...} block
     const jsonMatch = clean.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) throw new Error('No JSON found in AI response');
-    clean = jsonMatch[0];
-    const data = JSON.parse(clean);
-    // Ensure required numeric fields are present
+    if (!jsonMatch) throw new Error('No JSON in AI response');
+    const data = JSON.parse(jsonMatch[0]);
     data.calories = Math.round(Number(data.calories) || 0);
     data.protein  = Math.round(Number(data.protein)  || 0);
     data.carbs    = Math.round(Number(data.carbs)    || 0);
@@ -961,7 +973,7 @@ Be as accurate as possible. If you see multiple foods, estimate the total. If th
     res.json(data);
   } catch (err) {
     console.error('Food analysis error:', err.message);
-    res.status(500).json({ error: 'Could not analyze image. Please try again.' });
+    res.status(500).json({ error: err.message });
   }
 });
 

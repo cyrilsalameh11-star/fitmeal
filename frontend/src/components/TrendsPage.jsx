@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TrendingUp, ChevronLeft, ChevronRight, ExternalLink, Play } from 'lucide-react';
 
@@ -85,9 +85,40 @@ function getAccountReels(handle) {
   return REELS_DATA.filter(r => r.handle === handle);
 }
 
+// Load embed.js once, globally
+function loadEmbedScript(cb) {
+  if (window.instgrm) { cb(); return; }
+  if (document.getElementById('ig-embed-script')) {
+    // already injected but not yet loaded — wait
+    const existing = document.getElementById('ig-embed-script');
+    existing.addEventListener('load', cb, { once: true });
+    return;
+  }
+  const s = document.createElement('script');
+  s.id = 'ig-embed-script';
+  s.src = 'https://www.instagram.com/embed.js';
+  s.async = true;
+  s.onload = cb;
+  document.body.appendChild(s);
+}
+
 function ReelCard({ reel, index }) {
-  const account = ACCOUNTS.find(a => a.handle === reel.handle);
-  const reelUrl = `https://www.instagram.com/${reel.type}/${reel.shortcode}/`;
+  const account  = ACCOUNTS.find(a => a.handle === reel.handle);
+  const reelUrl  = `https://www.instagram.com/${reel.type}/${reel.shortcode}/`;
+  const embedRef = useRef(null);
+
+  useEffect(() => {
+    if (reel.blocked || !embedRef.current) return;
+    // Write the blockquote directly into the DOM so React never touches it again
+    embedRef.current.innerHTML = `<blockquote
+      class="instagram-media"
+      data-instgrm-captioned
+      data-instgrm-permalink="${reelUrl}?utm_source=ig_embed&utm_campaign=loading"
+      data-instgrm-version="14"
+      style="background:#09090b;border:0;margin:0;max-width:100%;min-width:0;padding:0;width:100%;"
+    ></blockquote>`;
+    loadEmbedScript(() => window.instgrm?.Embeds.process());
+  }, [reel.shortcode, reel.blocked, reelUrl]);
 
   return (
     <motion.div
@@ -115,7 +146,6 @@ function ReelCard({ reel, index }) {
         </a>
       </div>
 
-      {/* Blocked accounts: show fallback instead of broken embed */}
       {reel.blocked ? (
         <a
           href={reelUrl}
@@ -124,10 +154,7 @@ function ReelCard({ reel, index }) {
           className="flex flex-col items-center justify-center gap-6 px-8 text-center no-underline"
           style={{ height: '700px', background: `linear-gradient(160deg, ${reel.color}22 0%, #09090b 60%)` }}
         >
-          <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-2xl"
-            style={{ backgroundColor: reel.color }}
-          >
+          <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-2xl" style={{ backgroundColor: reel.color }}>
             <Play size={28} className="text-white ml-1" />
           </div>
           <div className="space-y-2">
@@ -136,32 +163,13 @@ function ReelCard({ reel, index }) {
               This account has embedding disabled.<br />Tap to watch on Instagram.
             </p>
           </div>
-          <span
-            className="px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest text-white"
-            style={{ backgroundColor: reel.color }}
-          >
+          <span className="px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest text-white" style={{ backgroundColor: reel.color }}>
             Watch on Instagram ↗
           </span>
         </a>
       ) : (
-        /* blockquote + embed.js — the only approach that gives inline play buttons */
-        <blockquote
-          className="instagram-media"
-          data-instgrm-captioned
-          data-instgrm-permalink={`${reelUrl}?utm_source=ig_embed&utm_campaign=loading`}
-          data-instgrm-version="14"
-          style={{
-            background: '#09090b',
-            border: 0,
-            borderRadius: 0,
-            boxShadow: 'none',
-            margin: 0,
-            maxWidth: '100%',
-            minWidth: 0,
-            padding: 0,
-            width: '100%',
-          }}
-        />
+        /* embed.js writes into this div — React never touches its children */
+        <div ref={embedRef} style={{ minHeight: '500px' }} />
       )}
     </motion.div>
   );
@@ -171,21 +179,6 @@ export default function TrendsPage() {
   const [page,          setPage]          = useState(0);
   const [activeAccount, setActiveAccount] = useState('all');
 
-  // Load embed.js once; re-process blockquotes on every page/filter change
-  useEffect(() => {
-    const process = () => window.instgrm?.Embeds.process();
-    if (document.getElementById('ig-embed-script')) {
-      // Script already loaded — just re-process new blockquotes
-      setTimeout(process, 100);
-      return;
-    }
-    const script = document.createElement('script');
-    script.id  = 'ig-embed-script';
-    script.src = 'https://www.instagram.com/embed.js';
-    script.async = true;
-    script.onload = process;
-    document.body.appendChild(script);
-  }, [page, activeAccount]);
 
   const isAll      = activeAccount === 'all';
   const totalPages = isAll ? TOTAL_PAGES : 1;
