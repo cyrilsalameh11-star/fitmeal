@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Footprints, PencilLine, Check, X, RotateCcw, Download, ChevronDown, ChevronUp } from 'lucide-react';
+import { Footprints, PencilLine, Check, X, RotateCcw, ChevronDown, ChevronUp } from 'lucide-react';
 
 const GOAL = 10000;
 const RADIUS = 44;
@@ -70,8 +70,9 @@ export default function StepsWidget() {
   const track  = getTrack(pct);
   const kcal   = Math.round(steps * 0.04);
   const km     = (steps * 0.00078).toFixed(1);
-  const shortcutUrl = email ? `/api/steps/shortcut?email=${encodeURIComponent(email)}` : null;
-  const syncUrl     = email ? `https://jismeh.fit/api/steps/sync?email=${encodeURIComponent(email)}&steps=YOUR_STEPS` : null;
+  const syncUrl = email
+    ? `https://jismeh.fit/api/steps/sync?email=${encodeURIComponent(email)}&steps=%pedometer_steps_today%`
+    : 'https://jismeh.fit/api/steps/sync?email=YOUR_EMAIL&steps=%pedometer_steps_today%';
 
   return (
     <div className="bg-white border border-stone-100 rounded-3xl p-6 shadow-sm">
@@ -99,7 +100,7 @@ export default function StepsWidget() {
         </div>
       </div>
 
-      {/* ── Main content: ring + stats + install button ── */}
+      {/* ── Main content: ring + stats ── */}
       <div className="flex items-center gap-6">
 
         {/* Ring */}
@@ -151,12 +152,12 @@ export default function StepsWidget() {
             </div>
           </div>
 
-          {/* Install shortcut button */}
-          {shortcutUrl && (
-            <a href={shortcutUrl}
-              className="flex items-center justify-center gap-1.5 w-full py-2.5 bg-stone-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-amber-500 transition-all duration-200 active:scale-95">
-              <Download className="w-3 h-3" /> Install iPhone Shortcut
-            </a>
+          {/* Setup hint */}
+          {!showSetup && (
+            <button onClick={() => setShowSetup(true)}
+              className="w-full py-2 text-[9px] font-black uppercase tracking-widest text-stone-400 hover:text-stone-700 transition-all border border-dashed border-stone-200 rounded-2xl hover:border-stone-400">
+              Set up auto-sync →
+            </button>
           )}
         </div>
       </div>
@@ -196,7 +197,7 @@ export default function StepsWidget() {
               Walking 10k steps burns roughly <strong>400 kcal</strong> and covers about <strong>7–8 km</strong>.
             </p>
             <p className="text-xs text-stone-500 leading-relaxed">
-              Web apps can't read Health data directly, so you sync your steps from your phone's Health app using the method below. Steps are saved to your account and update automatically.
+              Web apps can't read Health data directly. Use the setup below to auto-sync your steps from your phone. Steps update on this page every 5 minutes, or tap the ✏ icon to enter them manually anytime.
             </p>
           </div>
 
@@ -214,14 +215,28 @@ export default function StepsWidget() {
 
           {platform === 'ios' && (
             <div className="space-y-3">
-              <p className="text-[10px] font-black uppercase tracking-widest text-stone-500">iPhone — 1-tap setup</p>
+              <p className="text-[10px] font-black uppercase tracking-widest text-stone-500">iPhone — iOS Shortcuts (free, built-in)</p>
               <div className="space-y-2.5">
                 {[
-                  { n: 1, t: 'Tap "Install iPhone Shortcut" above. Safari downloads a .shortcut file.' },
-                  { n: 2, t: 'iOS asks to open it in the Shortcuts app — tap Add Shortcut.' },
-                  { n: 3, t: 'If you see "Untrusted Shortcut": go to Settings → Shortcuts → turn on Allow Untrusted Shortcuts, then retry.' },
-                  { n: 4, t: 'Run it once manually to test. The ring updates within 5 minutes.' },
-                  { n: 5, t: 'To auto-sync hourly: Shortcuts app → Automation tab → + → Time of Day → Every 1 hour → Run Shortcut → pick "FitNas Steps".' },
+                  { n: 1, t: 'Open the Shortcuts app (built into iPhone — search it in Spotlight if needed).' },
+                  { n: 2, t: 'Tap + (top right) to create a new shortcut. Tap "Add Action".' },
+                  { n: 3, t: 'Search for "Find Health Samples". Select it. Set Type = Steps, Date = Today.' },
+                  { n: 4, t: 'Add a second action: search "Calculate Statistics". Set it to Sum, Input = Health Samples.' },
+                  {
+                    n: 5,
+                    t: (
+                      <span>
+                        Add a third action: search <strong>"Get Contents of URL"</strong>. Set Method = GET. Set the URL to:{' '}
+                        <code className="bg-white px-1 rounded text-[9px] font-mono break-all">
+                          {`https://jismeh.fit/api/steps/sync?email=${email || 'YOUR_EMAIL'}&steps=`}
+                        </code>
+                        {' '}then tap the URL field and insert the <strong>Calculated Result</strong> variable from step 4 at the end.
+                      </span>
+                    )
+                  },
+                  { n: 6, t: 'Tap the shortcut name at the top, rename it "FitNas Steps", then tap Done.' },
+                  { n: 7, t: 'Run it once to test. You\'ll see a permission prompt for Health access — tap Allow.' },
+                  { n: 8, t: 'To auto-sync: tap the Automation tab → + → Time of Day → set Repeat to Every Hour → Run Immediately → choose "FitNas Steps" → Done.' },
                 ].map(s => (
                   <div key={s.n} className="flex gap-2.5 items-start">
                     <span className="flex-shrink-0 w-5 h-5 bg-stone-900 text-white rounded-full text-[8px] font-black flex items-center justify-center mt-0.5">{s.n}</span>
@@ -234,23 +249,36 @@ export default function StepsWidget() {
 
           {platform === 'android' && (
             <div className="space-y-3">
-              <p className="text-[10px] font-black uppercase tracking-widest text-stone-500">Android — 2 options</p>
+              <p className="text-[10px] font-black uppercase tracking-widest text-stone-500">Android — MacroDroid (free, auto hourly)</p>
 
-              <div className="bg-amber-50 rounded-2xl p-3 space-y-1">
-                <p className="text-[10px] font-black text-amber-700 uppercase tracking-widest">Option A — Quick manual sync</p>
-                <p className="text-[11px] text-stone-600 leading-relaxed">
-                  Open <strong>Google Fit</strong> or <strong>Health Connect</strong> on your phone, check your step count, then tap the ✏ icon above and type it in. Takes 5 seconds.
+              <div className="bg-amber-50 rounded-2xl p-3">
+                <p className="text-[11px] text-stone-700 leading-relaxed">
+                  MacroDroid reads your phone's <strong>built-in step sensor</strong> directly — no Samsung Health API needed. It automatically syncs your steps every hour in the background.
                 </p>
               </div>
 
-              <div className="bg-stone-50 rounded-2xl p-3 space-y-2">
-                <p className="text-[10px] font-black text-stone-500 uppercase tracking-widest">Option B — Auto sync with MacroDroid (free)</p>
+              <div className="space-y-2.5">
                 {[
-                  { n: 1, t: 'Install MacroDroid from the Play Store (free).' },
-                  { n: 2, t: 'Create a new Macro → Trigger: Time → Every 1 hour.' },
-                  { n: 3, t: 'Add Action → Connectivity → HTTP Request → Method: GET.' },
-                  { n: 4, t: <span>Set URL to: <code className="bg-white px-1 rounded text-[9px] font-mono break-all">{syncUrl}</code> — replace YOUR_STEPS with the MacroDroid variable for Google Fit steps (search "Pedometer" in the variable list).</span> },
-                  { n: 5, t: 'Save and enable the macro. Steps will sync every hour.' },
+                  { n: 1, t: 'Install MacroDroid from the Play Store (free). Open it and tap "Add Macro".' },
+                  { n: 2, t: 'Tap Triggers → tap + → choose "Date / Time" → "Regular Interval" → set to Every 1 Hour → OK.' },
+                  {
+                    n: 3,
+                    t: (
+                      <span>
+                        Tap Actions → tap + → choose <strong>"Connectivity"</strong> → <strong>"HTTP Request"</strong>.
+                        Set Method = GET. Paste this URL exactly:
+                        <br />
+                        <code className="bg-white px-1 mt-1 rounded text-[9px] font-mono break-all block">
+                          {syncUrl}
+                        </code>
+                        <br />
+                        The <strong>%pedometer_steps_today%</strong> part is a MacroDroid built-in variable that automatically reads today's step count from your phone's hardware sensor.
+                      </span>
+                    )
+                  },
+                  { n: 4, t: 'Tap OK → name the macro "FitNas Steps" → tap the checkmark to save.' },
+                  { n: 5, t: 'Tap the macro → "Run" to test it. Your steps should appear on this page within a few seconds.' },
+                  { n: 6, t: 'Make sure MacroDroid has permission to run in the background (Battery → Unrestricted) so it keeps syncing when the screen is off.' },
                 ].map(s => (
                   <div key={s.n} className="flex gap-2.5 items-start">
                     <span className="flex-shrink-0 w-5 h-5 bg-stone-700 text-white rounded-full text-[8px] font-black flex items-center justify-center mt-0.5">{s.n}</span>
