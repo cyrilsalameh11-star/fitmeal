@@ -909,6 +909,52 @@ app.get('/api/news', async (req, res) => {
   }
 });
 
+// ── Food Photo Analyzer (Gemini Vision) ──────────────────────────────────────
+app.post('/api/analyze-food', async (req, res) => {
+  const { imageBase64, mimeType = 'image/jpeg' } = req.body;
+  if (!imageBase64) return res.status(400).json({ error: 'No image provided' });
+
+  const apiKey = process.env.GOOGLE_AI_API_KEY;
+  if (!apiKey) return res.status(500).json({ error: 'AI API key not configured' });
+
+  try {
+    const { GoogleGenerativeAI } = require('@google/generative-ai');
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+
+    const prompt = `You are a nutrition expert. Analyze this food photo and estimate the nutritional content.
+
+Respond ONLY with a valid JSON object in exactly this format (no markdown, no explanation):
+{
+  "dish": "Name of the dish or food item",
+  "confidence": "high|medium|low",
+  "servingSize": "estimated portion size (e.g. 1 plate, 200g)",
+  "calories": 000,
+  "protein": 00,
+  "carbs": 00,
+  "fat": 00,
+  "items": ["ingredient 1", "ingredient 2"],
+  "tip": "One short nutrition tip about this meal"
+}
+
+Be as accurate as possible. If you see multiple foods, estimate the total. If the image is not food, return calories: 0 and dish: "Not food detected".`;
+
+    const result = await model.generateContent([
+      prompt,
+      { inlineData: { mimeType, data: imageBase64 } }
+    ]);
+
+    const text = result.response.text().trim();
+    // Strip any markdown code fences if present
+    const clean = text.replace(/^```json?\s*/i, '').replace(/\s*```$/i, '').trim();
+    const data = JSON.parse(clean);
+    res.json(data);
+  } catch (err) {
+    console.error('Food analysis error:', err.message);
+    res.status(500).json({ error: 'Could not analyze image. Please try again.' });
+  }
+});
+
 // ── Cron: refresh news cache every Sunday (triggered by Vercel Cron) ──────────
 
 app.get('/api/cron/refresh-news', async (req, res) => {
