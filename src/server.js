@@ -482,7 +482,7 @@ const parser = new RSSParser();
 // Manually curated global FMCG articles — always surfaced at the top
 const PINNED_GLOBAL_ARTICLES = [
   {
-    title: "Lebanon Food & Wellness — Latest Trends in the Lebanese Market",
+    title: "Monoprix arrives to NokNok!",
     link: 'https://www.facebook.com/share/r/1B6kN893MZ/',
     pubDate: 'Sun, 29 Mar 2026 10:00:00 GMT',
     contentSnippet: "A closer look at the latest food and wellness trends shaping the Lebanese consumer market — from emerging local brands to shifting habits in Beirut and beyond.",
