@@ -912,61 +912,79 @@ app.get('/api/news', async (req, res) => {
 
 // ── Food Photo Analyzer (Gemini Vision) ──────────────────────────────────────
 app.post('/api/analyze-food', async (req, res) => {
-  const { imageBase64, mimeType = 'image/jpeg' } = req.body;
+  const { imageBase64, mimeType = 'image/jpeg', mode = 'identify', answers } = req.body;
   if (!imageBase64) return res.status(400).json({ error: 'No image provided' });
 
   const apiKey = process.env.GOOGLE_AI_API_KEY;
   if (!apiKey) return res.status(500).json({ error: 'AI API key not configured' });
 
   try {
-    // Use Gemini REST API directly — gemini-2.5-flash has free tier quota on this project
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
-    const { answers } = req.body;
-    const hasAnswers = answers && Object.keys(answers).length > 0;
-    const answersText = hasAnswers
-      ? `\n\nThe user has provided the following context:\n${Object.entries(answers).map(([q,a]) => `- ${q}: ${a}`).join('\n')}\nUse this to give a more precise estimate. Set "questions": [] in your response.`
+    // mode=identify: recognise dish + ask questions (no calorie estimate yet)
+    // mode=estimate: user answered questions, now give full nutritional breakdown
+    const identifyPrompt = `You are a nutrition expert specialising in Lebanese, Middle Eastern, French and international cuisine.
+
+Look at this food photo and:
+1. Identify the dish
+2. Ask 2 to 3 short clarifying questions that will allow you to give a MUCH more accurate calorie estimate later.
+
+Focus questions on the biggest sources of uncertainty: how many pieces/slices, portion size in grams, cooking method, added sauces or extras. Be specific to what you actually see — do not ask generic questions.
+
+Respond ONLY with this JSON (no markdown):
+{
+  "dish": "Name of the dish",
+  "items": ["ingredient 1", "ingredient 2"],
+  "questions": [
+    {"q": "Question?", "options": ["Option A", "Option B", "Option C"]},
+    {"q": "Question?", "options": ["Option A", "Option B", "Option C"]}
+  ]
+}
+
+Examples of GOOD questions for a pizza:
+- "How many slices did you eat?" → ["1 slice", "2 slices", "3+ slices"]
+- "What size was the pizza?" → ["Small (20cm)", "Medium (28cm)", "Large (33cm+)"]
+- "Any extra toppings or dips?" → ["Just cheese", "Extra meat", "Side dip / sauce"]
+
+Examples of GOOD questions for a mixed plate:
+- "How big was the portion?" → ["~200g (light)", "~350g (normal)", "~500g+ (large)"]
+- "Was the meat grilled or fried?" → ["Grilled", "Fried", "Baked/roasted"]
+- "Did you add any sauce?" → ["No sauce", "Garlic / toum", "Tahini", "Both"]
+
+Use metric units only (grams, cm — never cups, oz, inches).
+If not food: return dish: "Not food detected", items: [], questions: [].`;
+
+    const answersText = answers && Object.keys(answers).length > 0
+      ? Object.entries(answers).map(([q, a]) => `• ${q} → ${a}`).join('\n')
       : '';
 
-    const prompt = `You are a nutrition expert specialising in Lebanese and Middle Eastern cuisine, as well as French and international food. Analyse this food photo and estimate the nutritional content using metric units only (grams, ml — never cups, oz, or inches).${answersText}
+    const estimatePrompt = `You are a nutrition expert specialising in Lebanese, Middle Eastern, French and international cuisine.
 
-Respond ONLY with a valid JSON object in exactly this format (no markdown, no explanation):
+The user photographed this meal. They answered the following questions:
+${answersText}
+
+Using the photo AND their answers, give a precise nutritional estimate. Use metric units only (grams, ml).
+
+Respond ONLY with this JSON (no markdown):
 {
   "dish": "Name of the dish",
   "confidence": "high|medium|low",
-  "servingSize": "e.g. 1 plate (~350g) or 2 manakish or 1 bowl (~400ml)",
+  "servingSize": "e.g. 2 slices pizza (~280g) or 1 medium plate (~380g)",
   "calories": 0,
   "protein": 0,
   "carbs": 0,
   "fat": 0,
-  "items": ["main ingredient 1", "main ingredient 2"],
-  "tip": "One practical nutrition tip relevant to this meal",
-  "questions": [
-    {"q": "Question text", "options": ["Option A", "Option B", "Option C"]}
-  ]
-}
+  "items": ["ingredient 1", "ingredient 2"],
+  "tip": "One short practical nutrition tip about this meal"
+}`;
 
-${hasAnswers
-  ? 'The user has answered your questions — give a refined, accurate estimate now. Set "questions": [].'
-  : `Include exactly 2 clarifying questions that would most improve accuracy. Make them conversational and specific to what you see. Use metric units in options. Good question topics: portion size in grams, cooking method (grilled/fried/baked), added sauces or dressings (e.g. garlic sauce, tahini, olive oil), extras (bread, rice, fries). Bad questions: vague or irrelevant ones.
-
-Examples of good questions:
-- "How much did you eat roughly?" with options ["~200g (small)", "~350g (medium)", "~500g+ (large)"]
-- "Was the meat grilled or fried?" with options ["Grilled", "Fried", "Baked"]
-- "Did you add any sauce?" with options ["No sauce", "Garlic / toum", "Tahini", "Both"]`}
-
-If the image is not food, return calories: 0, dish: "Not food detected", questions: [].`;
+    const prompt = mode === 'estimate' ? estimatePrompt : identifyPrompt;
 
     const geminiRes = await fetch(geminiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [{
-          parts: [
-            { text: prompt },
-            { inline_data: { mime_type: mimeType, data: imageBase64 } }
-          ]
-        }]
+        contents: [{ parts: [{ text: prompt }, { inline_data: { mime_type: mimeType, data: imageBase64 } }] }]
       })
     });
 
@@ -976,9 +994,7 @@ If the image is not food, return calories: 0, dish: "Not food detected", questio
       console.error('Gemini API error:', msg);
       const isQuota = msg.includes('quota') || msg.includes('RESOURCE_EXHAUSTED') || geminiRes.status === 429;
       return res.status(500).json({
-        error: isQuota
-          ? 'API quota exceeded. Go to aistudio.google.com → create a free API key (no billing) → update GOOGLE_AI_API_KEY on Vercel.'
-          : msg
+        error: isQuota ? 'API quota exceeded — please try again in a moment.' : msg
       });
     }
 
@@ -989,10 +1005,12 @@ If the image is not food, return calories: 0, dish: "Not food detected", questio
     const jsonMatch = clean.match(/\{[\s\S]*\}/);
     if (!jsonMatch) throw new Error('No JSON in AI response');
     const data = JSON.parse(jsonMatch[0]);
-    data.calories = Math.round(Number(data.calories) || 0);
-    data.protein  = Math.round(Number(data.protein)  || 0);
-    data.carbs    = Math.round(Number(data.carbs)    || 0);
-    data.fat      = Math.round(Number(data.fat)      || 0);
+    if (mode === 'estimate') {
+      data.calories = Math.round(Number(data.calories) || 0);
+      data.protein  = Math.round(Number(data.protein)  || 0);
+      data.carbs    = Math.round(Number(data.carbs)    || 0);
+      data.fat      = Math.round(Number(data.fat)      || 0);
+    }
     res.json(data);
   } catch (err) {
     console.error('Food analysis error:', err.message);
