@@ -945,9 +945,18 @@ Be as accurate as possible. If you see multiple foods, estimate the total. If th
     ]);
 
     const text = result.response.text().trim();
-    // Strip any markdown code fences if present
-    const clean = text.replace(/^```json?\s*/i, '').replace(/\s*```$/i, '').trim();
+    // Extract JSON — handle markdown fences, leading text, trailing text
+    let clean = text.replace(/^```json?\s*/i, '').replace(/\s*```$/i, '').trim();
+    // If Gemini wrapped JSON in prose, extract the {...} block
+    const jsonMatch = clean.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error('No JSON found in AI response');
+    clean = jsonMatch[0];
     const data = JSON.parse(clean);
+    // Ensure required numeric fields are present
+    data.calories = Math.round(Number(data.calories) || 0);
+    data.protein  = Math.round(Number(data.protein)  || 0);
+    data.carbs    = Math.round(Number(data.carbs)    || 0);
+    data.fat      = Math.round(Number(data.fat)      || 0);
     res.json(data);
   } catch (err) {
     console.error('Food analysis error:', err.message);

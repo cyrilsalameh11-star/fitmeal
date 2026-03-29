@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { TrendingUp, ChevronLeft, ChevronRight, ExternalLink, Play } from 'lucide-react';
 
 // ─────────────────────────────────────────────────────────────────
-// REELS DATA — 6 accounts × 5 reels = 30 total
-// Interleaved: page N shows reel[N] from each account (1 per creator)
+// REELS DATA — 7 accounts × 5 pages (newinbeirut added)
+// Interleaved: page N shows one reel per account
 // ─────────────────────────────────────────────────────────────────
 const REELS_DATA = [
   // PAGE 1
@@ -14,38 +14,52 @@ const REELS_DATA = [
   { id: 4,  handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DVti6aGDoWq', type: 'reel', blocked: true },
   { id: 5,  handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVTx-Bdje99', type: 'reel' },
   { id: 6,  handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DVRqFx7jYld', type: 'reel' },
+  { id: 7,  handle: 'newinbeirut',          color: '#f97316', shortcode: 'DVthGdRDYhk', type: 'p'    },
 
   // PAGE 2
-  { id: 7,  handle: 'guide.lb',             color: '#e11d48', shortcode: 'DUgGrZDDYpl', type: 'reel' },
-  { id: 8,  handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DVVlCUiDaG6', type: 'reel' },
-  { id: 9,  handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUxdhBqDU_T', type: 'reel' },
-  { id: 10, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DSzNG4tjAqu', type: 'reel', blocked: true },
-  { id: 11, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVHRV8aDVMd', type: 'reel' },
-  { id: 12, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DVB4QnTDVF-', type: 'reel' },
+  { id: 8,  handle: 'guide.lb',             color: '#e11d48', shortcode: 'DUgGrZDDYpl', type: 'reel' },
+  { id: 9,  handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DVVlCUiDaG6', type: 'reel' },
+  { id: 10, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUxdhBqDU_T', type: 'reel' },
+  { id: 11, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DSzNG4tjAqu', type: 'reel', blocked: true },
+  { id: 12, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVHRV8aDVMd', type: 'reel' },
+  { id: 13, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DVB4QnTDVF-', type: 'reel' },
+  { id: 14, handle: 'newinbeirut',          color: '#f97316', shortcode: 'DVeHssgDUKf', type: 'p'    },
 
   // PAGE 3
-  { id: 13, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DSkvVRjjcMY', type: 'p'    },
-  { id: 14, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DVMfhvYDRYS', type: 'reel' },
-  { id: 15, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUgGiWNEiZi', type: 'reel' },
-  { id: 16, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DRAQGGUjKy0', type: 'reel', blocked: true },
-  { id: 17, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVG4b48jbNi', type: 'reel' },
-  { id: 18, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DU8mp01jZnu', type: 'reel' },
+  { id: 15, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DSkvVRjjcMY', type: 'p'    },
+  { id: 16, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DVMfhvYDRYS', type: 'reel' },
+  { id: 17, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUgGiWNEiZi', type: 'reel' },
+  { id: 18, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DRAQGGUjKy0', type: 'reel', blocked: true },
+  { id: 19, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVG4b48jbNi', type: 'reel' },
+  { id: 20, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DU8mp01jZnu', type: 'reel' },
+  { id: 21, handle: 'newinbeirut',          color: '#f97316', shortcode: 'DVRUcaTjaYu', type: 'p'    },
 
   // PAGE 4
-  { id: 19, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DSC5LaRDTOI', type: 'reel' },
-  { id: 20, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DU-VE72jRn3', type: 'reel' },
-  { id: 21, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUKxO6VDczo', type: 'reel' },
-  { id: 22, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DR2V9vuDML-', type: 'reel', blocked: true },
-  { id: 23, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DU5DbZWDQ42', type: 'reel' },
-  { id: 24, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DUv5pNUjT4U', type: 'reel' },
+  { id: 22, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DSC5LaRDTOI', type: 'reel' },
+  { id: 23, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DU-VE72jRn3', type: 'reel' },
+  { id: 24, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUKxO6VDczo', type: 'reel' },
+  { id: 25, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DR2V9vuDML-', type: 'reel', blocked: true },
+  { id: 26, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DU5DbZWDQ42', type: 'reel' },
+  { id: 27, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DUv5pNUjT4U', type: 'reel' },
+  { id: 28, handle: 'newinbeirut',          color: '#f97316', shortcode: 'DUaUxCtjVdq', type: 'reel' },
 
   // PAGE 5
-  { id: 25, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DRzc-I5jaoJ', type: 'reel' },
-  { id: 26, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DUvLEl5DTd_', type: 'reel' },
-  { id: 27, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DRAC021kvno', type: 'reel' },
-  { id: 28, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DUfYlnuAvxJ', type: 'reel', blocked: true },
-  { id: 29, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DUQzpVqDVlU', type: 'reel' },
-  { id: 30, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DUtE9gqDUeY', type: 'reel' },
+  { id: 29, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DRzc-I5jaoJ', type: 'reel' },
+  { id: 30, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DUvLEl5DTd_', type: 'reel' },
+  { id: 31, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DRAC021kvno', type: 'reel' },
+  { id: 32, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DUfYlnuAvxJ', type: 'reel', blocked: true },
+  { id: 33, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DUQzpVqDVlU', type: 'reel' },
+  { id: 34, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DUtE9gqDUeY', type: 'reel' },
+  { id: 35, handle: 'newinbeirut',          color: '#f97316', shortcode: 'DUTf12UDTbX', type: 'p'    },
+
+  // PAGE 6 (newinbeirut 6th reel)
+  { id: 36, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DUyUdKfDQfS', type: 'reel' },
+  { id: 37, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DUlZ_JQjMSh', type: 'reel' },
+  { id: 38, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DQjgZMhkqh2', type: 'reel' },
+  { id: 39, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DVti6aGDoWq', type: 'reel', blocked: true },
+  { id: 40, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVTx-Bdje99', type: 'reel' },
+  { id: 41, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DVRqFx7jYld', type: 'reel' },
+  { id: 42, handle: 'newinbeirut',          color: '#f97316', shortcode: 'DUAfUqQDWGe', type: 'reel' },
 ];
 
 const ACCOUNTS = [
@@ -55,10 +69,11 @@ const ACCOUNTS = [
   { handle: 'ellevousguide',        color: '#7c3aed', url: 'https://www.instagram.com/ellevousguide/'        },
   { handle: 'laroutineyt',          color: '#16a34a', url: 'https://www.instagram.com/laroutineyt/'          },
   { handle: 'wondersbyaline',       color: '#f43f5e', url: 'https://www.instagram.com/wondersbyaline/'       },
+  { handle: 'newinbeirut',          color: '#f97316', url: 'https://www.instagram.com/newinbeirut/'          },
 ];
 
-const REELS_PER_PAGE = 6;
-const TOTAL_PAGES    = 5;
+const REELS_PER_PAGE = 7;
+const TOTAL_PAGES    = 6;
 
 // Flat slice — data is pre-interleaved so each page is balanced
 function getPageReels(page) {
