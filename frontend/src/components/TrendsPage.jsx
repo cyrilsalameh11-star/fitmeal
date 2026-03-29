@@ -115,7 +115,7 @@ function ReelCard({ reel, index }) {
         </a>
       </div>
 
-      {/* Blocked accounts: show fallback instead of broken iframe */}
+      {/* Blocked accounts: show fallback instead of broken embed */}
       {reel.blocked ? (
         <a
           href={reelUrl}
@@ -144,14 +144,23 @@ function ReelCard({ reel, index }) {
           </span>
         </a>
       ) : (
-        <iframe
-          src={`https://www.instagram.com/${reel.type}/${reel.shortcode}/embed/`}
-          className="w-full border-0 block"
-          style={{ height: '740px' }}
-          allowFullScreen
-          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-          loading="lazy"
-          title={`@${reel.handle}`}
+        /* blockquote + embed.js — the only approach that gives inline play buttons */
+        <blockquote
+          className="instagram-media"
+          data-instgrm-captioned
+          data-instgrm-permalink={`${reelUrl}?utm_source=ig_embed&utm_campaign=loading`}
+          data-instgrm-version="14"
+          style={{
+            background: '#09090b',
+            border: 0,
+            borderRadius: 0,
+            boxShadow: 'none',
+            margin: 0,
+            maxWidth: '100%',
+            minWidth: 0,
+            padding: 0,
+            width: '100%',
+          }}
         />
       )}
     </motion.div>
@@ -162,18 +171,21 @@ export default function TrendsPage() {
   const [page,          setPage]          = useState(0);
   const [activeAccount, setActiveAccount] = useState('all');
 
-  // Load Instagram embed script once so iframes initialize with play buttons
+  // Load embed.js once; re-process blockquotes on every page/filter change
   useEffect(() => {
+    const process = () => window.instgrm?.Embeds.process();
     if (document.getElementById('ig-embed-script')) {
-      if (window.instgrm) window.instgrm.Embeds.process();
+      // Script already loaded — just re-process new blockquotes
+      setTimeout(process, 100);
       return;
     }
     const script = document.createElement('script');
     script.id  = 'ig-embed-script';
     script.src = 'https://www.instagram.com/embed.js';
     script.async = true;
+    script.onload = process;
     document.body.appendChild(script);
-  }, []);
+  }, [page, activeAccount]);
 
   const isAll      = activeAccount === 'all';
   const totalPages = isAll ? TOTAL_PAGES : 1;
