@@ -956,7 +956,12 @@ Be as accurate as possible. If you see multiple foods, estimate the total. If th
     if (!geminiRes.ok) {
       const msg = geminiJson?.error?.message || `Gemini API error ${geminiRes.status}`;
       console.error('Gemini API error:', msg);
-      return res.status(500).json({ error: msg });
+      const isQuota = msg.includes('quota') || msg.includes('RESOURCE_EXHAUSTED') || geminiRes.status === 429;
+      return res.status(500).json({
+        error: isQuota
+          ? 'API quota exceeded. Go to aistudio.google.com → create a free API key (no billing) → update GOOGLE_AI_API_KEY on Vercel.'
+          : msg
+      });
     }
 
     const text = (geminiJson.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
