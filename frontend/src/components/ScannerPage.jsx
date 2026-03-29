@@ -24,38 +24,55 @@ export default function ScannerPage() {
   const [error,    setError]    = useState(null);
   const [logged,   setLogged]   = useState(false);
 
+  // Resize + compress image to max 900px / 80% quality before sending
+  // Keeps payload under ~300KB regardless of phone camera resolution
+  const compressImage = useCallback((file) => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      const objectUrl = URL.createObjectURL(file);
+      img.onload = () => {
+        const MAX = 900;
+        let { width, height } = img;
+        if (width > MAX || height > MAX) {
+          if (width > height) { height = Math.round((height * MAX) / width); width = MAX; }
+          else { width = Math.round((width * MAX) / height); height = MAX; }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+        URL.revokeObjectURL(objectUrl);
+        resolve(canvas.toDataURL('image/jpeg', 0.8));
+      };
+      img.src = objectUrl;
+    });
+  }, []);
+
   const analyzeImage = useCallback(async (file) => {
     setLoading(true);
     setResult(null);
     setError(null);
     setLogged(false);
 
-    // Read as base64
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-      const dataUrl = e.target.result;
+    try {
+      const dataUrl = await compressImage(file);
       setPreview(dataUrl);
 
-      // Strip the data:image/...;base64, prefix
       const base64 = dataUrl.split(',')[1];
-      const mimeType = file.type || 'image/jpeg';
 
-      try {
-        const res = await fetch('/api/analyze-food', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ imageBase64: base64, mimeType }),
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error || 'Analysis failed');
-        setResult(data);
-      } catch (err) {
-        setError(err.message || 'Could not analyze image. Please try again.');
-      }
-      setLoading(false);
-    };
-    reader.readAsDataURL(file);
-  }, []);
+      const res = await fetch('/api/analyze-food', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ imageBase64: base64, mimeType: 'image/jpeg' }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Analysis failed');
+      setResult(data);
+    } catch (err) {
+      setError(err.message || 'Could not analyze image. Please try again.');
+    }
+    setLoading(false);
+  }, [compressImage]);
 
   function handleFile(e) {
     const file = e.target.files?.[0];
