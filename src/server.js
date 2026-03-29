@@ -228,8 +228,9 @@ app.get('/api/stats', async (req, res) => {
 });
 
 // ── Steps API ─────────────────────────────────────────────────────────────────
-// GET /api/steps?email=...          → { steps, date }
-// POST /api/steps { email, steps, date? } → { ok, steps }
+// GET /api/steps?email=...                    → { steps, date }  (read)
+// GET /api/steps/sync?email=...&steps=NNN     → { ok, steps }    (iOS Shortcut — simple GET, no JSON needed)
+// POST /api/steps { email, steps, date? }     → { ok, steps }    (widget manual entry)
 // Called by the StepsWidget (polling) and by the iOS Shortcut / Android automation.
 
 app.get('/api/steps', async (req, res) => {
@@ -245,6 +246,23 @@ app.get('/api/steps', async (req, res) => {
       .single();
     res.json({ steps: data?.steps || 0, date: today });
   } catch { res.json({ steps: 0, date: today }); }
+});
+
+// Simple GET sync — used by iOS Shortcut (no JSON body needed)
+// URL: https://jismeh.fit/api/steps/sync?email=YOU@EMAIL.COM&steps=8432
+app.get('/api/steps/sync', async (req, res) => {
+  const { email, steps } = req.query;
+  const today = new Date().toISOString().slice(0, 10);
+  if (!email || steps == null) return res.status(400).json({ error: 'Missing email or steps' });
+  const count = Math.max(0, Math.round(Number(steps)));
+  if (!supabase) return res.json({ ok: true, steps: count });
+  try {
+    await supabase.from('steps_log').upsert(
+      { email: email.toLowerCase().trim(), date: today, steps: count, updated_at: new Date().toISOString() },
+      { onConflict: 'email,date' }
+    );
+    res.json({ ok: true, steps: count, date: today });
+  } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
 app.post('/api/steps', async (req, res) => {

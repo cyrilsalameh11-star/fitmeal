@@ -82,15 +82,15 @@ export default function StepsWidget() {
   const kcal   = Math.round(steps * 0.04);
   const km     = (steps * 0.00078).toFixed(1);
 
-  // iOS Shortcut source — one-action shortcut that GETs today steps from Health
-  // and POSTs to jismeh.fit. User needs their own email in the shortcut.
+  // iOS Shortcut — 3 actions only, simple GET URL (no JSON needed)
+  const syncUrl = `https://jismeh.fit/api/steps/sync?email=${encodeURIComponent(email || 'YOUR@EMAIL.COM')}&steps=`;
   const shortcutSteps = [
-    { n: 1, text: 'Open the Shortcuts app → tap "+" to create a new shortcut' },
-    { n: 2, text: 'Add action: "Find Health Samples Where" — set Type = Steps, Date = Today' },
-    { n: 3, text: 'Add action: "Calculate Statistics" — Minimum over Step Count → set to Sum' },
-    { n: 4, text: 'Add action: "Get Contents of URL" — set URL to:', code: 'https://jismeh.fit/api/steps', method: 'POST', body: `{"email":"${email || 'YOUR@EMAIL.COM'}","steps": [Calculated Result]}` },
-    { n: 5, text: 'Save & name it "Sync Steps to FitNas"' },
-    { n: 6, text: 'Optional: create an Automation → "Time of Day" → every hour → run this shortcut' },
+    { n: 1, text: 'Open Shortcuts app → tap + → name it "FitNas Steps"' },
+    { n: 2, text: 'Add action: search "Health" → pick "Log Health Sample" → change to "Get Quantity Samples" → set Type = Steps → Period = Today → tap Done' },
+    { n: 3, text: 'Add action: search "URL" → pick "Get Contents of URL" → paste this URL exactly (the number after steps= will be filled automatically by the variable from step 2):', code: syncUrl + '[Quantity Samples]' },
+    { n: 4, text: 'Tap the blue "Get Contents of URL" block → confirm Method = GET' },
+    { n: 5, text: 'Tap ▶ Run to test — you should see {"ok":true,...} in the result' },
+    { n: 6, text: 'Automation (optional): Shortcuts → Automation tab → + → Time of Day → every 1 hour → run "FitNas Steps"' },
   ];
 
   const androidSteps = [
