@@ -262,36 +262,38 @@ export default function WeeklyCaloriesPage() {
                     }`}
                   />
                   
-                  <div className="grid grid-cols-3 gap-2">
-                    <div className="flex items-center bg-stone-50 border border-stone-200 rounded-lg px-2 py-1.5 focus-within:ring-2 focus-within:ring-stone-300 transition-all">
-                      <span className="text-[10px] font-black text-stone-500 mr-1">P</span>
+                  <div className="grid grid-cols-3 gap-3">
+                    <div className="flex flex-col space-y-1">
                       <input
                         type="number"
                         value={dayData.protein || ''}
                         onChange={e => setDayMacro(day.key, 'protein', e.target.value)}
                         placeholder="0"
-                        className="w-full min-w-0 bg-transparent text-xs font-bold text-stone-800 outline-none placeholder:text-stone-300"
+                        className="w-full text-center bg-stone-50 border border-stone-200 rounded-xl px-2 py-2 text-sm font-bold text-stone-800 outline-none focus:ring-2 focus:ring-emerald-200 transition-all placeholder:text-stone-300 border-b-4 border-b-stone-200"
                       />
+                      <span className="text-[10px] font-extrabold tracking-widest text-center text-stone-500 uppercase">Protein</span>
                     </div>
-                    <div className="flex items-center bg-amber-50/50 border border-amber-200 rounded-lg px-2 py-1.5 focus-within:ring-2 focus-within:ring-amber-300 transition-all">
-                      <span className="text-[10px] font-black text-amber-500 mr-1">C</span>
+
+                    <div className="flex flex-col space-y-1">
                       <input
                         type="number"
                         value={dayData.carbs || ''}
                         onChange={e => setDayMacro(day.key, 'carbs', e.target.value)}
                         placeholder="0"
-                        className="w-full min-w-0 bg-transparent text-xs font-bold text-amber-900 outline-none placeholder:text-amber-300/60"
+                        className="w-full text-center bg-amber-50 border border-amber-200 rounded-xl px-2 py-2 text-sm font-bold text-amber-900 outline-none focus:ring-2 focus:ring-amber-400 transition-all placeholder:text-amber-300/60 border-b-4 border-b-amber-200"
                       />
+                      <span className="text-[10px] font-extrabold tracking-widest text-center text-amber-500 uppercase">Carbs</span>
                     </div>
-                    <div className="flex items-center bg-stone-100/50 border border-stone-200 rounded-lg px-2 py-1.5 focus-within:ring-2 focus-within:ring-stone-300 transition-all">
-                      <span className="text-[10px] font-black text-stone-400 mr-1">F</span>
+
+                    <div className="flex flex-col space-y-1">
                       <input
                         type="number"
                         value={dayData.fats || ''}
                         onChange={e => setDayMacro(day.key, 'fats', e.target.value)}
                         placeholder="0"
-                        className="w-full min-w-0 bg-transparent text-xs font-bold text-stone-600 outline-none placeholder:text-stone-300"
+                        className="w-full text-center bg-stone-100 border border-stone-200 rounded-xl px-2 py-2 text-sm font-bold text-stone-700 outline-none focus:ring-2 focus:ring-stone-300 transition-all placeholder:text-stone-400 border-b-4 border-b-stone-300"
                       />
+                      <span className="text-[10px] font-extrabold tracking-widest text-center text-stone-400 uppercase">Fat</span>
                     </div>
                   </div>
                 </div>
