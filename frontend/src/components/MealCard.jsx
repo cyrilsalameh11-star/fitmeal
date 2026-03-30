@@ -92,7 +92,7 @@ export default function MealCard({ meal, index, onShop, onSwap }) {
         <div className="pt-6 space-y-3">
           <button
             onClick={() => {
-              const ok = logMealToday(meal.calories);
+              const ok = logMealToday(meal);
               if (ok) { setLogged(true); setTimeout(() => setLogged(false), 2500); }
             }}
             className={`w-full flex justify-between items-center px-6 py-3.5 rounded-2xl font-bold text-sm tracking-widest uppercase transition-all ${

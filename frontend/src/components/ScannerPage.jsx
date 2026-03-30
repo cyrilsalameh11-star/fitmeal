@@ -80,7 +80,7 @@ function HistoryPanel({ onClose, onReLog }) {
                   <span className="text-stone-600 text-[10px]">P {item.protein}g · C {item.carbs}g · F {item.fat}g</span>
                 </div>
               </div>
-              <button onClick={() => onReLog(item.calories)} className="flex-shrink-0 px-3 py-1.5 bg-stone-800 hover:bg-amber-500 text-stone-400 hover:text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all">
+              <button onClick={() => onReLog(item)} className="flex-shrink-0 px-3 py-1.5 bg-stone-800 hover:bg-amber-500 text-stone-400 hover:text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all">
                 Log
               </button>
             </div>
@@ -334,7 +334,7 @@ export default function ScannerPage() {
 
   function handleLog() {
     if (!result) return;
-    const ok = logMealToday(result.calories);
+    const ok = logMealToday(result);
     if (ok) { setLogged(true); setTimeout(() => setLogged(false), 2500); }
   }
 
@@ -520,7 +520,7 @@ export default function ScannerPage() {
         {/* ── History panel (photo idle only) ───────────── */}
         <AnimatePresence>
           {showHistory && phase === 'idle' && view === 'photo' && (
-            <HistoryPanel onClose={() => setShowHistory(false)} onReLog={(cal) => { logMealToday(cal); setShowHistory(false); }} />
+            <HistoryPanel onClose={() => setShowHistory(false)} onReLog={(item) => { logMealToday(item); setShowHistory(false); }} />
           )}
         </AnimatePresence>
 
@@ -656,7 +656,7 @@ export default function ScannerPage() {
         {/* ── History panel (describe idle) ─────────────── */}
         <AnimatePresence>
           {showHistory && phase === 'idle' && view === 'describe' && (
-            <HistoryPanel onClose={() => setShowHistory(false)} onReLog={(cal) => { logMealToday(cal); setShowHistory(false); }} />
+            <HistoryPanel onClose={() => setShowHistory(false)} onReLog={(item) => { logMealToday(item); setShowHistory(false); }} />
           )}
         </AnimatePresence>
 

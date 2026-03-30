@@ -64,12 +64,33 @@ export default function CalorieBar() {
 }
 
 // Exported helper so MealCard can log calories to today
-export function logMealToday(calories) {
+export function logMealToday(mealOrCalories) {
   const state = readState();
   if (!state) return false;
   const key = getTodayKey();
-  const current = parseInt(state.days?.[key]?.calories) || 0;
-  state.days[key] = { ...state.days[key], calories: String(current + calories) };
+
+  let addCals = 0, addP = 0, addC = 0, addF = 0;
+  if (typeof mealOrCalories === 'number' || typeof mealOrCalories === 'string') {
+    addCals = parseInt(mealOrCalories) || 0;
+  } else if (mealOrCalories) {
+    addCals = parseInt(mealOrCalories.calories) || 0;
+    addP = parseInt(mealOrCalories.protein) || 0;
+    addC = parseInt(mealOrCalories.carbs) || 0;
+    addF = parseInt(mealOrCalories.fat) || 0;
+  }
+
+  const currentCals = parseInt(state.days?.[key]?.calories) || 0;
+  const currentP = parseInt(state.days?.[key]?.protein) || 0;
+  const currentC = parseInt(state.days?.[key]?.carbs) || 0;
+  const currentF = parseInt(state.days?.[key]?.fats) || 0;
+
+  state.days[key] = { 
+    ...state.days[key], 
+    calories: String(currentCals + addCals),
+    protein: String(currentP + addP),
+    carbs: String(currentC + addC),
+    fats: String(currentF + addF)
+  };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   return true;
 }
