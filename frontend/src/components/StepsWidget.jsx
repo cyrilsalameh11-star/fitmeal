@@ -224,7 +224,7 @@ export default function StepsWidget() {
               <div className="space-y-2.5">
                 {[
                   { n: 1, t: 'Open the Shortcuts app → tap + → tap "Add Action".' },
-                  { n: 2, t: 'Search "Find Health Samples" → select it → set Type = Steps. Tap "is today" and change to "is in the last" → 1 → Days.' },
+                  { n: 2, t: 'Search "Find Health Samples" → select it → set Type = Steps. Tap "Start Date" and set it to "is Today".' },
                   { n: 3, t: 'Tap + below → search "Calculate Statistics" → select it → make sure it says Sum of Health Samples.' },
                   {
                     n: 4,

@@ -27,7 +27,7 @@ function saveState(state) {
 
 function getDefaultState() {
   const days = {};
-  DAYS.forEach(d => { days[d.key] = { calories: '', checked: false }; });
+  DAYS.forEach(d => { days[d.key] = { calories: '', protein: '', carbs: '', fats: '', checked: false }; });
   return { dailyTarget: '', days };
 }
 
@@ -64,6 +64,13 @@ export default function WeeklyCaloriesPage() {
     }));
   }
 
+  function setDayMacro(key, field, val) {
+    setState(s => ({
+      ...s,
+      days: { ...s.days, [key]: { ...s.days[key], [field]: val } }
+    }));
+  }
+
   function toggleDay(key) {
     setState(s => ({
       ...s,
@@ -74,7 +81,7 @@ export default function WeeklyCaloriesPage() {
   function resetWeek() {
     setState(s => {
       const days = {};
-      DAYS.forEach(d => { days[d.key] = { calories: '', checked: false }; });
+      DAYS.forEach(d => { days[d.key] = { calories: '', protein: '', carbs: '', fats: '', checked: false }; });
       return { ...s, days };
     });
   }
@@ -219,7 +226,7 @@ export default function WeeklyCaloriesPage() {
                   : 'border-stone-100 hover:border-stone-200 shadow-sm'
               }`}
             >
-              <div className="flex items-center space-x-4">
+              <div className="flex items-start mt-1 space-x-4">
                 {/* Checkbox */}
                 <button
                   onClick={() => toggleDay(day.key)}
@@ -241,11 +248,11 @@ export default function WeeklyCaloriesPage() {
                   )}
                 </div>
 
-                {/* Calorie input */}
-                <div className="flex-1">
+                {/* Calorie & Macro inputs */}
+                <div className="flex-1 space-y-2">
                   <input
                     type="number"
-                    value={dayData.calories}
+                    value={dayData.calories || ''}
                     onChange={e => setDayCalories(day.key, e.target.value)}
                     placeholder="xxxx kcal"
                     className={`w-full bg-stone-50 border rounded-xl px-4 py-2.5 text-base font-bold outline-none focus:ring-2 transition-all ${
@@ -254,6 +261,30 @@ export default function WeeklyCaloriesPage() {
                         : 'border-stone-100 text-stone-800 focus:ring-amber-100'
                     }`}
                   />
+                  
+                  <div className="grid grid-cols-3 gap-2">
+                    <input
+                      type="number"
+                      value={dayData.protein || ''}
+                      onChange={e => setDayMacro(day.key, 'protein', e.target.value)}
+                      placeholder="Protein (g)"
+                      className="w-full bg-white border border-stone-200 rounded-lg px-2 py-1.5 text-xs font-medium outline-none focus:ring-2 focus:ring-emerald-100 transition-all text-stone-700"
+                    />
+                    <input
+                      type="number"
+                      value={dayData.carbs || ''}
+                      onChange={e => setDayMacro(day.key, 'carbs', e.target.value)}
+                      placeholder="Carbs (g)"
+                      className="w-full bg-white border border-stone-200 rounded-lg px-2 py-1.5 text-xs font-medium outline-none focus:ring-2 focus:ring-blue-100 transition-all text-stone-700"
+                    />
+                    <input
+                      type="number"
+                      value={dayData.fats || ''}
+                      onChange={e => setDayMacro(day.key, 'fats', e.target.value)}
+                      placeholder="Fat (g)"
+                      className="w-full bg-white border border-stone-200 rounded-lg px-2 py-1.5 text-xs font-medium outline-none focus:ring-2 focus:ring-amber-100 transition-all text-stone-700"
+                    />
+                  </div>
                 </div>
 
                 {/* Remaining arrow */}
