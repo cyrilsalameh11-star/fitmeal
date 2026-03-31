@@ -54,6 +54,26 @@
             </table>
             <div id="empty-state" class="p-20 text-center text-stone-300 italic hidden">No users found.</div>
         </div>
+        <div class="mt-12 flex items-center justify-between mb-4">
+            <div>
+                <h2 class="text-xl font-800 text-stone-900">Scanner Usage (Last 30 Days)</h2>
+            </div>
+        </div>
+
+        <div class="bg-white border border-stone-100 rounded-3xl overflow-hidden shadow-sm mb-8">
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="border-b border-stone-50 bg-stone-50/50">
+                        <th class="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-stone-400">Date</th>
+                        <th class="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-stone-400">Scan Count</th>
+                    </tr>
+                </thead>
+                <tbody id="scan-table-body">
+                    <!-- Scan stats injected here -->
+                </tbody>
+            </table>
+            <div id="scan-empty-state" class="p-20 text-center text-stone-300 italic hidden">No scanner usage data available yet.</div>
+        </div>
         
         <p class="mt-8 text-center text-[10px] font-black uppercase tracking-widest text-stone-200">FitMeal Engine v1.0 • Auto-refreshing</p>
     </div>
@@ -113,8 +133,16 @@
         function showDashboard() {
             document.getElementById('login-overlay').classList.add('hidden');
             document.getElementById('dashboard').classList.remove('hidden');
+            
+            // Try to init scan table in the background (succeeds silently)
+            fetch('/api/admin/init-scan-table', { method: 'POST' }).catch(() => {});
+            
             loadUsers();
-            setInterval(loadUsers, 10000);
+            loadScanStats();
+            setInterval(() => {
+                loadUsers();
+                loadScanStats();
+            }, 10000);
         }
 
         async function loadUsers() {
@@ -151,6 +179,31 @@
                     document.getElementById('empty-state').classList.remove('hidden');
                 }
             } catch(e) { console.error(e); }
+        }
+
+        async function loadScanStats() {
+            try {
+                const r = await fetch('/api/admin/scan-stats');
+                const d = await r.json();
+                const tbody = document.getElementById('scan-table-body');
+                
+                if (d.stats && d.stats.length > 0) {
+                    tbody.innerHTML = d.stats.map(s => {
+                        const formattedDate = new Date(s.date).toLocaleDateString('en-GB', { 
+                            weekday: 'short', month: 'short', day: 'numeric' 
+                        });
+                        return `
+                            <tr class="border-b border-stone-50 hover:bg-stone-50/50 transition-colors">
+                                <td class="px-8 py-6 font-bold text-stone-800">${formattedDate}</td>
+                                <td class="px-8 py-6 text-sm font-medium text-stone-900">${s.count} scans</td>
+                            </tr>
+                        `;
+                    }).join('');
+                    document.getElementById('scan-empty-state').classList.add('hidden');
+                } else {
+                    document.getElementById('scan-empty-state').classList.remove('hidden');
+                }
+            } catch(e) { console.error('Error loading scan stats:', e); }
         }
     </script>
 </body>
