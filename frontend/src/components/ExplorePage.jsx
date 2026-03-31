@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronDown, Utensils, ShoppingCart, IceCream, Loader2 } from 'lucide-react';
+import { ChevronRight, ChevronDown, Utensils, ShoppingCart, IceCream, Loader2, Plus, Check } from 'lucide-react';
 import { COUNTRIES, BRANDS } from '../data/metadata';
+import { logMealToday } from './CalorieBar';
 
 const CATEGORY_ICONS = {
   "Fast Food": <Utensils size={14} />,
@@ -45,11 +46,26 @@ function BrandLogo({ brand, index }) {
 
 function BrandLine({ brand, items, index }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [loggedIds, setLoggedIds] = useState(new Set());
+
   const BRAND_COLORS = [
     'border-l-amber-500', 'border-l-blue-500', 'border-l-emerald-500',
     'border-l-rose-500', 'border-l-purple-500', 'border-l-orange-500', 'border-l-indigo-500'
   ];
   const colorClass = BRAND_COLORS[index % BRAND_COLORS.length];
+
+  const handleLog = (meal) => {
+    if (logMealToday(meal)) {
+      setLoggedIds(prev => new Set(prev).add(meal.id));
+      setTimeout(() => {
+        setLoggedIds(prev => {
+          const next = new Set(prev);
+          next.delete(meal.id);
+          return next;
+        });
+      }, 2000);
+    }
+  };
 
   return (
     <div className={`mb-4 bg-white border border-stone-100 rounded-2xl overflow-hidden transition-all duration-300 ${isOpen ? 'shadow-lg ring-1 ring-stone-100' : 'hover:border-stone-200 shadow-sm'}`}>
@@ -91,9 +107,22 @@ function BrandLine({ brand, items, index }) {
               {items.map((meal) => (
                 <div key={meal.id} className="group bg-white rounded-2xl p-5 border border-stone-100 hover:border-amber-200 transition-all hover:shadow-md relative overflow-hidden">
                   <div className="flex justify-between items-start mb-4">
-                    <p className="font-bold text-stone-800 text-sm leading-snug pr-8">{meal.name}</p>
-                    <div className="absolute top-4 right-4 bg-stone-50 px-2 py-1 rounded-lg border border-stone-100 text-[10px] font-black text-stone-500 shadow-sm group-hover:bg-amber-500 group-hover:text-white group-hover:border-amber-500 transition-colors">
-                      {meal.calories}
+                    <p className="font-bold text-stone-800 text-sm leading-snug pr-20">{meal.name}</p>
+                    <div className="absolute top-4 right-4 flex items-center space-x-2">
+                      <div className="bg-stone-50 px-2 py-1.5 rounded-lg border border-stone-100 text-[10px] font-black text-stone-500 shadow-sm transition-colors block">
+                        {meal.calories}
+                      </div>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); handleLog(meal); }}
+                        className={`p-1.5 rounded-lg border shadow-sm transition-all ${
+                          loggedIds.has(meal.id)
+                            ? 'bg-emerald-500 border-emerald-500 text-white'
+                            : 'bg-white border-stone-200 text-stone-400 hover:bg-amber-500 hover:border-amber-500 hover:text-white'
+                        }`}
+                        title="Log Meal"
+                      >
+                        {loggedIds.has(meal.id) ? <Check size={12} strokeWidth={3} /> : <Plus size={12} strokeWidth={3} />}
+                      </button>
                     </div>
                   </div>
 
