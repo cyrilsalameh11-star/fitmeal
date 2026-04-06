@@ -12,6 +12,8 @@ const cities = {
   Paris:      { name: 'Paris, France',    lat: 48.8566, lng: 2.3522,   zoom: 13, ovBbox: '41.33,-5.14,51.09,9.56'  },
   Madrid:     { name: 'Madrid, Spain',    lat: 40.4168, lng: -3.7038,  zoom: 13, ovBbox: '35.17,-9.30,43.79,4.33'  },
   'New York': { name: 'New York, USA',    lat: 40.7128, lng: -74.0060, zoom: 13, ovBbox: '24.4,-125.0,49.4,-66.9'  },
+  Dubai:      { name: 'Dubai, UAE',       lat: 25.2048, lng: 55.2708,  zoom: 13, ovBbox: '24.8,54.9,25.5,55.6'    },
+  Doha:       { name: 'Doha, Qatar',      lat: 25.2854, lng: 51.5310,  zoom: 13, ovBbox: '24.5,50.7,26.2,51.7'    },
 };
 
 // Create a custom div icon for the marker with initials and color

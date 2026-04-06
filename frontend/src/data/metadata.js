@@ -5,6 +5,7 @@ export const COUNTRIES = [
   { id: 'USA', flag: '🇺🇸', label: 'USA' },
   { id: 'UAE', flag: '🇦🇪', label: 'Dubai (UAE)' },
   { id: 'Saudi Arabia', flag: '🇸🇦', label: 'Saudi Arabia' },
+  { id: 'Qatar', flag: '🇶🇦', label: 'Doha (Qatar)' },
 ];
 
 export const BRANDS = {
@@ -84,6 +85,17 @@ export const BRANDS = {
     { name: "Al Farooj", category: "Fast Food", logo: "https://pbs.twimg.com/profile_images/1118413157/farooj_logo_400x400.jpg" },
     { name: "McDonald's UAE", category: "Fast Food", logo: "https://upload.wikimedia.org/wikipedia/commons/3/36/McDonald%27s_Golden_Arches.svg" },
     { name: "KFC UAE", category: "Fast Food", logo: "https://upload.wikimedia.org/wikipedia/en/b/bf/KFC_logo.svg" }
+  ],
+  Qatar: [
+    { name: "McDonald's Qatar", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=mcdonalds.com&sz=64" },
+    { name: "KFC Qatar", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=kfc.com&sz=64" },
+    { name: "Burger King Qatar", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=burgerking.com&sz=64" },
+    { name: "Shake Shack Qatar", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=shakeshack.com&sz=64" },
+    { name: "Raising Cane's", category: "Fast Food", logo: "https://www.google.com/s2/favicons?domain=raisingcanes.com&sz=64" },
+    { name: "Lulu Hypermarket", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=luluhypermarket.com&sz=64" },
+    { name: "Carrefour Qatar", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=carrefour.qa&sz=64" },
+    { name: "Al Meera", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=almeera.com.qa&sz=64" },
+    { name: "Monoprix Qatar", category: "Supermarket", logo: "https://www.google.com/s2/favicons?domain=monoprix.qa&sz=64" },
   ],
   "Saudi Arabia": [
     { name: "Panda", category: "Supermarket", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/f/fa/Panda_Retail_Company_Logo.svg/1024px-Panda_Retail_Company_Logo.svg.png" },
