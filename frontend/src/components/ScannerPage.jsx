@@ -171,12 +171,16 @@ function BarcodeScannerView({ onDetected, onClose }) {
   useEffect(() => {
     let mounted = true;
     async function start() {
+      if (!videoRef.current) return;
       try {
         const { BrowserMultiFormatReader } = await import('@zxing/browser');
+        if (!mounted || !videoRef.current) return;
         const reader = new BrowserMultiFormatReader();
         readerRef.current = reader;
-        await reader.decodeFromVideoDevice(undefined, videoRef.current, (result) => {
-          if (result && !detectedRef.current && mounted) {
+        // Note: do NOT await — decodeFromVideoDevice is continuous and never resolves
+        reader.decodeFromVideoDevice(undefined, videoRef.current, (result) => {
+          if (!mounted) return;
+          if (result && !detectedRef.current) {
             detectedRef.current = true;
             onDetected(result.getText());
           }
@@ -188,9 +192,15 @@ function BarcodeScannerView({ onDetected, onClose }) {
     start();
     return () => {
       mounted = false;
-      readerRef.current?.reset();
+      try { readerRef.current?.reset(); } catch {}
+      // Stop all camera tracks so the browser releases the camera
+      const video = videoRef.current;
+      if (video?.srcObject) {
+        video.srcObject.getTracks?.().forEach(t => t.stop());
+        video.srcObject = null;
+      }
     };
-  }, [onDetected]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   function submitManual() {
     const code = manualCode.trim();
@@ -409,7 +419,7 @@ export default function ScannerPage() {
     }
   }
 
-  async function handleBarcodeDetected(code) {
+  const handleBarcodeDetected = useCallback(async (code) => {
     setPhase('identifying');
     setResult(null);
     setError(null);
@@ -429,7 +439,7 @@ export default function ScannerPage() {
       setError(err.message || 'Could not look up product.');
       setPhase('error');
     }
-  }
+  }, []);
 
   async function handleDescribeEstimate() {
     setPhase('estimating');
