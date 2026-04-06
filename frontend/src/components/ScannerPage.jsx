@@ -682,7 +682,7 @@ export default function ScannerPage() {
             onClose={() => switchView('photo')}
           />
         )}
-        {view === 'barcode' && phase !== 'idle' && (
+        {view === 'barcode' && isLoading && (
           <div className="relative bg-stone-900" style={{ aspectRatio: '4/3' }}>
             {isLoading && (
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
