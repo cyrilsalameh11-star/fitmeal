@@ -18,7 +18,9 @@ function saveToHistory(result) {
       servingSize: result.servingSize,
       ts: new Date().toISOString(),
     };
-    localStorage.setItem(HISTORY_KEY, JSON.stringify([entry, ...prev].slice(0, 100)));
+    // Deduplicate: remove any existing entry with same dish + calories
+    const deduped = prev.filter(p => !(p.dish === entry.dish && p.calories === entry.calories));
+    localStorage.setItem(HISTORY_KEY, JSON.stringify([entry, ...deduped].slice(0, 100)));
   } catch {}
 }
 
