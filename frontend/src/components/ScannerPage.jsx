@@ -725,7 +725,6 @@ export default function ScannerPage() {
           {phase === 'result' && result && (() => {
             const hasServing  = !!result.perServing;
             const hasPackage  = !!result.perPackage;
-            const showPicker  = hasServing || hasPackage;
             const base = (servingMode === 'package' && hasPackage)
               ? result.perPackage
               : (hasServing ? result.perServing : result);
@@ -745,47 +744,56 @@ export default function ScannerPage() {
                   </span>
                 </div>
 
-                {/* ── Serving picker (barcode only) ── */}
-                {showPicker && (
-                  <div className="space-y-3">
-                    {/* Per product / Whole bag toggle */}
-                    {hasServing && hasPackage && (
-                      <div className="flex gap-2 bg-stone-900 p-1 rounded-2xl">
-                        {[['serving', 'Per Product'], ['package', 'Whole Bag']].map(([mode, label]) => (
-                          <button
-                            key={mode}
-                            onClick={() => { setServingMode(mode); setQty(1); setLogged(false); }}
-                            className={`flex-1 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
-                              servingMode === mode
-                                ? 'bg-amber-500 text-white'
-                                : 'text-stone-400 hover:text-white'
-                            }`}
-                          >
-                            {label}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                    {/* Quantity multiplier — only for per-product */}
-                    {servingMode === 'serving' && (
-                      <div className="flex gap-2">
-                        {[1,2,3,4].map(n => (
+                {/* ── Serving picker — always shown ── */}
+                <div className="space-y-3">
+                  {/* Per product / Whole bag toggle — barcode only */}
+                  {hasServing && hasPackage && (
+                    <div className="flex gap-2 bg-stone-900 p-1 rounded-2xl">
+                      {[['serving', 'Per Product'], ['package', 'Whole Bag']].map(([mode, label]) => (
+                        <button
+                          key={mode}
+                          onClick={() => { setServingMode(mode); setQty(1); setLogged(false); }}
+                          className={`flex-1 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+                            servingMode === mode ? 'bg-amber-500 text-white' : 'text-stone-400 hover:text-white'
+                          }`}
+                        >
+                          {label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  {/* Number of servings — presets + custom decimal input */}
+                  {(!hasPackage || servingMode === 'serving') && (
+                    <div className="space-y-1.5">
+                      <p className="text-[9px] font-black uppercase tracking-widest text-stone-500">Number of servings</p>
+                      <div className="flex gap-2 items-center">
+                        {[0.5, 1, 2, 3].map(n => (
                           <button
                             key={n}
                             onClick={() => { setQty(n); setLogged(false); }}
-                            className={`flex-1 py-2.5 rounded-xl text-xs font-black transition-all ${
-                              qty === n
-                                ? 'bg-stone-600 text-white'
-                                : 'bg-stone-900 text-stone-400 hover:text-white'
+                            className={`h-9 px-3 rounded-xl text-xs font-black transition-all flex-shrink-0 ${
+                              qty === n ? 'bg-amber-500 text-white' : 'bg-stone-900 text-stone-400 hover:text-white'
                             }`}
                           >
                             ×{n}
                           </button>
                         ))}
+                        <input
+                          type="number"
+                          step="0.1"
+                          min="0.1"
+                          max="20"
+                          value={qty}
+                          onChange={e => {
+                            const v = parseFloat(e.target.value);
+                            if (v > 0 && v <= 20) { setQty(v); setLogged(false); }
+                          }}
+                          className="flex-1 h-9 bg-stone-900 text-white text-xs font-black rounded-xl outline-none text-center focus:ring-1 focus:ring-amber-500/50 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                        />
                       </div>
-                    )}
-                  </div>
-                )}
+                    </div>
+                  )}
+                </div>
 
                 <div className="bg-stone-900 rounded-2xl p-5 flex items-center justify-between">
                   <div>
@@ -827,9 +835,38 @@ export default function ScannerPage() {
           })()}
 
           {phase === 'error' && error && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-6 text-center space-y-3">
-              <p className="text-stone-400 text-sm font-medium">{error}</p>
-              <button onClick={reset} className="px-5 py-2.5 bg-stone-800 text-stone-300 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-stone-700 transition-colors">Try Again</button>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-6 text-center space-y-4">
+              {(error.includes('not found') || error.includes('No nutritional')) ? (
+                <>
+                  <div className="w-12 h-12 bg-stone-900 rounded-2xl flex items-center justify-center mx-auto">
+                    <Barcode size={20} className="text-stone-500" />
+                  </div>
+                  <div>
+                    <p className="text-white font-bold text-sm mb-1">Product not in database</p>
+                    <p className="text-stone-500 text-xs leading-relaxed">This product isn't in Open Food Facts yet.<br />Try one of these alternatives:</p>
+                  </div>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => { reset(); switchView('photo'); setTimeout(() => cameraInputRef.current?.click(), 150); }}
+                      className="flex-1 py-3 bg-amber-500 text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-amber-400 transition-colors flex items-center justify-center gap-1.5"
+                    >
+                      <Camera size={12} /> Photo Label
+                    </button>
+                    <button
+                      onClick={() => { reset(); switchView('describe'); }}
+                      className="flex-1 py-3 bg-stone-800 text-stone-300 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-stone-700 transition-colors flex items-center justify-center gap-1.5"
+                    >
+                      <MessageSquare size={12} /> Describe It
+                    </button>
+                  </div>
+                  <button onClick={reset} className="text-stone-600 text-xs font-bold hover:text-stone-400 transition-colors">← Try another barcode</button>
+                </>
+              ) : (
+                <>
+                  <p className="text-stone-400 text-sm font-medium">{error}</p>
+                  <button onClick={reset} className="px-5 py-2.5 bg-stone-800 text-stone-300 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-stone-700 transition-colors">Try Again</button>
+                </>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
