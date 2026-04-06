@@ -779,16 +779,18 @@ export default function ScannerPage() {
                           </button>
                         ))}
                         <input
+                          key={`qty-${[0.5,1,2,3].includes(qty) ? qty : 'custom'}`}
                           type="number"
                           step="0.1"
                           min="0.1"
                           max="20"
-                          value={qty}
+                          defaultValue={qty}
+                          placeholder="e.g. 0.3"
                           onChange={e => {
                             const v = parseFloat(e.target.value);
-                            if (v > 0 && v <= 20) { setQty(v); setLogged(false); }
+                            if (v >= 0.1 && v <= 20) { setQty(v); setLogged(false); }
                           }}
-                          className="flex-1 h-9 bg-stone-900 text-white text-xs font-black rounded-xl outline-none text-center focus:ring-1 focus:ring-amber-500/50 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          className="flex-1 h-9 bg-stone-900 text-white text-xs font-black rounded-xl outline-none text-center focus:ring-1 focus:ring-amber-500/50 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none placeholder-stone-700"
                         />
                       </div>
                     </div>
