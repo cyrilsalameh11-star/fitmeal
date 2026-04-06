@@ -18,7 +18,7 @@ function saveToHistory(result) {
       servingSize: result.servingSize,
       ts: new Date().toISOString(),
     };
-    localStorage.setItem(HISTORY_KEY, JSON.stringify([entry, ...prev].slice(0, 30)));
+    localStorage.setItem(HISTORY_KEY, JSON.stringify([entry, ...prev].slice(0, 100)));
   } catch {}
 }
 
