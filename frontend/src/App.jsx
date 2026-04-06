@@ -6,6 +6,7 @@ import CaloriePage from './components/CaloriePage';
 import ExercisePage from './components/ExercisePage';
 import WeeklyCaloriesPage from './components/WeeklyCaloriesPage';
 import ScannerPage from './components/ScannerPage';
+import ProgressPage from './components/ProgressPage';
 import CalorieBar from './components/CalorieBar';
 import MapPage from './components/MapPage';
 import NewsPage from './components/NewsPage';
@@ -13,7 +14,7 @@ import TrendsPage from './components/TrendsPage';
 import LoyaltyPage from './components/LoyaltyPage';
 import StepsWidget from './components/StepsWidget';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, X, Menu, Phone, Mail, Instagram, Twitter, User, ArrowRight, Users, Dumbbell, Map as MapIcon, Newspaper, Award, Flame, TrendingUp, CalendarDays, ScanLine } from 'lucide-react';
+import { ShoppingBag, X, Menu, Phone, Mail, Instagram, Twitter, User, ArrowRight, Users, Dumbbell, Map as MapIcon, Newspaper, Award, Flame, TrendingUp, CalendarDays, ScanLine, Scale } from 'lucide-react';
 
 function App() {
   const [user, setUser] = useState(() => localStorage.getItem('fitmeal_username') || null);
@@ -294,6 +295,7 @@ function App() {
               ['scanner', 'Scanner', <ScanLine size={13} />],
               ['calories', 'TDEE', <Flame size={13} />],
               ['weekly', 'Weekly Cal.', <CalendarDays size={13} />],
+              ['progress', 'Progress', <Scale size={13} />],
               ['exercise', 'Exercise', <Dumbbell size={13} />],
               ['map', 'Map', <MapIcon size={13} />],
               ['news', 'FMCG News', <Newspaper size={13} />],
@@ -341,7 +343,7 @@ function App() {
               className="md:hidden absolute top-full left-0 right-0 z-50 bg-stone-950 border-t border-stone-800 px-5 py-5 space-y-1 shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
             >
               <p className="text-[9px] font-black uppercase tracking-[0.2em] text-stone-600 px-3 mb-3">Navigate</p>
-              {[['planner', 'Planner'], ['explore', 'Explore'], ['scanner', 'Food Scanner'], ['calories', 'TDEE Calculator'], ['weekly', 'Weekly Calories'], ['exercise', 'Exercise'], ['map', 'Map'], ['news', 'FMCG News'], ['trends', 'Trends / Reels'], ['loyalty', 'Loyalty Programs'], ['contact', 'Contact Us']].map(([tab, label]) => (
+              {[['planner', 'Planner'], ['explore', 'Explore'], ['scanner', 'Food Scanner'], ['calories', 'TDEE Calculator'], ['weekly', 'Weekly Calories'], ['progress', 'Progress'], ['exercise', 'Exercise'], ['map', 'Map'], ['news', 'FMCG News'], ['trends', 'Trends / Reels'], ['loyalty', 'Loyalty Programs'], ['contact', 'Contact Us']].map(([tab, label]) => (
                 <button
                   key={tab}
                   onClick={() => { setActiveTab(tab); setShowMobileMenu(false); }}
@@ -447,6 +449,8 @@ function App() {
           {activeTab === 'calories' && <CaloriePage />}
 
           {activeTab === 'weekly' && <WeeklyCaloriesPage />}
+
+          {activeTab === 'progress' && <ProgressPage />}
 
           {activeTab === 'scanner' && <ScannerPage />}
 
