@@ -2,6 +2,7 @@
  * Meal suggestion API routes
  */
 const express = require('express');
+const axios = require('axios');
 const { getSuggestions } = require('../services/mealSuggester');
 
 const router = express.Router();
@@ -110,6 +111,56 @@ router.get('/supermarkets', (req, res) => {
   } catch (err) {
     console.error('[/api/supermarkets] Error:', err.message);
     res.status(500).json({ error: 'Failed to fetch supermarket data.' });
+  }
+});
+
+/**
+ * GET /api/barcode/:code
+ * Looks up a product by barcode using Open Food Facts.
+ * Returns nutritional info in the same shape as analyze-food results.
+ */
+router.get('/barcode/:code', async (req, res) => {
+  const { code } = req.params;
+  if (!/^\d{8,14}$/.test(code)) {
+    return res.status(400).json({ error: 'Invalid barcode format.' });
+  }
+  try {
+    const response = await axios.get(
+      `https://world.openfoodfacts.org/api/v0/product/${code}.json`,
+      { timeout: 6000 }
+    );
+    const { status, product } = response.data;
+    if (status !== 1 || !product) {
+      return res.status(404).json({ error: 'Product not found. Try scanning again or enter manually.' });
+    }
+    const n = product.nutriments || {};
+    const calories = Math.round(n['energy-kcal_100g'] || n['energy-kcal'] || 0);
+    const protein  = Math.round(n.proteins_100g || n.proteins || 0);
+    const carbs    = Math.round(n.carbohydrates_100g || n.carbohydrates || 0);
+    const fat      = Math.round(n.fat_100g || n.fat || 0);
+
+    if (!calories) {
+      return res.status(404).json({ error: 'No nutritional data found for this product.' });
+    }
+
+    const name     = product.product_name || product.product_name_en || 'Unknown Product';
+    const brandStr = (product.brands || '').split(',')[0].trim();
+    const quantity = product.quantity || '100g serving';
+
+    res.json({
+      dish:        brandStr ? `${name} — ${brandStr}` : name,
+      calories,
+      protein,
+      carbs,
+      fat,
+      servingSize: quantity,
+      confidence:  'high',
+      items:       [],
+      tip:         null,
+    });
+  } catch (err) {
+    console.error('[/api/barcode] Error:', err.message);
+    res.status(500).json({ error: 'Failed to look up product. Please try again.' });
   }
 });
 

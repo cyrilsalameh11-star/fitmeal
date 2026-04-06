@@ -1,6 +1,6 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, Upload, RotateCcw, Zap, Check, ScanLine, ChevronRight, X, Clock, Trash2, Sparkles, MessageSquare, Send } from 'lucide-react';
+import { Camera, Upload, RotateCcw, Zap, Check, ScanLine, ChevronRight, X, Clock, Trash2, Sparkles, MessageSquare, Send, Barcode } from 'lucide-react';
 import { logMealToday } from './CalorieBar';
 
 const HISTORY_KEY = 'fitmeal_scan_history';
@@ -161,12 +161,107 @@ function QuestionsStep({ dish, items, questions, answers, onChange, onSubmit, lo
   );
 }
 
+function BarcodeScannerView({ onDetected, onClose }) {
+  const videoRef    = useRef(null);
+  const readerRef   = useRef(null);
+  const detectedRef = useRef(false);
+  const [camError,  setCamError]  = useState(null);
+  const [manualCode, setManualCode] = useState('');
+
+  useEffect(() => {
+    let mounted = true;
+    async function start() {
+      try {
+        const { BrowserMultiFormatReader } = await import('@zxing/browser');
+        const reader = new BrowserMultiFormatReader();
+        readerRef.current = reader;
+        await reader.decodeFromVideoDevice(undefined, videoRef.current, (result) => {
+          if (result && !detectedRef.current && mounted) {
+            detectedRef.current = true;
+            onDetected(result.getText());
+          }
+        });
+      } catch {
+        if (mounted) setCamError('Camera access denied or unavailable.');
+      }
+    }
+    start();
+    return () => {
+      mounted = false;
+      readerRef.current?.reset();
+    };
+  }, [onDetected]);
+
+  function submitManual() {
+    const code = manualCode.trim();
+    if (/^\d{8,14}$/.test(code)) onDetected(code);
+  }
+
+  return (
+    <div className="relative bg-black" style={{ aspectRatio: '4/3' }}>
+      {!camError ? (
+        <>
+          <video ref={videoRef} className="w-full h-full object-cover" muted playsInline />
+          {/* Scanning overlay */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+            <div className="relative w-56 h-36 border-2 border-transparent">
+              {[['top-0 left-0','border-t-2 border-l-2 rounded-tl-xl'],
+                ['top-0 right-0','border-t-2 border-r-2 rounded-tr-xl'],
+                ['bottom-0 left-0','border-b-2 border-l-2 rounded-bl-xl'],
+                ['bottom-0 right-0','border-b-2 border-r-2 rounded-br-xl']].map(([pos,cls],i) => (
+                <div key={i} className={`absolute ${pos} w-8 h-8 border-amber-400 ${cls}`} />
+              ))}
+              <motion.div
+                className="absolute left-3 right-3 h-0.5 bg-amber-400/80 rounded-full shadow-[0_0_8px_2px_rgba(251,191,36,0.6)]"
+                animate={{ top: ['8%', '88%', '8%'] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              />
+            </div>
+            <p className="text-white text-[11px] font-bold mt-4 bg-black/50 px-3 py-1.5 rounded-full tracking-wide">
+              Point at a product barcode
+            </p>
+          </div>
+        </>
+      ) : (
+        <div className="absolute inset-0 bg-stone-900 flex flex-col items-center justify-center gap-4 p-6">
+          <p className="text-stone-400 text-xs text-center">{camError}</p>
+          <p className="text-stone-500 text-[10px] font-bold uppercase tracking-widest">Enter barcode manually</p>
+          <div className="flex gap-2 w-full max-w-xs">
+            <input
+              type="text"
+              inputMode="numeric"
+              value={manualCode}
+              onChange={e => setManualCode(e.target.value.replace(/\D/g, ''))}
+              placeholder="e.g. 3017620425035"
+              className="flex-1 bg-stone-800 text-white text-xs px-3 py-2.5 rounded-xl outline-none focus:ring-1 focus:ring-amber-500/50"
+              maxLength={14}
+            />
+            <button
+              onClick={submitManual}
+              disabled={!/^\d{8,14}$/.test(manualCode)}
+              className="px-4 py-2.5 bg-amber-500 text-white text-xs font-black rounded-xl disabled:opacity-30"
+            >
+              Go
+            </button>
+          </div>
+        </div>
+      )}
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 w-9 h-9 bg-stone-900/80 backdrop-blur-sm rounded-full flex items-center justify-center text-stone-400 hover:text-white transition-colors"
+      >
+        <X size={16} />
+      </button>
+    </div>
+  );
+}
+
 export default function ScannerPage() {
   const fileInputRef   = useRef(null);
   const cameraInputRef = useRef(null);
   const lastBase64Ref  = useRef(null);
 
-  // view: 'photo' | 'describe'
+  // view: 'photo' | 'describe' | 'barcode'
   const [view,        setView]        = useState('photo');
   // phase: 'idle' | 'identifying' | 'questions' | 'estimating' | 'result' | 'error'
   const [phase,       setPhase]       = useState('idle');
@@ -314,6 +409,28 @@ export default function ScannerPage() {
     }
   }
 
+  async function handleBarcodeDetected(code) {
+    setPhase('identifying');
+    setResult(null);
+    setError(null);
+    setLogged(false);
+    setShowHistory(false);
+    try {
+      const res = await fetch(`/api/barcode/${encodeURIComponent(code)}`);
+      const text = await res.text();
+      if (!text) throw new Error('Empty response from server.');
+      let data;
+      try { data = JSON.parse(text); } catch { throw new Error(`Server error: ${text.slice(0, 100)}`); }
+      if (!res.ok) throw new Error(data.error || `Server error ${res.status}`);
+      setResult(data);
+      saveToHistory(data);
+      setPhase('result');
+    } catch (err) {
+      setError(err.message || 'Could not look up product.');
+      setPhase('error');
+    }
+  }
+
   async function handleDescribeEstimate() {
     setPhase('estimating');
     try {
@@ -378,12 +495,16 @@ export default function ScannerPage() {
         <h1 className="text-4xl md:text-5xl leading-tight mb-2">
           {view === 'describe'
             ? <>Describe &amp; <span className="italic font-normal text-stone-400">Estimate.</span></>
+            : view === 'barcode'
+            ? <>Scan &amp; <span className="italic font-normal text-stone-400">Look up.</span></>
             : <>Snap &amp; <span className="italic font-normal text-stone-400">Estimate.</span></>
           }
         </h1>
         <p className="text-sm text-stone-500 font-medium leading-relaxed">
           {view === 'describe'
             ? 'Tell the AI what you ate — answer 2–3 quick questions — get an accurate calorie breakdown.'
+            : view === 'barcode'
+            ? 'Scan any product barcode — instantly get the nutrition facts from the Open Food Facts database.'
             : 'Take a photo of any meal — answer 2–3 quick questions — get an accurate calorie breakdown.'}
         </p>
       </div>
@@ -517,6 +638,29 @@ export default function ScannerPage() {
           </div>
         )}
 
+        {/* ── BARCODE VIEW ──────────────────────────────── */}
+        {view === 'barcode' && phase === 'idle' && (
+          <BarcodeScannerView
+            onDetected={handleBarcodeDetected}
+            onClose={() => switchView('photo')}
+          />
+        )}
+        {view === 'barcode' && phase !== 'idle' && (
+          <div className="relative bg-stone-900" style={{ aspectRatio: '4/3' }}>
+            {isLoading && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1.2, repeat: Infinity, ease: 'linear' }}
+                  className="w-12 h-12 border-2 border-stone-700 border-t-amber-400 rounded-full"
+                />
+                <p className="text-white text-xs font-black uppercase tracking-widest">Looking up product...</p>
+                <p className="text-stone-500 text-[10px]">Checking Open Food Facts database</p>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* ── History panel (photo idle only) ───────────── */}
         <AnimatePresence>
           {showHistory && phase === 'idle' && view === 'photo' && (
@@ -601,33 +745,40 @@ export default function ScannerPage() {
 
         {/* ── Action buttons — photo idle ─────────────────── */}
         {phase === 'idle' && view === 'photo' && (
-          <div className="p-5 grid grid-cols-4 gap-2">
+          <div className="p-5 grid grid-cols-5 gap-2">
             <button
               onClick={() => switchView('describe')}
               className="flex flex-col items-center justify-center gap-2 py-4 bg-stone-800 rounded-2xl hover:bg-stone-700 transition-all active:scale-95 border border-amber-500/20"
             >
-              <MessageSquare size={18} className="text-amber-400" />
+              <MessageSquare size={16} className="text-amber-400" />
               <span className="text-[8px] font-black uppercase tracking-widest text-amber-400">Describe</span>
             </button>
             <button
               onClick={() => cameraInputRef.current?.click()}
               className="flex flex-col items-center justify-center gap-2 py-4 bg-amber-500 rounded-2xl hover:bg-amber-400 transition-all active:scale-95"
             >
-              <Camera size={18} className="text-white" />
+              <Camera size={16} className="text-white" />
               <span className="text-[8px] font-black uppercase tracking-widest text-white">Camera</span>
             </button>
             <button
               onClick={() => fileInputRef.current?.click()}
               className="flex flex-col items-center justify-center gap-2 py-4 bg-stone-800 rounded-2xl hover:bg-stone-700 transition-all active:scale-95"
             >
-              <Upload size={18} className="text-stone-300" />
+              <Upload size={16} className="text-stone-300" />
               <span className="text-[8px] font-black uppercase tracking-widest text-stone-300">Gallery</span>
+            </button>
+            <button
+              onClick={() => switchView('barcode')}
+              className="flex flex-col items-center justify-center gap-2 py-4 bg-stone-800 rounded-2xl hover:bg-stone-700 transition-all active:scale-95 border border-stone-700"
+            >
+              <Barcode size={16} className="text-stone-300" />
+              <span className="text-[8px] font-black uppercase tracking-widest text-stone-300">Barcode</span>
             </button>
             <button
               onClick={() => setShowHistory(v => !v)}
               className={`flex flex-col items-center justify-center gap-2 py-4 rounded-2xl transition-all active:scale-95 ${showHistory ? 'bg-stone-600 text-white' : 'bg-stone-800 text-stone-300 hover:bg-stone-700'}`}
             >
-              <Clock size={18} />
+              <Clock size={16} />
               <span className="text-[8px] font-black uppercase tracking-widest">History</span>
             </button>
             <input ref={cameraInputRef} type="file" accept="image/*" capture="environment" className="hidden" onChange={handleFile} />
@@ -665,7 +816,7 @@ export default function ScannerPage() {
           <div className="px-6 pb-6">
             <button onClick={reset} className="w-full py-3 bg-stone-800 text-stone-400 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-stone-700 hover:text-white transition-all flex items-center justify-center gap-2">
               <RotateCcw size={13} />
-              {view === 'describe' ? 'Describe Another Meal' : 'Scan Another Meal'}
+              {view === 'describe' ? 'Describe Another Meal' : view === 'barcode' ? 'Scan Another Barcode' : 'Scan Another Meal'}
             </button>
           </div>
         )}
