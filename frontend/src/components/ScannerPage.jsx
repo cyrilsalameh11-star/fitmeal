@@ -439,8 +439,11 @@ export default function ScannerPage() {
     setError(null);
     setLogged(false);
     setShowHistory(false);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 12000);
     try {
-      const res = await fetch(`/api/barcode/${encodeURIComponent(code)}`);
+      const res = await fetch(`/api/barcode/${encodeURIComponent(code)}`, { signal: controller.signal });
+      clearTimeout(timeoutId);
       const text = await res.text();
       if (!text) throw new Error('Empty response from server.');
       let data;
@@ -450,7 +453,9 @@ export default function ScannerPage() {
       saveToHistory(data);
       setPhase('result');
     } catch (err) {
-      setError(err.message || 'Could not look up product.');
+      clearTimeout(timeoutId);
+      const msg = err.name === 'AbortError' ? 'not found' : (err.message || 'Could not look up product.');
+      setError(msg);
       setPhase('error');
     }
   }, []);
