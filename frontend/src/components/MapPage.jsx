@@ -329,14 +329,14 @@ const MapPage = () => {
             )}
           </div>
 
-          <div className="flex space-x-2 bg-stone-100 p-1 rounded-xl">
+          <div className="flex space-x-2 bg-stone-100 p-1 rounded-xl overflow-x-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {Object.keys(cities).map(city => (
               <button
                 key={city}
                 onClick={() => setActiveCityId(city)}
-                className={`px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wider transition-all duration-200 ${
-                  activeCityId === city 
-                    ? 'bg-amber-600 text-white shadow-md' 
+                className={`flex-shrink-0 px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wider transition-all duration-200 ${
+                  activeCityId === city
+                    ? 'bg-amber-600 text-white shadow-md'
                     : 'text-stone-500 hover:text-stone-800 hover:bg-stone-200'
                 }`}
               >

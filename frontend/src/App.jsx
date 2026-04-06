@@ -429,6 +429,12 @@ function App() {
                         <ShoppingBag className="w-8 h-8 opacity-20" />
                       </div>
                       <p className="text-lg">Select your targets to generate <br />your personalized meal suggestions.</p>
+                      <button
+                        onClick={() => setActiveTab('explore')}
+                        className="mt-6 flex items-center gap-2 text-sm font-bold text-amber-500 hover:text-amber-600 transition-colors"
+                      >
+                        Browse the food catalog <ArrowRight size={15} />
+                      </button>
                     </div>
                   )}
                 </div>
