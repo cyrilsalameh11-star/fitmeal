@@ -194,4 +194,35 @@ router.get('/barcode/:code', async (req, res) => {
   }
 });
 
+// POST /api/progress/analyze — compare two progress photos with Gemini Vision
+router.post('/progress/analyze', async (req, res) => {
+  const { image1, image2 } = req.body;
+  if (!image1 || !image2) return res.status(400).json({ error: 'Two images required.' });
+
+  const apiKey = process.env.GOOGLE_AI_API_KEY;
+  if (!apiKey) return res.status(503).json({ error: 'AI analysis not configured.' });
+
+  const toBase64 = d => d.split(',')[1];
+  const toMime   = d => d.split(';')[0].split(':')[1] || 'image/jpeg';
+
+  try {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+    const resp = await axios.post(url, {
+      contents: [{
+        parts: [
+          { inline_data: { mime_type: toMime(image1), data: toBase64(image1) } },
+          { inline_data: { mime_type: toMime(image2), data: toBase64(image2) } },
+          { text: `These are two fitness progress photos. The first is older, the second is more recent. Analyze the visible physical changes between them. Be specific, encouraging, and professional. Focus on body composition, posture, muscle definition, and overall transformation. Write 3–5 sentences. Ignore clothing and background.` }
+        ]
+      }],
+      generationConfig: { maxOutputTokens: 320, temperature: 0.7 }
+    });
+    const text = resp.data?.candidates?.[0]?.content?.parts?.[0]?.text || 'No analysis available.';
+    res.json({ analysis: text });
+  } catch (err) {
+    console.error('[/api/progress/analyze]', err.response?.data || err.message);
+    res.status(500).json({ error: 'Analysis failed. Please try again.' });
+  }
+});
+
 module.exports = router;
