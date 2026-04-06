@@ -156,7 +156,7 @@ export default function PilatesContent() {
           </div>
           <div className="mt-8 flex flex-col gap-3">
             <a
-              href="https://apps.apple.com/fr/app/classpass/id680736801"
+              href="https://apps.apple.com/search?term=classpass"
               target="_blank"
               rel="noopener noreferrer"
               className="group bg-stone-800/50 border border-stone-700/50 p-4 rounded-2xl text-xs font-bold uppercase tracking-widest flex items-center justify-between text-white hover:bg-stone-800 hover:border-amber-500/30 hover:shadow-lg transition-all"
@@ -168,7 +168,7 @@ export default function PilatesContent() {
               <ExternalLink className="w-4 h-4 text-stone-500 group-hover:scale-110 transition-transform" />
             </a>
             <a
-              href="https://play.google.com/store/apps/details?id=com.classpass.classpass"
+              href="https://play.google.com/store/search?q=classpass&c=apps"
               target="_blank"
               rel="noopener noreferrer"
               className="group bg-stone-800/50 border border-stone-700/50 p-4 rounded-2xl text-xs font-bold uppercase tracking-widest flex items-center justify-between text-white hover:bg-stone-800 hover:border-amber-500/30 hover:shadow-lg transition-all"
