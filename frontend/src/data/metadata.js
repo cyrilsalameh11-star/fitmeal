@@ -25,6 +25,7 @@ export const BRANDS = {
     { name: "Amorino", category: "Dessert", logo: "https://www.google.com/s2/favicons?domain=amorino.com&sz=64" },
     { name: "Paul", category: "Boulangerie", logo: "https://www.google.com/s2/favicons?domain=paul.fr&sz=64" },
     { name: "Matsuri", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=matsuri.fr&sz=64" },
+    { name: "Le Louchebem", category: "Restaurant", logo: "https://www.google.com/s2/favicons?domain=lelouchebem.com&sz=64" },
     { name: "Favorite Snacks", category: "Snack", logo: null }
   ],
   Spain: [
