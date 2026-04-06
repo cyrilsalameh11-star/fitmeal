@@ -134,29 +134,59 @@ router.get('/barcode/:code', async (req, res) => {
       return res.status(404).json({ error: 'Product not found. Try scanning again or enter manually.' });
     }
     const n = product.nutriments || {};
-    const calories = Math.round(n['energy-kcal_100g'] || n['energy-kcal'] || 0);
-    const protein  = Math.round(n.proteins_100g || n.proteins || 0);
-    const carbs    = Math.round(n.carbohydrates_100g || n.carbohydrates || 0);
-    const fat      = Math.round(n.fat_100g || n.fat || 0);
+    const cal100  = Math.round(n['energy-kcal_100g'] || n['energy-kcal'] || 0);
+    const prot100 = Math.round(n.proteins_100g || n.proteins || 0);
+    const carb100 = Math.round(n.carbohydrates_100g || n.carbohydrates || 0);
+    const fat100  = Math.round(n.fat_100g || n.fat || 0);
 
-    if (!calories) {
+    if (!cal100) {
       return res.status(404).json({ error: 'No nutritional data found for this product.' });
     }
 
-    const name     = product.product_name || product.product_name_en || 'Unknown Product';
-    const brandStr = (product.brands || '').split(',')[0].trim();
-    const quantity = product.quantity || '100g serving';
+    const name       = product.product_name || product.product_name_en || 'Unknown Product';
+    const brandStr   = (product.brands || '').split(',')[0].trim();
+    const servingQty = parseFloat(product.serving_quantity) || null;
+    const packageQty = parseFloat(product.product_quantity) || null;
+
+    // Per-serving nutrition (one unit / one portion)
+    let perServing = null;
+    if (servingQty && servingQty > 0 && (!packageQty || servingQty < packageQty)) {
+      perServing = {
+        calories: Math.round(cal100 * servingQty / 100),
+        protein:  Math.round(prot100 * servingQty / 100),
+        carbs:    Math.round(carb100 * servingQty / 100),
+        fat:      Math.round(fat100  * servingQty / 100),
+        label:    product.serving_size || `${servingQty}g`,
+      };
+    }
+
+    // Per-package nutrition (whole bag/box)
+    let perPackage = null;
+    if (packageQty && packageQty > 0) {
+      perPackage = {
+        calories: Math.round(cal100 * packageQty / 100),
+        protein:  Math.round(prot100 * packageQty / 100),
+        carbs:    Math.round(carb100 * packageQty / 100),
+        fat:      Math.round(fat100  * packageQty / 100),
+        label:    product.quantity || `${packageQty}g`,
+      };
+    }
+
+    // Default displayed values: per serving if available, else per 100g
+    const defaultBase = perServing || { calories: cal100, protein: prot100, carbs: carb100, fat: fat100 };
 
     res.json({
       dish:        brandStr ? `${name} — ${brandStr}` : name,
-      calories,
-      protein,
-      carbs,
-      fat,
-      servingSize: quantity,
+      calories:    defaultBase.calories,
+      protein:     defaultBase.protein,
+      carbs:       defaultBase.carbs,
+      fat:         defaultBase.fat,
+      servingSize: perServing?.label || product.quantity || 'per 100g',
       confidence:  'high',
       items:       [],
       tip:         null,
+      perServing,
+      perPackage,
     });
   } catch (err) {
     console.error('[/api/barcode] Error:', err.message);

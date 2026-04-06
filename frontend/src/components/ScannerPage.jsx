@@ -283,6 +283,8 @@ export default function ScannerPage() {
   const [answers,     setAnswers]     = useState({});
   const [showHistory, setShowHistory] = useState(false);
   const [describeText, setDescribeText] = useState('');
+  const [servingMode, setServingMode] = useState('serving'); // 'serving' | 'package'
+  const [qty,         setQty]         = useState(1);
 
   const compressImage = useCallback((file) => {
     return new Promise((resolve, reject) => {
@@ -461,7 +463,18 @@ export default function ScannerPage() {
 
   function handleLog() {
     if (!result) return;
-    const ok = logMealToday(result);
+    const base = (servingMode === 'package' && result.perPackage)
+      ? result.perPackage
+      : (result.perServing || result);
+    const entry = {
+      ...result,
+      calories:    Math.round(base.calories * qty),
+      protein:     Math.round(base.protein  * qty),
+      carbs:       Math.round(base.carbs    * qty),
+      fat:         Math.round(base.fat      * qty),
+      servingSize: qty > 1 ? `×${qty} ${base.label || result.servingSize}` : (base.label || result.servingSize),
+    };
+    const ok = logMealToday(entry);
     if (ok) { setLogged(true); setTimeout(() => setLogged(false), 2500); }
   }
 
@@ -474,6 +487,8 @@ export default function ScannerPage() {
     setLogged(false);
     setAnswers({});
     setShowHistory(false);
+    setServingMode('serving');
+    setQty(1);
     lastBase64Ref.current = null;
     if (fileInputRef.current) fileInputRef.current.value = '';
     if (cameraInputRef.current) cameraInputRef.current.value = '';
@@ -695,55 +710,109 @@ export default function ScannerPage() {
 
         {/* ── Result (shared) ────────────────────────────── */}
         <AnimatePresence>
-          {phase === 'result' && result && (
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-6 space-y-5">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <p className="text-white font-black text-lg leading-tight">{result.dish}</p>
-                  <p className="text-stone-500 text-[10px] font-medium mt-0.5">{result.servingSize}</p>
+          {phase === 'result' && result && (() => {
+            const hasServing  = !!result.perServing;
+            const hasPackage  = !!result.perPackage;
+            const showPicker  = hasServing || hasPackage;
+            const base = (servingMode === 'package' && hasPackage)
+              ? result.perPackage
+              : (hasServing ? result.perServing : result);
+            const displayCals    = Math.round(base.calories * qty);
+            const displayProtein = Math.round(base.protein  * qty);
+            const displayCarbs   = Math.round(base.carbs    * qty);
+            const displayFat     = Math.round(base.fat      * qty);
+            return (
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-6 space-y-5">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-white font-black text-lg leading-tight">{result.dish}</p>
+                    <p className="text-stone-500 text-[10px] font-medium mt-0.5">{base.label || result.servingSize}</p>
+                  </div>
+                  <span className={`text-[9px] font-black uppercase tracking-widest flex-shrink-0 ${confidenceColor[result.confidence] || 'text-stone-400'}`}>
+                    {result.confidence} confidence
+                  </span>
                 </div>
-                <span className={`text-[9px] font-black uppercase tracking-widest flex-shrink-0 ${confidenceColor[result.confidence] || 'text-stone-400'}`}>
-                  {result.confidence} confidence
-                </span>
-              </div>
 
-              <div className="bg-stone-900 rounded-2xl p-5 flex items-center justify-between">
-                <div>
-                  <p className="text-5xl font-black text-white leading-none">{result.calories}</p>
-                  <p className="text-stone-500 text-[10px] font-black uppercase tracking-widest mt-1">kcal estimated</p>
-                </div>
-                <div className="flex gap-4">
-                  <MacroChip label="Protein" value={`${result.protein}g`} color="bg-stone-700" />
-                  <MacroChip label="Carbs"   value={`${result.carbs}g`}   color="bg-amber-600" />
-                  <MacroChip label="Fat"     value={`${result.fat}g`}     color="bg-stone-600" />
-                </div>
-              </div>
+                {/* ── Serving picker (barcode only) ── */}
+                {showPicker && (
+                  <div className="space-y-3">
+                    {/* Per product / Whole bag toggle */}
+                    {hasServing && hasPackage && (
+                      <div className="flex gap-2 bg-stone-900 p-1 rounded-2xl">
+                        {[['serving', 'Per Product'], ['package', 'Whole Bag']].map(([mode, label]) => (
+                          <button
+                            key={mode}
+                            onClick={() => { setServingMode(mode); setQty(1); setLogged(false); }}
+                            className={`flex-1 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+                              servingMode === mode
+                                ? 'bg-amber-500 text-white'
+                                : 'text-stone-400 hover:text-white'
+                            }`}
+                          >
+                            {label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                    {/* Quantity multiplier — only for per-product */}
+                    {servingMode === 'serving' && (
+                      <div className="flex gap-2">
+                        {[1,2,3,4].map(n => (
+                          <button
+                            key={n}
+                            onClick={() => { setQty(n); setLogged(false); }}
+                            className={`flex-1 py-2.5 rounded-xl text-xs font-black transition-all ${
+                              qty === n
+                                ? 'bg-stone-600 text-white'
+                                : 'bg-stone-900 text-stone-400 hover:text-white'
+                            }`}
+                          >
+                            ×{n}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
 
-              {result.items?.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  {result.items.map((item, i) => (
-                    <span key={i} className="px-3 py-1 bg-stone-800 text-stone-300 rounded-full text-[10px] font-bold">{item}</span>
-                  ))}
+                <div className="bg-stone-900 rounded-2xl p-5 flex items-center justify-between">
+                  <div>
+                    <p className="text-5xl font-black text-white leading-none">{displayCals}</p>
+                    <p className="text-stone-500 text-[10px] font-black uppercase tracking-widest mt-1">kcal estimated</p>
+                  </div>
+                  <div className="flex gap-4">
+                    <MacroChip label="Protein" value={`${displayProtein}g`} color="bg-stone-700" />
+                    <MacroChip label="Carbs"   value={`${displayCarbs}g`}   color="bg-amber-600" />
+                    <MacroChip label="Fat"     value={`${displayFat}g`}     color="bg-stone-600" />
+                  </div>
                 </div>
-              )}
 
-              {result.tip && (
-                <div className="flex gap-2.5 bg-amber-500/10 border border-amber-500/20 rounded-2xl px-4 py-3">
-                  <Zap size={13} className="text-amber-400 flex-shrink-0 mt-0.5" />
-                  <p className="text-amber-200/80 text-xs font-medium leading-relaxed">{result.tip}</p>
-                </div>
-              )}
+                {result.items?.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {result.items.map((item, i) => (
+                      <span key={i} className="px-3 py-1 bg-stone-800 text-stone-300 rounded-full text-[10px] font-bold">{item}</span>
+                    ))}
+                  </div>
+                )}
 
-              <button
-                onClick={handleLog}
-                className={`w-full py-4 rounded-2xl text-xs font-black uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${
-                  logged ? 'bg-emerald-500 text-white' : 'bg-amber-500 text-white hover:bg-amber-400'
-                }`}
-              >
-                {logged ? <><Check size={14} /> Logged to Today!</> : <>Log {result.calories} kcal to Today <ChevronRight size={14} /></>}
-              </button>
-            </motion.div>
-          )}
+                {result.tip && (
+                  <div className="flex gap-2.5 bg-amber-500/10 border border-amber-500/20 rounded-2xl px-4 py-3">
+                    <Zap size={13} className="text-amber-400 flex-shrink-0 mt-0.5" />
+                    <p className="text-amber-200/80 text-xs font-medium leading-relaxed">{result.tip}</p>
+                  </div>
+                )}
+
+                <button
+                  onClick={handleLog}
+                  className={`w-full py-4 rounded-2xl text-xs font-black uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${
+                    logged ? 'bg-emerald-500 text-white' : 'bg-amber-500 text-white hover:bg-amber-400'
+                  }`}
+                >
+                  {logged ? <><Check size={14} /> Logged to Today!</> : <>Log {displayCals} kcal to Today <ChevronRight size={14} /></>}
+                </button>
+              </motion.div>
+            );
+          })()}
 
           {phase === 'error' && error && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-6 text-center space-y-3">
