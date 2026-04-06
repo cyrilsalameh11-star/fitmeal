@@ -53,6 +53,13 @@ function MacroChip({ label, value, color }) {
 
 function HistoryPanel({ onClose, onReLog }) {
   const [items, setItems] = useState(readHistory);
+
+  function deleteItem(id) {
+    const updated = items.filter(i => i.id !== id);
+    setItems(updated);
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(updated));
+  }
+
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} className="p-6 space-y-4">
       <div className="flex items-center justify-between">
@@ -84,6 +91,9 @@ function HistoryPanel({ onClose, onReLog }) {
               </div>
               <button onClick={() => onReLog(item)} className="flex-shrink-0 px-3 py-1.5 bg-stone-800 hover:bg-amber-500 text-stone-400 hover:text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all">
                 Log
+              </button>
+              <button onClick={() => deleteItem(item.id)} className="flex-shrink-0 w-7 h-7 flex items-center justify-center text-stone-600 hover:text-red-400 transition-colors">
+                <X size={14} />
               </button>
             </div>
           ))}
