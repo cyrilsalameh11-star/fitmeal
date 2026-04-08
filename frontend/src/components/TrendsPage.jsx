@@ -80,12 +80,12 @@ const ACCOUNTS_DATA = [
     color: '#f43f5e',
     url: 'https://www.instagram.com/wondersbyaline/',
     reels: [
-      { shortcode: 'DVRqFx7jYld', type: 'reel' }, // page 1 — newest
-      { shortcode: 'DVB4QnTDVF-', type: 'reel' }, // page 2
-      { shortcode: 'DU8mp01jZnu', type: 'reel' }, // page 3
-      { shortcode: 'DUv5pNUjT4U', type: 'reel' }, // page 4
-      { shortcode: 'DUtE9gqDUeY', type: 'reel' }, // page 5
-      { shortcode: 'DVRqFx7jYld', type: 'reel' }, // page 6 — oldest
+      { shortcode: 'DWmFYn0DXsy', type: 'reel' }, // page 1 — newest
+      { shortcode: 'DVRqFx7jYld', type: 'reel' }, // page 2
+      { shortcode: 'DVB4QnTDVF-', type: 'reel' }, // page 3
+      { shortcode: 'DU8mp01jZnu', type: 'reel' }, // page 4
+      { shortcode: 'DUv5pNUjT4U', type: 'reel' }, // page 5
+      { shortcode: 'DUtE9gqDUeY', type: 'reel' }, // page 6 — oldest
     ],
   },
   {
