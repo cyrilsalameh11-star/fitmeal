@@ -765,7 +765,7 @@ const PINNED_LORIENT_ARTICLES = [
 ];
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 42; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 43; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'printemps', 'galeries lafayette', 'grands magasins',
@@ -814,6 +814,7 @@ const NEWS_BANNED_WORDS = [
   'chef de la diplomatie', 'chef de la diplom', 'chef de la diplomati',
   'street food eyes', 'niche in lebanese', 'fast casual',
   'sits at a cafe', 'man sits at',
+  'valence', 'cèdre à', 'cedre a',
 ];
 
 const NEWS_BANNED_DOMAINS = ['qsrmedia'];
