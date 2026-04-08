@@ -3,93 +3,139 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { TrendingUp, ChevronLeft, ChevronRight, ExternalLink, Play } from 'lucide-react';
 
 // ─────────────────────────────────────────────────────────────────
-// REELS DATA — 7 accounts × 5 pages (newinbeirut added)
-// Interleaved: page N shows one reel per account
+// REELS DATA — organized per account, newest first
+// Page 1 = index 0 (newest), Page 6 = index 5 (oldest)
+// To add new reels: prepend to the reels array. The last entry
+// (index 5) gets pushed out automatically via TOTAL_PAGES.
 // ─────────────────────────────────────────────────────────────────
-const REELS_DATA = [
-  // PAGE 1
-  { id: 1,  handle: 'guide.lb',             color: '#e11d48', shortcode: 'DUyUdKfDQfS', type: 'reel' },
-  { id: 2,  handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DWefGLFjdu1', type: 'reel' },
-  { id: 3,  handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DQjgZMhkqh2', type: 'reel' },
-  { id: 4,  handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DVti6aGDoWq', type: 'reel', blocked: true },
-  { id: 5,  handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVTx-Bdje99', type: 'reel' },
-  { id: 6,  handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DVRqFx7jYld', type: 'reel' },
-  { id: 7,  handle: 'newinbeirut',          color: '#f97316', shortcode: 'DVthGdRDYhk', type: 'p'    },
-
-  // PAGE 2
-  { id: 8,  handle: 'guide.lb',             color: '#e11d48', shortcode: 'DUgGrZDDYpl', type: 'reel' },
-  { id: 9,  handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DUlZ_JQjMSh', type: 'reel' },
-  { id: 10, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUxdhBqDU_T', type: 'reel' },
-  { id: 11, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DSzNG4tjAqu', type: 'reel', blocked: true },
-  { id: 12, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVHRV8aDVMd', type: 'reel' },
-  { id: 13, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DVB4QnTDVF-', type: 'reel' },
-  { id: 14, handle: 'newinbeirut',          color: '#f97316', shortcode: 'DVeHssgDUKf', type: 'p'    },
-
-  // PAGE 3
-  { id: 15, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DSkvVRjjcMY', type: 'p'    },
-  { id: 16, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DVVlCUiDaG6', type: 'reel' },
-  { id: 17, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUgGiWNEiZi', type: 'reel' },
-  { id: 18, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DRAQGGUjKy0', type: 'reel', blocked: true },
-  { id: 19, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVG4b48jbNi', type: 'reel' },
-  { id: 20, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DU8mp01jZnu', type: 'reel' },
-  { id: 21, handle: 'newinbeirut',          color: '#f97316', shortcode: 'DVRUcaTjaYu', type: 'p'    },
-
-  // PAGE 4
-  { id: 22, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DSC5LaRDTOI', type: 'reel' },
-  { id: 23, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DVMfhvYDRYS', type: 'reel' },
-  { id: 24, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DUKxO6VDczo', type: 'reel' },
-  { id: 25, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DR2V9vuDML-', type: 'reel', blocked: true },
-  { id: 26, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DU5DbZWDQ42', type: 'reel' },
-  { id: 27, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DUv5pNUjT4U', type: 'reel' },
-  { id: 28, handle: 'newinbeirut',          color: '#f97316', shortcode: 'DUaUxCtjVdq', type: 'reel' },
-
-  // PAGE 5
-  { id: 29, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DRzc-I5jaoJ', type: 'reel' },
-  { id: 30, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DU-VE72jRn3', type: 'reel' },
-  { id: 31, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DRAC021kvno', type: 'reel' },
-  { id: 32, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DUfYlnuAvxJ', type: 'reel', blocked: true },
-  { id: 33, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DUQzpVqDVlU', type: 'reel' },
-  { id: 34, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DUtE9gqDUeY', type: 'reel' },
-  { id: 35, handle: 'newinbeirut',          color: '#f97316', shortcode: 'DUTf12UDTbX', type: 'p'    },
-
-  // PAGE 6 (newinbeirut 6th reel)
-  { id: 36, handle: 'guide.lb',             color: '#e11d48', shortcode: 'DUyUdKfDQfS', type: 'reel' },
-  { id: 37, handle: 'baroodiesfoodies',     color: '#d97706', shortcode: 'DUvLEl5DTd_', type: 'reel' },
-  { id: 38, handle: 'baroodiesfoodies.dxb', color: '#0891b2', shortcode: 'DQjgZMhkqh2', type: 'reel' },
-  { id: 39, handle: 'ellevousguide',        color: '#7c3aed', shortcode: 'DVti6aGDoWq', type: 'reel', blocked: true },
-  { id: 40, handle: 'laroutineyt',          color: '#16a34a', shortcode: 'DVTx-Bdje99', type: 'reel' },
-  { id: 41, handle: 'wondersbyaline',       color: '#f43f5e', shortcode: 'DVRqFx7jYld', type: 'reel' },
-  { id: 42, handle: 'newinbeirut',          color: '#f97316', shortcode: 'DUAfUqQDWGe', type: 'reel' },
+const ACCOUNTS_DATA = [
+  {
+    handle: 'guide.lb',
+    color: '#e11d48',
+    url: 'https://www.instagram.com/guide.lb/',
+    reels: [
+      { shortcode: 'DUyUdKfDQfS', type: 'reel' }, // page 1 — newest
+      { shortcode: 'DUgGrZDDYpl', type: 'reel' }, // page 2
+      { shortcode: 'DSkvVRjjcMY', type: 'p'    }, // page 3
+      { shortcode: 'DSC5LaRDTOI', type: 'reel' }, // page 4
+      { shortcode: 'DRzc-I5jaoJ', type: 'reel' }, // page 5
+      { shortcode: 'DUyUdKfDQfS', type: 'reel' }, // page 6 — oldest
+    ],
+  },
+  {
+    handle: 'baroodiesfoodies',
+    color: '#d97706',
+    url: 'https://www.instagram.com/baroodiesfoodies/',
+    reels: [
+      { shortcode: 'DWefGLFjdu1', type: 'reel' }, // page 1 — newest
+      { shortcode: 'DUlZ_JQjMSh', type: 'reel' }, // page 2
+      { shortcode: 'DVVlCUiDaG6', type: 'reel' }, // page 3
+      { shortcode: 'DVMfhvYDRYS', type: 'reel' }, // page 4
+      { shortcode: 'DU-VE72jRn3', type: 'reel' }, // page 5
+      { shortcode: 'DUvLEl5DTd_', type: 'reel' }, // page 6 — oldest
+    ],
+  },
+  {
+    handle: 'baroodiesfoodies.dxb',
+    color: '#0891b2',
+    url: 'https://www.instagram.com/baroodiesfoodies.dxb/',
+    reels: [
+      { shortcode: 'DQjgZMhkqh2', type: 'reel' }, // page 1 — newest
+      { shortcode: 'DUxdhBqDU_T', type: 'reel' }, // page 2
+      { shortcode: 'DUgGiWNEiZi', type: 'reel' }, // page 3
+      { shortcode: 'DUKxO6VDczo', type: 'reel' }, // page 4
+      { shortcode: 'DRAC021kvno', type: 'reel' }, // page 5
+      { shortcode: 'DQjgZMhkqh2', type: 'reel' }, // page 6 — oldest
+    ],
+  },
+  {
+    handle: 'ellevousguide',
+    color: '#7c3aed',
+    url: 'https://www.instagram.com/ellevousguide/',
+    blocked: true,
+    reels: [
+      { shortcode: 'DVti6aGDoWq', type: 'reel' }, // page 1 — newest
+      { shortcode: 'DSzNG4tjAqu', type: 'reel' }, // page 2
+      { shortcode: 'DRAQGGUjKy0', type: 'reel' }, // page 3
+      { shortcode: 'DR2V9vuDML-', type: 'reel' }, // page 4
+      { shortcode: 'DUfYlnuAvxJ', type: 'reel' }, // page 5
+      { shortcode: 'DVti6aGDoWq', type: 'reel' }, // page 6 — oldest
+    ],
+  },
+  {
+    handle: 'laroutineyt',
+    color: '#16a34a',
+    url: 'https://www.instagram.com/laroutineyt/',
+    reels: [
+      { shortcode: 'DVTx-Bdje99', type: 'reel' }, // page 1 — newest
+      { shortcode: 'DVHRV8aDVMd', type: 'reel' }, // page 2
+      { shortcode: 'DVG4b48jbNi', type: 'reel' }, // page 3
+      { shortcode: 'DU5DbZWDQ42', type: 'reel' }, // page 4
+      { shortcode: 'DUQzpVqDVlU', type: 'reel' }, // page 5
+      { shortcode: 'DVTx-Bdje99', type: 'reel' }, // page 6 — oldest
+    ],
+  },
+  {
+    handle: 'wondersbyaline',
+    color: '#f43f5e',
+    url: 'https://www.instagram.com/wondersbyaline/',
+    reels: [
+      { shortcode: 'DVRqFx7jYld', type: 'reel' }, // page 1 — newest
+      { shortcode: 'DVB4QnTDVF-', type: 'reel' }, // page 2
+      { shortcode: 'DU8mp01jZnu', type: 'reel' }, // page 3
+      { shortcode: 'DUv5pNUjT4U', type: 'reel' }, // page 4
+      { shortcode: 'DUtE9gqDUeY', type: 'reel' }, // page 5
+      { shortcode: 'DVRqFx7jYld', type: 'reel' }, // page 6 — oldest
+    ],
+  },
+  {
+    handle: 'newinbeirut',
+    color: '#f97316',
+    url: 'https://www.instagram.com/newinbeirut/',
+    reels: [
+      { shortcode: 'DVy2il5DTsk', type: 'p'    }, // page 1 — newest
+      { shortcode: 'DVthGdRDYhk', type: 'p'    }, // page 2
+      { shortcode: 'DVeHssgDUKf', type: 'p'    }, // page 3
+      { shortcode: 'DVRUcaTjaYu', type: 'p'    }, // page 4
+      { shortcode: 'DUaUxCtjVdq', type: 'reel' }, // page 5
+      { shortcode: 'DUTf12UDTbX', type: 'p'    }, // page 6 — oldest
+    ],
+  },
 ];
 
-const ACCOUNTS = [
-  { handle: 'guide.lb',             color: '#e11d48', url: 'https://www.instagram.com/guide.lb/'             },
-  { handle: 'baroodiesfoodies',     color: '#d97706', url: 'https://www.instagram.com/baroodiesfoodies/'     },
-  { handle: 'baroodiesfoodies.dxb', color: '#0891b2', url: 'https://www.instagram.com/baroodiesfoodies.dxb/' },
-  { handle: 'ellevousguide',        color: '#7c3aed', url: 'https://www.instagram.com/ellevousguide/'        },
-  { handle: 'laroutineyt',          color: '#16a34a', url: 'https://www.instagram.com/laroutineyt/'          },
-  { handle: 'wondersbyaline',       color: '#f43f5e', url: 'https://www.instagram.com/wondersbyaline/'       },
-  { handle: 'newinbeirut',          color: '#f97316', url: 'https://www.instagram.com/newinbeirut/'          },
-];
+const MAX_PAGES = 6; // reels beyond this index are dropped when new ones come in
+const TOTAL_PAGES = Math.max(...ACCOUNTS_DATA.map(a => Math.min(a.reels.length, MAX_PAGES)));
 
-const REELS_PER_PAGE = 7;
-const TOTAL_PAGES    = 6;
-
-// Flat slice — data is pre-interleaved so each page is balanced
+// Page N shows reels[N] for each account (skips accounts with fewer reels)
 function getPageReels(page) {
-  return REELS_DATA.slice(page * REELS_PER_PAGE, (page + 1) * REELS_PER_PAGE);
+  return ACCOUNTS_DATA
+    .filter(acc => acc.reels[page])
+    .map((acc, i) => ({
+      id: page * ACCOUNTS_DATA.length + i,
+      handle: acc.handle,
+      color: acc.color,
+      blocked: acc.blocked || false,
+      ...acc.reels[page],
+    }));
 }
 
-// Single account filter — show all 6, no pagination needed
+// All reels for a single account (newest first)
 function getAccountReels(handle) {
-  return REELS_DATA.filter(r => r.handle === handle);
+  const acc = ACCOUNTS_DATA.find(a => a.handle === handle);
+  if (!acc) return [];
+  return acc.reels.slice(0, MAX_PAGES).map((r, i) => ({
+    id: i,
+    handle: acc.handle,
+    color: acc.color,
+    blocked: acc.blocked || false,
+    ...r,
+  }));
 }
 
 // Load embed.js once, globally
 function loadEmbedScript(cb) {
   if (window.instgrm) { cb(); return; }
   if (document.getElementById('ig-embed-script')) {
-    // already injected but not yet loaded — wait
     const existing = document.getElementById('ig-embed-script');
     existing.addEventListener('load', cb, { once: true });
     return;
@@ -103,13 +149,12 @@ function loadEmbedScript(cb) {
 }
 
 function ReelCard({ reel, index }) {
-  const account  = ACCOUNTS.find(a => a.handle === reel.handle);
-  const reelUrl  = `https://www.instagram.com/${reel.type}/${reel.shortcode}/`;
+  const acc     = ACCOUNTS_DATA.find(a => a.handle === reel.handle);
+  const reelUrl = `https://www.instagram.com/${reel.type}/${reel.shortcode}/`;
   const embedRef = useRef(null);
 
   useEffect(() => {
     if (reel.blocked || !embedRef.current) return;
-    // Write the blockquote directly into the DOM so React never touches it again
     embedRef.current.innerHTML = `<blockquote
       class="instagram-media"
       data-instgrm-captioned
@@ -137,7 +182,7 @@ function ReelCard({ reel, index }) {
         </div>
         <span className="text-[11px] font-black text-stone-300 truncate">@{reel.handle}</span>
         <a
-          href={account?.url}
+          href={acc?.url}
           target="_blank"
           rel="noopener noreferrer"
           className="ml-auto text-stone-600 hover:text-stone-300 transition-colors flex-shrink-0"
@@ -168,7 +213,6 @@ function ReelCard({ reel, index }) {
           </span>
         </a>
       ) : (
-        /* embed.js writes into this div — React never touches its children */
         <div ref={embedRef} style={{ minHeight: '500px' }} />
       )}
     </motion.div>
@@ -178,7 +222,6 @@ function ReelCard({ reel, index }) {
 export default function TrendsPage() {
   const [page,          setPage]          = useState(0);
   const [activeAccount, setActiveAccount] = useState('all');
-
 
   const isAll      = activeAccount === 'all';
   const totalPages = isAll ? TOTAL_PAGES : 1;
@@ -231,7 +274,7 @@ export default function TrendsPage() {
         >
           All
         </button>
-        {ACCOUNTS.map(acc => (
+        {ACCOUNTS_DATA.map(acc => (
           <button
             key={acc.handle}
             onClick={() => handleFilter(acc.handle)}
@@ -247,7 +290,7 @@ export default function TrendsPage() {
         ))}
       </div>
 
-      {/* Grid — 5 columns on xl, 3 on lg, 2 on sm */}
+      {/* Grid */}
       <AnimatePresence mode="wait">
         <motion.div
           key={`${page}-${activeAccount}`}
@@ -301,7 +344,7 @@ export default function TrendsPage() {
       <div className="bg-stone-50 rounded-[2rem] p-8 border border-stone-100">
         <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 mb-5">Featured Creators</p>
         <div className="flex flex-wrap gap-3">
-          {ACCOUNTS.map(acc => (
+          {ACCOUNTS_DATA.map(acc => (
             <a
               key={acc.handle}
               href={acc.url}
