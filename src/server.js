@@ -648,6 +648,13 @@ const parser = new RSSParser();
 // Manually curated global FMCG articles — always surfaced at the top
 const PINNED_GLOBAL_ARTICLES = [
   {
+    title: "Create Wellness raises $20 million, setting sights beyond creatine gummies",
+    link: 'https://athletechnews.com/create-wellness-raises-20-million-funding-setting-sights-beyond-creatine-gummies/',
+    pubDate: 'Tue, 08 Apr 2026 10:00:00 GMT',
+    contentSnippet: "Create Wellness has raised $20 million in funding and is expanding beyond its viral creatine gummies into a broader functional wellness portfolio.",
+    id: 'pinned-global-create-wellness-20m',
+  },
+  {
     title: "Monoprix arrives to NokNok!",
     link: 'https://www.facebook.com/share/r/1B6kN893MZ/',
     pubDate: 'Sun, 29 Mar 2026 10:00:00 GMT',
@@ -758,7 +765,7 @@ const PINNED_LORIENT_ARTICLES = [
 ];
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 41; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 42; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'printemps', 'galeries lafayette', 'grands magasins',
@@ -806,6 +813,7 @@ const NEWS_BANNED_WORDS = [
   'marseille', 'australia', 'australian',
   'chef de la diplomatie', 'chef de la diplom', 'chef de la diplomati',
   'street food eyes', 'niche in lebanese', 'fast casual',
+  'sits at a cafe', 'man sits at',
 ];
 
 const NEWS_BANNED_DOMAINS = ['qsrmedia'];
