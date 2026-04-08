@@ -67,12 +67,12 @@ const ACCOUNTS_DATA = [
     color: '#16a34a',
     url: 'https://www.instagram.com/laroutineyt/',
     reels: [
-      { shortcode: 'DVTx-Bdje99', type: 'reel' }, // page 1 — newest
-      { shortcode: 'DVHRV8aDVMd', type: 'reel' }, // page 2
-      { shortcode: 'DVG4b48jbNi', type: 'reel' }, // page 3
-      { shortcode: 'DU5DbZWDQ42', type: 'reel' }, // page 4
-      { shortcode: 'DUQzpVqDVlU', type: 'reel' }, // page 5
-      { shortcode: 'DVTx-Bdje99', type: 'reel' }, // page 6 — oldest
+      { shortcode: 'DWzDerXjURf', type: 'reel' }, // page 1 — newest
+      { shortcode: 'DVTx-Bdje99', type: 'reel' }, // page 2
+      { shortcode: 'DVHRV8aDVMd', type: 'reel' }, // page 3
+      { shortcode: 'DVG4b48jbNi', type: 'reel' }, // page 4
+      { shortcode: 'DU5DbZWDQ42', type: 'reel' }, // page 5
+      { shortcode: 'DUQzpVqDVlU', type: 'reel' }, // page 6 — oldest
     ],
   },
   {
