@@ -181,7 +181,7 @@ router.get('/barcode/:code', async (req, res) => {
       protein:     defaultBase.protein,
       carbs:       defaultBase.carbs,
       fat:         defaultBase.fat,
-      servingSize: perServing?.label || product.quantity || 'per 100g',
+      servingSize: perServing?.label || 'per 100g',
       confidence:  'high',
       items:       [],
       tip:         null,
