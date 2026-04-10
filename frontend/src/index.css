@@ -46,7 +46,7 @@
 
 @media (max-width: 768px) {
   .mobile-scale-down {
-    font-size: 75%;
+    zoom: 0.78;
   }
 }
 
