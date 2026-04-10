@@ -77,7 +77,7 @@ function RetailFormatsPage() {
         { name: 'Walmart', domain: 'walmart.com' },
         { name: 'Tesco Extra', domain: 'tesco.com' },
       ],
-      desc: 'Food + non-food under one roof. Destination shopping requiring a car. Under pressure from e-commerce — repurposing as fulfilment hubs.',
+      desc: 'Food + non-food under one roof. Destination shopping requiring a car. Under pressure from e-commerce repurposing as fulfilment hubs.',
     },
     {
       name: 'Discount Store',
@@ -109,7 +109,7 @@ function RetailFormatsPage() {
         { name: 'Galeries Lafayette', domain: 'galerieslafayette.com' },
         { name: 'Nordstrom', domain: 'nordstrom.com' },
       ],
-      desc: 'Multi-category premium. Concession model (brands rent space). Under existential pressure — surviving through experiential retail and food courts.',
+      desc: 'Multi-category premium. Concession model (brands rent space). Under existential pressure surviving through experiential retail and food courts.',
     },
     {
       name: 'Drug Store / Pharmacy',
@@ -136,13 +136,13 @@ function RetailFormatsPage() {
         <div className="absolute inset-0 opacity-5"
           style={{ backgroundImage: 'repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.3) 39px,rgba(255,255,255,.3) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.3) 39px,rgba(255,255,255,.3) 40px)' }} />
         <div className="relative space-y-3 max-w-2xl">
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-amber-400">Chapter 01 — Retail Formats</span>
+          <span className="text-xs font-black uppercase tracking-[0.2em] text-amber-400">Chapter 01 Retail Formats</span>
           <h2 className="text-5xl font-serif leading-[1.1]">The Retail <span className="italic text-stone-400">Landscape</span></h2>
           <p className="text-stone-300 text-base leading-relaxed">
-            Retail is not one industry — it is a portfolio of distinct business models, each optimised for a different customer mission, basket size, and location economics. Understanding the format is understanding the strategy.
+            Retail is not one industry it is a portfolio of distinct business models, each optimised for a different customer mission, basket size, and location economics. Understanding the format is understanding the strategy.
           </p>
           <div className="flex flex-wrap gap-6 pt-4 border-t border-white/10">
-            {[['$30T+', 'Global retail market'], ['~60%', 'Share held by top 250 retailers'], ['3×', 'Discount growth vs. total market'], ['#1', 'Convenience — fastest urbanising format']].map(([v, l]) => (
+            {[['$30T+', 'Global retail market'], ['~60%', 'Share held by top 250 retailers'], ['3×', 'Discount growth vs. total market'], ['#1', 'Convenience fastest urbanising format']].map(([v, l]) => (
               <div key={l}>
                 <p className="text-2xl font-black text-amber-400">{v}</p>
                 <p className="text-[11px] text-stone-400 uppercase tracking-widest">{l}</p>
@@ -198,7 +198,7 @@ function RetailFormatsPage() {
           <div className="flex items-center gap-4">
             <Logo domain="7-eleven.com" alt="7-Eleven" size={52} bg="bg-white" />
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-amber-400">Spotlight — Cluster Model</p>
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-amber-400">Spotlight Cluster Model</p>
               <h3 className="text-3xl font-serif">7-Eleven's Urban Dominance Strategy</h3>
               <p className="text-stone-400 text-sm mt-1">How a Thai-owned, American-born brand became the world's largest retailer by store count</p>
             </div>
@@ -207,7 +207,7 @@ function RetailFormatsPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               { n: '01', icon: '📍', title: 'Cluster First, Expand Later', desc: 'Saturate a single city with stores before entering the next market. Shared cold-chain logistics, regional marketing spend, and brand awareness compound together.' },
-              { n: '02', icon: '🚇', title: 'Captive Traffic Anchoring', desc: 'Locate at transit nodes, university gates, office towers. 7-Eleven targets locations where 3 000+ people pass daily — footfall replaces marketing budget.' },
+              { n: '02', icon: '🚇', title: 'Captive Traffic Anchoring', desc: 'Locate at transit nodes, university gates, office towers. 7-Eleven targets locations where 3 000+ people pass daily footfall replaces marketing budget.' },
               { n: '03', icon: '🤝', title: 'Franchise-Fuelled Scale', desc: 'Over 85% of stores are franchised. Capital-light growth model: local operators bear capex, 7-Eleven collects royalties and controls brand standards.' },
             ].map(item => (
               <div key={item.n} className="bg-white/8 border border-white/10 rounded-2xl p-6 space-y-3">
@@ -239,7 +239,7 @@ function RetailFormatsPage() {
             <span className="text-[10px] font-black uppercase tracking-widest opacity-60">Trending Topic</span>
             <h3 className="text-4xl font-serif leading-tight">Private<br/>Labeling</h3>
             <p className="text-stone-900/70 text-sm leading-relaxed">
-              Retailers are no longer just distributors — they are brand owners. By owning the product, they capture manufacturer margin, build exclusivity, and lock in loyalty.
+              Retailers are no longer just distributors they are brand owners. By owning the product, they capture manufacturer margin, build exclusivity, and lock in loyalty.
             </p>
           </div>
           <div className="space-y-2 border-t border-stone-900/20 pt-5">
@@ -259,7 +259,7 @@ function RetailFormatsPage() {
         <div className="lg:col-span-3 grid grid-cols-1 gap-4">
           {[
             { icon: '💰', title: 'Margin Capture', desc: 'Private-label gross margins run 2–3× higher than national brands. The retailer earns both the distributor and the manufacturer margin. For Lidl, this explains their price-quality dominance.', tag: 'Economics' },
-            { icon: '🔐', title: 'Exclusivity & Lock-in', desc: 'You can only buy Kirkland at Costco. You can only buy George at ASDA. Exclusive products create a switching cost — a behavioural moat that media spend cannot replicate.', tag: 'Strategy' },
+            { icon: '🔐', title: 'Exclusivity & Lock-in', desc: 'You can only buy Kirkland at Costco. You can only buy George at ASDA. Exclusive products create a switching cost a behavioural moat that media spend cannot replicate.', tag: 'Strategy' },
             { icon: '📊', title: 'Tiered Architecture', desc: 'Best retailers operate three PL tiers: economy (price fight), standard (volume), and premium (margin & image). Each tier serves a different customer segment within the same basket.', tag: 'Portfolio' },
           ].map(item => (
             <div key={item.title} className="bg-white border border-stone-100 rounded-2xl p-6 flex gap-4 hover:shadow-md transition-shadow">
@@ -369,7 +369,7 @@ function StoreLayoutsPage() {
         <div className="absolute inset-0 opacity-5"
           style={{ backgroundImage: 'repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.3) 39px,rgba(255,255,255,.3) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.3) 39px,rgba(255,255,255,.3) 40px)' }} />
         <div className="relative space-y-3 max-w-2xl">
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-amber-400">Chapter 02 — Store Architecture</span>
+          <span className="text-xs font-black uppercase tracking-[0.2em] text-amber-400">Chapter 02 Store Architecture</span>
           <h2 className="text-5xl font-serif leading-[1.1]">Store <span className="italic text-stone-400">Layouts</span></h2>
           <p className="text-stone-300 leading-relaxed">
             Floor design is a conversion tool. The path a customer walks determines what they see, how long they stay, and ultimately how much they spend. Layout is strategy made physical.
@@ -448,20 +448,20 @@ function StoreLayoutsPage() {
           <div className="flex items-center gap-4">
             <Logo domain="ikea.com" alt="IKEA" size={52} bg="bg-white" />
             <div>
-              <p className="text-xs font-black uppercase tracking-widest text-stone-700">Deep Dive — S-Layout</p>
+              <p className="text-xs font-black uppercase tracking-widest text-stone-700">Deep Dive S-Layout</p>
               <h3 className="text-3xl font-serif text-stone-900">Why IKEA Built a Maze</h3>
             </div>
           </div>
           <p className="text-stone-800 leading-relaxed text-sm">
-            IKEA's layout is deliberate behavioural architecture. The forced path ensures every customer walks past every department. The "IKEA effect" — where customers value items they have physically touched and carried — is amplified by proximity and navigation effort.
+            IKEA's layout is deliberate behavioural architecture. The forced path ensures every customer walks past every department. The "IKEA effect" where customers value items they have physically touched and carried is amplified by proximity and navigation effort.
           </p>
           <p className="text-stone-800 leading-relaxed text-sm">
-            The in-store restaurant isn't a service gesture — it is a <strong>dwell-time extension device</strong>. A fed customer stays longer, sees more, and buys more. Average visit: 3 hours.
+            The in-store restaurant isn't a service gesture it is a <strong>dwell-time extension device</strong>. A fed customer stays longer, sees more, and buys more. Average visit: 3 hours.
           </p>
           <div className="border-t border-stone-900/20 pt-4">
             <blockquote className="italic text-stone-700 text-sm flex gap-2">
               <Quote className="w-4 h-4 flex-shrink-0 mt-0.5 text-stone-500" />
-              "We want customers to leave with more than they came for — and the building is designed to make that happen."
+              "We want customers to leave with more than they came for and the building is designed to make that happen."
             </blockquote>
           </div>
         </div>
@@ -493,7 +493,7 @@ function StoreLayoutsPage() {
             ].map(([zone, desc], i) => (
               <div key={zone} className="flex gap-3 text-sm">
                 <span className="text-amber-400 font-black w-4 flex-shrink-0">{i + 1}</span>
-                <div><span className="font-bold text-white">{zone} — </span><span className="text-stone-400">{desc}</span></div>
+                <div><span className="font-bold text-white">{zone} </span><span className="text-stone-400">{desc}</span></div>
               </div>
             ))}
           </div>
@@ -541,10 +541,10 @@ function DNVBsPage() {
         <div className="absolute inset-0 opacity-5"
           style={{ backgroundImage: 'repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.3) 39px,rgba(255,255,255,.3) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.3) 39px,rgba(255,255,255,.3) 40px)' }} />
         <div className="relative space-y-3 max-w-2xl">
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-amber-400">Chapter 03 — Digital Retail</span>
+          <span className="text-xs font-black uppercase tracking-[0.2em] text-amber-400">Chapter 03 Digital Retail</span>
           <h2 className="text-5xl font-serif leading-[1.1]">Digitally Native <span className="italic text-stone-400">Vertical Brands</span></h2>
           <p className="text-stone-300 leading-relaxed">
-            DNVBs did not disrupt retail by building better stores — they disrupted it by eliminating them. Born online, owning their supply chain, speaking directly to their community.
+            DNVBs did not disrupt retail by building better stores they disrupted it by eliminating them. Born online, owning their supply chain, speaking directly to their community.
           </p>
         </div>
       </div>
@@ -554,7 +554,7 @@ function DNVBsPage() {
         {[
           { icon: Globe, title: 'Digital-First', desc: 'Born online. Community and revenue built through owned digital channels before any physical presence.', color: 'bg-blue-50 border-blue-200', icon_color: 'text-blue-600' },
           { icon: BarChart2, title: 'Vertically Integrated', desc: 'Owns design, production, logistics and retail. No wholesale, no intermediary, no margin dilution.', color: 'bg-violet-50 border-violet-200', icon_color: 'text-violet-600' },
-          { icon: Users, title: 'Direct Relationship', desc: 'Owns all customer data end-to-end. Every transaction is a first-party signal — no Amazon, no retailer.', color: 'bg-emerald-50 border-emerald-200', icon_color: 'text-emerald-600' },
+          { icon: Users, title: 'Direct Relationship', desc: 'Owns all customer data end-to-end. Every transaction is a first-party signal no Amazon, no retailer.', color: 'bg-emerald-50 border-emerald-200', icon_color: 'text-emerald-600' },
           { icon: Store, title: 'Selective Offline', desc: 'Physical stores are brand embassies, not mass distribution. Opened only where they add brand equity.', color: 'bg-amber-50 border-amber-200', icon_color: 'text-amber-600' },
         ].map(item => {
           const Icon = item.icon;
@@ -575,13 +575,13 @@ function DNVBsPage() {
             <div className="flex items-center gap-4">
               <Logo domain="jimmyfairly.com" alt="Jimmy Fairly" size={52} bg="bg-white" />
               <div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-indigo-300">🇫🇷 Eyewear — Founded 2011</p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-indigo-300">🇫🇷 Eyewear Founded 2011</p>
                 <h3 className="text-3xl font-serif">Jimmy Fairly</h3>
                 <p className="text-indigo-300 italic text-sm">"Good eyewear. Good deeds."</p>
               </div>
             </div>
             <p className="text-white/70 text-sm leading-relaxed">
-              Jimmy Fairly entered a market structurally protected by the optician lobby — and dismantled the pricing model with radical transparency. One price, everything included.
+              Jimmy Fairly entered a market structurally protected by the optician lobby and dismantled the pricing model with radical transparency. One price, everything included.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-3">
@@ -597,9 +597,9 @@ function DNVBsPage() {
         <div className="lg:col-span-3 space-y-4">
           <p className="text-xs font-black uppercase tracking-widest text-stone-400">Why Jimmy Fairly Succeeded</p>
           {[
-            { n: '01', title: 'Radical Price Transparency', body: 'Traditional opticians mark up frames 10–20×. Jimmy Fairly exposed this and offered a credible €145 all-in alternative. The disruption was not product innovation — it was pricing honesty.' },
-            { n: '02', title: 'Cause as Conversion Driver', body: 'Each pair sold funds a donated pair. The cause is not a PR overlay — it is baked into the purchase. Customers buy better because it feels better. CSR as a DNVB growth lever.' },
-            { n: '03', title: 'Physical Stores as Brand Events', body: '"Fairly Labs" concept stores in premium neighbourhoods are editorial spaces — coffee, events, opticians on-site. They complement the DTC model without competing with it.' },
+            { n: '01', title: 'Radical Price Transparency', body: 'Traditional opticians mark up frames 10–20×. Jimmy Fairly exposed this and offered a credible €145 all-in alternative. The disruption was not product innovation it was pricing honesty.' },
+            { n: '02', title: 'Cause as Conversion Driver', body: 'Each pair sold funds a donated pair. The cause is not a PR overlay it is baked into the purchase. Customers buy better because it feels better. CSR as a DNVB growth lever.' },
+            { n: '03', title: 'Physical Stores as Brand Events', body: '"Fairly Labs" concept stores in premium neighbourhoods are editorial spaces coffee, events, opticians on-site. They complement the DTC model without competing with it.' },
             { n: '04', title: 'Community Before Commerce', body: 'Built a community of advocates through content and collaborations before scaling the store network. Social proof replaces advertising budget.' },
           ].map(item => (
             <div key={item.n} className="bg-white border border-stone-100 rounded-2xl p-5 flex gap-4 hover:shadow-md transition-shadow">
@@ -618,9 +618,9 @@ function DNVBsPage() {
         <div className="lg:col-span-3 space-y-4">
           <p className="text-xs font-black uppercase tracking-widest text-stone-400">Why Sézane Succeeded</p>
           {[
-            { n: '01', title: 'Community Built Before Product', body: 'Founder Morgane Sézalory launched on Instagram in 2013 — when the platform was 3 years old. The first collection sold out in minutes because the community was already primed.' },
+            { n: '01', title: 'Community Built Before Product', body: 'Founder Morgane Sézalory launched on Instagram in 2013 when the platform was 3 years old. The first collection sold out in minutes because the community was already primed.' },
             { n: '02', title: 'Scarcity as a Strategic Weapon', body: 'Limited drops, never restocked. The urgency is engineered. Waiting lists reinforce desirability. Scarcity collapses the decision window and eliminates price comparison.' },
-            { n: '03', title: '"Appartement" Format — Experience, Not Retail', body: 'Physical stores are called Appartements — curated Parisian apartments where you can try clothes, have a coffee, attend events. They are brand experiences that happen to sell clothes.' },
+            { n: '03', title: '"Appartement" Format Experience, Not Retail', body: 'Physical stores are called Appartements curated Parisian apartments where you can try clothes, have a coffee, attend events. They are brand experiences that happen to sell clothes.' },
             { n: '04', title: 'Sustainable Positioning as Identity', body: 'Sézane was among the first fashion DNVBs to integrate sustainability as a brand pillar, not a footnote. This resonates powerfully with their core Gen-Z and Millennial audience.' },
           ].map(item => (
             <div key={item.n} className="bg-white border border-stone-100 rounded-2xl p-5 flex gap-4 hover:shadow-md transition-shadow">
@@ -638,13 +638,13 @@ function DNVBsPage() {
             <div className="flex items-center gap-4">
               <Logo domain="sezane.com" alt="Sézane" size={52} bg="bg-white" />
               <div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-rose-300">🇫🇷 Fashion — Founded 2013</p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-rose-300">🇫🇷 Fashion Founded 2013</p>
                 <h3 className="text-3xl font-serif">Sézane</h3>
                 <p className="text-rose-300 italic text-sm">"French elegance, digital first."</p>
               </div>
             </div>
             <p className="text-white/70 text-sm leading-relaxed">
-              Sézane proved that luxury positioning and digital-native DNA are not contradictory — they are complementary when community-first strategy replaces advertising spend.
+              Sézane proved that luxury positioning and digital-native DNA are not contradictory they are complementary when community-first strategy replaces advertising spend.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-3">
@@ -702,10 +702,10 @@ function CSRPatagoniaPage() {
         <div className="absolute inset-0 opacity-5"
           style={{ backgroundImage: 'repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.3) 39px,rgba(255,255,255,.3) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.3) 39px,rgba(255,255,255,.3) 40px)' }} />
         <div className="relative space-y-3 max-w-2xl">
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-amber-400">Chapter 04 — Sustainability & Ethics</span>
+          <span className="text-xs font-black uppercase tracking-[0.2em] text-amber-400">Chapter 04 Sustainability & Ethics</span>
           <h2 className="text-5xl font-serif leading-[1.1]">CSR, <span className="italic text-stone-400">Patagonia</span> & Veja</h2>
           <p className="text-stone-300 leading-relaxed">
-            Corporate Social Responsibility has shifted from compliance obligation to competitive advantage. In retail, sustainability strategy shapes brand positioning, talent attraction, and increasingly — purchasing decisions.
+            Corporate Social Responsibility has shifted from compliance obligation to competitive advantage. In retail, sustainability strategy shapes brand positioning, talent attraction, and increasingly purchasing decisions.
           </p>
         </div>
       </div>
@@ -714,7 +714,7 @@ function CSRPatagoniaPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-emerald-950 text-white rounded-3xl p-8 space-y-5">
           <div className="space-y-2">
-            <p className="text-xs font-black uppercase tracking-widest text-emerald-400">Definition — Brundtland Commission, 1987</p>
+            <p className="text-xs font-black uppercase tracking-widest text-emerald-400">Definition Brundtland Commission, 1987</p>
             <h3 className="text-2xl font-serif">Sustainable Development</h3>
           </div>
           <blockquote className="border-l-2 border-emerald-400 pl-5 italic text-white/80 text-base leading-relaxed">
@@ -737,7 +737,7 @@ function CSRPatagoniaPage() {
 
         <div className="bg-stone-50 border border-stone-200 rounded-3xl p-8 space-y-5">
           <div className="space-y-2">
-            <p className="text-xs font-black uppercase tracking-widest text-stone-400">UN Framework — 2030 Agenda</p>
+            <p className="text-xs font-black uppercase tracking-widest text-stone-400">UN Framework 2030 Agenda</p>
             <h3 className="text-2xl font-bold text-stone-900">17 Sustainable Development Goals</h3>
           </div>
           <p className="text-stone-500 text-sm">Retailers align their ESG commitments to specific SDGs. Below: the goals most relevant to FMCG and retail.</p>
@@ -754,7 +754,7 @@ function CSRPatagoniaPage() {
             ].map(([code, name, cls]) => (
               <div key={code} className={`${cls} rounded-xl px-3 py-2`}>
                 <span className="text-[10px] font-black">{code}</span>
-                <span className="text-[10px] font-medium ml-1">— {name}</span>
+                <span className="text-[10px] font-medium ml-1">{name}</span>
               </div>
             ))}
           </div>
@@ -767,7 +767,7 @@ function CSRPatagoniaPage() {
           <div className="flex items-center gap-5">
             <Logo domain="patagonia.com" alt="Patagonia" size={64} bg="bg-white" />
             <div>
-              <p className="text-xs font-black uppercase tracking-widest text-emerald-400">Case Study — Anti-Consumption Retail</p>
+              <p className="text-xs font-black uppercase tracking-widest text-emerald-400">Case Study Anti-Consumption Retail</p>
               <h3 className="text-4xl font-serif">Patagonia</h3>
               <p className="text-stone-400 italic text-base mt-1">"We're in business to save our home planet."</p>
             </div>
@@ -777,26 +777,26 @@ function CSRPatagoniaPage() {
             <div className="space-y-4">
               <p className="text-xs font-black uppercase tracking-widest text-stone-400">The Anti-Consumption Paradox</p>
               <p className="text-white/80 leading-relaxed text-sm">
-                On Black Friday 2011, Patagonia ran a full-page ad in the New York Times that read: <strong>"Don't Buy This Jacket."</strong> It detailed the environmental cost of producing their best-selling fleece — water consumption, carbon emissions, waste.
+                On Black Friday 2011, Patagonia ran a full-page ad in the New York Times that read: <strong>"Don't Buy This Jacket."</strong> It detailed the environmental cost of producing their best-selling fleece water consumption, carbon emissions, waste.
               </p>
               <p className="text-white/80 leading-relaxed text-sm">
-                Sales <strong>rose by 30%</strong> the following year. The ad didn't kill demand — it created trust. In a category defined by greenwashing, radical honesty was a differentiator.
+                Sales <strong>rose by 30%</strong> the following year. The ad didn't kill demand it created trust. In a category defined by greenwashing, radical honesty was a differentiator.
               </p>
               <p className="text-white/80 leading-relaxed text-sm">
-                Patagonia's logic: <em>buy less, but buy better</em>. Products are designed to last decades, not seasons. This is not anti-business — it is anti-disposability.
+                Patagonia's logic: <em>buy less, but buy better</em>. Products are designed to last decades, not seasons. This is not anti-business it is anti-disposability.
               </p>
               <div className="bg-white/10 rounded-2xl p-5 border border-white/10">
                 <blockquote className="italic text-white/70 text-sm flex gap-2">
                   <Quote className="w-4 h-4 flex-shrink-0 mt-0.5 text-emerald-400" />
                   "The more we grow, the more responsibility we have to use business to fight the environmental crisis."
-                  <br />— Yvon Chouinard, Founder
+                  <br />Yvon Chouinard, Founder
                 </blockquote>
               </div>
             </div>
 
             <div className="space-y-3">
               {[
-                { icon: '🌱', title: '1% for the Planet', desc: 'Donates 1% of annual sales — not profit, sales — to environmental causes. Over $140M donated since 1985. Even in loss-making years, the pledge holds.' },
+                { icon: '🌱', title: '1% for the Planet', desc: 'Donates 1% of annual sales not profit, sales to environmental causes. Over $140M donated since 1985. Even in loss-making years, the pledge holds.' },
                 { icon: '🔄', title: 'Worn Wear Programme', desc: 'Repair, resale and recycling service. Customers bring back damaged gear. Patagonia repairs it free of charge or resells refurbished items. Circular economy made operational.' },
                 { icon: '🌾', title: 'Regenerative Organic Certified', desc: 'Supply chain standard that goes beyond organic. Covers soil health, animal welfare and farmworker equity. Full traceability from farm to shelf.' },
                 { icon: '🏛️', title: '2022 Ownership Transfer', desc: 'Chouinard transferred the company to a purpose trust and a non-profit. $100M/year in profits now legally mandated for environmental causes. The planet is the shareholder.' },
@@ -834,7 +834,7 @@ function CSRPatagoniaPage() {
           <div className="flex items-center gap-5">
             <Logo domain="veja-store.com" alt="Veja" size={64} bg="bg-white" />
             <div>
-              <p className="text-xs font-black uppercase tracking-widest text-emerald-600">Case Study — Radical Supply Chain Transparency</p>
+              <p className="text-xs font-black uppercase tracking-widest text-emerald-600">Case Study Radical Supply Chain Transparency</p>
               <h3 className="text-4xl font-serif text-stone-900">Veja</h3>
               <p className="text-stone-400 italic text-base mt-1">"No advertising. Just accountability."</p>
             </div>
@@ -844,10 +844,10 @@ function CSRPatagoniaPage() {
             <div className="space-y-4">
               <p className="text-xs font-black uppercase tracking-widest text-stone-400">The No-Advertising Model</p>
               <p className="text-stone-700 leading-relaxed text-sm">
-                Founded in Paris in 2004, Veja makes sneakers and spends <strong>zero on traditional advertising</strong>. Instead, the entire budget that competitors spend on media goes into the supply chain — paying cotton farmers in Brazil a fair price, sourcing wild rubber from the Amazon, and using recycled materials.
+                Founded in Paris in 2004, Veja makes sneakers and spends <strong>zero on traditional advertising</strong>. Instead, the entire budget that competitors spend on media goes into the supply chain paying cotton farmers in Brazil a fair price, sourcing wild rubber from the Amazon, and using recycled materials.
               </p>
               <p className="text-stone-700 leading-relaxed text-sm">
-                The result: Veja sneakers cost <strong>5–7× more to produce</strong> than a comparable conventional shoe. Yet they retail at a premium that customers willingly pay — because the story is credible, verifiable, and embedded in the product itself.
+                The result: Veja sneakers cost <strong>5–7× more to produce</strong> than a comparable conventional shoe. Yet they retail at a premium that customers willingly pay because the story is credible, verifiable, and embedded in the product itself.
               </p>
               <p className="text-stone-700 leading-relaxed text-sm">
                 When Meghan Markle wore Veja at the Invictus Games in 2017, the brand received global press worth millions. They had paid <strong>nothing</strong> for it. Authenticity became their media strategy.
@@ -856,14 +856,14 @@ function CSRPatagoniaPage() {
                 <blockquote className="italic text-stone-600 text-sm flex gap-2">
                   <Quote className="w-4 h-4 flex-shrink-0 mt-0.5 text-emerald-500" />
                   "We spend nothing on advertising and 5× more on production costs. That's our model."
-                  <br />— Sébastien Kopp, Co-founder
+                  <br />Sébastien Kopp, Co-founder
                 </blockquote>
               </div>
             </div>
 
             <div className="space-y-3">
               {[
-                { icon: '🌿', title: 'Organic Cotton from Brazil', desc: 'Veja sources cotton directly from small-scale farmers in Brazil certified by Esplar. Farmers are paid 60% above market price — no middlemen, no speculation.' },
+                { icon: '🌿', title: 'Organic Cotton from Brazil', desc: 'Veja sources cotton directly from small-scale farmers in Brazil certified by Esplar. Farmers are paid 60% above market price no middlemen, no speculation.' },
                 { icon: '🌳', title: 'Wild Amazonian Rubber', desc: 'Soles use rubber tapped by seringueiros in the Amazon. This gives the forest more economic value standing than deforested, preserving biodiversity and livelihoods.' },
                 { icon: '♻️', title: 'Recycled & Biosourced Materials', desc: 'Uppers use sugarcane-derived B-Mesh, recycled plastic bottles (K-Swiss), and corn waste. Material innovation is a core R&D investment, not a marketing claim.' },
                 { icon: '🏭', title: 'Fair Factory in Porto Alegre', desc: 'Manufactured in a single certified factory in Brazil. Workers earn 3× the local minimum wage. Factory audit reports are published annually on their website.' },
@@ -898,7 +898,7 @@ function CSRPatagoniaPage() {
       {/* Patagonia vs Veja comparison */}
       <div className="bg-white border border-stone-200 rounded-3xl p-8 space-y-5 shadow-sm">
         <h4 className="font-black text-stone-900 text-xl">Two Models, One Philosophy</h4>
-        <p className="text-stone-500 text-sm max-w-2xl">Patagonia and Veja both reject the conventional playbook — but through very different mechanisms.</p>
+        <p className="text-stone-500 text-sm max-w-2xl">Patagonia and Veja both reject the conventional playbook but through very different mechanisms.</p>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -915,7 +915,7 @@ function CSRPatagoniaPage() {
                 ['Advertising spend', 'Minimal', 'Zero'],
                 ['Ownership model', 'Purpose trust (planet as shareholder)', 'Private, founder-led'],
                 ['Key proof point', '"Don\'t Buy This Jacket" ad', 'Factory wage reports published publicly'],
-                ['Price positioning', 'Premium — durability justifies cost', 'Premium — ethics justifies cost'],
+                ['Price positioning', 'Premium durability justifies cost', 'Premium ethics justifies cost'],
                 ['Community building', 'Environmental activism', 'Product authenticity & earned media'],
               ].map(row => (
                 <tr key={row[0]} className="hover:bg-stone-50">
@@ -945,7 +945,7 @@ function CSRPatagoniaPage() {
             </p>
             {[
               ['Measurable targets', 'Specific KPIs tied to SDGs with public reporting'],
-              ['Third-party certification', 'B Corp, FSC, Fairtrade, RSPO — audited externally'],
+              ['Third-party certification', 'B Corp, FSC, Fairtrade, RSPO audited externally'],
               ['Supply chain transparency', 'Published supplier lists and audits'],
               ['Embedded in P&L', 'Sustainability is a cost of doing business, not a budget line'],
             ].map(([title, desc]) => (
@@ -960,7 +960,7 @@ function CSRPatagoniaPage() {
               <XCircle className="w-4 h-4" /> Greenwashing
             </p>
             {[
-              ['Vague language', '"Natural", "eco-friendly", "conscious" — with no definition'],
+              ['Vague language', '"Natural", "eco-friendly", "conscious" with no definition'],
               ['No verification', 'Self-certified claims, no independent audit'],
               ['Marketing-only scope', 'Sustainability lives in comms, not operations'],
               ['Core contradiction', 'Claims sustainability while growing fast fashion volume'],
