@@ -17,7 +17,7 @@ const Logo = ({ domain, alt, size = 28, bg = 'bg-white' }) => (
   <div className={`rounded-xl flex items-center justify-center shadow-sm border border-stone-100 overflow-hidden ${bg}`}
     style={{ width: size, height: size, minWidth: size }}>
     <img
-      src={`https://logo.clearbit.com/${domain}`}
+      src={`https://www.google.com/s2/favicons?domain=${domain}&sz=128`}
       alt={alt}
       width={size - 8}
       height={size - 8}
