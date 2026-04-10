@@ -363,7 +363,7 @@ function App() {
         </AnimatePresence>
       </nav>
 
-      <main className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-16 lg:py-28">
+      <main className={`max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-16 lg:py-28${activeTab !== 'planner' ? ' mobile-scale-down' : ''}`}>
         <AnimatePresence mode="wait">
           {activeTab === 'exercise' && (
             <ExercisePage />
