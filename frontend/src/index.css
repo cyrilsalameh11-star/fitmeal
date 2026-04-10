@@ -44,12 +44,6 @@
   }
 }
 
-@media (max-width: 768px) {
-  .mobile-scale-down {
-    zoom: 0.5;
-  }
-}
-
 @layer utilities {
   .glass {
     @apply bg-white/60 backdrop-blur-md border border-white/40 shadow-sm transition-all duration-300;
