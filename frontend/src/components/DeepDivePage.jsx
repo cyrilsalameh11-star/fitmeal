@@ -615,7 +615,7 @@ function DNVBsPage() {
 
       {/* Sézane */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-        <div className="lg:col-span-3 space-y-4">
+        <div className="lg:col-span-3 space-y-4 order-2 lg:order-1">
           <p className="text-xs font-black uppercase tracking-widest text-stone-400">Why Sézane Succeeded</p>
           {[
             { n: '01', title: 'Community Built Before Product', body: 'Founder Morgane Sézalory launched on Instagram in 2013 when the platform was 3 years old. The first collection sold out in minutes because the community was already primed.' },
@@ -633,7 +633,7 @@ function DNVBsPage() {
           ))}
         </div>
 
-        <div className="lg:col-span-2 bg-rose-950 text-white rounded-3xl p-8 space-y-6 flex flex-col justify-between">
+        <div className="lg:col-span-2 bg-rose-950 text-white rounded-3xl p-8 space-y-6 flex flex-col justify-between order-1 lg:order-2">
           <div className="space-y-3">
             <div className="flex items-center gap-4">
               <Logo domain="sezane.com" alt="Sézane" size={52} bg="bg-white" />
