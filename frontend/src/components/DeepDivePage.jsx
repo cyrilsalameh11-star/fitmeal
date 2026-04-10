@@ -703,7 +703,7 @@ function CSRPatagoniaPage() {
           style={{ backgroundImage: 'repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.3) 39px,rgba(255,255,255,.3) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.3) 39px,rgba(255,255,255,.3) 40px)' }} />
         <div className="relative space-y-3 max-w-2xl">
           <span className="text-xs font-black uppercase tracking-[0.2em] text-amber-400">Chapter 04 — Sustainability & Ethics</span>
-          <h2 className="text-5xl font-serif leading-[1.1]">CSR & <span className="italic text-stone-400">Patagonia</span></h2>
+          <h2 className="text-5xl font-serif leading-[1.1]">CSR, <span className="italic text-stone-400">Patagonia</span> & Veja</h2>
           <p className="text-stone-300 leading-relaxed">
             Corporate Social Responsibility has shifted from compliance obligation to competitive advantage. In retail, sustainability strategy shapes brand positioning, talent attraction, and increasingly — purchasing decisions.
           </p>
@@ -825,6 +825,107 @@ function CSRPatagoniaPage() {
               </div>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Veja Case Study */}
+      <div className="bg-stone-50 border border-stone-200 rounded-3xl overflow-hidden">
+        <div className="p-8 md:p-10 space-y-8">
+          <div className="flex items-center gap-5">
+            <Logo domain="veja-store.com" alt="Veja" size={64} bg="bg-white" />
+            <div>
+              <p className="text-xs font-black uppercase tracking-widest text-emerald-600">Case Study — Radical Supply Chain Transparency</p>
+              <h3 className="text-4xl font-serif text-stone-900">Veja</h3>
+              <p className="text-stone-400 italic text-base mt-1">"No advertising. Just accountability."</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-4">
+              <p className="text-xs font-black uppercase tracking-widest text-stone-400">The No-Advertising Model</p>
+              <p className="text-stone-700 leading-relaxed text-sm">
+                Founded in Paris in 2004, Veja makes sneakers and spends <strong>zero on traditional advertising</strong>. Instead, the entire budget that competitors spend on media goes into the supply chain — paying cotton farmers in Brazil a fair price, sourcing wild rubber from the Amazon, and using recycled materials.
+              </p>
+              <p className="text-stone-700 leading-relaxed text-sm">
+                The result: Veja sneakers cost <strong>5–7× more to produce</strong> than a comparable conventional shoe. Yet they retail at a premium that customers willingly pay — because the story is credible, verifiable, and embedded in the product itself.
+              </p>
+              <p className="text-stone-700 leading-relaxed text-sm">
+                When Meghan Markle wore Veja at the Invictus Games in 2017, the brand received global press worth millions. They had paid <strong>nothing</strong> for it. Authenticity became their media strategy.
+              </p>
+              <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-5">
+                <blockquote className="italic text-stone-600 text-sm flex gap-2">
+                  <Quote className="w-4 h-4 flex-shrink-0 mt-0.5 text-emerald-500" />
+                  "We spend nothing on advertising and 5× more on production costs. That's our model."
+                  <br />— Sébastien Kopp, Co-founder
+                </blockquote>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              {[
+                { icon: '🌿', title: 'Organic Cotton from Brazil', desc: 'Veja sources cotton directly from small-scale farmers in Brazil certified by Esplar. Farmers are paid 60% above market price — no middlemen, no speculation.' },
+                { icon: '🌳', title: 'Wild Amazonian Rubber', desc: 'Soles use rubber tapped by seringueiros in the Amazon. This gives the forest more economic value standing than deforested, preserving biodiversity and livelihoods.' },
+                { icon: '♻️', title: 'Recycled & Biosourced Materials', desc: 'Uppers use sugarcane-derived B-Mesh, recycled plastic bottles (K-Swiss), and corn waste. Material innovation is a core R&D investment, not a marketing claim.' },
+                { icon: '🏭', title: 'Fair Factory in Porto Alegre', desc: 'Manufactured in a single certified factory in Brazil. Workers earn 3× the local minimum wage. Factory audit reports are published annually on their website.' },
+              ].map(item => (
+                <div key={item.title} className="bg-white border border-stone-200 rounded-2xl p-5 space-y-1.5">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">{item.icon}</span>
+                    <h4 className="font-black text-emerald-700 text-sm">{item.title}</h4>
+                  </div>
+                  <p className="text-stone-500 text-xs leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 border-t border-stone-200 pt-6">
+            {[
+              ['$0', 'Spent on advertising'],
+              ['5–7×', 'Higher production cost vs. conventional'],
+              ['60%', 'Premium paid to cotton farmers above market'],
+              ['B Corp', 'Certified since 2020'],
+            ].map(([v, l]) => (
+              <div key={l} className="bg-emerald-50 border border-emerald-200 rounded-2xl py-6 text-center space-y-1">
+                <p className="text-3xl font-black text-emerald-700">{v}</p>
+                <p className="text-[10px] text-stone-400 uppercase tracking-widest mt-1">{l}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Patagonia vs Veja comparison */}
+      <div className="bg-white border border-stone-200 rounded-3xl p-8 space-y-5 shadow-sm">
+        <h4 className="font-black text-stone-900 text-xl">Two Models, One Philosophy</h4>
+        <p className="text-stone-500 text-sm max-w-2xl">Patagonia and Veja both reject the conventional playbook — but through very different mechanisms.</p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b-2 border-stone-900">
+                {['Dimension', 'Patagonia', 'Veja'].map(h => (
+                  <th key={h} className="text-left py-3 pr-6 text-[10px] font-black uppercase tracking-widest text-stone-400">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-stone-100">
+              {[
+                ['Industry', 'Outdoor apparel', 'Footwear / Sneakers'],
+                ['Core CSR lever', 'Anti-consumption + repair', 'Supply chain transparency'],
+                ['Advertising spend', 'Minimal', 'Zero'],
+                ['Ownership model', 'Purpose trust (planet as shareholder)', 'Private, founder-led'],
+                ['Key proof point', '"Don\'t Buy This Jacket" ad', 'Factory wage reports published publicly'],
+                ['Price positioning', 'Premium — durability justifies cost', 'Premium — ethics justifies cost'],
+                ['Community building', 'Environmental activism', 'Product authenticity & earned media'],
+              ].map(row => (
+                <tr key={row[0]} className="hover:bg-stone-50">
+                  <td className="py-3 pr-6 font-black text-stone-900">{row[0]}</td>
+                  <td className="py-3 pr-6 text-stone-500">{row[1]}</td>
+                  <td className="py-3 pr-6 text-stone-700 font-medium">{row[2]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
 
