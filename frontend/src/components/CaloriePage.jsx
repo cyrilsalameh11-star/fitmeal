@@ -155,6 +155,63 @@ function PersonSVG({ gender, bmi }) {
   );
 }
 
+function BmiBar({ bmi }) {
+  const MIN = 15, MAX = 40;
+  const clamped = Math.min(Math.max(bmi, MIN), MAX);
+  const pct = ((clamped - MIN) / (MAX - MIN)) * 100;
+
+  const segments = [
+    { from: 15,   to: 18.5, color: '#2dd4bf' }, // teal   – underweight
+    { from: 18.5, to: 25,   color: '#86efac' }, // green  – healthy
+    { from: 25,   to: 30,   color: '#fcd34d' }, // yellow – overweight
+    { from: 30,   to: 40,   color: '#f87171' }, // red    – obese
+  ];
+  const ticks = [15, 18.5, 25, 30, 40];
+
+  const { label, text } = getBmiCategory(bmi);
+
+  return (
+    <div className="bg-white rounded-[2rem] p-6 border border-stone-100 shadow-sm space-y-4">
+      {/* Header row */}
+      <div className="flex items-center justify-between">
+        <p className="text-[10px] font-black uppercase tracking-widest text-stone-400">BMI</p>
+        <span className={`text-[10px] font-black uppercase tracking-widest ${text}`}>{label}</span>
+      </div>
+
+      {/* Big value */}
+      <p className="text-5xl font-black text-stone-900 leading-none">{bmi}</p>
+
+      {/* Colour bar */}
+      <div className="relative">
+        <div className="relative h-5 rounded-full overflow-hidden flex">
+          {segments.map((seg, i) => {
+            const w = ((seg.to - seg.from) / (MAX - MIN)) * 100;
+            return <div key={i} style={{ width: `${w}%`, background: seg.color }} />;
+          })}
+          {/* Indicator pill */}
+          <div
+            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-5 h-5 bg-white rounded-full shadow-md border-2 border-white"
+            style={{ left: `${pct}%` }}
+          />
+        </div>
+
+        {/* Tick marks */}
+        <div className="relative mt-1.5 h-4">
+          {ticks.map(tick => (
+            <span
+              key={tick}
+              className="absolute text-[9px] font-bold text-stone-400 -translate-x-1/2"
+              style={{ left: `${((tick - MIN) / (MAX - MIN)) * 100}%` }}
+            >
+              {tick}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function CaloriePage() {
   const [gender,    setGender]    = useState('male');
   const [weight,    setWeight]    = useState(70);
@@ -402,6 +459,9 @@ export default function CaloriePage() {
               <Zap size={22} className="text-stone-400" />
             </div>
           </div>
+
+          {/* BMI bar */}
+          <BmiBar bmi={parseFloat(results.bmi)} />
 
           {/* Save button */}
           <button
