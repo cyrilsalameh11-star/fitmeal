@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion';
-import { Award, ShoppingBag, CheckCircle2, ChevronRight, Zap, Target, Star, Gift, ShoppingCart } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Award, ShoppingBag, CheckCircle2, ChevronRight, ChevronDown, Zap, Target, Star, Gift, ShoppingCart, X } from 'lucide-react';
 
 const COMPARISON_DATA = [
   {
@@ -28,6 +29,69 @@ const COMPARISON_DATA = [
   }
 ];
 
+const FULL_ANALYSIS = {
+  "Charcutier": {
+    headline: "Charcutier Rewards",
+    subtitle: "Lebanon's premium deli chain runs a flat, instant-gratification model with no digital layer.",
+    accentColor: "bg-amber-500",
+    textAccent: "text-amber-500",
+    stats: [
+      { label: "Model", value: "Flat / No Tiers" },
+      { label: "Redemption", value: "In-Store Only" },
+      { label: "Digital App", value: "None" },
+      { label: "Points Carry-Over", value: "No Expiry" },
+    ],
+    sections: [
+      {
+        title: "How It Works",
+        body: "Charcutier operates a direct-discount model: instead of accumulating points toward a future reward, members receive fixed points per eligible item at checkout, which convert immediately into cash-back vouchers. Vouchers are printed on the receipt and redeemable on the next visit.",
+      },
+      {
+        title: "Strengths",
+        items: ["Zero learning curve — customers see the benefit immediately", "No app or registration required", "Works for infrequent shoppers who dislike expiring points"],
+      },
+      {
+        title: "Weaknesses",
+        items: ["No tier progression — heavy spenders get no extra reward", "No digital touchpoint to collect data or send offers", "Vouchers are easy to forget or lose (paper-only)"],
+      },
+      {
+        title: "Strategic Verdict",
+        body: "Ideal for impulse-driven, premium grocery shoppers who value simplicity. The lack of a digital layer is a structural gap that limits CRM potential and cross-sell opportunities.",
+      },
+    ],
+  },
+  "Carrefour Lebanon": {
+    headline: "MyCLUB by Carrefour",
+    subtitle: "Majid Al Futtaim's regional points engine — digital-first, partner-heavy, but with a steep LBP conversion.",
+    accentColor: "bg-red-600",
+    textAccent: "text-red-500",
+    stats: [
+      { label: "Accrual", value: "10 pts / 10,000 LBP" },
+      { label: "Redemption", value: "Points = Cash" },
+      { label: "Channel", value: "App / Website" },
+      { label: "Tier System", value: "Digital Only" },
+    ],
+    sections: [
+      {
+        title: "How It Works",
+        body: "MyCLUB awards 10 points for every 10,000 LBP spent (~$0.11 at current rates). Points accumulate in a digital wallet and can be redeemed as a direct cash discount at checkout. Partner deals extend earning opportunities beyond Carrefour stores to select merchants across the Majid Al Futtaim ecosystem.",
+      },
+      {
+        title: "Strengths",
+        items: ["Full digital wallet — balance visible in real time on the app", "Partner ecosystem extends value beyond grocery", "Carrefour's breadth (electronics, clothing, food) boosts accrual speed"],
+      },
+      {
+        title: "Weaknesses",
+        items: ["Digital-only creates a barrier for Lebanon's older or low-smartphone demographics", "LBP instability erodes point value between earning and redemption", "No tiered acceleration — spend more, earn the same rate"],
+      },
+      {
+        title: "Strategic Verdict",
+        body: "Strong program for digitally native shoppers and families doing large consolidated shops. The absence of tier multipliers and the LBP/point volatility risk reduce perceived value for high-frequency spenders.",
+      },
+    ],
+  },
+};
+
 const SPINNEYS_TIERS = [
   {
     name: "Blue",
@@ -50,6 +114,10 @@ const SPINNEYS_TIERS = [
 ];
 
 export default function LoyaltyPage() {
+  const [expandedBrand, setExpandedBrand] = useState(null);
+
+  const toggleBrand = (name) => setExpandedBrand(prev => prev === name ? null : name);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -95,13 +163,79 @@ export default function LoyaltyPage() {
               </div>
             </div>
 
-            <button className="w-full flex items-center justify-between p-5 bg-stone-50 group-hover:bg-stone-900 group-hover:text-white rounded-2xl transition-all duration-300">
+            <button
+              onClick={() => toggleBrand(brand.name)}
+              className={`w-full flex items-center justify-between p-5 rounded-2xl transition-all duration-300 ${
+                expandedBrand === brand.name
+                  ? 'bg-stone-900 text-white'
+                  : 'bg-stone-50 group-hover:bg-stone-900 group-hover:text-white'
+              }`}
+            >
               <span className="text-xs font-black uppercase tracking-widest">Full Analysis</span>
-              <ChevronRight size={16} />
+              {expandedBrand === brand.name ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
             </button>
           </div>
         ))}
       </div>
+
+      {/* Expanded Full Analysis Panel */}
+      <AnimatePresence>
+        {expandedBrand && FULL_ANALYSIS[expandedBrand] && (() => {
+          const a = FULL_ANALYSIS[expandedBrand];
+          return (
+            <motion.div
+              key={expandedBrand}
+              initial={{ opacity: 0, y: -16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-[2.5rem] border border-stone-100 shadow-xl p-10 lg:p-14 space-y-10"
+            >
+              {/* Header */}
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <div className={`inline-block w-2 h-8 rounded-full ${a.accentColor} mb-4`} />
+                  <h3 className="text-3xl font-bold text-stone-900">{a.headline}</h3>
+                  <p className="text-sm text-stone-500 font-medium mt-2 max-w-2xl">{a.subtitle}</p>
+                </div>
+                <button onClick={() => setExpandedBrand(null)} className="p-2 rounded-xl bg-stone-50 hover:bg-stone-100 transition-colors flex-shrink-0">
+                  <X size={16} className="text-stone-400" />
+                </button>
+              </div>
+
+              {/* Stats row */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                {a.stats.map((s, i) => (
+                  <div key={i} className="bg-stone-50 rounded-2xl p-5">
+                    <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 mb-1">{s.label}</p>
+                    <p className={`text-lg font-black ${a.textAccent}`}>{s.value}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Sections */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {a.sections.map((sec, i) => (
+                  <div key={i} className="space-y-3">
+                    <p className="text-[10px] font-black uppercase tracking-widest text-stone-400">{sec.title}</p>
+                    {sec.body && <p className="text-sm text-stone-600 font-medium leading-relaxed">{sec.body}</p>}
+                    {sec.items && (
+                      <ul className="space-y-2">
+                        {sec.items.map((item, j) => (
+                          <li key={j} className="flex items-start gap-2 text-sm text-stone-600 font-medium">
+                            <CheckCircle2 size={14} className="text-emerald-500 mt-0.5 flex-shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          );
+        })()}
+      </AnimatePresence>
 
       {/* Spinneys Deep Dive */}
       <div className="bg-stone-900 rounded-[3rem] p-12 lg:p-20 text-white relative overflow-hidden shadow-2xl">
