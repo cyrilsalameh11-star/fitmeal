@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Award, ShoppingBag, CheckCircle2, ChevronRight, ChevronDown, Zap, Target, Star, Gift, ShoppingCart, X } from 'lucide-react';
 
@@ -115,8 +115,17 @@ const SPINNEYS_TIERS = [
 
 export default function LoyaltyPage() {
   const [expandedBrand, setExpandedBrand] = useState(null);
+  const analysisRef = useRef(null);
 
-  const toggleBrand = (name) => setExpandedBrand(prev => prev === name ? null : name);
+  const toggleBrand = (name) => {
+    const isOpening = expandedBrand !== name;
+    setExpandedBrand(isOpening ? name : null);
+    if (isOpening) {
+      setTimeout(() => {
+        analysisRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
+  };
 
   return (
     <motion.div
@@ -189,6 +198,7 @@ export default function LoyaltyPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.3 }}
+              ref={analysisRef}
               className="bg-white rounded-[2.5rem] border border-stone-100 shadow-xl p-10 lg:p-14 space-y-10"
             >
               {/* Header */}
