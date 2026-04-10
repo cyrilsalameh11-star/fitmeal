@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Award, ShoppingBag, CheckCircle2, ChevronRight, ChevronDown, Zap, Target, Star, Gift, ShoppingCart, X } from 'lucide-react';
 
@@ -117,15 +117,22 @@ export default function LoyaltyPage() {
   const [expandedBrand, setExpandedBrand] = useState(null);
   const analysisRef = useRef(null);
 
-  const toggleBrand = (name) => {
-    const isOpening = expandedBrand !== name;
-    setExpandedBrand(isOpening ? name : null);
-    if (isOpening) {
+  // Scroll to panel after animation completes (300ms)
+  useEffect(() => {
+    if (!expandedBrand) return;
+    if (expandedBrand === 'Spinneys Lebanon') {
       setTimeout(() => {
-        analysisRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('spinneys-deep-dive')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 50);
+      return;
     }
-  };
+    const timer = setTimeout(() => {
+      analysisRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 320);
+    return () => clearTimeout(timer);
+  }, [expandedBrand]);
+
+  const toggleBrand = (name) => setExpandedBrand(prev => prev === name ? null : name);
 
   return (
     <motion.div
@@ -248,7 +255,7 @@ export default function LoyaltyPage() {
       </AnimatePresence>
 
       {/* Spinneys Deep Dive */}
-      <div className="bg-stone-900 rounded-[3rem] p-12 lg:p-20 text-white relative overflow-hidden shadow-2xl">
+      <div id="spinneys-deep-dive" className="bg-stone-900 rounded-[3rem] p-12 lg:p-20 text-white relative overflow-hidden shadow-2xl">
         <div className="absolute top-0 right-0 p-20 opacity-10 pointer-events-none">
           <Star size={300} strokeWidth={0.5} />
         </div>
