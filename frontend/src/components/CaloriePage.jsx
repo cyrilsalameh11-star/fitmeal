@@ -161,10 +161,10 @@ function BmiBar({ bmi }) {
   const pct = ((clamped - MIN) / (MAX - MIN)) * 100;
 
   const segments = [
-    { from: 15,   to: 18.5, color: '#2dd4bf' }, // teal   – underweight
-    { from: 18.5, to: 25,   color: '#86efac' }, // green  – healthy
-    { from: 25,   to: 30,   color: '#fcd34d' }, // yellow – overweight
-    { from: 30,   to: 40,   color: '#f87171' }, // red    – obese
+    { from: 15,   to: 18.5, color: '#2dd4bf', label: 'Underweight' },
+    { from: 18.5, to: 25,   color: '#86efac', label: 'Healthy'     },
+    { from: 25,   to: 30,   color: '#fcd34d', label: 'Overweight'  },
+    { from: 30,   to: 40,   color: '#f87171', label: 'Obese'       },
   ];
   const ticks = [15, 18.5, 25, 30, 40];
 
@@ -207,6 +207,19 @@ function BmiBar({ bmi }) {
             </span>
           ))}
         </div>
+      </div>
+
+      {/* Segment labels */}
+      <div className="flex gap-2 flex-wrap pt-1">
+        {segments.map((seg, i) => (
+          <span
+            key={i}
+            className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full"
+            style={{ background: seg.color + '33', color: seg.color === '#fcd34d' ? '#92400e' : seg.color }}
+          >
+            {seg.label}
+          </span>
+        ))}
       </div>
     </div>
   );
@@ -396,6 +409,9 @@ export default function CaloriePage() {
             </motion.div>
           </div>
 
+          {/* BMI bar */}
+          <BmiBar bmi={parseFloat(results.bmi)} />
+
           {/* Weekly goal slider */}
           <div className="w-full bg-white rounded-[1.5rem] p-6 border border-stone-100 shadow-sm space-y-4">
             <div className="flex justify-between items-center">
@@ -459,9 +475,6 @@ export default function CaloriePage() {
               <Zap size={22} className="text-stone-400" />
             </div>
           </div>
-
-          {/* BMI bar */}
-          <BmiBar bmi={parseFloat(results.bmi)} />
 
           {/* Save button */}
           <button
