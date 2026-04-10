@@ -648,6 +648,13 @@ const parser = new RSSParser();
 // Manually curated global FMCG articles — always surfaced at the top
 const PINNED_GLOBAL_ARTICLES = [
   {
+    title: "Lebanon's Favorite Tawouk Restaurant Is Going International! - The961",
+    link: 'https://www.the961.com/lebanon-s-favorite-tawouk-restaurant-is-going-international/',
+    pubDate: 'Mon, 06 Apr 2026 10:00:00 GMT',
+    contentSnippet: "Malak Al Tawouk, Lebanon's beloved tawouk chain, is expanding internationally with new locations across the region.",
+    id: 'pinned-global-malak-al-tawouk-intl',
+  },
+  {
     title: "Create Wellness raises $20 million, setting sights beyond creatine gummies",
     link: 'https://athletechnews.com/create-wellness-raises-20-million-funding-setting-sights-beyond-creatine-gummies/',
     pubDate: 'Tue, 08 Apr 2026 10:00:00 GMT',
@@ -765,7 +772,7 @@ const PINNED_LORIENT_ARTICLES = [
 ];
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 44; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 45; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'printemps', 'galeries lafayette', 'grands magasins',
@@ -817,6 +824,7 @@ const NEWS_BANNED_WORDS = [
   'valence', 'cèdre à', 'cedre a',
   'quand la mémoire passe', 'quand la memoire passe',
   'venu pour un an',
+  'americana secures', 'americana restaurants', 'americana diversifies', 'americana signs',
 ];
 
 const NEWS_BANNED_DOMAINS = ['qsrmedia'];
