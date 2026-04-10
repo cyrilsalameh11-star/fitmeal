@@ -363,7 +363,7 @@ function App() {
         </AnimatePresence>
       </nav>
 
-      <main className="max-w-7xl mx-auto px-6 py-16 lg:py-28">
+      <main className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-16 lg:py-28">
         <AnimatePresence mode="wait">
           {activeTab === 'exercise' && (
             <ExercisePage />
@@ -381,8 +381,8 @@ function App() {
                 <p className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-6 flex items-center">
                   <User className="w-3 h-3 mr-2" /> Welcome back, {user}
                 </p>
-                <h1 className="text-5xl lg:text-7xl mb-8 leading-[1.08] tracking-tight">Professional nutrition <br /><span className="italic font-normal text-stone-400">simplified for everyone.</span></h1>
-                <p className="text-xl text-stone-500 font-medium leading-[1.75] max-w-3xl">
+                <h1 className="text-3xl md:text-5xl lg:text-7xl mb-4 md:mb-8 leading-[1.08] tracking-tight">Professional nutrition <br /><span className="italic font-normal text-stone-400">simplified for everyone.</span></h1>
+                <p className="text-base md:text-xl text-stone-500 font-medium leading-[1.75] max-w-3xl">
                   FitMeal AI is a sophisticated nutritional engine designed for the modern lifestyle. We bridge the gap between regional food availability and individual fitness goals, providing clear, balanced, and actionable meal paths across the globe.
                 </p>
               </div>
@@ -428,7 +428,7 @@ function App() {
                   )}
 
                   {!isLoading && meals.length === 0 && (
-                    <div className="h-96 border-2 border-dashed border-stone-200 rounded-3xl flex flex-col items-center justify-center text-stone-400 text-center px-12">
+                    <div className="h-72 md:h-96 border-2 border-dashed border-stone-200 rounded-3xl flex flex-col items-center justify-center text-stone-400 text-center px-6 md:px-12">
                       <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm">
                         <ShoppingBag className="w-8 h-8 opacity-20" />
                       </div>
@@ -482,21 +482,21 @@ function App() {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
-              className="max-w-4xl mx-auto py-20 text-center space-y-12"
+              className="max-w-4xl mx-auto py-8 md:py-20 text-center space-y-8 md:space-y-12"
             >
-              <h2 className="text-5xl lg:text-5xl mb-8">Let's stay <span className="italic font-normal text-stone-400">connected.</span></h2>
+              <h2 className="text-3xl md:text-5xl mb-4 md:mb-8">Let's stay <span className="italic font-normal text-stone-400">connected.</span></h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-                <div className="p-10 bg-white border border-stone-100 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-amber-200 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] hover:-translate-y-1 transition-all duration-300">
+                <div className="p-6 md:p-10 bg-white border border-stone-100 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-amber-200 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] hover:-translate-y-1 transition-all duration-300">
                   <Phone className="w-8 h-8 mb-6 text-stone-400" />
                   <h4 className="text-sm font-bold uppercase tracking-widest mb-2">WhatsApp</h4>
                   <p className="text-lg font-serif">+961 70 000 000</p>
                 </div>
-                <div className="p-10 bg-white border border-stone-100 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-amber-200 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] hover:-translate-y-1 transition-all duration-300">
+                <div className="p-6 md:p-10 bg-white border border-stone-100 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-amber-200 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] hover:-translate-y-1 transition-all duration-300">
                   <Mail className="w-8 h-8 mb-6 text-stone-400" />
                   <h4 className="text-sm font-bold uppercase tracking-widest mb-2">Email</h4>
                   <p className="text-lg font-serif">hello@fitmeal.ai</p>
                 </div>
-                <div className="p-10 bg-white border border-stone-100 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-amber-200 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] hover:-translate-y-1 transition-all duration-300">
+                <div className="p-6 md:p-10 bg-white border border-stone-100 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-amber-200 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] hover:-translate-y-1 transition-all duration-300">
                   <Instagram className="w-8 h-8 mb-6 text-stone-400" />
                   <h4 className="text-sm font-bold uppercase tracking-widest mb-2">Social</h4>
                   <p className="text-lg font-serif">@fitmeal_ai</p>
