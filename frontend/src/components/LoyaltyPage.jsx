@@ -142,7 +142,7 @@ export default function LoyaltyPage() {
     >
       {/* Premium Header */}
       <div className="text-center space-y-4">
-        <h2 className="text-2xl md:text-4xl lg:text-5xl font-serif tracking-tight">Reward <span className="italic font-normal text-stone-400">Architectures.</span></h2>
+        <h2 className="text-4xl lg:text-5xl font-serif tracking-tight">Reward <span className="italic font-normal text-stone-400">Architectures.</span></h2>
         <p className="text-lg text-stone-500 font-medium max-w-2xl mx-auto text-balance">
           Analyzing and comparing the most powerful retail loyalty structures in Lebanon.
         </p>
@@ -151,7 +151,7 @@ export default function LoyaltyPage() {
       {/* Comparison Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {COMPARISON_DATA.map((brand, i) => (
-          <div key={i} className="group bg-white rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 border border-stone-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 relative overflow-hidden">
+          <div key={i} className="group bg-white rounded-[2.5rem] p-10 border border-stone-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 relative overflow-hidden">
             <div className={`absolute top-0 left-0 w-2 h-full ${brand.color} opacity-80`} />
             <div className="mb-8 p-4 bg-stone-50 rounded-2xl w-fit">
               <ShoppingBag className="text-stone-800" size={24} />
@@ -255,7 +255,7 @@ export default function LoyaltyPage() {
       </AnimatePresence>
 
       {/* Spinneys Deep Dive */}
-      <div id="spinneys-deep-dive" className="bg-stone-900 rounded-[2rem] md:rounded-[3rem] p-8 md:p-12 lg:p-20 text-white relative overflow-hidden shadow-2xl">
+      <div id="spinneys-deep-dive" className="bg-stone-900 rounded-[3rem] p-12 lg:p-20 text-white relative overflow-hidden shadow-2xl">
         <div className="absolute top-0 right-0 p-20 opacity-10 pointer-events-none">
           <Star size={300} strokeWidth={0.5} />
         </div>
@@ -363,7 +363,7 @@ export default function LoyaltyPage() {
       </div>
 
       {/* Loyalty CTA */}
-      <div className="bg-amber-500 rounded-[2rem] md:rounded-[3rem] p-8 md:p-12 text-center space-y-6 md:space-y-8 shadow-xl relative overflow-hidden">
+      <div className="bg-amber-500 rounded-[3rem] p-12 text-center space-y-8 shadow-xl relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
         <div className="relative z-10 flex flex-col items-center">
             <Gift className="text-white mb-6" size={48} />

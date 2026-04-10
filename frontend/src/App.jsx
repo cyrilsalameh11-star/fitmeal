@@ -482,21 +482,21 @@ function App() {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
-              className="max-w-4xl mx-auto py-8 md:py-20 text-center space-y-8 md:space-y-12"
+              className="max-w-4xl mx-auto py-20 text-center space-y-12"
             >
-              <h2 className="text-3xl md:text-5xl mb-4 md:mb-8">Let's stay <span className="italic font-normal text-stone-400">connected.</span></h2>
+              <h2 className="text-5xl lg:text-5xl mb-8">Let's stay <span className="italic font-normal text-stone-400">connected.</span></h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-                <div className="p-6 md:p-10 bg-white border border-stone-100 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-amber-200 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] hover:-translate-y-1 transition-all duration-300">
+                <div className="p-10 bg-white border border-stone-100 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-amber-200 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] hover:-translate-y-1 transition-all duration-300">
                   <Phone className="w-8 h-8 mb-6 text-stone-400" />
                   <h4 className="text-sm font-bold uppercase tracking-widest mb-2">WhatsApp</h4>
                   <p className="text-lg font-serif">+961 70 000 000</p>
                 </div>
-                <div className="p-6 md:p-10 bg-white border border-stone-100 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-amber-200 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] hover:-translate-y-1 transition-all duration-300">
+                <div className="p-10 bg-white border border-stone-100 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-amber-200 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] hover:-translate-y-1 transition-all duration-300">
                   <Mail className="w-8 h-8 mb-6 text-stone-400" />
                   <h4 className="text-sm font-bold uppercase tracking-widest mb-2">Email</h4>
                   <p className="text-lg font-serif">hello@fitmeal.ai</p>
                 </div>
-                <div className="p-6 md:p-10 bg-white border border-stone-100 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-amber-200 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] hover:-translate-y-1 transition-all duration-300">
+                <div className="p-10 bg-white border border-stone-100 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-amber-200 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] hover:-translate-y-1 transition-all duration-300">
                   <Instagram className="w-8 h-8 mb-6 text-stone-400" />
                   <h4 className="text-sm font-bold uppercase tracking-widest mb-2">Social</h4>
                   <p className="text-lg font-serif">@fitmeal_ai</p>

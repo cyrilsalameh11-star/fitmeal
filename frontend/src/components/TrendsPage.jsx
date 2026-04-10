@@ -14,12 +14,12 @@ const ACCOUNTS_DATA = [
     color: '#e11d48',
     url: 'https://www.instagram.com/guide.lb/',
     reels: [
-      { shortcode: 'DWLqlhujWQn', type: 'p'    }, // page 1 — newest
-      { shortcode: 'DUyUdKfDQfS', type: 'reel' }, // page 2
-      { shortcode: 'DUgGrZDDYpl', type: 'reel' }, // page 3
-      { shortcode: 'DSkvVRjjcMY', type: 'p'    }, // page 4
-      { shortcode: 'DSC5LaRDTOI', type: 'reel' }, // page 5
-      { shortcode: 'DRzc-I5jaoJ', type: 'reel' }, // page 6 — oldest
+      { shortcode: 'DWefGLFjdu1', type: 'reel' }, // page 1 — newest
+      { shortcode: 'DUlZ_JQjMSh', type: 'reel' }, // page 2
+      { shortcode: 'DVVlCUiDaG6', type: 'reel' }, // page 3
+      { shortcode: 'DVMfhvYDRYS', type: 'reel' }, // page 4
+      { shortcode: 'DU-VE72jRn3', type: 'reel' }, // page 5
+      { shortcode: 'DUvLEl5DTd_', type: 'reel' }, // page 6 — oldest
     ],
   },
   {
@@ -27,12 +27,12 @@ const ACCOUNTS_DATA = [
     color: '#d97706',
     url: 'https://www.instagram.com/baroodiesfoodies/',
     reels: [
-      { shortcode: 'DWefGLFjdu1', type: 'reel' }, // page 1 — newest
-      { shortcode: 'DUlZ_JQjMSh', type: 'reel' }, // page 2
-      { shortcode: 'DVVlCUiDaG6', type: 'reel' }, // page 3
-      { shortcode: 'DVMfhvYDRYS', type: 'reel' }, // page 4
-      { shortcode: 'DU-VE72jRn3', type: 'reel' }, // page 5
-      { shortcode: 'DUvLEl5DTd_', type: 'reel' }, // page 6 — oldest
+      { shortcode: 'DWLqlhujWQn', type: 'p'    }, // page 1 — newest
+      { shortcode: 'DUyUdKfDQfS', type: 'reel' }, // page 2
+      { shortcode: 'DUgGrZDDYpl', type: 'reel' }, // page 3
+      { shortcode: 'DSkvVRjjcMY', type: 'p'    }, // page 4
+      { shortcode: 'DSC5LaRDTOI', type: 'reel' }, // page 5
+      { shortcode: 'DRzc-I5jaoJ', type: 'reel' }, // page 6 — oldest
     ],
   },
   {

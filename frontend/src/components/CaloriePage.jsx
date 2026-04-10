@@ -400,7 +400,7 @@ export default function CaloriePage() {
 
         {/* ── Center: 3D Person + deficit slider ── */}
         <div className="flex flex-col items-center justify-start gap-8">
-          <div className="w-full bg-stone-900 rounded-[2.5rem] p-6 md:p-10 flex flex-col items-center shadow-2xl border border-stone-800">
+          <div className="w-full bg-stone-900 rounded-[2.5rem] p-10 flex flex-col items-center shadow-2xl border border-stone-800">
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ repeat: Infinity, duration: 3.2, ease: 'easeInOut' }}
@@ -433,20 +433,20 @@ export default function CaloriePage() {
         <div className="space-y-4">
 
           {/* Maintenance — hero card */}
-          <div className="bg-stone-900 text-white rounded-[2rem] p-6 md:p-8 shadow-xl space-y-1">
+          <div className="bg-stone-900 text-white rounded-[2rem] p-8 shadow-xl space-y-1">
             <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 flex items-center gap-1.5">
               <Flame size={11} className="text-amber-500" /> Maintenance Calories
             </p>
-            <p className="text-4xl md:text-6xl font-black tracking-tight leading-none">{results.maintenance.toLocaleString()}</p>
+            <p className="text-6xl font-black tracking-tight leading-none">{results.maintenance.toLocaleString()}</p>
             <p className="text-xs text-stone-400 font-medium pt-1">kcal/day — stay at current weight</p>
           </div>
 
           {/* Target calories */}
-          <div className="bg-amber-500 text-white rounded-[2rem] p-6 md:p-8 shadow-xl space-y-1">
+          <div className="bg-amber-500 text-white rounded-[2rem] p-8 shadow-xl space-y-1">
             <p className="text-[10px] font-black uppercase tracking-widest text-amber-200 flex items-center gap-1.5">
               <Target size={11} /> Your Target
             </p>
-            <p className="text-4xl md:text-6xl font-black tracking-tight leading-none">{results.targetCalories.toLocaleString()}</p>
+            <p className="text-6xl font-black tracking-tight leading-none">{results.targetCalories.toLocaleString()}</p>
             <p className="text-xs text-amber-200 font-medium pt-1">kcal/day to lose {deficitKg} kg/week</p>
           </div>
 
