@@ -35,7 +35,7 @@
       "dest": "/src/public/admin.html"
     },
     {
-      "src": "/(.*\\.(js|css|png|svg|ico|jpg|jpeg|gif|webp|woff|woff2|ttf|eot|json)$)",
+      "src": "/(.*\\.(js|css|png|svg|ico|jpg|jpeg|gif|webp|woff|woff2|ttf|eot|json|mp4|webm|mov|m4v)$)",
       "dest": "/src/public/$1"
     },
     {
