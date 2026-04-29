@@ -14,7 +14,7 @@ const ACCOUNTS_DATA = [
     color: '#e11d48',
     url: 'https://www.instagram.com/guide.lb/',
     reels: [
-      { shortcode: 'DWLqlhujWQn', type: 'p'    }, // page 1, newest
+      { shortcode: 'DWLqlhujWQn', type: 'p', carousel: true }, // page 1, newest, swipeable carousel
       { shortcode: 'DUyUdKfDQfS', type: 'reel' }, // page 2
       { shortcode: 'DUgGrZDDYpl', type: 'reel' }, // page 3
       { shortcode: 'DSkvVRjjcMY', type: 'p'    }, // page 4
@@ -68,7 +68,7 @@ const ACCOUNTS_DATA = [
     color: '#16a34a',
     url: 'https://www.instagram.com/laroutineyt/',
     reels: [
-      { shortcode: 'DXZ-s8TDebM', type: 'reel' }, // page 1, newest
+      { shortcode: 'DXZ-s8TDebM', type: 'reel', localMedia: { kind: 'video', src: '/reels/laroutineyt-DXZ-s8TDebM.mp4', caption: "J'ai testé les nouvelles chips de crêpes sucrées déclinées en 4 versions par les bons de chez Bret's, lesquelles préférez-vous ?" } }, // page 1, newest
       { shortcode: 'DWzDerXjURf', type: 'reel' }, // page 2
       { shortcode: 'DVTx-Bdje99', type: 'reel' }, // page 2
       { shortcode: 'DVHRV8aDVMd', type: 'reel' }, // page 3
@@ -446,9 +446,9 @@ function ReelCard({ reel, index }) {
   const reelUrl = `https://www.instagram.com/${reel.type}/${reel.shortcode}/`;
   const [thumb, setThumb] = useState(null);
 
-  // Always fetch thumbnail when there's no local media, so the uniform
-  // blocked-style card shows the actual post image.
-  const useThumbCard = !reel.localMedia;
+  // Fetch thumbnail when there's no local media AND it's not a carousel
+  // (carousels get the swipeable IG blockquote embed instead).
+  const useThumbCard = !reel.localMedia && !reel.carousel;
   useEffect(() => {
     if (!useThumbCard) return;
     fetch(`/api/ig-thumb?shortcode=${reel.shortcode}&type=${reel.type}`)
@@ -498,6 +498,11 @@ function ReelCard({ reel, index }) {
 
         {reel.localMedia ? (
           <LocalMediaCard media={reel.localMedia} height={SCREEN_H} color={reel.color} handle={reel.handle} instaUrl={reelUrl} />
+        ) : reel.carousel ? (
+          <div style={{ position: 'relative', height: SCREEN_H, overflow: 'hidden', background: '#fff' }}>
+            <EmbedCard html={blockquoteHtml} height={SCREEN_H} />
+            <CaptionOverlay text={reel.caption} handle={reel.handle} instaUrl={reelUrl} />
+          </div>
         ) : (
           <a href={reelUrl} target="_blank" rel="noopener noreferrer"
              style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', height: SCREEN_H, overflow: 'hidden', textDecoration: 'none' }}>
