@@ -57,6 +57,20 @@ app.use(cookieParser());
 // Serve static frontend files
 app.use(express.static(path.join(__dirname, 'public')));
 
+// OG image as PNG (WhatsApp requires real PNG, not SVG)
+app.get('/og-image.png', async (req, res) => {
+  try {
+    const sharp = require('sharp');
+    const svgPath = path.join(__dirname, 'public', 'og-image.svg');
+    const png = await sharp(svgPath).resize(1200, 630).png().toBuffer();
+    res.set('Content-Type', 'image/png');
+    res.set('Cache-Control', 'public, max-age=86400');
+    res.send(png);
+  } catch (e) {
+    res.status(500).send('Image generation failed');
+  }
+});
+
 // API routes
 app.use('/api', mealsRouter);
 
@@ -648,11 +662,20 @@ const parser = new RSSParser();
 // Manually curated global FMCG articles — always surfaced at the top
 const PINNED_GLOBAL_ARTICLES = [
   {
-    title: "Americana acquires Malak Al Tawouk: diversifying into Lebanese cuisine as profits rise",
+    title: "The new Spinneys in Antelias has its own Sephora section",
+    link: 'https://www.beirut.com/en/773632/the-new-spinneys-in-antelias-has-its-own-sephora-section/',
+    pubDate: 'Sat, 25 Apr 2026 09:00:00 GMT',
+    contentSnippet: "Spinneys' newly-opened Antelias branch makes a bold retail statement, integrating a dedicated Sephora beauty section inside the supermarket — a first-of-its-kind concept in Lebanon.",
+    id: 'pinned-global-spinneys-antelias-sephora',
+    photoUrl: '/news/spinneys-antelias.jpg',
+  },
+  {
+    title: "Americana acquires Malak Al Tawouk in a major Lebanese QSR push",
     link: 'https://www.agbi.com/articles/americana-diversifies-into-lebanese-cuisine-as-profits-rise/',
     pubDate: 'Mon, 09 Feb 2026 10:00:00 GMT',
     contentSnippet: "Americana Restaurants has secured a 75-year licence for Malak Al Tawouk and acquired its UAE and Saudi franchisees, marking a major push into Lebanese QSR.",
     id: 'pinned-global-americana-malak-al-tawouk',
+    photoUrl: '/news/americana-malak.jpg',
   },
   {
     title: "Create Wellness raises $20 million, setting sights beyond creatine gummies",
@@ -660,6 +683,7 @@ const PINNED_GLOBAL_ARTICLES = [
     pubDate: 'Tue, 08 Apr 2026 10:00:00 GMT',
     contentSnippet: "Create Wellness has raised $20 million in funding and is expanding beyond its viral creatine gummies into a broader functional wellness portfolio.",
     id: 'pinned-global-create-wellness-20m',
+    photoUrl: '/news/create-wellness.jpg',
   },
   {
     title: "Monoprix arrives to NokNok!",
@@ -667,6 +691,7 @@ const PINNED_GLOBAL_ARTICLES = [
     pubDate: 'Sun, 29 Mar 2026 10:00:00 GMT',
     contentSnippet: "A closer look at the latest food and wellness trends shaping the Lebanese consumer market — from emerging local brands to shifting habits in Beirut and beyond.",
     id: 'pinned-global-fb-1B6kN893MZ',
+    photoUrl: '/news/monoprix-noknok.jpg',
   },
   {
     title: "Danone's $1bn Huel deal: why the multinational is betting big on meal replacements",
@@ -674,6 +699,7 @@ const PINNED_GLOBAL_ARTICLES = [
     pubDate: 'Sun, 23 Mar 2026 08:00:00 GMT',
     contentSnippet: "Danone has agreed to acquire Huel in a deal valued at around $1bn, marking a major strategic bet on the fast-growing meal replacement and functional nutrition category.",
     id: 'pinned-global-danone-huel',
+    photoUrl: '/news/danone-huel.jpg',
   },
   {
     title: "Good Girl Snacks built a cult brand with zero paid ads — here's how",
@@ -681,23 +707,18 @@ const PINNED_GLOBAL_ARTICLES = [
     pubDate: 'Mon, 17 Mar 2026 08:00:00 GMT',
     contentSnippet: "Good Girl Snacks grew from a home kitchen experiment to a viral snack brand by leaning entirely on community, content, and word of mouth — spending nothing on paid customer acquisition.",
     id: 'pinned-global-goodgirlsnacks',
+    photoUrl: '/news/goodgirlssnack.jpg',
   },
 ];
 
 const PINNED_LORIENT_ARTICLES = [
-  {
-    title: "Pouloche s'installe à Sassine - L'Orient-Le Jour",
-    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1494806/pouloche-sinstalle-a-sassine.html',
-    pubDate: 'Sat, 14 Feb 2026 08:00:00 GMT',
-    contentSnippet: "Pouloche ouvre une nouvelle adresse à Sassine, Beyrouth. Découvrez ce nouveau concept de restauration libanaise...",
-    id: 'pinned-lorient-1494806',
-  },
   {
     title: "Kiki's : manger sain sans renoncer au plaisir - L'Orient-Le Jour",
     link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1492564/kikis-manger-sain-sans-renoncer-au-plaisir.html',
     pubDate: 'Sun, 25 Jan 2026 08:00:00 GMT',
     contentSnippet: "Kiki's, une nouvelle adresse à Beyrouth qui mise sur une cuisine saine et savoureuse...",
     id: 'pinned-lorient-1492564',
+    photoUrl: '/news/kikis.jpg',
   },
   {
     title: "À Badaro, Bistrot Lobo mise sur le bistrot français version beyrouthine - L'Orient-Le Jour",
@@ -705,6 +726,7 @@ const PINNED_LORIENT_ARTICLES = [
     pubDate: 'Sun, 18 Jan 2026 08:00:00 GMT',
     contentSnippet: "Bistrot Lobo s'installe à Badaro et réinvente le bistrot français avec une touche beyrouthine...",
     id: 'pinned-lorient-1491754',
+    photoUrl: '/news/bistrotlobo.jpg',
   },
   {
     title: "Dimanche : Kasr Fakhreddine, institution de la cuisine libanaise, s'installe à Beyrouth - L'Orient-Le Jour",
@@ -712,6 +734,7 @@ const PINNED_LORIENT_ARTICLES = [
     pubDate: 'Sun, 11 Jan 2026 08:00:00 GMT',
     contentSnippet: "Kasr Fakhreddine, institution de la cuisine libanaise traditionnelle, descend en ville et s'installe à Beyrouth...",
     id: 'pinned-lorient-1490887',
+    photoUrl: '/news/kasr-fakhreddine.jpg',
   },
   {
     title: "Izzyy ouvre son premier magasin de la cuisine familiale au réseau national - L'Orient-Le Jour",
@@ -719,6 +742,7 @@ const PINNED_LORIENT_ARTICLES = [
     pubDate: 'Thu, 11 Dec 2025 08:00:00 GMT',
     contentSnippet: "Izzyy inaugure son premier point de vente, proposant une cuisine familiale libanaise accessible à travers le réseau national...",
     id: 'pinned-lorient-1488252',
+    photoUrl: '/news/izzy.jpg',
   },
   {
     title: "Céline, la nouvelle adresse sucrée de Saifi Village - L'Orient-Le Jour",
@@ -726,6 +750,7 @@ const PINNED_LORIENT_ARTICLES = [
     pubDate: 'Thu, 30 Oct 2025 08:00:00 GMT',
     contentSnippet: "Céline s'installe à Saifi Village et propose une adresse gourmande dédiée aux douceurs et pâtisseries...",
     id: 'pinned-lorient-1483245',
+    photoUrl: '/news/celine-artisans.jpg',
   },
   {
     title: "Les Chats du Quartier, un nouveau refuge à Saifi - L'Orient-Le Jour",
@@ -733,6 +758,7 @@ const PINNED_LORIENT_ARTICLES = [
     pubDate: 'Wed, 15 Oct 2025 08:00:00 GMT',
     contentSnippet: "Les Chats du Quartier ouvre ses portes à Saifi, un nouveau café-refuge au cœur de Beyrouth...",
     id: 'pinned-lorient-1481586',
+    photoUrl: '/news/leschatsduquartier.webp',
   },
   {
     title: "Superchief, un nouveau souffle pour Monnot - L'Orient-Le Jour",
@@ -740,6 +766,7 @@ const PINNED_LORIENT_ARTICLES = [
     pubDate: 'Sun, 28 Sep 2025 08:00:00 GMT',
     contentSnippet: "Superchief s'installe à Monnot et apporte un nouveau souffle à ce quartier emblématique de Beyrouth...",
     id: 'pinned-lorient-1479686',
+    photoUrl: '/news/superchief2.webp',
   },
   {
     title: "Ouverture de Mamaz Kitchen dans le nouvel hôtel Lost à Achrafieh - L'Orient-Le Jour",
@@ -747,6 +774,7 @@ const PINNED_LORIENT_ARTICLES = [
     pubDate: 'Sat, 22 Feb 2025 08:00:00 GMT',
     contentSnippet: "Mamaz Kitchen ouvre ses portes dans le nouvel hôtel Lost à Achrafieh, proposant une cuisine créative au cœur de Beyrouth...",
     id: 'pinned-lorient-1455681',
+    photoUrl: '/news/mamazkitchen.webp',
   },
   {
     title: "Beihouse, un concept unique en plein cœur de Gemmayze - L'Orient-Le Jour",
@@ -754,6 +782,7 @@ const PINNED_LORIENT_ARTICLES = [
     pubDate: 'Thu, 13 Feb 2025 08:00:00 GMT',
     contentSnippet: "Beihouse s'impose comme un concept unique et inédit au cœur du quartier de Gemmayze, Beyrouth...",
     id: 'pinned-lorient-1454695',
+    photoUrl: '/news/beihouse.webp',
   },
   {
     title: "Couqley, un bistrot français entre tradition et ambition - L'Orient-Le Jour",
@@ -761,6 +790,7 @@ const PINNED_LORIENT_ARTICLES = [
     pubDate: 'Wed, 05 Feb 2025 08:00:00 GMT',
     contentSnippet: "Couqley réinvente le bistrot français à Beyrouth, entre tradition culinaire et ambition gastronomique...",
     id: 'pinned-lorient-1453796',
+    photoUrl: '/news/couqley.jpg',
   },
   {
     title: "The Chase Trattoria, une nouvelle ère pour une adresse emblématique de la place Sassine - L'Orient-Le Jour",
@@ -768,11 +798,12 @@ const PINNED_LORIENT_ARTICLES = [
     pubDate: 'Sat, 25 Jan 2025 08:00:00 GMT',
     contentSnippet: "The Chase Trattoria marque une nouvelle ère pour cette adresse emblématique de la place Sassine à Beyrouth...",
     id: 'pinned-lorient-1452561',
+    photoUrl: '/news/thechase.webp',
   },
 ];
 
 const NEWS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const NEWS_FILTER_VERSION = 46; // bump this whenever filters change to invalidate old cache
+const NEWS_FILTER_VERSION = 57; // bump this whenever filters change to invalidate old cache
 
 const NEWS_BANNED_WORDS = [
   'printemps', 'galeries lafayette', 'grands magasins',
@@ -824,6 +855,13 @@ const NEWS_BANNED_WORDS = [
   'valence', 'cèdre à', 'cedre a',
   'quand la mémoire passe', 'quand la memoire passe',
   'venu pour un an',
+  'americana diversifies into lebanese cuisine',
+  "pouloche s'installe à sassine", 'pouloche sinstalle a sassine',
+  "allo beirut", "allô beirut", "allô beirut s'installe", "allô beirut opens",
+  'hamas', 'téhéran', 'ankara', 'fuite des chefs',
+  'les chefs et le goût', 'les chefs et le gout', 'chefs et le goût', 'chefs et le gout',
+  'israël', 'israel', 'cessez-le-feu', 'ceasefire', "chefs de l'opposition", 'de l\'opposition',
+  'goût retrouvé', 'gout retrouve', 'dimanche à la campagne', 'dimanche a la campagne',
 ];
 
 const NEWS_BANNED_DOMAINS = ['qsrmedia'];
@@ -1056,26 +1094,43 @@ async function fetchLebanonFMCGNews() {
 
     // Manual overrides for known restaurants where auto-extraction fails
     const PLACE_OVERRIDES = {
-      'al beiruti':    'Al Beiruti restaurant Beirut Lebanon',
-      'colonel beer':  'Colonel Beer brewery Batroun Lebanon',
-      'liza':          'Liza restaurant Beirut Lebanon',
-      'pouloche':      'Pouloche restaurant Sassine Beirut',
-      'bistrot lobo':  'Bistrot Lobo Badaro Beirut',
-      'superchief':    'Superchief bar Monnot Beirut',
-      'couqley':       'Couqley bistrot Beirut',
-      'beihouse':      'Beihouse Gemmayze Beirut',
-      'mamaz kitchen': 'Mamaz Kitchen Achrafieh Beirut',
-      'the chase':     'The Chase Sassine Beirut',
-      'izzyy':         'Izzyy restaurant Beirut',
-      "kiki's":        "Kiki's restaurant Beirut",
-      'kasr fakhreddine': 'Kasr Fakhreddine restaurant Beirut',
+      // Lebanese restaurants — precise queries
+      'al beiruti':       'Al Beiruti restaurant Gemmayzeh Beirut Lebanon',
+      'colonel beer':     null,
+      'liza':             'Liza restaurant Achrafieh Beirut Lebanon',
+      'pouloche':         'Pouloche restaurant Sassine Place Achrafieh Beirut',
+      'bistrot lobo':     'Bistrot Lobo Badaro Beirut Lebanon',
+      'superchief':       'Superchief Monnot Beirut Lebanon',
+      'couqley':          'Couqley French bistro Gemmayzeh Beirut',
+      'beihouse':         'Beihouse Gemmayzeh Beirut Lebanon',
+      'mamaz kitchen':    'Mamaz Kitchen Lost Hotel Achrafieh Beirut',
+      'the chase':        'The Chase Trattoria Sassine Beirut Lebanon',
+      'izzyy':            'Izzyy restaurant Beirut Lebanon',
+      "kiki's":           "Kiki's healthy restaurant Beirut Lebanon",
+      'kasr fakhreddine': 'Kasr Fakhreddine Lebanese restaurant Beirut',
+      'les chats du quartier': 'Les Chats du Quartier cafe Saifi Beirut Lebanon',
+      "céline":           'Céline pâtisserie Saifi Village Beirut Lebanon',
+      'celine':           'Céline pâtisserie Saifi Village Beirut Lebanon',
+      'dimanche':         'Kasr Fakhreddine Dimanche restaurant Beirut Lebanon',
+      'lobo':             'Bistrot Lobo Badaro Beirut Lebanon',
+      // Global brands — use Lebanese location for relevance
+      'malak al tawouk':  'Malak Al Tawouk restaurant Beirut Lebanon',
+      'malak al taouk':   'Malak Al Tawouk restaurant Beirut Lebanon',
+      'americana':        'Americana Restaurants Beirut Lebanon',
+      'monoprix':         'Monoprix Beirut Lebanon',
+      'spinneys':         'Spinneys supermarket Beirut Lebanon',
+      // Global FMCG with no physical Beirut location — skip photo
+      'danone':           null,
+      'huel':             null,
+      'create wellness':  null,
+      'good girl snacks': null,
     };
 
     function extractPlaceSearchTerm(title) {
       const lower = title.toLowerCase();
-      // Check manual overrides first
+      // Check manual overrides first (null = skip photo)
       for (const [key, val] of Object.entries(PLACE_OVERRIDES)) {
-        if (lower.includes(key)) return val;
+        if (lower.includes(key)) return val; // val may be null → caller skips fetch
       }
       // Strip source suffix: "- L'Orient-Le Jour", "- The961", etc.
       let clean = title.replace(/\s*[-–]\s*(L'Orient[\w\s-]*|The\s*961|961|Daily Star|Annahar|Commerce du Levant|L'OLJ|Arabia)\s*$/i, '').trim();
@@ -1107,7 +1162,10 @@ async function fetchLebanonFMCGNews() {
     }
 
     const photoResults = await Promise.allSettled(
-      finalArticles.map(a => fetchPlacePhoto(extractPlaceSearchTerm(a.title)))
+      finalArticles.map(a => {
+        const term = extractPlaceSearchTerm(a.title);
+        return term === null ? Promise.resolve(null) : fetchPlacePhoto(term);
+      })
     );
     finalArticles.forEach((a, i) => {
       if (photoResults[i].status === 'fulfilled' && photoResults[i].value) {
@@ -1119,49 +1177,13 @@ async function fetchLebanonFMCGNews() {
   return finalArticles;
 }
 
-// ── FMCG News (served from Supabase cache, refreshed every Sunday) ────────────
+// ── FMCG News (pinned articles only — RSS feed disabled) ─────────────────────
 app.get('/api/news', async (req, res) => {
-  // 1. Try Supabase cache
-  if (supabase) {
-    try {
-      const { data } = await supabase
-        .from('news_cache')
-        .select('articles, updated_at, filter_version')
-        .eq('id', 1)
-        .maybeSingle();
-
-      if (data && Array.isArray(data.articles) && data.articles.length > 0 && data.filter_version === NEWS_FILTER_VERSION) {
-        const clean = data.articles.filter(a => !isArticleBanned(a));
-        if (clean.length > 0) return res.json(clean);
-      }
-    } catch (e) {
-      console.error('News cache read failed, fetching live:', e.message);
-    }
-  }
-
-  // 2. Fetch live RSS
-  try {
-    const articles = await fetchLebanonFMCGNews();
-
-    // Store in Supabase cache for next time
-    if (supabase && articles.length > 0) {
-      try {
-        await supabase.from('news_cache').upsert([{
-          id: 1,
-          articles,
-          filter_version: NEWS_FILTER_VERSION,
-          updated_at: new Date().toISOString(),
-        }]);
-      } catch (e) {
-        console.error('News cache write failed:', e.message);
-      }
-    }
-
-    return res.json(articles);
-  } catch (error) {
-    console.error('Error fetching RSS:', error);
-    res.json([]);
-  }
+  const pinned = [
+    ...PINNED_GLOBAL_ARTICLES,
+    ...PINNED_LORIENT_ARTICLES,
+  ].filter(a => !isArticleBanned(a));
+  return res.json(pinned);
 });
 
 // ── Text-based Meal Describer (Gemini) ───────────────────────────────────────
@@ -1396,6 +1418,115 @@ Respond ONLY with this JSON (no markdown):
   }
 });
 
+// ── Food Label OCR: extract nutrition facts from a label photo ────────────────
+app.post('/api/analyze-food-label', async (req, res) => {
+  const { imageBase64, mimeType = 'image/jpeg' } = req.body;
+  if (!imageBase64) return res.status(400).json({ error: 'No image provided' });
+
+  const apiKey = process.env.GOOGLE_AI_API_KEY;
+  if (!apiKey) return res.status(500).json({ error: 'AI API key not configured' });
+
+  try {
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+    const prompt = `You are reading a packaged-food NUTRITION FACTS label.
+
+Extract these values DIRECTLY from the label (do not estimate). Use metric units only (grams).
+
+If a value is missing or unreadable, return 0 for that field. If servings per container isn't stated, return 1.
+
+Respond ONLY with this JSON (no markdown, no commentary):
+{
+  "dish": "Product name if visible on the label, else 'Food Label'",
+  "servingLabel": "e.g. 1 Tbsp (21g), 30g, 1 cup (240ml)",
+  "servingsPerContainer": 0,
+  "perServing": {
+    "calories": 0,
+    "protein": 0,
+    "carbs": 0,
+    "fat": 0
+  }
+}
+
+Important rules:
+- Use the SERVING SIZE shown on the label (not per-100g if a serving size is given)
+- "calories" = the big number labelled "Calories" on the label
+- "protein" = total protein grams per serving
+- "carbs" = TOTAL carbohydrates grams per serving (not net carbs)
+- "fat" = total fat grams per serving
+- Round all values to whole grams
+- If the label is unclear or this is NOT a nutrition facts label, return dish: "Not a label", and zeros.`;
+
+    const geminiRes = await fetch(geminiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }, { inline_data: { mime_type: mimeType, data: imageBase64 } }] }]
+      })
+    });
+
+    const geminiJson = await geminiRes.json();
+    if (!geminiRes.ok) {
+      const msg = geminiJson?.error?.message || `Gemini API error ${geminiRes.status}`;
+      const isQuota = msg.includes('quota') || msg.includes('RESOURCE_EXHAUSTED') || geminiRes.status === 429;
+      return res.status(500).json({
+        error: isQuota ? 'API quota exceeded — please try again in a moment.' : msg
+      });
+    }
+
+    const text = (geminiJson.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
+    if (!text) throw new Error('Empty response from AI');
+
+    const clean = text.replace(/^```json?\s*/i, '').replace(/\s*```$/i, '').trim();
+    const m = clean.match(/\{[\s\S]*\}/);
+    if (!m) throw new Error('No JSON in AI response');
+    const raw = JSON.parse(m[0]);
+
+    if (raw.dish === 'Not a label') {
+      return res.status(422).json({ error: "Couldn't read a nutrition label. Try a clearer, closer photo." });
+    }
+
+    const ps = raw.perServing || {};
+    const cal  = Math.max(0, Math.round(Number(ps.calories) || 0));
+    const prot = Math.max(0, Math.round(Number(ps.protein)  || 0));
+    const carb = Math.max(0, Math.round(Number(ps.carbs)    || 0));
+    const fat  = Math.max(0, Math.round(Number(ps.fat)      || 0));
+    const servings = Math.max(1, Math.round(Number(raw.servingsPerContainer) || 1));
+
+    if (cal === 0) {
+      return res.status(422).json({ error: "Couldn't read calorie info from this label. Try a clearer, closer photo." });
+    }
+
+    const perServing = {
+      calories: cal, protein: prot, carbs: carb, fat,
+      label: raw.servingLabel || 'per serving',
+    };
+    const perPackage = servings > 1 ? {
+      calories: cal * servings,
+      protein:  prot * servings,
+      carbs:    carb * servings,
+      fat:      fat * servings,
+      label:    `whole package (×${servings})`,
+    } : null;
+
+    res.json({
+      dish:        raw.dish || 'Food Label',
+      calories:    perServing.calories,
+      protein:     perServing.protein,
+      carbs:       perServing.carbs,
+      fat:         perServing.fat,
+      servingSize: perServing.label,
+      confidence:  'high',
+      items:       [],
+      tip:         null,
+      perServing,
+      perPackage,
+    });
+  } catch (err) {
+    console.error('Food label OCR error:', err.message);
+    res.status(500).json({ error: err.message || 'Failed to read label' });
+  }
+});
+
 // ── Cron: refresh news cache every Sunday (triggered by Vercel Cron) ──────────
 
 app.get('/api/cron/refresh-news', async (req, res) => {
@@ -1446,6 +1577,43 @@ app.get('/api/cron/refresh-news', async (req, res) => {
     console.error('Cron refresh-news failed:', e.message);
     res.status(500).json({ error: e.message });
   }
+});
+
+// Instagram thumbnail proxy — extracts og:image from public post HTML
+app.get('/api/ig-thumb', async (req, res) => {
+  const { shortcode, type = 'reel' } = req.query;
+  if (!shortcode || !/^[A-Za-z0-9_-]+$/.test(shortcode)) {
+    return res.status(400).json({ error: 'invalid shortcode' });
+  }
+  // Try correct type first, then fallbacks
+  const urlsToTry = [
+    `https://www.instagram.com/${type}/${shortcode}/`,
+    `https://www.instagram.com/p/${shortcode}/`,
+    `https://www.instagram.com/reel/${shortcode}/`,
+  ];
+  const UA = 'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)';
+  for (const igUrl of urlsToTry) {
+    try {
+      const r = await fetch(igUrl, {
+        headers: {
+          'User-Agent': UA,
+          'Accept': 'text/html,application/xhtml+xml',
+          'Accept-Language': 'en-US,en;q=0.9',
+        },
+        signal: AbortSignal.timeout(7000),
+        redirect: 'follow',
+      });
+      const html = await r.text();
+      const match = html.match(/<meta property="og:image"\s+content="([^"]+)"/i)
+                 || html.match(/<meta content="([^"]+)"\s+property="og:image"/i)
+                 || html.match(/"display_url":"([^"]+)"/);
+      if (match) {
+        const url = match[1].replace(/\\u0026/g, '&').replace(/\\/g, '');
+        return res.json({ url });
+      }
+    } catch { /* try next */ }
+  }
+  return res.status(404).json({ error: 'no thumbnail found' });
 });
 
 // Fallback to index.html for SPA
