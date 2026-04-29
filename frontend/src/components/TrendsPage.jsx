@@ -15,11 +15,11 @@ const ACCOUNTS_DATA = [
     url: 'https://www.instagram.com/guide.lb/',
     reels: [
       { shortcode: 'DWLqlhujWQn', type: 'p', carousel: true }, // page 1, newest, swipeable carousel
-      { shortcode: 'DUyUdKfDQfS', type: 'reel' }, // page 2
-      { shortcode: 'DUgGrZDDYpl', type: 'reel' }, // page 3
-      { shortcode: 'DSkvVRjjcMY', type: 'p'    }, // page 4
-      { shortcode: 'DSC5LaRDTOI', type: 'reel' }, // page 5
-      { shortcode: 'DRzc-I5jaoJ', type: 'reel' }, // page 6, oldest
+      { shortcode: 'DUyUdKfDQfS', type: 'reel', localMedia: { kind: 'video', src: '/reels/guide-lb-DUyUdKfDQfS.mp4' } }, // page 2
+      { shortcode: 'DUgGrZDDYpl', type: 'reel', localMedia: { kind: 'video', src: '/reels/guide-lb-DUgGrZDDYpl.mp4' } }, // page 3
+      { shortcode: 'DSkvVRjjcMY', type: 'p',    carousel: true }, // page 4, swipeable carousel
+      { shortcode: 'DSC5LaRDTOI', type: 'reel', localMedia: { kind: 'video', src: '/reels/guide-lb-DSC5LaRDTOI.mp4' } }, // page 5
+      { shortcode: 'DRzc-I5jaoJ', type: 'reel', localMedia: { kind: 'video', src: '/reels/guide-lb-DRzc-I5jaoJ.mp4' } }, // page 6, oldest
     ],
   },
   {
@@ -28,12 +28,11 @@ const ACCOUNTS_DATA = [
     url: 'https://www.instagram.com/baroodiesfoodies/',
     reels: [
       { shortcode: 'DXRvz-wDBEH', type: 'reel', localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-DXRvz-wDBEH.mp4', caption: 'Save this! 14 outdoor places to enjoy the sun in Lebanon 🌞🌴 Part 2 soon. #beirut #lebanon #explore #summer' } }, // page 1, newest
-      { shortcode: 'DWefGLFjdu1', type: 'reel' }, // page 2
-      { shortcode: 'DUlZ_JQjMSh', type: 'reel' }, // page 2
-      { shortcode: 'DVVlCUiDaG6', type: 'reel' }, // page 3
-      { shortcode: 'DVMfhvYDRYS', type: 'reel' }, // page 4
-      { shortcode: 'DU-VE72jRn3', type: 'reel' }, // page 5
-      { shortcode: 'DUvLEl5DTd_', type: 'reel' }, // page 6, oldest
+      { shortcode: 'DWefGLFjdu1', type: 'reel', localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-DWefGLFjdu1.mp4' } }, // page 2
+      { shortcode: 'DUlZ_JQjMSh', type: 'reel', localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-DUlZ_JQjMSh.mp4' } }, // page 3
+      { shortcode: 'DVVlCUiDaG6', type: 'reel', localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-DVVlCUiDaG6.mp4' } }, // page 4
+      { shortcode: 'DVMfhvYDRYS', type: 'reel', localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-DVMfhvYDRYS.mp4' } }, // page 5
+      { shortcode: 'DU-VE72jRn3', type: 'reel', localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-DU-VE72jRn3.mp4' } }, // page 6, oldest
     ],
   },
   {
@@ -42,11 +41,11 @@ const ACCOUNTS_DATA = [
     url: 'https://www.instagram.com/baroodiesfoodies.dxb/',
     reels: [
       { shortcode: 'DQjgZMhkqh2', type: 'reel', localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-dxb-DQjgZMhkqh2.mp4', caption: 'Trying Middle Child 📍 Al Serkal Avenue, the viral Dubai spot ✨👀 All details in reel! Share with your foodie friends.' } }, // page 1, newest
-      { shortcode: 'DUxdhBqDU_T', type: 'reel' }, // page 2
-      { shortcode: 'DUgGiWNEiZi', type: 'reel' }, // page 3
-      { shortcode: 'DUKxO6VDczo', type: 'reel' }, // page 4
-      { shortcode: 'DRAC021kvno', type: 'reel' }, // page 5
-      { shortcode: 'DQjgZMhkqh2', type: 'reel' }, // page 6, oldest
+      { shortcode: 'DUxdhBqDU_T', type: 'reel', localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-dxb-DUxdhBqDU_T.mp4' } }, // page 2
+      { shortcode: 'DUgGiWNEiZi', type: 'reel', localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-dxb-DUgGiWNEiZi.mp4' } }, // page 3
+      { shortcode: 'DUKxO6VDczo', type: 'reel', localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-dxb-DUKxO6VDczo.mp4' } }, // page 4
+      { shortcode: 'DRAC021kvno', type: 'reel', localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-dxb-DRAC021kvno.mp4' } }, // page 5
+      { shortcode: 'DQjgZMhkqh2', type: 'reel', localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-dxb-DQjgZMhkqh2.mp4' } }, // page 6, oldest
     ],
   },
   {
@@ -55,12 +54,11 @@ const ACCOUNTS_DATA = [
     url: 'https://www.instagram.com/ellevousguide/',
     reels: [
       { shortcode: 'DXesY5UM_g4', type: 'p', localMedia: { kind: 'video', src: '/reels/ellevousguide-DXesY5UM_g4.mp4', caption: 'Yes you can also eat for less than €10 in Paris 😉 #cheapeats #parisguide #parisfood' } },     // page 1, newest
-      { shortcode: 'DVti6aGDoWq', type: 'p' }, // page 2
-      { shortcode: 'DSzNG4tjAqu', type: 'reel' }, // page 2
-      { shortcode: 'DRAQGGUjKy0', type: 'reel' }, // page 3
-      { shortcode: 'DR2V9vuDML-', type: 'reel' }, // page 4
-      { shortcode: 'DUfYlnuAvxJ', type: 'reel' }, // page 5
-      { shortcode: 'DVti6aGDoWq', type: 'reel' }, // page 6
+      { shortcode: 'DVti6aGDoWq', type: 'p', localMedia: { kind: 'video', src: '/reels/ellevousguide-DVti6aGDoWq.mp4' } }, // page 2
+      { shortcode: 'DSzNG4tjAqu', type: 'reel', localMedia: { kind: 'video', src: '/reels/ellevousguide-DSzNG4tjAqu.mp4' } }, // page 3
+      { shortcode: 'DRAQGGUjKy0', type: 'reel', localMedia: { kind: 'video', src: '/reels/ellevousguide-DRAQGGUjKy0.mp4' } }, // page 4
+      { shortcode: 'DR2V9vuDML-', type: 'reel', localMedia: { kind: 'video', src: '/reels/ellevousguide-DR2V9vuDML-.mp4' } }, // page 5
+      { shortcode: 'DUfYlnuAvxJ', type: 'reel', localMedia: { kind: 'video', src: '/reels/ellevousguide-DUfYlnuAvxJ.mp4' } }, // page 6
     ],
   },
   {
@@ -69,12 +67,11 @@ const ACCOUNTS_DATA = [
     url: 'https://www.instagram.com/laroutineyt/',
     reels: [
       { shortcode: 'DXZ-s8TDebM', type: 'reel', localMedia: { kind: 'video', src: '/reels/laroutineyt-DXZ-s8TDebM.mp4', caption: "J'ai testé les nouvelles chips de crêpes sucrées déclinées en 4 versions par les bons de chez Bret's, lesquelles préférez-vous ?" } }, // page 1, newest
-      { shortcode: 'DWzDerXjURf', type: 'reel' }, // page 2
-      { shortcode: 'DVTx-Bdje99', type: 'reel' }, // page 2
-      { shortcode: 'DVHRV8aDVMd', type: 'reel' }, // page 3
-      { shortcode: 'DVG4b48jbNi', type: 'reel' }, // page 4
-      { shortcode: 'DU5DbZWDQ42', type: 'reel' }, // page 5
-      { shortcode: 'DUQzpVqDVlU', type: 'reel' }, // page 6, oldest
+      { shortcode: 'DWzDerXjURf', type: 'reel', localMedia: { kind: 'video', src: '/reels/laroutineyt-DWzDerXjURf.mp4' } }, // page 2
+      { shortcode: 'DVTx-Bdje99', type: 'reel', localMedia: { kind: 'video', src: '/reels/laroutineyt-DVTx-Bdje99.mp4' } }, // page 3
+      { shortcode: 'DVHRV8aDVMd', type: 'reel', localMedia: { kind: 'video', src: '/reels/laroutineyt-DVHRV8aDVMd.mp4' } }, // page 4
+      { shortcode: 'DVG4b48jbNi', type: 'reel', localMedia: { kind: 'video', src: '/reels/laroutineyt-DVG4b48jbNi.mp4' } }, // page 5
+      { shortcode: 'DU5DbZWDQ42', type: 'reel', localMedia: { kind: 'video', src: '/reels/laroutineyt-DU5DbZWDQ42.mp4' } }, // page 6, oldest
     ],
   },
   {
@@ -83,11 +80,11 @@ const ACCOUNTS_DATA = [
     url: 'https://www.instagram.com/wondersbyaline/',
     reels: [
       { shortcode: 'DWmFYn0DXsy', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DWmFYn0DXsy.mp4', caption: "We tried Le Dada Bistro at @maisondada.lb last week in Beirut's Saifi district and it's exactly the kind of spot you save for slow Sunday lunches." } }, // page 1, newest
-      { shortcode: 'DVRqFx7jYld', type: 'reel' }, // page 2
-      { shortcode: 'DVB4QnTDVF-', type: 'reel' }, // page 3
-      { shortcode: 'DU8mp01jZnu', type: 'reel' }, // page 4
-      { shortcode: 'DUv5pNUjT4U', type: 'reel' }, // page 5
-      { shortcode: 'DUtE9gqDUeY', type: 'reel' }, // page 6, oldest
+      { shortcode: 'DVRqFx7jYld', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DVRqFx7jYld.mp4' } }, // page 2
+      { shortcode: 'DVB4QnTDVF-', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DVB4QnTDVF-.mp4' } }, // page 3
+      { shortcode: 'DU8mp01jZnu', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DU8mp01jZnu.mp4' } }, // page 4
+      { shortcode: 'DUv5pNUjT4U', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DUv5pNUjT4U.mp4' } }, // page 5
+      { shortcode: 'DUtE9gqDUeY', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DUtE9gqDUeY.mp4' } }, // page 6, oldest
     ],
   },
   {
@@ -96,12 +93,11 @@ const ACCOUNTS_DATA = [
     url: 'https://www.instagram.com/newinbeirut/',
     reels: [
       { shortcode: 'DXjpqghiPAM', type: 'p',    localMedia: { kind: 'image', src: '/reels/newinbeirut-DXjpqghiPAM.jpg', caption: '✈️ Beirut Flight Update, as of today (23.04.2026). 🟢 Currently operating: Middle East Airlines. Stay updated, save and share.' } }, // page 1, newest
-      { shortcode: 'DXcvyPmjVRe', type: 'p'    }, // page 2
-      { shortcode: 'DVthGdRDYhk', type: 'p'    }, // page 2
-      { shortcode: 'DVeHssgDUKf', type: 'p'    }, // page 3
-      { shortcode: 'DVRUcaTjaYu', type: 'p'    }, // page 4
-      { shortcode: 'DUaUxCtjVdq', type: 'reel' }, // page 5
-      { shortcode: 'DUTf12UDTbX', type: 'p'    }, // page 6, oldest
+      { shortcode: 'DXcvyPmjVRe', type: 'p',    localMedia: { kind: 'video', src: '/reels/newinbeirut-DXcvyPmjVRe.mp4' } }, // page 2
+      { shortcode: 'DVthGdRDYhk', type: 'p',    localMedia: { kind: 'image', src: '/reels/newinbeirut-DVthGdRDYhk.jpg' } }, // page 3
+      { shortcode: 'DVeHssgDUKf', type: 'p',    localMedia: { kind: 'video', src: '/reels/newinbeirut-DVeHssgDUKf.mp4' } }, // page 4
+      { shortcode: 'DVRUcaTjaYu', type: 'p',    localMedia: { kind: 'video', src: '/reels/newinbeirut-DVRUcaTjaYu.mp4' } }, // page 5
+      { shortcode: 'DUaUxCtjVdq', type: 'reel', localMedia: { kind: 'video', src: '/reels/newinbeirut-DUaUxCtjVdq.mp4' } }, // page 6, oldest
     ],
   },
 ];
