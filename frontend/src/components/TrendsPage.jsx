@@ -14,7 +14,7 @@ const ACCOUNTS_DATA = [
     color: '#e11d48',
     url: 'https://www.instagram.com/guide.lb/',
     reels: [
-      { shortcode: 'DWLqlhujWQn', type: 'p'    }, // page 1, newest
+      { shortcode: 'DWLqlhujWQn', type: 'p',    localMedia: { kind: 'video', src: '/reels/guide-lb-DWLqlhujWQn.mp4' } }, // page 1, newest
       { shortcode: 'DUyUdKfDQfS', type: 'reel' }, // page 2
       { shortcode: 'DUgGrZDDYpl', type: 'reel' }, // page 3
       { shortcode: 'DSkvVRjjcMY', type: 'p'    }, // page 4
@@ -27,7 +27,7 @@ const ACCOUNTS_DATA = [
     color: '#d97706',
     url: 'https://www.instagram.com/baroodiesfoodies/',
     reels: [
-      { shortcode: 'DXRvz-wDBEH', type: 'reel' }, // page 1, newest
+      { shortcode: 'DXRvz-wDBEH', type: 'reel', localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-DXRvz-wDBEH.mp4' } }, // page 1, newest
       { shortcode: 'DWefGLFjdu1', type: 'reel' }, // page 2
       { shortcode: 'DUlZ_JQjMSh', type: 'reel' }, // page 2
       { shortcode: 'DVVlCUiDaG6', type: 'reel' }, // page 3
@@ -41,7 +41,7 @@ const ACCOUNTS_DATA = [
     color: '#0891b2',
     url: 'https://www.instagram.com/baroodiesfoodies.dxb/',
     reels: [
-      { shortcode: 'DQjgZMhkqh2', type: 'reel' }, // page 1, newest
+      { shortcode: 'DQjgZMhkqh2', type: 'reel', localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-dxb-DQjgZMhkqh2.mp4' } }, // page 1, newest
       { shortcode: 'DUxdhBqDU_T', type: 'reel' }, // page 2
       { shortcode: 'DUgGiWNEiZi', type: 'reel' }, // page 3
       { shortcode: 'DUKxO6VDczo', type: 'reel' }, // page 4
@@ -68,7 +68,7 @@ const ACCOUNTS_DATA = [
     color: '#16a34a',
     url: 'https://www.instagram.com/laroutineyt/',
     reels: [
-      { shortcode: 'DXZ-s8TDebM', type: 'reel' }, // page 1, newest
+      { shortcode: 'DXZ-s8TDebM', type: 'reel', localMedia: { kind: 'video', src: '/reels/laroutineyt-DXZ-s8TDebM.mp4' } }, // page 1, newest
       { shortcode: 'DWzDerXjURf', type: 'reel' }, // page 2
       { shortcode: 'DVTx-Bdje99', type: 'reel' }, // page 2
       { shortcode: 'DVHRV8aDVMd', type: 'reel' }, // page 3
@@ -95,7 +95,7 @@ const ACCOUNTS_DATA = [
     color: '#f97316',
     url: 'https://www.instagram.com/newinbeirut/',
     reels: [
-      { shortcode: 'DXjpqghiPAM', type: 'p'    }, // page 1, newest
+      { shortcode: 'DXjpqghiPAM', type: 'p',    localMedia: { kind: 'image', src: '/reels/newinbeirut-DXjpqghiPAM.jpg' } }, // page 1, newest
       { shortcode: 'DXcvyPmjVRe', type: 'p'    }, // page 2
       { shortcode: 'DVthGdRDYhk', type: 'p'    }, // page 2
       { shortcode: 'DVeHssgDUKf', type: 'p'    }, // page 3
@@ -224,6 +224,79 @@ function EmbedCard({ html, height }) {
   );
 }
 
+// Self-hosted media card, plays MP4 inline or shows static image
+function LocalMediaCard({ media, height, color }) {
+  const [playing, setPlaying] = useState(false);
+  const [muted, setMuted] = useState(true);
+  const videoRef = useRef(null);
+
+  if (media.kind === 'image') {
+    return (
+      <div style={{ position: 'relative', height, overflow: 'hidden', background: '#000' }}>
+        <img src={media.src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+      </div>
+    );
+  }
+
+  const togglePlay = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) { v.play(); setPlaying(true); }
+    else { v.pause(); setPlaying(false); }
+  };
+
+  return (
+    <div style={{ position: 'relative', height, overflow: 'hidden', background: '#000' }}>
+      <video
+        ref={videoRef}
+        src={media.src}
+        playsInline
+        loop
+        muted={muted}
+        preload="metadata"
+        onClick={togglePlay}
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+        style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer' }}
+      />
+      {!playing && (
+        <button
+          onClick={togglePlay}
+          aria-label="Play"
+          style={{
+            position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: 'rgba(0,0,0,0.18)', border: 0, cursor: 'pointer',
+          }}
+        >
+          <div style={{ position: 'relative' }}>
+            <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: color, opacity: 0.35, animation: 'ping 1.6s ease-out infinite' }} />
+            <div style={{
+              width: 64, height: 64, borderRadius: '50%', background: color,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: `0 0 30px ${color}80`,
+            }}>
+              <Play size={26} fill="white" color="white" style={{ marginLeft: 3 }} />
+            </div>
+          </div>
+        </button>
+      )}
+      {/* Mute toggle */}
+      <button
+        onClick={(e) => { e.stopPropagation(); setMuted(m => !m); }}
+        aria-label={muted ? 'Unmute' : 'Mute'}
+        style={{
+          position: 'absolute', bottom: 12, right: 12, width: 32, height: 32,
+          borderRadius: '50%', background: 'rgba(0,0,0,0.6)', border: '1px solid rgba(255,255,255,0.15)',
+          color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: 14, cursor: 'pointer', backdropFilter: 'blur(8px)',
+        }}
+      >
+        {muted ? '🔇' : '🔊'}
+      </button>
+    </div>
+  );
+}
+
 // Iframely card, bypasses Instagram's embedding restrictions
 function IframelyCard({ iframelyUrl, reelUrl, height }) {
   const [loaded, setLoaded] = useState(false);
@@ -341,7 +414,9 @@ function ReelCard({ reel, index }) {
       <PhoneFrame>
         {igHeader}
 
-        {reel.blocked ? (
+        {reel.localMedia ? (
+          <LocalMediaCard media={reel.localMedia} height={SCREEN_H} color={reel.color} />
+        ) : reel.blocked ? (
           <a href={reelUrl} target="_blank" rel="noopener noreferrer"
              style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', height: SCREEN_H, overflow: 'hidden', textDecoration: 'none' }}>
             {/* Thumbnail or gradient bg */}
