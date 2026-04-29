@@ -186,23 +186,38 @@ function PhoneFrame({ children }) {
   );
 }
 
-// Eager embed: renders immediately (parallel loading), skeleton until iframe appears
+// Lazy embed: only initializes Instagram embed when in viewport, big perf
+// win on mobile snap-scroll where only one card is visible at a time.
 function EmbedCard({ html, height }) {
   const [loaded, setLoaded] = useState(false);
+  const [inView, setInView] = useState(false);
+  const containerRef = useRef(null);
   const embedRef = useRef(null);
 
+  // Watch for viewport intersection before injecting embed
   useEffect(() => {
-    if (!embedRef.current) return;
+    if (!containerRef.current) return;
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setInView(true); io.disconnect(); }
+    }, { rootMargin: '300px' }); // start a bit before card enters
+    io.observe(containerRef.current);
+    return () => io.disconnect();
+  }, []);
+
+  // Once in view, inject HTML and trigger embed processing
+  useEffect(() => {
+    if (!inView || !embedRef.current) return;
+    embedRef.current.innerHTML = html;
     if (window.instgrm) window.instgrm.Embeds.process();
     const obs = new MutationObserver(() => {
       if (embedRef.current?.querySelector('iframe')) { setLoaded(true); obs.disconnect(); }
     });
     obs.observe(embedRef.current, { childList: true, subtree: true });
     return () => obs.disconnect();
-  }, []);
+  }, [inView, html]);
 
   return (
-    <div style={{ position: 'relative', height, overflow: 'hidden' }}>
+    <div ref={containerRef} style={{ position: 'relative', height, overflow: 'hidden' }}>
       {!loaded && (
         <div style={{ position: 'absolute', inset: 0, background: '#f0f0f0', zIndex: 1 }}>
           <div style={{ height: 68, background: '#fff', borderBottom: '1px solid #eee', display: 'flex', alignItems: 'center', gap: 10, padding: '0 14px' }}>
@@ -215,7 +230,7 @@ function EmbedCard({ html, height }) {
           <div style={{ height: height - 68, background: 'linear-gradient(110deg,#e8e8e8 30%,#f5f5f5 50%,#e8e8e8 70%)', backgroundSize: '200% 100%', animation: 'shimmer 1.4s infinite' }} />
         </div>
       )}
-      <div ref={embedRef} dangerouslySetInnerHTML={{ __html: html }} style={{ minHeight: height }} />
+      <div ref={embedRef} style={{ minHeight: height }} />
     </div>
   );
 }
