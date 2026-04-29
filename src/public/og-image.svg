@@ -1,0 +1,96 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0f1e3d"/>
+      <stop offset="100%" stop-color="#162848"/>
+    </linearGradient>
+    <linearGradient id="card1" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#1c3058"/>
+      <stop offset="100%" stop-color="#172a4e"/>
+    </linearGradient>
+    <linearGradient id="amberGlow" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Amber top-right glow -->
+  <ellipse cx="1100" cy="80" rx="300" ry="200" fill="#F59E0B" fill-opacity="0.07"/>
+
+  <!-- Logo mark -->
+  <rect x="72" y="68" width="52" height="52" rx="12" fill="#1c3058"/>
+  <rect x="86" y="81" width="8" height="26" rx="4" fill="#F59E0B"/>
+  <rect x="86" y="81" width="24" height="8" rx="4" fill="#F59E0B"/>
+  <rect x="86" y="95" width="17" height="8" rx="4" fill="#F59E0B"/>
+
+  <!-- Wordmark -->
+  <text x="136" y="103" font-family="Inter, -apple-system, sans-serif" font-weight="700" font-size="26" fill="white" letter-spacing="-0.3">FitMeal <tspan fill="#F59E0B">AI</tspan></text>
+
+  <!-- LEFT: Main headline -->
+  <text x="72" y="270" font-family="Inter, -apple-system, sans-serif" font-weight="800" font-size="72" fill="white" letter-spacing="-2.5">Eat Smart.</text>
+  <text x="72" y="352" font-family="Inter, -apple-system, sans-serif" font-weight="300" font-size="72" fill="#93b4d8" letter-spacing="-2.5">Train Better.</text>
+
+  <!-- Amber divider -->
+  <rect x="72" y="380" width="52" height="3" rx="1.5" fill="#F59E0B"/>
+
+  <!-- Subtext -->
+  <text x="72" y="424" font-family="Inter, -apple-system, sans-serif" font-weight="400" font-size="20" fill="#6b8cad">Meal plans, calorie tracking &amp; 750+ restaurant items</text>
+  <text x="72" y="452" font-family="Inter, -apple-system, sans-serif" font-weight="400" font-size="20" fill="#6b8cad">across Lebanon, France, Spain, USA and more.</text>
+
+  <!-- Feature pills -->
+  <rect x="72" y="498" width="112" height="36" rx="18" fill="#1c3058" stroke="#2a4570" stroke-width="1"/>
+  <text x="128" y="522" font-family="Inter, -apple-system, sans-serif" font-weight="600" font-size="13" fill="#93b4d8" text-anchor="middle">AI Meal Plans</text>
+
+  <rect x="196" y="498" width="118" height="36" rx="18" fill="#1c3058" stroke="#2a4570" stroke-width="1"/>
+  <text x="255" y="522" font-family="Inter, -apple-system, sans-serif" font-weight="600" font-size="13" fill="#93b4d8" text-anchor="middle">Food Scanner</text>
+
+  <rect x="326" y="498" width="132" height="36" rx="18" fill="#1c3058" stroke="#2a4570" stroke-width="1"/>
+  <text x="392" y="522" font-family="Inter, -apple-system, sans-serif" font-weight="600" font-size="13" fill="#93b4d8" text-anchor="middle">Calorie Tracker</text>
+
+  <!-- RIGHT: Stat cards -->
+  <!-- Card 1 -->
+  <rect x="680" y="120" width="224" height="130" rx="16" fill="#1c3058" stroke="#2a4570" stroke-width="1"/>
+  <text x="704" y="156" font-family="Inter, -apple-system, sans-serif" font-weight="500" font-size="12" fill="#6b8cad" letter-spacing="1">RESTAURANTS</text>
+  <text x="704" y="208" font-family="Inter, -apple-system, sans-serif" font-weight="800" font-size="48" fill="white" letter-spacing="-1">750<tspan font-size="28" fill="#F59E0B">+</tspan></text>
+  <text x="704" y="232" font-family="Inter, -apple-system, sans-serif" font-weight="400" font-size="13" fill="#4a6a8a">items tracked globally</text>
+
+  <!-- Card 2 -->
+  <rect x="924" y="120" width="224" height="130" rx="16" fill="#1c3058" stroke="#2a4570" stroke-width="1"/>
+  <text x="948" y="156" font-family="Inter, -apple-system, sans-serif" font-weight="500" font-size="12" fill="#6b8cad" letter-spacing="1">COUNTRIES</text>
+  <text x="948" y="208" font-family="Inter, -apple-system, sans-serif" font-weight="800" font-size="48" fill="white" letter-spacing="-1">7<tspan font-size="28" fill="#F59E0B">+</tspan></text>
+  <text x="948" y="232" font-family="Inter, -apple-system, sans-serif" font-weight="400" font-size="13" fill="#4a6a8a">regions supported</text>
+
+  <!-- Card 3 — macro breakdown -->
+  <rect x="680" y="272" width="468" height="200" rx="16" fill="#1c3058" stroke="#2a4570" stroke-width="1"/>
+  <text x="704" y="308" font-family="Inter, -apple-system, sans-serif" font-weight="500" font-size="12" fill="#6b8cad" letter-spacing="1">DAILY PLAN EXAMPLE</text>
+
+  <!-- Calorie total -->
+  <text x="704" y="356" font-family="Inter, -apple-system, sans-serif" font-weight="800" font-size="42" fill="white" letter-spacing="-1">2,340</text>
+  <text x="704" y="378" font-family="Inter, -apple-system, sans-serif" font-weight="400" font-size="13" fill="#4a6a8a">kcal target</text>
+
+  <!-- Macro bars -->
+  <text x="860" y="336" font-family="Inter, -apple-system, sans-serif" font-weight="500" font-size="12" fill="#6b8cad">Protein</text>
+  <rect x="920" y="324" width="196" height="8" rx="4" fill="#0f1e3d"/>
+  <rect x="920" y="324" width="148" height="8" rx="4" fill="#F59E0B"/>
+  <text x="1122" y="336" font-family="Inter, -apple-system, sans-serif" font-weight="700" font-size="12" fill="white" text-anchor="end">142g</text>
+
+  <text x="860" y="362" font-family="Inter, -apple-system, sans-serif" font-weight="500" font-size="12" fill="#6b8cad">Carbs</text>
+  <rect x="920" y="350" width="196" height="8" rx="4" fill="#0f1e3d"/>
+  <rect x="920" y="350" width="172" height="8" rx="4" fill="#3b82f6" fill-opacity="0.7"/>
+  <text x="1122" y="362" font-family="Inter, -apple-system, sans-serif" font-weight="700" font-size="12" fill="white" text-anchor="end">280g</text>
+
+  <text x="860" y="388" font-family="Inter, -apple-system, sans-serif" font-weight="500" font-size="12" fill="#6b8cad">Fat</text>
+  <rect x="920" y="376" width="196" height="8" rx="4" fill="#0f1e3d"/>
+  <rect x="920" y="376" width="108" height="8" rx="4" fill="#8b5cf6" fill-opacity="0.7"/>
+  <text x="1122" y="388" font-family="Inter, -apple-system, sans-serif" font-weight="700" font-size="12" fill="white" text-anchor="end">68g</text>
+
+  <!-- CTA button -->
+  <rect x="704" y="424" width="144" height="34" rx="17" fill="#F59E0B"/>
+  <text x="776" y="447" font-family="Inter, -apple-system, sans-serif" font-weight="700" font-size="13" fill="#0f1e3d" text-anchor="middle" letter-spacing="0.3">View Full Plan</text>
+
+  <!-- Domain -->
+  <text x="72" y="590" font-family="Inter, -apple-system, sans-serif" font-weight="500" font-size="15" fill="#4a6a8a">jismeh.fit</text>
+</svg>
