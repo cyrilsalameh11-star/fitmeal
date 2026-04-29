@@ -225,44 +225,65 @@ function EmbedCard({ html, height }) {
 }
 
 // Caption overlay, like Instagram's caption strip at bottom of reels
-function CaptionOverlay({ text, handle }) {
+function CaptionOverlay({ text, handle, instaUrl }) {
   const [expanded, setExpanded] = useState(false);
-  if (!text) return null;
-  const isLong = text.length > 80;
-  const display = expanded || !isLong ? text : text.slice(0, 80).trimEnd() + '… ';
+  const isLong = (text || '').length > 80;
+  const display = !text ? '' : (expanded || !isLong ? text : text.slice(0, 80).trimEnd() + '… ');
   return (
     <div style={{
       position: 'absolute', left: 0, right: 0, bottom: 0,
       padding: '40px 14px 14px',
-      background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0) 100%)',
+      background: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0) 100%)',
       pointerEvents: 'none',
     }}>
       <div style={{ pointerEvents: 'auto' }}>
-        <div style={{ color: '#fff', fontSize: 11, fontWeight: 700, marginBottom: 4, textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>
-          @{handle}
-        </div>
-        <div style={{
-          color: '#fff', fontSize: 11, lineHeight: 1.4, fontWeight: 400,
-          textShadow: '0 1px 2px rgba(0,0,0,0.6)',
-          maxHeight: expanded ? 200 : 50, overflow: 'hidden', transition: 'max-height 0.25s ease',
-        }}>
-          {display}
-          {isLong && (
-            <button
-              onClick={(e) => { e.stopPropagation(); setExpanded(v => !v); }}
-              style={{ background: 'none', border: 0, color: '#bbb', fontSize: 11, fontWeight: 600, cursor: 'pointer', padding: 0, marginLeft: 2 }}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: text ? 4 : 0, gap: 8 }}>
+          <div style={{ color: '#fff', fontSize: 11, fontWeight: 700, textShadow: '0 1px 2px rgba(0,0,0,0.5)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            @{handle}
+          </div>
+          {instaUrl && (
+            <a
+              href={instaUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 4,
+                padding: '4px 9px', borderRadius: 999,
+                background: 'rgba(255,255,255,0.95)', color: '#000',
+                fontSize: 9.5, fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap',
+                flexShrink: 0,
+              }}
             >
-              {expanded ? 'less' : 'more'}
-            </button>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              Open
+            </a>
           )}
         </div>
+        {text && (
+          <div style={{
+            color: '#fff', fontSize: 11, lineHeight: 1.4, fontWeight: 400,
+            textShadow: '0 1px 2px rgba(0,0,0,0.6)',
+            maxHeight: expanded ? 200 : 50, overflow: 'hidden', transition: 'max-height 0.25s ease',
+          }}>
+            {display}
+            {isLong && (
+              <button
+                onClick={(e) => { e.stopPropagation(); setExpanded(v => !v); }}
+                style={{ background: 'none', border: 0, color: '#bbb', fontSize: 11, fontWeight: 600, cursor: 'pointer', padding: 0, marginLeft: 2 }}
+              >
+                {expanded ? 'less' : 'more'}
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
 // Self-hosted media card, tap-to-play MP4 or static image (object-fit: contain)
-function LocalMediaCard({ media, height, color, handle }) {
+function LocalMediaCard({ media, height, color, handle, instaUrl }) {
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
   const [showControls, setShowControls] = useState(false);
@@ -272,7 +293,7 @@ function LocalMediaCard({ media, height, color, handle }) {
     return (
       <div style={{ position: 'relative', height, overflow: 'hidden', background: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <img src={media.src} alt="" style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', objectFit: 'contain', display: 'block' }} />
-        <CaptionOverlay text={media.caption} handle={handle} />
+        <CaptionOverlay text={media.caption} handle={handle} instaUrl={instaUrl} />
       </div>
     );
   }
@@ -350,7 +371,7 @@ function LocalMediaCard({ media, height, color, handle }) {
         </button>
       )}
 
-      <CaptionOverlay text={media.caption} handle={handle} />
+      <CaptionOverlay text={media.caption} handle={handle} instaUrl={instaUrl} />
     </div>
   );
 }
@@ -425,13 +446,16 @@ function ReelCard({ reel, index }) {
   const reelUrl = `https://www.instagram.com/${reel.type}/${reel.shortcode}/`;
   const [thumb, setThumb] = useState(null);
 
+  // Always fetch thumbnail when there's no local media, so the uniform
+  // blocked-style card shows the actual post image.
+  const useThumbCard = !reel.localMedia;
   useEffect(() => {
-    if (!reel.blocked) return;
+    if (!useThumbCard) return;
     fetch(`/api/ig-thumb?shortcode=${reel.shortcode}&type=${reel.type}`)
       .then(r => r.json())
       .then(d => { if (d.url) setThumb(d.url); })
       .catch(() => {});
-  }, [reel.shortcode, reel.blocked]);
+  }, [reel.shortcode, useThumbCard, reel.type]);
 
   const SCREEN_H = 560;
 
@@ -473,8 +497,8 @@ function ReelCard({ reel, index }) {
         {igHeader}
 
         {reel.localMedia ? (
-          <LocalMediaCard media={reel.localMedia} height={SCREEN_H} color={reel.color} handle={reel.handle} />
-        ) : reel.blocked ? (
+          <LocalMediaCard media={reel.localMedia} height={SCREEN_H} color={reel.color} handle={reel.handle} instaUrl={reelUrl} />
+        ) : (
           <a href={reelUrl} target="_blank" rel="noopener noreferrer"
              style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', height: SCREEN_H, overflow: 'hidden', textDecoration: 'none' }}>
             {/* Thumbnail or gradient bg */}
@@ -484,21 +508,15 @@ function ReelCard({ reel, index }) {
             }
             {/* Scrim */}
             <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.25)' }} />
-            {/* Play + CTA */}
-            <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
-              <div style={{ position: 'relative' }}>
-                <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: reel.color, opacity: 0.35, animation: 'ping 1.5s ease-out infinite' }} />
-                <div style={{ width: 64, height: 64, borderRadius: '50%', background: reel.color, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 0 30px ${reel.color}80` }}>
-                  <Play size={26} fill="white" color="white" style={{ marginLeft: 3 }} />
-                </div>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 20, background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.15)' }}>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                <span style={{ color: '#fff', fontSize: 10, fontWeight: 700 }}>Watch on Instagram</span>
+            {/* Play button (centered) */}
+            <div style={{ position: 'relative', zIndex: 2 }}>
+              <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: reel.color, opacity: 0.35, animation: 'ping 1.5s ease-out infinite' }} />
+              <div style={{ width: 64, height: 64, borderRadius: '50%', background: reel.color, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 0 30px ${reel.color}80` }}>
+                <Play size={26} fill="white" color="white" style={{ marginLeft: 3 }} />
               </div>
             </div>
             {/* Side actions */}
-            <div style={{ position: 'absolute', right: 12, bottom: 64, display: 'flex', flexDirection: 'column', gap: 18, zIndex: 2, alignItems: 'center' }}>
+            <div style={{ position: 'absolute', right: 12, bottom: 90, display: 'flex', flexDirection: 'column', gap: 18, zIndex: 2, alignItems: 'center' }}>
               {[['♥','12k'],['💬','438'],['↗','284']].map(([icon, count], i) => (
                 <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
                   <span style={{ fontSize: 20, filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.5))' }}>{icon}</span>
@@ -506,11 +524,9 @@ function ReelCard({ reel, index }) {
                 </div>
               ))}
             </div>
+            {/* Caption + Open in Instagram, on top of everything */}
+            <CaptionOverlay text={reel.caption} handle={reel.handle} instaUrl={reelUrl} />
           </a>
-        ) : reel.iframelyUrl ? (
-          <IframelyCard iframelyUrl={reel.iframelyUrl} reelUrl={reelUrl} height={SCREEN_H} />
-        ) : (
-          <EmbedCard html={blockquoteHtml} height={SCREEN_H} />
         )}
       </PhoneFrame>
       </div>
