@@ -224,74 +224,54 @@ function EmbedCard({ html, height }) {
   );
 }
 
-// Self-hosted media card, plays MP4 inline or shows static image
-function LocalMediaCard({ media, height, color }) {
-  const [playing, setPlaying] = useState(false);
+// Self-hosted media card, autoplays MP4 inline (muted) or shows static image
+function LocalMediaCard({ media, height }) {
   const [muted, setMuted] = useState(true);
   const videoRef = useRef(null);
 
   if (media.kind === 'image') {
     return (
       <div style={{ position: 'relative', height, overflow: 'hidden', background: '#000' }}>
-        <img src={media.src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        <img src={media.src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
       </div>
     );
   }
-
-  const togglePlay = () => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (v.paused) { v.play(); setPlaying(true); }
-    else { v.pause(); setPlaying(false); }
-  };
 
   return (
     <div style={{ position: 'relative', height, overflow: 'hidden', background: '#000' }}>
       <video
         ref={videoRef}
         src={media.src}
+        autoPlay
         playsInline
         loop
         muted={muted}
-        preload="metadata"
-        onClick={togglePlay}
-        onPlay={() => setPlaying(true)}
-        onPause={() => setPlaying(false)}
-        style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer' }}
+        preload="auto"
+        onClick={() => {
+          const v = videoRef.current;
+          if (!v) return;
+          if (v.paused) v.play(); else v.pause();
+        }}
+        style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer', display: 'block' }}
       />
-      {!playing && (
-        <button
-          onClick={togglePlay}
-          aria-label="Play"
-          style={{
-            position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
-            background: 'rgba(0,0,0,0.18)', border: 0, cursor: 'pointer',
-          }}
-        >
-          <div style={{ position: 'relative' }}>
-            <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: color, opacity: 0.35, animation: 'ping 1.6s ease-out infinite' }} />
-            <div style={{
-              width: 64, height: 64, borderRadius: '50%', background: color,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: `0 0 30px ${color}80`,
-            }}>
-              <Play size={26} fill="white" color="white" style={{ marginLeft: 3 }} />
-            </div>
-          </div>
-        </button>
-      )}
-      {/* Mute toggle */}
+      {/* Mute toggle, only visual control needed since video autoplays */}
       <button
         onClick={(e) => { e.stopPropagation(); setMuted(m => !m); }}
         aria-label={muted ? 'Unmute' : 'Mute'}
         style={{
-          position: 'absolute', bottom: 12, right: 12, width: 32, height: 32,
-          borderRadius: '50%', background: 'rgba(0,0,0,0.6)', border: '1px solid rgba(255,255,255,0.15)',
+          position: 'absolute', bottom: 12, right: 12, width: 36, height: 36,
+          borderRadius: '50%', background: 'rgba(0,0,0,0.55)', border: '1px solid rgba(255,255,255,0.2)',
           color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 14, cursor: 'pointer', backdropFilter: 'blur(8px)',
+          cursor: 'pointer', backdropFilter: 'blur(10px)', padding: 0,
         }}
       >
-        {muted ? '🔇' : '🔊'}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+          {muted ? (
+            <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+          ) : (
+            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+          )}
+        </svg>
       </button>
     </div>
   );
