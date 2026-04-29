@@ -345,14 +345,14 @@ function LocalMediaCard({ media, height, color, handle, instaUrl }) {
         </button>
       )}
 
-      {/* Mute toggle, only visible while playing or hovering */}
+      {/* Mute toggle, top-right so it doesn't overlap the caption Open-in-IG pill */}
       {(playing || showControls) && (
         <button
           onClick={(e) => { e.stopPropagation(); setMuted(m => !m); }}
           aria-label={muted ? 'Unmute' : 'Mute'}
           style={{
-            position: 'absolute', bottom: 12, right: 12, width: 36, height: 36,
-            borderRadius: '50%', background: 'rgba(0,0,0,0.55)', border: '1px solid rgba(255,255,255,0.2)',
+            position: 'absolute', top: 12, right: 12, width: 32, height: 32, zIndex: 3,
+            borderRadius: '50%', background: 'rgba(0,0,0,0.6)', border: '1px solid rgba(255,255,255,0.2)',
             color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
             cursor: 'pointer', backdropFilter: 'blur(10px)', padding: 0,
           }}
