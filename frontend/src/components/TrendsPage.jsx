@@ -27,7 +27,7 @@ const ACCOUNTS_DATA = [
     color: '#d97706',
     url: 'https://www.instagram.com/baroodiesfoodies/',
     reels: [
-      { shortcode: 'DXRvz-wDBEH', type: 'reel', localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-DXRvz-wDBEH.mp4' } }, // page 1, newest
+      { shortcode: 'DXRvz-wDBEH', type: 'reel', localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-DXRvz-wDBEH.mp4', caption: 'Save this! 14 outdoor places to enjoy the sun in Lebanon 🌞🌴 Part 2 soon. #beirut #lebanon #explore #summer' } }, // page 1, newest
       { shortcode: 'DWefGLFjdu1', type: 'reel' }, // page 2
       { shortcode: 'DUlZ_JQjMSh', type: 'reel' }, // page 2
       { shortcode: 'DVVlCUiDaG6', type: 'reel' }, // page 3
@@ -41,7 +41,7 @@ const ACCOUNTS_DATA = [
     color: '#0891b2',
     url: 'https://www.instagram.com/baroodiesfoodies.dxb/',
     reels: [
-      { shortcode: 'DQjgZMhkqh2', type: 'reel', localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-dxb-DQjgZMhkqh2.mp4' } }, // page 1, newest
+      { shortcode: 'DQjgZMhkqh2', type: 'reel', localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-dxb-DQjgZMhkqh2.mp4', caption: 'Trying Middle Child 📍 Al Serkal Avenue, the viral Dubai spot ✨👀 All details in reel! Share with your foodie friends.' } }, // page 1, newest
       { shortcode: 'DUxdhBqDU_T', type: 'reel' }, // page 2
       { shortcode: 'DUgGiWNEiZi', type: 'reel' }, // page 3
       { shortcode: 'DUKxO6VDczo', type: 'reel' }, // page 4
@@ -54,7 +54,7 @@ const ACCOUNTS_DATA = [
     color: '#7c3aed',
     url: 'https://www.instagram.com/ellevousguide/',
     reels: [
-      { shortcode: 'DXesY5UM_g4', type: 'p', localMedia: { kind: 'video', src: '/reels/ellevousguide-DXesY5UM_g4.mp4' } },     // page 1, newest
+      { shortcode: 'DXesY5UM_g4', type: 'p', localMedia: { kind: 'video', src: '/reels/ellevousguide-DXesY5UM_g4.mp4', caption: 'Yes you can also eat for less than €10 in Paris 😉 #cheapeats #parisguide #parisfood' } },     // page 1, newest
       { shortcode: 'DVti6aGDoWq', type: 'p' }, // page 2
       { shortcode: 'DSzNG4tjAqu', type: 'reel' }, // page 2
       { shortcode: 'DRAQGGUjKy0', type: 'reel' }, // page 3
@@ -82,7 +82,7 @@ const ACCOUNTS_DATA = [
     color: '#f43f5e',
     url: 'https://www.instagram.com/wondersbyaline/',
     reels: [
-      { shortcode: 'DWmFYn0DXsy', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DWmFYn0DXsy.mp4' } }, // page 1, newest
+      { shortcode: 'DWmFYn0DXsy', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DWmFYn0DXsy.mp4', caption: "We tried Le Dada Bistro at @maisondada.lb last week in Beirut's Saifi district and it's exactly the kind of spot you save for slow Sunday lunches." } }, // page 1, newest
       { shortcode: 'DVRqFx7jYld', type: 'reel' }, // page 2
       { shortcode: 'DVB4QnTDVF-', type: 'reel' }, // page 3
       { shortcode: 'DU8mp01jZnu', type: 'reel' }, // page 4
@@ -95,7 +95,7 @@ const ACCOUNTS_DATA = [
     color: '#f97316',
     url: 'https://www.instagram.com/newinbeirut/',
     reels: [
-      { shortcode: 'DXjpqghiPAM', type: 'p',    localMedia: { kind: 'image', src: '/reels/newinbeirut-DXjpqghiPAM.jpg' } }, // page 1, newest
+      { shortcode: 'DXjpqghiPAM', type: 'p',    localMedia: { kind: 'image', src: '/reels/newinbeirut-DXjpqghiPAM.jpg', caption: '✈️ Beirut Flight Update, as of today (23.04.2026). 🟢 Currently operating: Middle East Airlines. Stay updated, save and share.' } }, // page 1, newest
       { shortcode: 'DXcvyPmjVRe', type: 'p'    }, // page 2
       { shortcode: 'DVthGdRDYhk', type: 'p'    }, // page 2
       { shortcode: 'DVeHssgDUKf', type: 'p'    }, // page 3
@@ -224,8 +224,45 @@ function EmbedCard({ html, height }) {
   );
 }
 
+// Caption overlay, like Instagram's caption strip at bottom of reels
+function CaptionOverlay({ text, handle }) {
+  const [expanded, setExpanded] = useState(false);
+  if (!text) return null;
+  const isLong = text.length > 80;
+  const display = expanded || !isLong ? text : text.slice(0, 80).trimEnd() + '… ';
+  return (
+    <div style={{
+      position: 'absolute', left: 0, right: 0, bottom: 0,
+      padding: '40px 14px 14px',
+      background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0) 100%)',
+      pointerEvents: 'none',
+    }}>
+      <div style={{ pointerEvents: 'auto' }}>
+        <div style={{ color: '#fff', fontSize: 11, fontWeight: 700, marginBottom: 4, textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>
+          @{handle}
+        </div>
+        <div style={{
+          color: '#fff', fontSize: 11, lineHeight: 1.4, fontWeight: 400,
+          textShadow: '0 1px 2px rgba(0,0,0,0.6)',
+          maxHeight: expanded ? 200 : 50, overflow: 'hidden', transition: 'max-height 0.25s ease',
+        }}>
+          {display}
+          {isLong && (
+            <button
+              onClick={(e) => { e.stopPropagation(); setExpanded(v => !v); }}
+              style={{ background: 'none', border: 0, color: '#bbb', fontSize: 11, fontWeight: 600, cursor: 'pointer', padding: 0, marginLeft: 2 }}
+            >
+              {expanded ? 'less' : 'more'}
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // Self-hosted media card, tap-to-play MP4 or static image (object-fit: contain)
-function LocalMediaCard({ media, height, color }) {
+function LocalMediaCard({ media, height, color, handle }) {
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
   const [showControls, setShowControls] = useState(false);
@@ -235,6 +272,7 @@ function LocalMediaCard({ media, height, color }) {
     return (
       <div style={{ position: 'relative', height, overflow: 'hidden', background: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <img src={media.src} alt="" style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', objectFit: 'contain', display: 'block' }} />
+        <CaptionOverlay text={media.caption} handle={handle} />
       </div>
     );
   }
@@ -311,6 +349,8 @@ function LocalMediaCard({ media, height, color }) {
           </svg>
         </button>
       )}
+
+      <CaptionOverlay text={media.caption} handle={handle} />
     </div>
   );
 }
@@ -433,7 +473,7 @@ function ReelCard({ reel, index }) {
         {igHeader}
 
         {reel.localMedia ? (
-          <LocalMediaCard media={reel.localMedia} height={SCREEN_H} color={reel.color} />
+          <LocalMediaCard media={reel.localMedia} height={SCREEN_H} color={reel.color} handle={reel.handle} />
         ) : reel.blocked ? (
           <a href={reelUrl} target="_blank" rel="noopener noreferrer"
              style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', height: SCREEN_H, overflow: 'hidden', textDecoration: 'none' }}>
