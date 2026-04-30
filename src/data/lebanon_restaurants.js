@@ -2170,9 +2170,9 @@ module.exports = [
       "dessert",
       "snack"
     ],
-    "calories": 100,
-    "protein": 3,
-    "carbs": 22,
+    "calories": 150,
+    "protein": 6,
+    "carbs": 31,
     "fat": 0,
     "tags": [
       "dessert",
@@ -2183,15 +2183,15 @@ module.exports = [
   },
   {
     "id": "lb-pink-mango-m",
-    "name": "Mango Frozen Yogurt (Medium)",
+    "name": "Tropical Mango FroYo (Medium)",
     "brand": "Pinkberry",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 160,
-    "protein": 4,
-    "carbs": 36,
+    "calories": 240,
+    "protein": 0,
+    "carbs": 59,
     "fat": 0,
     "tags": [
       "dessert",
@@ -2201,15 +2201,16 @@ module.exports = [
   },
   {
     "id": "lb-pink-straw-l",
-    "name": "Strawberry FroYo (Large)",
+    "name": "Strawberry Banana Smoothie (16oz)",
     "brand": "Pinkberry",
     "type": [
-      "dessert"
+      "dessert",
+      "snack"
     ],
-    "calories": 210,
-    "protein": 5,
-    "carbs": 46,
-    "fat": 0,
+    "calories": 290,
+    "protein": 12,
+    "carbs": 59,
+    "fat": 1,
     "tags": [
       "dessert",
       "frozen-yogurt"
@@ -2224,10 +2225,10 @@ module.exports = [
       "dessert",
       "snack"
     ],
-    "calories": 320,
-    "protein": 8,
+    "calories": 295,
+    "protein": 10,
     "carbs": 62,
-    "fat": 4,
+    "fat": 1,
     "tags": [
       "dessert",
       "frozen-yogurt"
@@ -2254,16 +2255,16 @@ module.exports = [
   },
   {
     "id": "lb-pink-choc-s",
-    "name": "Chocolate FroYo (Small)",
+    "name": "Chocolate Chip Cookie FroYo (Small)",
     "brand": "Pinkberry",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 120,
-    "protein": 4,
-    "carbs": 24,
-    "fat": 1,
+    "calories": 200,
+    "protein": 6,
+    "carbs": 35,
+    "fat": 3.5,
     "tags": [
       "dessert",
       "frozen-yogurt"
@@ -2277,9 +2278,9 @@ module.exports = [
     "type": [
       "dessert"
     ],
-    "calories": 160,
-    "protein": 4,
-    "carbs": 36,
+    "calories": 260,
+    "protein": 9,
+    "carbs": 54,
     "fat": 0,
     "tags": [
       "dessert",
@@ -2289,15 +2290,15 @@ module.exports = [
   },
   {
     "id": "lb-pink-choc-chips",
-    "name": "FroYo with Dark Choc Chips",
+    "name": "Original FroYo (M) with Chocolate Chips",
     "brand": "Pinkberry",
     "type": [
       "dessert"
     ],
-    "calories": 250,
-    "protein": 5,
-    "carbs": 42,
-    "fat": 8,
+    "calories": 300,
+    "protein": 10,
+    "carbs": 58,
+    "fat": 3,
     "tags": [
       "dessert",
       "frozen-yogurt"
@@ -2330,10 +2331,10 @@ module.exports = [
     "type": [
       "dessert"
     ],
-    "calories": 200,
-    "protein": 6,
-    "carbs": 44,
-    "fat": 0,
+    "calories": 390,
+    "protein": 15,
+    "carbs": 81,
+    "fat": 1,
     "tags": [
       "dessert",
       "frozen-yogurt"
@@ -2342,15 +2343,15 @@ module.exports = [
   },
   {
     "id": "lb-pink-coconut-m",
-    "name": "Coconut FroYo (Medium)",
+    "name": "Coconut Milk Coconut FroYo (Medium)",
     "brand": "Pinkberry",
     "type": [
       "dessert"
     ],
-    "calories": 180,
-    "protein": 4,
-    "carbs": 38,
-    "fat": 2,
+    "calories": 340,
+    "protein": 1,
+    "carbs": 50,
+    "fat": 15,
     "tags": [
       "dessert",
       "frozen-yogurt"
@@ -2359,15 +2360,15 @@ module.exports = [
   },
   {
     "id": "lb-pink-oreo",
-    "name": "FroYo with Oreo Bits",
+    "name": "Cookies n' Cream FroYo (Medium)",
     "brand": "Pinkberry",
     "type": [
       "dessert"
     ],
-    "calories": 350,
-    "protein": 6,
-    "carbs": 65,
-    "fat": 8,
+    "calories": 320,
+    "protein": 10,
+    "carbs": 59,
+    "fat": 4.5,
     "tags": [
       "dessert",
       "frozen-yogurt",
@@ -2377,16 +2378,16 @@ module.exports = [
   },
   {
     "id": "lb-pink-matcha-m",
-    "name": "Matcha Green Tea FroYo (M)",
+    "name": "Matcha Tart FroYo (Medium)",
     "brand": "Pinkberry",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 150,
-    "protein": 4,
-    "carbs": 33,
-    "fat": 0,
+    "calories": 230,
+    "protein": 9,
+    "carbs": 48,
+    "fat": 0.5,
     "tags": [
       "dessert",
       "frozen-yogurt"
@@ -2973,277 +2974,6 @@ module.exports = [
       "healthy"
     ]
   },
-  {
-    "id": "abdallah-1773314181348-1",
-    "name": "Abdallah item 1",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 305,
-    "protein": 0,
-    "carbs": 52,
-    "fat": 9,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773314181360-2",
-    "name": "Abdallah item 2",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 304,
-    "protein": 4,
-    "carbs": 54,
-    "fat": 16,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773314181360-3",
-    "name": "Abdallah item 3",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 334,
-    "protein": 5,
-    "carbs": 26,
-    "fat": 8,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773314181360-4",
-    "name": "Abdallah item 4",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 510,
-    "protein": 5,
-    "carbs": 65,
-    "fat": 9,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773314181360-5",
-    "name": "Abdallah item 5",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 508,
-    "protein": 4,
-    "carbs": 48,
-    "fat": 10,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773314181360-6",
-    "name": "Abdallah item 6",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 386,
-    "protein": 1,
-    "carbs": 65,
-    "fat": 5,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773314181360-7",
-    "name": "Abdallah item 7",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 480,
-    "protein": 5,
-    "carbs": 54,
-    "fat": 13,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773314181360-8",
-    "name": "Abdallah item 8",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 390,
-    "protein": 7,
-    "carbs": 23,
-    "fat": 9,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773314181360-9",
-    "name": "Abdallah item 9",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 347,
-    "protein": 7,
-    "carbs": 50,
-    "fat": 20,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773314181360-10",
-    "name": "Abdallah item 10",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 446,
-    "protein": 2,
-    "carbs": 47,
-    "fat": 13,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773314181360-11",
-    "name": "Abdallah item 11",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 309,
-    "protein": 6,
-    "carbs": 23,
-    "fat": 15,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773314181360-12",
-    "name": "Abdallah item 12",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 502,
-    "protein": 5,
-    "carbs": 37,
-    "fat": 15,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773314181360-13",
-    "name": "Abdallah item 13",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 289,
-    "protein": 7,
-    "carbs": 45,
-    "fat": 7,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773314181360-14",
-    "name": "Abdallah item 14",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 359,
-    "protein": 2,
-    "carbs": 45,
-    "fat": 21,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773314181360-15",
-    "name": "Abdallah item 15",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 516,
-    "protein": 7,
-    "carbs": 56,
-    "fat": 20,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-
   // ── SwissButter ──────────────────────────────────────────────────────────────
   {
     "id": "lb-sb-beef-platter",
@@ -3424,5 +3154,96 @@ module.exports = [
     "fat": 12,
     "tags": ["sauce", "swiss butter", "signature"],
     "country": "Lebanon"
-  }
+  },
+
+  // ── Cheese on Top ────────────────────────────────────────────────────────────
+  // Cheesy Starters
+  { "id": "lb-cot-cheese-pops",         "name": "Cheese Pops (8 pcs)",                "brand": "CheeseOnTop", "type": ["snack","lunch"],          "calories": 540, "protein": 22, "carbs": 38, "fat": 32, "tags": ["cheese","fried","starter"],                  "country": "Lebanon" },
+  { "id": "lb-cot-cheesy-garlic-bread", "name": "Cheesy Garlic Bread (4 slices)",     "brand": "CheeseOnTop", "type": ["snack","lunch"],          "calories": 480, "protein": 14, "carbs": 52, "fat": 22, "tags": ["bread","cheese","starter"],                  "country": "Lebanon" },
+  { "id": "lb-cot-ring-a-dings",        "name": "Ring-a-Dings Onion Rings (10 pcs)",  "brand": "CheeseOnTop", "type": ["snack","lunch"],          "calories": 460, "protein": 6,  "carbs": 56, "fat": 22, "tags": ["onion-rings","fried","starter"],             "country": "Lebanon" },
+  { "id": "lb-cot-cheesy-sticks",       "name": "Cheesy Mozzarella Sticks (5 pcs)",   "brand": "CheeseOnTop", "type": ["snack","lunch"],          "calories": 510, "protein": 22, "carbs": 36, "fat": 30, "tags": ["mozzarella","fried","starter"],              "country": "Lebanon" },
+  { "id": "lb-cot-big-bang-shrimps",    "name": "Big Bang Shrimps (Dynamite)",        "brand": "CheeseOnTop", "type": ["snack","lunch","dinner"], "calories": 520, "protein": 24, "carbs": 38, "fat": 28, "tags": ["shrimp","spicy","starter"],                  "country": "Lebanon" },
+  { "id": "lb-cot-spicy-wings",         "name": "Hot 'N Spicy Wings (10 pcs)",        "brand": "CheeseOnTop", "type": ["lunch","dinner","snack"], "calories": 720, "protein": 48, "carbs": 14, "fat": 50, "tags": ["wings","spicy","chicken"],                   "country": "Lebanon" },
+  { "id": "lb-cot-sticky-wings",        "name": "Sweet 'N Sticky Wings (10 pcs)",     "brand": "CheeseOnTop", "type": ["lunch","dinner","snack"], "calories": 760, "protein": 46, "carbs": 28, "fat": 48, "tags": ["wings","bbq","chicken"],                     "country": "Lebanon" },
+  { "id": "lb-cot-chicken-tenders",     "name": "Chicken Tenders (5 pcs)",            "brand": "CheeseOnTop", "type": ["lunch","dinner","snack"], "calories": 620, "protein": 38, "carbs": 42, "fat": 30, "tags": ["chicken","fried","starter"],                 "country": "Lebanon" },
+  { "id": "lb-cot-spicy-tenders",       "name": "Hot 'N Spicy Tenders (5 pcs)",       "brand": "CheeseOnTop", "type": ["lunch","dinner","snack"], "calories": 660, "protein": 38, "carbs": 42, "fat": 34, "tags": ["chicken","spicy","fried"],                   "country": "Lebanon" },
+  { "id": "lb-cot-sticky-tenders",      "name": "Sweet 'N Sticky Tenders (5 pcs)",    "brand": "CheeseOnTop", "type": ["lunch","dinner","snack"], "calories": 700, "protein": 38, "carbs": 56, "fat": 32, "tags": ["chicken","bbq","fried"],                     "country": "Lebanon" },
+  { "id": "lb-cot-cheese-n-mac",        "name": "Cheese 'N Mac",                      "brand": "CheeseOnTop", "type": ["lunch","dinner","snack"], "calories": 680, "protein": 24, "carbs": 62, "fat": 38, "tags": ["pasta","cheese"],                            "country": "Lebanon" },
+  { "id": "lb-cot-loaded-nachos",       "name": "Loaded Nachos",                      "brand": "CheeseOnTop", "type": ["snack","lunch"],          "calories": 820, "protein": 22, "carbs": 72, "fat": 50, "tags": ["nachos","cheese","starter"],                 "country": "Lebanon" },
+  { "id": "lb-cot-farmhouse-fries",     "name": "Farmhouse Fries",                    "brand": "CheeseOnTop", "type": ["side","snack"],           "calories": 380, "protein": 5,  "carbs": 50, "fat": 18, "tags": ["fries","side"],                              "country": "Lebanon" },
+  { "id": "lb-cot-cheesy-fries",        "name": "Cheesy Fries (Cheddar + Sour Cream)","brand": "CheeseOnTop", "type": ["side","snack"],           "calories": 620, "protein": 14, "carbs": 56, "fat": 38, "tags": ["fries","cheese","side"],                     "country": "Lebanon" },
+  { "id": "lb-cot-loopy-fries",         "name": "Loopy Twister Fries",                "brand": "CheeseOnTop", "type": ["side","snack"],           "calories": 420, "protein": 5,  "carbs": 54, "fat": 20, "tags": ["fries","side"],                              "country": "Lebanon" },
+  { "id": "lb-cot-oh-my-minis",         "name": "Oh My Minis (8 pcs sliders)",        "brand": "CheeseOnTop", "type": ["lunch","dinner","snack"], "calories": 880, "protein": 38, "carbs": 64, "fat": 50, "tags": ["sliders","cheese"],                          "country": "Lebanon" },
+  { "id": "lb-cot-mighty-quesadilla",   "name": "The Mighty Quesadilla",              "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 760, "protein": 36, "carbs": 64, "fat": 38, "tags": ["quesadilla","chicken","cheese"],             "country": "Lebanon" },
+  { "id": "lb-cot-hunger-buster",       "name": "Hunger Buster Platter",              "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 1480,"protein": 56, "carbs": 130,"fat": 76, "tags": ["platter","sharing","fried"],                 "country": "Lebanon" },
+
+  // Sandwiches (Melt Your Sandwiches)
+  { "id": "lb-cot-frenchie",            "name": "Frenchie Sandwich",                  "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 680, "protein": 38, "carbs": 56, "fat": 32, "tags": ["sandwich","chicken","cheese"],               "country": "Lebanon" },
+  { "id": "lb-cot-classic-chicken",     "name": "Classic Chicken Sandwich",           "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 720, "protein": 36, "carbs": 64, "fat": 32, "tags": ["sandwich","chicken"],                        "country": "Lebanon" },
+  { "id": "lb-cot-mighty-green",        "name": "Mighty Green Sandwich",              "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 700, "protein": 38, "carbs": 58, "fat": 32, "tags": ["sandwich","chicken","cheese"],               "country": "Lebanon" },
+  { "id": "lb-cot-mexicano-chicken",    "name": "Mexicano Chicken Sandwich",          "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 720, "protein": 36, "carbs": 60, "fat": 34, "tags": ["sandwich","chicken","spicy"],                "country": "Lebanon" },
+  { "id": "lb-cot-crab-cocktail",       "name": "Crab Cocktail Sandwich",             "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 580, "protein": 22, "carbs": 56, "fat": 28, "tags": ["sandwich","crab"],                           "country": "Lebanon" },
+  { "id": "lb-cot-spicy-shrimp",        "name": "Spicy Shrimp Sensation Sandwich",    "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 660, "protein": 26, "carbs": 60, "fat": 32, "tags": ["sandwich","shrimp","spicy"],                 "country": "Lebanon" },
+  { "id": "lb-cot-steak-it-easy",       "name": "Steak It Easy (MB3 Tenderloin)",     "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 980, "protein": 50, "carbs": 70, "fat": 50, "tags": ["sandwich","beef","cheese"],                  "country": "Lebanon" },
+
+  // Burgers (Cheesy Buns)
+  { "id": "lb-cot-original-beef",       "name": "Original Beef Burger",               "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 780, "protein": 38, "carbs": 60, "fat": 42, "tags": ["burger","beef","cheese"],                    "country": "Lebanon" },
+  { "id": "lb-cot-original-chicken",    "name": "Original Chicken Burger",            "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 720, "protein": 38, "carbs": 60, "fat": 32, "tags": ["burger","chicken"],                          "country": "Lebanon" },
+  { "id": "lb-cot-swiss-burger",        "name": "The Swiss Burger",                   "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 860, "protein": 42, "carbs": 58, "fat": 50, "tags": ["burger","beef","swiss-cheese"],              "country": "Lebanon" },
+  { "id": "lb-cot-say-cheese-burger",   "name": "Say Cheese! Burger",                 "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 720, "protein": 26, "carbs": 64, "fat": 38, "tags": ["burger","mozzarella"],                       "country": "Lebanon" },
+  { "id": "lb-cot-double-mozz-chicken", "name": "Double Up Mozzarella Chicken Burger","brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 920, "protein": 46, "carbs": 70, "fat": 46, "tags": ["burger","chicken","mozzarella"],             "country": "Lebanon" },
+  { "id": "lb-cot-double-mozz-beef",    "name": "Double Up Mozzarella Beef Burger",   "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 940, "protein": 44, "carbs": 70, "fat": 50, "tags": ["burger","beef","mozzarella"],                "country": "Lebanon" },
+  { "id": "lb-cot-chili-tastic-beef",   "name": "Chili-Tastic Beef Burger",           "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 820, "protein": 40, "carbs": 60, "fat": 46, "tags": ["burger","beef","spicy"],                     "country": "Lebanon" },
+  { "id": "lb-cot-chili-tastic-chick",  "name": "Chili-Tastic Chicken Burger",        "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 760, "protein": 40, "carbs": 60, "fat": 36, "tags": ["burger","chicken","spicy"],                  "country": "Lebanon" },
+  { "id": "lb-cot-greedy-chicken",      "name": "Greedy Chicken Burger",              "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 880, "protein": 42, "carbs": 70, "fat": 44, "tags": ["burger","chicken","bacon","cheese"],         "country": "Lebanon" },
+  { "id": "lb-cot-greedy-beef",         "name": "Greedy Beef Burger",                 "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 920, "protein": 42, "carbs": 70, "fat": 50, "tags": ["burger","beef","bacon","cheese"],            "country": "Lebanon" },
+  { "id": "lb-cot-ranch-me",            "name": "Ranch Me If You Can Burger",         "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 920, "protein": 38, "carbs": 70, "fat": 50, "tags": ["burger","chicken","ranch","cheese"],         "country": "Lebanon" },
+
+  // Extra Cheesy Buns (Premium Burgers)
+  { "id": "lb-cot-oh-my-cheddar",       "name": "Oh My Cheddar Burger",               "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 980, "protein": 44, "carbs": 72, "fat": 54, "tags": ["burger","chicken","cheddar","premium"],      "country": "Lebanon" },
+  { "id": "lb-cot-oh-my-cheese",        "name": "Oh My Cheese Burger",                "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 1020,"protein": 46, "carbs": 68, "fat": 60, "tags": ["burger","beef","cheese","premium"],          "country": "Lebanon" },
+  { "id": "lb-cot-smashed",             "name": "Smashed Burger (Triple Patty)",      "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 1080,"protein": 56, "carbs": 60, "fat": 66, "tags": ["burger","beef","bacon","premium"],           "country": "Lebanon" },
+  { "id": "lb-cot-game-over",           "name": "Game Over Burger",                   "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 1040,"protein": 44, "carbs": 70, "fat": 60, "tags": ["burger","beef","cheese","ranch","premium"],  "country": "Lebanon" },
+  { "id": "lb-cot-award-winning",       "name": "The Award Winning Burger",           "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 1180,"protein": 52, "carbs": 78, "fat": 68, "tags": ["burger","beef","truffle","swiss","premium"], "country": "Lebanon" },
+  { "id": "lb-cot-melt-your-brie",      "name": "Melt Your Brie Burger",              "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 1020,"protein": 46, "carbs": 60, "fat": 64, "tags": ["burger","beef","brie","bacon","premium"],    "country": "Lebanon" },
+  { "id": "lb-cot-epic-burger",         "name": "The Epic Burger (Triple Patty)",     "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 1080,"protein": 56, "carbs": 60, "fat": 66, "tags": ["burger","beef","cheddar","edam","premium"],  "country": "Lebanon" },
+
+  // Griddle Ground (Smashed Burgers)
+  { "id": "lb-cot-bombastic-bacon",     "name": "Bombastic Bacon Burger",             "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 1020,"protein": 46, "carbs": 56, "fat": 64, "tags": ["burger","beef","bacon","cheddar"],           "country": "Lebanon" },
+  { "id": "lb-cot-truffle-top",         "name": "Truffle Top Burger",                 "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 1060,"protein": 46, "carbs": 56, "fat": 68, "tags": ["burger","beef","truffle","mushroom"],        "country": "Lebanon" },
+
+  // Salads
+  { "id": "lb-cot-caesar-half",         "name": "Caesar Salad (Half)",                "brand": "CheeseOnTop", "type": ["lunch","dinner","snack"], "calories": 240, "protein": 8,  "carbs": 14, "fat": 16, "tags": ["salad","caesar","light"],                    "country": "Lebanon" },
+  { "id": "lb-cot-caesar-full",         "name": "Caesar Salad (Full)",                "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 460, "protein": 14, "carbs": 26, "fat": 32, "tags": ["salad","caesar"],                            "country": "Lebanon" },
+  { "id": "lb-cot-chicken-caesar-half", "name": "Chicken Caesar Salad (Half)",        "brand": "CheeseOnTop", "type": ["lunch","dinner","snack"], "calories": 320, "protein": 22, "carbs": 14, "fat": 18, "tags": ["salad","caesar","chicken","high-protein"],   "country": "Lebanon" },
+  { "id": "lb-cot-chicken-caesar-full", "name": "Chicken Caesar Salad (Full)",        "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 560, "protein": 38, "carbs": 26, "fat": 32, "tags": ["salad","caesar","chicken","high-protein"],   "country": "Lebanon" },
+  { "id": "lb-cot-cheese-n-kale-half",  "name": "Cheese N Kale Salad (Half)",         "brand": "CheeseOnTop", "type": ["lunch","dinner","snack"], "calories": 320, "protein": 12, "carbs": 26, "fat": 18, "tags": ["salad","kale","quinoa","healthy"],           "country": "Lebanon" },
+  { "id": "lb-cot-cheese-n-kale-full",  "name": "Cheese N Kale Salad (Full)",         "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 560, "protein": 22, "carbs": 48, "fat": 32, "tags": ["salad","kale","quinoa","healthy"],           "country": "Lebanon" },
+
+  // Main Dish Energy
+  { "id": "lb-cot-crispy-duo",          "name": "The Crispy Duo (Chicken)",           "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 880, "protein": 48, "carbs": 78, "fat": 38, "tags": ["chicken","platter","fries"],                 "country": "Lebanon" },
+  { "id": "lb-cot-chick-fix",           "name": "The Chick Fix (Grilled)",            "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 760, "protein": 56, "carbs": 60, "fat": 28, "tags": ["chicken","grilled","platter"],               "country": "Lebanon" },
+  { "id": "lb-cot-steak-me-home",       "name": "Steak Me Home (270g MB3)",           "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 920, "protein": 62, "carbs": 60, "fat": 44, "tags": ["beef","steak","platter","high-protein"],     "country": "Lebanon" },
+
+  // Pasta La Vista
+  { "id": "lb-cot-ocean-cream-dream",   "name": "Ocean Cream Dream (Shrimp Pasta)",   "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 780, "protein": 42, "carbs": 72, "fat": 34, "tags": ["pasta","shrimp","cream"],                    "country": "Lebanon" },
+  { "id": "lb-cot-chicken-cream-dream", "name": "Chicken Cream Dream Pasta",          "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 820, "protein": 42, "carbs": 78, "fat": 36, "tags": ["pasta","chicken","cream","mushroom"],        "country": "Lebanon" },
+  { "id": "lb-cot-chick-n-basil",       "name": "Chick N' Basil Pasta",               "brand": "CheeseOnTop", "type": ["lunch","dinner"],         "calories": 780, "protein": 38, "carbs": 78, "fat": 34, "tags": ["pasta","chicken","basil","cream"],          "country": "Lebanon" },
+
+  // Kids
+  { "id": "lb-cot-kids-not-hungry",     "name": "Kids: I'm Not Hungry (Mac n Cheese)","brand": "CheeseOnTop", "type": ["lunch","dinner","snack"], "calories": 520, "protein": 18, "carbs": 60, "fat": 22, "tags": ["kids","pasta","cheese"],                     "country": "Lebanon" },
+  { "id": "lb-cot-kids-dont-know",      "name": "Kids: I Don't Know (Tenders)",       "brand": "CheeseOnTop", "type": ["lunch","dinner","snack"], "calories": 540, "protein": 26, "carbs": 56, "fat": 24, "tags": ["kids","chicken","fries"],                    "country": "Lebanon" },
+  { "id": "lb-cot-kids-beef",           "name": "Kids: Beef Burger Meal",             "brand": "CheeseOnTop", "type": ["lunch","dinner","snack"], "calories": 620, "protein": 24, "carbs": 64, "fat": 30, "tags": ["kids","burger","beef"],                      "country": "Lebanon" },
+  { "id": "lb-cot-kids-chicken",        "name": "Kids: Chicken Burger Meal",          "brand": "CheeseOnTop", "type": ["lunch","dinner","snack"], "calories": 580, "protein": 26, "carbs": 64, "fat": 26, "tags": ["kids","burger","chicken"],                   "country": "Lebanon" },
+
+  // Sweets
+  { "id": "lb-cot-molten-lava",         "name": "Molten Lava Cake",                   "brand": "CheeseOnTop", "type": ["dessert","snack"],        "calories": 580, "protein": 8,  "carbs": 72, "fat": 30, "tags": ["dessert","chocolate","ice-cream"],           "country": "Lebanon" },
+  { "id": "lb-cot-say-cheesecake",      "name": "Say Cheese Cake (Strawberry)",       "brand": "CheeseOnTop", "type": ["dessert","snack"],        "calories": 460, "protein": 8,  "carbs": 56, "fat": 22, "tags": ["dessert","cheesecake","strawberry"],         "country": "Lebanon" },
+  { "id": "lb-cot-ice-moments",         "name": "Ice Moments (1 scoop)",              "brand": "CheeseOnTop", "type": ["dessert","snack"],        "calories": 140, "protein": 3,  "carbs": 18, "fat": 7,  "tags": ["dessert","ice-cream"],                       "country": "Lebanon" },
+
+  // Drinks
+  { "id": "lb-cot-fresh-juice",         "name": "Fresh Juice",                        "brand": "CheeseOnTop", "type": ["drink","snack"],          "calories": 180, "protein": 2,  "carbs": 42, "fat": 1,  "tags": ["drink","juice"],                             "country": "Lebanon" },
+  { "id": "lb-cot-milkshake",           "name": "Milkshake",                          "brand": "CheeseOnTop", "type": ["drink","dessert"],        "calories": 460, "protein": 10, "carbs": 64, "fat": 18, "tags": ["drink","milkshake","sweet"],                 "country": "Lebanon" },
+  { "id": "lb-cot-soft-drink",          "name": "Soft Drink",                         "brand": "CheeseOnTop", "type": ["drink"],                  "calories": 140, "protein": 0,  "carbs": 36, "fat": 0,  "tags": ["drink","soda"],                              "country": "Lebanon" },
+  { "id": "lb-cot-ice-tea",             "name": "Ice Tea",                            "brand": "CheeseOnTop", "type": ["drink"],                  "calories": 120, "protein": 0,  "carbs": 30, "fat": 0,  "tags": ["drink","tea"],                               "country": "Lebanon" }
 ];
