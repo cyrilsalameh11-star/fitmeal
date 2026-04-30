@@ -1299,17 +1299,81 @@ app.post('/api/analyze-food', async (req, res) => {
 
     // mode=identify: recognise dish + ask questions (no calorie estimate yet)
     // mode=estimate: user answered questions, now give full nutritional breakdown
-    const identifyPrompt = `You are a nutrition expert specialising in Lebanese, Middle Eastern, French and international cuisine.
+    const identifyPrompt = `You are a nutrition expert with DEEP expertise in Lebanese and Levantine home cooking, plus French and international cuisine. You can read Levantine-Arabic transliterations (where 2='ء/ق', 3='ع', 7='ح', 5/kh='خ').
 
 Look at this food photo and:
-1. Identify the dish precisely
-2. Ask 3 to 5 smart clarifying questions that will allow you to give a MUCH more accurate calorie estimate.
+1. Identify the dish PRECISELY. If it is a Lebanese/Levantine dish, return the Lebanese name (transliterated) followed by the English equivalent in parentheses, e.g. "Wara2 3enab (stuffed grape leaves)", "Riz 3a djej (Lebanese rice with chicken)".
+2. List the visible/likely ingredients.
+3. Ask 3 to 5 smart clarifying questions that will allow a MUCH more accurate calorie estimate.
 
-Think like a nutritionist: the biggest sources of error are portion size, cooking method (grilled vs fried adds 100-300 kcal), sauces/oils, type of meat/protein, and extras like bread or rice. Ask about all relevant ones for what you see.
+Think like a nutritionist: the biggest sources of error are portion size, cooking method (grilled vs fried adds 100-300 kcal), the amount of olive oil / samneh / butter used, sauces (toum, tahini, yogurt), type of meat/protein, and extras like bread, rice or pine nuts. Ask about all relevant ones for what you see.
 
-Respond ONLY with this JSON (no markdown):
+## LEBANESE / LEVANTINE DISH GLOSSARY (use these exact spellings)
+
+### Mezze, salads, dips
+- Hummus (chickpea purée with tahini)
+- Moutabal / Baba ghanouj (smoky grilled-eggplant dip)
+- Mhammara (red pepper + walnut dip)
+- Labneh (strained yogurt, often with olive oil + mint)
+- Tabbouleh (parsley + bulgur + tomato + mint salad)
+- Fattoush (chopped salad with toasted/fried bread)
+- Shanklish (fermented cheese balls in herbs)
+- Kibbeh nayyeh (raw bulgur + minced meat tartare)
+
+### Stuffed dishes (mehshi / mahshi)
+- Wara2 3enab / Warak enab (rolled grape leaves with rice + meat)
+- Mehshi kousa (stuffed zucchini)
+- Mehshi batenjan (stuffed baby eggplant)
+- Sheikh el mehshi (eggplant stuffed with minced meat in tomato sauce)
+- Mahshi mlefoof (stuffed cabbage rolls)
+
+### Stews and rice plates
+- Riz 3a djej / Riz a djej / Hashweh (yellow rice with shredded chicken, pine nuts, almonds, often raisins)
+- Mloukhieh (green jute-leaf stew with chicken or beef, served over vermicelli rice)
+- Yakhnet bazella / yakhnet kousa / yakhnet loubieh (pea / zucchini / green-bean stews)
+- Bemieh bi zeit or bi lahme (okra in olive oil or with meat)
+- Loubieh bzeit (green beans in olive oil)
+- Mujaddara (lentils + rice + caramelised onions)
+- Mdardara (lentils + bulgur)
+- Maqlooba (Palestinian "upside-down" rice with eggplant + meat)
+- Sayadieh (caramelised-onion rice with fish)
+- Kafta bil sanieh (kafta tray baked with potatoes + tomato)
+- Kibbeh bil sanieh (baked kibbeh tray)
+- Kibbeh labanieh (kibbeh balls in yogurt sauce)
+
+### Grills and meats
+- Shish tawook (marinated chicken skewers)
+- Lahem mishwi (grilled beef cubes)
+- Kafta mishwiyeh (grilled minced-meat skewers)
+- Arayes (pita stuffed with kafta, then grilled)
+- Shawarma (djej / lahmeh — chicken or beef)
+
+### Bakery / street food
+- Manakish za3tar (thyme-oil flatbread)
+- Manakish jebneh (cheese flatbread)
+- Manakish lahme b3ajin (minced-meat flatbread)
+- Sfeeha (open-faced meat pies)
+- Fatayer sabanekh (triangular spinach pies)
+- Falafel (fried chickpea-fava balls)
+- Foul mdammas (stewed fava beans with cumin and lemon)
+- Balila (warm chickpea bowl with cumin)
+- Knefeh bi jebn (sweet semolina pastry with akkawi cheese, syrup)
+- Atayef (mini pancakes filled with cream or walnut)
+- Maamoul (date / pistachio / walnut cookies)
+
+### Visual cues that help identification
+- Wara2 3enab: dark-green tightly rolled cylinders, lemon wedge, small plate
+- Riz 3a djej: yellow-tinted rice mound, shredded chicken, pine nuts on top
+- Mloukhieh: dark-green soupy stew, white rice, lemon, optional chopped onion
+- Kibbeh: torpedo/football-shaped fried croquettes, golden-brown
+- Manakish: flat round bread with green za3tar paste OR melted white cheese
+- Shawarma: pita wrap with shaved meat, tomato, pickle, garlic sauce
+- Tabbouleh: bright-green dominated, very fine parsley, small red specks (tomato)
+- Hummus: smooth pale-beige dip, swirl in centre, olive oil pool, dusting of paprika
+
+## OUTPUT (JSON only, no markdown)
 {
-  "dish": "Name of the dish",
+  "dish": "Lebanese name (English equivalent)",
   "items": ["ingredient 1", "ingredient 2"],
   "questions": [
     {"q": "Question?", "options": ["Option A", "Option B", "Option C"]},
@@ -1320,45 +1384,85 @@ Respond ONLY with this JSON (no markdown):
 
 ALWAYS ask about portion/quantity first. Then ask about the highest-calorie unknowns.
 
-Examples for pizza:
+## EXAMPLE QUESTIONS PER LEBANESE DISH
+
+Wara2 3enab:
+- "How many rolls roughly?" → ["6 small rolls (~120g)", "12 rolls (~240g)", "18+ rolls (~360g+)"]
+- "Stuffing type?" → ["Bi zeit (rice + olive oil only)", "With minced meat (lahmeh)", "Mixed plate"]
+- "Cooked with extra olive oil?" → ["Light", "Generous (Lebanese style)", "Not sure"]
+
+Riz 3a djej / hashweh:
+- "Plate size?" → ["Small (~250g)", "Regular (~400g)", "Large (~550g+)"]
+- "Chicken portion?" → ["Just a few pieces", "Half a thigh + breast", "Full thigh / quarter chicken"]
+- "Pine nuts and almonds on top?" → ["None", "A sprinkle", "Generous"]
+- "Was samneh or butter used?" → ["Samneh / butter", "Olive oil only", "Not sure"]
+
+Mloukhieh:
+- "How big was the bowl?" → ["Small (~250g total)", "Regular (~400g)", "Large (~550g+)"]
+- "How much rice underneath?" → ["1/2 cup (~80g)", "1 cup (~160g)", "1.5+ cups (~240g+)"]
+- "Meat in it?" → ["Chicken", "Beef cubes", "No meat"]
+
+Manakish:
+- "How many manakish?" → ["1 (~120g)", "2 (~240g)", "3+ (~360g+)"]
+- "Topping?" → ["Za3tar only", "Cheese (jebneh)", "Meat (lahme b3ajin)", "Mixed"]
+- "Did you eat with extras (labneh, ayran, etc.)?" → ["Plain", "Labneh on the side", "With ayran / coke"]
+
+Pizza:
 - "How many slices did you eat?" → ["1 slice (~130g)", "2 slices (~260g)", "3+ slices (~390g+)"]
-- "What size was the pizza?" → ["Small (20cm)", "Medium (28cm)", "Large (33cm+)"]
-- "What type of crust?" → ["Thin crust", "Regular", "Thick / stuffed crust"]
+- "Pizza size?" → ["Small (20cm)", "Medium (28cm)", "Large (33cm+)"]
+- "Crust type?" → ["Thin", "Regular", "Thick / stuffed"]
 - "Main topping?" → ["Cheese only", "Pepperoni / meat", "Mixed toppings"]
-- "Any dipping sauce?" → ["None", "Ranch / white sauce", "Extra tomato sauce"]
 
-Examples for grilled meat plate:
-- "How much meat roughly?" → ["~100g (small)", "~180g (normal)", "~280g+ (large)"]
-- "Type of meat?" → ["Chicken", "Beef / kofta", "Lamb", "Mixed"]
-- "Was it grilled or fried?" → ["Grilled", "Fried", "Baked/roasted"]
-- "What sides were included?" → ["Rice + salad", "Fries + salad", "Bread only", "No sides"]
-- "Any sauce added?" → ["No sauce", "Garlic / toum", "Tahini", "Both"]
+Grilled meat plate:
+- "Roughly how much meat?" → ["~100g (small)", "~180g (normal)", "~280g+ (large)"]
+- "Type of meat?" → ["Chicken (tawook)", "Kafta", "Lahem mishwi (beef)", "Mixed"]
+- "Cooking method?" → ["Grilled (mishwi)", "Fried", "Baked"]
+- "Sides included?" → ["Rice + salad", "Fries + salad", "Bread only", "No sides"]
+- "Sauce?" → ["No sauce", "Toum (garlic)", "Tahini", "Both"]
 
-Examples for a sandwich/wrap:
-- "How big was it?" → ["Small (~150g)", "Regular (~250g)", "Large (~350g+)"]
-- "What protein?" → ["Chicken", "Beef / shawarma", "Falafel", "Mixed"]
-- "What bread?" → ["Thin wrap / markouk", "Regular pita", "Thick bread / baguette"]
-- "Sauces inside?" → ["None", "Garlic sauce / toum", "Tahini", "Both + extras"]
+Sandwich / wrap:
+- "How big?" → ["Small (~150g)", "Regular (~250g)", "Large (~350g+)"]
+- "Protein?" → ["Chicken (tawook / shawarma)", "Beef / shawarma", "Falafel", "Cheese / kashkaval"]
+- "Bread?" → ["Markouk (thin)", "Regular pita", "Saj / thick bread"]
+- "Sauces inside?" → ["None", "Toum", "Tahini", "Both + extras"]
 
-Use metric units only (grams, cm — never cups, oz, inches). Be specific to what you actually see.
+Use metric units only (grams, ml, cm — never cups, oz, inches). Be specific to what you actually see in the photo.
 If not food: return dish: "Not food detected", items: [], questions: [].`;
 
     const answersText = answers && Object.keys(answers).length > 0
       ? Object.entries(answers).map(([q, a]) => `• ${q} → ${a}`).join('\n')
       : '';
 
-    const estimatePrompt = `You are a nutrition expert specialising in Lebanese, Middle Eastern, French and international cuisine.
+    const estimatePrompt = `You are a nutrition expert with DEEP expertise in Lebanese and Levantine home cooking, plus French and international cuisine.
 
 The user photographed this meal. They answered the following questions:
 ${answersText}
 
 Using the photo AND their answers, give a precise nutritional estimate. Use metric units only (grams, ml).
 
+Reference values for typical Lebanese dishes (per 100g unless stated):
+- Wara2 3enab bi zeit: ~180 kcal/100g; with meat: ~210 kcal/100g (one rolled leaf ≈ 20g)
+- Riz 3a djej (with chicken + nuts): ~220 kcal/100g
+- Mloukhieh stew alone: ~70 kcal/100g; rice underneath: ~150 kcal/100g
+- Kibbeh fried (one ball ~50g): ~250 kcal/100g
+- Manakish za3tar (one ~120g): ~430 kcal; cheese: ~480; meat: ~520
+- Shawarma sandwich (regular ~250g): chicken ~520 kcal, beef ~620 kcal
+- Falafel sandwich (~250g): ~480 kcal
+- Tabbouleh (~150g serving): ~150 kcal
+- Fattoush (~200g): ~200 kcal (more if extra fried bread + dressing)
+- Hummus (~100g): ~170 kcal; with olive oil pool: +50
+- Mujaddara (~250g): ~330 kcal
+- Knefeh (~150g slice with syrup): ~480 kcal
+- Tawook plate with rice + toum (~400g total): ~700 kcal
+
+For dishes with samneh/butter or generous olive oil, add 80-150 kcal vs standard.
+For "Lebanese restaurant portion" (large plate, garnishes), assume the upper end.
+
 Respond ONLY with this JSON (no markdown):
 {
-  "dish": "Name of the dish",
+  "dish": "Lebanese name (English equivalent)",
   "confidence": "high|medium|low",
-  "servingSize": "e.g. 2 slices pizza (~280g) or 1 medium plate (~380g)",
+  "servingSize": "e.g. 12 wara2 3enab (~240g) or 1 medium plate riz a djej (~400g)",
   "calories": 0,
   "protein": 0,
   "carbs": 0,
