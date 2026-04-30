@@ -566,24 +566,40 @@ export default function TrendsPage() {
   const isAll      = activeAccount === 'all';
   const totalPages = isAll ? TOTAL_PAGES : 1;
 
-  // Prefetch the NEXT page's video files in the background, so when user
-  // clicks page N+1 the videos are already in the browser cache.
+  // Prefetch ALL other pages' video files in the background so navigating
+  // to any page is near-instant. Staggered to avoid hammering the network
+  // all at once. Uses <link rel="prefetch"> = low-priority idle download.
   useEffect(() => {
     if (!isAll) return;
-    const nextPage = page + 1;
-    if (nextPage >= TOTAL_PAGES) return;
     const links = [];
-    getPageReels(nextPage).forEach(reel => {
-      if (reel.localMedia?.kind === 'video') {
-        const link = document.createElement('link');
-        link.rel = 'prefetch';
-        link.as = 'video';
-        link.href = reel.localMedia.src;
-        document.head.appendChild(link);
-        links.push(link);
-      }
-    });
-    return () => { links.forEach(l => l.remove()); };
+    const timers = [];
+    // Build queue of (delay, src) for every video on every other page
+    let delay = 0;
+    for (let p = 0; p < TOTAL_PAGES; p++) {
+      if (p === page) continue;
+      // Pages closer to current load first
+      const distance = Math.abs(p - page);
+      getPageReels(p).forEach(reel => {
+        if (reel.localMedia?.kind === 'video') {
+          const src = reel.localMedia.src;
+          const t = setTimeout(() => {
+            const link = document.createElement('link');
+            link.rel = 'prefetch';
+            link.as = 'video';
+            link.href = src;
+            document.head.appendChild(link);
+            links.push(link);
+          }, delay);
+          timers.push(t);
+          // 150ms stagger per file, plus extra 500ms per page-distance jump
+          delay += 150 + distance * 50;
+        }
+      });
+    }
+    return () => {
+      timers.forEach(t => clearTimeout(t));
+      links.forEach(l => l.remove());
+    };
   }, [page, isAll]);
 
   const currentReels = isAll
