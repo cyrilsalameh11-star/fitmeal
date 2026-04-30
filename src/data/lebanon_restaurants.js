@@ -1,548 +1,5 @@
 module.exports = [
   {
-    "id": "lb-mt-classic",
-    "name": "Classic Tawouk Sandwich",
-    "brand": "Malak al Taouk",
-    "type": [
-      "lunch",
-      "dinner",
-      "snack"
-    ],
-    "calories": 650,
-    "protein": 45,
-    "carbs": 55,
-    "fat": 28,
-    "tags": [
-      "sandwich",
-      "chicken",
-      "lebanese"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mt-franji",
-    "name": "Franji Tawouk (Baguette)",
-    "brand": "Malak al Taouk",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 580,
-    "protein": 42,
-    "carbs": 50,
-    "fat": 22,
-    "tags": [
-      "sandwich",
-      "chicken",
-      "lebanese"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mt-platter",
-    "name": "Tawouk Platter (Chicken, Fries, Garlic)",
-    "brand": "Malak al Taouk",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 950,
-    "protein": 55,
-    "carbs": 70,
-    "fat": 45,
-    "tags": [
-      "chicken",
-      "lebanese"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mt-burger",
-    "name": "Malak Burger",
-    "brand": "Malak al Taouk",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 850,
-    "protein": 35,
-    "carbs": 65,
-    "fat": 50,
-    "tags": [
-      "burger",
-      "beef"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mt-bowl",
-    "name": "Tawouk Bowl (Rice & Garlic)",
-    "brand": "Malak al Taouk",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 780,
-    "protein": 48,
-    "carbs": 68,
-    "fat": 30,
-    "tags": [
-      "bowl",
-      "chicken"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mt-mini-skewers",
-    "name": "Mini Tawouk Skewers x3",
-    "brand": "Malak al Taouk",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 380,
-    "protein": 34,
-    "carbs": 10,
-    "fat": 22,
-    "tags": [
-      "chicken",
-      "lebanese",
-      "keto"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mt-francisco",
-    "name": "Francisco Sandwich",
-    "brand": "Malak al Taouk",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 720,
-    "protein": 40,
-    "carbs": 60,
-    "fat": 35,
-    "tags": [
-      "sandwich",
-      "chicken"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mt-fajita",
-    "name": "Fajita Sandwich",
-    "brand": "Malak al Taouk",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 680,
-    "protein": 35,
-    "carbs": 55,
-    "fat": 32,
-    "tags": [
-      "sandwich",
-      "chicken"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mt-halloumi",
-    "name": "Halloumi Sandwich",
-    "brand": "Malak al Taouk",
-    "type": [
-      "lunch",
-      "snack"
-    ],
-    "calories": 520,
-    "protein": 22,
-    "carbs": 48,
-    "fat": 26,
-    "tags": [
-      "sandwich",
-      "vegetarian"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mt-light",
-    "name": "Light Tawouk (Brown Bread)",
-    "brand": "Malak al Taouk",
-    "type": [
-      "lunch"
-    ],
-    "calories": 480,
-    "protein": 42,
-    "carbs": 45,
-    "fat": 12,
-    "tags": [
-      "sandwich",
-      "chicken",
-      "healthy"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mt-crispy",
-    "name": "Crispy Chicken Sandwich",
-    "brand": "Malak al Taouk",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 750,
-    "protein": 32,
-    "carbs": 65,
-    "fat": 40,
-    "tags": [
-      "sandwich",
-      "chicken"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mt-fries",
-    "name": "French Fries Portion",
-    "brand": "Malak al Taouk",
-    "type": [
-      "snack"
-    ],
-    "calories": 450,
-    "protein": 4,
-    "carbs": 55,
-    "fat": 22,
-    "tags": [
-      "snack",
-      "vegan"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mt-wedges",
-    "name": "Potato Wedges",
-    "brand": "Malak al Taouk",
-    "type": [
-      "snack"
-    ],
-    "calories": 380,
-    "protein": 5,
-    "carbs": 45,
-    "fat": 18,
-    "tags": [
-      "snack",
-      "vegan"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mt-salad",
-    "name": "Tawouk Salad",
-    "brand": "Malak al Taouk",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 350,
-    "protein": 38,
-    "carbs": 15,
-    "fat": 16,
-    "tags": [
-      "salad",
-      "chicken",
-      "healthy"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mt-sujuk",
-    "name": "Sujuk Sandwich",
-    "brand": "Malak al Taouk",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 650,
-    "protein": 28,
-    "carbs": 50,
-    "fat": 38,
-    "tags": [
-      "sandwich",
-      "beef",
-      "spicy"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mcd-big-mac",
-    "name": "Big Mac",
-    "brand": "McDonald's Lebanon",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 508,
-    "protein": 27,
-    "carbs": 43,
-    "fat": 25,
-    "tags": [
-      "burger",
-      "beef"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mcd-mc-arabia",
-    "name": "McArabia Chicken",
-    "brand": "McDonald's Lebanon",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 620,
-    "protein": 38,
-    "carbs": 56,
-    "fat": 26,
-    "tags": [
-      "wrap",
-      "chicken",
-      "lebanese"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mcd-mcfalafel",
-    "name": "McFalafel",
-    "brand": "McDonald's Lebanon",
-    "type": [
-      "lunch",
-      "snack"
-    ],
-    "calories": 480,
-    "protein": 18,
-    "carbs": 58,
-    "fat": 20,
-    "tags": [
-      "sandwich",
-      "vegetarian",
-      "vegan"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mcd-nuggets-6",
-    "name": "McNuggets x6",
-    "brand": "McDonald's Lebanon",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 280,
-    "protein": 17,
-    "carbs": 18,
-    "fat": 16,
-    "tags": [
-      "chicken",
-      "snack"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mcd-flurry",
-    "name": "McFlurry Oreo",
-    "brand": "McDonald's Lebanon",
-    "type": [
-      "dessert"
-    ],
-    "calories": 340,
-    "protein": 8,
-    "carbs": 52,
-    "fat": 12,
-    "tags": [
-      "dessert",
-      "sweet"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mcd-royal",
-    "name": "Grand Chicken Royale",
-    "brand": "McDonald's Lebanon",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 720,
-    "protein": 32,
-    "carbs": 65,
-    "fat": 38,
-    "tags": [
-      "burger",
-      "chicken"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mcd-spicy",
-    "name": "Grand Chicken Spicy",
-    "brand": "McDonald's Lebanon",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 730,
-    "protein": 32,
-    "carbs": 64,
-    "fat": 40,
-    "tags": [
-      "burger",
-      "chicken",
-      "spicy"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mcd-double",
-    "name": "Double Cheeseburger",
-    "brand": "McDonald's Lebanon",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 440,
-    "protein": 28,
-    "carbs": 33,
-    "fat": 22,
-    "tags": [
-      "burger",
-      "beef"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mcd-quater",
-    "name": "Quarter Pounder",
-    "brand": "McDonald's Lebanon",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 520,
-    "protein": 30,
-    "carbs": 42,
-    "fat": 26,
-    "tags": [
-      "burger",
-      "beef"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mcd-fries",
-    "name": "Large Fries",
-    "brand": "McDonald's Lebanon",
-    "type": [
-      "snack"
-    ],
-    "calories": 480,
-    "protein": 6,
-    "carbs": 62,
-    "fat": 24,
-    "tags": [
-      "snack",
-      "vegan"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mcd-nuggets-9",
-    "name": "McNuggets x9",
-    "brand": "McDonald's Lebanon",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 420,
-    "protein": 25,
-    "carbs": 27,
-    "fat": 24,
-    "tags": [
-      "chicken",
-      "snack"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mcd-apple",
-    "name": "Apple Pie",
-    "brand": "McDonald's Lebanon",
-    "type": [
-      "dessert"
-    ],
-    "calories": 250,
-    "protein": 2,
-    "carbs": 32,
-    "fat": 12,
-    "tags": [
-      "dessert",
-      "vegan"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mcd-sundae",
-    "name": "Caramel Sundae",
-    "brand": "McDonald's Lebanon",
-    "type": [
-      "dessert"
-    ],
-    "calories": 320,
-    "protein": 6,
-    "carbs": 50,
-    "fat": 10,
-    "tags": [
-      "dessert",
-      "sweet"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mcd-salad",
-    "name": "Grilled Chicken Salad",
-    "brand": "McDonald's Lebanon",
-    "type": [
-      "lunch"
-    ],
-    "calories": 310,
-    "protein": 30,
-    "carbs": 12,
-    "fat": 14,
-    "tags": [
-      "salad",
-      "chicken",
-      "healthy"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-mcd-shake",
-    "name": "Chocolate Shake (M)",
-    "brand": "McDonald's Lebanon",
-    "type": [
-      "dessert"
-    ],
-    "calories": 400,
-    "protein": 10,
-    "carbs": 65,
-    "fat": 11,
-    "tags": [
-      "dessert",
-      "drink",
-      "sweet"
-    ],
-    "country": "Lebanon"
-  },
-  {
     "id": "lb-bart-chicken-avo",
     "name": "Chicken Avocado Sandwich",
     "brand": "Bartartine",
@@ -804,285 +261,6 @@ module.exports = [
     "tags": [
       "sandwich",
       "chicken"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-abd-taouk-platter",
-    "name": "Shish Taouk Platter (Chicken, Garlic)",
-    "brand": "Abdallah",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 550,
-    "protein": 42,
-    "carbs": 50,
-    "fat": 22,
-    "tags": [
-      "chicken",
-      "lebanese"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-abd-kofta",
-    "name": "Kofta Platter (Grilled Meat)",
-    "brand": "Abdallah",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 580,
-    "protein": 38,
-    "carbs": 35,
-    "fat": 32,
-    "tags": [
-      "beef",
-      "lebanese"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-abd-hummus-meat",
-    "name": "Hummus with Sautéed Meat",
-    "brand": "Abdallah",
-    "type": [
-      "lunch",
-      "dinner",
-      "snack"
-    ],
-    "calories": 450,
-    "protein": 22,
-    "carbs": 28,
-    "fat": 28,
-    "tags": [
-      "lebanese",
-      "hummus",
-      "beef"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-abd-kibbeh",
-    "name": "Fried Kibbeh (per piece)",
-    "brand": "Abdallah",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 160,
-    "protein": 7,
-    "carbs": 14,
-    "fat": 9,
-    "tags": [
-      "snack",
-      "lebanese",
-      "beef"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-abd-baklava",
-    "name": "Assorted Baklava (2 pieces)",
-    "brand": "Abdallah",
-    "type": [
-      "dessert"
-    ],
-    "calories": 240,
-    "protein": 3,
-    "carbs": 32,
-    "fat": 12,
-    "tags": [
-      "dessert",
-      "lebanese",
-      "sweet"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-abd-nammoura",
-    "name": "Nammoura (Basmoussa, per piece)",
-    "brand": "Abdallah",
-    "type": [
-      "dessert"
-    ],
-    "calories": 180,
-    "protein": 3,
-    "carbs": 30,
-    "fat": 6,
-    "tags": [
-      "dessert",
-      "lebanese",
-      "sweet"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-abd-fatteh",
-    "name": "Fatteh (Chickpeas, Yogurt, Nuts)",
-    "brand": "Abdallah",
-    "type": [
-      "lunch"
-    ],
-    "calories": 420,
-    "protein": 18,
-    "carbs": 45,
-    "fat": 20,
-    "tags": [
-      "lebanese",
-      "vegetarian"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-abd-shawarma-meat",
-    "name": "Meat Shawarma Sandwich",
-    "brand": "Abdallah",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 550,
-    "protein": 35,
-    "carbs": 45,
-    "fat": 28,
-    "tags": [
-      "sandwich",
-      "beef",
-      "lebanese"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-abd-shawarma-chicken",
-    "name": "Chicken Shawarma Sandwich",
-    "brand": "Abdallah",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 480,
-    "protein": 38,
-    "carbs": 48,
-    "fat": 18,
-    "tags": [
-      "sandwich",
-      "chicken",
-      "lebanese"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-abd-falafel",
-    "name": "Falafel Sandwich",
-    "brand": "Abdallah",
-    "type": [
-      "lunch",
-      "snack"
-    ],
-    "calories": 420,
-    "protein": 14,
-    "carbs": 55,
-    "fat": 18,
-    "tags": [
-      "sandwich",
-      "vegan",
-      "lebanese"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-abd-mutabal",
-    "name": "Mutabal (Eggplant Dip, 200g)",
-    "brand": "Abdallah",
-    "type": [
-      "snack"
-    ],
-    "calories": 250,
-    "protein": 5,
-    "carbs": 18,
-    "fat": 18,
-    "tags": [
-      "snack",
-      "vegan",
-      "lebanese"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-abd-tabbouleh",
-    "name": "Tabbouleh Salad",
-    "brand": "Abdallah",
-    "type": [
-      "lunch",
-      "snack"
-    ],
-    "calories": 180,
-    "protein": 4,
-    "carbs": 22,
-    "fat": 10,
-    "tags": [
-      "salad",
-      "vegan",
-      "lebanese",
-      "healthy"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-abd-ayran",
-    "name": "Ayran Yoghurt Drink",
-    "brand": "Abdallah",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 120,
-    "protein": 8,
-    "carbs": 10,
-    "fat": 6,
-    "tags": [
-      "drink",
-      "vegetarian",
-      "lebanese"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-abd-makanek",
-    "name": "Makanek (Lebanese Sausages)",
-    "brand": "Abdallah",
-    "type": [
-      "snack",
-      "dinner"
-    ],
-    "calories": 450,
-    "protein": 22,
-    "carbs": 12,
-    "fat": 35,
-    "tags": [
-      "beef",
-      "lebanese",
-      "keto"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-abd-mafroukeh",
-    "name": "Mafroukeh (Lebanese Dessert)",
-    "brand": "Abdallah",
-    "type": [
-      "dessert"
-    ],
-    "calories": 380,
-    "protein": 8,
-    "carbs": 45,
-    "fat": 20,
-    "tags": [
-      "dessert",
-      "lebanese",
-      "sweet"
     ],
     "country": "Lebanon"
   },
@@ -1625,561 +803,6 @@ module.exports = [
       "fish",
       "keto",
       "high-protein"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "abdallah-1773252504917-1",
-    "name": "Assorted Milk Chocolates",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 402,
-    "protein": 1,
-    "carbs": 37,
-    "fat": 12,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773252504917-2",
-    "name": "Dark Chocolate Truffles",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 278,
-    "protein": 5,
-    "carbs": 47,
-    "fat": 17,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773252504917-3",
-    "name": "Malban with Pistachio",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 462,
-    "protein": 2,
-    "carbs": 63,
-    "fat": 22,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773252504917-4",
-    "name": "Nougat with Almonds",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 333,
-    "protein": 7,
-    "carbs": 67,
-    "fat": 9,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773252504917-5",
-    "name": "Chocolate Covered Dates",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 390,
-    "protein": 0,
-    "carbs": 22,
-    "fat": 20,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773252504917-6",
-    "name": "Marzipan Fruits",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 313,
-    "protein": 0,
-    "carbs": 50,
-    "fat": 20,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773252504917-7",
-    "name": "Hazelnut Pralines",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 288,
-    "protein": 4,
-    "carbs": 20,
-    "fat": 7,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773252504917-8",
-    "name": "Chocolate Caramels",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 523,
-    "protein": 4,
-    "carbs": 29,
-    "fat": 5,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773252504917-9",
-    "name": "White Chocolate Raspberries",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 513,
-    "protein": 5,
-    "carbs": 26,
-    "fat": 14,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773252504917-10",
-    "name": "Pistachio Croquant",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 549,
-    "protein": 2,
-    "carbs": 31,
-    "fat": 22,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773252504917-11",
-    "name": "Almond Dragees",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 442,
-    "protein": 4,
-    "carbs": 55,
-    "fat": 13,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773252504917-12",
-    "name": "Chocolate Wafer Rolls",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 467,
-    "protein": 0,
-    "carbs": 27,
-    "fat": 13,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773252504917-13",
-    "name": "Coffee Beans in Chocolate",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 479,
-    "protein": 5,
-    "carbs": 62,
-    "fat": 20,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773252504917-14",
-    "name": "Fruit Jellies (Pâtes de Fruits)",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 405,
-    "protein": 3,
-    "carbs": 26,
-    "fat": 10,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "abdallah-1773252504917-15",
-    "name": "Ghazal El Banat with Pistachio",
-    "brand": "Abdallah",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 300,
-    "protein": 6,
-    "carbs": 47,
-    "fat": 17,
-    "source": "restaurant",
-    "country": "Lebanon",
-    "dietary": [
-      "healthy"
-    ]
-  },
-  {
-    "id": "lb-sb-beef-platter",
-    "name": "Beef Filet Platter (200g) with Fries",
-    "brand": "SwissButter",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 980,
-    "protein": 58,
-    "carbs": 55,
-    "fat": 52,
-    "tags": [
-      "platter",
-      "beef",
-      "entrecote",
-      "swiss butter sauce"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-sb-beef-platter-potato",
-    "name": "Beef Filet Platter (200g) with Baked Potato",
-    "brand": "SwissButter",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 920,
-    "protein": 58,
-    "carbs": 48,
-    "fat": 48,
-    "tags": [
-      "platter",
-      "beef",
-      "entrecote",
-      "baked potato"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-sb-chicken-platter",
-    "name": "Chicken Breast Platter (200g) with Fries",
-    "brand": "SwissButter",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 860,
-    "protein": 62,
-    "carbs": 52,
-    "fat": 38,
-    "tags": [
-      "platter",
-      "chicken",
-      "swiss butter sauce"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-sb-chicken-platter-potato",
-    "name": "Chicken Breast Platter (200g) with Baked Potato",
-    "brand": "SwissButter",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 800,
-    "protein": 62,
-    "carbs": 44,
-    "fat": 34,
-    "tags": [
-      "platter",
-      "chicken",
-      "baked potato"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-sb-salmon-platter",
-    "name": "Salmon Filet Platter (200g) with Fries",
-    "brand": "SwissButter",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 890,
-    "protein": 52,
-    "carbs": 52,
-    "fat": 44,
-    "tags": [
-      "platter",
-      "salmon",
-      "fish",
-      "swiss butter sauce"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-sb-salmon-platter-potato",
-    "name": "Salmon Filet Platter (200g) with Baked Potato",
-    "brand": "SwissButter",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 830,
-    "protein": 52,
-    "carbs": 44,
-    "fat": 40,
-    "tags": [
-      "platter",
-      "salmon",
-      "fish",
-      "baked potato"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-sb-wagyu-burger",
-    "name": "Wagyu Burger (220g patty)",
-    "brand": "SwissButter",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 1050,
-    "protein": 64,
-    "carbs": 48,
-    "fat": 62,
-    "tags": [
-      "burger",
-      "wagyu",
-      "beef",
-      "swiss butter sauce"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-sb-extra-beef",
-    "name": "Extra Beef Filet (100g add-on)",
-    "brand": "SwissButter",
-    "type": [
-      "side"
-    ],
-    "calories": 260,
-    "protein": 28,
-    "carbs": 2,
-    "fat": 16,
-    "tags": [
-      "add-on",
-      "beef",
-      "protein"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-sb-extra-chicken",
-    "name": "Extra Chicken Breast (100g add-on)",
-    "brand": "SwissButter",
-    "type": [
-      "side"
-    ],
-    "calories": 185,
-    "protein": 32,
-    "carbs": 1,
-    "fat": 6,
-    "tags": [
-      "add-on",
-      "chicken",
-      "protein"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-sb-extra-salmon",
-    "name": "Extra Salmon Filet (100g add-on)",
-    "brand": "SwissButter",
-    "type": [
-      "side"
-    ],
-    "calories": 210,
-    "protein": 26,
-    "carbs": 0,
-    "fat": 12,
-    "tags": [
-      "add-on",
-      "salmon",
-      "protein"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-sb-mesclun-salad",
-    "name": "Mesclun Salad (side, included with platter)",
-    "brand": "SwissButter",
-    "type": [
-      "side",
-      "starter"
-    ],
-    "calories": 60,
-    "protein": 2,
-    "carbs": 6,
-    "fat": 3,
-    "tags": [
-      "salad",
-      "mesclun",
-      "side",
-      "healthy"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-sb-fondant",
-    "name": "Molten Chocolate Fondant with Ice Cream",
-    "brand": "SwissButter",
-    "type": [
-      "dessert"
-    ],
-    "calories": 580,
-    "protein": 8,
-    "carbs": 68,
-    "fat": 32,
-    "tags": [
-      "dessert",
-      "chocolate",
-      "fondant"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-sb-pain-perdu",
-    "name": "Pain Perdu with Caramel Sauce",
-    "brand": "SwissButter",
-    "type": [
-      "dessert"
-    ],
-    "calories": 520,
-    "protein": 9,
-    "carbs": 72,
-    "fat": 22,
-    "tags": [
-      "dessert",
-      "pain perdu",
-      "caramel",
-      "french toast"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-sb-baguette",
-    "name": "Fresh Baguette (side, included with platter)",
-    "brand": "SwissButter",
-    "type": [
-      "side"
-    ],
-    "calories": 160,
-    "protein": 5,
-    "carbs": 30,
-    "fat": 2,
-    "tags": [
-      "bread",
-      "baguette",
-      "side"
-    ],
-    "country": "Lebanon"
-  },
-  {
-    "id": "lb-sb-swiss-butter-sauce",
-    "name": "Swiss Butter Sauce (33-ingredient secret sauce)",
-    "brand": "SwissButter",
-    "type": [
-      "side"
-    ],
-    "calories": 120,
-    "protein": 1,
-    "carbs": 4,
-    "fat": 12,
-    "tags": [
-      "sauce",
-      "swiss butter",
-      "signature"
     ],
     "country": "Lebanon"
   },
@@ -6697,6 +5320,1663 @@ module.exports = [
     "tags": [
       "drink"
     ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-big-mac-1",
+    "name": "Big Mac",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1100,
+    "protein": 35,
+    "carbs": 135,
+    "fat": 48,
+    "tags": [
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-big-tasty-2",
+    "name": "Big Tasty",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1290,
+    "protein": 42,
+    "carbs": 140,
+    "fat": 62,
+    "tags": [
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-quarter-pounder-with-cheese-3",
+    "name": "Quarter Pounder with Cheese",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1080,
+    "protein": 40,
+    "carbs": 125,
+    "fat": 48,
+    "tags": [
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-mcroyale-4",
+    "name": "McRoyale",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1110,
+    "protein": 38,
+    "carbs": 130,
+    "fat": 50,
+    "tags": [
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-double-cheeseburger-meal-5",
+    "name": "Double Cheeseburger Meal",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1020,
+    "protein": 36,
+    "carbs": 120,
+    "fat": 44,
+    "tags": [
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-filet-o-fish-6",
+    "name": "Filet-o-Fish",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1000,
+    "protein": 28,
+    "carbs": 130,
+    "fat": 40,
+    "tags": [
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-chicken-mac-7",
+    "name": "Chicken Mac",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1080,
+    "protein": 34,
+    "carbs": 135,
+    "fat": 46,
+    "tags": [
+      "chicken",
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-mcchicken-meal-8",
+    "name": "McChicken Meal",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 960,
+    "protein": 28,
+    "carbs": 125,
+    "fat": 40,
+    "tags": [
+      "chicken",
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-spicy-mcchicken-meal-9",
+    "name": "Spicy McChicken Meal",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1050,
+    "protein": 30,
+    "carbs": 130,
+    "fat": 46,
+    "tags": [
+      "chicken",
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-grand-chicken-deluxe-10",
+    "name": "Grand Chicken Deluxe",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1200,
+    "protein": 42,
+    "carbs": 140,
+    "fat": 52,
+    "tags": [
+      "chicken",
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-grand-chicken-special-11",
+    "name": "Grand Chicken Special",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1230,
+    "protein": 44,
+    "carbs": 145,
+    "fat": 54,
+    "tags": [
+      "chicken",
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-mcnuggets-6-pieces-meal-12",
+    "name": "McNuggets 6 pieces Meal",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 900,
+    "protein": 24,
+    "carbs": 105,
+    "fat": 42,
+    "tags": [
+      "chicken"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-mcnuggets-9-pieces-meal-13",
+    "name": "McNuggets 9 pieces Meal",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1050,
+    "protein": 32,
+    "carbs": 115,
+    "fat": 52,
+    "tags": [
+      "chicken"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-mcdonalds-hamburger-14",
+    "name": "McDonald's Hamburger",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 260,
+    "protein": 13,
+    "carbs": 31,
+    "fat": 9,
+    "tags": [
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-mcdonalds-cheeseburger-15",
+    "name": "McDonald's Cheeseburger",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 300,
+    "protein": 15,
+    "carbs": 32,
+    "fat": 13,
+    "tags": [
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-mcdonalds-chicken-burger-16",
+    "name": "McDonald's Chicken Burger",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 17,
+    "carbs": 40,
+    "fat": 16,
+    "tags": [
+      "chicken",
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-duo-meal-beef-17",
+    "name": "Duo Meal Beef",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1100,
+    "protein": 40,
+    "carbs": 135,
+    "fat": 42,
+    "tags": [
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-happy-meal-chicken-mcnuggets-18",
+    "name": "Happy Meal Chicken McNuggets",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 540,
+    "protein": 17,
+    "carbs": 62,
+    "fat": 24,
+    "tags": [
+      "chicken"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-happy-meal-chicken-burger-19",
+    "name": "Happy Meal Chicken Burger",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 620,
+    "protein": 20,
+    "carbs": 72,
+    "fat": 28,
+    "tags": [
+      "chicken",
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-happy-meal-hamburger-20",
+    "name": "Happy Meal Hamburger",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 580,
+    "protein": 20,
+    "carbs": 68,
+    "fat": 24,
+    "tags": [
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-chicken-caesar-salad-21",
+    "name": "Chicken Caesar Salad",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 420,
+    "protein": 28,
+    "carbs": 24,
+    "fat": 24,
+    "tags": [
+      "chicken",
+      "salad"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-mcflurry-22",
+    "name": "McFlurry",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 420,
+    "protein": 9,
+    "carbs": 62,
+    "fat": 15,
+    "tags": [
+      "dessert"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-ice-cream-sundae-23",
+    "name": "Ice Cream Sundae",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 340,
+    "protein": 7,
+    "carbs": 54,
+    "fat": 10,
+    "tags": [
+      "dessert"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-ice-cream-cone-24",
+    "name": "Ice Cream Cone",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 150,
+    "protein": 4,
+    "carbs": 24,
+    "fat": 4,
+    "tags": [
+      "dessert"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-mcdonalds-medium-fries-25",
+    "name": "McDonald's Medium Fries",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "snack"
+    ],
+    "calories": 340,
+    "protein": 4,
+    "carbs": 44,
+    "fat": 16,
+    "tags": [],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mcdo-mcdonalds-large-fries-26",
+    "name": "McDonald's Large Fries",
+    "brand": "McDonald's Lebanon",
+    "type": [
+      "snack"
+    ],
+    "calories": 490,
+    "protein": 6,
+    "carbs": 63,
+    "fat": 23,
+    "tags": [],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-chicken-steak-with-fries-and-sb-sauce-1",
+    "name": "Chicken Steak (with fries and SB sauce)",
+    "brand": "SwissButter",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 52,
+    "carbs": 48,
+    "fat": 34,
+    "tags": [
+      "chicken"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-beef-filet-with-fries-and-sb-sauce-2",
+    "name": "Beef Filet (with fries and SB sauce)",
+    "brand": "SwissButter",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 820,
+    "protein": 55,
+    "carbs": 48,
+    "fat": 42,
+    "tags": [
+      "beef"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-salmon-with-fries-and-sb-sauce-3",
+    "name": "Salmon (with fries and SB sauce)",
+    "brand": "SwissButter",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 760,
+    "protein": 48,
+    "carbs": 48,
+    "fat": 40,
+    "tags": [
+      "seafood"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-ribeye-with-fries-and-sb-sauce-4",
+    "name": "Ribeye (with fries and SB sauce)",
+    "brand": "SwissButter",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 960,
+    "protein": 52,
+    "carbs": 48,
+    "fat": 62,
+    "tags": [],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-chicken-steak-with-baked-potato-5",
+    "name": "Chicken Steak with Baked Potato",
+    "brand": "SwissButter",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 650,
+    "protein": 52,
+    "carbs": 50,
+    "fat": 24,
+    "tags": [
+      "chicken"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-beef-filet-with-baked-potato-6",
+    "name": "Beef Filet with Baked Potato",
+    "brand": "SwissButter",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 760,
+    "protein": 55,
+    "carbs": 50,
+    "fat": 34,
+    "tags": [
+      "beef"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-pain-perdu-7",
+    "name": "Pain Perdu",
+    "brand": "SwissButter",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 520,
+    "protein": 9,
+    "carbs": 62,
+    "fat": 24,
+    "tags": [
+      "dessert"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-molten-chocolate-cake-8",
+    "name": "Molten Chocolate Cake",
+    "brand": "SwissButter",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 540,
+    "protein": 7,
+    "carbs": 58,
+    "fat": 30,
+    "tags": [
+      "dessert"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-ice-cream-scoop-or-sorbet-9",
+    "name": "Ice Cream Scoop or Sorbet",
+    "brand": "SwissButter",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 160,
+    "protein": 2,
+    "carbs": 22,
+    "fat": 7,
+    "tags": [
+      "dessert"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-sb-sb-house-fries-10",
+    "name": "SB House Fries",
+    "brand": "SwissButter",
+    "type": [
+      "snack"
+    ],
+    "calories": 480,
+    "protein": 5,
+    "carbs": 58,
+    "fat": 24,
+    "tags": [],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-charcoal-chicken-sandwich-large-1",
+    "name": "Charcoal Chicken Sandwich (Large)",
+    "brand": "Abdallah",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 520,
+    "protein": 34,
+    "carbs": 54,
+    "fat": 18,
+    "tags": [
+      "chicken",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-charcoal-chicken-sandwich-small-2",
+    "name": "Charcoal Chicken Sandwich (Small)",
+    "brand": "Abdallah",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 340,
+    "protein": 22,
+    "carbs": 36,
+    "fat": 12,
+    "tags": [
+      "chicken",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-charcoal-chicken-sandwich-combo-3",
+    "name": "Charcoal Chicken Sandwich Combo",
+    "brand": "Abdallah",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 650,
+    "protein": 34,
+    "carbs": 80,
+    "fat": 18,
+    "tags": [
+      "chicken",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-charcoal-chicken-whole-4",
+    "name": "Charcoal Chicken Whole",
+    "brand": "Abdallah",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1850,
+    "protein": 140,
+    "carbs": 105,
+    "fat": 95,
+    "tags": [
+      "chicken"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-charcoal-chicken-half-5",
+    "name": "Charcoal Chicken Half",
+    "brand": "Abdallah",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1050,
+    "protein": 78,
+    "carbs": 68,
+    "fat": 52,
+    "tags": [
+      "chicken"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-boneless-chicken-platter-6",
+    "name": "Boneless Chicken Platter",
+    "brand": "Abdallah",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 920,
+    "protein": 52,
+    "carbs": 62,
+    "fat": 42,
+    "tags": [
+      "chicken"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-tawouk-sandwich-large-7",
+    "name": "Tawouk Sandwich (Large)",
+    "brand": "Abdallah",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 580,
+    "protein": 32,
+    "carbs": 62,
+    "fat": 22,
+    "tags": [
+      "chicken",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-tawouk-sandwich-small-8",
+    "name": "Tawouk Sandwich (Small)",
+    "brand": "Abdallah",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 22,
+    "carbs": 40,
+    "fat": 14,
+    "tags": [
+      "chicken",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-tawouk-combo-9",
+    "name": "Tawouk Combo",
+    "brand": "Abdallah",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 780,
+    "protein": 34,
+    "carbs": 92,
+    "fat": 26,
+    "tags": [
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-beef-burger-lebanese-style-10",
+    "name": "Beef Burger Lebanese-Style",
+    "brand": "Abdallah",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 34,
+    "carbs": 62,
+    "fat": 36,
+    "tags": [
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-beef-burger-combo-11",
+    "name": "Beef Burger Combo",
+    "brand": "Abdallah",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 900,
+    "protein": 34,
+    "carbs": 92,
+    "fat": 42,
+    "tags": [
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-fattoush-12",
+    "name": "Fattoush",
+    "brand": "Abdallah",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 280,
+    "protein": 6,
+    "carbs": 30,
+    "fat": 15,
+    "tags": [
+      "salad"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-rocca-salad-13",
+    "name": "Rocca Salad",
+    "brand": "Abdallah",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 180,
+    "protein": 4,
+    "carbs": 12,
+    "fat": 12,
+    "tags": [
+      "salad"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-hummus-14",
+    "name": "Hummus",
+    "brand": "Abdallah",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 280,
+    "protein": 9,
+    "carbs": 24,
+    "fat": 16,
+    "tags": [],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-fries-portion-15",
+    "name": "Fries Portion",
+    "brand": "Abdallah",
+    "type": [
+      "snack"
+    ],
+    "calories": 520,
+    "protein": 6,
+    "carbs": 62,
+    "fat": 26,
+    "tags": [],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-fries-sandwich-large-16",
+    "name": "Fries Sandwich (Large)",
+    "brand": "Abdallah",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 620,
+    "protein": 10,
+    "carbs": 85,
+    "fat": 24,
+    "tags": [
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-fries-sandwich-small-17",
+    "name": "Fries Sandwich (Small)",
+    "brand": "Abdallah",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 420,
+    "protein": 7,
+    "carbs": 58,
+    "fat": 16,
+    "tags": [
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-coleslaw-18",
+    "name": "Coleslaw",
+    "brand": "Abdallah",
+    "type": [
+      "snack"
+    ],
+    "calories": 160,
+    "protein": 2,
+    "carbs": 12,
+    "fat": 12,
+    "tags": [],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-spicy-bread-19",
+    "name": "Spicy Bread",
+    "brand": "Abdallah",
+    "type": [
+      "snack"
+    ],
+    "calories": 260,
+    "protein": 6,
+    "carbs": 38,
+    "fat": 9,
+    "tags": [],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-soft-drink-20",
+    "name": "Soft Drink",
+    "brand": "Abdallah",
+    "type": [
+      "drink",
+      "snack"
+    ],
+    "calories": 140,
+    "protein": 0,
+    "carbs": 36,
+    "fat": 0,
+    "tags": [
+      "drink"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-abd-ayran-21",
+    "name": "Ayran",
+    "brand": "Abdallah",
+    "type": [
+      "drink",
+      "snack"
+    ],
+    "calories": 110,
+    "protein": 7,
+    "carbs": 12,
+    "fat": 3,
+    "tags": [
+      "drink"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-classic-tawouk-sandwich-1",
+    "name": "Classic Tawouk Sandwich",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 620,
+    "protein": 36,
+    "carbs": 58,
+    "fat": 24,
+    "tags": [
+      "chicken",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-cheese-tawouk-sandwich-2",
+    "name": "Cheese Tawouk Sandwich",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 40,
+    "carbs": 58,
+    "fat": 32,
+    "tags": [
+      "chicken",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-special-tawouk-sandwich-3",
+    "name": "Special Tawouk Sandwich",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 820,
+    "protein": 48,
+    "carbs": 62,
+    "fat": 38,
+    "tags": [
+      "chicken",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-light-tawouk-sandwich-4",
+    "name": "Light Tawouk Sandwich",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 42,
+    "carbs": 48,
+    "fat": 12,
+    "tags": [
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-charcoal-grilled-tawouk-sandwich-5",
+    "name": "Charcoal Grilled Tawouk Sandwich",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 580,
+    "protein": 36,
+    "carbs": 52,
+    "fat": 24,
+    "tags": [
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-soujouk-sandwich-6",
+    "name": "Soujouk Sandwich",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 680,
+    "protein": 28,
+    "carbs": 52,
+    "fat": 40,
+    "tags": [
+      "beef",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-chicken-liver-sandwich-7",
+    "name": "Chicken Liver Sandwich",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 440,
+    "protein": 28,
+    "carbs": 42,
+    "fat": 18,
+    "tags": [
+      "chicken",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-chicken-escalope-sandwich-8",
+    "name": "Chicken Escalope Sandwich",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 34,
+    "carbs": 62,
+    "fat": 36,
+    "tags": [
+      "chicken",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-chicken-shawarma-sandwich-9",
+    "name": "Chicken Shawarma Sandwich",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 580,
+    "protein": 32,
+    "carbs": 54,
+    "fat": 26,
+    "tags": [
+      "chicken",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-crispy-chicken-burger-10",
+    "name": "Crispy Chicken Burger",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 820,
+    "protein": 34,
+    "carbs": 68,
+    "fat": 44,
+    "tags": [
+      "chicken",
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-asian-chicken-salad-11",
+    "name": "Asian Chicken Salad",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 520,
+    "protein": 34,
+    "carbs": 36,
+    "fat": 28,
+    "tags": [
+      "chicken",
+      "salad"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-quinoa-chicken-salad-12",
+    "name": "Quinoa Chicken Salad",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 34,
+    "carbs": 42,
+    "fat": 20,
+    "tags": [
+      "chicken",
+      "salad"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-high-protein-salad-13",
+    "name": "High Protein Salad",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 540,
+    "protein": 48,
+    "carbs": 24,
+    "fat": 28,
+    "tags": [
+      "chicken",
+      "salad"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-mexican-chicken-salad-14",
+    "name": "Mexican Chicken Salad",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 420,
+    "protein": 32,
+    "carbs": 28,
+    "fat": 22,
+    "tags": [
+      "chicken",
+      "salad"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-caesar-salad-15",
+    "name": "Caesar Salad",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 12,
+    "carbs": 22,
+    "fat": 28,
+    "tags": [
+      "salad"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-chicken-avocado-salad-16",
+    "name": "Chicken Avocado Salad",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 34,
+    "carbs": 24,
+    "fat": 28,
+    "tags": [
+      "chicken",
+      "salad"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-greek-chicken-bowl-17",
+    "name": "Greek Chicken Bowl",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 680,
+    "protein": 40,
+    "carbs": 72,
+    "fat": 24,
+    "tags": [
+      "chicken"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-chicken-teriyaki-bowl-18",
+    "name": "Chicken Teriyaki Bowl",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 640,
+    "protein": 40,
+    "carbs": 75,
+    "fat": 18,
+    "tags": [
+      "chicken"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-mexican-chicken-bowl-19",
+    "name": "Mexican Chicken Bowl",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 660,
+    "protein": 38,
+    "carbs": 72,
+    "fat": 22,
+    "tags": [
+      "chicken"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-grilled-tawouk-platter-20",
+    "name": "Grilled Tawouk Platter",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 820,
+    "protein": 50,
+    "carbs": 78,
+    "fat": 28,
+    "tags": [],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-grilled-chicken-platter-21",
+    "name": "Grilled Chicken Platter",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 820,
+    "protein": 58,
+    "carbs": 62,
+    "fat": 28,
+    "tags": [
+      "chicken",
+      "salad"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-chicken-escalope-platter-22",
+    "name": "Chicken Escalope Platter",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1080,
+    "protein": 40,
+    "carbs": 92,
+    "fat": 54,
+    "tags": [
+      "chicken"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-mexican-chicken-toasted-baguette-23",
+    "name": "Mexican Chicken Toasted Baguette",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 620,
+    "protein": 30,
+    "carbs": 58,
+    "fat": 28,
+    "tags": [
+      "chicken",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-francisco-toasted-baguette-24",
+    "name": "Francisco Toasted Baguette",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 640,
+    "protein": 30,
+    "carbs": 62,
+    "fat": 28,
+    "tags": [
+      "chicken",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-classic-tawouk-toasted-baguette-25",
+    "name": "Classic Tawouk Toasted Baguette",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 540,
+    "protein": 32,
+    "carbs": 56,
+    "fat": 18,
+    "tags": [
+      "chicken",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-soujouk-toasted-baguette-26",
+    "name": "Soujouk Toasted Baguette",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 640,
+    "protein": 24,
+    "carbs": 52,
+    "fat": 36,
+    "tags": [
+      "beef",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-chicken-liver-toasted-baguette-27",
+    "name": "Chicken Liver Toasted Baguette",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 24,
+    "carbs": 48,
+    "fat": 22,
+    "tags": [
+      "chicken",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-classic-beef-hotdog-28",
+    "name": "Classic Beef Hotdog",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 620,
+    "protein": 22,
+    "carbs": 58,
+    "fat": 34,
+    "tags": [
+      "beef",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-lebanese-beef-burger-29",
+    "name": "Lebanese Beef Burger",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 780,
+    "protein": 36,
+    "carbs": 56,
+    "fat": 42,
+    "tags": [
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-cheese-beef-burger-30",
+    "name": "Cheese Beef Burger",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 760,
+    "protein": 38,
+    "carbs": 42,
+    "fat": 42,
+    "tags": [
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-lebanese-special-burger-31",
+    "name": "Lebanese Special Burger",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 880,
+    "protein": 42,
+    "carbs": 58,
+    "fat": 48,
+    "tags": [
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-grilled-chicken-burger-32",
+    "name": "Grilled Chicken Burger",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 640,
+    "protein": 38,
+    "carbs": 48,
+    "fat": 28,
+    "tags": [
+      "chicken",
+      "beef",
+      "burger"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-switch-shawarma-sandwich-vegan-33",
+    "name": "Switch Shawarma Sandwich (Vegan)",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 18,
+    "carbs": 58,
+    "fat": 18,
+    "tags": [
+      "chicken",
+      "sandwich"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-switch-teriyaki-bowl-vegan-34",
+    "name": "Switch Teriyaki Bowl (Vegan)",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 580,
+    "protein": 18,
+    "carbs": 80,
+    "fat": 16,
+    "tags": [
+      "chicken"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-switch-mexican-salad-vegan-35",
+    "name": "Switch Mexican Salad (Vegan)",
+    "brand": "Malak al Taouk",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 16,
+    "carbs": 52,
+    "fat": 22,
+    "tags": [
+      "chicken",
+      "salad"
+    ],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-french-fries-portion-36",
+    "name": "French Fries Portion",
+    "brand": "Malak al Taouk",
+    "type": [
+      "snack"
+    ],
+    "calories": 420,
+    "protein": 4,
+    "carbs": 50,
+    "fat": 22,
+    "tags": [],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-deluxe-rustic-fries-37",
+    "name": "Deluxe Rustic Fries",
+    "brand": "Malak al Taouk",
+    "type": [
+      "snack"
+    ],
+    "calories": 480,
+    "protein": 5,
+    "carbs": 58,
+    "fat": 24,
+    "tags": [],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-tawouk-breaded-bites-38",
+    "name": "Tawouk Breaded Bites",
+    "brand": "Malak al Taouk",
+    "type": [
+      "snack"
+    ],
+    "calories": 540,
+    "protein": 32,
+    "carbs": 40,
+    "fat": 24,
+    "tags": [],
+    "country": "Lebanon"
+  },
+  {
+    "id": "lb-mt-hummus-side-39",
+    "name": "Hummus Side",
+    "brand": "Malak al Taouk",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 280,
+    "protein": 9,
+    "carbs": 24,
+    "fat": 16,
+    "tags": [],
     "country": "Lebanon"
   }
 ];

@@ -62,25 +62,44 @@ const ROADSTER = require('./_menu_data/roadster.json');
 const CREPAWAY = require('./_menu_data/crepaway.json');
 const DIPNDIP  = require('./_menu_data/dipndip.json');
 const ZWZ      = require('./_menu_data/zwz.json');
+const MCDO     = require('./_menu_data/mcdonalds.json');
+const SWISSB   = require('./_menu_data/swissbutter.json');
+const ABDALLAH = require('./_menu_data/abdallah.json');
+const MALAK    = require('./_menu_data/malak.json');
 
 // Strip existing entries for these brands
-const brandsToReplace = new Set(['Roadster Diner', 'Crepaway', 'Dip n Dip', 'Zaatar w Zeit']);
+const brandsToReplace = new Set([
+  'Roadster Diner', 'Crepaway', 'Dip n Dip', 'Zaatar w Zeit',
+  "McDonald's Lebanon", 'SwissButter', 'Abdallah', 'Malak al Taouk',
+]);
 const kept = existing.filter(e => !brandsToReplace.has(e.brand));
 
-const newRoadster = buildEntries('Roadster Diner', 'lb-road', ROADSTER);
-const newCrepaway = buildEntries('Crepaway',       'lb-crep', CREPAWAY);
-const newDipndip  = buildEntries('Dip n Dip',      'lb-dnd',  DIPNDIP);
-const newZwz      = buildEntries('Zaatar w Zeit',  'lb-zwz',  ZWZ);
+const newRoadster = buildEntries('Roadster Diner',     'lb-road',  ROADSTER);
+const newCrepaway = buildEntries('Crepaway',           'lb-crep',  CREPAWAY);
+const newDipndip  = buildEntries('Dip n Dip',          'lb-dnd',   DIPNDIP);
+const newZwz      = buildEntries('Zaatar w Zeit',      'lb-zwz',   ZWZ);
+const newMcdo     = buildEntries("McDonald's Lebanon", 'lb-mcdo',  MCDO);
+const newSwissb   = buildEntries('SwissButter',        'lb-sb',    SWISSB);
+const newAbd      = buildEntries('Abdallah',           'lb-abd',   ABDALLAH);
+const newMalak    = buildEntries('Malak al Taouk',     'lb-mt',    MALAK);
 
-const merged = [...kept, ...newRoadster, ...newCrepaway, ...newDipndip, ...newZwz];
+const merged = [
+  ...kept,
+  ...newRoadster, ...newCrepaway, ...newDipndip, ...newZwz,
+  ...newMcdo, ...newSwissb, ...newAbd, ...newMalak,
+];
 
 // Pretty-print 2-space indentation matching existing style
 const out = 'module.exports = ' + JSON.stringify(merged, null, 2) + ';\n';
 fs.writeFileSync(DATA_PATH, out);
 
 console.log(`Wrote ${merged.length} total entries.`);
-console.log(`  Kept: ${kept.length} (other brands)`);
-console.log(`  Roadster: ${newRoadster.length}`);
-console.log(`  Crepaway: ${newCrepaway.length}`);
-console.log(`  Dip n Dip: ${newDipndip.length}`);
-console.log(`  Zaatar w Zeit: ${newZwz.length}`);
+console.log(`  Kept (other brands):  ${kept.length}`);
+console.log(`  Roadster:             ${newRoadster.length}`);
+console.log(`  Crepaway:             ${newCrepaway.length}`);
+console.log(`  Dip n Dip:            ${newDipndip.length}`);
+console.log(`  Zaatar w Zeit:        ${newZwz.length}`);
+console.log(`  McDonald's Lebanon:   ${newMcdo.length}`);
+console.log(`  SwissButter:          ${newSwissb.length}`);
+console.log(`  Abdallah:             ${newAbd.length}`);
+console.log(`  Malak al Taouk:       ${newMalak.length}`);
