@@ -328,7 +328,7 @@ function LocalMediaCard({ media, height, color, handle, instaUrl }) {
         playsInline
         loop
         muted={muted}
-        preload="auto"
+        preload="metadata"
         onClick={togglePlay}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
@@ -566,36 +566,37 @@ export default function TrendsPage() {
   const isAll      = activeAccount === 'all';
   const totalPages = isAll ? TOTAL_PAGES : 1;
 
-  // Prefetch ALL other pages' video files in the background so navigating
-  // to any page is near-instant. Staggered to avoid hammering the network
-  // all at once. Uses <link rel="prefetch"> = low-priority idle download.
+  // Prefetch other pages' videos in the background AFTER giving the
+  // current page 2.5s to load first. Closer pages prefetch sooner.
   useEffect(() => {
     if (!isAll) return;
     const links = [];
     const timers = [];
-    // Build queue of (delay, src) for every video on every other page
-    let delay = 0;
+    // Build a queue ordered by distance from current page
+    const queue = [];
     for (let p = 0; p < TOTAL_PAGES; p++) {
       if (p === page) continue;
-      // Pages closer to current load first
       const distance = Math.abs(p - page);
       getPageReels(p).forEach(reel => {
         if (reel.localMedia?.kind === 'video') {
-          const src = reel.localMedia.src;
-          const t = setTimeout(() => {
-            const link = document.createElement('link');
-            link.rel = 'prefetch';
-            link.as = 'video';
-            link.href = src;
-            document.head.appendChild(link);
-            links.push(link);
-          }, delay);
-          timers.push(t);
-          // 150ms stagger per file, plus extra 500ms per page-distance jump
-          delay += 150 + distance * 50;
+          queue.push({ src: reel.localMedia.src, distance });
         }
       });
     }
+    queue.sort((a, b) => a.distance - b.distance);
+    // Start after a 2.5s warm-up, then 250ms between each prefetch
+    queue.forEach((item, i) => {
+      const delay = 2500 + i * 250;
+      const t = setTimeout(() => {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.as = 'video';
+        link.href = item.src;
+        document.head.appendChild(link);
+        links.push(link);
+      }, delay);
+      timers.push(t);
+    });
     return () => {
       timers.forEach(t => clearTimeout(t));
       links.forEach(l => l.remove());
