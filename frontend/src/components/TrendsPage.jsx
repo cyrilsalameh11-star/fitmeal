@@ -298,19 +298,7 @@ function LocalMediaCard({ media, height, color, handle, instaUrl }) {
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
   const [showControls, setShowControls] = useState(false);
-  const [inView, setInView] = useState(false);
-  const containerRef = useRef(null);
   const videoRef = useRef(null);
-
-  // Only start fetching the video when the card is in or near the viewport
-  useEffect(() => {
-    if (!containerRef.current || media.kind !== 'video') return;
-    const io = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) { setInView(true); io.disconnect(); }
-    }, { rootMargin: '400px' });
-    io.observe(containerRef.current);
-    return () => io.disconnect();
-  }, [media.kind]);
 
   if (media.kind === 'image') {
     return (
@@ -330,19 +318,17 @@ function LocalMediaCard({ media, height, color, handle, instaUrl }) {
 
   return (
     <div
-      ref={containerRef}
       style={{ position: 'relative', height, overflow: 'hidden', background: '#000' }}
       onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => setShowControls(false)}
     >
       <video
         ref={videoRef}
-        src={inView ? media.src : undefined}
+        src={media.src}
         playsInline
         loop
         muted={muted}
-        preload={inView ? 'auto' : 'none'}
-        poster=""
+        preload="auto"
         onClick={togglePlay}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
