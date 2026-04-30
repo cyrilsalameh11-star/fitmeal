@@ -298,7 +298,19 @@ function LocalMediaCard({ media, height, color, handle, instaUrl }) {
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
   const [showControls, setShowControls] = useState(false);
+  const [inView, setInView] = useState(false);
+  const containerRef = useRef(null);
   const videoRef = useRef(null);
+
+  // Only start fetching the video when the card is in or near the viewport
+  useEffect(() => {
+    if (!containerRef.current || media.kind !== 'video') return;
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setInView(true); io.disconnect(); }
+    }, { rootMargin: '400px' });
+    io.observe(containerRef.current);
+    return () => io.disconnect();
+  }, [media.kind]);
 
   if (media.kind === 'image') {
     return (
@@ -318,17 +330,18 @@ function LocalMediaCard({ media, height, color, handle, instaUrl }) {
 
   return (
     <div
+      ref={containerRef}
       style={{ position: 'relative', height, overflow: 'hidden', background: '#000' }}
       onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => setShowControls(false)}
     >
       <video
         ref={videoRef}
-        src={media.src}
+        src={inView ? media.src : undefined}
         playsInline
         loop
         muted={muted}
-        preload="metadata"
+        preload={inView ? 'auto' : 'none'}
         poster=""
         onClick={togglePlay}
         onPlay={() => setPlaying(true)}
@@ -566,6 +579,26 @@ export default function TrendsPage() {
 
   const isAll      = activeAccount === 'all';
   const totalPages = isAll ? TOTAL_PAGES : 1;
+
+  // Prefetch the NEXT page's video files in the background, so when user
+  // clicks page N+1 the videos are already in the browser cache.
+  useEffect(() => {
+    if (!isAll) return;
+    const nextPage = page + 1;
+    if (nextPage >= TOTAL_PAGES) return;
+    const links = [];
+    getPageReels(nextPage).forEach(reel => {
+      if (reel.localMedia?.kind === 'video') {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.as = 'video';
+        link.href = reel.localMedia.src;
+        document.head.appendChild(link);
+        links.push(link);
+      }
+    });
+    return () => { links.forEach(l => l.remove()); };
+  }, [page, isAll]);
 
   const currentReels = isAll
     ? getPageReels(page)
