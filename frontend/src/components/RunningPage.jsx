@@ -133,6 +133,20 @@ function saveLocalRuns(runs) {
   try { localStorage.setItem(LOCAL_RUNS_KEY, JSON.stringify(runs)); } catch {}
 }
 
+// Dedupe by activityId first, falling back to link. Keeps the FIRST occurrence
+// of each key (so prepending a new run automatically wins over older copies).
+function dedupeRuns(runs) {
+  const seen = new Set();
+  const out = [];
+  for (const r of runs) {
+    const key = r?.activityId || r?.link;
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push(r);
+  }
+  return out;
+}
+
 function extractActivityId(url) {
   const m = String(url).match(/strava\.com\/activities\/(\d+)/i);
   return m ? m[1] : null;
@@ -143,7 +157,7 @@ export default function RunningContent() {
   const [stravaUrl, setStravaUrl] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitMsg, setSubmitMsg] = useState(null);
-  const [sharedRuns, setSharedRuns] = useState(() => loadLocalRuns());
+  const [sharedRuns, setSharedRuns] = useState(() => dedupeRuns(loadLocalRuns()));
   const city = RUNNING_CITIES[activeCityId];
 
   useEffect(() => {
@@ -151,15 +165,8 @@ export default function RunningContent() {
       .then(res => res.ok ? res.json() : null)
       .then(data => {
         if (data && data.runs && data.runs.length > 0) {
-          // Merge cloud + local, dedupe by link
-          const local = loadLocalRuns();
-          const seen = new Set();
-          const merged = [...data.runs, ...local].filter(r => {
-            const key = r.link || r.activityId;
-            if (!key || seen.has(key)) return false;
-            seen.add(key); return true;
-          });
-          setSharedRuns(merged);
+          // Merge cloud (canonical, first) + local, dedupe by activityId
+          setSharedRuns(dedupeRuns([...data.runs, ...loadLocalRuns()]));
         }
       })
       .catch(() => { /* offline / 503 — keep local only */ });
@@ -213,10 +220,9 @@ export default function RunningContent() {
     };
 
     // Always save locally + render immediately, so it works regardless of backend
-    const localRuns = loadLocalRuns();
-    const updatedLocal = [newRun, ...localRuns.filter(r => r.activityId !== activityId)].slice(0, 50);
+    const updatedLocal = dedupeRuns([newRun, ...loadLocalRuns()]).slice(0, 50);
     saveLocalRuns(updatedLocal);
-    setSharedRuns(prev => [newRun, ...prev.filter(r => r.activityId !== activityId)]);
+    setSharedRuns(prev => dedupeRuns([newRun, ...prev]));
     setStravaUrl('');
     setSubmitMsg({ type: 'success', text: 'Run shared! Card loading below…' });
 
