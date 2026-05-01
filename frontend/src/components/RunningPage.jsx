@@ -133,9 +133,16 @@ function saveLocalRuns(runs) {
   try { localStorage.setItem(LOCAL_RUNS_KEY, JSON.stringify(runs)); } catch {}
 }
 
+const CITY_OPTIONS = ['Lebanon', 'Paris', 'New York', 'Madrid', 'Other'];
+
 export default function RunningContent() {
   const [activeCityId, setActiveCityId] = useState('Lebanon');
   const [stravaUrl, setStravaUrl] = useState('');
+  const [runName, setRunName] = useState('');
+  const [runDistance, setRunDistance] = useState('');
+  const [runTime, setRunTime] = useState('');
+  const [runElevation, setRunElevation] = useState('');
+  const [runCity, setRunCity] = useState('Lebanon');
   const [submitting, setSubmitting] = useState(false);
   const [submitMsg, setSubmitMsg] = useState(null); // { type: 'success'|'error', text }
   const [sharedRuns, setSharedRuns] = useState(() => [...loadLocalRuns(), ...INITIAL_REAL_EXAMPLES]);
@@ -171,16 +178,29 @@ export default function RunningContent() {
       setSubmitMsg({ type: 'error', text: 'Paste a strava.com or strava.app.link URL.' });
       return;
     }
+    if (!runDistance.trim() || !runTime.trim()) {
+      setSubmitMsg({ type: 'error', text: 'Distance and time are required.' });
+      return;
+    }
     setSubmitting(true);
     setSubmitMsg(null);
 
+    // Normalize distance: accept "5", "5.2", "5.2km", "5,2 km" → "5.2km"
+    const dist = runDistance.trim().replace(',', '.').replace(/\s*km\s*$/i, '');
+    const distFmt = isNaN(parseFloat(dist)) ? runDistance.trim() : `${parseFloat(dist).toFixed(1)}km`;
+    // Normalize time: accept "26:30" or "1:02:18"
+    const timeFmt = runTime.trim();
+    // Normalize elevation: accept "12", "12m" → "12m"
+    const elev = runElevation.trim().replace(/\s*m\s*$/i, '');
+    const elevFmt = elev ? `${parseInt(elev) || 0}m` : '0m';
+
     const newRun = {
-      name: 'Community Run',
+      name: runName.trim() || 'Community Run',
       user: localStorage.getItem('fitmeal_username') || 'Guest',
-      distance: (Math.random() * 8 + 3).toFixed(1) + 'km',
-      time: (Math.random() * 25 + 25).toFixed(0) + ':00',
-      elevation: (Math.random() * 80).toFixed(0) + 'm',
-      city: activeCityId,
+      distance: distFmt,
+      time: timeFmt,
+      elevation: elevFmt,
+      city: runCity,
       link: stravaUrl.trim(),
     };
 
@@ -190,6 +210,9 @@ export default function RunningContent() {
     saveLocalRuns(updatedLocal);
     setSharedRuns(prev => [newRun, ...prev]);
     setStravaUrl('');
+    setRunName(''); setRunDistance(''); setRunTime(''); setRunElevation('');
+    // Switch the map tab to the city of the run they just added
+    if (CITY_OPTIONS.slice(0, 4).includes(runCity)) setActiveCityId(runCity);
     setSubmitMsg({ type: 'success', text: 'Run shared! Visible on your device + cloud if online.' });
 
     // 2) Best-effort POST to backend for cross-device sync
@@ -293,15 +316,59 @@ export default function RunningContent() {
               Join the heatmap. Connect your Strava and paste a public activity link to contribute.
             </p>
 
-            <form onSubmit={handleShare} className="space-y-3">
+            <form onSubmit={handleShare} className="space-y-2">
               <input
                 type="url"
-                placeholder="Strava Activity URL..."
+                placeholder="Strava Activity URL"
                 value={stravaUrl}
                 onChange={e => setStravaUrl(e.target.value)}
                 disabled={submitting}
                 className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium disabled:opacity-50"
               />
+              <input
+                type="text"
+                placeholder="Run name (e.g. Morning Park Loop)"
+                value={runName}
+                onChange={e => setRunName(e.target.value)}
+                disabled={submitting}
+                className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium disabled:opacity-50"
+              />
+              <div className="grid grid-cols-2 gap-2">
+                <input
+                  type="text"
+                  placeholder="Distance (km)"
+                  value={runDistance}
+                  onChange={e => setRunDistance(e.target.value)}
+                  disabled={submitting}
+                  className="bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium disabled:opacity-50"
+                />
+                <input
+                  type="text"
+                  placeholder="Time (mm:ss)"
+                  value={runTime}
+                  onChange={e => setRunTime(e.target.value)}
+                  disabled={submitting}
+                  className="bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium disabled:opacity-50"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <input
+                  type="text"
+                  placeholder="Elevation (m)"
+                  value={runElevation}
+                  onChange={e => setRunElevation(e.target.value)}
+                  disabled={submitting}
+                  className="bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium disabled:opacity-50"
+                />
+                <select
+                  value={runCity}
+                  onChange={e => setRunCity(e.target.value)}
+                  disabled={submitting}
+                  className="bg-gray-50 border border-gray-100 rounded-xl px-3 py-3 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium disabled:opacity-50"
+                >
+                  {CITY_OPTIONS.map(c => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </div>
               <button
                 type="submit"
                 disabled={submitting}
