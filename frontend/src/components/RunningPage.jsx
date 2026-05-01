@@ -133,16 +133,23 @@ function saveLocalRuns(runs) {
   try { localStorage.setItem(LOCAL_RUNS_KEY, JSON.stringify(runs)); } catch {}
 }
 
-// Dedupe by activityId first, falling back to link. Keeps the FIRST occurrence
-// of each key (so prepending a new run automatically wins over older copies).
+// Drop legacy entries (no activityId — those are the old random-data format)
+// and dedupe by activityId. Keeps the FIRST occurrence of each id, so a
+// freshly-prepended run always wins over older copies.
 function dedupeRuns(runs) {
   const seen = new Set();
   const out = [];
   for (const r of runs) {
-    const key = r?.activityId || r?.link;
-    if (!key || seen.has(key)) continue;
-    seen.add(key);
-    out.push(r);
+    // If we can extract an activityId from the link, attach it for dedupe
+    let id = r?.activityId;
+    if (!id && r?.link) {
+      const m = String(r.link).match(/strava\.com\/activities\/(\d+)/i);
+      if (m) id = m[1];
+    }
+    if (!id) continue; // skip legacy entries without an activity ID
+    if (seen.has(id)) continue;
+    seen.add(id);
+    out.push({ ...r, activityId: id });
   }
   return out;
 }

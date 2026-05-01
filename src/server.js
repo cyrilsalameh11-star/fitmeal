@@ -202,17 +202,29 @@ app.get('/api/strava/resolve', async (req, res) => {
   let distance = null, duration = null, pace = null, location = null, runDate = null;
   try {
     const page = await axios.get(`https://www.strava.com/activities/${activityId}`, {
-      maxRedirects: 5, timeout: 8000, headers: HEADERS, validateStatus: () => true,
+      maxRedirects: 5, timeout: 10000, headers: HEADERS, validateStatus: () => true,
     });
+    if (page.status !== 200) {
+      console.warn(`Strava resolve: activity ${activityId} returned status ${page.status}`);
+    }
     const html = String(page.data || '');
-    const grab = (re) => { const m = html.match(re); return m ? m[1].trim() : null; };
     const decode = (s) => s ? s
       .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
       .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&nbsp;/g, ' ') : s;
+    const grab = (re) => { const m = html.match(re); return m ? m[1].trim() : null; };
+    // Bidirectional meta-tag matcher (handles property-then-content OR content-then-property)
+    const ogMeta = (prop) => {
+      const re1 = new RegExp(`<meta[^>]+property=["']${prop}["'][^>]+content=["']([^"']+)["']`, 'i');
+      const re2 = new RegExp(`<meta[^>]+content=["']([^"']+)["'][^>]+property=["']${prop}["']`, 'i');
+      return (html.match(re1) || html.match(re2) || [])[1] || null;
+    };
 
-    title       = decode(grab(/<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']/i));
-    image       =        grab(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
-    description = decode(grab(/<meta\s+property=["']og:description["']\s+content=["']([^"']+)["']/i));
+    title       = decode(ogMeta('og:title'));
+    image       =        ogMeta('og:image');
+    description = decode(ogMeta('og:description'));
+    if (!title && !image) {
+      console.warn(`Strava resolve: no OG tags found for ${activityId} (page len=${html.length})`);
+    }
 
     // Distance: "X.XX km" pattern (description usually has it first)
     const distM = (description || html).match(/(\d+(?:[.,]\d+)?)\s*(km|mi)/i);
