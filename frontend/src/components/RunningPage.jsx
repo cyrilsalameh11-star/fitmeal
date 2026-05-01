@@ -401,15 +401,17 @@ export default function RunningContent() {
                       <div>
                         <div className="flex items-center justify-between gap-2 mb-1.5">
                           <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider truncate">{ex.user || 'Community'}</p>
-                          {ex.runDate && (
+                          {ex.sharedAt && (
                             <p className="text-[10px] text-gray-400 font-medium tabular-nums whitespace-nowrap">
                               {(() => {
                                 try {
-                                  const d = new Date(ex.runDate);
-                                  if (isNaN(d.getTime())) return ex.runDate;
-                                  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
-                                       + ' · ' + d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
-                                } catch { return ex.runDate; }
+                                  const d = new Date(ex.sharedAt);
+                                  if (isNaN(d.getTime())) return null;
+                                  return 'Shared ' +
+                                    d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) +
+                                    ' · ' +
+                                    d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+                                } catch { return null; }
                               })()}
                             </p>
                           )}
