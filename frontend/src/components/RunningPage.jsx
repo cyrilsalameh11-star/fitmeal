@@ -6,23 +6,20 @@ import { Activity, Share2, Map as MapIcon, ChevronRight, Zap, Target, ExternalLi
 
 const RUNNING_CITIES = {
   Lebanon: {
-    name: 'Beirut Corniche, Lebanon',
-    lat: 33.8985,
-    lng: 35.4810,
-    zoom: 15,
+    name: 'Raouche Promenade, Beirut',
+    lat: 33.8950,
+    lng: 35.4710,
+    zoom: 17,
     trails: [
-      // Beirut Corniche road following the actual coast: Ain el-Mreisseh → arc NW around the peninsula bulge
-      // → Manara lighthouse → Raouche / Pigeon Rocks viewpoint, out-and-back
+      // Raouche promenade only — the seafront road in front of Pigeon Rocks, out-and-back
       [
-        [33.9012, 35.4923], [33.9018, 35.4905], [33.9024, 35.4888], [33.9030, 35.4870], [33.9035, 35.4852],
-        [33.9039, 35.4835], [33.9042, 35.4818], [33.9043, 35.4802], [33.9038, 35.4793], [33.9028, 35.4790],
-        [33.9018, 35.4787], [33.9008, 35.4778], [33.8998, 35.4762], [33.8988, 35.4745], [33.8978, 35.4729],
-        [33.8968, 35.4716], [33.8958, 35.4704], [33.8948, 35.4695], [33.8943, 35.4691],
-        // Pigeon Rocks viewpoint — turn around and head back along the same Corniche
-        [33.8948, 35.4695], [33.8958, 35.4704], [33.8968, 35.4716], [33.8978, 35.4729], [33.8988, 35.4745],
-        [33.8998, 35.4762], [33.9008, 35.4778], [33.9018, 35.4787], [33.9028, 35.4790], [33.9038, 35.4793],
-        [33.9043, 35.4802], [33.9042, 35.4818], [33.9039, 35.4835], [33.9035, 35.4852], [33.9030, 35.4870],
-        [33.9024, 35.4888], [33.9018, 35.4905], [33.9012, 35.4923]
+        [33.8975, 35.4735], [33.8970, 35.4727], [33.8965, 35.4720], [33.8960, 35.4712], [33.8955, 35.4705],
+        [33.8950, 35.4699], [33.8946, 35.4694], [33.8942, 35.4691], [33.8938, 35.4690], [33.8934, 35.4691],
+        [33.8930, 35.4695], [33.8926, 35.4701], [33.8922, 35.4709],
+        // Turn around and come back along the same promenade
+        [33.8926, 35.4701], [33.8930, 35.4695], [33.8934, 35.4691], [33.8938, 35.4690], [33.8942, 35.4691],
+        [33.8946, 35.4694], [33.8950, 35.4699], [33.8955, 35.4705], [33.8960, 35.4712], [33.8965, 35.4720],
+        [33.8970, 35.4727], [33.8975, 35.4735]
       ]
     ]
   },
@@ -93,8 +90,8 @@ const RUNNING_CITIES = {
 };
 
 const INITIAL_REAL_EXAMPLES = [
-  { name: 'Manara to Raouche Corniche', user: 'Cyril S.', distance: '5.2km', time: '26:08', elevation: '12m', city: 'Lebanon', link: 'https://www.strava.com/segments/explore?bounds=33.8930,35.4658,33.9043,35.4805&activity_type=running' },
-  { name: 'Raouche Sunset Loop', user: 'Rony G.', distance: '3.8km', time: '19:14', elevation: '8m', city: 'Lebanon', link: 'https://www.strava.com/segments/explore?bounds=33.8930,35.4658,33.9019,35.4756&activity_type=running' },
+  { name: 'Raouche Promenade Out-and-Back', user: 'Cyril S.', distance: '2.4km', time: '12:18', elevation: '6m', city: 'Lebanon', link: 'https://www.strava.com/segments/explore?bounds=33.8920,35.4685,33.8978,35.4738&activity_type=running' },
+  { name: 'Pigeon Rocks Sunset Loop', user: 'Rony G.', distance: '1.8km', time: '9:14', elevation: '4m', city: 'Lebanon', link: 'https://www.strava.com/segments/explore?bounds=33.8930,35.4688,33.8965,35.4720&activity_type=running' },
   { name: 'Paris Seine Loop', user: 'Marc L.', distance: '8.4km', time: '42:10', elevation: '12m', city: 'Paris', link: 'https://www.strava.com/segments/explore?bounds=48.8508,2.3241,48.8622,2.3521&activity_type=running' },
   { name: 'Central Park Full Loop', user: 'Sarah J.', distance: '9.8km', time: '44:32', elevation: '72m', city: 'New York', link: 'https://www.strava.com/segments/explore?bounds=40.7655,-73.9825,40.8065,-73.9500&activity_type=running' },
   { name: 'Retiro Perimeter', user: 'Jordi M.', distance: '5.1km', time: '22:15', elevation: '14m', city: 'Madrid', link: 'https://www.strava.com/segments/explore?bounds=40.4062,-3.6895,40.4222,-3.6680&activity_type=running' }
