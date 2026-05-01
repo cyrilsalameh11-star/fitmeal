@@ -162,37 +162,65 @@ app.get('/api/running/runs', async (req, res) => {
   }
 });
 
-// Resolve a Strava share URL (strava.app.link/..., m.strava.com/..., etc.)
-// to the canonical strava.com/activities/<id> by following redirects.
+// Resolve a Strava share URL to {activityId, embedSrc}. Handles both
+// strava.app.link/... mobile shares and direct strava.com/activities/<id> URLs.
+// embedSrc is the proper /embed/<token> URL needed for the iframe to render.
 app.get('/api/strava/resolve', async (req, res) => {
   const url = req.query.url;
   if (!url || !/strava\.(com|app)/i.test(String(url))) {
     return res.status(400).json({ error: 'invalid strava url' });
   }
-  try {
-    const axios = require('axios');
-    // Use a real-browser User-Agent so app.link doesn't gate us out.
-    const resp = await axios.get(String(url), {
-      maxRedirects: 10,
-      validateStatus: () => true,
-      timeout: 8000,
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-      },
-    });
-    const finalUrl = (resp.request?.res?.responseUrl) || (resp.request?.responseURL) || String(url);
-    let m = finalUrl.match(/strava\.com\/activities\/(\d+)/i);
-    if (!m) {
-      // app.link pages embed the destination via meta/canonical/og tags or JS redirect.
-      const html = String(resp.data || '');
-      m = html.match(/strava\.com\/activities\/(\d+)/i);
+  const axios = require('axios');
+  const HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  };
+
+  // Step 1: Get activityId. Try direct match, then follow redirects.
+  let activityId = null;
+  let m = String(url).match(/strava\.com\/activities\/(\d+)/i);
+  if (m) activityId = m[1];
+
+  if (!activityId) {
+    try {
+      const resp = await axios.get(String(url), {
+        maxRedirects: 10, validateStatus: () => true, timeout: 8000, headers: HEADERS,
+      });
+      const finalUrl = (resp.request?.res?.responseUrl) || String(url);
+      m = finalUrl.match(/strava\.com\/activities\/(\d+)/i);
+      if (!m) m = String(resp.data || '').match(/strava\.com\/activities\/(\d+)/i);
+      if (m) activityId = m[1];
+    } catch (e) {
+      return res.status(500).json({ error: 'redirect resolve failed: ' + e.message });
     }
-    if (m) return res.json({ activityId: m[1], finalUrl });
-    return res.status(404).json({ error: 'no activity id in redirect chain' });
-  } catch (e) {
-    return res.status(500).json({ error: e.message });
   }
+  if (!activityId) return res.status(404).json({ error: 'no activity id found' });
+
+  // Step 2: Use Strava oEmbed to get the proper /embed/<token> URL.
+  try {
+    const oembedUrl = `https://www.strava.com/oembed?url=${encodeURIComponent(`https://www.strava.com/activities/${activityId}`)}&format=json`;
+    const oembed = await axios.get(oembedUrl, { timeout: 8000, headers: HEADERS, validateStatus: () => true });
+    if (oembed.status === 200 && oembed.data && oembed.data.html) {
+      const srcMatch = String(oembed.data.html).match(/src=['"]([^'"]+\/embed\/[^'"]+)['"]/);
+      if (srcMatch) {
+        return res.json({ activityId, embedSrc: srcMatch[1], title: oembed.data.title || null });
+      }
+    }
+  } catch { /* fall through */ }
+
+  // Step 3: Fallback — scrape the activity page for the embed token.
+  try {
+    const page = await axios.get(`https://www.strava.com/activities/${activityId}`, {
+      maxRedirects: 5, timeout: 8000, headers: HEADERS, validateStatus: () => true,
+    });
+    const tok = String(page.data || '').match(/\/activities\/\d+\/embed\/([a-f0-9]+)/i);
+    if (tok) {
+      return res.json({ activityId, embedSrc: `https://www.strava.com/activities/${activityId}/embed/${tok[1]}` });
+    }
+  } catch { /* */ }
+
+  // Last resort: return id without embedSrc; client can fall back to a link card.
+  return res.json({ activityId, embedSrc: null });
 });
 
 app.post('/api/running/runs', async (req, res) => {

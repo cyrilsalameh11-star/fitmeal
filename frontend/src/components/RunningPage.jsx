@@ -178,31 +178,32 @@ export default function RunningContent() {
     }
 
     setSubmitting(true);
-    setSubmitMsg(null);
+    setSubmitMsg({ type: 'success', text: 'Resolving Strava link…' });
 
-    // Try direct extraction first
-    let activityId = extractActivityId(url);
+    // Always call the resolver — both for app.link redirects AND to fetch the
+    // proper /embed/<token> URL via Strava oEmbed (the iframe is blank without it).
+    let activityId = null, embedSrc = null;
+    try {
+      const r = await fetch(`/api/strava/resolve?url=${encodeURIComponent(url)}`);
+      if (r.ok) {
+        const data = await r.json();
+        activityId = data.activityId || null;
+        embedSrc   = data.embedSrc   || null;
+      }
+    } catch { /* ignore */ }
 
-    // If it's an app.link / mobile share, resolve via backend
-    if (!activityId) {
-      setSubmitMsg({ type: 'success', text: 'Resolving Strava link…' });
-      try {
-        const r = await fetch(`/api/strava/resolve?url=${encodeURIComponent(url)}`);
-        if (r.ok) {
-          const data = await r.json();
-          if (data.activityId) activityId = data.activityId;
-        }
-      } catch { /* ignore */ }
-    }
+    // If resolver couldn't reach the activity ID, try direct extraction as a last resort
+    if (!activityId) activityId = extractActivityId(url);
 
     if (!activityId) {
       setSubmitting(false);
-      setSubmitMsg({ type: 'error', text: 'Could not resolve that link. Open the activity on the web (strava.com/activities/...) and paste that URL instead.' });
+      setSubmitMsg({ type: 'error', text: 'Could not resolve that link. Open the activity on strava.com and paste that URL instead.' });
       return;
     }
 
     const newRun = {
       activityId,
+      embedSrc,
       link: url,
       user: localStorage.getItem('fitmeal_username') || 'Guest',
       sharedAt: Date.now(),
@@ -362,10 +363,10 @@ export default function RunningContent() {
                   transition={{ delay: Math.min(i, 4) * 0.06 }}
                   className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden"
                 >
-                  {ex.activityId ? (
+                  {ex.embedSrc ? (
                     <iframe
                       title={`Strava activity ${ex.activityId}`}
-                      src={`https://www.strava.com/activities/${ex.activityId}/embed`}
+                      src={ex.embedSrc}
                       style={{ width: '100%', height: 405, border: 0, display: 'block' }}
                       loading="lazy"
                       scrolling="no"
