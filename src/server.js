@@ -196,31 +196,27 @@ app.get('/api/strava/resolve', async (req, res) => {
   }
   if (!activityId) return res.status(404).json({ error: 'no activity id found' });
 
-  // Step 2: Use Strava oEmbed to get the proper /embed/<token> URL.
-  try {
-    const oembedUrl = `https://www.strava.com/oembed?url=${encodeURIComponent(`https://www.strava.com/activities/${activityId}`)}&format=json`;
-    const oembed = await axios.get(oembedUrl, { timeout: 8000, headers: HEADERS, validateStatus: () => true });
-    if (oembed.status === 200 && oembed.data && oembed.data.html) {
-      const srcMatch = String(oembed.data.html).match(/src=['"]([^'"]+\/embed\/[^'"]+)['"]/);
-      if (srcMatch) {
-        return res.json({ activityId, embedSrc: srcMatch[1], title: oembed.data.title || null });
-      }
-    }
-  } catch { /* fall through */ }
-
-  // Step 3: Fallback — scrape the activity page for the embed token.
+  // Step 2: Scrape the public activity page for OG tags (Strava blocks iframes
+  // from external origins, so we render our own card from the same metadata
+  // that Strava itself uses for social shares).
+  let title = null, image = null, description = null;
   try {
     const page = await axios.get(`https://www.strava.com/activities/${activityId}`, {
       maxRedirects: 5, timeout: 8000, headers: HEADERS, validateStatus: () => true,
     });
-    const tok = String(page.data || '').match(/\/activities\/\d+\/embed\/([a-f0-9]+)/i);
-    if (tok) {
-      return res.json({ activityId, embedSrc: `https://www.strava.com/activities/${activityId}/embed/${tok[1]}` });
-    }
-  } catch { /* */ }
+    const html = String(page.data || '');
+    const grab = (re) => { const m = html.match(re); return m ? m[1].trim() : null; };
+    title       = grab(/<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']/i);
+    image       = grab(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
+    description = grab(/<meta\s+property=["']og:description["']\s+content=["']([^"']+)["']/i);
+    // Decode common HTML entities in OG content
+    const decode = (s) => s ? s
+      .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&nbsp;/g, ' ') : s;
+    title = decode(title); description = decode(description);
+  } catch { /* OG scrape best-effort */ }
 
-  // Last resort: return id without embedSrc; client can fall back to a link card.
-  return res.json({ activityId, embedSrc: null });
+  return res.json({ activityId, title, image, description });
 });
 
 app.post('/api/running/runs', async (req, res) => {

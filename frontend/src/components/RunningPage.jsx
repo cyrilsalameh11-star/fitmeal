@@ -180,19 +180,20 @@ export default function RunningContent() {
     setSubmitting(true);
     setSubmitMsg({ type: 'success', text: 'Resolving Strava link…' });
 
-    // Always call the resolver — both for app.link redirects AND to fetch the
-    // proper /embed/<token> URL via Strava oEmbed (the iframe is blank without it).
-    let activityId = null, embedSrc = null;
+    // Resolve via backend: extracts activity ID + scrapes OG tags
+    // (route-map image, title, stats) since Strava blocks iframe embedding.
+    let activityId = null, image = null, title = null, description = null;
     try {
       const r = await fetch(`/api/strava/resolve?url=${encodeURIComponent(url)}`);
       if (r.ok) {
         const data = await r.json();
-        activityId = data.activityId || null;
-        embedSrc   = data.embedSrc   || null;
+        activityId  = data.activityId  || null;
+        image       = data.image       || null;
+        title       = data.title       || null;
+        description = data.description || null;
       }
     } catch { /* ignore */ }
 
-    // If resolver couldn't reach the activity ID, try direct extraction as a last resort
     if (!activityId) activityId = extractActivityId(url);
 
     if (!activityId) {
@@ -203,7 +204,9 @@ export default function RunningContent() {
 
     const newRun = {
       activityId,
-      embedSrc,
+      image,
+      title,
+      description,
       link: url,
       user: localStorage.getItem('fitmeal_username') || 'Guest',
       sharedAt: Date.now(),
@@ -363,28 +366,43 @@ export default function RunningContent() {
                   transition={{ delay: Math.min(i, 4) * 0.06 }}
                   className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden"
                 >
-                  {ex.embedSrc ? (
-                    <iframe
-                      title={`Strava activity ${ex.activityId}`}
-                      src={ex.embedSrc}
-                      style={{ width: '100%', height: 405, border: 0, display: 'block' }}
-                      loading="lazy"
-                      scrolling="no"
-                    />
-                  ) : (
-                    <a
-                      href={ex.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-between p-5 hover:bg-amber-50 transition-colors"
-                    >
-                      <div>
-                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Strava</p>
-                        <p className="text-sm font-bold text-gray-800">View on Strava →</p>
+                  <a
+                    href={ex.link || (ex.activityId ? `https://www.strava.com/activities/${ex.activityId}` : '#')}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block group/card"
+                  >
+                    {ex.image ? (
+                      <div className="relative">
+                        <img
+                          src={ex.image}
+                          alt={ex.title || 'Strava activity'}
+                          className="w-full aspect-[1.91/1] object-cover bg-gray-100"
+                          loading="lazy"
+                        />
+                        {/* Strava brand strip + open icon */}
+                        <div className="absolute top-3 left-3 bg-[#FC4C02] text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-md">
+                          Strava
+                        </div>
+                        <div className="absolute top-3 right-3 bg-white/90 backdrop-blur p-2 rounded-lg shadow-md opacity-0 group-hover/card:opacity-100 transition-opacity">
+                          <ExternalLink size={14} className="text-gray-700" />
+                        </div>
                       </div>
-                      <ExternalLink size={16} className="text-gray-400" />
-                    </a>
-                  )}
+                    ) : (
+                      <div className="aspect-[1.91/1] bg-gradient-to-br from-orange-50 to-amber-50 flex items-center justify-center">
+                        <div className="bg-[#FC4C02] text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-md">Strava</div>
+                      </div>
+                    )}
+                    <div className="p-5 space-y-1.5">
+                      <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">{ex.user || 'Community'}</p>
+                      <h5 className="font-bold text-gray-900 group-hover/card:text-amber-600 transition-colors leading-tight">
+                        {ex.title || 'Strava activity'}
+                      </h5>
+                      {ex.description && (
+                        <p className="text-xs text-gray-500 leading-relaxed line-clamp-2">{ex.description}</p>
+                      )}
+                    </div>
+                  </a>
                 </motion.div>
               ))}
             </div>
