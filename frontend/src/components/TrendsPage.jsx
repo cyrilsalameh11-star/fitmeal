@@ -79,12 +79,12 @@ const ACCOUNTS_DATA = [
     color: '#f43f5e',
     url: 'https://www.instagram.com/wondersbyaline/',
     reels: [
-      { shortcode: 'DWmFYn0DXsy', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DWmFYn0DXsy.mp4', caption: "We tried Le Dada Bistro at @maisondada.lb last week in Beirut's Saifi district and it's exactly the kind of spot you save for slow Sunday lunches." } }, // page 1, newest
-      { shortcode: 'DVRqFx7jYld', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DVRqFx7jYld.mp4' } }, // page 2
-      { shortcode: 'DVB4QnTDVF-', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DVB4QnTDVF-.mp4' } }, // page 3
-      { shortcode: 'DU8mp01jZnu', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DU8mp01jZnu.mp4' } }, // page 4
-      { shortcode: 'DUv5pNUjT4U', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DUv5pNUjT4U.mp4' } }, // page 5
-      { shortcode: 'DUtE9gqDUeY', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DUtE9gqDUeY.mp4' } }, // page 6, oldest
+      { shortcode: 'DXwho5Kt9km', type: 'p',    localMedia: { kind: 'video', src: '/reels/wondersbyaline-DXwho5Kt9km.mp4' } }, // page 1, newest
+      { shortcode: 'DWmFYn0DXsy', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DWmFYn0DXsy.mp4', caption: "We tried Le Dada Bistro at @maisondada.lb last week in Beirut's Saifi district and it's exactly the kind of spot you save for slow Sunday lunches." } }, // page 2
+      { shortcode: 'DVRqFx7jYld', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DVRqFx7jYld.mp4' } }, // page 3
+      { shortcode: 'DVB4QnTDVF-', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DVB4QnTDVF-.mp4' } }, // page 4
+      { shortcode: 'DU8mp01jZnu', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DU8mp01jZnu.mp4' } }, // page 5
+      { shortcode: 'DUv5pNUjT4U', type: 'reel', localMedia: { kind: 'video', src: '/reels/wondersbyaline-DUv5pNUjT4U.mp4' } }, // page 6, oldest
     ],
   },
   {
