@@ -387,30 +387,19 @@ export default function RunningContent() {
                     rel="noopener noreferrer"
                     className="block group/card"
                   >
-                    {ex.image ? (
-                      <div className="relative">
-                        <img
-                          src={ex.image}
-                          alt={ex.title || 'Strava activity'}
-                          className="w-full aspect-[1.91/1] object-cover bg-gray-100"
-                          loading="lazy"
-                        />
-                        {/* Strava brand strip + open icon */}
-                        <div className="absolute top-3 left-3 bg-[#FC4C02] text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-md">
-                          Strava
-                        </div>
-                        <div className="absolute top-3 right-3 bg-white/90 backdrop-blur p-2 rounded-lg shadow-md opacity-0 group-hover/card:opacity-100 transition-opacity">
-                          <ExternalLink size={14} className="text-gray-700" />
-                        </div>
+                    {/* Strava-branded header bar */}
+                    <div className="bg-gradient-to-r from-[#FC4C02] to-[#FC6020] px-5 py-3 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Activity size={16} className="text-white" />
+                        <span className="text-white text-xs font-bold uppercase tracking-widest">Strava Run</span>
                       </div>
-                    ) : (
-                      <div className="aspect-[1.91/1] bg-gradient-to-br from-orange-50 to-amber-50 flex items-center justify-center">
-                        <div className="bg-[#FC4C02] text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-md">Strava</div>
-                      </div>
-                    )}
-                    <div className="p-5 space-y-3">
+                      <ExternalLink size={14} className="text-white/80 opacity-0 group-hover/card:opacity-100 transition-opacity" />
+                    </div>
+
+                    {/* Body */}
+                    <div className="p-5 space-y-4">
                       <div>
-                        <div className="flex items-center justify-between gap-2 mb-1">
+                        <div className="flex items-center justify-between gap-2 mb-1.5">
                           <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider truncate">{ex.user || 'Community'}</p>
                           {ex.runDate && (
                             <p className="text-[10px] text-gray-400 font-medium tabular-nums whitespace-nowrap">
@@ -425,35 +414,33 @@ export default function RunningContent() {
                             </p>
                           )}
                         </div>
-                        <h5 className="font-bold text-gray-900 group-hover/card:text-amber-600 transition-colors leading-tight">
+                        <h5 className="font-bold text-gray-900 group-hover/card:text-[#FC4C02] transition-colors leading-tight text-lg">
                           {ex.title || 'Strava activity'}
                         </h5>
                         {ex.location && (
-                          <p className="text-xs text-gray-500 mt-0.5">📍 {ex.location}</p>
+                          <p className="text-xs text-gray-500 mt-1">📍 {ex.location}</p>
                         )}
                       </div>
-                      {(ex.distance || ex.duration || ex.pace) && (
-                        <div className="flex gap-4 pt-3 border-t border-gray-50">
-                          {ex.distance && (
-                            <div>
-                              <p className="text-[9px] font-bold uppercase tracking-wider text-gray-300">Dist</p>
-                              <p className="text-sm font-bold text-gray-800 tabular-nums">{ex.distance}</p>
-                            </div>
-                          )}
-                          {ex.duration && (
-                            <div>
-                              <p className="text-[9px] font-bold uppercase tracking-wider text-gray-300">Time</p>
-                              <p className="text-sm font-bold text-gray-800 tabular-nums">{ex.duration}</p>
-                            </div>
-                          )}
-                          {ex.pace && (
-                            <div>
-                              <p className="text-[9px] font-bold uppercase tracking-wider text-gray-300">Pace</p>
-                              <p className="text-sm font-bold text-gray-800 tabular-nums">{ex.pace}</p>
-                            </div>
-                          )}
+
+                      {/* Big stats grid, like a Strava-style summary */}
+                      <div className="grid grid-cols-3 gap-2 bg-gray-50 rounded-xl p-4">
+                        <div className="text-center">
+                          <p className="text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1">Distance</p>
+                          <p className="text-lg font-bold text-gray-900 tabular-nums">{ex.distance || '—'}</p>
                         </div>
-                      )}
+                        <div className="text-center border-x border-gray-200">
+                          <p className="text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1">Time</p>
+                          <p className="text-lg font-bold text-gray-900 tabular-nums">{ex.duration || '—'}</p>
+                        </div>
+                        <div className="text-center">
+                          <p className="text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1">Pace</p>
+                          <p className="text-lg font-bold text-gray-900 tabular-nums">{ex.pace || '—'}</p>
+                        </div>
+                      </div>
+
+                      <p className="text-[10px] text-gray-400 text-center font-medium">
+                        Tap card to open the full activity on Strava
+                      </p>
                     </div>
                   </a>
                 </motion.div>
