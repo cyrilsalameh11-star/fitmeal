@@ -6,20 +6,31 @@ import { Activity, Share2, Map as MapIcon, ChevronRight, Zap, Target, ExternalLi
 
 const RUNNING_CITIES = {
   Lebanon: {
-    name: 'Raouche Promenade, Beirut',
+    name: 'Beirut Corniche, Lebanon',
     lat: 33.8950,
-    lng: 35.4710,
-    zoom: 17,
+    lng: 35.4920,
+    zoom: 14,
     trails: [
-      // Raouche promenade only — the seafront road in front of Pigeon Rocks, out-and-back
+      // Full Beirut coastal road: Ramlet el-Bayda (S) → Raouche / Pigeon Rocks → Manara (W) →
+      // peninsula NW corner → Ain el-Mreisseh → Zaitunay Bay → Beirut Marina / Port (NE)
       [
-        [33.8975, 35.4735], [33.8970, 35.4727], [33.8965, 35.4720], [33.8960, 35.4712], [33.8955, 35.4705],
-        [33.8950, 35.4699], [33.8946, 35.4694], [33.8942, 35.4691], [33.8938, 35.4690], [33.8934, 35.4691],
-        [33.8930, 35.4695], [33.8926, 35.4701], [33.8922, 35.4709],
-        // Turn around and come back along the same promenade
-        [33.8926, 35.4701], [33.8930, 35.4695], [33.8934, 35.4691], [33.8938, 35.4690], [33.8942, 35.4691],
-        [33.8946, 35.4694], [33.8950, 35.4699], [33.8955, 35.4705], [33.8960, 35.4712], [33.8965, 35.4720],
-        [33.8970, 35.4727], [33.8975, 35.4735]
+        // South end: Ramlet el-Bayda
+        [33.8825, 35.4715], [33.8840, 35.4708], [33.8855, 35.4700], [33.8870, 35.4694], [33.8885, 35.4690],
+        [33.8900, 35.4690], [33.8915, 35.4691],
+        // Raouche / Pigeon Rocks viewpoint
+        [33.8930, 35.4693], [33.8945, 35.4698], [33.8955, 35.4708],
+        // Western Corniche climbing N to Manara
+        [33.8965, 35.4720], [33.8975, 35.4733], [33.8985, 35.4747], [33.8995, 35.4762], [33.9005, 35.4775],
+        [33.9015, 35.4790],
+        // Manara lighthouse + NW corner of the peninsula
+        [33.9028, 35.4798], [33.9040, 35.4805], [33.9048, 35.4818], [33.9051, 35.4838],
+        // Northern coast heading E
+        [33.9050, 35.4860], [33.9045, 35.4885], [33.9036, 35.4910],
+        // Ain el-Mreisseh
+        [33.9026, 35.4938], [33.9020, 35.4965], [33.9018, 35.4992],
+        // Zaitunay Bay → Beirut Marina / Port
+        [33.9023, 35.5020], [33.9032, 35.5050], [33.9043, 35.5078], [33.9054, 35.5103], [33.9063, 35.5125],
+        [33.9070, 35.5145]
       ]
     ]
   },
@@ -90,8 +101,8 @@ const RUNNING_CITIES = {
 };
 
 const INITIAL_REAL_EXAMPLES = [
-  { name: 'Raouche Promenade Out-and-Back', user: 'Cyril S.', distance: '2.4km', time: '12:18', elevation: '6m', city: 'Lebanon', link: 'https://www.strava.com/segments/explore?bounds=33.8920,35.4685,33.8978,35.4738&activity_type=running' },
-  { name: 'Pigeon Rocks Sunset Loop', user: 'Rony G.', distance: '1.8km', time: '9:14', elevation: '4m', city: 'Lebanon', link: 'https://www.strava.com/segments/explore?bounds=33.8930,35.4688,33.8965,35.4720&activity_type=running' },
+  { name: 'Full Beirut Corniche', user: 'Cyril S.', distance: '12.4km', time: '1:02:48', elevation: '38m', city: 'Lebanon', link: 'https://www.strava.com/segments/explore?bounds=33.8825,35.4690,33.9070,35.5145&activity_type=running' },
+  { name: 'Manara to Marina', user: 'Rony G.', distance: '6.8km', time: '34:12', elevation: '22m', city: 'Lebanon', link: 'https://www.strava.com/segments/explore?bounds=33.9015,35.4790,33.9070,35.5145&activity_type=running' },
   { name: 'Paris Seine Loop', user: 'Marc L.', distance: '8.4km', time: '42:10', elevation: '12m', city: 'Paris', link: 'https://www.strava.com/segments/explore?bounds=48.8508,2.3241,48.8622,2.3521&activity_type=running' },
   { name: 'Central Park Full Loop', user: 'Sarah J.', distance: '9.8km', time: '44:32', elevation: '72m', city: 'New York', link: 'https://www.strava.com/segments/explore?bounds=40.7655,-73.9825,40.8065,-73.9500&activity_type=running' },
   { name: 'Retiro Perimeter', user: 'Jordi M.', distance: '5.1km', time: '22:15', elevation: '14m', city: 'Madrid', link: 'https://www.strava.com/segments/explore?bounds=40.4062,-3.6895,40.4222,-3.6680&activity_type=running' }
