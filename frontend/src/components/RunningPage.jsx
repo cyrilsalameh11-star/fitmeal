@@ -166,8 +166,9 @@ export default function RunningContent() {
       setSubmitMsg({ type: 'error', text: 'Paste a Strava activity URL first.' });
       return;
     }
-    if (!/strava\.com/.test(stravaUrl)) {
-      setSubmitMsg({ type: 'error', text: 'That does not look like a Strava URL.' });
+    // Accept any strava domain: strava.com, www.strava.com, strava.app.link (mobile share), etc.
+    if (!/(^|[/.])strava\.(com|app)([/.]|$)/i.test(stravaUrl)) {
+      setSubmitMsg({ type: 'error', text: 'Paste a strava.com or strava.app.link URL.' });
       return;
     }
     setSubmitting(true);
