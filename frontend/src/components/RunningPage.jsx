@@ -157,7 +157,11 @@ export default function RunningContent() {
   const [stravaUrl, setStravaUrl] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitMsg, setSubmitMsg] = useState(null);
-  const [sharedRuns, setSharedRuns] = useState(() => dedupeRuns(loadLocalRuns()));
+  const [sharedRuns, setSharedRuns] = useState(() => {
+    const cleaned = dedupeRuns(loadLocalRuns());
+    saveLocalRuns(cleaned); // persist deduped state so old duplicates are wiped
+    return cleaned;
+  });
   const city = RUNNING_CITIES[activeCityId];
 
   useEffect(() => {
@@ -189,20 +193,13 @@ export default function RunningContent() {
 
     // Resolve via backend: extracts activity ID + scrapes OG tags
     // (route-map image, title, stats) since Strava blocks iframe embedding.
-    let activityId = null, image = null, title = null, description = null;
+    let resolved = {};
     try {
       const r = await fetch(`/api/strava/resolve?url=${encodeURIComponent(url)}`);
-      if (r.ok) {
-        const data = await r.json();
-        activityId  = data.activityId  || null;
-        image       = data.image       || null;
-        title       = data.title       || null;
-        description = data.description || null;
-      }
+      if (r.ok) resolved = await r.json();
     } catch { /* ignore */ }
 
-    if (!activityId) activityId = extractActivityId(url);
-
+    const activityId = resolved.activityId || extractActivityId(url);
     if (!activityId) {
       setSubmitting(false);
       setSubmitMsg({ type: 'error', text: 'Could not resolve that link. Open the activity on strava.com and paste that URL instead.' });
@@ -211,9 +208,14 @@ export default function RunningContent() {
 
     const newRun = {
       activityId,
-      image,
-      title,
-      description,
+      image:       resolved.image       || null,
+      title:       resolved.title       || null,
+      description: resolved.description || null,
+      distance:    resolved.distance    || null,
+      duration:    resolved.duration    || null,
+      pace:        resolved.pace        || null,
+      location:    resolved.location    || null,
+      runDate:     resolved.runDate     || null,
       link: url,
       user: localStorage.getItem('fitmeal_username') || 'Guest',
       sharedAt: Date.now(),
@@ -399,13 +401,51 @@ export default function RunningContent() {
                         <div className="bg-[#FC4C02] text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-md">Strava</div>
                       </div>
                     )}
-                    <div className="p-5 space-y-1.5">
-                      <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">{ex.user || 'Community'}</p>
-                      <h5 className="font-bold text-gray-900 group-hover/card:text-amber-600 transition-colors leading-tight">
-                        {ex.title || 'Strava activity'}
-                      </h5>
-                      {ex.description && (
-                        <p className="text-xs text-gray-500 leading-relaxed line-clamp-2">{ex.description}</p>
+                    <div className="p-5 space-y-3">
+                      <div>
+                        <div className="flex items-center justify-between gap-2 mb-1">
+                          <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider truncate">{ex.user || 'Community'}</p>
+                          {ex.runDate && (
+                            <p className="text-[10px] text-gray-400 font-medium tabular-nums whitespace-nowrap">
+                              {(() => {
+                                try {
+                                  const d = new Date(ex.runDate);
+                                  if (isNaN(d.getTime())) return ex.runDate;
+                                  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
+                                       + ' · ' + d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+                                } catch { return ex.runDate; }
+                              })()}
+                            </p>
+                          )}
+                        </div>
+                        <h5 className="font-bold text-gray-900 group-hover/card:text-amber-600 transition-colors leading-tight">
+                          {ex.title || 'Strava activity'}
+                        </h5>
+                        {ex.location && (
+                          <p className="text-xs text-gray-500 mt-0.5">📍 {ex.location}</p>
+                        )}
+                      </div>
+                      {(ex.distance || ex.duration || ex.pace) && (
+                        <div className="flex gap-4 pt-3 border-t border-gray-50">
+                          {ex.distance && (
+                            <div>
+                              <p className="text-[9px] font-bold uppercase tracking-wider text-gray-300">Dist</p>
+                              <p className="text-sm font-bold text-gray-800 tabular-nums">{ex.distance}</p>
+                            </div>
+                          )}
+                          {ex.duration && (
+                            <div>
+                              <p className="text-[9px] font-bold uppercase tracking-wider text-gray-300">Time</p>
+                              <p className="text-sm font-bold text-gray-800 tabular-nums">{ex.duration}</p>
+                            </div>
+                          )}
+                          {ex.pace && (
+                            <div>
+                              <p className="text-[9px] font-bold uppercase tracking-wider text-gray-300">Pace</p>
+                              <p className="text-sm font-bold text-gray-800 tabular-nums">{ex.pace}</p>
+                            </div>
+                          )}
+                        </div>
                       )}
                     </div>
                   </a>

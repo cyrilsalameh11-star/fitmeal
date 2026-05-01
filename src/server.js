@@ -196,27 +196,58 @@ app.get('/api/strava/resolve', async (req, res) => {
   }
   if (!activityId) return res.status(404).json({ error: 'no activity id found' });
 
-  // Step 2: Scrape the public activity page for OG tags (Strava blocks iframes
-  // from external origins, so we render our own card from the same metadata
-  // that Strava itself uses for social shares).
+  // Step 2: Scrape the public activity page for OG tags + stats. Strava blocks
+  // iframes from external origins, so we render our own card.
   let title = null, image = null, description = null;
+  let distance = null, duration = null, pace = null, location = null, runDate = null;
   try {
     const page = await axios.get(`https://www.strava.com/activities/${activityId}`, {
       maxRedirects: 5, timeout: 8000, headers: HEADERS, validateStatus: () => true,
     });
     const html = String(page.data || '');
     const grab = (re) => { const m = html.match(re); return m ? m[1].trim() : null; };
-    title       = grab(/<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']/i);
-    image       = grab(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
-    description = grab(/<meta\s+property=["']og:description["']\s+content=["']([^"']+)["']/i);
-    // Decode common HTML entities in OG content
     const decode = (s) => s ? s
       .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
       .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&nbsp;/g, ' ') : s;
-    title = decode(title); description = decode(description);
-  } catch { /* OG scrape best-effort */ }
 
-  return res.json({ activityId, title, image, description });
+    title       = decode(grab(/<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']/i));
+    image       =        grab(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
+    description = decode(grab(/<meta\s+property=["']og:description["']\s+content=["']([^"']+)["']/i));
+
+    // Distance: "X.XX km" pattern (description usually has it first)
+    const distM = (description || html).match(/(\d+(?:[.,]\d+)?)\s*(km|mi)/i);
+    if (distM) distance = `${distM[1].replace(',', '.')} ${distM[2].toLowerCase()}`;
+
+    // Duration: "Time: HH:MM:SS" or "MM:SS" near "Time"
+    const durM = (description || html).match(/Time[:\s]+(\d{1,2}(?::\d{2}){1,2})/i);
+    if (durM) duration = durM[1];
+
+    // Pace: "M:SS /km" or "M:SS/km"
+    const paceM = (description || html).match(/(\d{1,2}:\d{2})\s*\/?\s*(km|mi)/i);
+    if (paceM) pace = `${paceM[1]}/${paceM[2].toLowerCase()}`;
+
+    // Date: schema.org startDate or <time datetime="...">
+    runDate = grab(/<meta\s+itemprop=["']startTime["']\s+content=["']([^"']+)["']/i)
+           || grab(/<time[^>]+datetime=["']([^"']+)["']/i)
+           || grab(/"startDateLocal"\s*:\s*"([^"]+)"/i);
+
+    // Location: try og:description "in City, Country" or schema.org location-name
+    const locM = (description || '').match(/(?:in|@)\s+([A-Z][^,.<>"]{1,40}(?:,\s*[A-Z][^,.<>"]{1,40})?)/);
+    if (locM) location = locM[1].trim();
+    if (!location) {
+      location = grab(/"locationCity"\s*:\s*"([^"]+)"/i)
+              || grab(/<meta\s+itemprop=["']location["']\s+content=["']([^"']+)["']/i);
+      if (location) {
+        const country = grab(/"locationCountry"\s*:\s*"([^"]+)"/i);
+        if (country) location = `${location}, ${country}`;
+      }
+    }
+  } catch { /* best-effort */ }
+
+  return res.json({
+    activityId, title, image, description,
+    distance, duration, pace, location, runDate,
+  });
 });
 
 app.post('/api/running/runs', async (req, res) => {
