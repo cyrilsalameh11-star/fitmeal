@@ -222,8 +222,59 @@ app.get('/api/strava/resolve', async (req, res) => {
     title       = decode(ogMeta('og:title'));
     image       =        ogMeta('og:image');
     description = decode(ogMeta('og:description'));
+    if (title) title = title.replace(/\s*\|\s*Strava\s*$/i, ''); // strip " | Strava" suffix
     if (!title && !image) {
       console.warn(`Strava resolve: no OG tags found for ${activityId} (page len=${html.length})`);
+    }
+
+    // Try JSON-LD structured data first (most reliable for stats)
+    const ldMatches = html.match(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi) || [];
+    for (const block of ldMatches) {
+      try {
+        const jsonStr = block.replace(/^[^>]*>/, '').replace(/<\/script>$/, '').trim();
+        const obj = JSON.parse(jsonStr);
+        const items = Array.isArray(obj) ? obj : [obj];
+        for (const item of items) {
+          if (!item) continue;
+          // Distance can be number (meters) or { value, unitCode }
+          if (item.distance && !distance) {
+            const meters = typeof item.distance === 'number' ? item.distance
+                         : parseFloat(item.distance.value || item.distance);
+            if (meters && !isNaN(meters)) distance = (meters / 1000).toFixed(2) + ' km';
+          }
+          // Duration as ISO 8601 (PT28M30S)
+          if (item.duration && !duration) {
+            const m = String(item.duration).match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+            if (m) {
+              const h = parseInt(m[1] || 0), mn = parseInt(m[2] || 0), s = parseInt(m[3] || 0);
+              duration = h ? `${h}:${String(mn).padStart(2,'0')}:${String(s).padStart(2,'0')}`
+                           : `${mn}:${String(s).padStart(2,'0')}`;
+            }
+          }
+          if ((item.startTime || item.startDate) && !runDate) {
+            runDate = item.startTime || item.startDate;
+          }
+          if (item.location && !location) {
+            const loc = item.location;
+            location = typeof loc === 'string' ? loc
+                     : [loc.name, loc.addressLocality, loc.addressCountry].filter(Boolean).join(', ');
+          }
+        }
+      } catch { /* skip malformed JSON-LD blocks */ }
+    }
+
+    // Compute pace from distance + duration if not set
+    if (!pace && distance && duration) {
+      const km = parseFloat(distance);
+      const parts = duration.split(':').map(Number);
+      const totalSec = parts.length === 3 ? parts[0]*3600 + parts[1]*60 + parts[2]
+                     : parts[0]*60 + (parts[1] || 0);
+      if (km > 0 && totalSec > 0) {
+        const paceSec = totalSec / km;
+        const pm = Math.floor(paceSec / 60);
+        const ps = Math.round(paceSec % 60);
+        pace = `${pm}:${String(ps).padStart(2, '0')}/km`;
+      }
     }
 
     // Distance: "X.XX km" pattern (description usually has it first)
