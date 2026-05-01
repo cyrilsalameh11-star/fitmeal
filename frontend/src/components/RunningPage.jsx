@@ -6,25 +6,20 @@ import { Activity, Share2, Map as MapIcon, ChevronRight, Zap, Target, ExternalLi
 
 const RUNNING_CITIES = {
   Lebanon: {
-    name: 'Beirut & Dbayeh, Lebanon',
-    lat: 33.8965,
-    lng: 35.4835,
-    zoom: 14,
+    name: 'Beirut Corniche, Lebanon',
+    lat: 33.8985,
+    lng: 35.4730,
+    zoom: 15,
     trails: [
-      // Beirut Corniche — northern coast road, Zaitunay Bay → Ain el-Mreisseh → Manara → Raouche and back
+      // Raouche Corniche promenade — the seafront road only, Manara lighthouse to Raouche / Pigeon Rocks and back
       [
-        [33.9002, 35.5052], [33.8997, 35.5026], [33.8991, 35.5000], [33.8985, 35.4974], [33.8978, 35.4948],
-        [33.8971, 35.4922], [33.8964, 35.4896], [33.8956, 35.4870], [33.8948, 35.4844], [33.8941, 35.4818],
-        [33.8933, 35.4794], [33.8926, 35.4770], [33.8919, 35.4746], [33.8913, 35.4722], [33.8909, 35.4698],
-        // Turn at Raouche and come back east
-        [33.8909, 35.4698], [33.8913, 35.4722], [33.8919, 35.4746], [33.8926, 35.4770], [33.8933, 35.4794],
-        [33.8941, 35.4818], [33.8948, 35.4844], [33.8956, 35.4870], [33.8964, 35.4896], [33.8971, 35.4922]
-      ],
-      // Dbayeh Marina — Waterfront City promenade loop
-      [
-        [33.9340, 35.5825], [33.9338, 35.5835], [33.9335, 35.5845], [33.9330, 35.5850], [33.9325, 35.5852],
-        [33.9320, 35.5850], [33.9315, 35.5845], [33.9312, 35.5838], [33.9312, 35.5828], [33.9315, 35.5820],
-        [33.9320, 35.5815], [33.9325, 35.5818], [33.9330, 35.5820], [33.9335, 35.5822], [33.9340, 35.5825]
+        [33.9043, 35.4805], [33.9038, 35.4795], [33.9032, 35.4783], [33.9026, 35.4770], [33.9019, 35.4756],
+        [33.9012, 35.4742], [33.9005, 35.4727], [33.8998, 35.4712], [33.8990, 35.4697], [33.8981, 35.4682],
+        [33.8972, 35.4670], [33.8961, 35.4661], [33.8950, 35.4658], [33.8939, 35.4661], [33.8930, 35.4668],
+        // Turn around at Raouche and come back along the same Corniche road
+        [33.8939, 35.4661], [33.8950, 35.4658], [33.8961, 35.4661], [33.8972, 35.4670], [33.8981, 35.4682],
+        [33.8990, 35.4697], [33.8998, 35.4712], [33.9005, 35.4727], [33.9012, 35.4742], [33.9019, 35.4756],
+        [33.9026, 35.4770], [33.9032, 35.4783], [33.9038, 35.4795], [33.9043, 35.4805]
       ]
     ]
   },
@@ -95,8 +90,8 @@ const RUNNING_CITIES = {
 };
 
 const INITIAL_REAL_EXAMPLES = [
-  { name: 'Beirut Corniche 10K', user: 'Cyril S.', distance: '10.2km', time: '52:14', elevation: '28m', city: 'Lebanon', link: 'https://www.strava.com/segments/explore?bounds=33.8902,35.4578,33.9010,35.4965&activity_type=running' },
-  { name: 'Dbayeh Marina Run', user: 'Rony G.', distance: '6.4km', time: '31:22', elevation: '8m', city: 'Lebanon', link: 'https://www.strava.com/segments/explore?bounds=33.9312,35.5815,33.9340,35.5852&activity_type=running' },
+  { name: 'Manara to Raouche Corniche', user: 'Cyril S.', distance: '5.2km', time: '26:08', elevation: '12m', city: 'Lebanon', link: 'https://www.strava.com/segments/explore?bounds=33.8930,35.4658,33.9043,35.4805&activity_type=running' },
+  { name: 'Raouche Sunset Loop', user: 'Rony G.', distance: '3.8km', time: '19:14', elevation: '8m', city: 'Lebanon', link: 'https://www.strava.com/segments/explore?bounds=33.8930,35.4658,33.9019,35.4756&activity_type=running' },
   { name: 'Paris Seine Loop', user: 'Marc L.', distance: '8.4km', time: '42:10', elevation: '12m', city: 'Paris', link: 'https://www.strava.com/segments/explore?bounds=48.8508,2.3241,48.8622,2.3521&activity_type=running' },
   { name: 'Central Park Full Loop', user: 'Sarah J.', distance: '9.8km', time: '44:32', elevation: '72m', city: 'New York', link: 'https://www.strava.com/segments/explore?bounds=40.7655,-73.9825,40.8065,-73.9500&activity_type=running' },
   { name: 'Retiro Perimeter', user: 'Jordi M.', distance: '5.1km', time: '22:15', elevation: '14m', city: 'Madrid', link: 'https://www.strava.com/segments/explore?bounds=40.4062,-3.6895,40.4222,-3.6680&activity_type=running' }
@@ -170,29 +165,29 @@ export default function RunningContent() {
       className="space-y-10 md:space-y-12 pb-20"
     >
       <div className="max-w-3xl">
-        <p className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-3 flex items-center">
+        <p className="text-xs font-bold text-amber-500 uppercase tracking-wider mb-3 flex items-center">
           <Activity size={14} className="mr-2" /> Live Global Heatmaps
         </p>
         <h1 className="text-4xl md:text-5xl lg:text-6xl mb-4 leading-tight">
-          Famous Strava <br /><span className="italic font-normal text-stone-400">Trails.</span>
+          Famous Strava <br /><span className="italic font-normal text-gray-400">Trails.</span>
         </h1>
-        <p className="text-base md:text-lg text-stone-500 font-medium">
+        <p className="text-base md:text-lg text-gray-500 font-medium">
           Discover where the community runs. Powered by authentic Strava data and precise heatmaps.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
         <div className="lg:col-span-2 space-y-6">
-          <div className="bg-stone-900 rounded-[2.5rem] p-3 shadow-2xl border border-stone-800 relative group overflow-hidden">
+          <div className="bg-gray-900 rounded-2xl p-3 shadow-2xl border border-gray-800 relative group overflow-hidden">
             <div className="absolute top-8 left-8 z-[500] flex shrink-0 gap-2 overflow-x-auto max-w-[calc(100%-4rem)] scrollbar-hide py-1">
               {Object.keys(RUNNING_CITIES).map(id => (
                 <button
                   key={id}
                   onClick={() => setActiveCityId(id)}
-                  className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+                  className={`px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all ${
                     activeCityId === id 
                       ? 'bg-amber-500 text-white shadow-lg scale-105' 
-                      : 'bg-stone-800/80 backdrop-blur-md text-stone-400 border border-stone-700 hover:text-white'
+                      : 'bg-gray-800/80 backdrop-blur-md text-gray-400 border border-gray-700 hover:text-white'
                   }`}
                 >
                   {id}
@@ -200,7 +195,7 @@ export default function RunningContent() {
               ))}
             </div>
 
-            <div className="h-[500px] md:h-[600px] w-full rounded-[2rem] overflow-hidden">
+            <div className="h-[500px] md:h-[600px] w-full rounded-xl overflow-hidden">
               <MapContainer 
                 center={[city.lat, city.lng]} 
                 zoom={city.zoom} 
@@ -223,29 +218,29 @@ export default function RunningContent() {
               </MapContainer>
             </div>
 
-            <div className="absolute bottom-8 right-8 z-[500] bg-stone-900/80 backdrop-blur-md border border-stone-800 p-6 rounded-2xl space-y-4 shadow-xl pointer-events-none hidden md:block">
+            <div className="absolute bottom-8 right-8 z-[500] bg-gray-900/80 backdrop-blur-md border border-gray-800 p-6 rounded-2xl space-y-4 shadow-xl pointer-events-none hidden md:block">
               <div className="flex items-center space-x-2">
                 <div className="w-3 h-3 rounded-full bg-amber-500 animate-pulse"></div>
-                <span className="text-[10px] font-black uppercase tracking-widest text-stone-300">Live Heat Intensity</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-gray-300">Live Heat Intensity</span>
               </div>
               <div className="space-y-1">
-                <p className="text-xl font-serif text-white">{city.name}</p>
-                <p className="text-xs text-stone-500 font-medium">Verified Community Route</p>
+                <p className="text-xl  text-white">{city.name}</p>
+                <p className="text-xs text-gray-500 font-medium">Verified Community Route</p>
               </div>
             </div>
           </div>
         </div>
 
         <div className="space-y-8">
-          <div className="bg-white rounded-[2rem] p-8 border border-stone-100 shadow-sm space-y-6">
+          <div className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm space-y-6">
             <div className="flex items-center space-x-3">
               <div className="bg-amber-100 p-2 rounded-xl">
                 <Share2 className="text-amber-600" size={20} />
               </div>
-              <h3 className="text-xl font-serif">Share your Run</h3>
+              <h3 className="text-xl ">Share your Run</h3>
             </div>
             
-            <p className="text-sm text-stone-500 leading-relaxed font-medium">
+            <p className="text-sm text-gray-500 leading-relaxed font-medium">
               Join the heatmap. Connect your Strava and paste a public activity link to contribute.
             </p>
 
@@ -255,11 +250,11 @@ export default function RunningContent() {
                 placeholder="Strava Activity URL..."
                 value={stravaUrl}
                 onChange={e => setStravaUrl(e.target.value)}
-                className="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium"
+                className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium"
               />
               <button 
                 type="submit"
-                className="w-full bg-stone-900 text-white rounded-xl py-3 text-xs font-black uppercase tracking-widest hover:bg-amber-500 transition-all shadow-lg active:scale-95"
+                className="w-full bg-gray-900 text-white rounded-xl py-3 text-xs font-bold uppercase tracking-wider hover:bg-amber-500 transition-all shadow-lg active:scale-95"
               >
                 Sync Activity
               </button>
@@ -267,7 +262,7 @@ export default function RunningContent() {
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-[10px] font-black uppercase tracking-widest text-stone-400 ml-4 flex items-center">
+            <h4 className="text-[10px] font-bold uppercase tracking-wider text-gray-400 ml-4 flex items-center">
               <Zap size={12} className="mr-2 text-amber-500" /> Recent Community Milestones
             </h4>
             
@@ -278,30 +273,30 @@ export default function RunningContent() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="bg-white p-5 rounded-2xl border border-stone-100 shadow-sm hover:shadow-md hover:border-amber-200 transition-all group"
+                  className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-amber-200 transition-all group"
                 >
                   <div className="flex justify-between items-start mb-3">
                     <div>
-                      <p className="text-xs text-stone-400 font-bold uppercase tracking-widest">{ex.city}</p>
-                      <h5 className="font-bold text-stone-900 group-hover:text-amber-600 transition-colors">{ex.name}</h5>
+                      <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">{ex.city}</p>
+                      <h5 className="font-bold text-gray-900 group-hover:text-amber-600 transition-colors">{ex.name}</h5>
                     </div>
-                    <a href={ex.link} target="_blank" rel="noopener noreferrer" className="bg-stone-50 p-2 rounded-lg hover:bg-amber-100 transition-colors">
-                      <ExternalLink size={14} className="text-stone-400 group-hover:text-amber-600" />
+                    <a href={ex.link} target="_blank" rel="noopener noreferrer" className="bg-gray-50 p-2 rounded-lg hover:bg-amber-100 transition-colors">
+                      <ExternalLink size={14} className="text-gray-400 group-hover:text-amber-600" />
                     </a>
                   </div>
                   
-                  <div className="flex gap-4 border-t border-stone-50 pt-3">
+                  <div className="flex gap-4 border-t border-gray-50 pt-3">
                     <div className="flex flex-col">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-stone-300">Dist</span>
-                      <span className="text-xs font-bold text-stone-700">{ex.distance}</span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-gray-300">Dist</span>
+                      <span className="text-xs font-bold text-gray-700">{ex.distance}</span>
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-stone-300">Time</span>
-                      <span className="text-xs font-bold text-stone-700">{ex.time}</span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-gray-300">Time</span>
+                      <span className="text-xs font-bold text-gray-700">{ex.time}</span>
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-stone-300">User</span>
-                      <span className="text-xs font-bold text-stone-700 truncate max-w-[60px]">{ex.user}</span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-gray-300">User</span>
+                      <span className="text-xs font-bold text-gray-700 truncate max-w-[60px]">{ex.user}</span>
                     </div>
                   </div>
                 </motion.div>
@@ -312,17 +307,17 @@ export default function RunningContent() {
       </div>
 
       <div className="bg-amber-50 rounded-[3rem] p-10 md:p-16 text-center space-y-8 border border-amber-100">
-        <div className="mx-auto w-20 h-20 bg-white rounded-[2rem] shadow-xl flex items-center justify-center transform -rotate-12 hover:rotate-0 transition-transform duration-500">
+        <div className="mx-auto w-20 h-20 bg-white rounded-xl shadow-xl flex items-center justify-center transform -rotate-12 hover:rotate-0 transition-transform duration-500">
           <MapIcon className="text-amber-600" size={32} />
         </div>
         <div>
-          <h2 className="text-3xl md:text-5xl font-serif">Run with friends.</h2>
+          <h2 className="text-3xl md:text-5xl ">Run with friends.</h2>
           <p className="text-lg text-amber-900/60 font-medium leading-relaxed">
             Our algorithm matches you with similar-paced runners in your area. Open the map to find active meetups.
           </p>
         </div>
         <div className="flex flex-wrap justify-center gap-4">
-          <button className="bg-stone-900 text-white px-8 py-4 rounded-2xl font-bold uppercase tracking-widest text-xs hover:bg-amber-600 shadow-xl transition-all">
+          <button className="bg-gray-900 text-white px-8 py-4 rounded-2xl font-bold uppercase tracking-wider text-xs hover:bg-amber-600 shadow-xl transition-all">
             Find Nearby Runners
           </button>
         </div>
