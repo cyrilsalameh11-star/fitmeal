@@ -120,53 +120,89 @@ function MapController({ target }) {
   return null;
 }
 
+const LOCAL_RUNS_KEY = 'fitmeal_shared_runs';
+
+function loadLocalRuns() {
+  try {
+    const raw = localStorage.getItem(LOCAL_RUNS_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch { return []; }
+}
+
+function saveLocalRuns(runs) {
+  try { localStorage.setItem(LOCAL_RUNS_KEY, JSON.stringify(runs)); } catch {}
+}
+
 export default function RunningContent() {
   const [activeCityId, setActiveCityId] = useState('Lebanon');
   const [stravaUrl, setStravaUrl] = useState('');
-  const [sharedRuns, setSharedRuns] = useState(INITIAL_REAL_EXAMPLES);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitMsg, setSubmitMsg] = useState(null); // { type: 'success'|'error', text }
+  const [sharedRuns, setSharedRuns] = useState(() => [...loadLocalRuns(), ...INITIAL_REAL_EXAMPLES]);
   const city = RUNNING_CITIES[activeCityId];
 
   useEffect(() => {
     fetch('/api/running/runs')
-      .then(res => res.json())
+      .then(res => res.ok ? res.json() : null)
       .then(data => {
-        if (data.runs && data.runs.length > 0) {
-          setSharedRuns([...data.runs, ...INITIAL_REAL_EXAMPLES]);
+        if (data && data.runs && data.runs.length > 0) {
+          setSharedRuns(prev => {
+            const local = loadLocalRuns();
+            // Merge: cloud + local + initial; dedupe by link
+            const seen = new Set();
+            return [...data.runs, ...local, ...INITIAL_REAL_EXAMPLES].filter(r => {
+              if (!r.link || seen.has(r.link)) return false;
+              seen.add(r.link); return true;
+            });
+          });
         }
       })
-      .catch(err => console.error("Failed to fetch runs", err));
+      .catch(() => { /* offline / 503 — already showing local + initial */ });
   }, []);
 
   const handleShare = async (e) => {
     e.preventDefault();
-    if (!stravaUrl) return;
+    if (!stravaUrl.trim()) {
+      setSubmitMsg({ type: 'error', text: 'Paste a Strava activity URL first.' });
+      return;
+    }
+    if (!/strava\.com/.test(stravaUrl)) {
+      setSubmitMsg({ type: 'error', text: 'That does not look like a Strava URL.' });
+      return;
+    }
+    setSubmitting(true);
+    setSubmitMsg(null);
 
-    const newRun = { 
-      name: 'Community Run', 
-      user: localStorage.getItem('fitmeal_username') || 'Guest', 
-      distance: (Math.random() * 8 + 3).toFixed(1) + 'km', 
-      time: (Math.random() * 25 + 25).toFixed(0) + ':00', 
-      elevation: (Math.random() * 80).toFixed(0) + 'm', 
+    const newRun = {
+      name: 'Community Run',
+      user: localStorage.getItem('fitmeal_username') || 'Guest',
+      distance: (Math.random() * 8 + 3).toFixed(1) + 'km',
+      time: (Math.random() * 25 + 25).toFixed(0) + ':00',
+      elevation: (Math.random() * 80).toFixed(0) + 'm',
       city: activeCityId,
-      link: stravaUrl
+      link: stravaUrl.trim(),
     };
 
+    // 1) Always update UI + localStorage immediately so it works even offline / no backend
+    const localRuns = loadLocalRuns();
+    const updatedLocal = [newRun, ...localRuns].slice(0, 50);
+    saveLocalRuns(updatedLocal);
+    setSharedRuns(prev => [newRun, ...prev]);
+    setStravaUrl('');
+    setSubmitMsg({ type: 'success', text: 'Run shared! Visible on your device + cloud if online.' });
+
+    // 2) Best-effort POST to backend for cross-device sync
     try {
-      const resp = await fetch('/api/running/runs', {
+      await fetch('/api/running/runs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newRun)
+        body: JSON.stringify(newRun),
       });
-      if (resp.ok) {
-        const data = await resp.json();
-        setSharedRuns([data.run, ...sharedRuns]);
-        setStravaUrl('');
-        alert("Thanks! Your Strava run has been shared.");
-      }
-    } catch (err) {
-      console.error("Save failed", err);
-      alert("Submission failed.");
-    }
+    } catch { /* ignore — already saved locally */ }
+
+    setSubmitting(false);
+    // Auto-clear the message after 4s
+    setTimeout(() => setSubmitMsg(null), 4000);
   };
 
   return (
@@ -257,19 +293,26 @@ export default function RunningContent() {
             </p>
 
             <form onSubmit={handleShare} className="space-y-3">
-              <input 
+              <input
                 type="url"
                 placeholder="Strava Activity URL..."
                 value={stravaUrl}
                 onChange={e => setStravaUrl(e.target.value)}
-                className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium"
+                disabled={submitting}
+                className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium disabled:opacity-50"
               />
-              <button 
+              <button
                 type="submit"
-                className="w-full bg-gray-900 text-white rounded-xl py-3 text-xs font-bold uppercase tracking-wider hover:bg-amber-500 transition-all shadow-lg active:scale-95"
+                disabled={submitting}
+                className="w-full bg-gray-900 text-white rounded-xl py-3 text-xs font-bold uppercase tracking-wider hover:bg-amber-500 transition-all shadow-lg active:scale-95 disabled:opacity-50"
               >
-                Sync Activity
+                {submitting ? 'Syncing...' : 'Sync Activity'}
               </button>
+              {submitMsg && (
+                <p className={`text-[11px] font-medium px-1 ${submitMsg.type === 'success' ? 'text-emerald-600' : 'text-red-500'}`}>
+                  {submitMsg.text}
+                </p>
+              )}
             </form>
           </div>
 
