@@ -349,7 +349,7 @@ export default function RunningContent() {
                 disabled={submitting}
                 className="w-full bg-gray-900 text-white rounded-xl py-3 text-xs font-bold uppercase tracking-wider hover:bg-amber-500 transition-all shadow-lg active:scale-95 disabled:opacity-50"
               >
-                {submitting ? 'Syncing...' : 'Sync Activity'}
+                {submitting ? 'Sharing...' : 'Share your run'}
               </button>
               {submitMsg && (
                 <p className={`text-[11px] font-medium px-1 ${submitMsg.type === 'success' ? 'text-emerald-600' : 'text-red-500'}`}>
@@ -422,24 +422,32 @@ export default function RunningContent() {
                         )}
                       </div>
 
-                      {/* Big stats grid, like a Strava-style summary */}
-                      <div className="grid grid-cols-3 gap-2 bg-gray-50 rounded-xl p-4">
-                        <div className="text-center">
-                          <p className="text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1">Distance</p>
-                          <p className="text-lg font-bold text-gray-900 tabular-nums">{ex.distance || '—'}</p>
+                      {/* Stats grid only renders when at least one stat was scraped */}
+                      {(ex.distance || ex.duration || ex.pace) && (
+                        <div className="grid grid-cols-3 gap-2 bg-gray-50 rounded-xl p-4">
+                          {ex.distance && (
+                            <div className="text-center">
+                              <p className="text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1">Distance</p>
+                              <p className="text-lg font-bold text-gray-900 tabular-nums">{ex.distance}</p>
+                            </div>
+                          )}
+                          {ex.duration && (
+                            <div className="text-center">
+                              <p className="text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1">Time</p>
+                              <p className="text-lg font-bold text-gray-900 tabular-nums">{ex.duration}</p>
+                            </div>
+                          )}
+                          {ex.pace && (
+                            <div className="text-center">
+                              <p className="text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1">Pace</p>
+                              <p className="text-lg font-bold text-gray-900 tabular-nums">{ex.pace}</p>
+                            </div>
+                          )}
                         </div>
-                        <div className="text-center border-x border-gray-200">
-                          <p className="text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1">Time</p>
-                          <p className="text-lg font-bold text-gray-900 tabular-nums">{ex.duration || '—'}</p>
-                        </div>
-                        <div className="text-center">
-                          <p className="text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1">Pace</p>
-                          <p className="text-lg font-bold text-gray-900 tabular-nums">{ex.pace || '—'}</p>
-                        </div>
-                      </div>
+                      )}
 
                       <p className="text-[10px] text-gray-400 text-center font-medium">
-                        Tap card to open the full activity on Strava
+                        {(ex.distance || ex.duration) ? 'Tap to open the full activity on Strava' : 'Tap to view full stats on Strava'}
                       </p>
                     </div>
                   </a>

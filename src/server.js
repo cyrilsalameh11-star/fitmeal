@@ -277,16 +277,21 @@ app.get('/api/strava/resolve', async (req, res) => {
       }
     }
 
-    // Distance: "X.XX km" pattern (description usually has it first)
-    const distM = (description || html).match(/(\d+(?:[.,]\d+)?)\s*(km|mi)/i);
+    // Search across MULTIPLE sources for stats (description, title, page <title>, raw HTML)
+    const pageTitle = decode(grab(/<title[^>]*>([^<]+)<\/title>/i)) || '';
+    const searchText = [description, title, pageTitle, html].filter(Boolean).join(' \n ');
+
+    // Distance: "X.XX km", "X km", "X.X mi"
+    const distM = searchText.match(/(\d+(?:[.,]\d+)?)\s*(km|mi)\b/i);
     if (distM) distance = `${distM[1].replace(',', '.')} ${distM[2].toLowerCase()}`;
 
-    // Duration: "Time: HH:MM:SS" or "MM:SS" near "Time"
-    const durM = (description || html).match(/Time[:\s]+(\d{1,2}(?::\d{2}){1,2})/i);
+    // Duration: try multiple patterns
+    let durM = searchText.match(/(?:Time|Duration|Moving Time)[:\s]+(\d{1,2}(?::\d{2}){1,2})/i);
+    if (!durM) durM = searchText.match(/(\d{1,2}:\d{2}:\d{2})/); // raw HH:MM:SS
     if (durM) duration = durM[1];
 
-    // Pace: "M:SS /km" or "M:SS/km"
-    const paceM = (description || html).match(/(\d{1,2}:\d{2})\s*\/?\s*(km|mi)/i);
+    // Pace: "M:SS /km" or "M:SS/km" (allow space)
+    const paceM = searchText.match(/(\d{1,2}:\d{2})\s*\/?\s*(km|mi)\b/i);
     if (paceM) pace = `${paceM[1]}/${paceM[2].toLowerCase()}`;
 
     // Date: schema.org startDate or <time datetime="...">
