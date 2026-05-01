@@ -133,19 +133,17 @@ function saveLocalRuns(runs) {
   try { localStorage.setItem(LOCAL_RUNS_KEY, JSON.stringify(runs)); } catch {}
 }
 
-const CITY_OPTIONS = ['Lebanon', 'Paris', 'New York', 'Madrid', 'Other'];
+function extractActivityId(url) {
+  const m = String(url).match(/strava\.com\/activities\/(\d+)/i);
+  return m ? m[1] : null;
+}
 
 export default function RunningContent() {
   const [activeCityId, setActiveCityId] = useState('Lebanon');
   const [stravaUrl, setStravaUrl] = useState('');
-  const [runName, setRunName] = useState('');
-  const [runDistance, setRunDistance] = useState('');
-  const [runTime, setRunTime] = useState('');
-  const [runElevation, setRunElevation] = useState('');
-  const [runCity, setRunCity] = useState('Lebanon');
   const [submitting, setSubmitting] = useState(false);
-  const [submitMsg, setSubmitMsg] = useState(null); // { type: 'success'|'error', text }
-  const [sharedRuns, setSharedRuns] = useState(() => [...loadLocalRuns(), ...INITIAL_REAL_EXAMPLES]);
+  const [submitMsg, setSubmitMsg] = useState(null);
+  const [sharedRuns, setSharedRuns] = useState(() => loadLocalRuns());
   const city = RUNNING_CITIES[activeCityId];
 
   useEffect(() => {
@@ -153,69 +151,52 @@ export default function RunningContent() {
       .then(res => res.ok ? res.json() : null)
       .then(data => {
         if (data && data.runs && data.runs.length > 0) {
-          setSharedRuns(prev => {
-            const local = loadLocalRuns();
-            // Merge: cloud + local + initial; dedupe by link
-            const seen = new Set();
-            return [...data.runs, ...local, ...INITIAL_REAL_EXAMPLES].filter(r => {
-              if (!r.link || seen.has(r.link)) return false;
-              seen.add(r.link); return true;
-            });
+          // Merge cloud + local, dedupe by link
+          const local = loadLocalRuns();
+          const seen = new Set();
+          const merged = [...data.runs, ...local].filter(r => {
+            const key = r.link || r.activityId;
+            if (!key || seen.has(key)) return false;
+            seen.add(key); return true;
           });
+          setSharedRuns(merged);
         }
       })
-      .catch(() => { /* offline / 503 — already showing local + initial */ });
+      .catch(() => { /* offline / 503 — keep local only */ });
   }, []);
 
   const handleShare = async (e) => {
     e.preventDefault();
-    if (!stravaUrl.trim()) {
-      setSubmitMsg({ type: 'error', text: 'Paste a Strava activity URL first.' });
+    const url = stravaUrl.trim();
+    if (!url) {
+      setSubmitMsg({ type: 'error', text: 'Paste a Strava activity URL.' });
       return;
     }
-    // Accept any strava domain: strava.com, www.strava.com, strava.app.link (mobile share), etc.
-    if (!/(^|[/.])strava\.(com|app)([/.]|$)/i.test(stravaUrl)) {
-      setSubmitMsg({ type: 'error', text: 'Paste a strava.com or strava.app.link URL.' });
+    const activityId = extractActivityId(url);
+    if (!activityId) {
+      setSubmitMsg({ type: 'error', text: 'Need a strava.com/activities/<id> URL. Use the desktop URL, not strava.app.link short links.' });
       return;
     }
-    if (!runDistance.trim() || !runTime.trim()) {
-      setSubmitMsg({ type: 'error', text: 'Distance and time are required.' });
-      return;
-    }
+
     setSubmitting(true);
     setSubmitMsg(null);
 
-    // Normalize distance: accept "5", "5.2", "5.2km", "5,2 km" → "5.2km"
-    const dist = runDistance.trim().replace(',', '.').replace(/\s*km\s*$/i, '');
-    const distFmt = isNaN(parseFloat(dist)) ? runDistance.trim() : `${parseFloat(dist).toFixed(1)}km`;
-    // Normalize time: accept "26:30" or "1:02:18"
-    const timeFmt = runTime.trim();
-    // Normalize elevation: accept "12", "12m" → "12m"
-    const elev = runElevation.trim().replace(/\s*m\s*$/i, '');
-    const elevFmt = elev ? `${parseInt(elev) || 0}m` : '0m';
-
     const newRun = {
-      name: runName.trim() || 'Community Run',
+      activityId,
+      link: url,
       user: localStorage.getItem('fitmeal_username') || 'Guest',
-      distance: distFmt,
-      time: timeFmt,
-      elevation: elevFmt,
-      city: runCity,
-      link: stravaUrl.trim(),
+      sharedAt: Date.now(),
     };
 
-    // 1) Always update UI + localStorage immediately so it works even offline / no backend
+    // Always save locally + render immediately, so it works regardless of backend
     const localRuns = loadLocalRuns();
-    const updatedLocal = [newRun, ...localRuns].slice(0, 50);
+    const updatedLocal = [newRun, ...localRuns.filter(r => r.activityId !== activityId)].slice(0, 50);
     saveLocalRuns(updatedLocal);
-    setSharedRuns(prev => [newRun, ...prev]);
+    setSharedRuns(prev => [newRun, ...prev.filter(r => r.activityId !== activityId)]);
     setStravaUrl('');
-    setRunName(''); setRunDistance(''); setRunTime(''); setRunElevation('');
-    // Switch the map tab to the city of the run they just added
-    if (CITY_OPTIONS.slice(0, 4).includes(runCity)) setActiveCityId(runCity);
-    setSubmitMsg({ type: 'success', text: 'Run shared! Visible on your device + cloud if online.' });
+    setSubmitMsg({ type: 'success', text: 'Run shared! Card loading below…' });
 
-    // 2) Best-effort POST to backend for cross-device sync
+    // Best-effort POST to backend for cross-device sync
     try {
       await fetch('/api/running/runs', {
         method: 'POST',
@@ -225,7 +206,6 @@ export default function RunningContent() {
     } catch { /* ignore — already saved locally */ }
 
     setSubmitting(false);
-    // Auto-clear the message after 4s
     setTimeout(() => setSubmitMsg(null), 4000);
   };
 
@@ -319,56 +299,12 @@ export default function RunningContent() {
             <form onSubmit={handleShare} className="space-y-2">
               <input
                 type="url"
-                placeholder="Strava Activity URL"
+                placeholder="Paste your Strava activity URL..."
                 value={stravaUrl}
                 onChange={e => setStravaUrl(e.target.value)}
                 disabled={submitting}
                 className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium disabled:opacity-50"
               />
-              <input
-                type="text"
-                placeholder="Run name (e.g. Morning Park Loop)"
-                value={runName}
-                onChange={e => setRunName(e.target.value)}
-                disabled={submitting}
-                className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium disabled:opacity-50"
-              />
-              <div className="grid grid-cols-2 gap-2">
-                <input
-                  type="text"
-                  placeholder="Distance (km)"
-                  value={runDistance}
-                  onChange={e => setRunDistance(e.target.value)}
-                  disabled={submitting}
-                  className="bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium disabled:opacity-50"
-                />
-                <input
-                  type="text"
-                  placeholder="Time (mm:ss)"
-                  value={runTime}
-                  onChange={e => setRunTime(e.target.value)}
-                  disabled={submitting}
-                  className="bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium disabled:opacity-50"
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                <input
-                  type="text"
-                  placeholder="Elevation (m)"
-                  value={runElevation}
-                  onChange={e => setRunElevation(e.target.value)}
-                  disabled={submitting}
-                  className="bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium disabled:opacity-50"
-                />
-                <select
-                  value={runCity}
-                  onChange={e => setRunCity(e.target.value)}
-                  disabled={submitting}
-                  className="bg-gray-50 border border-gray-100 rounded-xl px-3 py-3 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium disabled:opacity-50"
-                >
-                  {CITY_OPTIONS.map(c => <option key={c} value={c}>{c}</option>)}
-                </select>
-              </div>
               <button
                 type="submit"
                 disabled={submitting}
@@ -381,47 +317,53 @@ export default function RunningContent() {
                   {submitMsg.text}
                 </p>
               )}
+              <p className="text-[10px] text-gray-400 px-1">
+                Tip: open the activity on strava.com/activities/&lt;id&gt; and copy the URL. The official Strava card with route, distance, time and pace will appear below.
+              </p>
             </form>
           </div>
 
           <div className="space-y-4">
             <h4 className="text-[10px] font-bold uppercase tracking-wider text-gray-400 ml-4 flex items-center">
-              <Zap size={12} className="mr-2 text-amber-500" /> Recent Community Milestones
+              <Zap size={12} className="mr-2 text-amber-500" /> Shared Runs
             </h4>
-            
-            <div className="space-y-3">
-              {sharedRuns.filter(r => r.city === activeCityId).slice(0, 10).map((ex, i) => (
-                <motion.div 
-                   key={ex.id || i}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-amber-200 transition-all group"
+
+            <div className="space-y-4">
+              {sharedRuns.length === 0 && (
+                <div className="bg-white border border-dashed border-gray-200 rounded-2xl p-8 text-center">
+                  <p className="text-sm text-gray-400 italic">No runs shared yet. Paste a Strava URL above to share yours.</p>
+                </div>
+              )}
+              {sharedRuns.slice(0, 10).map((ex, i) => (
+                <motion.div
+                  key={ex.activityId || ex.link || i}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: Math.min(i, 4) * 0.06 }}
+                  className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden"
                 >
-                  <div className="flex justify-between items-start mb-3">
-                    <div>
-                      <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">{ex.city}</p>
-                      <h5 className="font-bold text-gray-900 group-hover:text-amber-600 transition-colors">{ex.name}</h5>
-                    </div>
-                    <a href={ex.link} target="_blank" rel="noopener noreferrer" className="bg-gray-50 p-2 rounded-lg hover:bg-amber-100 transition-colors">
-                      <ExternalLink size={14} className="text-gray-400 group-hover:text-amber-600" />
+                  {ex.activityId ? (
+                    <iframe
+                      title={`Strava activity ${ex.activityId}`}
+                      src={`https://www.strava.com/activities/${ex.activityId}/embed`}
+                      style={{ width: '100%', height: 405, border: 0, display: 'block' }}
+                      loading="lazy"
+                      scrolling="no"
+                    />
+                  ) : (
+                    <a
+                      href={ex.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between p-5 hover:bg-amber-50 transition-colors"
+                    >
+                      <div>
+                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Strava</p>
+                        <p className="text-sm font-bold text-gray-800">View on Strava →</p>
+                      </div>
+                      <ExternalLink size={16} className="text-gray-400" />
                     </a>
-                  </div>
-                  
-                  <div className="flex gap-4 border-t border-gray-50 pt-3">
-                    <div className="flex flex-col">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-gray-300">Dist</span>
-                      <span className="text-xs font-bold text-gray-700">{ex.distance}</span>
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-gray-300">Time</span>
-                      <span className="text-xs font-bold text-gray-700">{ex.time}</span>
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-gray-300">User</span>
-                      <span className="text-xs font-bold text-gray-700 truncate max-w-[60px]">{ex.user}</span>
-                    </div>
-                  </div>
+                  )}
                 </motion.div>
               ))}
             </div>
