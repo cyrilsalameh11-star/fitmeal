@@ -162,6 +162,39 @@ app.get('/api/running/runs', async (req, res) => {
   }
 });
 
+// Resolve a Strava share URL (strava.app.link/..., m.strava.com/..., etc.)
+// to the canonical strava.com/activities/<id> by following redirects.
+app.get('/api/strava/resolve', async (req, res) => {
+  const url = req.query.url;
+  if (!url || !/strava\.(com|app)/i.test(String(url))) {
+    return res.status(400).json({ error: 'invalid strava url' });
+  }
+  try {
+    const axios = require('axios');
+    // Use a real-browser User-Agent so app.link doesn't gate us out.
+    const resp = await axios.get(String(url), {
+      maxRedirects: 10,
+      validateStatus: () => true,
+      timeout: 8000,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      },
+    });
+    const finalUrl = (resp.request?.res?.responseUrl) || (resp.request?.responseURL) || String(url);
+    let m = finalUrl.match(/strava\.com\/activities\/(\d+)/i);
+    if (!m) {
+      // app.link pages embed the destination via meta/canonical/og tags or JS redirect.
+      const html = String(resp.data || '');
+      m = html.match(/strava\.com\/activities\/(\d+)/i);
+    }
+    if (m) return res.json({ activityId: m[1], finalUrl });
+    return res.status(404).json({ error: 'no activity id in redirect chain' });
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
+  }
+});
+
 app.post('/api/running/runs', async (req, res) => {
   if (!supabase) return res.status(503).json({ error: 'Cloud database not connected' });
   try {

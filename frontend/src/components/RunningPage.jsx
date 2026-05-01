@@ -172,14 +172,34 @@ export default function RunningContent() {
       setSubmitMsg({ type: 'error', text: 'Paste a Strava activity URL.' });
       return;
     }
-    const activityId = extractActivityId(url);
-    if (!activityId) {
-      setSubmitMsg({ type: 'error', text: 'Need a strava.com/activities/<id> URL. Use the desktop URL, not strava.app.link short links.' });
+    if (!/strava\.(com|app)/i.test(url)) {
+      setSubmitMsg({ type: 'error', text: 'Paste a strava.com or strava.app.link URL.' });
       return;
     }
 
     setSubmitting(true);
     setSubmitMsg(null);
+
+    // Try direct extraction first
+    let activityId = extractActivityId(url);
+
+    // If it's an app.link / mobile share, resolve via backend
+    if (!activityId) {
+      setSubmitMsg({ type: 'success', text: 'Resolving Strava link…' });
+      try {
+        const r = await fetch(`/api/strava/resolve?url=${encodeURIComponent(url)}`);
+        if (r.ok) {
+          const data = await r.json();
+          if (data.activityId) activityId = data.activityId;
+        }
+      } catch { /* ignore */ }
+    }
+
+    if (!activityId) {
+      setSubmitting(false);
+      setSubmitMsg({ type: 'error', text: 'Could not resolve that link. Open the activity on the web (strava.com/activities/...) and paste that URL instead.' });
+      return;
+    }
 
     const newRun = {
       activityId,
@@ -318,7 +338,7 @@ export default function RunningContent() {
                 </p>
               )}
               <p className="text-[10px] text-gray-400 px-1">
-                Tip: open the activity on strava.com/activities/&lt;id&gt; and copy the URL. The official Strava card with route, distance, time and pace will appear below.
+                Works with both desktop URLs (strava.com/activities/…) and mobile share links (strava.app.link/…). The official Strava card with route, distance, time and pace will appear below.
               </p>
             </form>
           </div>
