@@ -4292,72 +4292,2752 @@ module.exports = [
       "healthy"
     ]
   },
-  { "id": "fr-paul-croissant-beurre", "name": "Croissant Pur Beurre", "brand": "Paul", "type": ["breakfast", "snack"], "calories": 280, "protein": 5, "carbs": 32, "fat": 15, "country": "France", "source": "restaurant", "shoppingItems": ["Croissant Pur Beurre — Paul"] },
-  { "id": "fr-paul-pain-chocolat", "name": "Pain au Chocolat", "brand": "Paul", "type": ["breakfast", "snack"], "calories": 330, "protein": 6, "carbs": 40, "fat": 16, "country": "France", "source": "restaurant", "shoppingItems": ["Pain au Chocolat — Paul"] },
-  { "id": "fr-paul-sandwich-jambon-beurre", "name": "Sandwich Jambon Beurre", "brand": "Paul", "type": ["lunch"], "calories": 450, "protein": 20, "carbs": 48, "fat": 20, "country": "France", "source": "restaurant", "shoppingItems": ["Sandwich Jambon Beurre — Paul"] },
-  { "id": "fr-paul-sandwich-saumon-avocat", "name": "Sandwich Saumon Avocat", "brand": "Paul", "type": ["lunch"], "calories": 490, "protein": 24, "carbs": 44, "fat": 22, "country": "France", "source": "restaurant", "shoppingItems": ["Sandwich Saumon Avocat — Paul"] },
-  { "id": "fr-paul-tartine-poulet", "name": "Tartine Poulet Pesto", "brand": "Paul", "type": ["lunch"], "calories": 420, "protein": 28, "carbs": 40, "fat": 16, "country": "France", "source": "restaurant", "shoppingItems": ["Tartine Poulet Pesto — Paul"] },
-  { "id": "fr-paul-salade-chevre-chaud", "name": "Salade Chèvre Chaud", "brand": "Paul", "type": ["lunch"], "calories": 380, "protein": 16, "carbs": 28, "fat": 24, "country": "France", "source": "restaurant", "shoppingItems": ["Salade Chèvre Chaud — Paul"] },
-  { "id": "fr-paul-quiche-lorraine", "name": "Quiche Lorraine", "brand": "Paul", "type": ["lunch", "snack"], "calories": 410, "protein": 14, "carbs": 30, "fat": 26, "country": "France", "source": "restaurant", "shoppingItems": ["Quiche Lorraine — Paul"] },
-  { "id": "fr-paul-tarte-citron", "name": "Tarte au Citron", "brand": "Paul", "type": ["snack"], "calories": 360, "protein": 5, "carbs": 50, "fat": 16, "country": "France", "source": "restaurant", "shoppingItems": ["Tarte au Citron — Paul"] },
-  { "id": "fr-paul-eclair-chocolat", "name": "Éclair au Chocolat", "brand": "Paul", "type": ["snack"], "calories": 340, "protein": 6, "carbs": 44, "fat": 15, "country": "France", "source": "restaurant", "shoppingItems": ["Éclair au Chocolat — Paul"] },
-  { "id": "fr-paul-madeleine", "name": "Madeleine Pur Beurre", "brand": "Paul", "type": ["snack"], "calories": 150, "protein": 3, "carbs": 20, "fat": 7, "country": "France", "source": "restaurant", "shoppingItems": ["Madeleine Pur Beurre — Paul"] },
-  { "id": "fr-paul-baguette-tradition", "name": "Baguette Tradition (1/2)", "brand": "Paul", "type": ["breakfast", "lunch"], "calories": 290, "protein": 10, "carbs": 56, "fat": 2, "country": "France", "source": "restaurant", "shoppingItems": ["Baguette Tradition — Paul"] },
-  { "id": "fr-paul-pain-raisin", "name": "Pain aux Raisins", "brand": "Paul", "type": ["breakfast", "snack"], "calories": 310, "protein": 6, "carbs": 46, "fat": 11, "country": "France", "source": "restaurant", "shoppingItems": ["Pain aux Raisins — Paul"] },
-  { "id": "fr-paul-bowl-acai", "name": "Bowl Açaï Granola Fruits", "brand": "Paul", "type": ["breakfast"], "calories": 380, "protein": 9, "carbs": 60, "fat": 12, "country": "France", "source": "restaurant", "shoppingItems": ["Bowl Açaï Granola — Paul"] },
-  { "id": "fr-paul-salade-poulet-cesar", "name": "Salade Poulet César", "brand": "Paul", "type": ["lunch"], "calories": 420, "protein": 32, "carbs": 20, "fat": 24, "country": "France", "source": "restaurant", "shoppingItems": ["Salade Poulet César — Paul"] },
-  { "id": "fr-paul-soupe-du-jour", "name": "Soupe du Jour", "brand": "Paul", "type": ["lunch"], "calories": 200, "protein": 7, "carbs": 24, "fat": 9, "country": "France", "source": "restaurant", "shoppingItems": ["Soupe du Jour — Paul"] },
-  { "id": "fr-paul-wrap-poulet-avocat", "name": "Wrap Poulet Avocat", "brand": "Paul", "type": ["lunch"], "calories": 470, "protein": 30, "carbs": 46, "fat": 18, "country": "France", "source": "restaurant", "shoppingItems": ["Wrap Poulet Avocat — Paul"] },
-  { "id": "fr-paul-croissant-amande", "name": "Croissant aux Amandes", "brand": "Paul", "type": ["breakfast", "snack"], "calories": 420, "protein": 8, "carbs": 46, "fat": 22, "country": "France", "source": "restaurant", "shoppingItems": ["Croissant aux Amandes — Paul"] },
-  { "id": "fr-paul-tartine-saumon-fume", "name": "Tartine Saumon Fumé Cream Cheese", "brand": "Paul", "type": ["breakfast", "lunch"], "calories": 390, "protein": 22, "carbs": 36, "fat": 18, "country": "France", "source": "restaurant", "shoppingItems": ["Tartine Saumon Fumé — Paul"] },
-  { "id": "fr-paul-salade-nicoise", "name": "Salade Niçoise", "brand": "Paul", "type": ["lunch"], "calories": 360, "protein": 24, "carbs": 22, "fat": 20, "country": "France", "source": "restaurant", "shoppingItems": ["Salade Niçoise — Paul"] },
-  { "id": "fr-paul-flan-patissier", "name": "Flan Pâtissier", "brand": "Paul", "type": ["snack"], "calories": 320, "protein": 7, "carbs": 46, "fat": 12, "country": "France", "source": "restaurant", "shoppingItems": ["Flan Pâtissier — Paul"] },
-  { "id": "fr-paul-fondant-chocolat", "name": "Fondant Chocolat Noir", "brand": "Paul", "type": ["snack"], "calories": 380, "protein": 6, "carbs": 48, "fat": 18, "country": "France", "source": "restaurant", "shoppingItems": ["Fondant Chocolat Noir — Paul"] },
-  { "id": "fr-paul-millefeuille", "name": "Mille-feuille Vanille", "brand": "Paul", "type": ["snack"], "calories": 410, "protein": 6, "carbs": 52, "fat": 19, "country": "France", "source": "restaurant", "shoppingItems": ["Mille-feuille Vanille — Paul"] },
-  { "id": "fr-paul-pain-integral", "name": "Pain Intégral (2 tranches)", "brand": "Paul", "type": ["breakfast"], "calories": 180, "protein": 7, "carbs": 34, "fat": 2, "country": "France", "source": "restaurant", "shoppingItems": ["Pain Intégral — Paul"] },
-  { "id": "fr-matsuri-california-maki", "name": "California Maki (8 pcs)", "brand": "Matsuri", "type": ["lunch"], "calories": 320, "protein": 14, "carbs": 52, "fat": 8, "country": "France", "source": "restaurant", "shoppingItems": ["California Maki — Matsuri"] },
-  { "id": "fr-matsuri-saumon-avocat-maki", "name": "Saumon Avocat Maki (8 pcs)", "brand": "Matsuri", "type": ["lunch"], "calories": 340, "protein": 16, "carbs": 50, "fat": 10, "country": "France", "source": "restaurant", "shoppingItems": ["Saumon Avocat Maki — Matsuri"] },
-  { "id": "fr-matsuri-sashimi-saumon", "name": "Sashimi Saumon (8 pcs)", "brand": "Matsuri", "type": ["lunch", "dinner"], "calories": 240, "protein": 32, "carbs": 2, "fat": 12, "country": "France", "source": "restaurant", "shoppingItems": ["Sashimi Saumon — Matsuri"] },
-  { "id": "fr-matsuri-sashimi-thon", "name": "Sashimi Thon (8 pcs)", "brand": "Matsuri", "type": ["lunch", "dinner"], "calories": 200, "protein": 34, "carbs": 0, "fat": 6, "country": "France", "source": "restaurant", "shoppingItems": ["Sashimi Thon — Matsuri"] },
-  { "id": "fr-matsuri-nigiri-saumon", "name": "Nigiri Saumon (2 pcs)", "brand": "Matsuri", "type": ["lunch", "snack"], "calories": 130, "protein": 8, "carbs": 18, "fat": 4, "country": "France", "source": "restaurant", "shoppingItems": ["Nigiri Saumon — Matsuri"] },
-  { "id": "fr-matsuri-nigiri-thon", "name": "Nigiri Thon (2 pcs)", "brand": "Matsuri", "type": ["lunch", "snack"], "calories": 120, "protein": 9, "carbs": 16, "fat": 2, "country": "France", "source": "restaurant", "shoppingItems": ["Nigiri Thon — Matsuri"] },
-  { "id": "fr-matsuri-plateau-mixte", "name": "Plateau Mixte 30 pcs", "brand": "Matsuri", "type": ["lunch", "dinner"], "calories": 760, "protein": 46, "carbs": 102, "fat": 18, "country": "France", "source": "restaurant", "shoppingItems": ["Plateau Mixte 30 pcs — Matsuri"] },
-  { "id": "fr-matsuri-spicy-tuna-roll", "name": "Spicy Tuna Roll (8 pcs)", "brand": "Matsuri", "type": ["lunch"], "calories": 360, "protein": 18, "carbs": 54, "fat": 10, "country": "France", "source": "restaurant", "shoppingItems": ["Spicy Tuna Roll — Matsuri"] },
-  { "id": "fr-matsuri-dragon-roll", "name": "Dragon Roll Crevette Avocat (8 pcs)", "brand": "Matsuri", "type": ["lunch", "dinner"], "calories": 410, "protein": 16, "carbs": 60, "fat": 12, "country": "France", "source": "restaurant", "shoppingItems": ["Dragon Roll — Matsuri"] },
-  { "id": "fr-matsuri-edamame", "name": "Edamamé Salé", "brand": "Matsuri", "type": ["snack"], "calories": 150, "protein": 13, "carbs": 10, "fat": 6, "country": "France", "source": "restaurant", "shoppingItems": ["Edamamé Salé — Matsuri"] },
-  { "id": "fr-matsuri-miso-soup", "name": "Soupe Miso", "brand": "Matsuri", "type": ["lunch", "snack"], "calories": 60, "protein": 4, "carbs": 7, "fat": 2, "country": "France", "source": "restaurant", "shoppingItems": ["Soupe Miso — Matsuri"] },
-  { "id": "fr-matsuri-gyoza-poulet", "name": "Gyoza Poulet (5 pcs)", "brand": "Matsuri", "type": ["snack", "lunch"], "calories": 280, "protein": 14, "carbs": 30, "fat": 12, "country": "France", "source": "restaurant", "shoppingItems": ["Gyoza Poulet — Matsuri"] },
-  { "id": "fr-matsuri-chirashi-saumon", "name": "Chirashi Saumon", "brand": "Matsuri", "type": ["lunch", "dinner"], "calories": 520, "protein": 36, "carbs": 62, "fat": 12, "country": "France", "source": "restaurant", "shoppingItems": ["Chirashi Saumon — Matsuri"] },
-  { "id": "fr-matsuri-rainbow-roll", "name": "Rainbow Roll (8 pcs)", "brand": "Matsuri", "type": ["lunch", "dinner"], "calories": 380, "protein": 20, "carbs": 52, "fat": 10, "country": "France", "source": "restaurant", "shoppingItems": ["Rainbow Roll — Matsuri"] },
-  { "id": "fr-matsuri-tataki-boeuf", "name": "Tataki de Bœuf", "brand": "Matsuri", "type": ["dinner"], "calories": 300, "protein": 28, "carbs": 10, "fat": 16, "country": "France", "source": "restaurant", "shoppingItems": ["Tataki de Bœuf — Matsuri"] },
-  { "id": "fr-matsuri-temaki-saumon", "name": "Temaki Saumon Avocat", "brand": "Matsuri", "type": ["lunch"], "calories": 290, "protein": 14, "carbs": 38, "fat": 10, "country": "France", "source": "restaurant", "shoppingItems": ["Temaki Saumon Avocat — Matsuri"] },
-  { "id": "fr-matsuri-plateau-sashimi", "name": "Plateau Sashimi 15 pcs", "brand": "Matsuri", "type": ["lunch", "dinner"], "calories": 360, "protein": 52, "carbs": 4, "fat": 14, "country": "France", "source": "restaurant", "shoppingItems": ["Plateau Sashimi 15 pcs — Matsuri"] },
-  { "id": "fr-matsuri-salade-wakame", "name": "Salade Wakamé au Sésame", "brand": "Matsuri", "type": ["snack", "lunch"], "calories": 120, "protein": 4, "carbs": 14, "fat": 6, "country": "France", "source": "restaurant", "shoppingItems": ["Salade Wakamé — Matsuri"] },
-  { "id": "fr-matsuri-donburi-saumon", "name": "Donburi Saumon Teriyaki", "brand": "Matsuri", "type": ["lunch", "dinner"], "calories": 580, "protein": 34, "carbs": 72, "fat": 14, "country": "France", "source": "restaurant", "shoppingItems": ["Donburi Saumon Teriyaki — Matsuri"] },
-  { "id": "fr-matsuri-mochi-glace", "name": "Mochi Glacé (x3)", "brand": "Matsuri", "type": ["snack"], "calories": 220, "protein": 3, "carbs": 38, "fat": 6, "country": "France", "source": "restaurant", "shoppingItems": ["Mochi Glacé — Matsuri"] },
-  { "id": "fr-matsuri-katsu-poulet", "name": "Katsu Poulet Sauce Tonkatsu", "brand": "Matsuri", "type": ["lunch", "dinner"], "calories": 560, "protein": 36, "carbs": 58, "fat": 18, "country": "France", "source": "restaurant", "shoppingItems": ["Katsu Poulet — Matsuri"] },
-  { "id": "fr-matsuri-plateau-decouverte", "name": "Plateau Découverte 20 pcs", "brand": "Matsuri", "type": ["lunch", "dinner"], "calories": 520, "protein": 32, "carbs": 70, "fat": 12, "country": "France", "source": "restaurant", "shoppingItems": ["Plateau Découverte 20 pcs — Matsuri"] },
-
-  // Le Louchebem — Paris boucherie-restaurant, Les Halles
-  { "id": "fr-louchebem-soupe-oignon", "name": "Soupe à l'Oignon Gratinée", "brand": "Le Louchebem", "type": ["lunch", "dinner"], "calories": 280, "protein": 12, "carbs": 24, "fat": 14, "country": "France", "source": "restaurant", "shoppingItems": ["Soupe à l'Oignon Gratinée — Le Louchebem"] },
-  { "id": "fr-louchebem-os-moelle", "name": "Os à Moelle Rôti (2 pcs)", "brand": "Le Louchebem", "type": ["lunch", "dinner"], "calories": 340, "protein": 8, "carbs": 2, "fat": 32, "country": "France", "source": "restaurant", "shoppingItems": ["Os à Moelle Rôti — Le Louchebem"] },
-  { "id": "fr-louchebem-foie-gras", "name": "Foie Gras de Canard Mi-Cuit", "brand": "Le Louchebem", "type": ["lunch", "dinner"], "calories": 380, "protein": 8, "carbs": 6, "fat": 35, "country": "France", "source": "restaurant", "shoppingItems": ["Foie Gras de Canard Mi-Cuit — Le Louchebem"] },
-  { "id": "fr-louchebem-escargots", "name": "Escargots au Beurre Persillé (6 pcs)", "brand": "Le Louchebem", "type": ["lunch", "dinner"], "calories": 240, "protein": 14, "carbs": 4, "fat": 18, "country": "France", "source": "restaurant", "shoppingItems": ["Escargots au Beurre Persillé — Le Louchebem"] },
-  { "id": "fr-louchebem-carpaccio", "name": "Carpaccio de Boeuf", "brand": "Le Louchebem", "type": ["lunch", "dinner"], "calories": 280, "protein": 26, "carbs": 2, "fat": 18, "country": "France", "source": "restaurant", "shoppingItems": ["Carpaccio de Boeuf — Le Louchebem"] },
-  { "id": "fr-louchebem-entrecote", "name": "Entrecôte Grillée (250g)", "brand": "Le Louchebem", "type": ["lunch", "dinner"], "calories": 580, "protein": 52, "carbs": 0, "fat": 42, "country": "France", "source": "restaurant", "shoppingItems": ["Entrecôte Grillée — Le Louchebem"] },
-  { "id": "fr-louchebem-cote-boeuf", "name": "Côte de Boeuf (400g)", "brand": "Le Louchebem", "type": ["dinner"], "calories": 900, "protein": 88, "carbs": 0, "fat": 62, "country": "France", "source": "restaurant", "shoppingItems": ["Côte de Boeuf — Le Louchebem"] },
-  { "id": "fr-louchebem-filet", "name": "Filet de Boeuf (200g)", "brand": "Le Louchebem", "type": ["lunch", "dinner"], "calories": 440, "protein": 48, "carbs": 0, "fat": 28, "country": "France", "source": "restaurant", "shoppingItems": ["Filet de Boeuf — Le Louchebem"] },
-  { "id": "fr-louchebem-tartare", "name": "Tartare de Boeuf Façon Louchebem", "brand": "Le Louchebem", "type": ["lunch", "dinner"], "calories": 360, "protein": 38, "carbs": 4, "fat": 22, "country": "France", "source": "restaurant", "shoppingItems": ["Tartare de Boeuf — Le Louchebem"] },
-  { "id": "fr-louchebem-steak-frites", "name": "Steak Frites (Entrecôte + Frites)", "brand": "Le Louchebem", "type": ["lunch", "dinner"], "calories": 780, "protein": 52, "carbs": 52, "fat": 42, "country": "France", "source": "restaurant", "shoppingItems": ["Steak Frites — Le Louchebem"] },
-  { "id": "fr-louchebem-pave-poivre", "name": "Pavé de Boeuf Sauce Poivre (220g)", "brand": "Le Louchebem", "type": ["lunch", "dinner"], "calories": 560, "protein": 46, "carbs": 4, "fat": 38, "country": "France", "source": "restaurant", "shoppingItems": ["Pavé de Boeuf Sauce Poivre — Le Louchebem"] },
-  { "id": "fr-louchebem-bavette", "name": "Bavette à l'Échalote (200g)", "brand": "Le Louchebem", "type": ["lunch", "dinner"], "calories": 480, "protein": 44, "carbs": 6, "fat": 30, "country": "France", "source": "restaurant", "shoppingItems": ["Bavette à l'Échalote — Le Louchebem"] },
-  { "id": "fr-louchebem-onglet", "name": "Onglet à l'Échalote (200g)", "brand": "Le Louchebem", "type": ["lunch", "dinner"], "calories": 460, "protein": 40, "carbs": 4, "fat": 30, "country": "France", "source": "restaurant", "shoppingItems": ["Onglet à l'Échalote — Le Louchebem"] },
-  { "id": "fr-louchebem-rumsteck", "name": "Rumsteck Grillé (200g)", "brand": "Le Louchebem", "type": ["lunch", "dinner"], "calories": 420, "protein": 44, "carbs": 0, "fat": 26, "country": "France", "source": "restaurant", "shoppingItems": ["Rumsteck Grillé — Le Louchebem"] },
-  { "id": "fr-louchebem-frites", "name": "Frites Maison", "brand": "Le Louchebem", "type": ["lunch", "dinner"], "calories": 380, "protein": 5, "carbs": 52, "fat": 18, "country": "France", "source": "restaurant", "shoppingItems": ["Frites Maison — Le Louchebem"] },
-  { "id": "fr-louchebem-pommes-dauphine", "name": "Pommes Dauphine", "brand": "Le Louchebem", "type": ["lunch", "dinner"], "calories": 320, "protein": 6, "carbs": 38, "fat": 16, "country": "France", "source": "restaurant", "shoppingItems": ["Pommes Dauphine — Le Louchebem"] },
-  { "id": "fr-louchebem-haricots-verts", "name": "Haricots Verts au Beurre", "brand": "Le Louchebem", "type": ["lunch", "dinner"], "calories": 120, "protein": 3, "carbs": 10, "fat": 7, "country": "France", "source": "restaurant", "shoppingItems": ["Haricots Verts au Beurre — Le Louchebem"] },
-  { "id": "fr-louchebem-gratin", "name": "Gratin Dauphinois", "brand": "Le Louchebem", "type": ["lunch", "dinner"], "calories": 360, "protein": 8, "carbs": 28, "fat": 24, "country": "France", "source": "restaurant", "shoppingItems": ["Gratin Dauphinois — Le Louchebem"] },
-  { "id": "fr-louchebem-creme-brulee", "name": "Crème Brûlée", "brand": "Le Louchebem", "type": ["dessert"], "calories": 320, "protein": 6, "carbs": 32, "fat": 18, "country": "France", "source": "restaurant", "shoppingItems": ["Crème Brûlée — Le Louchebem"] },
-  { "id": "fr-louchebem-mousse-choc", "name": "Mousse au Chocolat Maison", "brand": "Le Louchebem", "type": ["dessert"], "calories": 360, "protein": 7, "carbs": 30, "fat": 24, "country": "France", "source": "restaurant", "shoppingItems": ["Mousse au Chocolat Maison — Le Louchebem"] },
-  { "id": "fr-louchebem-tarte-tatin", "name": "Tarte Tatin (portion)", "brand": "Le Louchebem", "type": ["dessert"], "calories": 420, "protein": 4, "carbs": 58, "fat": 19, "country": "France", "source": "restaurant", "shoppingItems": ["Tarte Tatin — Le Louchebem"] }
+  {
+    "id": "fr-paul-croissant-beurre",
+    "name": "Croissant Pur Beurre",
+    "brand": "Paul",
+    "type": [
+      "breakfast",
+      "snack"
+    ],
+    "calories": 280,
+    "protein": 5,
+    "carbs": 32,
+    "fat": 15,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Croissant Pur Beurre — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pain-chocolat",
+    "name": "Pain au Chocolat",
+    "brand": "Paul",
+    "type": [
+      "breakfast",
+      "snack"
+    ],
+    "calories": 330,
+    "protein": 6,
+    "carbs": 40,
+    "fat": 16,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pain au Chocolat — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-jambon-beurre",
+    "name": "Sandwich Jambon Beurre",
+    "brand": "Paul",
+    "type": [
+      "lunch"
+    ],
+    "calories": 450,
+    "protein": 20,
+    "carbs": 48,
+    "fat": 20,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Jambon Beurre — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-saumon-avocat",
+    "name": "Sandwich Saumon Avocat",
+    "brand": "Paul",
+    "type": [
+      "lunch"
+    ],
+    "calories": 490,
+    "protein": 24,
+    "carbs": 44,
+    "fat": 22,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Saumon Avocat — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tartine-poulet",
+    "name": "Tartine Poulet Pesto",
+    "brand": "Paul",
+    "type": [
+      "lunch"
+    ],
+    "calories": 420,
+    "protein": 28,
+    "carbs": 40,
+    "fat": 16,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tartine Poulet Pesto — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-salade-chevre-chaud",
+    "name": "Salade Chèvre Chaud",
+    "brand": "Paul",
+    "type": [
+      "lunch"
+    ],
+    "calories": 380,
+    "protein": 16,
+    "carbs": 28,
+    "fat": 24,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Chèvre Chaud — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-quiche-lorraine",
+    "name": "Quiche Lorraine",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "snack"
+    ],
+    "calories": 410,
+    "protein": 14,
+    "carbs": 30,
+    "fat": 26,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Quiche Lorraine — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tarte-citron",
+    "name": "Tarte au Citron",
+    "brand": "Paul",
+    "type": [
+      "snack"
+    ],
+    "calories": 360,
+    "protein": 5,
+    "carbs": 50,
+    "fat": 16,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tarte au Citron — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-eclair-chocolat",
+    "name": "Éclair au Chocolat",
+    "brand": "Paul",
+    "type": [
+      "snack"
+    ],
+    "calories": 340,
+    "protein": 6,
+    "carbs": 44,
+    "fat": 15,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Éclair au Chocolat — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-madeleine",
+    "name": "Madeleine Pur Beurre",
+    "brand": "Paul",
+    "type": [
+      "snack"
+    ],
+    "calories": 150,
+    "protein": 3,
+    "carbs": 20,
+    "fat": 7,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Madeleine Pur Beurre — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-baguette-tradition",
+    "name": "Baguette Tradition (1/2)",
+    "brand": "Paul",
+    "type": [
+      "breakfast",
+      "lunch"
+    ],
+    "calories": 290,
+    "protein": 10,
+    "carbs": 56,
+    "fat": 2,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Baguette Tradition — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pain-raisin",
+    "name": "Pain aux Raisins",
+    "brand": "Paul",
+    "type": [
+      "breakfast",
+      "snack"
+    ],
+    "calories": 310,
+    "protein": 6,
+    "carbs": 46,
+    "fat": 11,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pain aux Raisins — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-bowl-acai",
+    "name": "Bowl Açaï Granola Fruits",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 380,
+    "protein": 9,
+    "carbs": 60,
+    "fat": 12,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Bowl Açaï Granola — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-salade-poulet-cesar",
+    "name": "Salade Poulet César",
+    "brand": "Paul",
+    "type": [
+      "lunch"
+    ],
+    "calories": 420,
+    "protein": 32,
+    "carbs": 20,
+    "fat": 24,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Poulet César — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-soupe-du-jour",
+    "name": "Soupe du Jour",
+    "brand": "Paul",
+    "type": [
+      "lunch"
+    ],
+    "calories": 200,
+    "protein": 7,
+    "carbs": 24,
+    "fat": 9,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Soupe du Jour — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-wrap-poulet-avocat",
+    "name": "Wrap Poulet Avocat",
+    "brand": "Paul",
+    "type": [
+      "lunch"
+    ],
+    "calories": 470,
+    "protein": 30,
+    "carbs": 46,
+    "fat": 18,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Wrap Poulet Avocat — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-croissant-amande",
+    "name": "Croissant aux Amandes",
+    "brand": "Paul",
+    "type": [
+      "breakfast",
+      "snack"
+    ],
+    "calories": 420,
+    "protein": 8,
+    "carbs": 46,
+    "fat": 22,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Croissant aux Amandes — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tartine-saumon-fume",
+    "name": "Tartine Saumon Fumé Cream Cheese",
+    "brand": "Paul",
+    "type": [
+      "breakfast",
+      "lunch"
+    ],
+    "calories": 390,
+    "protein": 22,
+    "carbs": 36,
+    "fat": 18,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tartine Saumon Fumé — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-salade-nicoise",
+    "name": "Salade Niçoise",
+    "brand": "Paul",
+    "type": [
+      "lunch"
+    ],
+    "calories": 360,
+    "protein": 24,
+    "carbs": 22,
+    "fat": 20,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Niçoise — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-flan-patissier",
+    "name": "Flan Pâtissier",
+    "brand": "Paul",
+    "type": [
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 7,
+    "carbs": 46,
+    "fat": 12,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Flan Pâtissier — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fondant-chocolat",
+    "name": "Fondant Chocolat Noir",
+    "brand": "Paul",
+    "type": [
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 6,
+    "carbs": 48,
+    "fat": 18,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fondant Chocolat Noir — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-millefeuille",
+    "name": "Mille-feuille Vanille",
+    "brand": "Paul",
+    "type": [
+      "snack"
+    ],
+    "calories": 410,
+    "protein": 6,
+    "carbs": 52,
+    "fat": 19,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Mille-feuille Vanille — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pain-integral",
+    "name": "Pain Intégral (2 tranches)",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 180,
+    "protein": 7,
+    "carbs": 34,
+    "fat": 2,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pain Intégral — Paul"
+    ]
+  },
+  {
+    "id": "fr-matsuri-california-maki",
+    "name": "California Maki (8 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch"
+    ],
+    "calories": 320,
+    "protein": 14,
+    "carbs": 52,
+    "fat": 8,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "California Maki — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-saumon-avocat-maki",
+    "name": "Saumon Avocat Maki (8 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch"
+    ],
+    "calories": 340,
+    "protein": 16,
+    "carbs": 50,
+    "fat": 10,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Saumon Avocat Maki — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-sashimi-saumon",
+    "name": "Sashimi Saumon (8 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 240,
+    "protein": 32,
+    "carbs": 2,
+    "fat": 12,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sashimi Saumon — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-sashimi-thon",
+    "name": "Sashimi Thon (8 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 200,
+    "protein": 34,
+    "carbs": 0,
+    "fat": 6,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sashimi Thon — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-nigiri-saumon",
+    "name": "Nigiri Saumon (2 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "snack"
+    ],
+    "calories": 130,
+    "protein": 8,
+    "carbs": 18,
+    "fat": 4,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Nigiri Saumon — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-nigiri-thon",
+    "name": "Nigiri Thon (2 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "snack"
+    ],
+    "calories": 120,
+    "protein": 9,
+    "carbs": 16,
+    "fat": 2,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Nigiri Thon — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-plateau-mixte",
+    "name": "Plateau Mixte 30 pcs",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 760,
+    "protein": 46,
+    "carbs": 102,
+    "fat": 18,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Plateau Mixte 30 pcs — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-spicy-tuna-roll",
+    "name": "Spicy Tuna Roll (8 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch"
+    ],
+    "calories": 360,
+    "protein": 18,
+    "carbs": 54,
+    "fat": 10,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Spicy Tuna Roll — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-dragon-roll",
+    "name": "Dragon Roll Crevette Avocat (8 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 410,
+    "protein": 16,
+    "carbs": 60,
+    "fat": 12,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Dragon Roll — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-edamame",
+    "name": "Edamamé Salé",
+    "brand": "Matsuri",
+    "type": [
+      "snack"
+    ],
+    "calories": 150,
+    "protein": 13,
+    "carbs": 10,
+    "fat": 6,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Edamamé Salé — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-miso-soup",
+    "name": "Soupe Miso",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "snack"
+    ],
+    "calories": 60,
+    "protein": 4,
+    "carbs": 7,
+    "fat": 2,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Soupe Miso — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-gyoza-poulet",
+    "name": "Gyoza Poulet (5 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 280,
+    "protein": 14,
+    "carbs": 30,
+    "fat": 12,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gyoza Poulet — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-chirashi-saumon",
+    "name": "Chirashi Saumon",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 520,
+    "protein": 36,
+    "carbs": 62,
+    "fat": 12,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chirashi Saumon — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-rainbow-roll",
+    "name": "Rainbow Roll (8 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 20,
+    "carbs": 52,
+    "fat": 10,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Rainbow Roll — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-tataki-boeuf",
+    "name": "Tataki de Bœuf",
+    "brand": "Matsuri",
+    "type": [
+      "dinner"
+    ],
+    "calories": 300,
+    "protein": 28,
+    "carbs": 10,
+    "fat": 16,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tataki de Bœuf — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-temaki-saumon",
+    "name": "Temaki Saumon Avocat",
+    "brand": "Matsuri",
+    "type": [
+      "lunch"
+    ],
+    "calories": 290,
+    "protein": 14,
+    "carbs": 38,
+    "fat": 10,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Temaki Saumon Avocat — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-plateau-sashimi",
+    "name": "Plateau Sashimi 15 pcs",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 360,
+    "protein": 52,
+    "carbs": 4,
+    "fat": 14,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Plateau Sashimi 15 pcs — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-salade-wakame",
+    "name": "Salade Wakamé au Sésame",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 120,
+    "protein": 4,
+    "carbs": 14,
+    "fat": 6,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Wakamé — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-donburi-saumon",
+    "name": "Donburi Saumon Teriyaki",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 580,
+    "protein": 34,
+    "carbs": 72,
+    "fat": 14,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Donburi Saumon Teriyaki — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-mochi-glace",
+    "name": "Mochi Glacé (x3)",
+    "brand": "Matsuri",
+    "type": [
+      "snack"
+    ],
+    "calories": 220,
+    "protein": 3,
+    "carbs": 38,
+    "fat": 6,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Mochi Glacé — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-katsu-poulet",
+    "name": "Katsu Poulet Sauce Tonkatsu",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 560,
+    "protein": 36,
+    "carbs": 58,
+    "fat": 18,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Katsu Poulet — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-plateau-decouverte",
+    "name": "Plateau Découverte 20 pcs",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 520,
+    "protein": 32,
+    "carbs": 70,
+    "fat": 12,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Plateau Découverte 20 pcs — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-louchebem-soupe-oignon",
+    "name": "Soupe à l'Oignon Gratinée",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 280,
+    "protein": 12,
+    "carbs": 24,
+    "fat": 14,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Soupe à l'Oignon Gratinée — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-os-moelle",
+    "name": "Os à Moelle Rôti (2 pcs)",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 340,
+    "protein": 8,
+    "carbs": 2,
+    "fat": 32,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Os à Moelle Rôti — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-foie-gras",
+    "name": "Foie Gras de Canard Mi-Cuit",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 8,
+    "carbs": 6,
+    "fat": 35,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Foie Gras de Canard Mi-Cuit — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-escargots",
+    "name": "Escargots au Beurre Persillé (6 pcs)",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 240,
+    "protein": 14,
+    "carbs": 4,
+    "fat": 18,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Escargots au Beurre Persillé — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-carpaccio",
+    "name": "Carpaccio de Boeuf",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 280,
+    "protein": 26,
+    "carbs": 2,
+    "fat": 18,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Carpaccio de Boeuf — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-entrecote",
+    "name": "Entrecôte Grillée (250g)",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 580,
+    "protein": 52,
+    "carbs": 0,
+    "fat": 42,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Entrecôte Grillée — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-cote-boeuf",
+    "name": "Côte de Boeuf (400g)",
+    "brand": "Le Louchebem",
+    "type": [
+      "dinner"
+    ],
+    "calories": 900,
+    "protein": 88,
+    "carbs": 0,
+    "fat": 62,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Côte de Boeuf — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-filet",
+    "name": "Filet de Boeuf (200g)",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 440,
+    "protein": 48,
+    "carbs": 0,
+    "fat": 28,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Filet de Boeuf — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-tartare",
+    "name": "Tartare de Boeuf Façon Louchebem",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 360,
+    "protein": 38,
+    "carbs": 4,
+    "fat": 22,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tartare de Boeuf — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-steak-frites",
+    "name": "Steak Frites (Entrecôte + Frites)",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 780,
+    "protein": 52,
+    "carbs": 52,
+    "fat": 42,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Steak Frites — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-pave-poivre",
+    "name": "Pavé de Boeuf Sauce Poivre (220g)",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 560,
+    "protein": 46,
+    "carbs": 4,
+    "fat": 38,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pavé de Boeuf Sauce Poivre — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-bavette",
+    "name": "Bavette à l'Échalote (200g)",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 44,
+    "carbs": 6,
+    "fat": 30,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Bavette à l'Échalote — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-onglet",
+    "name": "Onglet à l'Échalote (200g)",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 460,
+    "protein": 40,
+    "carbs": 4,
+    "fat": 30,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Onglet à l'Échalote — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-rumsteck",
+    "name": "Rumsteck Grillé (200g)",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 420,
+    "protein": 44,
+    "carbs": 0,
+    "fat": 26,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Rumsteck Grillé — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-frites",
+    "name": "Frites Maison",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 5,
+    "carbs": 52,
+    "fat": 18,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Frites Maison — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-pommes-dauphine",
+    "name": "Pommes Dauphine",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 320,
+    "protein": 6,
+    "carbs": 38,
+    "fat": 16,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pommes Dauphine — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-haricots-verts",
+    "name": "Haricots Verts au Beurre",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 120,
+    "protein": 3,
+    "carbs": 10,
+    "fat": 7,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Haricots Verts au Beurre — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-gratin",
+    "name": "Gratin Dauphinois",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 360,
+    "protein": 8,
+    "carbs": 28,
+    "fat": 24,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gratin Dauphinois — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-creme-brulee",
+    "name": "Crème Brûlée",
+    "brand": "Le Louchebem",
+    "type": [
+      "dessert"
+    ],
+    "calories": 320,
+    "protein": 6,
+    "carbs": 32,
+    "fat": 18,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crème Brûlée — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-mousse-choc",
+    "name": "Mousse au Chocolat Maison",
+    "brand": "Le Louchebem",
+    "type": [
+      "dessert"
+    ],
+    "calories": 360,
+    "protein": 7,
+    "carbs": 30,
+    "fat": 24,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Mousse au Chocolat Maison — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-tarte-tatin",
+    "name": "Tarte Tatin (portion)",
+    "brand": "Le Louchebem",
+    "type": [
+      "dessert"
+    ],
+    "calories": 420,
+    "protein": 4,
+    "carbs": 58,
+    "fat": 19,
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tarte Tatin — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-panasie-soupe-miso",
+    "name": "Soupe Miso",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 50,
+    "protein": 3,
+    "carbs": 6,
+    "fat": 2,
+    "tags": [
+      "soup",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Soupe Miso — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-salade-de-choux",
+    "name": "Salade de Choux",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 80,
+    "protein": 2,
+    "carbs": 8,
+    "fat": 4,
+    "tags": [
+      "salad",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade de Choux — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-riz-nature",
+    "name": "Riz Nature",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 200,
+    "protein": 4,
+    "carbs": 44,
+    "fat": 1,
+    "tags": [
+      "rice",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Riz Nature — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-riz-vinaigre",
+    "name": "Riz Vinaigré",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 220,
+    "protein": 4,
+    "carbs": 48,
+    "fat": 1,
+    "tags": [
+      "rice",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Riz Vinaigré — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-riz-cantonais-au-poulet",
+    "name": "Riz Cantonais au Poulet",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 320,
+    "protein": 14,
+    "carbs": 42,
+    "fat": 10,
+    "tags": [
+      "rice",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Riz Cantonais au Poulet — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-nouilles-sautees",
+    "name": "Nouilles Sautées",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 280,
+    "protein": 8,
+    "carbs": 40,
+    "fat": 8,
+    "tags": [
+      "noodles",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Nouilles Sautées — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-potatoes-6-pcs",
+    "name": "Potatoes (6 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 250,
+    "protein": 4,
+    "carbs": 32,
+    "fat": 12,
+    "tags": [
+      "fried",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Potatoes — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-buf-oignons-sur-riz",
+    "name": "Bœuf Oignons sur Riz",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 22,
+    "carbs": 45,
+    "fat": 12,
+    "tags": [
+      "beef",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Bœuf Oignons sur Riz — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-chirashi-saumon-patate-douce",
+    "name": "Chirashi Saumon Patate Douce",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 22,
+    "carbs": 50,
+    "fat": 10,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chirashi Saumon Patate Douce — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-frites",
+    "name": "Frites",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 290,
+    "protein": 4,
+    "carbs": 36,
+    "fat": 14,
+    "tags": [
+      "fried",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Frites — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-samoussa-au-buf-2-pcs",
+    "name": "Samoussa au Bœuf (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 180,
+    "protein": 6,
+    "carbs": 18,
+    "fat": 9,
+    "tags": [
+      "beef",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Samoussa au Bœuf — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-beignet-calamar-2-pcs",
+    "name": "Beignet Calamar (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 130,
+    "protein": 7,
+    "carbs": 12,
+    "fat": 6,
+    "tags": [
+      "seafood",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Beignet Calamar — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-tartare-saumon-avocat-sur-riz-vinaigre",
+    "name": "Tartare Saumon Avocat sur Riz Vinaigré",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 320,
+    "protein": 18,
+    "carbs": 32,
+    "fat": 14,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tartare Saumon Avocat sur Riz Vinaigré — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-tartare-choux-saumon",
+    "name": "Tartare Choux Saumon",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 180,
+    "protein": 14,
+    "carbs": 4,
+    "fat": 12,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tartare Choux Saumon — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-salade-vegetarienne",
+    "name": "Salade Végétarienne",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 90,
+    "protein": 3,
+    "carbs": 12,
+    "fat": 3,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Végétarienne — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-boulettes-de-poisson-4-pcs",
+    "name": "Boulettes de Poisson (4 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 160,
+    "protein": 12,
+    "carbs": 14,
+    "fat": 6,
+    "tags": [
+      "seafood",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Boulettes de Poisson — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-legumes-poulet-frit-5-pcs",
+    "name": "Légumes Poulet Frit (5 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 280,
+    "protein": 18,
+    "carbs": 18,
+    "fat": 14,
+    "tags": [
+      "chicken",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Légumes Poulet Frit — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-nem-au-poulet-2-pcs",
+    "name": "Nem au Poulet (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 200,
+    "protein": 6,
+    "carbs": 22,
+    "fat": 9,
+    "tags": [
+      "chicken",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Nem au Poulet — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-tartare-thon-avocat-sur-riz-vinaigre",
+    "name": "Tartare Thon Avocat sur Riz Vinaigré",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 320,
+    "protein": 22,
+    "carbs": 30,
+    "fat": 12,
+    "tags": [
+      "tuna",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tartare Thon Avocat sur Riz Vinaigré — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-tempuras-cheese-8-pcs",
+    "name": "Tempuras Cheese (8 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 320,
+    "protein": 8,
+    "carbs": 28,
+    "fat": 18,
+    "tags": [
+      "fried",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tempuras Cheese — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-brochette-buf-fromage-2-pcs",
+    "name": "Brochette Bœuf Fromage (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 220,
+    "protein": 18,
+    "carbs": 2,
+    "fat": 14,
+    "tags": [
+      "beef",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Brochette Bœuf Fromage — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-brochette-buf-2-pcs",
+    "name": "Brochette Bœuf (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 180,
+    "protein": 20,
+    "carbs": 1,
+    "fat": 10,
+    "tags": [
+      "beef",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Brochette Bœuf — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-brochette-poulet-2-pcs",
+    "name": "Brochette Poulet (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 140,
+    "protein": 22,
+    "carbs": 1,
+    "fat": 5,
+    "tags": [
+      "chicken",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Brochette Poulet — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-brochette-aile-de-poulet-2-pcs",
+    "name": "Brochette Aile de Poulet (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 160,
+    "protein": 16,
+    "carbs": 2,
+    "fat": 9,
+    "tags": [
+      "chicken",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Brochette Aile de Poulet — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-brochette-boulette-de-poulet-2-pcs",
+    "name": "Brochette Boulette de Poulet (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 160,
+    "protein": 14,
+    "carbs": 4,
+    "fat": 9,
+    "tags": [
+      "chicken",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Brochette Boulette de Poulet — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-brochette-champignons-2-pcs",
+    "name": "Brochette Champignons (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 50,
+    "protein": 2,
+    "carbs": 5,
+    "fat": 2,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Brochette Champignons — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-maki-thon-2-pcs",
+    "name": "Maki Thon (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 60,
+    "protein": 4,
+    "carbs": 10,
+    "fat": 0,
+    "tags": [
+      "tuna",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Maki Thon — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-maki-saumon-2-pcs",
+    "name": "Maki Saumon (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 70,
+    "protein": 4,
+    "carbs": 9,
+    "fat": 2,
+    "tags": [
+      "salmon",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Maki Saumon — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-maki-concombre-2-pcs",
+    "name": "Maki Concombre (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 50,
+    "protein": 1,
+    "carbs": 11,
+    "fat": 0,
+    "tags": [
+      "vegetarian",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Maki Concombre — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-maki-thon-cuit-2-pcs",
+    "name": "Maki Thon Cuit (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 70,
+    "protein": 5,
+    "carbs": 10,
+    "fat": 1,
+    "tags": [
+      "tuna",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Maki Thon Cuit — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-maki-avocat-2-pcs",
+    "name": "Maki Avocat (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 70,
+    "protein": 1,
+    "carbs": 10,
+    "fat": 3,
+    "tags": [
+      "vegetarian",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Maki Avocat — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-maki-cheese-2-pcs",
+    "name": "Maki Cheese (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 80,
+    "protein": 2,
+    "carbs": 10,
+    "fat": 3,
+    "tags": [
+      "vegetarian",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Maki Cheese — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-california-saumon-avocat-oignon-2-pcs",
+    "name": "California Saumon Avocat Oignon (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 90,
+    "protein": 4,
+    "carbs": 10,
+    "fat": 4,
+    "tags": [
+      "salmon",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "California Saumon Avocat Oignon — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-california-saumon-avocat-2-pcs",
+    "name": "California Saumon Avocat (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 90,
+    "protein": 4,
+    "carbs": 10,
+    "fat": 4,
+    "tags": [
+      "salmon",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "California Saumon Avocat — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-california-thon-cuit-avocat-2-pcs",
+    "name": "California Thon Cuit Avocat (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 90,
+    "protein": 5,
+    "carbs": 10,
+    "fat": 3,
+    "tags": [
+      "tuna",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "California Thon Cuit Avocat — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-california-thon-cuit-avocat-oignon-2-pcs",
+    "name": "California Thon Cuit Avocat Oignon (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 90,
+    "protein": 5,
+    "carbs": 10,
+    "fat": 3,
+    "tags": [
+      "tuna",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "California Thon Cuit Avocat Oignon — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-california-saumon-cheese-2-pcs",
+    "name": "California Saumon Cheese (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 100,
+    "protein": 4,
+    "carbs": 10,
+    "fat": 5,
+    "tags": [
+      "salmon",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "California Saumon Cheese — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-california-avocat-cheese-2-pcs",
+    "name": "California Avocat Cheese (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 90,
+    "protein": 2,
+    "carbs": 10,
+    "fat": 4,
+    "tags": [
+      "vegetarian",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "California Avocat Cheese — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-tobiko-roll-orange-2-pcs",
+    "name": "Tobiko Roll Orange (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 95,
+    "protein": 4,
+    "carbs": 10,
+    "fat": 4,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tobiko Roll Orange — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-tobiko-roll-wasabi-2-pcs",
+    "name": "Tobiko Roll Wasabi (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 95,
+    "protein": 4,
+    "carbs": 10,
+    "fat": 4,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tobiko Roll Wasabi — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-california-avocat-concombre-2-pcs",
+    "name": "California Avocat Concombre (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 80,
+    "protein": 2,
+    "carbs": 12,
+    "fat": 3,
+    "tags": [
+      "vegetarian",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "California Avocat Concombre — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-california-saumon-avocat-spicy-mayo-2-pc",
+    "name": "California Saumon Avocat Spicy Mayo (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 110,
+    "protein": 4,
+    "carbs": 10,
+    "fat": 6,
+    "tags": [
+      "salmon",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "California Saumon Avocat Spicy Mayo — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-maki-printemps-saumon-avocat-2-pcs",
+    "name": "Maki Printemps Saumon Avocat (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 90,
+    "protein": 4,
+    "carbs": 11,
+    "fat": 4,
+    "tags": [
+      "salmon",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Maki Printemps Saumon Avocat — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-hot-california-saumon-avocat-2-pcs",
+    "name": "Hot California Saumon Avocat (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 130,
+    "protein": 4,
+    "carbs": 12,
+    "fat": 7,
+    "tags": [
+      "salmon",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Hot California Saumon Avocat — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-neige-saumon-2-pcs",
+    "name": "Neige Saumon (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 90,
+    "protein": 4,
+    "carbs": 10,
+    "fat": 4,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Neige Saumon — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-neige-cheese-2-pcs",
+    "name": "Neige Cheese (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 90,
+    "protein": 3,
+    "carbs": 10,
+    "fat": 4,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Neige Cheese — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-neige-nutella-2-pcs",
+    "name": "Neige Nutella (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 130,
+    "protein": 2,
+    "carbs": 18,
+    "fat": 5,
+    "tags": [
+      "dessert",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Neige Nutella — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-sushi-thon-2-pcs",
+    "name": "Sushi Thon (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 80,
+    "protein": 8,
+    "carbs": 12,
+    "fat": 0,
+    "tags": [
+      "tuna",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sushi Thon — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-sushi-saumon-2-pcs",
+    "name": "Sushi Saumon (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 90,
+    "protein": 7,
+    "carbs": 12,
+    "fat": 2,
+    "tags": [
+      "salmon",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sushi Saumon — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-sushi-saumon-oignon-2-pcs",
+    "name": "Sushi Saumon Oignon (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 90,
+    "protein": 7,
+    "carbs": 12,
+    "fat": 2,
+    "tags": [
+      "salmon",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sushi Saumon Oignon — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-sushi-crevettes-2-pcs",
+    "name": "Sushi Crevettes (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 70,
+    "protein": 6,
+    "carbs": 12,
+    "fat": 0,
+    "tags": [
+      "shrimp",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sushi Crevettes — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-sushi-saumon-cheese-2-pcs",
+    "name": "Sushi Saumon Cheese (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 110,
+    "protein": 7,
+    "carbs": 12,
+    "fat": 4,
+    "tags": [
+      "salmon",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sushi Saumon Cheese — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-sushi-saumon-spicy-mayo-2-pcs",
+    "name": "Sushi Saumon Spicy Mayo (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 130,
+    "protein": 7,
+    "carbs": 12,
+    "fat": 7,
+    "tags": [
+      "salmon",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sushi Saumon Spicy Mayo — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-sashimi-saumon-5-pcs",
+    "name": "Sashimi Saumon (5 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 150,
+    "protein": 22,
+    "carbs": 0,
+    "fat": 7,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sashimi Saumon — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-sorbet-glace-2-boules",
+    "name": "Sorbet Glace (2 boules)",
+    "brand": "Pan Asie",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 180,
+    "protein": 2,
+    "carbs": 38,
+    "fat": 2,
+    "tags": [
+      "dessert",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sorbet Glace (2 boules) — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-nougat-aux-sesames",
+    "name": "Nougat aux Sésames",
+    "brand": "Pan Asie",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 170,
+    "protein": 3,
+    "carbs": 26,
+    "fat": 6,
+    "tags": [
+      "dessert",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Nougat aux Sésames — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-litchi-au-sirop",
+    "name": "Litchi au Sirop",
+    "brand": "Pan Asie",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 110,
+    "protein": 1,
+    "carbs": 28,
+    "fat": 0,
+    "tags": [
+      "dessert",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Litchi au Sirop — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-tempuras-crevettes-4-pcs",
+    "name": "Tempuras Crevettes (4 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 220,
+    "protein": 12,
+    "carbs": 18,
+    "fat": 10,
+    "tags": [
+      "shrimp",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tempuras Crevettes — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-raviolis-au-poulet-4-pcs",
+    "name": "Raviolis au Poulet (4 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 200,
+    "protein": 8,
+    "carbs": 26,
+    "fat": 6,
+    "tags": [
+      "chicken",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Raviolis au Poulet — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-brochette-saumon-2-pcs",
+    "name": "Brochette Saumon (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 160,
+    "protein": 22,
+    "carbs": 1,
+    "fat": 7,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Brochette Saumon — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-brochette-thon-2-pcs",
+    "name": "Brochette Thon (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 130,
+    "protein": 24,
+    "carbs": 1,
+    "fat": 4,
+    "tags": [
+      "tuna",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Brochette Thon — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-salade-royal-avocat-crevettes",
+    "name": "Salade Royal Avocat Crevettes",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 220,
+    "protein": 14,
+    "carbs": 12,
+    "fat": 13,
+    "tags": [
+      "shrimp",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Royal Avocat Crevettes — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-sushi-saumon-braise-2-pcs",
+    "name": "Sushi Saumon Braisé (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 110,
+    "protein": 7,
+    "carbs": 14,
+    "fat": 3,
+    "tags": [
+      "salmon",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sushi Saumon Braisé — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-neige-saumon-cheese-2-pcs",
+    "name": "Neige Saumon Cheese (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 100,
+    "protein": 4,
+    "carbs": 10,
+    "fat": 5,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Neige Saumon Cheese — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-las-vegas-royal-saumon-cheese-2-pcs",
+    "name": "Las Vegas Royal Saumon Cheese (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 120,
+    "protein": 5,
+    "carbs": 10,
+    "fat": 7,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Las Vegas Royal Saumon Cheese — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-tempuras-crevettes-avocat-2-pcs",
+    "name": "Tempuras Crevettes Avocat (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 130,
+    "protein": 5,
+    "carbs": 10,
+    "fat": 8,
+    "tags": [
+      "shrimp",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tempuras Crevettes Avocat — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-tempuras-crevette-mayo-2-pcs",
+    "name": "Tempuras Crevette Mayo (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 140,
+    "protein": 5,
+    "carbs": 10,
+    "fat": 9,
+    "tags": [
+      "shrimp",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tempuras Crevette Mayo — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-nem-aux-crevettes-2-pcs",
+    "name": "Nem aux Crevettes (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 200,
+    "protein": 8,
+    "carbs": 22,
+    "fat": 9,
+    "tags": [
+      "shrimp",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Nem aux Crevettes — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-aile-de-poulet-2-pcs",
+    "name": "Aile de Poulet (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 160,
+    "protein": 16,
+    "carbs": 2,
+    "fat": 9,
+    "tags": [
+      "chicken",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Aile de Poulet — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-maki-printemps-saumon-avocat-cheese-2-pc",
+    "name": "Maki Printemps Saumon Avocat Cheese (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 110,
+    "protein": 5,
+    "carbs": 10,
+    "fat": 6,
+    "tags": [
+      "salmon",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Maki Printemps Saumon Avocat Cheese — Pan Asie"
+    ]
+  },
+  {
+    "id": "fr-panasie-california-trio-saumon-avocat-cheese-2-p",
+    "name": "California Trio Saumon Avocat Cheese (2 pcs)",
+    "brand": "Pan Asie",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 110,
+    "protein": 5,
+    "carbs": 10,
+    "fat": 6,
+    "tags": [
+      "salmon",
+      "japanese",
+      "sushi"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "California Trio Saumon Avocat Cheese — Pan Asie"
+    ]
+  }
 ];
