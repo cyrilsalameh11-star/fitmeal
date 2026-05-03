@@ -2931,94 +2931,200 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-mcdo-hamburger",
-    "name": "Hamburger",
+    "id": "fr-mcdo-big-mac",
+    "name": "Big Mac",
     "brand": "McDonald's France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 255,
-    "protein": 13,
-    "carbs": 32,
-    "fat": 8,
+    "calories": 530,
+    "protein": 27,
+    "carbs": 42,
+    "fat": 27,
     "tags": [
       "beef",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Hamburger — McDonald's France"
+      "Big Mac — McDonald's France"
     ]
   },
   {
-    "id": "fr-mcdo-cheeseburger",
-    "name": "Cheeseburger",
+    "id": "fr-mcdo-big-mac-bacon",
+    "name": "Big Mac Bacon",
     "brand": "McDonald's France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 302,
-    "protein": 16,
-    "carbs": 33,
-    "fat": 12,
+    "calories": 551,
+    "protein": 29,
+    "carbs": 42,
+    "fat": 29,
     "tags": [
       "beef",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Cheeseburger — McDonald's France"
+      "Big Mac Bacon — McDonald's France"
     ]
   },
   {
-    "id": "fr-mcdo-double-cheeseburger",
-    "name": "Double Cheeseburger",
+    "id": "fr-mcdo-big-tasty-1-steak-hache",
+    "name": "Big Tasty 1 Steak Haché",
     "brand": "McDonald's France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 442,
-    "protein": 25,
-    "carbs": 33,
-    "fat": 22,
+    "calories": 690,
+    "protein": 37,
+    "carbs": 44,
+    "fat": 40,
     "tags": [
       "beef",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Double Cheeseburger — McDonald's France"
+      "Big Tasty 1 Steak Haché — McDonald's France"
     ]
   },
   {
-    "id": "fr-mcdo-royal-cheese",
-    "name": "Royal Cheese",
+    "id": "fr-mcdo-big-tasty-2-steaks-haches",
+    "name": "Big Tasty 2 Steaks Hachés",
     "brand": "McDonald's France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 410,
-    "protein": 22,
-    "carbs": 34,
-    "fat": 19,
+    "calories": 940,
+    "protein": 59,
+    "carbs": 44,
+    "fat": 58,
     "tags": [
       "beef",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Royal Cheese — McDonald's France"
+      "Big Tasty 2 Steaks Hachés — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-280-original",
+    "name": "280 Original",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 772,
+    "protein": 44,
+    "carbs": 55,
+    "fat": 41,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "280 Original — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-mcveggie",
+    "name": "McVeggie",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 409,
+    "protein": 17,
+    "carbs": 46,
+    "fat": 16,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "McVeggie — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-mcextreme-1-steak-hache",
+    "name": "McExtreme 1 Steak Haché",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 853,
+    "protein": 45,
+    "carbs": 41,
+    "fat": 56,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "McExtreme 1 Steak Haché — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-mcextreme-2-steaks-haches",
+    "name": "McExtreme 2 Steaks Hachés",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1186,
+    "protein": 72,
+    "carbs": 41,
+    "fat": 81,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "McExtreme 2 Steaks Hachés — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-big-arch",
+    "name": "Big Arch",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1076,
+    "protein": 59,
+    "carbs": 55,
+    "fat": 68,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Big Arch — McDonald's France"
     ]
   },
   {
@@ -3029,14 +3135,13 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 486,
-    "protein": 24,
-    "carbs": 38,
-    "fat": 25,
+    "calories": 545,
+    "protein": 29,
+    "carbs": 36,
+    "fat": 32,
     "tags": [
       "beef",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
@@ -3052,14 +3157,13 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 515,
+    "calories": 492,
     "protein": 30,
-    "carbs": 35,
-    "fat": 26,
+    "carbs": 38,
+    "fat": 24,
     "tags": [
       "beef",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
@@ -3068,48 +3172,134 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-mcdo-big-mac",
-    "name": "Big Mac",
+    "id": "fr-mcdo-royal-cheese",
+    "name": "Royal Cheese",
     "brand": "McDonald's France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 495,
-    "protein": 26,
-    "carbs": 43,
-    "fat": 23,
+    "calories": 525,
+    "protein": 31,
+    "carbs": 39,
+    "fat": 27,
     "tags": [
       "beef",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Big Mac — McDonald's France"
+      "Royal Cheese — McDonald's France"
     ]
   },
   {
-    "id": "fr-mcdo-big-tasty-bacon",
-    "name": "Big Tasty Bacon",
+    "id": "fr-mcdo-hamburger",
+    "name": "Hamburger",
     "brand": "McDonald's France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 720,
-    "protein": 36,
-    "carbs": 47,
-    "fat": 41,
+    "calories": 253,
+    "protein": 13,
+    "carbs": 29,
+    "fat": 9,
     "tags": [
-      "beef",
-      "cheese",
-      "burger"
+      "beef"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Big Tasty Bacon — McDonald's France"
+      "Hamburger — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-cheeseburger",
+    "name": "Cheeseburger",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 300,
+    "protein": 16,
+    "carbs": 30,
+    "fat": 13,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cheeseburger — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-double-cheese",
+    "name": "Double Cheese",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 442,
+    "protein": 27,
+    "carbs": 31,
+    "fat": 23,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Double Cheese — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-double-cheese-bacon",
+    "name": "Double Cheese Bacon",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 456,
+    "protein": 28,
+    "carbs": 31,
+    "fat": 24,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Double Cheese Bacon — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-cbo-chicken-bacon-oignons",
+    "name": "CBO (Chicken Bacon Oignons)",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 659,
+    "protein": 27,
+    "carbs": 57,
+    "fat": 35,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "CBO (Chicken Bacon Oignons) — McDonald's France"
     ]
   },
   {
@@ -3120,13 +3310,12 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 395,
+    "calories": 434,
     "protein": 19,
-    "carbs": 41,
-    "fat": 16,
+    "carbs": 45,
+    "fat": 19,
     "tags": [
-      "chicken",
-      "burger"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
@@ -3135,26 +3324,24 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-mcdo-mcchicken-bacon-premiere",
-    "name": "McChicken Bacon Premiere",
+    "id": "fr-mcdo-mccrispy",
+    "name": "McCrispy",
     "brand": "McDonald's France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 555,
-    "protein": 28,
-    "carbs": 47,
-    "fat": 27,
+    "calories": 530,
+    "protein": 27,
+    "carbs": 54,
+    "fat": 22,
     "tags": [
-      "chicken",
-      "cheese",
-      "burger"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "McChicken Bacon Premiere — McDonald's France"
+      "McCrispy — McDonald's France"
     ]
   },
   {
@@ -3165,13 +3352,13 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 338,
-    "protein": 16,
+    "calories": 329,
+    "protein": 15,
     "carbs": 36,
     "fat": 14,
     "tags": [
       "fish",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
@@ -3180,115 +3367,47 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-mcdo-cbo-chicken-bacon-oignon",
-    "name": "CBO (Chicken Bacon Oignon)",
+    "id": "fr-mcdo-double-filet-o-fish",
+    "name": "Double Filet-O-Fish",
     "brand": "McDonald's France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 552,
-    "protein": 28,
-    "carbs": 49,
-    "fat": 26,
-    "tags": [
-      "chicken",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "CBO (Chicken Bacon Oignon) — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-mcfirst-poulet",
-    "name": "McFirst Poulet",
-    "brand": "McDonald's France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 330,
-    "protein": 19,
-    "carbs": 32,
-    "fat": 13,
-    "tags": [
-      "chicken",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "McFirst Poulet — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-mcwrap-sweet-chili-poulet",
-    "name": "McWrap Sweet Chili Poulet",
-    "brand": "McDonald's France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 430,
+    "calories": 474,
     "protein": 24,
-    "carbs": 51,
-    "fat": 14,
+    "carbs": 44,
+    "fat": 22,
     "tags": [
-      "chicken",
-      "wrap"
+      "fish",
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "McWrap Sweet Chili Poulet — McDonald's France"
+      "Double Filet-O-Fish — McDonald's France"
     ]
   },
   {
-    "id": "fr-mcdo-mcwrap-chicken-bacon",
-    "name": "McWrap Chicken Bacon",
+    "id": "fr-mcdo-filet-o-fish-deluxe",
+    "name": "Filet-O-Fish Deluxe",
     "brand": "McDonald's France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 485,
-    "protein": 26,
-    "carbs": 47,
-    "fat": 21,
-    "tags": [
-      "chicken",
-      "cheese",
-      "wrap"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "McWrap Chicken Bacon — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-mcwrap-veggie",
-    "name": "McWrap Veggie",
-    "brand": "McDonald's France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 410,
-    "protein": 11,
-    "carbs": 53,
+    "calories": 361,
+    "protein": 16,
+    "carbs": 37,
     "fat": 16,
     "tags": [
-      "vegetarian",
-      "wrap"
+      "fish",
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "McWrap Veggie — McDonald's France"
+      "Filet-O-Fish Deluxe — McDonald's France"
     ]
   },
   {
@@ -3299,10 +3418,10 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 239,
-    "protein": 15,
-    "carbs": 26,
-    "fat": 8,
+    "calories": 255,
+    "protein": 13,
+    "carbs": 28,
+    "fat": 10,
     "tags": [
       "cheese"
     ],
@@ -3313,100 +3432,16 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-mcdo-mcnuggets-x4",
-    "name": "McNuggets x4",
+    "id": "fr-mcdo-ptit-chicken",
+    "name": "P'tit Chicken",
     "brand": "McDonald's France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 190,
-    "protein": 13,
-    "carbs": 11,
-    "fat": 11,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "McNuggets x4 — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-mcnuggets-x6",
-    "name": "McNuggets x6",
-    "brand": "McDonald's France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 285,
-    "protein": 19,
-    "carbs": 16,
-    "fat": 17,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "McNuggets x6 — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-mcnuggets-x9",
-    "name": "McNuggets x9",
-    "brand": "McDonald's France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 428,
-    "protein": 28,
-    "carbs": 24,
-    "fat": 25,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "McNuggets x9 — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-mcnuggets-x20",
-    "name": "McNuggets x20",
-    "brand": "McDonald's France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 952,
-    "protein": 63,
-    "carbs": 53,
-    "fat": 56,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "McNuggets x20 — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-chicken-mcfirst-x4",
-    "name": "Chicken McFirst x4",
-    "brand": "McDonald's France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 240,
-    "protein": 16,
-    "carbs": 14,
+    "calories": 311,
+    "protein": 12,
+    "carbs": 35,
     "fat": 13,
     "tags": [
       "chicken"
@@ -3414,491 +3449,127 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Chicken McFirst x4 — McDonald's France"
+      "P'tit Chicken — McDonald's France"
     ]
   },
   {
-    "id": "fr-mcdo-frites-petite",
-    "name": "Frites Petite",
+    "id": "fr-mcdo-mcfish",
+    "name": "McFish",
     "brand": "McDonald's France",
     "type": [
-      "snack",
-      "lunch"
+      "lunch",
+      "dinner"
     ],
-    "calories": 230,
-    "protein": 3,
-    "carbs": 29,
+    "calories": 283,
+    "protein": 14,
+    "carbs": 38,
+    "fat": 8,
+    "tags": [
+      "fish"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "McFish — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-mcfish-mayo",
+    "name": "McFish Mayo",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 295,
+    "protein": 13,
+    "carbs": 35,
     "fat": 11,
-    "tags": [],
+    "tags": [
+      "fish"
+    ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Frites Petite — McDonald's France"
+      "McFish Mayo — McDonald's France"
     ]
   },
   {
-    "id": "fr-mcdo-frites-moyenne",
-    "name": "Frites Moyenne",
+    "id": "fr-mcdo-mcwrap-new-york-poulet-bacon",
+    "name": "McWrap New York Poulet & Bacon",
     "brand": "McDonald's France",
     "type": [
-      "snack",
-      "lunch"
+      "lunch",
+      "dinner"
     ],
-    "calories": 337,
-    "protein": 4,
-    "carbs": 44,
-    "fat": 16,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Frites Moyenne — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-frites-grande",
-    "name": "Frites Grande",
-    "brand": "McDonald's France",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 444,
-    "protein": 6,
-    "carbs": 57,
-    "fat": 21,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Frites Grande — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-potatoes",
-    "name": "Potatoes",
-    "brand": "McDonald's France",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 266,
-    "protein": 5,
-    "carbs": 31,
-    "fat": 14,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Potatoes — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-salade-cesar-poulet-pane",
-    "name": "Salade César Poulet Pané",
-    "brand": "McDonald's France",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 256,
-    "protein": 18,
-    "carbs": 11,
-    "fat": 15,
+    "calories": 552,
+    "protein": 22,
+    "carbs": 56,
+    "fat": 26,
     "tags": [
       "chicken",
-      "salad"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Salade César Poulet Pané — McDonald's France"
+      "McWrap New York Poulet & Bacon — McDonald's France"
     ]
   },
   {
-    "id": "fr-mcdo-salade-caesar-wrap-veggie",
-    "name": "Salade Caesar Wrap Veggie",
+    "id": "fr-mcdo-mcwrap-veggie",
+    "name": "McWrap Veggie",
     "brand": "McDonald's France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 373,
-    "protein": 12,
-    "carbs": 47,
-    "fat": 14,
+    "calories": 495,
+    "protein": 20,
+    "carbs": 51,
+    "fat": 22,
     "tags": [
       "vegetarian",
-      "wrap"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Salade Caesar Wrap Veggie — McDonald's France"
+      "McWrap Veggie — McDonald's France"
     ]
   },
   {
-    "id": "fr-mcdo-sundae-chocolat",
-    "name": "Sundae Chocolat",
+    "id": "fr-mcdo-ptit-wrap-ranch",
+    "name": "P'tit Wrap Ranch",
     "brand": "McDonald's France",
     "type": [
-      "dessert",
-      "snack"
+      "lunch",
+      "dinner"
     ],
-    "calories": 320,
-    "protein": 7,
-    "carbs": 53,
-    "fat": 9,
+    "calories": 319,
+    "protein": 11,
+    "carbs": 32,
+    "fat": 16,
     "tags": [
-      "dessert"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sundae Chocolat — McDonald's France"
+      "P'tit Wrap Ranch — McDonald's France"
     ]
   },
   {
-    "id": "fr-mcdo-sundae-caramel",
-    "name": "Sundae Caramel",
-    "brand": "McDonald's France",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 326,
-    "protein": 7,
-    "carbs": 56,
-    "fat": 8,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Sundae Caramel — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-mcflurry-daim",
-    "name": "McFlurry Daim",
-    "brand": "McDonald's France",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 416,
-    "protein": 8,
-    "carbs": 55,
-    "fat": 18,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "McFlurry Daim — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-mcflurry-kit-kat",
-    "name": "McFlurry Kit Kat",
-    "brand": "McDonald's France",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 405,
-    "protein": 8,
-    "carbs": 55,
-    "fat": 17,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "McFlurry Kit Kat — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-mcflurry-smarties",
-    "name": "McFlurry Smarties",
-    "brand": "McDonald's France",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 360,
-    "protein": 8,
-    "carbs": 56,
-    "fat": 12,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "McFlurry Smarties — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-mcflurry-oreo",
-    "name": "McFlurry Oreo",
-    "brand": "McDonald's France",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 366,
-    "protein": 9,
-    "carbs": 56,
-    "fat": 12,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "McFlurry Oreo — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-petit-cornet",
-    "name": "Petit Cornet",
-    "brand": "McDonald's France",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 138,
-    "protein": 4,
-    "carbs": 20,
-    "fat": 5,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Petit Cornet — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-cookie-chocolat",
-    "name": "Cookie Chocolat",
-    "brand": "McDonald's France",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 195,
-    "protein": 3,
-    "carbs": 26,
-    "fat": 9,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Cookie Chocolat — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-donut-sucre",
-    "name": "Donut Sucre",
-    "brand": "McDonald's France",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 285,
-    "protein": 4,
-    "carbs": 37,
-    "fat": 13,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Donut Sucre — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-macaron-vanille",
-    "name": "Macaron Vanille",
-    "brand": "McDonald's France",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 95,
-    "protein": 1,
-    "carbs": 13,
-    "fat": 4,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Macaron Vanille — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-brownie",
-    "name": "Brownie",
-    "brand": "McDonald's France",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 220,
-    "protein": 3,
-    "carbs": 28,
-    "fat": 11,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Brownie — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-mccafe-cappuccino",
-    "name": "McCafé Cappuccino",
-    "brand": "McDonald's France",
-    "type": [
-      "drink",
-      "snack"
-    ],
-    "calories": 90,
-    "protein": 5,
-    "carbs": 9,
-    "fat": 4,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "McCafé Cappuccino — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-mccafe-latte-macchiato",
-    "name": "McCafé Latte Macchiato",
-    "brand": "McDonald's France",
-    "type": [
-      "drink",
-      "snack"
-    ],
-    "calories": 125,
-    "protein": 7,
-    "carbs": 12,
-    "fat": 5,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "McCafé Latte Macchiato — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-mccafe-chocolat-chaud",
-    "name": "McCafé Chocolat Chaud",
-    "brand": "McDonald's France",
-    "type": [
-      "drink",
-      "snack"
-    ],
-    "calories": 235,
-    "protein": 8,
-    "carbs": 35,
-    "fat": 7,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "McCafé Chocolat Chaud — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-milkshake-vanille-m",
-    "name": "Milkshake Vanille (M)",
-    "brand": "McDonald's France",
-    "type": [
-      "drink",
-      "snack"
-    ],
-    "calories": 349,
-    "protein": 9,
-    "carbs": 62,
-    "fat": 8,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Milkshake Vanille (M) — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-milkshake-chocolat-m",
-    "name": "Milkshake Chocolat (M)",
-    "brand": "McDonald's France",
-    "type": [
-      "drink",
-      "snack"
-    ],
-    "calories": 389,
-    "protein": 10,
-    "carbs": 70,
-    "fat": 9,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Milkshake Chocolat (M) — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-milkshake-fraise-m",
-    "name": "Milkshake Fraise (M)",
-    "brand": "McDonald's France",
-    "type": [
-      "drink",
-      "snack"
-    ],
-    "calories": 354,
-    "protein": 9,
-    "carbs": 64,
-    "fat": 8,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Milkshake Fraise (M) — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-mcmuffin-bacon-uf",
-    "name": "McMuffin Bacon Œuf",
+    "id": "fr-mcdo-egg-cheese-mcmuffin",
+    "name": "Egg & Cheese McMuffin",
     "brand": "McDonald's France",
     "type": [
       "breakfast"
     ],
-    "calories": 367,
-    "protein": 18,
-    "carbs": 30,
-    "fat": 19,
+    "calories": 263,
+    "protein": 16,
+    "carbs": 27,
+    "fat": 10,
     "tags": [
       "breakfast",
       "cheese"
@@ -3906,67 +3577,28 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "McMuffin Bacon Œuf — McDonald's France"
+      "Egg & Cheese McMuffin — McDonald's France"
     ]
   },
   {
-    "id": "fr-mcdo-mcmuffin-uf-saucisse",
-    "name": "McMuffin Œuf Saucisse",
+    "id": "fr-mcdo-egg-bacon-mcmuffin",
+    "name": "Egg & Bacon McMuffin",
     "brand": "McDonald's France",
     "type": [
       "breakfast"
     ],
-    "calories": 427,
-    "protein": 21,
-    "carbs": 28,
-    "fat": 26,
+    "calories": 277,
+    "protein": 17,
+    "carbs": 27,
+    "fat": 11,
     "tags": [
-      "breakfast"
+      "breakfast",
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "McMuffin Œuf Saucisse — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-mcmuffin-bacon",
-    "name": "McMuffin Bacon",
-    "brand": "McDonald's France",
-    "type": [
-      "breakfast"
-    ],
-    "calories": 310,
-    "protein": 15,
-    "carbs": 28,
-    "fat": 14,
-    "tags": [
-      "breakfast"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "McMuffin Bacon — McDonald's France"
-    ]
-  },
-  {
-    "id": "fr-mcdo-pancake-1",
-    "name": "Pancake (1)",
-    "brand": "McDonald's France",
-    "type": [
-      "breakfast"
-    ],
-    "calories": 105,
-    "protein": 3,
-    "carbs": 17,
-    "fat": 3,
-    "tags": [
-      "breakfast"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Pancake (1) — McDonald's France"
+      "Egg & Bacon McMuffin — McDonald's France"
     ]
   },
   {
@@ -3976,10 +3608,10 @@ module.exports = [
     "type": [
       "breakfast"
     ],
-    "calories": 225,
+    "calories": 204,
     "protein": 4,
-    "carbs": 25,
-    "fat": 12,
+    "carbs": 24,
+    "fat": 10,
     "tags": [
       "breakfast"
     ],
@@ -3996,9 +3628,9 @@ module.exports = [
     "type": [
       "breakfast"
     ],
-    "calories": 280,
+    "calories": 277,
     "protein": 5,
-    "carbs": 31,
+    "carbs": 32,
     "fat": 14,
     "tags": [
       "breakfast"
@@ -4007,6 +3639,1034 @@ module.exports = [
     "source": "restaurant",
     "shoppingItems": [
       "Pain au Chocolat — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-chicken-mcnuggets-4-pcs",
+    "name": "Chicken McNuggets 4 pcs",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 174,
+    "protein": 10,
+    "carbs": 13,
+    "fat": 9,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chicken McNuggets 4 pcs — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-chicken-mcnuggets-6-pcs",
+    "name": "Chicken McNuggets 6 pcs",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 262,
+    "protein": 15,
+    "carbs": 19,
+    "fat": 13,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chicken McNuggets 6 pcs — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-chicken-mcnuggets-9-pcs",
+    "name": "Chicken McNuggets 9 pcs",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 392,
+    "protein": 23,
+    "carbs": 29,
+    "fat": 20,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chicken McNuggets 9 pcs — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-chicken-mcnuggets-20-pcs",
+    "name": "Chicken McNuggets 20 pcs",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 872,
+    "protein": 51,
+    "carbs": 65,
+    "fat": 45,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chicken McNuggets 20 pcs — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-veggie-mcplant-nuggets-4-pcs",
+    "name": "Veggie McPlant Nuggets 4 pcs",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 189,
+    "protein": 9,
+    "carbs": 14,
+    "fat": 10,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Veggie McPlant Nuggets 4 pcs — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-veggie-mcplant-nuggets-6-pcs",
+    "name": "Veggie McPlant Nuggets 6 pcs",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 284,
+    "protein": 13,
+    "carbs": 21,
+    "fat": 16,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Veggie McPlant Nuggets 6 pcs — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-veggie-mcplant-nuggets-9-pcs",
+    "name": "Veggie McPlant Nuggets 9 pcs",
+    "brand": "McDonald's France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 426,
+    "protein": 20,
+    "carbs": 31,
+    "fat": 23,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Veggie McPlant Nuggets 9 pcs — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-salade-caesar-poulet",
+    "name": "Salade Caesar Poulet",
+    "brand": "McDonald's France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 402,
+    "protein": 25,
+    "carbs": 27,
+    "fat": 21,
+    "tags": [
+      "chicken",
+      "cheese",
+      "salad"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Caesar Poulet — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-salade-caesar-veggie",
+    "name": "Salade Caesar Veggie",
+    "brand": "McDonald's France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 390,
+    "protein": 15,
+    "carbs": 35,
+    "fat": 20,
+    "tags": [
+      "vegetarian",
+      "cheese",
+      "salad"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Caesar Veggie — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-frite-petite-portion",
+    "name": "Frite Petite Portion",
+    "brand": "McDonald's France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 231,
+    "protein": 3,
+    "carbs": 29,
+    "fat": 11,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Frite Petite Portion — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-frite-moyenne-portion",
+    "name": "Frite Moyenne Portion",
+    "brand": "McDonald's France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 328,
+    "protein": 4,
+    "carbs": 41,
+    "fat": 16,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Frite Moyenne Portion — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-frite-grande-portion",
+    "name": "Frite Grande Portion",
+    "brand": "McDonald's France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 434,
+    "protein": 5,
+    "carbs": 54,
+    "fat": 21,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Frite Grande Portion — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-deluxe-potatoes-moyenne",
+    "name": "Deluxe Potatoes Moyenne",
+    "brand": "McDonald's France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 227,
+    "protein": 3,
+    "carbs": 26,
+    "fat": 12,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Deluxe Potatoes Moyenne — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-deluxe-potatoes-grande",
+    "name": "Deluxe Potatoes Grande",
+    "brand": "McDonald's France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 330,
+    "protein": 4,
+    "carbs": 37,
+    "fat": 17,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Deluxe Potatoes Grande — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-potatoes-cheddar-fondu-bacon",
+    "name": "Potatoes Cheddar Fondu Bacon",
+    "brand": "McDonald's France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 467,
+    "protein": 11,
+    "carbs": 49,
+    "fat": 24,
+    "tags": [
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Potatoes Cheddar Fondu Bacon — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-potatoes-double-cheddar-fondu",
+    "name": "Potatoes Double Cheddar Fondu",
+    "brand": "McDonald's France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 467,
+    "protein": 11,
+    "carbs": 49,
+    "fat": 24,
+    "tags": [
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Potatoes Double Cheddar Fondu — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-mcflavor-fries-cheddar-fondu-bacon",
+    "name": "McFlavor Fries Cheddar Fondu Bacon",
+    "brand": "McDonald's France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 570,
+    "protein": 12,
+    "carbs": 60,
+    "fat": 30,
+    "tags": [
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "McFlavor Fries Cheddar Fondu Bacon — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-mcflavor-fries-double-cheddar-fondu",
+    "name": "McFlavor Fries Double Cheddar Fondu",
+    "brand": "McDonald's France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 570,
+    "protein": 12,
+    "carbs": 60,
+    "fat": 30,
+    "tags": [
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "McFlavor Fries Double Cheddar Fondu — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-sundae-nature",
+    "name": "Sundae Nature",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 191,
+    "protein": 6,
+    "carbs": 25,
+    "fat": 7,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sundae Nature — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-sundae-nappage-caramel",
+    "name": "Sundae Nappage Caramel",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 326,
+    "protein": 6,
+    "carbs": 54,
+    "fat": 9,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sundae Nappage Caramel — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-sundae-nappage-chocolat",
+    "name": "Sundae Nappage Chocolat",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 324,
+    "protein": 7,
+    "carbs": 46,
+    "fat": 12,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sundae Nappage Chocolat — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-mcflurry-daim",
+    "name": "McFlurry Daim",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 327,
+    "protein": 6,
+    "carbs": 47,
+    "fat": 11,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "McFlurry Daim — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-mcflurry-mms",
+    "name": "McFlurry M&M's",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 322,
+    "protein": 8,
+    "carbs": 47,
+    "fat": 11,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "McFlurry M&M's — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-mcflurry-kit-kat-ball",
+    "name": "McFlurry Kit-Kat Ball",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 283,
+    "protein": 7,
+    "carbs": 44,
+    "fat": 9,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "McFlurry Kit-Kat Ball — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-mcflurry-nature",
+    "name": "McFlurry Nature",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 199,
+    "protein": 5,
+    "carbs": 33,
+    "fat": 5,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "McFlurry Nature — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-donut-nature",
+    "name": "Donut Nature",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 286,
+    "protein": 4,
+    "carbs": 29,
+    "fat": 17,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Donut Nature — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-donut-saveur-chocolat",
+    "name": "Donut Saveur Chocolat",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 363,
+    "protein": 4,
+    "carbs": 32,
+    "fat": 24,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Donut Saveur Chocolat — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-cookie-fourre-choconuts",
+    "name": "Cookie Fourré Choconuts",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 5,
+    "carbs": 50,
+    "fat": 18,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cookie Fourré Choconuts — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-cookie-chocolat-au-lait-noisette",
+    "name": "Cookie Chocolat au Lait Noisette",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 360,
+    "protein": 5,
+    "carbs": 42,
+    "fat": 19,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cookie Chocolat au Lait Noisette — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-cookie-caramel-noix-de-pecan",
+    "name": "Cookie Caramel Noix de Pécan",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 350,
+    "protein": 5,
+    "carbs": 47,
+    "fat": 15,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cookie Caramel Noix de Pécan — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-cookie-fourre-framboise",
+    "name": "Cookie Fourré Framboise",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 294,
+    "protein": 4,
+    "carbs": 47,
+    "fat": 10,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cookie Fourré Framboise — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-cinnamon-roll",
+    "name": "Cinnamon Roll",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 344,
+    "protein": 5,
+    "carbs": 45,
+    "fat": 15,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cinnamon Roll — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-muffin-chocolat-noisette",
+    "name": "Muffin Chocolat Noisette",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 595,
+    "protein": 8,
+    "carbs": 64,
+    "fat": 33,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Muffin Chocolat Noisette — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-muffin-aux-myrtilles",
+    "name": "Muffin aux Myrtilles",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 480,
+    "protein": 6,
+    "carbs": 63,
+    "fat": 22,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Muffin aux Myrtilles — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-muffin-cur-caramel",
+    "name": "Muffin Cœur Caramel",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 551,
+    "protein": 6,
+    "carbs": 74,
+    "fat": 25,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Muffin Cœur Caramel — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-cheesecake-choconut-mms",
+    "name": "Cheesecake Choconut M&M's",
+    "brand": "McDonald's France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 494,
+    "protein": 9,
+    "carbs": 52,
+    "fat": 28,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cheesecake Choconut M&M's — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-ptit-milkshake-vanille",
+    "name": "P'tit Milkshake Vanille",
+    "brand": "McDonald's France",
+    "type": [
+      "drink",
+      "snack"
+    ],
+    "calories": 257,
+    "protein": 6,
+    "carbs": 46,
+    "fat": 6,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "P'tit Milkshake Vanille — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-ptit-milkshake-fraise",
+    "name": "P'tit Milkshake Fraise",
+    "brand": "McDonald's France",
+    "type": [
+      "drink",
+      "snack"
+    ],
+    "calories": 254,
+    "protein": 6,
+    "carbs": 45,
+    "fat": 6,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "P'tit Milkshake Fraise — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-grand-milkshake-vanille",
+    "name": "Grand Milkshake Vanille",
+    "brand": "McDonald's France",
+    "type": [
+      "drink",
+      "snack"
+    ],
+    "calories": 315,
+    "protein": 9,
+    "carbs": 56,
+    "fat": 6,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Grand Milkshake Vanille — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-grand-milkshake-fraise",
+    "name": "Grand Milkshake Fraise",
+    "brand": "McDonald's France",
+    "type": [
+      "drink",
+      "snack"
+    ],
+    "calories": 315,
+    "protein": 9,
+    "carbs": 56,
+    "fat": 6,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Grand Milkshake Fraise — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-delifrapp-vanille",
+    "name": "Délifrapp Vanille",
+    "brand": "McDonald's France",
+    "type": [
+      "drink",
+      "snack"
+    ],
+    "calories": 265,
+    "protein": 5,
+    "carbs": 27,
+    "fat": 15,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Délifrapp Vanille — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-delifrapp-cookie",
+    "name": "Délifrapp Cookie",
+    "brand": "McDonald's France",
+    "type": [
+      "drink",
+      "snack"
+    ],
+    "calories": 613,
+    "protein": 9,
+    "carbs": 68,
+    "fat": 34,
+    "tags": [
+      "dessert"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Délifrapp Cookie — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-cafe-latte-glace-gourmand",
+    "name": "Café Latte Glacé Gourmand",
+    "brand": "McDonald's France",
+    "type": [
+      "drink",
+      "snack"
+    ],
+    "calories": 151,
+    "protein": 5,
+    "carbs": 10,
+    "fat": 10,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Café Latte Glacé Gourmand — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-smoothie-banane-fraise",
+    "name": "Smoothie Banane Fraise",
+    "brand": "McDonald's France",
+    "type": [
+      "drink",
+      "snack"
+    ],
+    "calories": 299,
+    "protein": 2,
+    "carbs": 63,
+    "fat": 1,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Smoothie Banane Fraise — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-smoothie-mangue-papaye-passion",
+    "name": "Smoothie Mangue Papaye Passion",
+    "brand": "McDonald's France",
+    "type": [
+      "drink",
+      "snack"
+    ],
+    "calories": 298,
+    "protein": 2,
+    "carbs": 62,
+    "fat": 1,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Smoothie Mangue Papaye Passion — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-cappuccino",
+    "name": "Cappuccino",
+    "brand": "McDonald's France",
+    "type": [
+      "drink",
+      "snack"
+    ],
+    "calories": 79,
+    "protein": 5,
+    "carbs": 9,
+    "fat": 3,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cappuccino — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-cafe-latte",
+    "name": "Café Latte",
+    "brand": "McDonald's France",
+    "type": [
+      "drink",
+      "snack"
+    ],
+    "calories": 58,
+    "protein": 4,
+    "carbs": 6,
+    "fat": 2,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Café Latte — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-chocolat-chaud",
+    "name": "Chocolat Chaud",
+    "brand": "McDonald's France",
+    "type": [
+      "drink",
+      "snack"
+    ],
+    "calories": 160,
+    "protein": 8,
+    "carbs": 22,
+    "fat": 4,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chocolat Chaud — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-mocha-viennois",
+    "name": "Mocha Viennois",
+    "brand": "McDonald's France",
+    "type": [
+      "drink",
+      "snack"
+    ],
+    "calories": 172,
+    "protein": 6,
+    "carbs": 20,
+    "fat": 8,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Mocha Viennois — McDonald's France"
+    ]
+  },
+  {
+    "id": "fr-mcdo-chocolat-viennois",
+    "name": "Chocolat Viennois",
+    "brand": "McDonald's France",
+    "type": [
+      "drink",
+      "snack"
+    ],
+    "calories": 197,
+    "protein": 8,
+    "carbs": 23,
+    "fat": 8,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chocolat Viennois — McDonald's France"
     ]
   },
   {
