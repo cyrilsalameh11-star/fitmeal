@@ -8626,6 +8626,20 @@ const supermarketMeals = [
     "tags": ["vegetarian"],
     "shoppingItems": ["Brets Chips Fromage du Jura — Supermarché"]
   },
+  {
+    "id": "fr-snacks-brets-crepe-nature",
+    "name": "Brets Chips de Crêpe Nature",
+    "brand": "Favorite Snacks",
+    "type": ["snack"],
+    "calories": 482,
+    "protein": 3,
+    "carbs": 63,
+    "fat": 20,
+    "source": "supermarket",
+    "country": "France",
+    "tags": ["vegetarian"],
+    "shoppingItems": ["Brets Chips de Crêpe Nature — Supermarché"]
+  },
   { "id": "fr-crf-poulet-champ", "name": "Poulet Grillé Sauce Champignons", "brand": "Carrefour", "type": ["dinner"], "calories": 420, "protein": 38, "carbs": 12, "fat": 22, "source": "supermarket", "country": "France", "shoppingItems": ["Poulet Grillé Sauce Champignons — Carrefour"] },
   { "id": "fr-crf-taboule-saumon", "name": "Taboulé Saumon Fumé", "brand": "Carrefour", "type": ["lunch"], "calories": 310, "protein": 18, "carbs": 38, "fat": 9, "source": "supermarket", "country": "France", "shoppingItems": ["Taboulé Saumon Fumé — Carrefour"] },
   { "id": "fr-crf-lentilles-vina", "name": "Salade de Lentilles Vinaigrette", "brand": "Carrefour", "type": ["lunch"], "calories": 280, "protein": 14, "carbs": 36, "fat": 8, "source": "supermarket", "country": "France", "shoppingItems": ["Salade de Lentilles Vinaigrette — Carrefour"] },
