@@ -3299,7 +3299,7 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "CBO (Chicken Bacon Oignons) — McDonald's France"
+      "CBO — McDonald's France"
     ]
   },
   {
@@ -3835,8 +3835,8 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-mcdo-frite-petite-portion",
-    "name": "Frite Petite Portion",
+    "id": "fr-mcdo-frite-petite",
+    "name": "Frite Petite",
     "brand": "McDonald's France",
     "type": [
       "snack",
@@ -3850,12 +3850,12 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Frite Petite Portion — McDonald's France"
+      "Frite Petite — McDonald's France"
     ]
   },
   {
-    "id": "fr-mcdo-frite-moyenne-portion",
-    "name": "Frite Moyenne Portion",
+    "id": "fr-mcdo-frite-moyenne",
+    "name": "Frite Moyenne",
     "brand": "McDonald's France",
     "type": [
       "snack",
@@ -3869,12 +3869,12 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Frite Moyenne Portion — McDonald's France"
+      "Frite Moyenne — McDonald's France"
     ]
   },
   {
-    "id": "fr-mcdo-frite-grande-portion",
-    "name": "Frite Grande Portion",
+    "id": "fr-mcdo-frite-grande",
+    "name": "Frite Grande",
     "brand": "McDonald's France",
     "type": [
       "snack",
@@ -3888,7 +3888,7 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Frite Grande Portion — McDonald's France"
+      "Frite Grande — McDonald's France"
     ]
   },
   {
@@ -4035,8 +4035,8 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-mcdo-sundae-nappage-caramel",
-    "name": "Sundae Nappage Caramel",
+    "id": "fr-mcdo-sundae-caramel",
+    "name": "Sundae Caramel",
     "brand": "McDonald's France",
     "type": [
       "dessert",
@@ -4052,12 +4052,12 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sundae Nappage Caramel — McDonald's France"
+      "Sundae Caramel — McDonald's France"
     ]
   },
   {
-    "id": "fr-mcdo-sundae-nappage-chocolat",
-    "name": "Sundae Nappage Chocolat",
+    "id": "fr-mcdo-sundae-chocolat",
+    "name": "Sundae Chocolat",
     "brand": "McDonald's France",
     "type": [
       "dessert",
@@ -4073,7 +4073,7 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sundae Nappage Chocolat — McDonald's France"
+      "Sundae Chocolat — McDonald's France"
     ]
   },
   {
@@ -4677,13 +4677,12 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 617,
+    "calories": 631,
     "protein": 28,
-    "carbs": 50,
+    "carbs": 49,
     "fat": 35,
     "tags": [
-      "beef",
-      "burger"
+      "beef"
     ],
     "country": "France",
     "source": "restaurant",
@@ -4692,94 +4691,47 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-bk-cheese-whopper",
-    "name": "Cheese Whopper",
+    "id": "fr-bk-double-whopper-cheese",
+    "name": "Double Whopper Cheese",
     "brand": "Burger King France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 697,
-    "protein": 33,
-    "carbs": 51,
-    "fat": 41,
-    "tags": [
-      "beef",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Cheese Whopper — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-double-whopper",
-    "name": "Double Whopper",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 882,
-    "protein": 49,
+    "calories": 920,
+    "protein": 51,
     "carbs": 50,
     "fat": 56,
     "tags": [
       "beef",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Double Whopper — Burger King France"
+      "Double Whopper Cheese — Burger King France"
     ]
   },
   {
-    "id": "fr-bk-bacon-cheese-whopper",
-    "name": "Bacon Cheese Whopper",
+    "id": "fr-bk-whopper-cheese",
+    "name": "Whopper Cheese",
     "brand": "Burger King France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 730,
-    "protein": 36,
-    "carbs": 51,
-    "fat": 43,
+    "calories": 712,
+    "protein": 33,
+    "carbs": 50,
+    "fat": 41,
     "tags": [
       "beef",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Bacon Cheese Whopper — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-whopper-junior",
-    "name": "Whopper Junior",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 315,
-    "protein": 14,
-    "carbs": 28,
-    "fat": 17,
-    "tags": [
-      "beef",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Whopper Junior — Burger King France"
+      "Whopper Cheese — Burger King France"
     ]
   },
   {
@@ -4790,19 +4742,62 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 812,
-    "protein": 44,
-    "carbs": 56,
-    "fat": 45,
+    "calories": 656,
+    "protein": 32,
+    "carbs": 47,
+    "fat": 36,
     "tags": [
       "beef",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
       "Steakhouse — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-double-steakhouse",
+    "name": "Double Steakhouse",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 870,
+    "protein": 48,
+    "carbs": 48,
+    "fat": 53,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Double Steakhouse — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-louisiane-steakhouse",
+    "name": "Louisiane Steakhouse",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 690,
+    "protein": 33,
+    "carbs": 50,
+    "fat": 38,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Louisiane Steakhouse — Burger King France"
     ]
   },
   {
@@ -4813,13 +4808,13 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 570,
-    "protein": 30,
-    "carbs": 42,
-    "fat": 30,
+    "calories": 530,
+    "protein": 27,
+    "carbs": 41,
+    "fat": 28,
     "tags": [
       "beef",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
@@ -4835,14 +4830,13 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 865,
-    "protein": 50,
-    "carbs": 47,
-    "fat": 53,
+    "calories": 820,
+    "protein": 45,
+    "carbs": 43,
+    "fat": 50,
     "tags": [
       "beef",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
@@ -4851,71 +4845,113 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-bk-master-bacon-lover",
-    "name": "Master Bacon Lover",
+    "id": "fr-bk-cheese-bacon-xxl",
+    "name": "Cheese Bacon XXL",
     "brand": "Burger King France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 794,
-    "protein": 39,
-    "carbs": 56,
-    "fat": 44,
+    "calories": 760,
+    "protein": 42,
+    "carbs": 41,
+    "fat": 46,
     "tags": [
       "beef",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Master Bacon Lover — Burger King France"
+      "Cheese Bacon XXL — Burger King France"
     ]
   },
   {
-    "id": "fr-bk-master-cheese-lover",
-    "name": "Master Cheese Lover",
+    "id": "fr-bk-double-cheese-bacon-xxl",
+    "name": "Double Cheese Bacon XXL",
     "brand": "Burger King France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 740,
-    "protein": 36,
-    "carbs": 56,
-    "fat": 41,
+    "calories": 920,
+    "protein": 52,
+    "carbs": 42,
+    "fat": 58,
     "tags": [
       "beef",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Master Cheese Lover — Burger King France"
+      "Double Cheese Bacon XXL — Burger King France"
     ]
   },
   {
-    "id": "fr-bk-hamburger",
-    "name": "Hamburger",
+    "id": "fr-bk-classic-cheese-and-bacon",
+    "name": "Classic Cheese and Bacon",
     "brand": "Burger King France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 280,
-    "protein": 14,
-    "carbs": 28,
-    "fat": 11,
+    "calories": 480,
+    "protein": 26,
+    "carbs": 38,
+    "fat": 24,
     "tags": [
       "beef",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Hamburger — Burger King France"
+      "Classic Cheese and Bacon — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-triple-cheese",
+    "name": "Triple Cheese",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 510,
+    "protein": 30,
+    "carbs": 31,
+    "fat": 27,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Triple Cheese — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-double-cheese",
+    "name": "Double Cheese",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 410,
+    "protein": 23,
+    "carbs": 30,
+    "fat": 22,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Double Cheese — Burger King France"
     ]
   },
   {
@@ -4926,14 +4962,13 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 330,
-    "protein": 17,
-    "carbs": 28,
-    "fat": 15,
+    "calories": 300,
+    "protein": 16,
+    "carbs": 30,
+    "fat": 13,
     "tags": [
       "beef",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
@@ -4942,423 +4977,112 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-bk-double-cheeseburger",
-    "name": "Double Cheeseburger",
+    "id": "fr-bk-cheeseburger-bacon",
+    "name": "Cheeseburger Bacon",
     "brand": "Burger King France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 475,
-    "protein": 28,
-    "carbs": 28,
-    "fat": 26,
-    "tags": [
-      "beef",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Double Cheeseburger — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-bacon-cheeseburger",
-    "name": "Bacon Cheeseburger",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 370,
-    "protein": 20,
-    "carbs": 28,
-    "fat": 18,
-    "tags": [
-      "beef",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Bacon Cheeseburger — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-long-bacon",
-    "name": "Long Bacon",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 535,
-    "protein": 27,
-    "carbs": 53,
-    "fat": 23,
-    "tags": [
-      "beef",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Long Bacon — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-steakhouse-junior",
-    "name": "Steakhouse Junior",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 445,
-    "protein": 22,
-    "carbs": 35,
-    "fat": 25,
-    "tags": [
-      "beef",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Steakhouse Junior — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-long-chicken",
-    "name": "Long Chicken",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 525,
-    "protein": 21,
-    "carbs": 60,
-    "fat": 22,
-    "tags": [
-      "chicken",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Long Chicken — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-big-long-chicken",
-    "name": "Big Long Chicken",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 705,
-    "protein": 32,
-    "carbs": 70,
-    "fat": 32,
-    "tags": [
-      "chicken",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Big Long Chicken — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-chicken-cheese",
-    "name": "Chicken Cheese",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 390,
+    "calories": 350,
     "protein": 19,
-    "carbs": 38,
+    "carbs": 30,
     "fat": 17,
     "tags": [
-      "chicken",
-      "cheese",
-      "burger"
+      "beef",
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Chicken Cheese — Burger King France"
+      "Cheeseburger Bacon — Burger King France"
     ]
   },
   {
-    "id": "fr-bk-crousty-chicken",
-    "name": "Crousty Chicken",
+    "id": "fr-bk-hamburger",
+    "name": "Hamburger",
     "brand": "Burger King France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 365,
-    "protein": 17,
-    "carbs": 38,
-    "fat": 16,
+    "calories": 260,
+    "protein": 13,
+    "carbs": 30,
+    "fat": 9,
     "tags": [
-      "chicken",
-      "burger"
+      "beef"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Crousty Chicken — Burger King France"
+      "Hamburger — Burger King France"
     ]
   },
   {
-    "id": "fr-bk-crousty-chevre",
-    "name": "Crousty Chèvre",
+    "id": "fr-bk-master-basque",
+    "name": "Master Basque",
     "brand": "Burger King France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 555,
-    "protein": 20,
+    "calories": 850,
+    "protein": 45,
     "carbs": 50,
-    "fat": 30,
+    "fat": 52,
     "tags": [
-      "chicken",
-      "cheese",
-      "burger"
+      "beef",
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Crousty Chèvre — Burger King France"
+      "Master Basque — Burger King France"
     ]
   },
   {
-    "id": "fr-bk-crousty-bacon",
-    "name": "Crousty Bacon",
+    "id": "fr-bk-master-bacon-grill",
+    "name": "Master Bacon Grill",
     "brand": "Burger King France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 530,
-    "protein": 25,
-    "carbs": 41,
-    "fat": 30,
+    "calories": 870,
+    "protein": 46,
+    "carbs": 51,
+    "fat": 53,
     "tags": [
-      "chicken",
-      "cheese",
-      "burger"
+      "beef",
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Crousty Bacon — Burger King France"
+      "Master Bacon Grill — Burger King France"
     ]
   },
   {
-    "id": "fr-bk-tenders-crispy-x4",
-    "name": "Tenders Crispy x4",
+    "id": "fr-bk-bacon-grill",
+    "name": "Bacon Grill",
     "brand": "Burger King France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 215,
-    "protein": 16,
-    "carbs": 14,
-    "fat": 11,
+    "calories": 820,
+    "protein": 43,
+    "carbs": 50,
+    "fat": 49,
     "tags": [
-      "chicken"
+      "beef",
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tenders Crispy x4 — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-tenders-crispy-x6",
-    "name": "Tenders Crispy x6",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 325,
-    "protein": 24,
-    "carbs": 21,
-    "fat": 16,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Tenders Crispy x6 — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-tenders-crispy-x9",
-    "name": "Tenders Crispy x9",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 485,
-    "protein": 36,
-    "carbs": 32,
-    "fat": 25,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Tenders Crispy x9 — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-nuggets-x6",
-    "name": "Nuggets x6",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 245,
-    "protein": 14,
-    "carbs": 13,
-    "fat": 14,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Nuggets x6 — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-nuggets-x9",
-    "name": "Nuggets x9",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 368,
-    "protein": 21,
-    "carbs": 19,
-    "fat": 21,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Nuggets x9 — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-hot-wings-x4",
-    "name": "Hot Wings x4",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 295,
-    "protein": 19,
-    "carbs": 12,
-    "fat": 19,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Hot Wings x4 — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-hot-wings-x6",
-    "name": "Hot Wings x6",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 442,
-    "protein": 28,
-    "carbs": 18,
-    "fat": 28,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Hot Wings x6 — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-veggie-king",
-    "name": "Veggie King",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 470,
-    "protein": 18,
-    "carbs": 60,
-    "fat": 18,
-    "tags": [
-      "vegetarian",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Veggie King — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-veggie-steakhouse",
-    "name": "Veggie Steakhouse",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 595,
-    "protein": 22,
-    "carbs": 70,
-    "fat": 25,
-    "tags": [
-      "vegetarian",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Veggie Steakhouse — Burger King France"
+      "Bacon Grill — Burger King France"
     ]
   },
   {
@@ -5369,13 +5093,12 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 555,
-    "protein": 20,
-    "carbs": 51,
-    "fat": 30,
+    "calories": 480,
+    "protein": 19,
+    "carbs": 47,
+    "fat": 24,
     "tags": [
-      "fish",
-      "burger"
+      "fish"
     ],
     "country": "France",
     "source": "restaurant",
@@ -5391,13 +5114,12 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 410,
-    "protein": 16,
-    "carbs": 39,
-    "fat": 20,
+    "calories": 360,
+    "protein": 14,
+    "carbs": 36,
+    "fat": 17,
     "tags": [
-      "fish",
-      "burger"
+      "fish"
     ],
     "country": "France",
     "source": "restaurant",
@@ -5406,659 +5128,515 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-bk-wrap-tenders-crispy",
-    "name": "Wrap Tenders Crispy",
+    "id": "fr-bk-master-poulet",
+    "name": "Master Poulet",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 780,
+    "protein": 38,
+    "carbs": 60,
+    "fat": 42,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Master Poulet — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-master-basque-poulet",
+    "name": "Master Basque Poulet",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 790,
+    "protein": 39,
+    "carbs": 60,
+    "fat": 43,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Master Basque Poulet — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-basque-poulet",
+    "name": "Basque Poulet",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 770,
+    "protein": 37,
+    "carbs": 60,
+    "fat": 41,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Basque Poulet — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-poulet",
+    "name": "Poulet",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 34,
+    "carbs": 58,
+    "fat": 38,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Poulet — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-chicken-louisiane-steakhouse",
+    "name": "Chicken Louisiane Steakhouse",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 700,
+    "protein": 32,
+    "carbs": 58,
+    "fat": 37,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chicken Louisiane Steakhouse — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-chicken-cheese",
+    "name": "Chicken Cheese",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 530,
+    "protein": 24,
+    "carbs": 50,
+    "fat": 26,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chicken Cheese — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-chicken-cheese-and-bacon",
+    "name": "Chicken Cheese and Bacon",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 580,
+    "protein": 27,
+    "carbs": 50,
+    "fat": 30,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chicken Cheese and Bacon — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-crispy-chicken-cheese",
+    "name": "Crispy Chicken Cheese",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 470,
+    "protein": 22,
+    "carbs": 45,
+    "fat": 22,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crispy Chicken Cheese — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-chicken-classic",
+    "name": "Chicken Classic",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 18,
+    "carbs": 38,
+    "fat": 17,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chicken Classic — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-long-chicken",
+    "name": "Long Chicken",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 22,
+    "carbs": 50,
+    "fat": 22,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Long Chicken — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-crousty-chevre",
+    "name": "Crousty Chevre",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 580,
+    "protein": 19,
+    "carbs": 55,
+    "fat": 32,
+    "tags": [
+      "vegetarian",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crousty Chevre — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-veggie-whopper",
+    "name": "Veggie Whopper",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 580,
+    "protein": 21,
+    "carbs": 60,
+    "fat": 28,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Veggie Whopper — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-veggie-steakhouse",
+    "name": "Veggie Steakhouse",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 600,
+    "protein": 22,
+    "carbs": 60,
+    "fat": 30,
+    "tags": [
+      "vegetarian",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Veggie Steakhouse — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-veggie-cheese-and-bacon",
+    "name": "Veggie Cheese and Bacon",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 540,
+    "protein": 21,
+    "carbs": 50,
+    "fat": 27,
+    "tags": [
+      "vegetarian",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Veggie Cheese and Bacon — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-veggie-double-cheese-bacon-xxl",
+    "name": "Veggie Double Cheese Bacon XXL",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 780,
+    "protein": 30,
+    "carbs": 55,
+    "fat": 47,
+    "tags": [
+      "vegetarian",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Veggie Double Cheese Bacon XXL — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-veggie-chicken-louisiane-steakhouse",
+    "name": "Veggie Chicken Louisiane Steakhouse",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 620,
+    "protein": 22,
+    "carbs": 60,
+    "fat": 32,
+    "tags": [
+      "vegetarian",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Veggie Chicken Louisiane Steakhouse — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-wrap-chicken-cheese-and-bacon",
+    "name": "Wrap Chicken Cheese and Bacon",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 430,
+    "protein": 20,
+    "carbs": 38,
+    "fat": 22,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Wrap Chicken Cheese and Bacon — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-wrap-chicken-louisiane",
+    "name": "Wrap Chicken Louisiane",
     "brand": "Burger King France",
     "type": [
       "lunch",
       "dinner"
     ],
     "calories": 410,
-    "protein": 18,
-    "carbs": 42,
-    "fat": 18,
-    "tags": [
-      "chicken",
-      "wrap"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Wrap Tenders Crispy — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-wrap-tenders-salsa",
-    "name": "Wrap Tenders Salsa",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 395,
-    "protein": 18,
-    "carbs": 43,
-    "fat": 16,
-    "tags": [
-      "chicken",
-      "wrap"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Wrap Tenders Salsa — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-wrap-big-steak",
-    "name": "Wrap Big Steak",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 490,
-    "protein": 22,
-    "carbs": 46,
-    "fat": 22,
-    "tags": [
-      "beef",
-      "wrap"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Wrap Big Steak — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-wrap-sweet-chili",
-    "name": "Wrap Sweet Chili",
-    "brand": "Burger King France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 400,
-    "protein": 16,
-    "carbs": 45,
-    "fat": 16,
-    "tags": [
-      "chicken",
-      "wrap"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Wrap Sweet Chili — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-frites-small",
-    "name": "Frites Small",
-    "brand": "Burger King France",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 195,
-    "protein": 3,
-    "carbs": 25,
-    "fat": 9,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Frites Small — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-frites-medium",
-    "name": "Frites Medium",
-    "brand": "Burger King France",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 310,
-    "protein": 5,
-    "carbs": 39,
-    "fat": 14,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Frites Medium — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-frites-large",
-    "name": "Frites Large",
-    "brand": "Burger King France",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 430,
-    "protein": 7,
-    "carbs": 53,
+    "protein": 19,
+    "carbs": 38,
     "fat": 20,
-    "tags": [],
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Frites Large — Burger King France"
+      "Wrap Chicken Louisiane — Burger King France"
     ]
   },
   {
-    "id": "fr-bk-onion-rings-small",
-    "name": "Onion Rings Small",
+    "id": "fr-bk-wrap-crousty-chevre",
+    "name": "Wrap Crousty Chevre",
     "brand": "Burger King France",
     "type": [
-      "snack",
-      "lunch"
+      "lunch",
+      "dinner"
     ],
-    "calories": 255,
-    "protein": 3,
-    "carbs": 30,
-    "fat": 13,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Onion Rings Small — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-onion-rings-medium",
-    "name": "Onion Rings Medium",
-    "brand": "Burger King France",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 340,
-    "protein": 4,
+    "calories": 420,
+    "protein": 14,
     "carbs": 40,
-    "fat": 17,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Onion Rings Medium — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-potatoes",
-    "name": "Potatoes",
-    "brand": "Burger King France",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 295,
-    "protein": 4,
-    "carbs": 35,
-    "fat": 15,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Potatoes — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-sundae-chocolat",
-    "name": "Sundae Chocolat",
-    "brand": "Burger King France",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 290,
-    "protein": 6,
-    "carbs": 46,
-    "fat": 9,
+    "fat": 23,
     "tags": [
-      "dessert"
+      "vegetarian",
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sundae Chocolat — Burger King France"
+      "Wrap Crousty Chevre — Burger King France"
     ]
   },
   {
-    "id": "fr-bk-sundae-caramel",
-    "name": "Sundae Caramel",
+    "id": "fr-bk-king-nuggets-9",
+    "name": "King Nuggets (9)",
     "brand": "Burger King France",
     "type": [
-      "dessert",
-      "snack"
+      "lunch",
+      "dinner"
     ],
-    "calories": 315,
-    "protein": 6,
-    "carbs": 53,
-    "fat": 8,
+    "calories": 410,
+    "protein": 23,
+    "carbs": 23,
+    "fat": 24,
     "tags": [
-      "dessert"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sundae Caramel — Burger King France"
+      "King Nuggets — Burger King France"
     ]
   },
   {
-    "id": "fr-bk-king-fusion-daim",
-    "name": "King Fusion Daim",
+    "id": "fr-bk-king-nuggets-6",
+    "name": "King Nuggets (6)",
     "brand": "Burger King France",
     "type": [
-      "dessert",
-      "snack"
+      "lunch",
+      "dinner"
     ],
-    "calories": 405,
-    "protein": 8,
-    "carbs": 56,
-    "fat": 17,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "King Fusion Daim — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-king-fusion-oreo",
-    "name": "King Fusion Oreo",
-    "brand": "Burger King France",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 395,
-    "protein": 8,
-    "carbs": 56,
+    "calories": 270,
+    "protein": 15,
+    "carbs": 15,
     "fat": 16,
     "tags": [
-      "dessert"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "King Fusion Oreo — Burger King France"
+      "King Nuggets — Burger King France"
     ]
   },
   {
-    "id": "fr-bk-king-fusion-kit-kat",
-    "name": "King Fusion Kit Kat",
+    "id": "fr-bk-king-nuggets-4",
+    "name": "King Nuggets (4)",
     "brand": "Burger King France",
     "type": [
-      "dessert",
-      "snack"
+      "lunch",
+      "dinner"
     ],
-    "calories": 415,
-    "protein": 8,
-    "carbs": 57,
-    "fat": 18,
+    "calories": 180,
+    "protein": 10,
+    "carbs": 10,
+    "fat": 11,
     "tags": [
-      "dessert"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "King Fusion Kit Kat — Burger King France"
+      "King Nuggets — Burger King France"
     ]
   },
   {
-    "id": "fr-bk-cookie-chocolat",
-    "name": "Cookie Chocolat",
+    "id": "fr-bk-king-wings-6",
+    "name": "King Wings (6)",
     "brand": "Burger King France",
     "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 220,
-    "protein": 3,
-    "carbs": 29,
-    "fat": 10,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Cookie Chocolat — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-muffin-chocolat",
-    "name": "Muffin Chocolat",
-    "brand": "Burger King France",
-    "type": [
-      "dessert",
-      "snack"
+      "lunch",
+      "dinner"
     ],
     "calories": 380,
-    "protein": 5,
-    "carbs": 47,
-    "fat": 19,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Muffin Chocolat — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-donut-sucre",
-    "name": "Donut Sucre",
-    "brand": "Burger King France",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 295,
-    "protein": 4,
-    "carbs": 39,
-    "fat": 13,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Donut Sucre — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-donut-chocolat",
-    "name": "Donut Chocolat",
-    "brand": "Burger King France",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 320,
-    "protein": 4,
-    "carbs": 42,
-    "fat": 15,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Donut Chocolat — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-milkshake-vanille",
-    "name": "Milkshake Vanille",
-    "brand": "Burger King France",
-    "type": [
-      "drink",
-      "snack"
-    ],
-    "calories": 360,
-    "protein": 9,
-    "carbs": 62,
-    "fat": 8,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Milkshake Vanille — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-bk-milkshake-chocolat",
-    "name": "Milkshake Chocolat",
-    "brand": "Burger King France",
-    "type": [
-      "drink",
-      "snack"
-    ],
-    "calories": 400,
-    "protein": 10,
-    "carbs": 71,
-    "fat": 9,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Milkshake Chocolat — Burger King France"
-    ]
-  },
-  {
-    "id": "fr-kfc-original-recipe-1-piece",
-    "name": "Original Recipe (1 pièce)",
-    "brand": "KFC France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 240,
-    "protein": 22,
-    "carbs": 8,
-    "fat": 14,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Original Recipe (1 pièce) — KFC France"
-    ]
-  },
-  {
-    "id": "fr-kfc-crispy-1-piece",
-    "name": "Crispy (1 pièce)",
-    "brand": "KFC France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 295,
-    "protein": 22,
-    "carbs": 12,
-    "fat": 18,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Crispy (1 pièce) — KFC France"
-    ]
-  },
-  {
-    "id": "fr-kfc-hot-wings-1-piece",
-    "name": "Hot Wings (1 pièce)",
-    "brand": "KFC France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 80,
-    "protein": 6,
-    "carbs": 3,
-    "fat": 5,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Hot Wings (1 pièce) — KFC France"
-    ]
-  },
-  {
-    "id": "fr-kfc-hot-wings-x6",
-    "name": "Hot Wings x6",
-    "brand": "KFC France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 470,
-    "protein": 35,
-    "carbs": 19,
-    "fat": 28,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Hot Wings x6 — KFC France"
-    ]
-  },
-  {
-    "id": "fr-kfc-hot-wings-x10",
-    "name": "Hot Wings x10",
-    "brand": "KFC France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 780,
-    "protein": 58,
-    "carbs": 32,
-    "fat": 47,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Hot Wings x10 — KFC France"
-    ]
-  },
-  {
-    "id": "fr-kfc-tenders-1-piece",
-    "name": "Tenders (1 pièce)",
-    "brand": "KFC France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 115,
-    "protein": 10,
-    "carbs": 7,
-    "fat": 5,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Tenders (1 pièce) — KFC France"
-    ]
-  },
-  {
-    "id": "fr-kfc-tenders-x3",
-    "name": "Tenders x3",
-    "brand": "KFC France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 343,
     "protein": 30,
-    "carbs": 21,
-    "fat": 16,
+    "carbs": 12,
+    "fat": 23,
     "tags": [
       "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tenders x3 — KFC France"
+      "King Wings — Burger King France"
     ]
   },
   {
-    "id": "fr-kfc-tenders-x5",
-    "name": "Tenders x5",
-    "brand": "KFC France",
+    "id": "fr-bk-king-wings-9",
+    "name": "King Wings (9)",
+    "brand": "Burger King France",
     "type": [
       "lunch",
       "dinner"
     ],
     "calories": 570,
-    "protein": 50,
-    "carbs": 35,
-    "fat": 27,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Tenders x5 — KFC France"
-    ]
-  },
-  {
-    "id": "fr-kfc-pop-corn-chicken-snack",
-    "name": "Pop-Corn Chicken Snack",
-    "brand": "KFC France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 245,
-    "protein": 16,
-    "carbs": 14,
-    "fat": 14,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Pop-Corn Chicken Snack — KFC France"
-    ]
-  },
-  {
-    "id": "fr-kfc-pop-corn-chicken-medium",
-    "name": "Pop-Corn Chicken Medium",
-    "brand": "KFC France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 438,
-    "protein": 28,
-    "carbs": 25,
-    "fat": 25,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Pop-Corn Chicken Medium — KFC France"
-    ]
-  },
-  {
-    "id": "fr-kfc-pop-corn-chicken-large",
-    "name": "Pop-Corn Chicken Large",
-    "brand": "KFC France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 620,
-    "protein": 39,
-    "carbs": 35,
+    "protein": 45,
+    "carbs": 18,
     "fat": 35,
     "tags": [
       "chicken"
@@ -6066,28 +5644,454 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Pop-Corn Chicken Large — KFC France"
+      "King Wings — Burger King France"
     ]
   },
   {
-    "id": "fr-kfc-mini-fillet-1",
-    "name": "Mini Fillet (1)",
-    "brand": "KFC France",
+    "id": "fr-bk-chili-cheese-nuggets-6",
+    "name": "Chili Cheese Nuggets (6)",
+    "brand": "Burger King France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 123,
-    "protein": 8,
-    "carbs": 10,
-    "fat": 5,
+    "calories": 350,
+    "protein": 9,
+    "carbs": 26,
+    "fat": 22,
     "tags": [
-      "chicken"
+      "vegetarian",
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Mini Fillet (1) — KFC France"
+      "Chili Cheese Nuggets — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-crousty-chevre-bites-6",
+    "name": "Crousty Chevre Bites (6)",
+    "brand": "Burger King France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 360,
+    "protein": 11,
+    "carbs": 28,
+    "fat": 22,
+    "tags": [
+      "vegetarian",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crousty Chevre Bites — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-onion-rings-6",
+    "name": "Onion Rings (6)",
+    "brand": "Burger King France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 270,
+    "protein": 4,
+    "carbs": 32,
+    "fat": 14,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Onion Rings — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-onion-rings-9",
+    "name": "Onion Rings (9)",
+    "brand": "Burger King France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 410,
+    "protein": 6,
+    "carbs": 48,
+    "fat": 21,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Onion Rings — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-frites-petites",
+    "name": "Frites (Petites)",
+    "brand": "Burger King France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 230,
+    "protein": 3,
+    "carbs": 30,
+    "fat": 11,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Frites — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-frites-moyennes",
+    "name": "Frites (Moyennes)",
+    "brand": "Burger King France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 340,
+    "protein": 4,
+    "carbs": 44,
+    "fat": 16,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Frites — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-frites-grandes",
+    "name": "Frites (Grandes)",
+    "brand": "Burger King France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 460,
+    "protein": 6,
+    "carbs": 60,
+    "fat": 22,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Frites — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-king-fries-cheddar-and-bacon",
+    "name": "King Fries Cheddar and Bacon",
+    "brand": "Burger King France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 480,
+    "protein": 9,
+    "carbs": 47,
+    "fat": 28,
+    "tags": [
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "King Fries Cheddar and Bacon — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-king-fries-cheddar-and-crispy-onions",
+    "name": "King Fries Cheddar and Crispy Onions",
+    "brand": "Burger King France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 460,
+    "protein": 7,
+    "carbs": 50,
+    "fat": 25,
+    "tags": [
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "King Fries Cheddar and Crispy Onions — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-king-fries-basque-bacon",
+    "name": "King Fries Basque Bacon",
+    "brand": "Burger King France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 450,
+    "protein": 8,
+    "carbs": 48,
+    "fat": 24,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "King Fries Basque Bacon — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-king-sundae-chocolat",
+    "name": "King Sundae Chocolat",
+    "brand": "Burger King France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 230,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 6,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "King Sundae Chocolat — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-king-sundae-caramel",
+    "name": "King Sundae Caramel",
+    "brand": "Burger King France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 230,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 6,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "King Sundae Caramel — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-king-sundae-framboise",
+    "name": "King Sundae Framboise",
+    "brand": "Burger King France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 210,
+    "protein": 4,
+    "carbs": 36,
+    "fat": 5,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "King Sundae Framboise — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-king-sundae-vanille",
+    "name": "King Sundae Vanille",
+    "brand": "Burger King France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 200,
+    "protein": 4,
+    "carbs": 32,
+    "fat": 5,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "King Sundae Vanille — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-king-fusion-lion",
+    "name": "King Fusion Lion",
+    "brand": "Burger King France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 360,
+    "protein": 6,
+    "carbs": 50,
+    "fat": 15,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "King Fusion Lion — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-king-fusion-mms",
+    "name": "King Fusion M&M's",
+    "brand": "Burger King France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 370,
+    "protein": 6,
+    "carbs": 50,
+    "fat": 16,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "King Fusion M&M's — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-king-fusion-snickers",
+    "name": "King Fusion Snickers",
+    "brand": "Burger King France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 7,
+    "carbs": 50,
+    "fat": 17,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "King Fusion Snickers — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-king-fusion-peanut-butter",
+    "name": "King Fusion Peanut Butter",
+    "brand": "Burger King France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 390,
+    "protein": 8,
+    "carbs": 48,
+    "fat": 18,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "King Fusion Peanut Butter — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-cookie-peanut-butter",
+    "name": "Cookie Peanut Butter",
+    "brand": "Burger King France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 280,
+    "protein": 5,
+    "carbs": 32,
+    "fat": 14,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cookie Peanut Butter — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-cookie-duo-chocolat",
+    "name": "Cookie Duo Chocolat",
+    "brand": "Burger King France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 260,
+    "protein": 3,
+    "carbs": 33,
+    "fat": 13,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cookie Duo Chocolat — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-muffin-chocolat-noisette",
+    "name": "Muffin Chocolat Noisette",
+    "brand": "Burger King France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 5,
+    "carbs": 45,
+    "fat": 20,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Muffin Chocolat Noisette — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-donut-chocolat-noisette",
+    "name": "Donut Chocolat Noisette",
+    "brand": "Burger King France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 340,
+    "protein": 4,
+    "carbs": 40,
+    "fat": 18,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Donut Chocolat Noisette — Burger King France"
+    ]
+  },
+  {
+    "id": "fr-bk-duo-gourmand",
+    "name": "Duo Gourmand",
+    "brand": "Burger King France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 310,
+    "protein": 4,
+    "carbs": 38,
+    "fat": 16,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Duo Gourmand — Burger King France"
     ]
   },
   {
@@ -6098,14 +6102,12 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 550,
+    "calories": 580,
     "protein": 30,
-    "carbs": 50,
-    "fat": 25,
+    "carbs": 53,
+    "fat": 27,
     "tags": [
-      "chicken",
-      "cheese",
-      "burger"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
@@ -6114,94 +6116,239 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-kfc-tower-hot",
-    "name": "Tower Hot",
+    "id": "fr-kfc-tower-cheese-bacon",
+    "name": "Tower Cheese & Bacon",
     "brand": "KFC France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 555,
-    "protein": 30,
-    "carbs": 50,
-    "fat": 25,
+    "calories": 650,
+    "protein": 33,
+    "carbs": 54,
+    "fat": 33,
     "tags": [
       "chicken",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tower Hot — KFC France"
+      "Tower Cheese & Bacon — KFC France"
     ]
   },
   {
-    "id": "fr-kfc-tower-cheese",
-    "name": "Tower Cheese",
+    "id": "fr-kfc-tower-spicy",
+    "name": "Tower Spicy",
     "brand": "KFC France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 590,
-    "protein": 32,
-    "carbs": 50,
+    "calories": 610,
+    "protein": 31,
+    "carbs": 55,
+    "fat": 29,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tower Spicy — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-tower-cheese-bacon-veggie",
+    "name": "Tower Cheese & Bacon Veggie",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 560,
+    "protein": 18,
+    "carbs": 58,
     "fat": 28,
     "tags": [
-      "chicken",
-      "cheese",
-      "burger"
+      "vegetarian",
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tower Cheese — KFC France"
+      "Tower Cheese & Bacon Veggie — KFC France"
     ]
   },
   {
-    "id": "fr-kfc-colonel-burger-original",
-    "name": "Colonel Burger Original",
+    "id": "fr-kfc-colonel-original",
+    "name": "Colonel Original",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 470,
+    "protein": 26,
+    "carbs": 45,
+    "fat": 20,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Colonel Original — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-colonel-original-bacon",
+    "name": "Colonel Original Bacon",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 530,
+    "protein": 30,
+    "carbs": 46,
+    "fat": 25,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Colonel Original Bacon — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-colonel-bacon-veggie",
+    "name": "Colonel Bacon Veggie",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 450,
+    "protein": 16,
+    "carbs": 48,
+    "fat": 22,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Colonel Bacon Veggie — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-double-kentucky-burger",
+    "name": "Double Kentucky Burger",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 38,
+    "carbs": 52,
+    "fat": 38,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Double Kentucky Burger — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-kentucky-bbq-bacon",
+    "name": "Kentucky BBQ & Bacon",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 620,
+    "protein": 32,
+    "carbs": 55,
+    "fat": 28,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Kentucky BBQ & Bacon — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-kentucky-veggie-burger",
+    "name": "Kentucky Veggie Burger",
     "brand": "KFC France",
     "type": [
       "lunch",
       "dinner"
     ],
     "calories": 430,
-    "protein": 22,
-    "carbs": 41,
+    "protein": 15,
+    "carbs": 50,
     "fat": 19,
     "tags": [
-      "chicken",
-      "burger"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Colonel Burger Original — KFC France"
+      "Kentucky Veggie Burger — KFC France"
     ]
   },
   {
-    "id": "fr-kfc-colonel-burger-cheese",
-    "name": "Colonel Burger Cheese",
+    "id": "fr-kfc-legends-tomme-igp",
+    "name": "Legends Tomme IGP",
     "brand": "KFC France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 475,
-    "protein": 24,
-    "carbs": 42,
-    "fat": 22,
+    "calories": 540,
+    "protein": 26,
+    "carbs": 48,
+    "fat": 27,
     "tags": [
       "chicken",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Colonel Burger Cheese — KFC France"
+      "Legends Tomme IGP — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-legends-chevre",
+    "name": "Legends Chèvre",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 520,
+    "protein": 24,
+    "carbs": 47,
+    "fat": 26,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Legends Chèvre — KFC France"
     ]
   },
   {
@@ -6214,11 +6361,10 @@ module.exports = [
     ],
     "calories": 410,
     "protein": 20,
-    "carbs": 38,
-    "fat": 19,
+    "carbs": 42,
+    "fat": 18,
     "tags": [
-      "chicken",
-      "burger"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
@@ -6227,138 +6373,45 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-kfc-krunchy-burger",
-    "name": "Krunchy Burger",
+    "id": "fr-kfc-crispy-burger-spicy",
+    "name": "Crispy Burger Spicy",
     "brand": "KFC France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 395,
-    "protein": 19,
-    "carbs": 39,
-    "fat": 18,
-    "tags": [
-      "chicken",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Krunchy Burger — KFC France"
-    ]
-  },
-  {
-    "id": "fr-kfc-kentucky-fillet-burger",
-    "name": "Kentucky Fillet Burger",
-    "brand": "KFC France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 445,
-    "protein": 24,
-    "carbs": 42,
+    "calories": 430,
+    "protein": 21,
+    "carbs": 43,
     "fat": 19,
     "tags": [
-      "chicken",
-      "burger"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Kentucky Fillet Burger — KFC France"
+      "Crispy Burger Spicy — KFC France"
     ]
   },
   {
-    "id": "fr-kfc-master-original",
-    "name": "Master Original",
+    "id": "fr-kfc-krunchy",
+    "name": "Krunchy",
     "brand": "KFC France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 650,
-    "protein": 32,
-    "carbs": 53,
-    "fat": 32,
+    "calories": 380,
+    "protein": 18,
+    "carbs": 40,
+    "fat": 17,
     "tags": [
-      "chicken",
-      "cheese",
-      "burger"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Master Original — KFC France"
-    ]
-  },
-  {
-    "id": "fr-kfc-bacon-cheese-burger",
-    "name": "Bacon Cheese Burger",
-    "brand": "KFC France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 515,
-    "protein": 28,
-    "carbs": 41,
-    "fat": 25,
-    "tags": [
-      "chicken",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Bacon Cheese Burger — KFC France"
-    ]
-  },
-  {
-    "id": "fr-kfc-veggie-burger",
-    "name": "Veggie Burger",
-    "brand": "KFC France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 395,
-    "protein": 12,
-    "carbs": 45,
-    "fat": 18,
-    "tags": [
-      "vegetarian",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Veggie Burger — KFC France"
-    ]
-  },
-  {
-    "id": "fr-kfc-legend-burger",
-    "name": "Legend Burger",
-    "brand": "KFC France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 540,
-    "protein": 27,
-    "carbs": 47,
-    "fat": 26,
-    "tags": [
-      "chicken",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Legend Burger — KFC France"
+      "Krunchy — KFC France"
     ]
   },
   {
@@ -6369,13 +6422,12 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 635,
-    "protein": 27,
-    "carbs": 65,
-    "fat": 28,
+    "calories": 650,
+    "protein": 28,
+    "carbs": 60,
+    "fat": 32,
     "tags": [
-      "chicken",
-      "wrap"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
@@ -6384,232 +6436,369 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-kfc-boxmaster-hot",
-    "name": "Boxmaster Hot",
+    "id": "fr-kfc-boxmaster-spicy",
+    "name": "Boxmaster Spicy",
     "brand": "KFC France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 640,
-    "protein": 27,
-    "carbs": 65,
+    "calories": 670,
+    "protein": 28,
+    "carbs": 61,
+    "fat": 33,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Boxmaster Spicy — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-boxmaster-veggie",
+    "name": "Boxmaster Veggie",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 590,
+    "protein": 16,
+    "carbs": 62,
     "fat": 28,
     "tags": [
-      "chicken",
-      "wrap"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Boxmaster Hot — KFC France"
+      "Boxmaster Veggie — KFC France"
     ]
   },
   {
-    "id": "fr-kfc-boxmaster-cheese",
-    "name": "Boxmaster Cheese",
+    "id": "fr-kfc-itwist",
+    "name": "iTwist",
     "brand": "KFC France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 685,
-    "protein": 30,
-    "carbs": 66,
-    "fat": 32,
+    "calories": 300,
+    "protein": 12,
+    "carbs": 32,
+    "fat": 14,
     "tags": [
-      "chicken",
-      "cheese",
-      "wrap"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Boxmaster Cheese — KFC France"
+      "iTwist — KFC France"
     ]
   },
   {
-    "id": "fr-kfc-twister",
-    "name": "Twister",
+    "id": "fr-kfc-original-recipe-1-piece",
+    "name": "Original Recipe — 1 piece",
     "brand": "KFC France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 490,
-    "protein": 23,
-    "carbs": 49,
-    "fat": 22,
+    "calories": 220,
+    "protein": 21,
+    "carbs": 6,
+    "fat": 12,
     "tags": [
-      "chicken",
-      "wrap"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Twister — KFC France"
+      "Original Recipe — 1 piece — KFC France"
     ]
   },
   {
-    "id": "fr-kfc-crousti-fromage-raclette",
-    "name": "Crousti Fromage Raclette",
+    "id": "fr-kfc-crispy-1-piece",
+    "name": "Crispy — 1 piece",
     "brand": "KFC France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 615,
-    "protein": 25,
-    "carbs": 56,
-    "fat": 32,
+    "calories": 250,
+    "protein": 18,
+    "carbs": 12,
+    "fat": 14,
     "tags": [
-      "chicken",
-      "cheese",
-      "wrap"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Crousti Fromage Raclette — KFC France"
+      "Crispy — 1 piece — KFC France"
     ]
   },
   {
-    "id": "fr-kfc-salade-caesar-crispy",
-    "name": "Salade Caesar Crispy",
+    "id": "fr-kfc-tender-1-piece",
+    "name": "Tender — 1 piece",
     "brand": "KFC France",
     "type": [
-      "snack",
-      "lunch"
+      "lunch",
+      "dinner"
     ],
-    "calories": 355,
-    "protein": 25,
-    "carbs": 28,
-    "fat": 16,
+    "calories": 130,
+    "protein": 9,
+    "carbs": 8,
+    "fat": 6,
     "tags": [
-      "chicken",
-      "salad"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Salade Caesar Crispy — KFC France"
+      "Tender — 1 piece — KFC France"
     ]
   },
   {
-    "id": "fr-kfc-salade-caesar-grille",
-    "name": "Salade Caesar Grillé",
+    "id": "fr-kfc-hot-wing-1-piece",
+    "name": "Hot Wing — 1 piece",
     "brand": "KFC France",
     "type": [
-      "snack",
-      "lunch"
+      "lunch",
+      "dinner"
     ],
-    "calories": 285,
-    "protein": 28,
+    "calories": 90,
+    "protein": 5,
+    "carbs": 4,
+    "fat": 6,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Hot Wing — 1 piece — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-pop-corn-chicken-moyen",
+    "name": "Pop-Corn Chicken (moyen)",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 22,
+    "carbs": 26,
+    "fat": 20,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pop-Corn Chicken — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-pop-corn-chicken-grand",
+    "name": "Pop-Corn Chicken (grand)",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 550,
+    "protein": 32,
+    "carbs": 38,
+    "fat": 29,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pop-Corn Chicken — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-crousti-fromage-raclette-1-piece",
+    "name": "Crousti' Fromage Raclette — 1 piece",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 230,
+    "protein": 11,
     "carbs": 22,
-    "fat": 10,
+    "fat": 12,
     "tags": [
       "chicken",
-      "salad"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Salade Caesar Grillé — KFC France"
+      "Crousti' Fromage Raclette — 1 piece — KFC France"
     ]
   },
   {
-    "id": "fr-kfc-frites-snack",
-    "name": "Frites Snack",
+    "id": "fr-kfc-3-crousti-fromage-raclette",
+    "name": "3 Crousti' Fromage Raclette",
+    "brand": "KFC France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 700,
+    "protein": 32,
+    "carbs": 65,
+    "fat": 38,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "3 Crousti' Fromage Raclette — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-onion-ring-1-piece",
+    "name": "Onion Ring — 1 piece",
     "brand": "KFC France",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 225,
+    "calories": 50,
+    "protein": 1,
+    "carbs": 6,
+    "fat": 3,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Onion Ring — 1 piece — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-onion-rings-x5",
+    "name": "Onion Rings x5",
+    "brand": "KFC France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 250,
+    "protein": 4,
+    "carbs": 28,
+    "fat": 14,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Onion Rings x5 — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-onion-rings-x10",
+    "name": "Onion Rings x10",
+    "brand": "KFC France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 500,
+    "protein": 8,
+    "carbs": 56,
+    "fat": 28,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Onion Rings x10 — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-petite-frite",
+    "name": "Petite Frite",
+    "brand": "KFC France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 230,
     "protein": 3,
-    "carbs": 29,
+    "carbs": 30,
     "fat": 11,
     "tags": [],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Frites Snack — KFC France"
+      "Petite Frite — KFC France"
     ]
   },
   {
-    "id": "fr-kfc-frites-moyenne",
-    "name": "Frites Moyenne",
-    "brand": "KFC France",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 340,
-    "protein": 5,
-    "carbs": 43,
-    "fat": 16,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Frites Moyenne — KFC France"
-    ]
-  },
-  {
-    "id": "fr-kfc-frites-maxi",
-    "name": "Frites Maxi",
-    "brand": "KFC France",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 455,
-    "protein": 6,
-    "carbs": 58,
-    "fat": 22,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Frites Maxi — KFC France"
-    ]
-  },
-  {
-    "id": "fr-kfc-potatoes-wedges",
-    "name": "Potatoes (Wedges)",
+    "id": "fr-kfc-moyenne-frite",
+    "name": "Moyenne Frite",
     "brand": "KFC France",
     "type": [
       "snack",
       "lunch"
     ],
     "calories": 320,
-    "protein": 5,
-    "carbs": 37,
-    "fat": 17,
+    "protein": 4,
+    "carbs": 40,
+    "fat": 16,
     "tags": [],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Potatoes (Wedges) — KFC France"
+      "Moyenne Frite — KFC France"
     ]
   },
   {
-    "id": "fr-kfc-onion-rings",
-    "name": "Onion Rings",
+    "id": "fr-kfc-grande-frite",
+    "name": "Grande Frite",
     "brand": "KFC France",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 285,
-    "protein": 4,
-    "carbs": 35,
-    "fat": 14,
+    "calories": 480,
+    "protein": 6,
+    "carbs": 60,
+    "fat": 24,
     "tags": [],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Onion Rings — KFC France"
+      "Grande Frite — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-potatoes",
+    "name": "Potatoes",
+    "brand": "KFC France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 290,
+    "protein": 4,
+    "carbs": 35,
+    "fat": 15,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Potatoes — KFC France"
     ]
   },
   {
@@ -6620,9 +6809,9 @@ module.exports = [
       "snack",
       "lunch"
     ],
-    "calories": 155,
+    "calories": 150,
     "protein": 1,
-    "carbs": 10,
+    "carbs": 9,
     "fat": 12,
     "tags": [],
     "country": "France",
@@ -6632,66 +6821,131 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-kfc-mini-epi-mais",
-    "name": "Mini Épi Maïs",
+    "id": "fr-kfc-epi-de-mais",
+    "name": "Épi de maïs",
     "brand": "KFC France",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 75,
-    "protein": 2,
-    "carbs": 16,
-    "fat": 1,
+    "calories": 120,
+    "protein": 3,
+    "carbs": 24,
+    "fat": 2,
     "tags": [
       "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Mini Épi Maïs — KFC France"
+      "Épi de maïs — KFC France"
     ]
   },
   {
-    "id": "fr-kfc-sundae-chocolat",
-    "name": "Sundae Chocolat",
+    "id": "fr-kfc-salade-italienne-tenders",
+    "name": "Salade Italienne Tenders",
     "brand": "KFC France",
     "type": [
-      "dessert",
-      "snack"
+      "snack",
+      "lunch"
     ],
-    "calories": 295,
-    "protein": 6,
-    "carbs": 47,
-    "fat": 9,
+    "calories": 480,
+    "protein": 28,
+    "carbs": 35,
+    "fat": 25,
     "tags": [
-      "dessert"
+      "chicken",
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sundae Chocolat — KFC France"
+      "Salade Italienne Tenders — KFC France"
     ]
   },
   {
-    "id": "fr-kfc-sundae-caramel",
-    "name": "Sundae Caramel",
+    "id": "fr-kfc-salade-italienne-cheese",
+    "name": "Salade Italienne Cheese",
+    "brand": "KFC France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 500,
+    "protein": 30,
+    "carbs": 36,
+    "fat": 28,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Italienne Cheese — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-salade-caesar-parmigiano-tenders",
+    "name": "Salade Caesar Parmigiano Tenders",
+    "brand": "KFC France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 520,
+    "protein": 32,
+    "carbs": 38,
+    "fat": 30,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Caesar Parmigiano Tenders — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-salade-caesar-parmigiano-veggie",
+    "name": "Salade Caesar Parmigiano Veggie",
+    "brand": "KFC France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 470,
+    "protein": 25,
+    "carbs": 34,
+    "fat": 22,
+    "tags": [
+      "vegetarian",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Caesar Parmigiano Veggie — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-sundae-chocolat-noisette",
+    "name": "Sundae Chocolat Noisette",
     "brand": "KFC France",
     "type": [
       "dessert",
       "snack"
     ],
     "calories": 320,
-    "protein": 6,
-    "carbs": 54,
-    "fat": 8,
-    "tags": [
-      "dessert"
-    ],
+    "protein": 5,
+    "carbs": 45,
+    "fat": 14,
+    "tags": [],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sundae Caramel — KFC France"
+      "Sundae Chocolat Noisette — KFC France"
     ]
   },
   {
@@ -6702,13 +6956,11 @@ module.exports = [
       "dessert",
       "snack"
     ],
-    "calories": 280,
-    "protein": 6,
-    "carbs": 50,
-    "fat": 6,
-    "tags": [
-      "dessert"
-    ],
+    "calories": 310,
+    "protein": 5,
+    "carbs": 44,
+    "fat": 13,
+    "tags": [],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
@@ -6716,66 +6968,79 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-kfc-itwist-daim",
-    "name": "iTwist Daim",
+    "id": "fr-kfc-sundae-caramel",
+    "name": "Sundae Caramel",
     "brand": "KFC France",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 410,
-    "protein": 8,
-    "carbs": 54,
-    "fat": 18,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "iTwist Daim — KFC France"
-    ]
-  },
-  {
-    "id": "fr-kfc-itwist-oreo",
-    "name": "iTwist Oreo",
-    "brand": "KFC France",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 405,
-    "protein": 8,
-    "carbs": 55,
-    "fat": 17,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "iTwist Oreo — KFC France"
-    ]
-  },
-  {
-    "id": "fr-kfc-croustikream-nutella",
-    "name": "CroustiKream Nutella",
-    "brand": "KFC France",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 295,
+    "calories": 330,
     "protein": 5,
-    "carbs": 35,
-    "fat": 14,
-    "tags": [
-      "dessert"
-    ],
+    "carbs": 46,
+    "fat": 15,
+    "tags": [],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "CroustiKream Nutella — KFC France"
+      "Sundae Caramel — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-sundae-nature",
+    "name": "Sundae Nature",
+    "brand": "KFC France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 300,
+    "protein": 5,
+    "carbs": 43,
+    "fat": 12,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sundae Nature — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-croustikream-au-nutella",
+    "name": "CroustiKream au Nutella",
+    "brand": "KFC France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 430,
+    "protein": 7,
+    "carbs": 55,
+    "fat": 20,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "CroustiKream au Nutella — KFC France"
+    ]
+  },
+  {
+    "id": "fr-kfc-cookie-chocolat",
+    "name": "Cookie Chocolat",
+    "brand": "KFC France",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 230,
+    "protein": 3,
+    "carbs": 30,
+    "fat": 11,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cookie Chocolat — KFC France"
     ]
   },
   {
@@ -6786,13 +7051,11 @@ module.exports = [
       "dessert",
       "snack"
     ],
-    "calories": 290,
+    "calories": 280,
     "protein": 4,
-    "carbs": 37,
-    "fat": 13,
-    "tags": [
-      "dessert"
-    ],
+    "carbs": 35,
+    "fat": 14,
+    "tags": [],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
@@ -6800,276 +7063,86 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-kfc-cookie",
-    "name": "Cookie",
+    "id": "fr-kfc-muffin-chocolat",
+    "name": "Muffin Chocolat",
     "brand": "KFC France",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 215,
-    "protein": 3,
-    "carbs": 28,
-    "fat": 9,
-    "tags": [
-      "dessert"
-    ],
+    "calories": 380,
+    "protein": 5,
+    "carbs": 48,
+    "fat": 19,
+    "tags": [],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Cookie — KFC France"
+      "Muffin Chocolat — KFC France"
     ]
   },
   {
-    "id": "fr-quick-giant",
-    "name": "Giant",
-    "brand": "Quick",
+    "id": "fr-kfc-ptit-bucket-enfant",
+    "name": "P'tit Bucket Enfant",
+    "brand": "KFC France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 555,
-    "protein": 27,
-    "carbs": 41,
-    "fat": 30,
-    "tags": [
-      "beef",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Giant — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-cheese-giant",
-    "name": "Cheese Giant",
-    "brand": "Quick",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 610,
-    "protein": 30,
-    "carbs": 41,
-    "fat": 33,
-    "tags": [
-      "beef",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Cheese Giant — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-bacon-cheese-giant",
-    "name": "Bacon Cheese Giant",
-    "brand": "Quick",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 680,
-    "protein": 35,
-    "carbs": 41,
-    "fat": 39,
-    "tags": [
-      "beef",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Bacon Cheese Giant — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-big-cheese",
-    "name": "Big Cheese",
-    "brand": "Quick",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 482,
-    "protein": 28,
-    "carbs": 32,
-    "fat": 25,
-    "tags": [
-      "beef",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Big Cheese — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-quickn-cheese",
-    "name": "Quick'n Cheese",
-    "brand": "Quick",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 330,
-    "protein": 16,
-    "carbs": 28,
+    "calories": 320,
+    "protein": 18,
+    "carbs": 22,
     "fat": 16,
     "tags": [
-      "beef",
-      "cheese",
-      "burger"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Quick'n Cheese — Quick"
+      "P'tit Bucket Enfant — KFC France"
     ]
   },
   {
-    "id": "fr-quick-hamburger",
-    "name": "Hamburger",
+    "id": "fr-quick-supreme-classiq",
+    "name": "Supreme classiQ",
     "brand": "Quick",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 255,
-    "protein": 14,
-    "carbs": 28,
-    "fat": 9,
+    "calories": 884,
+    "protein": 47,
+    "carbs": 54,
+    "fat": 54,
     "tags": [
       "beef",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Hamburger — Quick"
+      "Supreme classiQ — Quick"
     ]
   },
   {
-    "id": "fr-quick-cheeseburger",
-    "name": "Cheeseburger",
+    "id": "fr-quick-supreme-spicy-chicken",
+    "name": "Supreme Spicy Chicken",
     "brand": "Quick",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 302,
-    "protein": 17,
-    "carbs": 28,
-    "fat": 13,
+    "calories": 761,
+    "protein": 30,
+    "carbs": 38,
+    "fat": 38,
     "tags": [
-      "beef",
-      "cheese",
-      "burger"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Cheeseburger — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-double-cheese",
-    "name": "Double Cheese",
-    "brand": "Quick",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 455,
-    "protein": 27,
-    "carbs": 28,
-    "fat": 25,
-    "tags": [
-      "beef",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Double Cheese — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-long-bacon",
-    "name": "Long Bacon",
-    "brand": "Quick",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 525,
-    "protein": 25,
-    "carbs": 50,
-    "fat": 24,
-    "tags": [
-      "beef",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Long Bacon — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-long-cheese",
-    "name": "Long Cheese",
-    "brand": "Quick",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 490,
-    "protein": 23,
-    "carbs": 51,
-    "fat": 21,
-    "tags": [
-      "beef",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Long Cheese — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-supreme-cheese",
-    "name": "Supreme Cheese",
-    "brand": "Quick",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 720,
-    "protein": 38,
-    "carbs": 47,
-    "fat": 41,
-    "tags": [
-      "beef",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Supreme Cheese — Quick"
+      "Supreme Spicy Chicken — Quick"
     ]
   },
   {
@@ -7080,14 +7153,13 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 745,
-    "protein": 40,
-    "carbs": 46,
-    "fat": 43,
+    "calories": 958,
+    "protein": 49,
+    "carbs": 59,
+    "fat": 59,
     "tags": [
       "beef",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
@@ -7096,70 +7168,111 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-quick-magic-box",
-    "name": "Magic Box",
+    "id": "fr-quick-supreme-bacon-de-poulet",
+    "name": "Supreme Bacon de Poulet",
     "brand": "Quick",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 475,
-    "protein": 22,
-    "carbs": 43,
-    "fat": 23,
+    "calories": 970,
+    "protein": 46,
+    "carbs": 55,
+    "fat": 55,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Supreme Bacon de Poulet — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-quickn-toast",
+    "name": "Quick'n Toast",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 689,
+    "protein": 33,
+    "carbs": 42,
+    "fat": 42,
     "tags": [
       "beef",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Magic Box — Quick"
+      "Quick'n Toast — Quick"
     ]
   },
   {
-    "id": "fr-quick-veggie-burger",
-    "name": "Veggie Burger",
+    "id": "fr-quick-quickn-toast-bacon-de-poulet",
+    "name": "Quick'n Toast Bacon de Poulet",
     "brand": "Quick",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 445,
-    "protein": 16,
-    "carbs": 50,
-    "fat": 19,
+    "calories": 695,
+    "protein": 43,
+    "carbs": 40,
+    "fat": 40,
     "tags": [
-      "vegetarian",
-      "burger"
+      "chicken",
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Veggie Burger — Quick"
+      "Quick'n Toast Bacon de Poulet — Quick"
     ]
   },
   {
-    "id": "fr-quick-long-fish",
-    "name": "Long Fish",
+    "id": "fr-quick-long-bacon",
+    "name": "Long Bacon",
     "brand": "Quick",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 515,
-    "protein": 18,
-    "carbs": 51,
-    "fat": 26,
+    "calories": 573,
+    "protein": 32,
+    "carbs": 33,
+    "fat": 33,
     "tags": [
-      "fish",
-      "burger"
+      "beef"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Long Fish — Quick"
+      "Long Bacon — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-long-bacon---bacon-de-poulet",
+    "name": "Long Bacon - Bacon de Poulet",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 582,
+    "protein": 30,
+    "carbs": 30,
+    "fat": 30,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Long Bacon - Bacon de Poulet — Quick"
     ]
   },
   {
@@ -7170,13 +7283,12 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 475,
-    "protein": 21,
-    "carbs": 50,
-    "fat": 20,
+    "calories": 591,
+    "protein": 22,
+    "carbs": 34,
+    "fat": 34,
     "tags": [
-      "chicken",
-      "burger"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
@@ -7185,502 +7297,943 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-quick-crousty-chicken",
-    "name": "Crousty Chicken",
+    "id": "fr-quick-long-fish",
+    "name": "Long Fish",
     "brand": "Quick",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 370,
-    "protein": 17,
-    "carbs": 38,
-    "fat": 16,
-    "tags": [
-      "chicken",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Crousty Chicken — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-quickn-toast-cheese",
-    "name": "Quick'n Toast Cheese",
-    "brand": "Quick",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 265,
-    "protein": 14,
-    "carbs": 27,
-    "fat": 11,
-    "tags": [
-      "cheese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Quick'n Toast Cheese — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-quickn-toast-bacon",
-    "name": "Quick'n Toast Bacon",
-    "brand": "Quick",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 310,
-    "protein": 17,
-    "carbs": 27,
-    "fat": 15,
-    "tags": [
-      "cheese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Quick'n Toast Bacon — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-wrap-sweet-chili",
-    "name": "Wrap Sweet Chili",
-    "brand": "Quick",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 400,
-    "protein": 17,
-    "carbs": 44,
-    "fat": 16,
-    "tags": [
-      "chicken",
-      "wrap"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Wrap Sweet Chili — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-wrap-caesar",
-    "name": "Wrap Caesar",
-    "brand": "Quick",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 415,
-    "protein": 19,
-    "carbs": 42,
-    "fat": 18,
-    "tags": [
-      "chicken",
-      "wrap"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Wrap Caesar — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-onion-rings-5",
-    "name": "Onion Rings (5)",
-    "brand": "Quick",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 260,
-    "protein": 3,
-    "carbs": 31,
-    "fat": 13,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Onion Rings (5) — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-frites-petit",
-    "name": "Frites Petit",
-    "brand": "Quick",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 220,
-    "protein": 3,
-    "carbs": 28,
-    "fat": 10,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Frites Petit — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-frites-moyen",
-    "name": "Frites Moyen",
-    "brand": "Quick",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 335,
-    "protein": 4,
-    "carbs": 42,
-    "fat": 16,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Frites Moyen — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-frites-maxi",
-    "name": "Frites Maxi",
-    "brand": "Quick",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 445,
-    "protein": 6,
-    "carbs": 56,
-    "fat": 21,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Frites Maxi — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-potatoes",
-    "name": "Potatoes",
-    "brand": "Quick",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 285,
-    "protein": 4,
-    "carbs": 33,
-    "fat": 14,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Potatoes — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-chicken-dips-x4",
-    "name": "Chicken Dips x4",
-    "brand": "Quick",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 220,
-    "protein": 16,
-    "carbs": 14,
-    "fat": 11,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Chicken Dips x4 — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-chicken-dips-x6",
-    "name": "Chicken Dips x6",
-    "brand": "Quick",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 330,
+    "calories": 555,
     "protein": 24,
-    "carbs": 21,
-    "fat": 17,
+    "carbs": 31,
+    "fat": 31,
     "tags": [
-      "chicken"
+      "fish"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Chicken Dips x6 — Quick"
+      "Long Fish — Quick"
     ]
   },
   {
-    "id": "fr-quick-nuggets-x6",
-    "name": "Nuggets x6",
+    "id": "fr-quick-giant-original",
+    "name": "Giant Original",
     "brand": "Quick",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 265,
+    "calories": 547,
+    "protein": 27,
+    "carbs": 37,
+    "fat": 37,
+    "tags": [
+      "beef"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Giant Original — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-giant-max",
+    "name": "Giant Max",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 679,
+    "protein": 29,
+    "carbs": 45,
+    "fat": 45,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Giant Max — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-mega-giant",
+    "name": "Mega Giant",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 894,
+    "protein": 31,
+    "carbs": 60,
+    "fat": 60,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Mega Giant — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-double-cheeseburger",
+    "name": "Double Cheeseburger",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 413,
+    "protein": 25,
+    "carbs": 22,
+    "fat": 22,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Double Cheeseburger — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-cheeseburger",
+    "name": "Cheeseburger",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 282,
     "protein": 15,
-    "carbs": 14,
-    "fat": 16,
+    "carbs": 13,
+    "fat": 13,
     "tags": [
-      "chicken"
+      "beef",
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Nuggets x6 — Quick"
+      "Cheeseburger — Quick"
     ]
   },
   {
-    "id": "fr-quick-hot-wings-x4",
-    "name": "Hot Wings x4",
+    "id": "fr-quick-junior-giant",
+    "name": "Junior Giant",
     "brand": "Quick",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 285,
-    "protein": 18,
-    "carbs": 12,
-    "fat": 18,
+    "calories": 354,
+    "protein": 16,
+    "carbs": 21,
+    "fat": 21,
     "tags": [
-      "chicken"
+      "beef"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Hot Wings x4 — Quick"
+      "Junior Giant — Quick"
     ]
   },
   {
-    "id": "fr-quick-salade-caesar-poulet",
-    "name": "Salade Caesar Poulet",
+    "id": "fr-quick-white-burger-cheese",
+    "name": "White Burger Cheese",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 665,
+    "protein": 38,
+    "carbs": 57,
+    "fat": 57,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "White Burger Cheese — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-black-burger-pepper",
+    "name": "Black Burger Pepper",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 535,
+    "protein": 33,
+    "carbs": 46,
+    "fat": 46,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Black Burger Pepper — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-wrap-giant-veggie",
+    "name": "Wrap Giant Veggie",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 457,
+    "protein": 13,
+    "carbs": 26,
+    "fat": 26,
+    "tags": [
+      "vegetarian",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Wrap Giant Veggie — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-wrap-cheese-et-bacon",
+    "name": "Wrap Cheese et Bacon",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 603,
+    "protein": 23,
+    "carbs": 37,
+    "fat": 37,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Wrap Cheese et Bacon — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-wrap-cheese-et-bacon---bacon-de-poulet",
+    "name": "Wrap Cheese et Bacon - Bacon de Poulet",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 609,
+    "protein": 22,
+    "carbs": 36,
+    "fat": 36,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Wrap Cheese et Bacon - Bacon de Poulet — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-petite-frite",
+    "name": "Petite Frite",
     "brand": "Quick",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 265,
-    "protein": 22,
-    "carbs": 14,
+    "calories": 218,
+    "protein": 3,
+    "carbs": 29,
+    "fat": 10,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Petite Frite — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-moyenne-frite",
+    "name": "Moyenne Frite",
+    "brand": "Quick",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 304,
+    "protein": 4,
+    "carbs": 41,
+    "fat": 14,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Moyenne Frite — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-grande-frite",
+    "name": "Grande Frite",
+    "brand": "Quick",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 405,
+    "protein": 5,
+    "carbs": 55,
+    "fat": 19,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Grande Frite — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-grande-frite-effet-xl-cheddar",
+    "name": "Grande Frite Effet XL Cheddar",
+    "brand": "Quick",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 501,
+    "protein": 10,
+    "carbs": 56,
+    "fat": 25,
+    "tags": [
+      "vegetarian",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Grande Frite Effet XL Cheddar — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-petite-frite-rustique",
+    "name": "Petite Frite Rustique",
+    "brand": "Quick",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 186,
+    "protein": 3,
+    "carbs": 26,
+    "fat": 8,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Petite Frite Rustique — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-moyenne-frite-rustique",
+    "name": "Moyenne Frite Rustique",
+    "brand": "Quick",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 255,
+    "protein": 4,
+    "carbs": 35,
+    "fat": 11,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Moyenne Frite Rustique — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-maxi-frite-rustique",
+    "name": "Maxi Frite Rustique",
+    "brand": "Quick",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 376,
+    "protein": 6,
+    "carbs": 52,
+    "fat": 16,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Maxi Frite Rustique — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-maxi-frite-rustique-effet-xl-cheddar",
+    "name": "Maxi Frite Rustique Effet XL Cheddar",
+    "brand": "Quick",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 433,
+    "protein": 10,
+    "carbs": 53,
+    "fat": 20,
+    "tags": [
+      "vegetarian",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Maxi Frite Rustique Effet XL Cheddar — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-salade-mediterraneenne-chicken-dips",
+    "name": "Salade Mediterraneenne Chicken Dips",
+    "brand": "Quick",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 500,
+    "protein": 18,
+    "carbs": 27,
+    "fat": 13,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Mediterraneenne Chicken Dips — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-salade-mediterraneenne-fishn-dips",
+    "name": "Salade Mediterraneenne Fish'N Dips",
+    "brand": "Quick",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 467,
+    "protein": 15,
+    "carbs": 26,
     "fat": 12,
     "tags": [
-      "chicken",
-      "salad"
+      "fish"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Salade Caesar Poulet — Quick"
+      "Salade Mediterraneenne Fish'N Dips — Quick"
     ]
   },
   {
-    "id": "fr-quick-salade-veggie",
-    "name": "Salade Veggie",
+    "id": "fr-quick-salade-mediterraneenne-poulet-roti",
+    "name": "Salade Mediterraneenne Poulet Roti",
     "brand": "Quick",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 170,
+    "calories": 398,
+    "protein": 19,
+    "carbs": 6,
+    "fat": 7,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Mediterraneenne Poulet Roti — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-salade-mediterraneenne-cheesy",
+    "name": "Salade Mediterraneenne Cheesy",
+    "brand": "Quick",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 376,
+    "protein": 6,
+    "carbs": 52,
+    "fat": 16,
+    "tags": [
+      "vegetarian",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Mediterraneenne Cheesy — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-salade-irresistible-chicken-dips",
+    "name": "Salade Irresistible Chicken Dips",
+    "brand": "Quick",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 348,
+    "protein": 15,
+    "carbs": 24,
+    "fat": 21,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Irresistible Chicken Dips — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-salade-irresistible-fishn-dips",
+    "name": "Salade Irresistible Fish'N Dips",
+    "brand": "Quick",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 300,
+    "protein": 10,
+    "carbs": 25,
+    "fat": 18,
+    "tags": [
+      "fish"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Irresistible Fish'N Dips — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-salade-irresistible-poulet-roti",
+    "name": "Salade Irresistible Poulet Roti",
+    "brand": "Quick",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 246,
+    "protein": 16,
+    "carbs": 13,
+    "fat": 14,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Irresistible Poulet Roti — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-salade-irresistible-cheesy",
+    "name": "Salade Irresistible Cheesy",
+    "brand": "Quick",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 362,
     "protein": 7,
-    "carbs": 16,
+    "carbs": 33,
+    "fat": 22,
+    "tags": [
+      "vegetarian",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Irresistible Cheesy — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-cheesy-donut-x3",
+    "name": "Cheesy Donut x3",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 131,
+    "protein": 5,
+    "carbs": 14,
     "fat": 7,
     "tags": [
       "vegetarian",
-      "salad"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Salade Veggie — Quick"
+      "Cheesy Donut x3 — Quick"
     ]
   },
   {
-    "id": "fr-quick-sundae-chocolat",
-    "name": "Sundae Chocolat",
+    "id": "fr-quick-cheesy-donut-x10",
+    "name": "Cheesy Donut x10",
     "brand": "Quick",
     "type": [
-      "dessert",
-      "snack"
+      "lunch",
+      "dinner"
     ],
-    "calories": 295,
-    "protein": 6,
-    "carbs": 46,
-    "fat": 9,
+    "calories": 583,
+    "protein": 13,
+    "carbs": 38,
+    "fat": 37,
     "tags": [
-      "dessert"
+      "vegetarian",
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sundae Chocolat — Quick"
+      "Cheesy Donut x10 — Quick"
     ]
   },
   {
-    "id": "fr-quick-sundae-caramel",
-    "name": "Sundae Caramel",
+    "id": "fr-quick-la-quick-box",
+    "name": "La Quick BOX",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 604,
+    "protein": 17,
+    "carbs": 25,
+    "fat": 40,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "La Quick BOX — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-chicken-dips-par-7",
+    "name": "Chicken Dips (par 7)",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 279,
+    "protein": 18,
+    "carbs": 25,
+    "fat": 12,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chicken Dips — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-chicken-dips-par-4",
+    "name": "Chicken Dips (par 4)",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 160,
+    "protein": 11,
+    "carbs": 14,
+    "fat": 7,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chicken Dips — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-chicken-wings-par-5",
+    "name": "Chicken Wings (par 5)",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 376,
+    "protein": 40,
+    "carbs": 3,
+    "fat": 23,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chicken Wings — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-fishn-dips-par-3",
+    "name": "Fish'n Dips (par 3)",
+    "brand": "Quick",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 121,
+    "protein": 6,
+    "carbs": 13,
+    "fat": 5,
+    "tags": [
+      "fish"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fish'n Dips — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-cornet-softy-nature",
+    "name": "Cornet Softy Nature",
     "brand": "Quick",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 320,
-    "protein": 6,
-    "carbs": 54,
+    "calories": 136,
+    "protein": 3,
+    "carbs": 22,
+    "fat": 4,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cornet Softy Nature — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-softy-caramel",
+    "name": "Softy Caramel",
+    "brand": "Quick",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 219,
+    "protein": 3,
+    "carbs": 34,
+    "fat": 7,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Softy Caramel — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-softy-fraise",
+    "name": "Softy Fraise",
+    "brand": "Quick",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 217,
+    "protein": 3,
+    "carbs": 33,
+    "fat": 7,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Softy Fraise — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-softy-choco",
+    "name": "Softy Choco",
+    "brand": "Quick",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 222,
+    "protein": 3,
+    "carbs": 33,
     "fat": 8,
     "tags": [
-      "dessert"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sundae Caramel — Quick"
+      "Softy Choco — Quick"
     ]
   },
   {
-    "id": "fr-quick-mister-freeze",
-    "name": "Mister Freeze",
+    "id": "fr-quick-mix-mania-snickers",
+    "name": "Mix Mania Snickers",
     "brand": "Quick",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 75,
-    "protein": 0,
-    "carbs": 19,
-    "fat": 0,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Mister Freeze — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-cookie-chocolat",
-    "name": "Cookie Chocolat",
-    "brand": "Quick",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 215,
-    "protein": 3,
-    "carbs": 28,
-    "fat": 9,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Cookie Chocolat — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-brownie",
-    "name": "Brownie",
-    "brand": "Quick",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 230,
-    "protein": 3,
-    "carbs": 29,
-    "fat": 11,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Brownie — Quick"
-    ]
-  },
-  {
-    "id": "fr-quick-donut",
-    "name": "Donut",
-    "brand": "Quick",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 285,
-    "protein": 4,
-    "carbs": 37,
+    "calories": 374,
+    "protein": 7,
+    "carbs": 53,
     "fat": 13,
     "tags": [
-      "dessert"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Donut — Quick"
+      "Mix Mania Snickers — Quick"
     ]
   },
   {
-    "id": "fr-quick-milk-shake-vanille",
-    "name": "Milk-Shake Vanille",
+    "id": "fr-quick-mix-mania-mms-choco",
+    "name": "Mix Mania M&M's Choco",
     "brand": "Quick",
     "type": [
-      "drink",
+      "dessert",
+      "snack"
+    ],
+    "calories": 365,
+    "protein": 5,
+    "carbs": 57,
+    "fat": 12,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Mix Mania M&M's Choco — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-mix-mania-daim",
+    "name": "Mix Mania Daim",
+    "brand": "Quick",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 347,
+    "protein": 5,
+    "carbs": 52,
+    "fat": 12,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Mix Mania Daim — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-mix-mania-oreo",
+    "name": "Mix Mania Oreo",
+    "brand": "Quick",
+    "type": [
+      "dessert",
       "snack"
     ],
     "calories": 355,
-    "protein": 9,
-    "carbs": 61,
-    "fat": 8,
+    "protein": 6,
+    "carbs": 57,
+    "fat": 11,
     "tags": [
-      "dessert"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Milk-Shake Vanille — Quick"
+      "Mix Mania Oreo — Quick"
     ]
   },
   {
-    "id": "fr-quick-milk-shake-chocolat",
-    "name": "Milk-Shake Chocolat",
+    "id": "fr-quick-milk-shake-caramel-au-beurre-sale",
+    "name": "Milk-Shake Caramel au Beurre Sale",
     "brand": "Quick",
     "type": [
       "drink",
       "snack"
     ],
-    "calories": 395,
-    "protein": 10,
-    "carbs": 70,
-    "fat": 9,
+    "calories": 215,
+    "protein": 4,
+    "carbs": 40,
+    "fat": 4,
     "tags": [
-      "dessert"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Milk-Shake Chocolat — Quick"
+      "Milk-Shake Caramel au Beurre Sale — Quick"
     ]
   },
   {
@@ -7691,12 +8244,12 @@ module.exports = [
       "drink",
       "snack"
     ],
-    "calories": 360,
-    "protein": 9,
-    "carbs": 64,
-    "fat": 8,
+    "calories": 216,
+    "protein": 4,
+    "carbs": 40,
+    "fat": 4,
     "tags": [
-      "dessert"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
@@ -7705,144 +8258,310 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-otacos-tacos-m-poulet",
-    "name": "Tacos M Poulet",
-    "brand": "O'Tacos",
+    "id": "fr-quick-milk-shake-chocolat",
+    "name": "Milk-Shake Chocolat",
+    "brand": "Quick",
     "type": [
-      "lunch",
-      "dinner"
+      "drink",
+      "snack"
     ],
-    "calories": 715,
-    "protein": 35,
-    "carbs": 70,
-    "fat": 33,
+    "calories": 226,
+    "protein": 4,
+    "carbs": 43,
+    "fat": 4,
     "tags": [
-      "chicken"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tacos M Poulet — O'Tacos"
+      "Milk-Shake Chocolat — Quick"
     ]
   },
   {
-    "id": "fr-otacos-tacos-m-cordon-bleu",
-    "name": "Tacos M Cordon Bleu",
-    "brand": "O'Tacos",
+    "id": "fr-quick-milk-shake-vanille",
+    "name": "Milk-Shake Vanille",
+    "brand": "Quick",
     "type": [
-      "lunch",
-      "dinner"
+      "drink",
+      "snack"
     ],
-    "calories": 790,
-    "protein": 36,
-    "carbs": 72,
-    "fat": 38,
+    "calories": 200,
+    "protein": 4,
+    "carbs": 37,
+    "fat": 4,
     "tags": [
-      "chicken",
-      "cheese"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tacos M Cordon Bleu — O'Tacos"
+      "Milk-Shake Vanille — Quick"
     ]
   },
   {
-    "id": "fr-otacos-tacos-m-nuggets",
-    "name": "Tacos M Nuggets",
-    "brand": "O'Tacos",
+    "id": "fr-quick-milk-shake-gourmand-caramel",
+    "name": "Milk-Shake Gourmand Caramel",
+    "brand": "Quick",
     "type": [
-      "lunch",
-      "dinner"
+      "drink",
+      "snack"
     ],
-    "calories": 760,
-    "protein": 32,
-    "carbs": 73,
-    "fat": 36,
+    "calories": 375,
+    "protein": 6,
+    "carbs": 58,
+    "fat": 13,
     "tags": [
-      "chicken"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tacos M Nuggets — O'Tacos"
+      "Milk-Shake Gourmand Caramel — Quick"
     ]
   },
   {
-    "id": "fr-otacos-tacos-m-steak-hache",
-    "name": "Tacos M Steak Haché",
-    "brand": "O'Tacos",
+    "id": "fr-quick-milk-shake-gourmand-fraise",
+    "name": "Milk-Shake Gourmand Fraise",
+    "brand": "Quick",
     "type": [
-      "lunch",
-      "dinner"
+      "drink",
+      "snack"
     ],
-    "calories": 750,
-    "protein": 36,
-    "carbs": 70,
-    "fat": 36,
+    "calories": 372,
+    "protein": 5,
+    "carbs": 55,
+    "fat": 13,
     "tags": [
-      "beef"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tacos M Steak Haché — O'Tacos"
+      "Milk-Shake Gourmand Fraise — Quick"
     ]
   },
   {
-    "id": "fr-otacos-tacos-m-buf-emince",
-    "name": "Tacos M Bœuf Émincé",
-    "brand": "O'Tacos",
+    "id": "fr-quick-milk-shake-gourmand-chocolat",
+    "name": "Milk-Shake Gourmand Chocolat",
+    "brand": "Quick",
     "type": [
-      "lunch",
-      "dinner"
+      "drink",
+      "snack"
     ],
-    "calories": 755,
-    "protein": 37,
-    "carbs": 71,
-    "fat": 36,
+    "calories": 389,
+    "protein": 6,
+    "carbs": 59,
+    "fat": 14,
     "tags": [
-      "beef"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tacos M Bœuf Émincé — O'Tacos"
+      "Milk-Shake Gourmand Chocolat — Quick"
     ]
   },
   {
-    "id": "fr-otacos-tacos-m-merguez",
-    "name": "Tacos M Merguez",
-    "brand": "O'Tacos",
+    "id": "fr-quick-milk-shake-gourmand-vanille",
+    "name": "Milk-Shake Gourmand Vanille",
+    "brand": "Quick",
     "type": [
-      "lunch",
-      "dinner"
+      "drink",
+      "snack"
     ],
-    "calories": 770,
-    "protein": 29,
-    "carbs": 70,
-    "fat": 40,
+    "calories": 364,
+    "protein": 6,
+    "carbs": 52,
+    "fat": 14,
     "tags": [
-      "beef"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tacos M Merguez — O'Tacos"
+      "Milk-Shake Gourmand Vanille — Quick"
     ]
   },
   {
-    "id": "fr-otacos-tacos-m-cheese",
-    "name": "Tacos M Cheese",
-    "brand": "O'Tacos",
+    "id": "fr-quick-churros",
+    "name": "Churros",
+    "brand": "Quick",
     "type": [
-      "lunch",
-      "dinner"
+      "dessert",
+      "snack"
     ],
-    "calories": 695,
-    "protein": 22,
-    "carbs": 70,
-    "fat": 33,
+    "calories": 266,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 10,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Churros — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-crepe-nature",
+    "name": "Crepe Nature",
+    "brand": "Quick",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 119,
+    "protein": 4,
+    "carbs": 15,
+    "fat": 5,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crepe Nature — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-fondant-chocolat",
+    "name": "Fondant Chocolat",
+    "brand": "Quick",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 274,
+    "protein": 4,
+    "carbs": 29,
+    "fat": 15,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fondant Chocolat — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-trio-mini-beignets-chocolat",
+    "name": "Trio Mini Beignets Chocolat",
+    "brand": "Quick",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 321,
+    "protein": 6,
+    "carbs": 33,
+    "fat": 18,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Trio Mini Beignets Chocolat — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-cookie-trois-choco",
+    "name": "Cookie Trois Choco",
+    "brand": "Quick",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 367,
+    "protein": 4,
+    "carbs": 46,
+    "fat": 18,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cookie Trois Choco — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-bigout-choco",
+    "name": "Bigout Choco",
+    "brand": "Quick",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 394,
+    "protein": 5,
+    "carbs": 52,
+    "fat": 21,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Bigout Choco — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-muffin-choco-banane",
+    "name": "Muffin Choco Banane",
+    "brand": "Quick",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 367,
+    "protein": 6,
+    "carbs": 47,
+    "fat": 20,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Muffin Choco Banane — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-donut-sucre",
+    "name": "Donut Sucre",
+    "brand": "Quick",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 286,
+    "protein": 4,
+    "carbs": 45,
+    "fat": 17,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Donut Sucre — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-toaste-emmental-tomate",
+    "name": "Toaste Emmental Tomate",
+    "brand": "Quick",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 364,
+    "protein": 19,
+    "carbs": 28,
+    "fat": 14,
     "tags": [
       "vegetarian",
       "cheese"
@@ -7850,393 +8569,1222 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tacos M Cheese — O'Tacos"
+      "Toaste Emmental Tomate — Quick"
     ]
   },
   {
-    "id": "fr-otacos-tacos-l-pouletsteak",
-    "name": "Tacos L Poulet+Steak",
+    "id": "fr-quick-toaste-emmental-bacon",
+    "name": "Toaste Emmental Bacon",
+    "brand": "Quick",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 383,
+    "protein": 21,
+    "carbs": 32,
+    "fat": 16,
+    "tags": [
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Toaste Emmental Bacon — Quick"
+    ]
+  },
+  {
+    "id": "fr-quick-toaste-emmental-bacon-de-poulet",
+    "name": "Toaste Emmental Bacon de Poulet",
+    "brand": "Quick",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 389,
+    "protein": 20,
+    "carbs": 31,
+    "fat": 14,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Toaste Emmental Bacon de Poulet — Quick"
+    ]
+  },
+  {
+    "id": "fr-otacos-otacos-taille-m---viande-hachee",
+    "name": "O'Tacos Taille M - Viande Hachée",
     "brand": "O'Tacos",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 1015,
-    "protein": 53,
-    "carbs": 95,
+    "calories": 700,
+    "protein": 30,
+    "carbs": 70,
+    "fat": 30,
+    "tags": [
+      "beef",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "O'Tacos Taille M - Viande Hachée — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-otacos-taille-l---viande-hachee",
+    "name": "O'Tacos Taille L - Viande Hachée",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1000,
+    "protein": 45,
+    "carbs": 100,
+    "fat": 45,
+    "tags": [
+      "beef",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "O'Tacos Taille L - Viande Hachée — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-otacos-taille-xl---viande-hachee",
+    "name": "O'Tacos Taille XL - Viande Hachée",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1400,
+    "protein": 65,
+    "carbs": 140,
+    "fat": 65,
+    "tags": [
+      "beef",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "O'Tacos Taille XL - Viande Hachée — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-otacos-taille-m---poulet",
+    "name": "O'Tacos Taille M - Poulet",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 680,
+    "protein": 32,
+    "carbs": 70,
+    "fat": 28,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "O'Tacos Taille M - Poulet — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-otacos-taille-l---poulet",
+    "name": "O'Tacos Taille L - Poulet",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 980,
+    "protein": 48,
+    "carbs": 100,
+    "fat": 42,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "O'Tacos Taille L - Poulet — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-otacos-taille-xl---poulet",
+    "name": "O'Tacos Taille XL - Poulet",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1380,
+    "protein": 68,
+    "carbs": 140,
+    "fat": 60,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "O'Tacos Taille XL - Poulet — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-otacos-taille-m---cordon-bleu",
+    "name": "O'Tacos Taille M - Cordon Bleu",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 30,
+    "carbs": 72,
+    "fat": 32,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "O'Tacos Taille M - Cordon Bleu — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-otacos-taille-l---cordon-bleu",
+    "name": "O'Tacos Taille L - Cordon Bleu",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1020,
+    "protein": 45,
+    "carbs": 102,
     "fat": 47,
     "tags": [
       "chicken",
-      "beef"
+      "cheese",
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tacos L Poulet+Steak — O'Tacos"
+      "O'Tacos Taille L - Cordon Bleu — O'Tacos"
     ]
   },
   {
-    "id": "fr-otacos-tacos-l-pouletcordon-bleu",
-    "name": "Tacos L Poulet+Cordon Bleu",
-    "brand": "O'Tacos",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 1085,
-    "protein": 52,
-    "carbs": 96,
-    "fat": 53,
-    "tags": [
-      "chicken",
-      "cheese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Tacos L Poulet+Cordon Bleu — O'Tacos"
-    ]
-  },
-  {
-    "id": "fr-otacos-tacos-l-cordon-bleusteak",
-    "name": "Tacos L Cordon Bleu+Steak",
-    "brand": "O'Tacos",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 1095,
-    "protein": 53,
-    "carbs": 95,
-    "fat": 54,
-    "tags": [
-      "chicken",
-      "beef",
-      "cheese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Tacos L Cordon Bleu+Steak — O'Tacos"
-    ]
-  },
-  {
-    "id": "fr-otacos-tacos-l-nuggetspoulet",
-    "name": "Tacos L Nuggets+Poulet",
-    "brand": "O'Tacos",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 1045,
-    "protein": 52,
-    "carbs": 99,
-    "fat": 50,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Tacos L Nuggets+Poulet — O'Tacos"
-    ]
-  },
-  {
-    "id": "fr-otacos-tacos-l-steakmerguez",
-    "name": "Tacos L Steak+Merguez",
-    "brand": "O'Tacos",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 1060,
-    "protein": 51,
-    "carbs": 95,
-    "fat": 54,
-    "tags": [
-      "beef"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Tacos L Steak+Merguez — O'Tacos"
-    ]
-  },
-  {
-    "id": "fr-otacos-tacos-xl-triple-viande",
-    "name": "Tacos XL Triple Viande",
-    "brand": "O'Tacos",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 1395,
-    "protein": 71,
-    "carbs": 130,
-    "fat": 67,
-    "tags": [
-      "chicken",
-      "beef",
-      "cheese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Tacos XL Triple Viande — O'Tacos"
-    ]
-  },
-  {
-    "id": "fr-otacos-tacos-xl-mix-viandes",
-    "name": "Tacos XL Mix Viandes",
+    "id": "fr-otacos-otacos-taille-xl---cordon-bleu",
+    "name": "O'Tacos Taille XL - Cordon Bleu",
     "brand": "O'Tacos",
     "type": [
       "lunch",
       "dinner"
     ],
     "calories": 1420,
-    "protein": 70,
-    "carbs": 132,
+    "protein": 65,
+    "carbs": 142,
+    "fat": 67,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "O'Tacos Taille XL - Cordon Bleu — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-otacos-taille-m---nuggets",
+    "name": "O'Tacos Taille M - Nuggets",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 710,
+    "protein": 30,
+    "carbs": 72,
+    "fat": 31,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "O'Tacos Taille M - Nuggets — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-otacos-taille-l---nuggets",
+    "name": "O'Tacos Taille L - Nuggets",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1010,
+    "protein": 45,
+    "carbs": 102,
+    "fat": 46,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "O'Tacos Taille L - Nuggets — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-otacos-taille-xl---nuggets",
+    "name": "O'Tacos Taille XL - Nuggets",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1410,
+    "protein": 65,
+    "carbs": 142,
+    "fat": 66,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "O'Tacos Taille XL - Nuggets — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-otacos-taille-m---tenders",
+    "name": "O'Tacos Taille M - Tenders",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 700,
+    "protein": 32,
+    "carbs": 70,
+    "fat": 30,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "O'Tacos Taille M - Tenders — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-otacos-taille-l---tenders",
+    "name": "O'Tacos Taille L - Tenders",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1000,
+    "protein": 47,
+    "carbs": 100,
+    "fat": 45,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "O'Tacos Taille L - Tenders — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-otacos-taille-xl---tenders",
+    "name": "O'Tacos Taille XL - Tenders",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1400,
+    "protein": 67,
+    "carbs": 140,
+    "fat": 65,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "O'Tacos Taille XL - Tenders — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-le-montagnard-taille-m-tenders-raclette-lardons",
+    "name": "Le Montagnard Taille M (tenders, raclette, lardons)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 760,
+    "protein": 32,
+    "carbs": 70,
+    "fat": 36,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Le Montagnard Taille M — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-le-montagnard-taille-l-tenders-raclette-lardons",
+    "name": "Le Montagnard Taille L (tenders, raclette, lardons)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1080,
+    "protein": 48,
+    "carbs": 100,
+    "fat": 52,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Le Montagnard Taille L — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-le-montagnard-taille-xl-tenders-raclette-lardons",
+    "name": "Le Montagnard Taille XL (tenders, raclette, lardons)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1480,
+    "protein": 68,
+    "carbs": 140,
+    "fat": 72,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Le Montagnard Taille XL — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-le-fameux-taille-m-viande-hachee-sauce-algerienne-",
+    "name": "Le Fameux Taille M (viande hachée, sauce algérienne, cheddar)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 30,
+    "carbs": 70,
+    "fat": 32,
+    "tags": [
+      "beef",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Le Fameux Taille M — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-le-fameux-taille-l-viande-hachee-sauce-algerienne-",
+    "name": "Le Fameux Taille L (viande hachée, sauce algérienne, cheddar)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1020,
+    "protein": 45,
+    "carbs": 100,
+    "fat": 47,
+    "tags": [
+      "beef",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Le Fameux Taille L — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-le-fameux-taille-xl-viande-hachee-sauce-algerienne",
+    "name": "Le Fameux Taille XL (viande hachée, sauce algérienne, cheddar)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1420,
+    "protein": 65,
+    "carbs": 140,
+    "fat": 67,
+    "tags": [
+      "beef",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Le Fameux Taille XL — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-le-mythique-taille-m-cordon-bleu-bbq-gouda",
+    "name": "Le Mythique Taille M (cordon bleu, BBQ, gouda)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 730,
+    "protein": 30,
+    "carbs": 72,
+    "fat": 33,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Le Mythique Taille M — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-le-mythique-taille-l-cordon-bleu-bbq-gouda",
+    "name": "Le Mythique Taille L (cordon bleu, BBQ, gouda)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1030,
+    "protein": 45,
+    "carbs": 102,
+    "fat": 48,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Le Mythique Taille L — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-le-mythique-taille-xl-cordon-bleu-bbq-gouda",
+    "name": "Le Mythique Taille XL (cordon bleu, BBQ, gouda)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1430,
+    "protein": 65,
+    "carbs": 142,
     "fat": 68,
     "tags": [
       "chicken",
-      "beef"
+      "cheese",
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tacos XL Mix Viandes — O'Tacos"
+      "Le Mythique Taille XL — O'Tacos"
     ]
   },
   {
-    "id": "fr-otacos-gigatacos-special",
-    "name": "Gigatacos (Special)",
+    "id": "fr-otacos-le-legendaire-taille-m-nuggets-sauce-burger-emment",
+    "name": "Le Légendaire Taille M (nuggets, sauce burger, emmental)",
     "brand": "O'Tacos",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 1850,
-    "protein": 92,
-    "carbs": 175,
-    "fat": 87,
+    "calories": 720,
+    "protein": 30,
+    "carbs": 72,
+    "fat": 32,
     "tags": [
       "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Le Légendaire Taille M — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-le-legendaire-taille-l-nuggets-sauce-burger-emment",
+    "name": "Le Légendaire Taille L (nuggets, sauce burger, emmental)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1020,
+    "protein": 45,
+    "carbs": 102,
+    "fat": 47,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Le Légendaire Taille L — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-le-legendaire-taille-xl-nuggets-sauce-burger-emmen",
+    "name": "Le Légendaire Taille XL (nuggets, sauce burger, emmental)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1420,
+    "protein": 65,
+    "carbs": 142,
+    "fat": 67,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Le Légendaire Taille XL — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-lalpin-m-cordon-bleu-raclette-lardons",
+    "name": "L'Alpin M (cordon bleu, raclette, lardons)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 760,
+    "protein": 32,
+    "carbs": 72,
+    "fat": 36,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "L'Alpin M — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-lalpin-l-cordon-bleu-raclette-lardons",
+    "name": "L'Alpin L (cordon bleu, raclette, lardons)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1080,
+    "protein": 48,
+    "carbs": 102,
+    "fat": 52,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "L'Alpin L — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-lalpin-xl-cordon-bleu-raclette-lardons",
+    "name": "L'Alpin XL (cordon bleu, raclette, lardons)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1480,
+    "protein": 68,
+    "carbs": 142,
+    "fat": 72,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "L'Alpin XL — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-loriginal-escalope-poulet-cheddar-sauce-algerienne",
+    "name": "L'Original (escalope poulet, cheddar, sauce algérienne)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 700,
+    "protein": 35,
+    "carbs": 70,
+    "fat": 30,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "L'Original — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-le-bbq-m-nuggets-mozzarella-sauce-barbecue",
+    "name": "Le BBQ M (nuggets, mozzarella, sauce barbecue)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 30,
+    "carbs": 72,
+    "fat": 32,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Le BBQ M — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-le-bbq-l-nuggets-mozzarella-sauce-barbecue",
+    "name": "Le BBQ L (nuggets, mozzarella, sauce barbecue)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1020,
+    "protein": 45,
+    "carbs": 102,
+    "fat": 47,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Le BBQ L — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-le-bbq-xl-nuggets-mozzarella-sauce-barbecue",
+    "name": "Le BBQ XL (nuggets, mozzarella, sauce barbecue)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1420,
+    "protein": 65,
+    "carbs": 142,
+    "fat": 67,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Le BBQ XL — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-bbr-bowls-boeuf-bacon-fume-cordon-bleu-boursin-rac",
+    "name": "BBR Bowls (boeuf bacon fumé, cordon bleu, Boursin, raclette)",
+    "brand": "O'Tacos",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 950,
+    "protein": 50,
+    "carbs": 70,
+    "fat": 50,
+    "tags": [
       "beef",
-      "cheese"
+      "chicken",
+      "cheese",
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Gigatacos (Special) — O'Tacos"
+      "BBR Bowls — O'Tacos"
     ]
   },
   {
-    "id": "fr-otacos-frites-m",
-    "name": "Frites M",
+    "id": "fr-otacos-otacos-bowls-1-viande-sauce-cheddar-frites-sauce-f",
+    "name": "O'Tacos Bowls (1 viande, sauce cheddar, frites, sauce fromagère)",
     "brand": "O'Tacos",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 335,
-    "protein": 4,
-    "carbs": 42,
-    "fat": 16,
-    "tags": [],
+    "calories": 800,
+    "protein": 35,
+    "carbs": 70,
+    "fat": 40,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Frites M — O'Tacos"
+      "O'Tacos Bowls — O'Tacos"
     ]
   },
   {
-    "id": "fr-otacos-frites-l",
-    "name": "Frites L",
+    "id": "fr-otacos-frites-barquette",
+    "name": "Frites (barquette)",
     "brand": "O'Tacos",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 445,
-    "protein": 6,
-    "carbs": 56,
-    "fat": 21,
-    "tags": [],
+    "calories": 380,
+    "protein": 5,
+    "carbs": 50,
+    "fat": 18,
+    "tags": [
+      "french"
+    ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Frites L — O'Tacos"
+      "Frites — O'Tacos"
     ]
   },
   {
-    "id": "fr-otacos-frites-cheddar",
-    "name": "Frites Cheddar",
+    "id": "fr-otacos-fritotacos-frites-sauce-fromagere",
+    "name": "Frit'Otacos (frites + sauce fromagère)",
     "brand": "O'Tacos",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 495,
+    "calories": 520,
     "protein": 10,
-    "carbs": 47,
-    "fat": 26,
+    "carbs": 55,
+    "fat": 28,
     "tags": [
-      "cheese"
+      "cheese",
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Frites Cheddar — O'Tacos"
+      "Frit'Otacos — O'Tacos"
     ]
   },
   {
-    "id": "fr-otacos-onion-rings",
-    "name": "Onion Rings",
-    "brand": "O'Tacos",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 285,
-    "protein": 4,
-    "carbs": 35,
-    "fat": 14,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Onion Rings — O'Tacos"
-    ]
-  },
-  {
-    "id": "fr-otacos-mozza-sticks-4",
-    "name": "Mozza Sticks (4)",
+    "id": "fr-otacos-6-cheese-rings",
+    "name": "6 Cheese Rings",
     "brand": "O'Tacos",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 325,
+    "calories": 420,
     "protein": 14,
-    "carbs": 26,
-    "fat": 19,
+    "carbs": 38,
+    "fat": 24,
     "tags": [
       "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Mozza Sticks (4) — O'Tacos"
+      "6 Cheese Rings — O'Tacos"
     ]
   },
   {
-    "id": "fr-otacos-bites-poulet-5",
-    "name": "Bites Poulet (5)",
+    "id": "fr-otacos-4-cheese-rings",
+    "name": "4 Cheese Rings",
     "brand": "O'Tacos",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 295,
-    "protein": 18,
-    "carbs": 21,
-    "fat": 14,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Bites Poulet (5) — O'Tacos"
-    ]
-  },
-  {
-    "id": "fr-otacos-nuggets-6",
-    "name": "Nuggets (6)",
-    "brand": "O'Tacos",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 265,
-    "protein": 15,
-    "carbs": 14,
+    "calories": 280,
+    "protein": 9,
+    "carbs": 26,
     "fat": 16,
     "tags": [
-      "chicken"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Nuggets (6) — O'Tacos"
+      "4 Cheese Rings — O'Tacos"
     ]
   },
   {
-    "id": "fr-otacos-brownie",
-    "name": "Brownie",
+    "id": "fr-otacos-6-onion-rings",
+    "name": "6 Onion Rings",
     "brand": "O'Tacos",
     "type": [
-      "dessert",
-      "snack"
+      "lunch",
+      "dinner"
     ],
-    "calories": 220,
-    "protein": 3,
-    "carbs": 28,
-    "fat": 11,
+    "calories": 320,
+    "protein": 4,
+    "carbs": 40,
+    "fat": 16,
     "tags": [
-      "dessert"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Brownie — O'Tacos"
+      "6 Onion Rings — O'Tacos"
     ]
   },
   {
-    "id": "fr-otacos-cookie",
-    "name": "Cookie",
+    "id": "fr-otacos-4-onion-rings",
+    "name": "4 Onion Rings",
     "brand": "O'Tacos",
     "type": [
-      "dessert",
-      "snack"
+      "lunch",
+      "dinner"
     ],
     "calories": 215,
     "protein": 3,
-    "carbs": 28,
-    "fat": 9,
+    "carbs": 27,
+    "fat": 11,
     "tags": [
-      "dessert"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Cookie — O'Tacos"
+      "4 Onion Rings — O'Tacos"
     ]
   },
   {
-    "id": "fr-otacos-donut-sucre",
-    "name": "Donut Sucre",
+    "id": "fr-otacos-6-nuggets",
+    "name": "6 Nuggets",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 360,
+    "protein": 20,
+    "carbs": 22,
+    "fat": 20,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "6 Nuggets — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-4-nuggets",
+    "name": "4 Nuggets",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 240,
+    "protein": 13,
+    "carbs": 15,
+    "fat": 13,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "4 Nuggets — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-4-tenders",
+    "name": "4 Tenders",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 460,
+    "protein": 30,
+    "carbs": 32,
+    "fat": 22,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "4 Tenders — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-2-tenders",
+    "name": "2 Tenders",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 230,
+    "protein": 15,
+    "carbs": 16,
+    "fat": 11,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "2 Tenders — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-6-jalapenos",
+    "name": "6 Jalapenos",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 8,
+    "carbs": 36,
+    "fat": 22,
+    "tags": [
+      "cheese",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "6 Jalapenos — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-4-jalapenos",
+    "name": "4 Jalapenos",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 255,
+    "protein": 6,
+    "carbs": 24,
+    "fat": 15,
+    "tags": [
+      "cheese",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "4 Jalapenos — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-big-box-5-nuggets-5-jalapenos-2-tenders",
+    "name": "Big Box (5 Nuggets + 5 Jalapenos + 2 Tenders)",
+    "brand": "O'Tacos",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 900,
+    "protein": 38,
+    "carbs": 70,
+    "fat": 48,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Big Box — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-tiramisu-choco-caramel",
+    "name": "Tiramisu Choco Caramel",
     "brand": "O'Tacos",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 285,
-    "protein": 4,
-    "carbs": 37,
-    "fat": 13,
+    "calories": 360,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 20,
     "tags": [
-      "dessert"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Donut Sucre — O'Tacos"
+      "Tiramisu Choco Caramel — O'Tacos"
     ]
   },
   {
-    "id": "fr-otacos-donut-choco",
-    "name": "Donut Choco",
+    "id": "fr-otacos-tiramisu-choco-cacahuetes",
+    "name": "Tiramisu Choco Cacahuètes",
+    "brand": "O'Tacos",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 7,
+    "carbs": 36,
+    "fat": 22,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tiramisu Choco Cacahuètes — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-tiramisu-choco-noisettes",
+    "name": "Tiramisu Choco Noisettes",
+    "brand": "O'Tacos",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 370,
+    "protein": 6,
+    "carbs": 36,
+    "fat": 22,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tiramisu Choco Noisettes — O'Tacos"
+    ]
+  },
+  {
+    "id": "fr-otacos-cookie-choco-noisette",
+    "name": "Cookie Choco Noisette",
     "brand": "O'Tacos",
     "type": [
       "dessert",
@@ -8247,75 +9795,33 @@ module.exports = [
     "carbs": 42,
     "fat": 15,
     "tags": [
-      "dessert"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Donut Choco — O'Tacos"
+      "Cookie Choco Noisette — O'Tacos"
     ]
   },
   {
-    "id": "fr-otacos-milkshake-vanille",
-    "name": "Milkshake Vanille",
+    "id": "fr-otacos-donut-choco-noisette",
+    "name": "Donut Choco Noisette",
     "brand": "O'Tacos",
     "type": [
-      "drink",
+      "dessert",
       "snack"
     ],
-    "calories": 360,
-    "protein": 9,
-    "carbs": 62,
-    "fat": 8,
+    "calories": 340,
+    "protein": 5,
+    "carbs": 40,
+    "fat": 18,
     "tags": [
-      "dessert"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Milkshake Vanille — O'Tacos"
-    ]
-  },
-  {
-    "id": "fr-otacos-milkshake-chocolat",
-    "name": "Milkshake Chocolat",
-    "brand": "O'Tacos",
-    "type": [
-      "drink",
-      "snack"
-    ],
-    "calories": 395,
-    "protein": 10,
-    "carbs": 70,
-    "fat": 9,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Milkshake Chocolat — O'Tacos"
-    ]
-  },
-  {
-    "id": "fr-otacos-milkshake-oreo",
-    "name": "Milkshake Oreo",
-    "brand": "O'Tacos",
-    "type": [
-      "drink",
-      "snack"
-    ],
-    "calories": 415,
-    "protein": 10,
-    "carbs": 70,
-    "fat": 11,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Milkshake Oreo — O'Tacos"
+      "Donut Choco Noisette — O'Tacos"
     ]
   },
   {
@@ -8326,10 +9832,10 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 605,
-    "protein": 28,
-    "carbs": 56,
-    "fat": 28,
+    "calories": 680,
+    "protein": 32,
+    "carbs": 70,
+    "fat": 30,
     "tags": [
       "chicken"
     ],
@@ -8340,6 +9846,27 @@ module.exports = [
     ]
   },
   {
+    "id": "fr-cs-naan-tenders-spicy",
+    "name": "Naan Tenders Spicy",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 690,
+    "protein": 32,
+    "carbs": 70,
+    "fat": 31,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Naan Tenders Spicy — Chicken Street"
+    ]
+  },
+  {
     "id": "fr-cs-naan-farmer",
     "name": "Naan Farmer",
     "brand": "Chicken Street",
@@ -8347,10 +9874,10 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 650,
-    "protein": 30,
-    "carbs": 58,
-    "fat": 30,
+    "calories": 750,
+    "protein": 35,
+    "carbs": 72,
+    "fat": 36,
     "tags": [
       "chicken",
       "cheese"
@@ -8369,13 +9896,12 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 720,
-    "protein": 32,
-    "carbs": 60,
-    "fat": 38,
+    "calories": 760,
+    "protein": 34,
+    "carbs": 73,
+    "fat": 37,
     "tags": [
-      "chicken",
-      "cheese"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
@@ -8391,12 +9917,13 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 680,
-    "protein": 30,
-    "carbs": 60,
-    "fat": 32,
+    "calories": 780,
+    "protein": 36,
+    "carbs": 74,
+    "fat": 38,
     "tags": [
-      "chicken"
+      "chicken",
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
@@ -8412,10 +9939,10 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 730,
-    "protein": 32,
-    "carbs": 62,
-    "fat": 38,
+    "calories": 820,
+    "protein": 38,
+    "carbs": 75,
+    "fat": 41,
     "tags": [
       "chicken",
       "cheese"
@@ -8427,66 +9954,66 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-cs-naan-curry",
-    "name": "Naan Curry",
+    "id": "fr-cs-naan-chicken-curry",
+    "name": "Naan Chicken Curry",
     "brand": "Chicken Street",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 610,
-    "protein": 28,
-    "carbs": 58,
-    "fat": 26,
+    "calories": 720,
+    "protein": 34,
+    "carbs": 72,
+    "fat": 33,
     "tags": [
       "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Naan Curry — Chicken Street"
+      "Naan Chicken Curry — Chicken Street"
     ]
   },
   {
-    "id": "fr-cs-naan-tikka",
-    "name": "Naan Tikka",
+    "id": "fr-cs-naan-chicken-tikka",
+    "name": "Naan Chicken Tikka",
     "brand": "Chicken Street",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 625,
-    "protein": 30,
-    "carbs": 58,
-    "fat": 26,
+    "calories": 720,
+    "protein": 34,
+    "carbs": 72,
+    "fat": 33,
     "tags": [
       "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Naan Tikka — Chicken Street"
+      "Naan Chicken Tikka — Chicken Street"
     ]
   },
   {
-    "id": "fr-cs-naan-thai",
-    "name": "Naan Thai",
+    "id": "fr-cs-naan-chicken-thai",
+    "name": "Naan Chicken Thai",
     "brand": "Chicken Street",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 605,
-    "protein": 28,
-    "carbs": 60,
-    "fat": 24,
+    "calories": 720,
+    "protein": 34,
+    "carbs": 73,
+    "fat": 33,
     "tags": [
       "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Naan Thai — Chicken Street"
+      "Naan Chicken Thai — Chicken Street"
     ]
   },
   {
@@ -8497,10 +10024,10 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 730,
-    "protein": 36,
-    "carbs": 60,
-    "fat": 36,
+    "calories": 800,
+    "protein": 38,
+    "carbs": 73,
+    "fat": 39,
     "tags": [
       "chicken",
       "beef"
@@ -8519,10 +10046,10 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 780,
-    "protein": 36,
-    "carbs": 62,
-    "fat": 42,
+    "calories": 830,
+    "protein": 40,
+    "carbs": 75,
+    "fat": 41,
     "tags": [
       "chicken",
       "beef",
@@ -8542,10 +10069,10 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 680,
-    "protein": 32,
-    "carbs": 58,
-    "fat": 32,
+    "calories": 760,
+    "protein": 36,
+    "carbs": 70,
+    "fat": 37,
     "tags": [
       "beef"
     ],
@@ -8563,10 +10090,10 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 715,
-    "protein": 30,
-    "carbs": 60,
-    "fat": 36,
+    "calories": 770,
+    "protein": 35,
+    "carbs": 73,
+    "fat": 37,
     "tags": [
       "chicken"
     ],
@@ -8584,14 +10111,13 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 370,
-    "protein": 18,
-    "carbs": 32,
-    "fat": 18,
+    "calories": 420,
+    "protein": 22,
+    "carbs": 35,
+    "fat": 22,
     "tags": [
       "beef",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
@@ -8607,14 +10133,13 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 555,
-    "protein": 32,
-    "carbs": 32,
-    "fat": 30,
+    "calories": 600,
+    "protein": 34,
+    "carbs": 36,
+    "fat": 36,
     "tags": [
       "beef",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
@@ -8623,144 +10148,160 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-cs-twice-burger",
-    "name": "Twice Burger",
-    "brand": "Chicken Street",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 585,
-    "protein": 30,
-    "carbs": 38,
-    "fat": 30,
-    "tags": [
-      "chicken",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Twice Burger — Chicken Street"
-    ]
-  },
-  {
-    "id": "fr-cs-street-b-burger",
-    "name": "Street B Burger",
+    "id": "fr-cs-twice",
+    "name": "Twice",
     "brand": "Chicken Street",
     "type": [
       "lunch",
       "dinner"
     ],
     "calories": 620,
-    "protein": 28,
+    "protein": 30,
     "carbs": 50,
-    "fat": 30,
+    "fat": 32,
     "tags": [
       "chicken",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Street B Burger — Chicken Street"
+      "Twice — Chicken Street"
     ]
   },
   {
-    "id": "fr-cs-tower-burger",
-    "name": "Tower Burger",
+    "id": "fr-cs-twice-spicy",
+    "name": "Twice Spicy",
     "brand": "Chicken Street",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 745,
+    "calories": 630,
+    "protein": 30,
+    "carbs": 50,
+    "fat": 33,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Twice Spicy — Chicken Street"
+    ]
+  },
+  {
+    "id": "fr-cs-street-b",
+    "name": "Street B",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 680,
     "protein": 32,
-    "carbs": 56,
-    "fat": 40,
-    "tags": [
-      "chicken",
-      "cheese",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Tower Burger — Chicken Street"
-    ]
-  },
-  {
-    "id": "fr-cs-bbq-burger",
-    "name": "BBQ Burger",
-    "brand": "Chicken Street",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 610,
-    "protein": 26,
     "carbs": 52,
-    "fat": 30,
-    "tags": [
-      "chicken",
-      "burger"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "BBQ Burger — Chicken Street"
-    ]
-  },
-  {
-    "id": "fr-cs-dynamite-burger",
-    "name": "Dynamite Burger",
-    "brand": "Chicken Street",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 665,
-    "protein": 28,
-    "carbs": 50,
     "fat": 36,
     "tags": [
       "chicken",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Dynamite Burger — Chicken Street"
+      "Street B — Chicken Street"
     ]
   },
   {
-    "id": "fr-cs-bacon-oignon-burger",
-    "name": "Bacon & Oignon Burger",
+    "id": "fr-cs-street-b-spicy",
+    "name": "Street B Spicy",
     "brand": "Chicken Street",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 640,
-    "protein": 28,
-    "carbs": 48,
-    "fat": 34,
+    "calories": 690,
+    "protein": 32,
+    "carbs": 52,
+    "fat": 37,
     "tags": [
-      "beef",
-      "cheese",
-      "burger"
+      "chicken",
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Bacon & Oignon Burger — Chicken Street"
+      "Street B Spicy — Chicken Street"
     ]
   },
   {
-    "id": "fr-cs-fury-burger",
-    "name": "Fury Burger",
+    "id": "fr-cs-tower",
+    "name": "Tower",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 780,
+    "protein": 36,
+    "carbs": 60,
+    "fat": 42,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tower — Chicken Street"
+    ]
+  },
+  {
+    "id": "fr-cs-burger-bbq",
+    "name": "Burger BBQ",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 650,
+    "protein": 30,
+    "carbs": 55,
+    "fat": 33,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Burger BBQ — Chicken Street"
+    ]
+  },
+  {
+    "id": "fr-cs-burger-dynamite",
+    "name": "Burger Dynamite",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 670,
+    "protein": 30,
+    "carbs": 55,
+    "fat": 35,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Burger Dynamite — Chicken Street"
+    ]
+  },
+  {
+    "id": "fr-cs-burger-naan-dynamite",
+    "name": "Burger Naan Dynamite",
     "brand": "Chicken Street",
     "type": [
       "lunch",
@@ -8768,17 +10309,103 @@ module.exports = [
     ],
     "calories": 720,
     "protein": 32,
-    "carbs": 52,
-    "fat": 40,
+    "carbs": 68,
+    "fat": 35,
     "tags": [
-      "chicken",
-      "cheese",
-      "burger"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Fury Burger — Chicken Street"
+      "Burger Naan Dynamite — Chicken Street"
+    ]
+  },
+  {
+    "id": "fr-cs-burger-naan-bacon-oignon",
+    "name": "Burger Naan Bacon & Oignon",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 780,
+    "protein": 36,
+    "carbs": 68,
+    "fat": 40,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Burger Naan Bacon & Oignon — Chicken Street"
+    ]
+  },
+  {
+    "id": "fr-cs-burger-naan-twice",
+    "name": "Burger Naan Twice",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 760,
+    "protein": 35,
+    "carbs": 70,
+    "fat": 38,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Burger Naan Twice — Chicken Street"
+    ]
+  },
+  {
+    "id": "fr-cs-burger-naan-street-b",
+    "name": "Burger Naan Street B",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 800,
+    "protein": 37,
+    "carbs": 70,
+    "fat": 41,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Burger Naan Street B — Chicken Street"
+    ]
+  },
+  {
+    "id": "fr-cs-burger-naan-fury",
+    "name": "Burger Naan Fury",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 820,
+    "protein": 38,
+    "carbs": 70,
+    "fat": 42,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Burger Naan Fury — Chicken Street"
     ]
   },
   {
@@ -8789,18 +10416,38 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 575,
-    "protein": 24,
+    "calories": 540,
+    "protein": 26,
     "carbs": 50,
-    "fat": 28,
+    "fat": 26,
     "tags": [
-      "chicken",
-      "wrap"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
       "Wrap Monster — Chicken Street"
+    ]
+  },
+  {
+    "id": "fr-cs-wrap-monster-spicy",
+    "name": "Wrap Monster Spicy",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 550,
+    "protein": 26,
+    "carbs": 50,
+    "fat": 27,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Wrap Monster Spicy — Chicken Street"
     ]
   },
   {
@@ -8811,13 +10458,12 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 485,
-    "protein": 22,
-    "carbs": 47,
-    "fat": 22,
+    "calories": 500,
+    "protein": 24,
+    "carbs": 48,
+    "fat": 24,
     "tags": [
-      "chicken",
-      "wrap"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
@@ -8826,82 +10472,226 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-cs-little-tender-wrap",
-    "name": "Little Tender Wrap",
+    "id": "fr-cs-wrap-tenders-spicy",
+    "name": "Wrap Tenders Spicy",
     "brand": "Chicken Street",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 365,
-    "protein": 16,
+    "calories": 510,
+    "protein": 24,
+    "carbs": 48,
+    "fat": 25,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Wrap Tenders Spicy — Chicken Street"
+    ]
+  },
+  {
+    "id": "fr-cs-little-tender",
+    "name": "Little Tender",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 18,
     "carbs": 38,
-    "fat": 16,
+    "fat": 17,
     "tags": [
-      "chicken",
-      "wrap"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Little Tender Wrap — Chicken Street"
+      "Little Tender — Chicken Street"
     ]
   },
   {
-    "id": "fr-cs-wrap-bbq",
-    "name": "Wrap BBQ",
+    "id": "fr-cs-little-tender-spicy",
+    "name": "Little Tender Spicy",
     "brand": "Chicken Street",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 495,
-    "protein": 22,
-    "carbs": 50,
-    "fat": 21,
+    "calories": 390,
+    "protein": 18,
+    "carbs": 38,
+    "fat": 18,
     "tags": [
-      "chicken",
-      "wrap"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Wrap BBQ — Chicken Street"
+      "Little Tender Spicy — Chicken Street"
     ]
   },
   {
-    "id": "fr-cs-wrap-dynamite",
-    "name": "Wrap Dynamite",
+    "id": "fr-cs-little-tender-bbq",
+    "name": "Little Tender BBQ",
     "brand": "Chicken Street",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 515,
-    "protein": 22,
-    "carbs": 49,
-    "fat": 24,
+    "calories": 400,
+    "protein": 18,
+    "carbs": 40,
+    "fat": 18,
     "tags": [
-      "chicken",
-      "wrap"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Wrap Dynamite — Chicken Street"
+      "Little Tender BBQ — Chicken Street"
     ]
   },
   {
-    "id": "fr-cs-tenders-x4",
-    "name": "Tenders x4",
+    "id": "fr-cs-little-tender-dynamite",
+    "name": "Little Tender Dynamite",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 410,
+    "protein": 18,
+    "carbs": 40,
+    "fat": 19,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Little Tender Dynamite — Chicken Street"
+    ]
+  },
+  {
+    "id": "fr-cs-4-tenders",
+    "name": "4 Tenders",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 400,
+    "protein": 32,
+    "carbs": 28,
+    "fat": 18,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "4 Tenders — Chicken Street"
+    ]
+  },
+  {
+    "id": "fr-cs-6-tenders",
+    "name": "6 Tenders",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 600,
+    "protein": 48,
+    "carbs": 42,
+    "fat": 27,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "6 Tenders — Chicken Street"
+    ]
+  },
+  {
+    "id": "fr-cs-tenders-spicy-4-pcs",
+    "name": "Tenders Spicy (4 pcs)",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 410,
+    "protein": 32,
+    "carbs": 28,
+    "fat": 19,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tenders Spicy — Chicken Street"
+    ]
+  },
+  {
+    "id": "fr-cs-tenders-dynamite-4-pcs",
+    "name": "Tenders Dynamite (4 pcs)",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 420,
+    "protein": 32,
+    "carbs": 30,
+    "fat": 20,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tenders Dynamite — Chicken Street"
+    ]
+  },
+  {
+    "id": "fr-cs-6-wings",
+    "name": "6 Wings",
     "brand": "Chicken Street",
     "type": [
       "lunch",
       "dinner"
     ],
     "calories": 460,
-    "protein": 32,
-    "carbs": 28,
+    "protein": 34,
+    "carbs": 14,
+    "fat": 30,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "6 Wings — Chicken Street"
+    ]
+  },
+  {
+    "id": "fr-cs-8-nuggets",
+    "name": "8 Nuggets",
+    "brand": "Chicken Street",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 20,
+    "carbs": 24,
     "fat": 22,
     "tags": [
       "chicken"
@@ -8909,104 +10699,62 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tenders x4 — Chicken Street"
+      "8 Nuggets — Chicken Street"
     ]
   },
   {
-    "id": "fr-cs-tenders-x6",
-    "name": "Tenders x6",
+    "id": "fr-cs-family-mix",
+    "name": "Family Mix",
     "brand": "Chicken Street",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 690,
-    "protein": 48,
-    "carbs": 42,
-    "fat": 33,
+    "calories": 1100,
+    "protein": 70,
+    "carbs": 60,
+    "fat": 60,
     "tags": [
       "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tenders x6 — Chicken Street"
+      "Family Mix — Chicken Street"
     ]
   },
   {
-    "id": "fr-cs-spicy-tenders-x4",
-    "name": "Spicy Tenders x4",
+    "id": "fr-cs-family-tenders",
+    "name": "Family Tenders",
     "brand": "Chicken Street",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 470,
-    "protein": 32,
-    "carbs": 28,
-    "fat": 23,
+    "calories": 1000,
+    "protein": 78,
+    "carbs": 70,
+    "fat": 45,
     "tags": [
       "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Spicy Tenders x4 — Chicken Street"
+      "Family Tenders — Chicken Street"
     ]
   },
   {
-    "id": "fr-cs-dynamite-tenders-x4",
-    "name": "Dynamite Tenders x4",
+    "id": "fr-cs-family-spicy",
+    "name": "Family Spicy",
     "brand": "Chicken Street",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 500,
-    "protein": 32,
-    "carbs": 30,
-    "fat": 26,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Dynamite Tenders x4 — Chicken Street"
-    ]
-  },
-  {
-    "id": "fr-cs-wings-x6",
-    "name": "Wings x6",
-    "brand": "Chicken Street",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 450,
-    "protein": 30,
-    "carbs": 16,
-    "fat": 28,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Wings x6 — Chicken Street"
-    ]
-  },
-  {
-    "id": "fr-cs-wings-x10",
-    "name": "Wings x10",
-    "brand": "Chicken Street",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 750,
-    "protein": 50,
-    "carbs": 27,
+    "calories": 1020,
+    "protein": 78,
+    "carbs": 70,
     "fat": 47,
     "tags": [
       "chicken"
@@ -9014,63 +10762,21 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Wings x10 — Chicken Street"
-    ]
-  },
-  {
-    "id": "fr-cs-nuggets-x6",
-    "name": "Nuggets x6",
-    "brand": "Chicken Street",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 265,
-    "protein": 15,
-    "carbs": 14,
-    "fat": 16,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Nuggets x6 — Chicken Street"
-    ]
-  },
-  {
-    "id": "fr-cs-family-mix-bucket",
-    "name": "Family Mix Bucket",
-    "brand": "Chicken Street",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 1450,
-    "protein": 90,
-    "carbs": 70,
-    "fat": 80,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Family Mix Bucket — Chicken Street"
+      "Family Spicy — Chicken Street"
     ]
   },
   {
     "id": "fr-cs-tendersncheese",
-    "name": "Tenders'n'Cheese",
+    "name": "Tenders'N'Cheese",
     "brand": "Chicken Street",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 560,
-    "protein": 30,
+    "calories": 520,
+    "protein": 32,
     "carbs": 32,
-    "fat": 30,
+    "fat": 28,
     "tags": [
       "chicken",
       "cheese"
@@ -9078,45 +10784,93 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tenders'n'Cheese — Chicken Street"
+      "Tenders'N'Cheese — Chicken Street"
     ]
   },
   {
-    "id": "fr-cs-frites-m",
-    "name": "Frites M",
+    "id": "fr-cs-mozza-sticks",
+    "name": "Mozza Sticks",
     "brand": "Chicken Street",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 285,
-    "protein": 4,
-    "carbs": 35,
-    "fat": 14,
-    "tags": [],
+    "calories": 380,
+    "protein": 14,
+    "carbs": 32,
+    "fat": 22,
+    "tags": [
+      "cheese",
+      "vegetarian"
+    ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Frites M — Chicken Street"
+      "Mozza Sticks — Chicken Street"
     ]
   },
   {
-    "id": "fr-cs-frites-l",
-    "name": "Frites L",
+    "id": "fr-cs-chili-cheese-nuggets",
+    "name": "Chili Cheese Nuggets",
     "brand": "Chicken Street",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 420,
-    "protein": 6,
-    "carbs": 53,
+    "calories": 360,
+    "protein": 10,
+    "carbs": 34,
     "fat": 20,
-    "tags": [],
+    "tags": [
+      "cheese",
+      "vegetarian"
+    ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Frites L — Chicken Street"
+      "Chili Cheese Nuggets — Chicken Street"
+    ]
+  },
+  {
+    "id": "fr-cs-onion-rings",
+    "name": "Onion Rings",
+    "brand": "Chicken Street",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 320,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 16,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Onion Rings — Chicken Street"
+    ]
+  },
+  {
+    "id": "fr-cs-frites",
+    "name": "Frites",
+    "brand": "Chicken Street",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 340,
+    "protein": 4,
+    "carbs": 44,
+    "fat": 16,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Frites — Chicken Street"
     ]
   },
   {
@@ -9127,12 +10881,13 @@ module.exports = [
       "snack",
       "lunch"
     ],
-    "calories": 495,
+    "calories": 480,
     "protein": 10,
-    "carbs": 47,
-    "fat": 26,
+    "carbs": 46,
+    "fat": 28,
     "tags": [
-      "cheese"
+      "cheese",
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
@@ -9148,10 +10903,10 @@ module.exports = [
       "snack",
       "lunch"
     ],
-    "calories": 560,
-    "protein": 16,
-    "carbs": 47,
-    "fat": 32,
+    "calories": 580,
+    "protein": 18,
+    "carbs": 46,
+    "fat": 36,
     "tags": [
       "cheese"
     ],
@@ -9162,67 +10917,6 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-cs-mozza-sticks-4",
-    "name": "Mozza Sticks (4)",
-    "brand": "Chicken Street",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 325,
-    "protein": 14,
-    "carbs": 26,
-    "fat": 19,
-    "tags": [
-      "cheese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Mozza Sticks (4) — Chicken Street"
-    ]
-  },
-  {
-    "id": "fr-cs-chili-cheese-nuggets-6",
-    "name": "Chili Cheese Nuggets (6)",
-    "brand": "Chicken Street",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 320,
-    "protein": 12,
-    "carbs": 25,
-    "fat": 19,
-    "tags": [
-      "cheese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Chili Cheese Nuggets (6) — Chicken Street"
-    ]
-  },
-  {
-    "id": "fr-cs-onion-rings",
-    "name": "Onion Rings",
-    "brand": "Chicken Street",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 285,
-    "protein": 4,
-    "carbs": 35,
-    "fat": 14,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Onion Rings — Chicken Street"
-    ]
-  },
-  {
     "id": "fr-cs-bowl-cheddar-bacon",
     "name": "Bowl Cheddar & Bacon",
     "brand": "Chicken Street",
@@ -9230,10 +10924,10 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 640,
-    "protein": 32,
+    "calories": 720,
+    "protein": 36,
     "carbs": 60,
-    "fat": 28,
+    "fat": 38,
     "tags": [
       "chicken",
       "cheese"
@@ -9252,10 +10946,10 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 615,
-    "protein": 30,
-    "carbs": 58,
-    "fat": 27,
+    "calories": 700,
+    "protein": 34,
+    "carbs": 62,
+    "fat": 36,
     "tags": [
       "chicken"
     ],
@@ -9273,12 +10967,12 @@ module.exports = [
       "dessert",
       "snack"
     ],
-    "calories": 290,
-    "protein": 6,
-    "carbs": 46,
-    "fat": 9,
+    "calories": 340,
+    "protein": 5,
+    "carbs": 50,
+    "fat": 14,
     "tags": [
-      "dessert"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
@@ -9294,12 +10988,12 @@ module.exports = [
       "dessert",
       "snack"
     ],
-    "calories": 320,
-    "protein": 6,
-    "carbs": 54,
-    "fat": 8,
+    "calories": 360,
+    "protein": 5,
+    "carbs": 52,
+    "fat": 15,
     "tags": [
-      "dessert"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
@@ -9315,12 +11009,12 @@ module.exports = [
       "dessert",
       "snack"
     ],
-    "calories": 250,
+    "calories": 220,
     "protein": 4,
-    "carbs": 35,
+    "carbs": 28,
     "fat": 11,
     "tags": [
-      "dessert"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
@@ -9336,12 +11030,12 @@ module.exports = [
       "dessert",
       "snack"
     ],
-    "calories": 320,
+    "calories": 380,
     "protein": 6,
-    "carbs": 35,
-    "fat": 17,
+    "carbs": 38,
+    "fat": 22,
     "tags": [
-      "dessert"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
@@ -9357,12 +11051,12 @@ module.exports = [
       "dessert",
       "snack"
     ],
-    "calories": 380,
+    "calories": 420,
     "protein": 5,
     "carbs": 44,
-    "fat": 19,
+    "fat": 25,
     "tags": [
-      "dessert"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
@@ -9378,12 +11072,12 @@ module.exports = [
       "dessert",
       "snack"
     ],
-    "calories": 360,
-    "protein": 4,
-    "carbs": 42,
-    "fat": 19,
+    "calories": 410,
+    "protein": 5,
+    "carbs": 46,
+    "fat": 23,
     "tags": [
-      "dessert"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
@@ -9392,16 +11086,16 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-pepe-box-tenders-x3",
-    "name": "Box Tenders x3",
+    "id": "fr-pepe-box-x3-tenders",
+    "name": "Box x3 Tenders",
     "brand": "Peppe Chicken",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 345,
-    "protein": 24,
-    "carbs": 21,
+    "calories": 360,
+    "protein": 28,
+    "carbs": 24,
     "fat": 16,
     "tags": [
       "chicken"
@@ -9409,20 +11103,20 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Box Tenders x3 — Peppe Chicken"
+      "Box x3 Tenders — Peppe Chicken"
     ]
   },
   {
-    "id": "fr-pepe-box-spicy-tenders-x3",
-    "name": "Box Spicy Tenders x3",
+    "id": "fr-pepe-box-x3-spicy-tenders",
+    "name": "Box x3 Spicy Tenders",
     "brand": "Peppe Chicken",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 355,
-    "protein": 24,
-    "carbs": 22,
+    "calories": 370,
+    "protein": 28,
+    "carbs": 24,
     "fat": 17,
     "tags": [
       "chicken"
@@ -9430,83 +11124,20 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Box Spicy Tenders x3 — Peppe Chicken"
+      "Box x3 Spicy Tenders — Peppe Chicken"
     ]
   },
   {
-    "id": "fr-pepe-pepe-tenders-x4",
-    "name": "Pepe Tenders x4",
+    "id": "fr-pepe-pepe-x4-tenders",
+    "name": "Pepe x4 Tenders",
     "brand": "Peppe Chicken",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 460,
-    "protein": 32,
-    "carbs": 28,
-    "fat": 22,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Pepe Tenders x4 — Peppe Chicken"
-    ]
-  },
-  {
-    "id": "fr-pepe-pepe-spicy-tenders-x4",
-    "name": "Pepe Spicy Tenders x4",
-    "brand": "Peppe Chicken",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 470,
-    "protein": 32,
-    "carbs": 28,
-    "fat": 23,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Pepe Spicy Tenders x4 — Peppe Chicken"
-    ]
-  },
-  {
-    "id": "fr-pepe-pepe-wings-x5",
-    "name": "Pepe Wings x5",
-    "brand": "Peppe Chicken",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 400,
-    "protein": 27,
-    "carbs": 14,
-    "fat": 25,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Pepe Wings x5 — Peppe Chicken"
-    ]
-  },
-  {
-    "id": "fr-pepe-pepe-spicy-wings-x5",
-    "name": "Pepe Spicy Wings x5",
-    "brand": "Peppe Chicken",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 410,
-    "protein": 27,
-    "carbs": 14,
+    "calories": 560,
+    "protein": 44,
+    "carbs": 36,
     "fat": 26,
     "tags": [
       "chicken"
@@ -9514,21 +11145,84 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Pepe Spicy Wings x5 — Peppe Chicken"
+      "Pepe x4 Tenders — Peppe Chicken"
     ]
   },
   {
-    "id": "fr-pepe-big-box-pepe",
-    "name": "Big Box Pepe",
+    "id": "fr-pepe-pepe-x4-spicy-tenders",
+    "name": "Pepe x4 Spicy Tenders",
     "brand": "Peppe Chicken",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 850,
+    "calories": 580,
+    "protein": 44,
+    "carbs": 36,
+    "fat": 28,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pepe x4 Spicy Tenders — Peppe Chicken"
+    ]
+  },
+  {
+    "id": "fr-pepe-pepe-x5-wings",
+    "name": "Pepe x5 Wings",
+    "brand": "Peppe Chicken",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 540,
+    "protein": 36,
+    "carbs": 18,
+    "fat": 36,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pepe x5 Wings — Peppe Chicken"
+    ]
+  },
+  {
+    "id": "fr-pepe-pepe-x5-spicy-wings",
+    "name": "Pepe x5 Spicy Wings",
+    "brand": "Peppe Chicken",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 560,
+    "protein": 36,
+    "carbs": 18,
+    "fat": 38,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pepe x5 Spicy Wings — Peppe Chicken"
+    ]
+  },
+  {
+    "id": "fr-pepe-big-box-pepe-x3-wings-x2-tenders",
+    "name": "Big Box Pepe (x3 Wings + x2 Tenders)",
+    "brand": "Peppe Chicken",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
     "protein": 50,
-    "carbs": 45,
-    "fat": 50,
+    "carbs": 30,
+    "fat": 44,
     "tags": [
       "chicken"
     ],
@@ -9539,17 +11233,17 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-pepe-big-box-spicy",
-    "name": "Big Box Spicy",
+    "id": "fr-pepe-big-box-spicy-x3-wings-x2-tenders",
+    "name": "Big Box Spicy (x3 Wings + x2 Tenders)",
     "brand": "Peppe Chicken",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 870,
+    "calories": 740,
     "protein": 50,
-    "carbs": 45,
-    "fat": 52,
+    "carbs": 30,
+    "fat": 46,
     "tags": [
       "chicken"
     ],
@@ -9560,49 +11254,46 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-pepe-the-hot-one-burger",
-    "name": "The Hot One Burger",
+    "id": "fr-pepe-the-hot-one",
+    "name": "The Hot One",
     "brand": "Peppe Chicken",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 640,
-    "protein": 28,
-    "carbs": 50,
-    "fat": 35,
+    "calories": 720,
+    "protein": 34,
+    "carbs": 58,
+    "fat": 38,
     "tags": [
-      "chicken",
-      "cheese",
-      "burger"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "The Hot One Burger — Peppe Chicken"
+      "The Hot One — Peppe Chicken"
     ]
   },
   {
-    "id": "fr-pepe-the-smoky-one-burger",
-    "name": "The Smoky One Burger",
+    "id": "fr-pepe-the-smoky-one",
+    "name": "The Smoky One",
     "brand": "Peppe Chicken",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 610,
-    "protein": 27,
-    "carbs": 50,
-    "fat": 32,
+    "calories": 760,
+    "protein": 36,
+    "carbs": 60,
+    "fat": 42,
     "tags": [
       "chicken",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "The Smoky One Burger — Peppe Chicken"
+      "The Smoky One — Peppe Chicken"
     ]
   },
   {
@@ -9613,13 +11304,13 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 555,
-    "protein": 26,
-    "carbs": 47,
-    "fat": 28,
+    "calories": 700,
+    "protein": 32,
+    "carbs": 56,
+    "fat": 38,
     "tags": [
       "chicken",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
@@ -9635,14 +11326,13 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 595,
-    "protein": 26,
-    "carbs": 50,
-    "fat": 30,
+    "calories": 780,
+    "protein": 34,
+    "carbs": 58,
+    "fat": 44,
     "tags": [
       "chicken",
-      "cheese",
-      "burger"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
@@ -9658,41 +11348,17 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 525,
-    "protein": 22,
-    "carbs": 49,
-    "fat": 24,
+    "calories": 690,
+    "protein": 32,
+    "carbs": 60,
+    "fat": 34,
     "tags": [
-      "chicken",
-      "cheese",
-      "wrap"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
       "Grand Wrap Crispy Bacon — Peppe Chicken"
-    ]
-  },
-  {
-    "id": "fr-pepe-pepe-snack-wrap",
-    "name": "Pepe Snack Wrap",
-    "brand": "Peppe Chicken",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 370,
-    "protein": 16,
-    "carbs": 38,
-    "fat": 17,
-    "tags": [
-      "chicken",
-      "wrap"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Pepe Snack Wrap — Peppe Chicken"
     ]
   },
   {
@@ -9703,13 +11369,13 @@ module.exports = [
       "snack",
       "lunch"
     ],
-    "calories": 305,
-    "protein": 25,
-    "carbs": 18,
-    "fat": 14,
+    "calories": 420,
+    "protein": 22,
+    "carbs": 28,
+    "fat": 24,
     "tags": [
       "chicken",
-      "salad"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
@@ -9725,10 +11391,10 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 355,
-    "protein": 22,
-    "carbs": 22,
-    "fat": 19,
+    "calories": 430,
+    "protein": 24,
+    "carbs": 30,
+    "fat": 22,
     "tags": [
       "chicken"
     ],
@@ -9746,10 +11412,10 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 360,
-    "protein": 22,
-    "carbs": 22,
-    "fat": 20,
+    "calories": 440,
+    "protein": 24,
+    "carbs": 30,
+    "fat": 23,
     "tags": [
       "chicken"
     ],
@@ -9760,43 +11426,66 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-pepe-mais-grille",
-    "name": "Maïs Grillé",
+    "id": "fr-pepe-the-pepe-snack-wrap",
+    "name": "The Pepe Snack Wrap",
+    "brand": "Peppe Chicken",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 18,
+    "carbs": 36,
+    "fat": 18,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "The Pepe Snack Wrap — Peppe Chicken"
+    ]
+  },
+  {
+    "id": "fr-pepe-x2-mais-grilles",
+    "name": "x2 Maïs grillés",
     "brand": "Peppe Chicken",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 95,
-    "protein": 3,
-    "carbs": 19,
-    "fat": 1,
+    "calories": 200,
+    "protein": 5,
+    "carbs": 36,
+    "fat": 5,
     "tags": [
       "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Maïs Grillé — Peppe Chicken"
+      "x2 Maïs grillés — Peppe Chicken"
     ]
   },
   {
-    "id": "fr-pepe-tater-tots",
-    "name": "Tater Tots",
+    "id": "fr-pepe-bite-size-tater-tots",
+    "name": "Bite-size Tater Tots",
     "brand": "Peppe Chicken",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 295,
+    "calories": 350,
     "protein": 4,
-    "carbs": 35,
-    "fat": 15,
-    "tags": [],
+    "carbs": 42,
+    "fat": 18,
+    "tags": [
+      "vegetarian"
+    ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tater Tots — Peppe Chicken"
+      "Bite-size Tater Tots — Peppe Chicken"
     ]
   },
   {
@@ -9807,11 +11496,13 @@ module.exports = [
       "snack",
       "lunch"
     ],
-    "calories": 340,
-    "protein": 5,
-    "carbs": 42,
-    "fat": 17,
-    "tags": [],
+    "calories": 380,
+    "protein": 4,
+    "carbs": 48,
+    "fat": 19,
+    "tags": [
+      "vegetarian"
+    ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
@@ -9819,22 +11510,24 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-pepe-frites-patate-douce",
-    "name": "Frites Patate Douce",
+    "id": "fr-pepe-frites-de-patates-douces",
+    "name": "Frites de Patates Douces",
     "brand": "Peppe Chicken",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 320,
-    "protein": 4,
-    "carbs": 44,
-    "fat": 14,
-    "tags": [],
+    "calories": 360,
+    "protein": 3,
+    "carbs": 50,
+    "fat": 16,
+    "tags": [
+      "vegetarian"
+    ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Frites Patate Douce — Peppe Chicken"
+      "Frites de Patates Douces — Peppe Chicken"
     ]
   },
   {
@@ -9845,11 +11538,13 @@ module.exports = [
       "snack",
       "lunch"
     ],
-    "calories": 100,
+    "calories": 110,
     "protein": 0,
-    "carbs": 4,
-    "fat": 9,
-    "tags": [],
+    "carbs": 2,
+    "fat": 12,
+    "tags": [
+      "vegetarian"
+    ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
@@ -9864,11 +11559,13 @@ module.exports = [
       "snack",
       "lunch"
     ],
-    "calories": 50,
+    "calories": 110,
     "protein": 0,
-    "carbs": 6,
-    "fat": 3,
-    "tags": [],
+    "carbs": 2,
+    "fat": 12,
+    "tags": [
+      "vegetarian"
+    ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
@@ -9876,44 +11573,45 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-pepe-creamy-bbq-sauce",
-    "name": "Creamy BBQ Sauce",
+    "id": "fr-pepe-creamy-bbq",
+    "name": "Creamy BBQ",
     "brand": "Peppe Chicken",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 105,
+    "calories": 120,
     "protein": 0,
     "carbs": 6,
-    "fat": 9,
-    "tags": [],
+    "fat": 11,
+    "tags": [
+      "vegetarian"
+    ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Creamy BBQ Sauce — Peppe Chicken"
+      "Creamy BBQ — Peppe Chicken"
     ]
   },
   {
     "id": "fr-sub-italien-bmt-15cm",
-    "name": "Italien BMT (15cm)",
+    "name": "Italien B.M.T. (15cm)",
     "brand": "Subway France",
     "type": [
       "lunch",
       "dinner"
     ],
     "calories": 410,
-    "protein": 22,
-    "carbs": 47,
+    "protein": 21,
+    "carbs": 44,
     "fat": 16,
     "tags": [
-      "beef",
-      "cheese"
+      "beef"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Italien BMT (15cm) — Subway France"
+      "Italien B.M.T. — Subway France"
     ]
   },
   {
@@ -9924,9 +11622,9 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 390,
-    "protein": 24,
-    "carbs": 47,
+    "calories": 380,
+    "protein": 23,
+    "carbs": 44,
     "fat": 13,
     "tags": [
       "cheese"
@@ -9934,29 +11632,7 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Subway Melt (15cm) — Subway France"
-    ]
-  },
-  {
-    "id": "fr-sub-steak-cheese-15cm",
-    "name": "Steak & Cheese (15cm)",
-    "brand": "Subway France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 380,
-    "protein": 22,
-    "carbs": 48,
-    "fat": 11,
-    "tags": [
-      "beef",
-      "cheese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Steak & Cheese (15cm) — Subway France"
+      "Subway Melt — Subway France"
     ]
   },
   {
@@ -9967,10 +11643,10 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 445,
-    "protein": 22,
-    "carbs": 48,
-    "fat": 19,
+    "calories": 360,
+    "protein": 24,
+    "carbs": 45,
+    "fat": 9,
     "tags": [
       "beef",
       "cheese"
@@ -9978,83 +11654,63 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Steakhouse (15cm) — Subway France"
+      "Steakhouse — Subway France"
     ]
   },
   {
-    "id": "fr-sub-buf-pastrami-15cm",
-    "name": "Bœuf Pastrami (15cm)",
+    "id": "fr-sub-subway-steak-and-cheese-15cm",
+    "name": "Subway Steak and Cheese (15cm)",
     "brand": "Subway France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 390,
-    "protein": 24,
-    "carbs": 48,
-    "fat": 11,
+    "calories": 350,
+    "protein": 25,
+    "carbs": 44,
+    "fat": 8,
     "tags": [
-      "beef"
+      "beef",
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Bœuf Pastrami (15cm) — Subway France"
+      "Subway Steak and Cheese — Subway France"
     ]
   },
   {
-    "id": "fr-sub-poulet-teriyaki-15cm",
-    "name": "Poulet Teriyaki (15cm)",
+    "id": "fr-sub-boeuf-pastrami-15cm",
+    "name": "Boeuf Pastrami (15cm)",
     "brand": "Subway France",
     "type": [
       "lunch",
       "dinner"
     ],
     "calories": 360,
-    "protein": 25,
-    "carbs": 53,
-    "fat": 6,
+    "protein": 23,
+    "carbs": 45,
+    "fat": 10,
     "tags": [
-      "chicken"
+      "beef"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Poulet Teriyaki (15cm) — Subway France"
+      "Boeuf Pastrami — Subway France"
     ]
   },
   {
-    "id": "fr-sub-poulet-tikka-15cm",
-    "name": "Poulet Tikka (15cm)",
+    "id": "fr-sub-super-smoky-chicken-bacon-15cm",
+    "name": "Super Smoky Chicken Bacon (15cm)",
     "brand": "Subway France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 345,
-    "protein": 24,
-    "carbs": 51,
-    "fat": 6,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Poulet Tikka (15cm) — Subway France"
-    ]
-  },
-  {
-    "id": "fr-sub-super-smoky-chicken-bacon",
-    "name": "Super Smoky Chicken Bacon",
-    "brand": "Subway France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 445,
+    "calories": 430,
     "protein": 28,
-    "carbs": 49,
+    "carbs": 45,
     "fat": 16,
     "tags": [
       "chicken",
@@ -10067,24 +11723,67 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-sub-original-smoky-chicken",
-    "name": "Original Smoky Chicken",
+    "id": "fr-sub-original-smoky-chicken-15cm",
+    "name": "Original Smoky Chicken (15cm)",
     "brand": "Subway France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 390,
-    "protein": 26,
-    "carbs": 49,
+    "calories": 370,
+    "protein": 24,
+    "carbs": 45,
     "fat": 11,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Original Smoky Chicken — Subway France"
+    ]
+  },
+  {
+    "id": "fr-sub-poulet-teriyaki-15cm",
+    "name": "Poulet Teriyaki (15cm)",
+    "brand": "Subway France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 340,
+    "protein": 25,
+    "carbs": 49,
+    "fat": 5,
     "tags": [
       "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Original Smoky Chicken — Subway France"
+      "Poulet Teriyaki — Subway France"
+    ]
+  },
+  {
+    "id": "fr-sub-poulet-tikka-15cm",
+    "name": "Poulet Tikka (15cm)",
+    "brand": "Subway France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 330,
+    "protein": 24,
+    "carbs": 46,
+    "fat": 6,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Poulet Tikka — Subway France"
     ]
   },
   {
@@ -10096,16 +11795,35 @@ module.exports = [
       "dinner"
     ],
     "calories": 310,
-    "protein": 24,
-    "carbs": 47,
-    "fat": 4,
+    "protein": 23,
+    "carbs": 44,
+    "fat": 5,
     "tags": [
       "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Poulet (15cm) — Subway France"
+      "Poulet — Subway France"
+    ]
+  },
+  {
+    "id": "fr-sub-dinde-15cm",
+    "name": "Dinde (15cm)",
+    "brand": "Subway France",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 280,
+    "protein": 18,
+    "carbs": 45,
+    "fat": 4,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Dinde — Subway France"
     ]
   },
   {
@@ -10118,32 +11836,13 @@ module.exports = [
     ],
     "calories": 290,
     "protein": 18,
-    "carbs": 46,
+    "carbs": 45,
     "fat": 5,
     "tags": [],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Jambon (15cm) — Subway France"
-    ]
-  },
-  {
-    "id": "fr-sub-dinde-15cm",
-    "name": "Dinde (15cm)",
-    "brand": "Subway France",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 285,
-    "protein": 18,
-    "carbs": 46,
-    "fat": 4,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Dinde (15cm) — Subway France"
+      "Jambon — Subway France"
     ]
   },
   {
@@ -10154,17 +11853,17 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 445,
-    "protein": 21,
+    "calories": 430,
+    "protein": 19,
     "carbs": 44,
-    "fat": 22,
+    "fat": 21,
     "tags": [
       "fish"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Thon (15cm) — Subway France"
+      "Thon — Subway France"
     ]
   },
   {
@@ -10175,31 +11874,31 @@ module.exports = [
       "lunch",
       "dinner"
     ],
-    "calories": 230,
+    "calories": 220,
     "protein": 9,
-    "carbs": 44,
-    "fat": 3,
+    "carbs": 43,
+    "fat": 2,
     "tags": [
       "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Veggie Delite (15cm) — Subway France"
+      "Veggie Delite — Subway France"
     ]
   },
   {
-    "id": "fr-sub-veggie-quinoa-kale",
-    "name": "Veggie Quinoa Kale",
+    "id": "fr-sub-veggie-quinoa-kale-15cm",
+    "name": "Veggie Quinoa Kale (15cm)",
     "brand": "Subway France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 335,
+    "calories": 340,
     "protein": 12,
-    "carbs": 50,
-    "fat": 9,
+    "carbs": 49,
+    "fat": 11,
     "tags": [
       "vegetarian"
     ],
@@ -10210,16 +11909,16 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-sub-galette-legumes-vegan",
-    "name": "Galette Légumes Vegan",
+    "id": "fr-sub-galette-de-legumes-vegan-15cm",
+    "name": "Galette de legumes Vegan (15cm)",
     "brand": "Subway France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 355,
+    "calories": 330,
     "protein": 14,
-    "carbs": 53,
+    "carbs": 47,
     "fat": 9,
     "tags": [
       "vegetarian"
@@ -10227,74 +11926,179 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Galette Légumes Vegan — Subway France"
+      "Galette de legumes Vegan — Subway France"
     ]
   },
   {
-    "id": "fr-sub-wrap-buf-guacamole",
-    "name": "Wrap Bœuf Guacamole",
+    "id": "fr-sub-boeuf-guacamole-signature-wrap",
+    "name": "Boeuf Guacamole Signature Wrap",
     "brand": "Subway France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 490,
-    "protein": 25,
-    "carbs": 45,
-    "fat": 22,
+    "calories": 560,
+    "protein": 28,
+    "carbs": 50,
+    "fat": 28,
     "tags": [
-      "beef",
-      "wrap"
+      "beef"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Wrap Bœuf Guacamole — Subway France"
+      "Boeuf Guacamole Signature Wrap — Subway France"
     ]
   },
   {
-    "id": "fr-sub-wrap-poulet-caesar",
-    "name": "Wrap Poulet Caesar",
+    "id": "fr-sub-poulet-caesar-signature-wrap",
+    "name": "Poulet Caesar Signature Wrap",
     "brand": "Subway France",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 470,
-    "protein": 26,
-    "carbs": 44,
-    "fat": 20,
+    "calories": 540,
+    "protein": 30,
+    "carbs": 48,
+    "fat": 26,
     "tags": [
       "chicken",
-      "wrap"
+      "cheese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Wrap Poulet Caesar — Subway France"
+      "Poulet Caesar Signature Wrap — Subway France"
     ]
   },
   {
     "id": "fr-sub-salade-italien-bmt",
-    "name": "Salade Italien BMT",
+    "name": "Salade Italien B.M.T.",
     "brand": "Subway France",
     "type": [
       "snack",
       "lunch"
     ],
     "calories": 280,
-    "protein": 19,
+    "protein": 17,
     "carbs": 14,
-    "fat": 16,
+    "fat": 17,
     "tags": [
-      "beef",
-      "cheese",
-      "salad"
+      "beef"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Salade Italien BMT — Subway France"
+      "Salade Italien B.M.T. — Subway France"
+    ]
+  },
+  {
+    "id": "fr-sub-salade-subway-melt",
+    "name": "Salade Subway Melt",
+    "brand": "Subway France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 250,
+    "protein": 19,
+    "carbs": 14,
+    "fat": 13,
+    "tags": [
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Subway Melt — Subway France"
+    ]
+  },
+  {
+    "id": "fr-sub-salade-steakhouse",
+    "name": "Salade Steakhouse",
+    "brand": "Subway France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 230,
+    "protein": 20,
+    "carbs": 15,
+    "fat": 10,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Steakhouse — Subway France"
+    ]
+  },
+  {
+    "id": "fr-sub-salade-subway-steak-and-cheese",
+    "name": "Salade Subway Steak and Cheese",
+    "brand": "Subway France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 220,
+    "protein": 21,
+    "carbs": 14,
+    "fat": 9,
+    "tags": [
+      "beef",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Subway Steak and Cheese — Subway France"
+    ]
+  },
+  {
+    "id": "fr-sub-salade-boeuf-pastrami",
+    "name": "Salade Boeuf Pastrami",
+    "brand": "Subway France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 230,
+    "protein": 19,
+    "carbs": 15,
+    "fat": 11,
+    "tags": [
+      "beef"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Boeuf Pastrami — Subway France"
+    ]
+  },
+  {
+    "id": "fr-sub-salade-super-smoky-chicken-bacon",
+    "name": "Salade Super Smoky Chicken Bacon",
+    "brand": "Subway France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 300,
+    "protein": 24,
+    "carbs": 15,
+    "fat": 17,
+    "tags": [
+      "chicken",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Super Smoky Chicken Bacon — Subway France"
     ]
   },
   {
@@ -10306,12 +12110,11 @@ module.exports = [
       "lunch"
     ],
     "calories": 210,
-    "protein": 22,
-    "carbs": 18,
-    "fat": 5,
+    "protein": 21,
+    "carbs": 19,
+    "fat": 6,
     "tags": [
-      "chicken",
-      "salad"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
@@ -10327,18 +12130,76 @@ module.exports = [
       "snack",
       "lunch"
     ],
-    "calories": 195,
-    "protein": 21,
-    "carbs": 17,
-    "fat": 4,
+    "calories": 200,
+    "protein": 20,
+    "carbs": 16,
+    "fat": 7,
     "tags": [
-      "chicken",
-      "salad"
+      "chicken"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
       "Salade Poulet Tikka — Subway France"
+    ]
+  },
+  {
+    "id": "fr-sub-salade-poulet",
+    "name": "Salade Poulet",
+    "brand": "Subway France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 180,
+    "protein": 19,
+    "carbs": 14,
+    "fat": 6,
+    "tags": [
+      "chicken"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Poulet — Subway France"
+    ]
+  },
+  {
+    "id": "fr-sub-salade-dinde",
+    "name": "Salade Dinde",
+    "brand": "Subway France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 150,
+    "protein": 14,
+    "carbs": 15,
+    "fat": 5,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Dinde — Subway France"
+    ]
+  },
+  {
+    "id": "fr-sub-salade-jambon",
+    "name": "Salade Jambon",
+    "brand": "Subway France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 160,
+    "protein": 14,
+    "carbs": 15,
+    "fat": 6,
+    "tags": [],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Jambon — Subway France"
     ]
   },
   {
@@ -10349,13 +12210,12 @@ module.exports = [
       "snack",
       "lunch"
     ],
-    "calories": 325,
-    "protein": 18,
-    "carbs": 8,
+    "calories": 300,
+    "protein": 15,
+    "carbs": 14,
     "fat": 22,
     "tags": [
-      "fish",
-      "salad"
+      "fish"
     ],
     "country": "France",
     "source": "restaurant",
@@ -10371,13 +12231,12 @@ module.exports = [
       "snack",
       "lunch"
     ],
-    "calories": 75,
-    "protein": 4,
+    "calories": 90,
+    "protein": 5,
     "carbs": 13,
-    "fat": 1,
+    "fat": 3,
     "tags": [
-      "vegetarian",
-      "salad"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
@@ -10386,47 +12245,64 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-sub-salade-steak-cheese",
-    "name": "Salade Steak & Cheese",
+    "id": "fr-sub-salade-veggie-quinoa-kale",
+    "name": "Salade Veggie Quinoa Kale",
     "brand": "Subway France",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 245,
-    "protein": 19,
-    "carbs": 11,
-    "fat": 11,
+    "calories": 210,
+    "protein": 8,
+    "carbs": 19,
+    "fat": 12,
     "tags": [
-      "beef",
-      "cheese",
-      "salad"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Salade Steak & Cheese — Subway France"
+      "Salade Veggie Quinoa Kale — Subway France"
     ]
   },
   {
-    "id": "fr-sub-cookie-pepites-chocolat",
-    "name": "Cookie Pépites Chocolat",
+    "id": "fr-sub-salade-galette-de-legumes-vegan",
+    "name": "Salade Galette de legumes Vegan",
+    "brand": "Subway France",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 200,
+    "protein": 10,
+    "carbs": 17,
+    "fat": 10,
+    "tags": [
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Galette de legumes Vegan — Subway France"
+    ]
+  },
+  {
+    "id": "fr-sub-cookie-pepites-de-chocolat",
+    "name": "Cookie Pepites de Chocolat",
     "brand": "Subway France",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 215,
+    "calories": 220,
     "protein": 2,
-    "carbs": 29,
+    "carbs": 30,
     "fat": 10,
-    "tags": [
-      "dessert"
-    ],
+    "tags": [],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Cookie Pépites Chocolat — Subway France"
+      "Cookie Pepites de Chocolat — Subway France"
     ]
   },
   {
@@ -10438,12 +12314,10 @@ module.exports = [
       "snack"
     ],
     "calories": 220,
-    "protein": 3,
-    "carbs": 28,
-    "fat": 11,
-    "tags": [
-      "dessert"
-    ],
+    "protein": 2,
+    "carbs": 30,
+    "fat": 10,
+    "tags": [],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
@@ -10451,8 +12325,8 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-sub-cookie-avoine-raisins",
-    "name": "Cookie Avoine & Raisins",
+    "id": "fr-sub-cookie-avoine-et-raisins",
+    "name": "Cookie Avoine et Raisins",
     "brand": "Subway France",
     "type": [
       "dessert",
@@ -10461,35 +12335,12 @@ module.exports = [
     "calories": 200,
     "protein": 3,
     "carbs": 31,
-    "fat": 7,
-    "tags": [
-      "dessert"
-    ],
+    "fat": 8,
+    "tags": [],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Cookie Avoine & Raisins — Subway France"
-    ]
-  },
-  {
-    "id": "fr-sub-cookie-macadamia",
-    "name": "Cookie Macadamia",
-    "brand": "Subway France",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 230,
-    "protein": 3,
-    "carbs": 29,
-    "fat": 12,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Cookie Macadamia — Subway France"
+      "Cookie Avoine et Raisins — Subway France"
     ]
   },
   {
@@ -10500,13 +12351,11 @@ module.exports = [
       "dessert",
       "snack"
     ],
-    "calories": 235,
+    "calories": 230,
     "protein": 3,
     "carbs": 31,
     "fat": 11,
-    "tags": [
-      "dessert"
-    ],
+    "tags": [],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
@@ -10514,628 +12363,1102 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-sub-muffin-chocolat",
-    "name": "Muffin Chocolat",
-    "brand": "Subway France",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 380,
-    "protein": 5,
-    "carbs": 47,
-    "fat": 19,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Muffin Chocolat — Subway France"
-    ]
-  },
-  {
-    "id": "fr-paul-sandwich-jambon-beurre",
-    "name": "Sandwich Jambon Beurre",
-    "brand": "Paul",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 430,
-    "protein": 17,
-    "carbs": 50,
-    "fat": 17,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Sandwich Jambon Beurre — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-sandwich-jambon-emmental",
-    "name": "Sandwich Jambon Emmental",
-    "brand": "Paul",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 495,
-    "protein": 22,
-    "carbs": 50,
-    "fat": 21,
-    "tags": [
-      "cheese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Sandwich Jambon Emmental — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-sandwich-poulet-crudites",
-    "name": "Sandwich Poulet Crudités",
-    "brand": "Paul",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 440,
-    "protein": 22,
-    "carbs": 49,
-    "fat": 16,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Sandwich Poulet Crudités — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-sandwich-thon-crudites",
-    "name": "Sandwich Thon Crudités",
-    "brand": "Paul",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 460,
-    "protein": 18,
-    "carbs": 48,
-    "fat": 21,
-    "tags": [
-      "fish"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Sandwich Thon Crudités — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-sandwich-uf-crudites",
-    "name": "Sandwich Œuf Crudités",
-    "brand": "Paul",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 420,
-    "protein": 16,
-    "carbs": 50,
-    "fat": 17,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Sandwich Œuf Crudités — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-sandwich-saumon-concombre",
-    "name": "Sandwich Saumon Concombre",
-    "brand": "Paul",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 475,
-    "protein": 22,
-    "carbs": 50,
-    "fat": 21,
-    "tags": [
-      "fish"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Sandwich Saumon Concombre — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-sandwich-mozzarella-tomate",
-    "name": "Sandwich Mozzarella Tomate",
-    "brand": "Paul",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 475,
-    "protein": 18,
-    "carbs": 52,
-    "fat": 21,
-    "tags": [
-      "vegetarian",
-      "cheese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Sandwich Mozzarella Tomate — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-sandwich-poulet-curry",
-    "name": "Sandwich Poulet Curry",
-    "brand": "Paul",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 460,
-    "protein": 22,
-    "carbs": 50,
-    "fat": 17,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Sandwich Poulet Curry — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-croque-monsieur",
-    "name": "Croque-Monsieur",
-    "brand": "Paul",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 485,
-    "protein": 26,
-    "carbs": 38,
-    "fat": 24,
-    "tags": [
-      "cheese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Croque-Monsieur — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-croque-madame",
-    "name": "Croque-Madame",
-    "brand": "Paul",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 560,
-    "protein": 30,
-    "carbs": 38,
-    "fat": 30,
-    "tags": [
-      "cheese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Croque-Madame — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-quiche-lorraine",
-    "name": "Quiche Lorraine",
-    "brand": "Paul",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 440,
-    "protein": 17,
-    "carbs": 32,
-    "fat": 27,
-    "tags": [
-      "cheese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Quiche Lorraine — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-quiche-saumon-epinard",
-    "name": "Quiche Saumon Épinard",
-    "brand": "Paul",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 430,
-    "protein": 18,
-    "carbs": 30,
-    "fat": 26,
-    "tags": [
-      "fish"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Quiche Saumon Épinard — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-quiche-poulet-champignons",
-    "name": "Quiche Poulet Champignons",
-    "brand": "Paul",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 420,
-    "protein": 19,
-    "carbs": 30,
-    "fat": 24,
-    "tags": [
-      "chicken"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Quiche Poulet Champignons — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-salade-cesar-poulet",
-    "name": "Salade César Poulet",
+    "id": "fr-paul-baguette-blanche-250g",
+    "name": "Baguette Blanche 250g",
     "brand": "Paul",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 355,
+    "calories": 660,
     "protein": 22,
-    "carbs": 24,
-    "fat": 19,
+    "carbs": 130,
+    "fat": 5,
     "tags": [
-      "chicken",
-      "salad"
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Salade César Poulet — Paul"
+      "Baguette Blanche 250g — Paul"
     ]
   },
   {
-    "id": "fr-paul-salade-perigourdine",
-    "name": "Salade Périgourdine",
+    "id": "fr-paul-baguette-campagne-meule-250g",
+    "name": "Baguette Campagne Meule 250g",
     "brand": "Paul",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 415,
+    "calories": 640,
+    "protein": 22,
+    "carbs": 128,
+    "fat": 5,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Baguette Campagne Meule 250g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-baguette-multigraine-250g",
+    "name": "Baguette Multigraine 250g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 660,
     "protein": 24,
-    "carbs": 22,
-    "fat": 25,
+    "carbs": 120,
+    "fat": 10,
     "tags": [
-      "salad"
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Salade Périgourdine — Paul"
+      "Baguette Multigraine 250g — Paul"
     ]
   },
   {
-    "id": "fr-paul-salade-nicoise",
-    "name": "Salade Niçoise",
+    "id": "fr-paul-baguette-multigraine-figue-250g",
+    "name": "Baguette Multigraine Figue 250g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 690,
+    "protein": 22,
+    "carbs": 130,
+    "fat": 10,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Baguette Multigraine Figue 250g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-baguette-paul-250g",
+    "name": "Baguette Paul 250g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 650,
+    "protein": 22,
+    "carbs": 130,
+    "fat": 5,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Baguette Paul 250g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-baguette-paul-pavot",
+    "name": "Baguette Paul Pavot",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 660,
+    "protein": 22,
+    "carbs": 128,
+    "fat": 7,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Baguette Paul Pavot — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-baguette-paul-sesame",
+    "name": "Baguette Paul Sésame",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 670,
+    "protein": 22,
+    "carbs": 128,
+    "fat": 8,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Baguette Paul Sésame — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-benoiton-charlemagne-fromage",
+    "name": "Bénoiton Charlemagne Fromage",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 280,
+    "protein": 10,
+    "carbs": 38,
+    "fat": 9,
+    "tags": [
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Bénoiton Charlemagne Fromage — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-benoiton-complet-muesli-50g",
+    "name": "Bénoiton Complet Muesli 50g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 160,
+    "protein": 5,
+    "carbs": 28,
+    "fat": 3,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Bénoiton Complet Muesli 50g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-benoiton-flamand-huile-lardon-50g",
+    "name": "Bénoiton Flamand Huile Lardon 50g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 200,
+    "protein": 6,
+    "carbs": 22,
+    "fat": 9,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Bénoiton Flamand Huile Lardon 50g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-benoiton-huile-2-olive-50g",
+    "name": "Bénoiton Huile 2 Olive 50g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 170,
+    "protein": 5,
+    "carbs": 26,
+    "fat": 5,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Bénoiton Huile 2 Olive 50g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-benoiton-huile-lardon-50g",
+    "name": "Bénoiton Huile Lardon 50g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 200,
+    "protein": 6,
+    "carbs": 22,
+    "fat": 9,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Bénoiton Huile Lardon 50g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-benoiton-multigraine-figue-50g",
+    "name": "Bénoiton Multigraine Figue 50g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 165,
+    "protein": 5,
+    "carbs": 28,
+    "fat": 3,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Bénoiton Multigraine Figue 50g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-bretzel-fromage-gratine",
+    "name": "Bretzel Fromage Gratiné",
     "brand": "Paul",
     "type": [
       "snack",
       "lunch"
     ],
     "calories": 320,
-    "protein": 22,
-    "carbs": 16,
-    "fat": 17,
+    "protein": 12,
+    "carbs": 38,
+    "fat": 12,
     "tags": [
-      "fish",
-      "salad"
+      "cheese",
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Salade Niçoise — Paul"
+      "Bretzel Fromage Gratiné — Paul"
     ]
   },
   {
-    "id": "fr-paul-salade-saumon-quinoa",
-    "name": "Salade Saumon Quinoa",
+    "id": "fr-paul-bretzel-nature",
+    "name": "Bretzel Nature",
     "brand": "Paul",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 385,
-    "protein": 24,
+    "calories": 240,
+    "protein": 7,
+    "carbs": 48,
+    "fat": 2,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Bretzel Nature — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-bretzel-nature-sale",
+    "name": "Bretzel Nature Salé",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 250,
+    "protein": 7,
+    "carbs": 48,
+    "fat": 3,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Bretzel Nature Salé — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-demi-baguette-pate-beurre-confiture",
+    "name": "Demi Baguette Pâté + Beurre + Confiture",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 480,
+    "protein": 14,
+    "carbs": 70,
+    "fat": 16,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Demi Baguette Pâté + Beurre + Confiture — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-focaccia-veggie-part",
+    "name": "Focaccia Veggie Part",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 320,
+    "protein": 9,
+    "carbs": 45,
+    "fat": 11,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Focaccia Veggie Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fougasse-huile-fromage-200g",
+    "name": "Fougasse Huile Fromage 200g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 540,
+    "protein": 16,
+    "carbs": 65,
+    "fat": 22,
+    "tags": [
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fougasse Huile Fromage 200g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fougasse-huile-lardon-200g",
+    "name": "Fougasse Huile Lardon 200g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 580,
+    "protein": 18,
+    "carbs": 60,
+    "fat": 26,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fougasse Huile Lardon 200g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fougasse-huile-2-olive-200g",
+    "name": "Fougasse Huile 2 Olive 200g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 520,
+    "protein": 14,
+    "carbs": 65,
+    "fat": 20,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fougasse Huile 2 Olive 200g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pain-complet-400g",
+    "name": "Pain Complet 400g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 1000,
+    "protein": 36,
+    "carbs": 200,
+    "fat": 6,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pain Complet 400g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pain-facon-naan-fromage",
+    "name": "Pain Façon Naan Fromage",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 380,
+    "protein": 14,
+    "carbs": 48,
+    "fat": 14,
+    "tags": [
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pain Façon Naan Fromage — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pain-lg-moule-charlemagne-400g",
+    "name": "Pain LG Moule Charlemagne 400g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 1020,
+    "protein": 36,
+    "carbs": 200,
+    "fat": 7,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pain LG Moule Charlemagne 400g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pain-lg-moule-flamand-noix-400g",
+    "name": "Pain LG Moule Flamand Noix 400g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 1100,
+    "protein": 36,
+    "carbs": 190,
+    "fat": 22,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pain LG Moule Flamand Noix 400g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pain-lg-moule-paul-noix-400g",
+    "name": "Pain LG Moule Paul Noix 400g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 1100,
+    "protein": 36,
+    "carbs": 190,
+    "fat": 22,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pain LG Moule Paul Noix 400g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pain-lg-nordique-300g",
+    "name": "Pain LG Nordique 300g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 750,
+    "protein": 28,
+    "carbs": 140,
+    "fat": 8,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pain LG Nordique 300g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pain-multigraine-400g",
+    "name": "Pain Multigraine 400g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 1040,
+    "protein": 38,
+    "carbs": 190,
+    "fat": 14,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pain Multigraine 400g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pain-multigraine-abricot-400g",
+    "name": "Pain Multigraine Abricot 400g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 1080,
+    "protein": 36,
+    "carbs": 200,
+    "fat": 14,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pain Multigraine Abricot 400g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pain-seigle-levain-400g",
+    "name": "Pain Seigle Levain 400g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 920,
+    "protein": 32,
+    "carbs": 190,
+    "fat": 4,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pain Seigle Levain 400g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pain-toast-250g",
+    "name": "Pain Toast 250g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 680,
+    "protein": 22,
+    "carbs": 130,
+    "fat": 8,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pain Toast 250g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-torsade-2-olives",
+    "name": "Torsade 2 Olives",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 280,
+    "protein": 7,
+    "carbs": 32,
+    "fat": 13,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Torsade 2 Olives — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-torsade-coppa-parmesan",
+    "name": "Torsade Coppa Parmesan",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 320,
+    "protein": 12,
     "carbs": 30,
     "fat": 17,
     "tags": [
-      "fish",
-      "salad"
+      "cheese",
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Salade Saumon Quinoa — Paul"
+      "Torsade Coppa Parmesan — Paul"
     ]
   },
   {
-    "id": "fr-paul-veloute-legumes",
-    "name": "Velouté Légumes",
+    "id": "fr-paul-torsade-fromage-lardon-oignon",
+    "name": "Torsade Fromage Lardon Oignon",
     "brand": "Paul",
     "type": [
-      "lunch",
-      "dinner"
+      "snack",
+      "lunch"
     ],
-    "calories": 155,
-    "protein": 5,
-    "carbs": 20,
-    "fat": 6,
+    "calories": 340,
+    "protein": 13,
+    "carbs": 30,
+    "fat": 19,
     "tags": [
-      "vegetarian"
+      "cheese",
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Velouté Légumes — Paul"
+      "Torsade Fromage Lardon Oignon — Paul"
     ]
   },
   {
-    "id": "fr-paul-soupe-tomate-basilic",
-    "name": "Soupe Tomate Basilic",
+    "id": "fr-paul-pain-charlemagne-400g",
+    "name": "Pain Charlemagne 400g",
     "brand": "Paul",
     "type": [
-      "lunch",
-      "dinner"
+      "snack",
+      "lunch"
     ],
-    "calories": 145,
-    "protein": 4,
-    "carbs": 22,
-    "fat": 5,
+    "calories": 1020,
+    "protein": 36,
+    "carbs": 200,
+    "fat": 7,
     "tags": [
-      "vegetarian"
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Soupe Tomate Basilic — Paul"
+      "Pain Charlemagne 400g — Paul"
     ]
   },
   {
-    "id": "fr-paul-croissant",
-    "name": "Croissant",
+    "id": "fr-paul-pain-epices-410g",
+    "name": "Pain Épices 410g",
     "brand": "Paul",
     "type": [
-      "breakfast"
+      "snack",
+      "lunch"
     ],
-    "calories": 225,
-    "protein": 4,
-    "carbs": 25,
+    "calories": 1050,
+    "protein": 14,
+    "carbs": 220,
     "fat": 12,
     "tags": [
-      "breakfast"
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Croissant — Paul"
+      "Pain Épices 410g — Paul"
     ]
   },
   {
-    "id": "fr-paul-pain-au-chocolat",
-    "name": "Pain au Chocolat",
+    "id": "fr-paul-pain-lg-moule-mie-300g",
+    "name": "Pain LG Moule Mie 300g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 760,
+    "protein": 26,
+    "carbs": 145,
+    "fat": 8,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pain LG Moule Mie 300g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pain-lg-moule-muesli-400g",
+    "name": "Pain LG Moule Muesli 400g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 1080,
+    "protein": 32,
+    "carbs": 195,
+    "fat": 16,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pain LG Moule Muesli 400g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pain-rd-multigraine-figue-300g",
+    "name": "Pain RD Multigraine Figue 300g",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 800,
+    "protein": 26,
+    "carbs": 150,
+    "fat": 9,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pain RD Multigraine Figue 300g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-amandine-cassis",
+    "name": "Amandine Cassis",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 6,
+    "carbs": 42,
+    "fat": 21,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Amandine Cassis — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-amandine-poire",
+    "name": "Amandine Poire",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 6,
+    "carbs": 42,
+    "fat": 21,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Amandine Poire — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-bircher-muesli-chia-fruits-rouges",
+    "name": "Bircher Muesli Chia Fruits Rouges",
     "brand": "Paul",
     "type": [
       "breakfast"
     ],
     "calories": 280,
-    "protein": 5,
-    "carbs": 31,
-    "fat": 14,
+    "protein": 8,
+    "carbs": 45,
+    "fat": 8,
     "tags": [
-      "breakfast"
+      "vegetarian",
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Pain au Chocolat — Paul"
+      "Bircher Muesli Chia Fruits Rouges — Paul"
     ]
   },
   {
-    "id": "fr-paul-pain-aux-raisins",
-    "name": "Pain aux Raisins",
-    "brand": "Paul",
-    "type": [
-      "breakfast"
-    ],
-    "calories": 310,
-    "protein": 5,
-    "carbs": 39,
-    "fat": 13,
-    "tags": [
-      "breakfast"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Pain aux Raisins — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-brioche-au-sucre",
-    "name": "Brioche au Sucre",
-    "brand": "Paul",
-    "type": [
-      "breakfast"
-    ],
-    "calories": 270,
-    "protein": 5,
-    "carbs": 35,
-    "fat": 11,
-    "tags": [
-      "breakfast"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Brioche au Sucre — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-chausson-aux-pommes",
-    "name": "Chausson aux Pommes",
-    "brand": "Paul",
-    "type": [
-      "breakfast"
-    ],
-    "calories": 315,
-    "protein": 4,
-    "carbs": 37,
-    "fat": 16,
-    "tags": [
-      "breakfast"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Chausson aux Pommes — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-tartelette-aux-fraises",
-    "name": "Tartelette aux Fraises",
+    "id": "fr-paul-cake-choco-pepite-part",
+    "name": "Cake Choco Pépite Part",
     "brand": "Paul",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 285,
-    "protein": 4,
+    "calories": 380,
+    "protein": 5,
+    "carbs": 48,
+    "fat": 19,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cake Choco Pépite Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-cheese-cake-nature-part",
+    "name": "Cheese Cake Nature Part",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 7,
     "carbs": 38,
-    "fat": 12,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Tartelette aux Fraises — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-tartelette-aux-fruits",
-    "name": "Tartelette aux Fruits",
-    "brand": "Paul",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 295,
-    "protein": 4,
-    "carbs": 39,
-    "fat": 12,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Tartelette aux Fruits — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-tarte-citron-meringuee",
-    "name": "Tarte Citron Meringuée",
-    "brand": "Paul",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 360,
-    "protein": 5,
-    "carbs": 47,
-    "fat": 16,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Tarte Citron Meringuée — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-tarte-au-chocolat",
-    "name": "Tarte au Chocolat",
-    "brand": "Paul",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 410,
-    "protein": 6,
-    "carbs": 44,
     "fat": 22,
     "tags": [
-      "dessert"
+      "cheese",
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tarte au Chocolat — Paul"
+      "Cheese Cake Nature Part — Paul"
     ]
   },
   {
-    "id": "fr-paul-eclair-chocolat",
-    "name": "Éclair Chocolat",
+    "id": "fr-paul-coeur-feuillete-framboise",
+    "name": "Coeur Feuilleté Framboise",
     "brand": "Paul",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 285,
-    "protein": 5,
-    "carbs": 35,
-    "fat": 13,
+    "calories": 320,
+    "protein": 4,
+    "carbs": 38,
+    "fat": 17,
     "tags": [
-      "dessert"
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Éclair Chocolat — Paul"
+      "Coeur Feuilleté Framboise — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-compotee-peche-crumble",
+    "name": "Compotée Pêche Crumble",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 290,
+    "protein": 3,
+    "carbs": 50,
+    "fat": 9,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Compotée Pêche Crumble — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-coupe-ananas-120g",
+    "name": "Coupe Ananas 120g",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 60,
+    "protein": 1,
+    "carbs": 14,
+    "fat": 0,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Coupe Ananas 120g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-coupe-fraise",
+    "name": "Coupe Fraise",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 50,
+    "protein": 1,
+    "carbs": 12,
+    "fat": 0,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Coupe Fraise — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-coupelle-kiwi",
+    "name": "Coupelle Kiwi",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 70,
+    "protein": 1,
+    "carbs": 16,
+    "fat": 0,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Coupelle Kiwi — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-coupelle-pasteque",
+    "name": "Coupelle Pastèque",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 50,
+    "protein": 1,
+    "carbs": 12,
+    "fat": 0,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Coupelle Pastèque — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-crepe-confiture-abricot",
+    "name": "Crêpe Confiture Abricot",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 240,
+    "protein": 5,
+    "carbs": 40,
+    "fat": 7,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crêpe Confiture Abricot — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-crepe-pate-a-tartiner",
+    "name": "Crêpe Pâte à Tartiner",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 6,
+    "carbs": 42,
+    "fat": 14,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crêpe Pâte à Tartiner — Paul"
     ]
   },
   {
@@ -11146,12 +13469,12 @@ module.exports = [
       "dessert",
       "snack"
     ],
-    "calories": 270,
+    "calories": 280,
     "protein": 5,
-    "carbs": 33,
-    "fat": 12,
+    "carbs": 32,
+    "fat": 14,
     "tags": [
-      "dessert"
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
@@ -11160,334 +13483,4320 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-paul-religieuse-chocolat",
-    "name": "Religieuse Chocolat",
+    "id": "fr-paul-eclair-caramel",
+    "name": "Éclair Caramel",
     "brand": "Paul",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 385,
-    "protein": 7,
-    "carbs": 42,
-    "fat": 19,
+    "calories": 290,
+    "protein": 5,
+    "carbs": 34,
+    "fat": 15,
     "tags": [
-      "dessert"
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Religieuse Chocolat — Paul"
+      "Éclair Caramel — Paul"
     ]
   },
   {
-    "id": "fr-paul-mille-feuille",
-    "name": "Mille-Feuille",
+    "id": "fr-paul-eclair-fraise-creme-fouettee",
+    "name": "Éclair Fraise Crème Fouettée",
     "brand": "Paul",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 425,
-    "protein": 6,
-    "carbs": 46,
-    "fat": 23,
+    "calories": 290,
+    "protein": 5,
+    "carbs": 32,
+    "fat": 15,
     "tags": [
-      "dessert"
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Mille-Feuille — Paul"
+      "Éclair Fraise Crème Fouettée — Paul"
     ]
   },
   {
-    "id": "fr-paul-macaron-1",
-    "name": "Macaron (1)",
-    "brand": "Paul",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 95,
-    "protein": 1,
-    "carbs": 13,
-    "fat": 4,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Macaron (1) — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-madeleine",
-    "name": "Madeleine",
-    "brand": "Paul",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 95,
-    "protein": 1,
-    "carbs": 12,
-    "fat": 5,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Madeleine — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-cookie-chocolat",
-    "name": "Cookie Chocolat",
-    "brand": "Paul",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 215,
-    "protein": 3,
-    "carbs": 28,
-    "fat": 9,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Cookie Chocolat — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-brownie",
-    "name": "Brownie",
-    "brand": "Paul",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 230,
-    "protein": 3,
-    "carbs": 29,
-    "fat": 11,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Brownie — Paul"
-    ]
-  },
-  {
-    "id": "fr-paul-tarte-tatin-part",
-    "name": "Tarte Tatin (part)",
+    "id": "fr-paul-eclair-praline",
+    "name": "Éclair Praline",
     "brand": "Paul",
     "type": [
       "dessert",
       "snack"
     ],
     "calories": 320,
-    "protein": 3,
-    "carbs": 43,
-    "fat": 15,
+    "protein": 6,
+    "carbs": 32,
+    "fat": 18,
     "tags": [
-      "dessert"
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tarte Tatin (part) — Paul"
+      "Éclair Praline — Paul"
     ]
   },
   {
-    "id": "fr-paul-flan-patissier-part",
-    "name": "Flan Pâtissier (part)",
+    "id": "fr-paul-eclair-vanille",
+    "name": "Éclair Vanille",
     "brand": "Paul",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 295,
-    "protein": 6,
-    "carbs": 35,
+    "calories": 280,
+    "protein": 5,
+    "carbs": 32,
     "fat": 14,
     "tags": [
-      "dessert"
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Flan Pâtissier (part) — Paul"
+      "Éclair Vanille — Paul"
     ]
   },
   {
-    "id": "fr-paul-mini-quiche-lorraine",
-    "name": "Mini Quiche Lorraine",
+    "id": "fr-paul-entremets-3-chocolats",
+    "name": "Entremets 3 Chocolats",
     "brand": "Paul",
     "type": [
-      "snack",
-      "lunch"
+      "dessert",
+      "snack"
     ],
-    "calories": 170,
+    "calories": 360,
     "protein": 6,
-    "carbs": 12,
-    "fat": 11,
+    "carbs": 38,
+    "fat": 20,
     "tags": [
-      "cheese"
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Mini Quiche Lorraine — Paul"
+      "Entremets 3 Chocolats — Paul"
     ]
   },
   {
-    "id": "fr-paul-mini-pizza",
-    "name": "Mini Pizza",
+    "id": "fr-paul-entremets-foret-noire",
+    "name": "Entremets Forêt Noire",
     "brand": "Paul",
     "type": [
-      "snack",
-      "lunch"
+      "dessert",
+      "snack"
+    ],
+    "calories": 360,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 20,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Entremets Forêt Noire — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-feuillete-poire",
+    "name": "Feuilleté Poire",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 4,
+    "carbs": 36,
+    "fat": 18,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Feuilleté Poire — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-feuillete-pomme",
+    "name": "Feuilleté Pomme",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 4,
+    "carbs": 38,
+    "fat": 17,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Feuilleté Pomme — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-feuillete-peche",
+    "name": "Feuilleté Pêche",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 4,
+    "carbs": 38,
+    "fat": 17,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Feuilleté Pêche — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-financier-40g",
+    "name": "Financier 40g",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
     ],
     "calories": 180,
-    "protein": 7,
+    "protein": 3,
     "carbs": 18,
-    "fat": 8,
+    "fat": 11,
     "tags": [
-      "cheese"
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Mini Pizza — Paul"
+      "Financier 40g — Paul"
     ]
   },
   {
-    "id": "fr-paul-friand-poulet",
-    "name": "Friand Poulet",
+    "id": "fr-paul-flan-brioche-choco-part",
+    "name": "Flan Brioché Choco Part",
     "brand": "Paul",
     "type": [
-      "snack",
-      "lunch"
+      "dessert",
+      "snack"
     ],
-    "calories": 285,
-    "protein": 9,
-    "carbs": 25,
-    "fat": 16,
+    "calories": 380,
+    "protein": 7,
+    "carbs": 48,
+    "fat": 17,
     "tags": [
-      "chicken"
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Friand Poulet — Paul"
+      "Flan Brioché Choco Part — Paul"
     ]
   },
   {
-    "id": "fr-paul-pain-de-mie-saumon",
-    "name": "Pain de Mie Saumon",
+    "id": "fr-paul-flan-brioche-part",
+    "name": "Flan Brioché Part",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 360,
+    "protein": 7,
+    "carbs": 48,
+    "fat": 16,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Flan Brioché Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-flan-normand-13cm",
+    "name": "Flan Normand 13cm",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 8,
+    "carbs": 50,
+    "fat": 16,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Flan Normand 13cm — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fraisier",
+    "name": "Fraisier",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 340,
+    "protein": 5,
+    "carbs": 42,
+    "fat": 17,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fraisier — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fromage-blanc-granola-myrtille",
+    "name": "Fromage Blanc Granola Myrtille",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 260,
+    "protein": 11,
+    "carbs": 36,
+    "fat": 8,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fromage Blanc Granola Myrtille — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fromage-blanc-framboise-fraiche",
+    "name": "Fromage Blanc Framboise Fraîche",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 220,
+    "protein": 11,
+    "carbs": 30,
+    "fat": 6,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fromage Blanc Framboise Fraîche — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fromage-blanc-granola-miel",
+    "name": "Fromage Blanc Granola Miel",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 280,
+    "protein": 11,
+    "carbs": 40,
+    "fat": 8,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fromage Blanc Granola Miel — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fromage-blanc-pomme-amour",
+    "name": "Fromage Blanc Pomme Amour",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 220,
+    "protein": 10,
+    "carbs": 32,
+    "fat": 6,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fromage Blanc Pomme Amour — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fromage-blanc-bol",
+    "name": "Fromage Blanc Bol",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 180,
+    "protein": 11,
+    "carbs": 22,
+    "fat": 5,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fromage Blanc Bol — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fromage-blanc-cerise",
+    "name": "Fromage Blanc Cerise",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 220,
+    "protein": 11,
+    "carbs": 30,
+    "fat": 6,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fromage Blanc Cerise — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fromage-blanc-fraise-bol",
+    "name": "Fromage Blanc Fraise Bol",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 220,
+    "protein": 11,
+    "carbs": 30,
+    "fat": 6,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fromage Blanc Fraise Bol — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fromage-blanc-fruits-rouges",
+    "name": "Fromage Blanc Fruits Rouges",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 220,
+    "protein": 11,
+    "carbs": 30,
+    "fat": 6,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fromage Blanc Fruits Rouges — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fromage-blanc-citron-yuzu",
+    "name": "Fromage Blanc Citron Yuzu",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 220,
+    "protein": 11,
+    "carbs": 30,
+    "fat": 6,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fromage Blanc Citron Yuzu — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-gaufre-nature",
+    "name": "Gaufre Nature",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 260,
+    "protein": 5,
+    "carbs": 32,
+    "fat": 12,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gaufre Nature — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-macaron-choc-80g",
+    "name": "Macaron Choc 80g",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 6,
+    "carbs": 42,
+    "fat": 14,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Macaron Choc 80g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-macaron-framboise-80g",
+    "name": "Macaron Framboise 80g",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 310,
+    "protein": 5,
+    "carbs": 44,
+    "fat": 13,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Macaron Framboise 80g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-macaron-gourmand-choc",
+    "name": "Macaron Gourmand Choc",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 6,
+    "carbs": 42,
+    "fat": 14,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Macaron Gourmand Choc — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-macaron-gourmand-pistache",
+    "name": "Macaron Gourmand Pistache",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 6,
+    "carbs": 40,
+    "fat": 15,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Macaron Gourmand Pistache — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-macaron-vanille-madagascar-80g",
+    "name": "Macaron Vanille Madagascar 80g",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 310,
+    "protein": 5,
+    "carbs": 44,
+    "fat": 13,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Macaron Vanille Madagascar 80g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-merveilleux-choc-blanc",
+    "name": "Merveilleux Choc Blanc",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 350,
+    "protein": 4,
+    "carbs": 32,
+    "fat": 22,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Merveilleux Choc Blanc — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-millefeuille-cafe",
+    "name": "Millefeuille Café",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 22,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Millefeuille Café — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-millefeuille-choco",
+    "name": "Millefeuille Choco",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 400,
+    "protein": 5,
+    "carbs": 40,
+    "fat": 24,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Millefeuille Choco — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-millefeuille-fraise",
+    "name": "Millefeuille Fraise",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 22,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Millefeuille Fraise — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-millefeuille",
+    "name": "Millefeuille",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 22,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Millefeuille — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-moelleux-choco-part",
+    "name": "Moelleux Choco Part",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 360,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 20,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Moelleux Choco Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-moelleux-citron-part",
+    "name": "Moelleux Citron Part",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 340,
+    "protein": 5,
+    "carbs": 42,
+    "fat": 17,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Moelleux Citron Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pastel-de-nata",
+    "name": "Pastel de Nata",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 280,
+    "protein": 5,
+    "carbs": 28,
+    "fat": 16,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pastel de Nata — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-poirier-choco",
+    "name": "Poirier Choco",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 360,
+    "protein": 5,
+    "carbs": 40,
+    "fat": 20,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Poirier Choco — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-salade-de-fruits-hiver",
+    "name": "Salade de Fruits Hiver",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 110,
+    "protein": 2,
+    "carbs": 26,
+    "fat": 0,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade de Fruits Hiver — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-salade-de-fruits-ete",
+    "name": "Salade de Fruits Été",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 110,
+    "protein": 2,
+    "carbs": 26,
+    "fat": 0,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade de Fruits Été — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-st-honore-choco-cafe-vanille",
+    "name": "St Honoré Choco Café Vanille",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 400,
+    "protein": 6,
+    "carbs": 42,
+    "fat": 23,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "St Honoré Choco Café Vanille — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tarte-abricot-part",
+    "name": "Tarte Abricot Part",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 15,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tarte Abricot Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tarte-fruits-rouges-part",
+    "name": "Tarte Fruits Rouges Part",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 15,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tarte Fruits Rouges Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tarte-myrtille-part",
+    "name": "Tarte Myrtille Part",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 15,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tarte Myrtille Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tarte-rhubarbe-part",
+    "name": "Tarte Rhubarbe Part",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 15,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tarte Rhubarbe Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tartelette-caramel",
+    "name": "Tartelette Caramel",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 350,
+    "protein": 4,
+    "carbs": 40,
+    "fat": 19,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tartelette Caramel — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tartelette-choco",
+    "name": "Tartelette Choco",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 360,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 21,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tartelette Choco — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tartelette-choco-tuile-choco",
+    "name": "Tartelette Choco Tuile Choco",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 5,
+    "carbs": 40,
+    "fat": 22,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tartelette Choco Tuile Choco — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tartelette-fond-sucre-fraise-framboise",
+    "name": "Tartelette Fond Sucré Fraise Framboise",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 15,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tartelette Fond Sucré Fraise Framboise — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tartelette-figue-fraiche",
+    "name": "Tartelette Figue Fraîche",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 15,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tartelette Figue Fraîche — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tartelette-fraise",
+    "name": "Tartelette Fraise",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 310,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 14,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tartelette Fraise — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tartelette-framboise-fraiche",
+    "name": "Tartelette Framboise Fraîche",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 310,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 14,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tartelette Framboise Fraîche — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tartelette-france-9cm",
+    "name": "Tartelette France 9cm",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 15,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tartelette France 9cm — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tartelette-myrtille-13cm",
+    "name": "Tartelette Myrtille 13cm",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 360,
+    "protein": 5,
+    "carbs": 48,
+    "fat": 16,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tartelette Myrtille 13cm — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tartelette-peche-fraiche-9cm",
+    "name": "Tartelette Pêche Fraîche 9cm",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 15,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tartelette Pêche Fraîche 9cm — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tartelette-sucre-praline",
+    "name": "Tartelette Sucre Praline",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 350,
+    "protein": 5,
+    "carbs": 40,
+    "fat": 19,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tartelette Sucre Praline — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tartelette-sable-breton-pomme",
+    "name": "Tartelette Sablé Breton Pomme",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 340,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 17,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tartelette Sablé Breton Pomme — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tropezienne-fraise",
+    "name": "Tropézienne Fraise",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 340,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 18,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tropézienne Fraise — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tropezienne-framboise",
+    "name": "Tropézienne Framboise",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 340,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 18,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tropézienne Framboise — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-verrine-charlotte-fraise",
+    "name": "Verrine Charlotte Fraise",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 280,
+    "protein": 4,
+    "carbs": 36,
+    "fat": 13,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Verrine Charlotte Fraise — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-yaourt-vanille-paul-125g",
+    "name": "Yaourt Vanille Paul 125g",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 130,
+    "protein": 5,
+    "carbs": 18,
+    "fat": 4,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Yaourt Vanille Paul 125g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-amandine-nature",
+    "name": "Amandine Nature",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 360,
+    "protein": 6,
+    "carbs": 40,
+    "fat": 20,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Amandine Nature — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-anglaise-abricot",
+    "name": "Anglaise Abricot",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 15,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Anglaise Abricot — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-cake-citron-part",
+    "name": "Cake Citron Part",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 360,
+    "protein": 5,
+    "carbs": 46,
+    "fat": 17,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cake Citron Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-cheese-cake-caramel-part",
+    "name": "Cheese Cake Caramel Part",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 400,
+    "protein": 7,
+    "carbs": 40,
+    "fat": 23,
+    "tags": [
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cheese Cake Caramel Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-coffret-12-mini-macarons",
+    "name": "Coffret 12 Mini Macarons",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 600,
+    "protein": 9,
+    "carbs": 80,
+    "fat": 28,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Coffret 12 Mini Macarons — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-coupelle-melon",
+    "name": "Coupelle Melon",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 50,
+    "protein": 1,
+    "carbs": 12,
+    "fat": 0,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Coupelle Melon — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-crepe-confiture-fraise",
+    "name": "Crêpe Confiture Fraise",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 240,
+    "protein": 5,
+    "carbs": 40,
+    "fat": 7,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crêpe Confiture Fraise — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-crepe-sucre",
+    "name": "Crêpe Sucre",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 200,
+    "protein": 5,
+    "carbs": 36,
+    "fat": 5,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crêpe Sucre — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-delice-framboise",
+    "name": "Délice Framboise",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 16,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Délice Framboise — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-dessert-coco-fruits-rouges",
+    "name": "Dessert Coco Fruits Rouges",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 240,
+    "protein": 4,
+    "carbs": 30,
+    "fat": 11,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Dessert Coco Fruits Rouges — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-eclair-choc",
+    "name": "Éclair Choc",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 300,
+    "protein": 5,
+    "carbs": 32,
+    "fat": 16,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Éclair Choc — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-eclair-framboise-creme-fouettee",
+    "name": "Éclair Framboise Crème Fouettée",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 290,
+    "protein": 5,
+    "carbs": 32,
+    "fat": 15,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Éclair Framboise Crème Fouettée — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-eclair-framboise-fondant",
+    "name": "Éclair Framboise Fondant",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 290,
+    "protein": 5,
+    "carbs": 34,
+    "fat": 14,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Éclair Framboise Fondant — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-eclair-paris-brest",
+    "name": "Éclair Paris Brest",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 7,
+    "carbs": 32,
+    "fat": 24,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Éclair Paris Brest — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-entremets-praline-choco",
+    "name": "Entremets Praline Choco",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 6,
+    "carbs": 38,
+    "fat": 22,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Entremets Praline Choco — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-flan-chocolat-part",
+    "name": "Flan Chocolat Part",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 7,
+    "carbs": 46,
+    "fat": 18,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Flan Chocolat Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-flan-coco-part",
+    "name": "Flan Coco Part",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 360,
+    "protein": 6,
+    "carbs": 46,
+    "fat": 17,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Flan Coco Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-flan-nature-part",
+    "name": "Flan Nature Part",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 340,
+    "protein": 6,
+    "carbs": 46,
+    "fat": 14,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Flan Nature Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-flan-normand-part",
+    "name": "Flan Normand Part",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 8,
+    "carbs": 50,
+    "fat": 16,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Flan Normand Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-framboisier",
+    "name": "Framboisier",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 340,
+    "protein": 5,
+    "carbs": 42,
+    "fat": 17,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Framboisier — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fromage-blanc-kiwi-ananas",
+    "name": "Fromage Blanc Kiwi Ananas",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 220,
+    "protein": 11,
+    "carbs": 32,
+    "fat": 5,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fromage Blanc Kiwi Ananas — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fromage-blanc-mangue-granola",
+    "name": "Fromage Blanc Mangue Granola",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 260,
+    "protein": 11,
+    "carbs": 38,
+    "fat": 7,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fromage Blanc Mangue Granola — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fromage-blanc-peche-crumble",
+    "name": "Fromage Blanc Pêche Crumble",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 280,
+    "protein": 10,
+    "carbs": 40,
+    "fat": 9,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fromage Blanc Pêche Crumble — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fromage-blanc-pomme-caramelisee",
+    "name": "Fromage Blanc Pomme Caramélisée",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 260,
+    "protein": 10,
+    "carbs": 38,
+    "fat": 8,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fromage Blanc Pomme Caramélisée — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fromage-blanc-framboise-bol",
+    "name": "Fromage Blanc Framboise Bol",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 220,
+    "protein": 11,
+    "carbs": 30,
+    "fat": 6,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fromage Blanc Framboise Bol — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-fruit",
+    "name": "Fruit",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 80,
+    "protein": 1,
+    "carbs": 20,
+    "fat": 0,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fruit — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-gaufre-glacage-choc",
+    "name": "Gaufre Glaçage Choc",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 16,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gaufre Glaçage Choc — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-gaufre-pate-a-tartiner",
+    "name": "Gaufre Pâte à Tartiner",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 360,
+    "protein": 6,
+    "carbs": 40,
+    "fat": 19,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gaufre Pâte à Tartiner — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-gaufre-sucre",
+    "name": "Gaufre Sucre",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 280,
+    "protein": 5,
+    "carbs": 34,
+    "fat": 13,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gaufre Sucre — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-kouign-amann",
+    "name": "Kouign Amann",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 5,
+    "carbs": 42,
+    "fat": 21,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Kouign Amann — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-macaron-barbe-papa-80g",
+    "name": "Macaron Barbe Papa 80g",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 310,
+    "protein": 5,
+    "carbs": 44,
+    "fat": 13,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Macaron Barbe Papa 80g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-macaron-cafe-80g",
+    "name": "Macaron Café 80g",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 310,
+    "protein": 5,
+    "carbs": 44,
+    "fat": 13,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Macaron Café 80g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-macaron-coque-framboise-garni",
+    "name": "Macaron Coque Framboise Garni",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 310,
+    "protein": 5,
+    "carbs": 44,
+    "fat": 13,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Macaron Coque Framboise Garni — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-macaron-gourmand-framboise",
+    "name": "Macaron Gourmand Framboise",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 6,
+    "carbs": 42,
+    "fat": 14,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Macaron Gourmand Framboise — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-macaron-pistache-80g",
+    "name": "Macaron Pistache 80g",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 6,
+    "carbs": 40,
+    "fat": 15,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Macaron Pistache 80g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-macaron-praline-noisette-80g",
+    "name": "Macaron Praline Noisette 80g",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 330,
+    "protein": 7,
+    "carbs": 38,
+    "fat": 17,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Macaron Praline Noisette 80g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-madeleine-nature",
+    "name": "Madeleine Nature",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 180,
+    "protein": 3,
+    "carbs": 22,
+    "fat": 9,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Madeleine Nature — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-meringue-nature-100g",
+    "name": "Meringue Nature 100g",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 6,
+    "carbs": 90,
+    "fat": 0,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Meringue Nature 100g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-merveilleux-choc-noir",
+    "name": "Merveilleux Choc Noir",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 360,
+    "protein": 4,
+    "carbs": 32,
+    "fat": 23,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Merveilleux Choc Noir — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-millefeuille-framboise-fraiche",
+    "name": "Millefeuille Framboise Fraîche",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 22,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Millefeuille Framboise Fraîche — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-millefeuille-praline",
+    "name": "Millefeuille Praline",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 400,
+    "protein": 6,
+    "carbs": 38,
+    "fat": 24,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Millefeuille Praline — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-mini-financiers-x10",
+    "name": "Mini Financiers x10",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 360,
+    "protein": 6,
+    "carbs": 36,
+    "fat": 21,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Mini Financiers x10 — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-mousse-choc-vegetale",
+    "name": "Mousse Choc Végétale",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 240,
+    "protein": 4,
+    "carbs": 30,
+    "fat": 12,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Mousse Choc Végétale — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-salade-melon-fraise",
+    "name": "Salade Melon Fraise",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 90,
+    "protein": 2,
+    "carbs": 22,
+    "fat": 0,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Melon Fraise — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tarte-citron-meringuee",
+    "name": "Tarte Citron Meringuée",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 340,
+    "protein": 5,
+    "carbs": 46,
+    "fat": 15,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tarte Citron Meringuée — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tarte-citron-part",
+    "name": "Tarte Citron Part",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 5,
+    "carbs": 42,
+    "fat": 14,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tarte Citron Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-crepe-roulee-cheddar-poulet",
+    "name": "Crêpe Roulée Cheddar Poulet",
     "brand": "Paul",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 310,
-    "protein": 16,
-    "carbs": 27,
-    "fat": 15,
+    "calories": 320,
+    "protein": 18,
+    "carbs": 28,
+    "fat": 14,
     "tags": [
-      "fish"
+      "chicken",
+      "cheese",
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Pain de Mie Saumon — Paul"
+      "Crêpe Roulée Cheddar Poulet — Paul"
     ]
   },
   {
-    "id": "fr-matsuri-maki-saumon-6-pcs",
-    "name": "Maki Saumon (6 pcs)",
+    "id": "fr-paul-croque-tartine-jambon-fromage",
+    "name": "Croque Tartine Jambon Fromage",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 24,
+    "carbs": 42,
+    "fat": 24,
+    "tags": [
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Croque Tartine Jambon Fromage — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-faluche-fromage-crudites",
+    "name": "Faluche Fromage Crudités",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 420,
+    "protein": 16,
+    "carbs": 50,
+    "fat": 17,
+    "tags": [
+      "cheese",
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Faluche Fromage Crudités — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-feuillete-legumes",
+    "name": "Feuilleté Légumes",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 8,
+    "carbs": 38,
+    "fat": 22,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Feuilleté Légumes — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-hot-dog-cheddar",
+    "name": "Hot Dog Cheddar",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 18,
+    "carbs": 42,
+    "fat": 26,
+    "tags": [
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Hot Dog Cheddar — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-hot-dog-feuillete",
+    "name": "Hot Dog Feuilleté",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 520,
+    "protein": 18,
+    "carbs": 42,
+    "fat": 30,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Hot Dog Feuilleté — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-moritz-poulet",
+    "name": "Moritz Poulet",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 440,
+    "protein": 24,
+    "carbs": 48,
+    "fat": 16,
+    "tags": [
+      "chicken",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Moritz Poulet — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-moritz-rosette",
+    "name": "Moritz Rosette",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 460,
+    "protein": 18,
+    "carbs": 48,
+    "fat": 22,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Moritz Rosette — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-moritz-thon",
+    "name": "Moritz Thon",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 420,
+    "protein": 22,
+    "carbs": 48,
+    "fat": 14,
+    "tags": [
+      "fish",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Moritz Thon — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-panini-chevre-mozza",
+    "name": "Panini Chèvre Mozza",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 460,
+    "protein": 18,
+    "carbs": 48,
+    "fat": 22,
+    "tags": [
+      "cheese",
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Panini Chèvre Mozza — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-panini-poulet-mozza",
+    "name": "Panini Poulet Mozza",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 24,
+    "carbs": 48,
+    "fat": 20,
+    "tags": [
+      "chicken",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Panini Poulet Mozza — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-panini-tomate-mozza",
+    "name": "Panini Tomate Mozza",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 440,
+    "protein": 16,
+    "carbs": 50,
+    "fat": 20,
+    "tags": [
+      "cheese",
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Panini Tomate Mozza — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pizza-3-fromages-part",
+    "name": "Pizza 3 Fromages Part",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 16,
+    "carbs": 42,
+    "fat": 17,
+    "tags": [
+      "cheese",
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pizza 3 Fromages Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pizza-flammekueche-part",
+    "name": "Pizza Flammekueche Part",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 360,
+    "protein": 14,
+    "carbs": 38,
+    "fat": 17,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pizza Flammekueche Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pizza-jambon-cru-part",
+    "name": "Pizza Jambon Cru Part",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 18,
+    "carbs": 42,
+    "fat": 16,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pizza Jambon Cru Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pizza-provencale-part",
+    "name": "Pizza Provençale Part",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 350,
+    "protein": 12,
+    "carbs": 44,
+    "fat": 14,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pizza Provençale Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pizza-veggie-part",
+    "name": "Pizza Veggie Part",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 340,
+    "protein": 12,
+    "carbs": 44,
+    "fat": 13,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pizza Veggie Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-plaque-pizza-pissaladiere-part",
+    "name": "Plaque Pizza Pissaladière Part",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 360,
+    "protein": 12,
+    "carbs": 44,
+    "fat": 15,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Plaque Pizza Pissaladière Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-plaque-pizza-provencale-part",
+    "name": "Plaque Pizza Provençale Part",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 350,
+    "protein": 12,
+    "carbs": 44,
+    "fat": 14,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Plaque Pizza Provençale Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-plaque-pizza-royale-part",
+    "name": "Plaque Pizza Royale Part",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 16,
+    "carbs": 42,
+    "fat": 17,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Plaque Pizza Royale Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-quiche-legumes",
+    "name": "Quiche Légumes",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 420,
+    "protein": 14,
+    "carbs": 36,
+    "fat": 24,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Quiche Légumes — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-quiche-lorraine-part",
+    "name": "Quiche Lorraine Part",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 18,
+    "carbs": 36,
+    "fat": 30,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Quiche Lorraine Part — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-salade-coppa-tomate",
+    "name": "Salade Coppa Tomate",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 320,
+    "protein": 18,
+    "carbs": 18,
+    "fat": 20,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Coppa Tomate — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-salade-crevette-avocat-citron",
+    "name": "Salade Crevette Avocat Citron",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 340,
+    "protein": 18,
+    "carbs": 22,
+    "fat": 20,
+    "tags": [
+      "fish",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Crevette Avocat Citron — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-salade-jambon-cru-quinoa-mozzarella",
+    "name": "Salade Jambon Cru Quinoa Mozzarella",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 380,
+    "protein": 22,
+    "carbs": 28,
+    "fat": 20,
+    "tags": [
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Jambon Cru Quinoa Mozzarella — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-salade-jambon-fromage-radis-carotte",
+    "name": "Salade Jambon Fromage Radis Carotte",
+    "brand": "Paul",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 320,
+    "protein": 18,
+    "carbs": 18,
+    "fat": 19,
+    "tags": [
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Jambon Fromage Radis Carotte — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-faluche-poulet-caesar",
+    "name": "Sandwich Faluche Poulet Caesar",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 24,
+    "carbs": 50,
+    "fat": 20,
+    "tags": [
+      "chicken",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Faluche Poulet Caesar — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-atlantique",
+    "name": "Sandwich Atlantique",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 440,
+    "protein": 22,
+    "carbs": 50,
+    "fat": 16,
+    "tags": [
+      "fish",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Atlantique — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-brioche-poulet-graine-avocat",
+    "name": "Sandwich Brioche Poulet Graine Avocat",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 24,
+    "carbs": 48,
+    "fat": 22,
+    "tags": [
+      "chicken",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Brioche Poulet Graine Avocat — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-charlemagne-pavot-coppa-comte-olive",
+    "name": "Sandwich Charlemagne Pavot Coppa Comté Olive",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 22,
+    "carbs": 50,
+    "fat": 22,
+    "tags": [
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Charlemagne Pavot Coppa Comté Olive — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-charlemagne-fromage",
+    "name": "Sandwich Charlemagne Fromage",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 440,
+    "protein": 18,
+    "carbs": 52,
+    "fat": 18,
+    "tags": [
+      "cheese",
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Charlemagne Fromage — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-charlemagne-jambon",
+    "name": "Sandwich Charlemagne Jambon",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 460,
+    "protein": 22,
+    "carbs": 52,
+    "fat": 18,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Charlemagne Jambon — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-charlemagne-thon-mayo-citron",
+    "name": "Sandwich Charlemagne Thon Mayo Citron",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 24,
+    "carbs": 50,
+    "fat": 20,
+    "tags": [
+      "fish",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Charlemagne Thon Mayo Citron — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-chaud-charlemagne-fendu-chevre",
+    "name": "Sandwich Chaud Charlemagne Fendu Chèvre",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 18,
+    "carbs": 50,
+    "fat": 24,
+    "tags": [
+      "cheese",
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Chaud Charlemagne Fendu Chèvre — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-chaud-charlemagne-poulet-marche",
+    "name": "Sandwich Chaud Charlemagne Poulet Marché",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 24,
+    "carbs": 50,
+    "fat": 20,
+    "tags": [
+      "chicken",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Chaud Charlemagne Poulet Marché — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-chaud-charlemagne-saucisse",
+    "name": "Sandwich Chaud Charlemagne Saucisse",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 520,
+    "protein": 22,
+    "carbs": 50,
+    "fat": 26,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Chaud Charlemagne Saucisse — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-chaud-faluche-jambon-fromage-creme",
+    "name": "Sandwich Chaud Faluche Jambon Fromage Crème",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 500,
+    "protein": 22,
+    "carbs": 50,
+    "fat": 24,
+    "tags": [
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Chaud Faluche Jambon Fromage Crème — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-chaud-faluche-poulet-caesar",
+    "name": "Sandwich Chaud Faluche Poulet Caesar",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 24,
+    "carbs": 50,
+    "fat": 20,
+    "tags": [
+      "chicken",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Chaud Faluche Poulet Caesar — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-chaud-faluche-raclette-bacon",
+    "name": "Sandwich Chaud Faluche Raclette Bacon",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 540,
+    "protein": 22,
+    "carbs": 50,
+    "fat": 28,
+    "tags": [
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Chaud Faluche Raclette Bacon — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-chaud-viennois-charlemagne-raclette",
+    "name": "Sandwich Chaud Viennois Charlemagne Raclette",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 540,
+    "protein": 22,
+    "carbs": 52,
+    "fat": 28,
+    "tags": [
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Chaud Viennois Charlemagne Raclette — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-curcuma-sesame-falafels",
+    "name": "Sandwich Curcuma Sésame Falafels",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 440,
+    "protein": 16,
+    "carbs": 56,
+    "fat": 17,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Curcuma Sésame Falafels — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-faluche-ronde-nicoise-thon",
+    "name": "Sandwich Faluche Ronde Niçoise Thon",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 460,
+    "protein": 22,
+    "carbs": 48,
+    "fat": 20,
+    "tags": [
+      "fish",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Faluche Ronde Niçoise Thon — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-graine-chevre-miel-noix",
+    "name": "Sandwich Graine Chèvre Miel Noix",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 460,
+    "protein": 16,
+    "carbs": 50,
+    "fat": 22,
+    "tags": [
+      "cheese",
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Graine Chèvre Miel Noix — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-graine-poulet",
+    "name": "Sandwich Graine Poulet",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 460,
+    "protein": 24,
+    "carbs": 50,
+    "fat": 18,
+    "tags": [
+      "chicken",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Graine Poulet — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-meule-jambon-comte",
+    "name": "Sandwich Meule Jambon Comté",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 22,
+    "carbs": 50,
+    "fat": 22,
+    "tags": [
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Meule Jambon Comté — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-nordique-saumon-avocat",
+    "name": "Sandwich Nordique Saumon Avocat",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 460,
+    "protein": 22,
+    "carbs": 48,
+    "fat": 20,
+    "tags": [
+      "fish",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Nordique Saumon Avocat — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-polka-mini-2-fromages",
+    "name": "Sandwich Polka Mini 2 Fromages",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 380,
+    "protein": 14,
+    "carbs": 42,
+    "fat": 17,
+    "tags": [
+      "cheese",
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Polka Mini 2 Fromages — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-polka-olive-jambon-cru-tomate",
+    "name": "Sandwich Polka Olive Jambon Cru Tomate",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 460,
+    "protein": 20,
+    "carbs": 50,
+    "fat": 20,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Polka Olive Jambon Cru Tomate — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-petit-pain-charlemagne-fromage",
+    "name": "Sandwich Petit Pain Charlemagne Fromage",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 320,
+    "protein": 14,
+    "carbs": 36,
+    "fat": 14,
+    "tags": [
+      "cheese",
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Petit Pain Charlemagne Fromage — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-petit-pain-lait-camembert",
+    "name": "Sandwich Petit Pain Lait Camembert",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 340,
+    "protein": 14,
+    "carbs": 36,
+    "fat": 16,
+    "tags": [
+      "cheese",
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Petit Pain Lait Camembert — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-petit-pain-lait-chevre",
+    "name": "Sandwich Petit Pain Lait Chèvre",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 340,
+    "protein": 14,
+    "carbs": 36,
+    "fat": 16,
+    "tags": [
+      "cheese",
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Petit Pain Lait Chèvre — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-petit-pain-lait-poulet",
+    "name": "Sandwich Petit Pain Lait Poulet",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 340,
+    "protein": 18,
+    "carbs": 36,
+    "fat": 14,
+    "tags": [
+      "chicken",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Petit Pain Lait Poulet — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-petit-pain-lait-rosette",
+    "name": "Sandwich Petit Pain Lait Rosette",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 360,
+    "protein": 14,
+    "carbs": 36,
+    "fat": 18,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Petit Pain Lait Rosette — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-sesame-camembert-noix",
+    "name": "Sandwich Sésame Camembert Noix",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 460,
+    "protein": 16,
+    "carbs": 50,
+    "fat": 22,
+    "tags": [
+      "cheese",
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Sésame Camembert Noix — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sandwich-thon-sarrasin",
+    "name": "Sandwich Thon Sarrasin",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 440,
+    "protein": 22,
+    "carbs": 48,
+    "fat": 16,
+    "tags": [
+      "fish",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sandwich Thon Sarrasin — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tourte-saumon-brocolis",
+    "name": "Tourte Saumon Brocolis",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 460,
+    "protein": 22,
+    "carbs": 40,
+    "fat": 24,
+    "tags": [
+      "fish",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tourte Saumon Brocolis — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-wrap-boeuf-chaud",
+    "name": "Wrap Boeuf Chaud",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 460,
+    "protein": 22,
+    "carbs": 50,
+    "fat": 18,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Wrap Boeuf Chaud — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-wrap-tomate-falafel",
+    "name": "Wrap Tomate Falafel",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 420,
+    "protein": 14,
+    "carbs": 56,
+    "fat": 16,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Wrap Tomate Falafel — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-wraps-dieppois",
+    "name": "Wraps Dieppois",
+    "brand": "Paul",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 440,
+    "protein": 20,
+    "carbs": 50,
+    "fat": 18,
+    "tags": [
+      "fish",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Wraps Dieppois — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-beignet-choc",
+    "name": "Beignet Choc",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 280,
+    "protein": 5,
+    "carbs": 32,
+    "fat": 14,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Beignet Choc — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-beignet-framboise",
+    "name": "Beignet Framboise",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 270,
+    "protein": 5,
+    "carbs": 36,
+    "fat": 12,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Beignet Framboise — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-brioche-bien-manger-400g",
+    "name": "Brioche Bien Manger 400g",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 1100,
+    "protein": 28,
+    "carbs": 180,
+    "fat": 30,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Brioche Bien Manger 400g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-brioche-pate-a-tartiner-500g",
+    "name": "Brioche Pâte à Tartiner 500g",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 1500,
+    "protein": 32,
+    "carbs": 220,
+    "fat": 50,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Brioche Pâte à Tartiner 500g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-brioche-sucre-400g",
+    "name": "Brioche Sucre 400g",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 1200,
+    "protein": 28,
+    "carbs": 200,
+    "fat": 32,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Brioche Sucre 400g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-brioche-sucre-choc-400g",
+    "name": "Brioche Sucre Choc 400g",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 1280,
+    "protein": 28,
+    "carbs": 200,
+    "fat": 38,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Brioche Sucre Choc 400g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-briochette-nature",
+    "name": "Briochette Nature",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 220,
+    "protein": 5,
+    "carbs": 32,
+    "fat": 8,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Briochette Nature — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-bugne-x5",
+    "name": "Bugne x5",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 280,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 12,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Bugne x5 — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-canele",
+    "name": "Canelé",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 220,
+    "protein": 4,
+    "carbs": 32,
+    "fat": 8,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Canelé — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-cookie-caramel-pecan-80g",
+    "name": "Cookie Caramel Pécan 80g",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 5,
+    "carbs": 48,
+    "fat": 18,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cookie Caramel Pécan 80g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-cramique-sucre-400g",
+    "name": "Cramique Sucre 400g",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 1200,
+    "protein": 28,
+    "carbs": 200,
+    "fat": 32,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cramique Sucre 400g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-croissant-amande",
+    "name": "Croissant Amande",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 380,
+    "protein": 7,
+    "carbs": 36,
+    "fat": 22,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Croissant Amande — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-croissant-chocolat",
+    "name": "Croissant Chocolat",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 340,
+    "protein": 6,
+    "carbs": 38,
+    "fat": 18,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Croissant Chocolat — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-croissant-pur-beurre",
+    "name": "Croissant Pur Beurre",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 280,
+    "protein": 6,
+    "carbs": 30,
+    "fat": 14,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Croissant Pur Beurre — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-escargot-pistache-framboise",
+    "name": "Escargot Pistache Framboise",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 360,
+    "protein": 6,
+    "carbs": 40,
+    "fat": 19,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Escargot Pistache Framboise — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-escargot-raisin",
+    "name": "Escargot Raisin",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 340,
+    "protein": 6,
+    "carbs": 42,
+    "fat": 16,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Escargot Raisin — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-finger-chevre-oignon-sarrasin",
+    "name": "Finger Chèvre Oignon Sarrasin",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 280,
+    "protein": 8,
+    "carbs": 30,
+    "fat": 14,
+    "tags": [
+      "cheese",
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Finger Chèvre Oignon Sarrasin — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-flat-croissant-choc-noisette",
+    "name": "Flat Croissant Choc Noisette",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 380,
+    "protein": 7,
+    "carbs": 40,
+    "fat": 22,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Flat Croissant Choc Noisette — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-grille-pomme",
+    "name": "Grille Pomme",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 280,
+    "protein": 4,
+    "carbs": 38,
+    "fat": 13,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Grille Pomme — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-lot-2-mini-beignets-choc-sucre",
+    "name": "Lot 2 Mini Beignets Choc Sucre",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 5,
+    "carbs": 42,
+    "fat": 14,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Lot 2 Mini Beignets Choc Sucre — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-lot-2-mini-beignets-naturechoc-sucre",
+    "name": "Lot 2 Mini Beignets Nature/Choc Sucre",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 300,
+    "protein": 5,
+    "carbs": 40,
+    "fat": 13,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Lot 2 Mini Beignets Nature/Choc Sucre — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-mini-beignet-nature-sucre",
+    "name": "Mini Beignet Nature Sucre",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 180,
+    "protein": 3,
+    "carbs": 24,
+    "fat": 8,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Mini Beignet Nature Sucre — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-mini-beignet-pomme",
+    "name": "Mini Beignet Pomme",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 200,
+    "protein": 3,
+    "carbs": 28,
+    "fat": 8,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Mini Beignet Pomme — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-mini-pain-choc",
+    "name": "Mini Pain Choc",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 220,
+    "protein": 4,
+    "carbs": 26,
+    "fat": 11,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Mini Pain Choc — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-muffin-choc-noisette-120g",
+    "name": "Muffin Choc Noisette 120g",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 460,
+    "protein": 7,
+    "carbs": 56,
+    "fat": 22,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Muffin Choc Noisette 120g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pain-choc-amande",
+    "name": "Pain Choc Amande",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 420,
+    "protein": 7,
+    "carbs": 42,
+    "fat": 24,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pain Choc Amande — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-pancake-caramel-amande",
+    "name": "Pancake Caramel Amande",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 320,
+    "protein": 6,
+    "carbs": 42,
+    "fat": 14,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pancake Caramel Amande — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-panier-feuillete-choco-noisette",
+    "name": "Panier Feuilleté Choco Noisette",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 360,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 20,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Panier Feuilleté Choco Noisette — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-paul-roll-framboise",
+    "name": "Paul Roll Framboise",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 320,
+    "protein": 5,
+    "carbs": 42,
+    "fat": 14,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Paul Roll Framboise — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-petit-paul-brioche-choc",
+    "name": "Petit Paul Brioche Choc",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 240,
+    "protein": 4,
+    "carbs": 30,
+    "fat": 12,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Petit Paul Brioche Choc — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-sable-choc-lait",
+    "name": "Sablé Choc Lait",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 220,
+    "protein": 3,
+    "carbs": 28,
+    "fat": 11,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sablé Choc Lait — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-tarte-sucre-framboise",
+    "name": "Tarte Sucre Framboise",
+    "brand": "Paul",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 15,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tarte Sucre Framboise — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-viennoise-choc-blanc",
+    "name": "Viennoise Choc Blanc",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 320,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 16,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Viennoise Choc Blanc — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-viennoise-creme-choc-sucre-torsade",
+    "name": "Viennoise Crème Choc Sucre Torsade",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 360,
+    "protein": 6,
+    "carbs": 42,
+    "fat": 18,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Viennoise Crème Choc Sucre Torsade — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-viennoise-mie-choc-100g",
+    "name": "Viennoise Mie Choc 100g",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 380,
+    "protein": 6,
+    "carbs": 44,
+    "fat": 19,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Viennoise Mie Choc 100g — Paul"
+    ]
+  },
+  {
+    "id": "fr-paul-viennoiserie-creme-choc-125g",
+    "name": "Viennoiserie Crème Choc 125g",
+    "brand": "Paul",
+    "type": [
+      "breakfast"
+    ],
+    "calories": 460,
+    "protein": 8,
+    "carbs": 50,
+    "fat": 24,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Viennoiserie Crème Choc 125g — Paul"
+    ]
+  },
+  {
+    "id": "fr-matsuri-california-crispy-crevette-panee-avocat-mayo-3-pcs",
+    "name": "California crispy crevette panée, avocat, mayo (3 pcs)",
     "brand": "Matsuri",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 175,
-    "protein": 9,
-    "carbs": 29,
-    "fat": 3,
+    "calories": 130,
+    "protein": 5,
+    "carbs": 16,
+    "fat": 5,
     "tags": [
-      "salmon",
+      "shrimp",
       "japanese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Maki Saumon (6 pcs) — Matsuri"
+      "California crispy crevette panée, avocat, mayo — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-maki-thon-6-pcs",
-    "name": "Maki Thon (6 pcs)",
+    "id": "fr-matsuri-california-concombre-fromage-frais-aux-herbes-4-pc",
+    "name": "California concombre, fromage frais aux herbes (4 pcs)",
     "brand": "Matsuri",
     "type": [
       "lunch",
       "dinner"
     ],
     "calories": 160,
-    "protein": 10,
-    "carbs": 28,
-    "fat": 1,
-    "tags": [
-      "tuna",
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Maki Thon (6 pcs) — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-maki-concombre-6-pcs",
-    "name": "Maki Concombre (6 pcs)",
-    "brand": "Matsuri",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 140,
     "protein": 4,
-    "carbs": 30,
-    "fat": 1,
-    "tags": [
-      "vegetarian",
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Maki Concombre (6 pcs) — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-maki-avocat-6-pcs",
-    "name": "Maki Avocat (6 pcs)",
-    "brand": "Matsuri",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 180,
-    "protein": 4,
-    "carbs": 29,
+    "carbs": 22,
     "fat": 6,
     "tags": [
       "vegetarian",
@@ -11496,152 +17805,21 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Maki Avocat (6 pcs) — Matsuri"
+      "California concombre, fromage frais aux herbes — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-maki-saumon-avocat-6-pcs",
-    "name": "Maki Saumon Avocat (6 pcs)",
+    "id": "fr-matsuri-california-crispy-poulet-pane-cheese-oignons-frits",
+    "name": "California crispy poulet pané, cheese, oignons frits (4 pcs)",
     "brand": "Matsuri",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 220,
-    "protein": 9,
-    "carbs": 29,
-    "fat": 8,
-    "tags": [
-      "salmon",
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Maki Saumon Avocat (6 pcs) — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-maki-crevette-avocat-6-pcs",
-    "name": "Maki Crevette Avocat (6 pcs)",
-    "brand": "Matsuri",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 195,
-    "protein": 10,
-    "carbs": 29,
-    "fat": 5,
-    "tags": [
-      "shrimp",
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Maki Crevette Avocat (6 pcs) — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-california-saumon-avocat",
-    "name": "California Saumon Avocat",
-    "brand": "Matsuri",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 310,
+    "calories": 320,
     "protein": 13,
-    "carbs": 42,
-    "fat": 10,
-    "tags": [
-      "salmon",
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "California Saumon Avocat — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-california-thon-avocat",
-    "name": "California Thon Avocat",
-    "brand": "Matsuri",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 285,
-    "protein": 14,
-    "carbs": 42,
-    "fat": 7,
-    "tags": [
-      "tuna",
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "California Thon Avocat — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-california-crevette-avocat",
-    "name": "California Crevette Avocat",
-    "brand": "Matsuri",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 295,
-    "protein": 14,
-    "carbs": 42,
-    "fat": 8,
-    "tags": [
-      "shrimp",
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "California Crevette Avocat — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-california-crabe",
-    "name": "California Crabe",
-    "brand": "Matsuri",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 285,
-    "protein": 12,
-    "carbs": 42,
-    "fat": 8,
-    "tags": [
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "California Crabe — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-california-poulet-tempura",
-    "name": "California Poulet Tempura",
-    "brand": "Matsuri",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 340,
-    "protein": 14,
-    "carbs": 44,
-    "fat": 12,
+    "carbs": 32,
+    "fat": 15,
     "tags": [
       "chicken",
       "japanese"
@@ -11649,20 +17827,64 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "California Poulet Tempura — Matsuri"
+      "California crispy poulet pané, cheese, oignons frits — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-crispy-roll-saumon",
-    "name": "Crispy Roll Saumon",
+    "id": "fr-matsuri-california-patate-douce-cheese-menthe-4-pcs",
+    "name": "California patate douce, cheese, menthe (4 pcs)",
     "brand": "Matsuri",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 345,
-    "protein": 14,
-    "carbs": 42,
+    "calories": 240,
+    "protein": 6,
+    "carbs": 32,
+    "fat": 9,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "California patate douce, cheese, menthe — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-california-pecan-cheese-sirop-derable-4-pcs",
+    "name": "California pécan, cheese, sirop d'érable (4 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 290,
+    "protein": 6,
+    "carbs": 32,
+    "fat": 14,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "California pécan, cheese, sirop d'érable — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-california-saumon-avocat-sesame-4-pcs",
+    "name": "California saumon, avocat, sésame (4 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 280,
+    "protein": 9,
+    "carbs": 28,
     "fat": 13,
     "tags": [
       "salmon",
@@ -11671,65 +17893,43 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Crispy Roll Saumon — Matsuri"
+      "California saumon, avocat, sésame — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-spring-roll-saumon-avocat",
-    "name": "Spring Roll Saumon Avocat",
+    "id": "fr-matsuri-california-saumon-spicy-4-pcs",
+    "name": "California saumon spicy (4 pcs)",
     "brand": "Matsuri",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 300,
-    "protein": 12,
-    "carbs": 40,
-    "fat": 10,
-    "tags": [
-      "salmon",
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Spring Roll Saumon Avocat — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-sushi-saumon-2-pcs",
-    "name": "Sushi Saumon (2 pcs)",
-    "brand": "Matsuri",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 95,
-    "protein": 8,
-    "carbs": 14,
-    "fat": 1,
-    "tags": [
-      "salmon",
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Sushi Saumon (2 pcs) — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-sushi-thon-2-pcs",
-    "name": "Sushi Thon (2 pcs)",
-    "brand": "Matsuri",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 85,
+    "calories": 285,
     "protein": 9,
-    "carbs": 14,
-    "fat": 0,
+    "carbs": 28,
+    "fat": 13,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "California saumon spicy — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-california-tartare-de-thon-sesame-4-pcs",
+    "name": "California tartare de thon, sésame (4 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 270,
+    "protein": 11,
+    "carbs": 27,
+    "fat": 11,
     "tags": [
       "tuna",
       "japanese"
@@ -11737,64 +17937,43 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sushi Thon (2 pcs) — Matsuri"
+      "California tartare de thon, sésame — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-sushi-crevette-2-pcs",
-    "name": "Sushi Crevette (2 pcs)",
+    "id": "fr-matsuri-sushi-betterave-avocat-2-pcs",
+    "name": "Sushi betterave avocat (2 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 130,
+    "protein": 3,
+    "carbs": 22,
+    "fat": 3,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sushi betterave avocat — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-sushi-saumon-2-pcs",
+    "name": "Sushi saumon (2 pcs)",
     "brand": "Matsuri",
     "type": [
       "lunch",
       "dinner"
     ],
     "calories": 80,
-    "protein": 7,
-    "carbs": 14,
-    "fat": 0,
-    "tags": [
-      "shrimp",
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Sushi Crevette (2 pcs) — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-sushi-daurade-2-pcs",
-    "name": "Sushi Daurade (2 pcs)",
-    "brand": "Matsuri",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 85,
-    "protein": 8,
-    "carbs": 14,
-    "fat": 1,
-    "tags": [
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Sushi Daurade (2 pcs) — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-sashimi-saumon-5-pcs",
-    "name": "Sashimi Saumon (5 pcs)",
-    "brand": "Matsuri",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 150,
-    "protein": 22,
-    "carbs": 0,
-    "fat": 7,
+    "protein": 5,
+    "carbs": 9,
+    "fat": 3,
     "tags": [
       "salmon",
       "japanese"
@@ -11802,20 +17981,42 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sashimi Saumon (5 pcs) — Matsuri"
+      "Sushi saumon — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-sashimi-thon-5-pcs",
-    "name": "Sashimi Thon (5 pcs)",
+    "id": "fr-matsuri-sushi-tamago-omelette-japonaise-2-pcs",
+    "name": "Sushi tamago (omelette japonaise) (2 pcs)",
     "brand": "Matsuri",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 110,
-    "protein": 24,
-    "carbs": 0,
+    "calories": 90,
+    "protein": 4,
+    "carbs": 11,
+    "fat": 3,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sushi tamago (omelette japonaise) — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-sushi-thon-2-pcs",
+    "name": "Sushi thon (2 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 80,
+    "protein": 6,
+    "carbs": 9,
     "fat": 2,
     "tags": [
       "tuna",
@@ -11824,87 +18025,21 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sashimi Thon (5 pcs) — Matsuri"
+      "Sushi thon — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-sashimi-mixte-9-pcs",
-    "name": "Sashimi Mixte (9 pcs)",
+    "id": "fr-matsuri-sushi-saumon-avocat-oeufs-de-saumon-2-pcs",
+    "name": "Sushi saumon, avocat, oeufs de saumon (2 pcs)",
     "brand": "Matsuri",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 235,
-    "protein": 38,
-    "carbs": 0,
-    "fat": 8,
-    "tags": [
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Sashimi Mixte (9 pcs) — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-brochette-poulet-2",
-    "name": "Brochette Poulet (2)",
-    "brand": "Matsuri",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 140,
-    "protein": 18,
-    "carbs": 6,
+    "calories": 110,
+    "protein": 6,
+    "carbs": 10,
     "fat": 5,
-    "tags": [
-      "chicken",
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Brochette Poulet (2) — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-brochette-buf-cheese",
-    "name": "Brochette Bœuf Cheese",
-    "brand": "Matsuri",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 220,
-    "protein": 18,
-    "carbs": 4,
-    "fat": 14,
-    "tags": [
-      "beef",
-      "cheese",
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Brochette Bœuf Cheese — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-brochette-saumon-2",
-    "name": "Brochette Saumon (2)",
-    "brand": "Matsuri",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 160,
-    "protein": 22,
-    "carbs": 1,
-    "fat": 7,
     "tags": [
       "salmon",
       "japanese"
@@ -11912,20 +18047,563 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Brochette Saumon (2) — Matsuri"
+      "Sushi saumon, avocat, oeufs de saumon — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-brochette-boulettes-poulet",
-    "name": "Brochette Boulettes Poulet",
+    "id": "fr-matsuri-sushi-saumon-snacke-sauce-teriyaki-2-pcs",
+    "name": "Sushi saumon snacké, sauce teriyaki (2 pcs)",
     "brand": "Matsuri",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 160,
-    "protein": 14,
-    "carbs": 4,
+    "calories": 100,
+    "protein": 6,
+    "carbs": 10,
+    "fat": 4,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sushi saumon snacké, sauce teriyaki — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-sushi-hamachi-seriole-japonaise-2-pcs",
+    "name": "Sushi hamachi (sériole japonaise) (2 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 85,
+    "protein": 6,
+    "carbs": 9,
+    "fat": 2,
+    "tags": [
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sushi hamachi (sériole japonaise) — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-sushi-anguille-grillee-2-pcs",
+    "name": "Sushi anguille grillée (2 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 110,
+    "protein": 5,
+    "carbs": 10,
+    "fat": 5,
+    "tags": [
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sushi anguille grillée — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-sushi-st-jacques-flambee-2-pcs",
+    "name": "Sushi St Jacques flambée (2 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 95,
+    "protein": 5,
+    "carbs": 10,
+    "fat": 3,
+    "tags": [
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sushi St Jacques flambée — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-funky-saumon-sauce-goma-yuzu-3-pcs",
+    "name": "Funky saumon, sauce goma yuzu (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 230,
+    "protein": 8,
+    "carbs": 22,
+    "fat": 11,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Funky saumon, sauce goma yuzu — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-funky-saumon-spicy-3-pcs",
+    "name": "Funky saumon spicy (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 235,
+    "protein": 8,
+    "carbs": 22,
+    "fat": 11,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Funky saumon spicy — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-funky-thon-spicy-3-pcs",
+    "name": "Funky thon spicy (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 220,
+    "protein": 9,
+    "carbs": 22,
+    "fat": 9,
+    "tags": [
+      "tuna",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Funky thon spicy — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-funky-st-jacques-concombre-3-pcs",
+    "name": "Funky St Jacques, concombre (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 210,
+    "protein": 7,
+    "carbs": 23,
+    "fat": 8,
+    "tags": [
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Funky St Jacques, concombre — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-dragon-betterave-3-pcs",
+    "name": "Dragon betterave (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 200,
+    "protein": 5,
+    "carbs": 26,
+    "fat": 8,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Dragon betterave — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-dragon-avocat-snowcrab-masago-3-pcs",
+    "name": "Dragon avocat, snowcrab, masago (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 230,
+    "protein": 7,
+    "carbs": 25,
+    "fat": 10,
+    "tags": [
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Dragon avocat, snowcrab, masago — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-dragon-saumon-teriyaki-crudites-3-pcs",
+    "name": "Dragon saumon teriyaki, crudités (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 250,
+    "protein": 9,
+    "carbs": 25,
+    "fat": 11,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Dragon saumon teriyaki, crudités — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-dragon-tamago-saumon-3-pcs",
+    "name": "Dragon tamago, saumon (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 245,
+    "protein": 9,
+    "carbs": 25,
+    "fat": 11,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Dragon tamago, saumon — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-crunchy-hand-roll-tamago-concombre-goma",
+    "name": "Crunchy hand roll tamago, concombre, goma",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 180,
+    "protein": 6,
+    "carbs": 22,
+    "fat": 7,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crunchy hand roll tamago, concombre, goma — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-crunchy-hand-roll-thon-cuit-riz-souffle-concombre",
+    "name": "Crunchy hand roll thon cuit, riz soufflé, concombre",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 200,
+    "protein": 9,
+    "carbs": 23,
+    "fat": 7,
+    "tags": [
+      "tuna",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crunchy hand roll thon cuit, riz soufflé, concombre — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-crunchy-hand-roll-crevette-panee-avocat",
+    "name": "Crunchy hand roll crevette panée, avocat",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 220,
+    "protein": 8,
+    "carbs": 23,
+    "fat": 10,
+    "tags": [
+      "shrimp",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crunchy hand roll crevette panée, avocat — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-crunchy-hand-roll-saumon-concombre-sauce-goma-yuzu",
+    "name": "Crunchy hand roll saumon, concombre, sauce goma yuzu",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 210,
+    "protein": 9,
+    "carbs": 22,
+    "fat": 9,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crunchy hand roll saumon, concombre, sauce goma yuzu — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-crunchy-hand-roll-saumon-granny-ponzu-orange",
+    "name": "Crunchy hand roll saumon, granny, ponzu orange",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 215,
+    "protein": 9,
+    "carbs": 22,
+    "fat": 9,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crunchy hand roll saumon, granny, ponzu orange — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-crunchy-hand-roll-saumon-concombre-mayo-spicy",
+    "name": "Crunchy hand roll saumon, concombre, mayo spicy",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 230,
+    "protein": 9,
+    "carbs": 22,
+    "fat": 11,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crunchy hand roll saumon, concombre, mayo spicy — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-crunchy-hand-roll-thon-concombre-mayo-spicy",
+    "name": "Crunchy hand roll thon, concombre, mayo spicy",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 225,
+    "protein": 10,
+    "carbs": 22,
+    "fat": 10,
+    "tags": [
+      "tuna",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crunchy hand roll thon, concombre, mayo spicy — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-crunchy-hand-roll-hamachi-coriandre-masago",
+    "name": "Crunchy hand roll hamachi, coriandre, masago",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 215,
+    "protein": 9,
+    "carbs": 22,
+    "fat": 9,
+    "tags": [
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crunchy hand roll hamachi, coriandre, masago — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-spring-roll-cheese-avocat-4-pcs",
+    "name": "Spring roll cheese, avocat (4 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 220,
+    "protein": 6,
+    "carbs": 25,
+    "fat": 10,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Spring roll cheese, avocat — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-spring-roll-comme-un-nem-veggie-4-pcs",
+    "name": "Spring roll Comme un nem veggie (4 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 200,
+    "protein": 5,
+    "carbs": 26,
+    "fat": 8,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Spring roll Comme un nem veggie — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-spring-roll-saumon-avocat-4-pcs",
+    "name": "Spring roll saumon, avocat (4 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 250,
+    "protein": 10,
+    "carbs": 24,
+    "fat": 12,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Spring roll saumon, avocat — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-spring-roll-thon-cuit-riz-souffle-4-pcs",
+    "name": "Spring roll thon cuit, riz soufflé (4 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 240,
+    "protein": 11,
+    "carbs": 25,
+    "fat": 10,
+    "tags": [
+      "tuna",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Spring roll thon cuit, riz soufflé — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-spring-roll-hamachi-ponzu-4-pcs",
+    "name": "Spring roll hamachi, ponzu (4 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 235,
+    "protein": 10,
+    "carbs": 24,
+    "fat": 10,
+    "tags": [
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Spring roll hamachi, ponzu — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-brochette-boulettes-de-poulet-teriyaki-2-pcs",
+    "name": "Brochette boulettes de poulet, teriyaki (2 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 180,
+    "protein": 16,
+    "carbs": 8,
     "fat": 9,
     "tags": [
       "chicken",
@@ -11934,65 +18612,65 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Brochette Boulettes Poulet — Matsuri"
+      "Brochette boulettes de poulet, teriyaki — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-poke-bowl-saumon",
-    "name": "Poke Bowl Saumon",
+    "id": "fr-matsuri-brochette-noix-de-poulet-teriyaki-2-pcs",
+    "name": "Brochette noix de poulet, teriyaki (2 pcs)",
     "brand": "Matsuri",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 520,
-    "protein": 26,
-    "carbs": 65,
-    "fat": 17,
-    "tags": [
-      "salmon",
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Poke Bowl Saumon — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-poke-bowl-thon-spicy",
-    "name": "Poke Bowl Thon Spicy",
-    "brand": "Matsuri",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 495,
-    "protein": 28,
-    "carbs": 60,
-    "fat": 16,
-    "tags": [
-      "tuna",
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Poke Bowl Thon Spicy — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-poke-bowl-crevettes",
-    "name": "Poke Bowl Crevettes",
-    "brand": "Matsuri",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 485,
-    "protein": 24,
-    "carbs": 65,
+    "calories": 240,
+    "protein": 22,
+    "carbs": 6,
     "fat": 14,
+    "tags": [
+      "chicken",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Brochette noix de poulet, teriyaki — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-brochette-noix-de-poulet-spicy-teriyaki-2-pcs",
+    "name": "Brochette noix de poulet, spicy teriyaki (2 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 245,
+    "protein": 22,
+    "carbs": 6,
+    "fat": 14,
+    "tags": [
+      "chicken",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Brochette noix de poulet, spicy teriyaki — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-brochette-crevettes-panees-mayo-spicy-2-pcs",
+    "name": "Brochette crevettes panées, mayo spicy (2 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 220,
+    "protein": 12,
+    "carbs": 14,
+    "fat": 13,
     "tags": [
       "shrimp",
       "japanese"
@@ -12000,20 +18678,64 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Poke Bowl Crevettes — Matsuri"
+      "Brochette crevettes panées, mayo spicy — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-poke-bowl-veggie",
-    "name": "Poke Bowl Veggie",
+    "id": "fr-matsuri-brochette-boeuf-marine-fromage-fondu-2-pcs",
+    "name": "Brochette boeuf mariné, fromage fondu (2 pcs)",
     "brand": "Matsuri",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 420,
-    "protein": 12,
-    "carbs": 70,
+    "calories": 280,
+    "protein": 18,
+    "carbs": 6,
+    "fat": 20,
+    "tags": [
+      "beef",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Brochette boeuf mariné, fromage fondu — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-brochette-saumon-poireau-oignons-frits-2-pcs",
+    "name": "Brochette saumon, poireau, oignons frits (2 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 320,
+    "protein": 20,
+    "carbs": 8,
+    "fat": 22,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Brochette saumon, poireau, oignons frits — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-nori-taco-avocat-guacamole-riz-souffle-mayo",
+    "name": "Nori taco avocat, guacamole, riz soufflé, mayo",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 220,
+    "protein": 4,
+    "carbs": 26,
     "fat": 11,
     "tags": [
       "vegetarian",
@@ -12022,20 +18744,42 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Poke Bowl Veggie — Matsuri"
+      "Nori taco avocat, guacamole, riz soufflé, mayo — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-chirashi-saumon",
-    "name": "Chirashi Saumon",
+    "id": "fr-matsuri-nori-taco-tartare-de-saumon-tarama-wasabi",
+    "name": "Nori taco tartare de saumon, tarama wasabi",
     "brand": "Matsuri",
     "type": [
-      "lunch",
-      "dinner"
+      "snack",
+      "lunch"
     ],
-    "calories": 470,
-    "protein": 26,
-    "carbs": 60,
+    "calories": 260,
+    "protein": 11,
+    "carbs": 22,
+    "fat": 14,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Nori taco tartare de saumon, tarama wasabi — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-nori-taco-saumon-sauce-goma-yuzu",
+    "name": "Nori taco saumon, sauce goma yuzu",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 250,
+    "protein": 11,
+    "carbs": 22,
     "fat": 13,
     "tags": [
       "salmon",
@@ -12044,33 +18788,405 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Chirashi Saumon — Matsuri"
+      "Nori taco saumon, sauce goma yuzu — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-chirashi-mixte",
-    "name": "Chirashi Mixte",
+    "id": "fr-matsuri-nori-taco-saumon-spicy",
+    "name": "Nori taco saumon spicy",
     "brand": "Matsuri",
     "type": [
-      "lunch",
-      "dinner"
+      "snack",
+      "lunch"
     ],
-    "calories": 495,
-    "protein": 28,
-    "carbs": 60,
-    "fat": 14,
+    "calories": 255,
+    "protein": 11,
+    "carbs": 22,
+    "fat": 13,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Nori taco saumon spicy — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-nori-taco-hamachi-passion-seriole-japonaise",
+    "name": "Nori taco hamachi, passion (sériole japonaise)",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 240,
+    "protein": 11,
+    "carbs": 22,
+    "fat": 11,
     "tags": [
       "japanese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Chirashi Mixte — Matsuri"
+      "Nori taco hamachi, passion — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-plateau-decouverte-16-pcs",
-    "name": "Plateau Découverte 16 pcs",
+    "id": "fr-matsuri-nori-taco-thon-spicy",
+    "name": "Nori taco thon spicy",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 245,
+    "protein": 12,
+    "carbs": 22,
+    "fat": 12,
+    "tags": [
+      "tuna",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Nori taco thon spicy — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-nori-taco-st-jacques-ponzu",
+    "name": "Nori taco St Jacques, ponzu",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 240,
+    "protein": 10,
+    "carbs": 23,
+    "fat": 11,
+    "tags": [
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Nori taco St Jacques, ponzu — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-maki-concombre-cheese-4-pcs",
+    "name": "Maki concombre, cheese (4 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 130,
+    "protein": 4,
+    "carbs": 20,
+    "fat": 4,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Maki concombre, cheese — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-maki-saumon-4-pcs",
+    "name": "Maki saumon (4 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 180,
+    "protein": 8,
+    "carbs": 22,
+    "fat": 6,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Maki saumon — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-maki-saumon-spicy-4-pcs",
+    "name": "Maki saumon spicy (4 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 190,
+    "protein": 8,
+    "carbs": 22,
+    "fat": 7,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Maki saumon spicy — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-maki-tartare-de-thon-sesame-ciboulette-4-pcs",
+    "name": "Maki tartare de thon, sésame, ciboulette (4 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 185,
+    "protein": 9,
+    "carbs": 22,
+    "fat": 6,
+    "tags": [
+      "tuna",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Maki tartare de thon, sésame, ciboulette — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-maki-thon-spicy-4-pcs",
+    "name": "Maki thon spicy (4 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 180,
+    "protein": 9,
+    "carbs": 22,
+    "fat": 6,
+    "tags": [
+      "tuna",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Maki thon spicy — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-maki-cheese-oeufs-de-saumon-4-pcs",
+    "name": "Maki cheese, oeufs de saumon (4 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 195,
+    "protein": 7,
+    "carbs": 22,
+    "fat": 8,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Maki cheese, oeufs de saumon — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-salmon-cheese-roll-3-pcs",
+    "name": "Salmon cheese roll (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 220,
+    "protein": 9,
+    "carbs": 22,
+    "fat": 11,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salmon cheese roll — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-salmon-herbs-cheese-roll-3-pcs",
+    "name": "Salmon & herbs cheese roll (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 225,
+    "protein": 9,
+    "carbs": 22,
+    "fat": 11,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salmon & herbs cheese roll — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-crunchy-onigiri-tartare-de-saumon-furikake",
+    "name": "Crunchy onigiri tartare de saumon, furikake",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 280,
+    "protein": 10,
+    "carbs": 38,
+    "fat": 9,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crunchy onigiri tartare de saumon, furikake — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-crunchy-onigiri-hamachi-passion-shizo",
+    "name": "Crunchy onigiri hamachi, passion, shizo",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 285,
+    "protein": 10,
+    "carbs": 38,
+    "fat": 9,
+    "tags": [
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crunchy onigiri hamachi, passion, shizo — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-gyoza-legumes-3-pcs",
+    "name": "Gyoza légumes (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 150,
+    "protein": 4,
+    "carbs": 20,
+    "fat": 6,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gyoza légumes — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-gyoza-poulet-legumes-3-pcs",
+    "name": "Gyoza poulet légumes (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 170,
+    "protein": 8,
+    "carbs": 18,
+    "fat": 7,
+    "tags": [
+      "chicken",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gyoza poulet légumes — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-gyoza-crevettes-3-pcs",
+    "name": "Gyoza crevettes (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 165,
+    "protein": 8,
+    "carbs": 18,
+    "fat": 7,
+    "tags": [
+      "shrimp",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gyoza crevettes — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-gyoza-boeuf-wagyu-3-pcs",
+    "name": "Gyoza boeuf wagyu (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 200,
+    "protein": 9,
+    "carbs": 18,
+    "fat": 11,
+    "tags": [
+      "beef",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gyoza boeuf wagyu — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-chirashi-saumon",
+    "name": "Chirashi saumon",
     "brand": "Matsuri",
     "type": [
       "lunch",
@@ -12087,21 +19203,21 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Plateau Découverte 16 pcs — Matsuri"
+      "Chirashi saumon — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-plateau-famille-32-pcs",
-    "name": "Plateau Famille 32 pcs",
+    "id": "fr-matsuri-chirashi-saumon-spicy",
+    "name": "Chirashi saumon spicy",
     "brand": "Matsuri",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 960,
-    "protein": 48,
-    "carbs": 130,
-    "fat": 24,
+    "calories": 490,
+    "protein": 24,
+    "carbs": 65,
+    "fat": 13,
     "tags": [
       "salmon",
       "japanese"
@@ -12109,41 +19225,239 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Plateau Famille 32 pcs — Matsuri"
+      "Chirashi saumon spicy — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-soupe-miso",
-    "name": "Soupe Miso",
+    "id": "fr-matsuri-chirashi-tataki-saumon-sauce-goma-yuzu",
+    "name": "Chirashi tataki saumon, sauce goma yuzu",
     "brand": "Matsuri",
     "type": [
-      "snack",
-      "lunch"
+      "lunch",
+      "dinner"
     ],
-    "calories": 50,
-    "protein": 3,
-    "carbs": 6,
-    "fat": 2,
+    "calories": 500,
+    "protein": 25,
+    "carbs": 65,
+    "fat": 14,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chirashi tataki saumon, sauce goma yuzu — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-chirashi-duo-saumon-thon",
+    "name": "Chirashi duo saumon & thon",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 490,
+    "protein": 28,
+    "carbs": 65,
+    "fat": 12,
+    "tags": [
+      "salmon",
+      "tuna",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chirashi duo saumon & thon — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-chirashi-hamachi-ikura-edamame-goma",
+    "name": "Chirashi hamachi, ikura, edamame, goma",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 510,
+    "protein": 26,
+    "carbs": 65,
+    "fat": 14,
     "tags": [
       "japanese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Soupe Miso — Matsuri"
+      "Chirashi hamachi, ikura, edamame, goma — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-salade-choux",
-    "name": "Salade Choux",
+    "id": "fr-matsuri-chirashi-st-jacques-furikake-masago-nori",
+    "name": "Chirashi St Jacques, furikake, masago, nori",
     "brand": "Matsuri",
     "type": [
-      "snack",
-      "lunch"
+      "lunch",
+      "dinner"
     ],
-    "calories": 85,
-    "protein": 2,
-    "carbs": 9,
+    "calories": 470,
+    "protein": 22,
+    "carbs": 65,
+    "fat": 12,
+    "tags": [
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chirashi St Jacques, furikake, masago, nori — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-crudo-sashimi-saumon-3-pcs",
+    "name": "Crudo sashimi saumon (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 90,
+    "protein": 12,
+    "carbs": 0,
+    "fat": 5,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crudo sashimi saumon — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-crudo-saumon-shizo-coulis-exotique-3-pcs",
+    "name": "Crudo saumon, shizo, coulis exotique (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 110,
+    "protein": 12,
+    "carbs": 4,
+    "fat": 6,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crudo saumon, shizo, coulis exotique — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-crudo-tataki-saumon-3-pcs",
+    "name": "Crudo tataki saumon (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 100,
+    "protein": 12,
+    "carbs": 2,
+    "fat": 5,
+    "tags": [
+      "salmon",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crudo tataki saumon — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-crudo-hamachi-masago-ponzu-3-pcs",
+    "name": "Crudo hamachi, masago, ponzu (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 105,
+    "protein": 12,
+    "carbs": 2,
+    "fat": 5,
+    "tags": [
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crudo hamachi, masago, ponzu — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-crudo-tataki-thon-vinaigrette-poivron-et-soja-3-pc",
+    "name": "Crudo tataki thon, vinaigrette poivron et soja (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 95,
+    "protein": 14,
+    "carbs": 2,
+    "fat": 4,
+    "tags": [
+      "tuna",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crudo tataki thon, vinaigrette poivron et soja — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-crudo-trio-tataki-saumon-seriole-thon-ponzu-3-pcs",
+    "name": "Crudo trio tataki saumon, sériole, thon ponzu (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 100,
+    "protein": 13,
+    "carbs": 2,
+    "fat": 5,
+    "tags": [
+      "salmon",
+      "tuna",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crudo trio tataki saumon, sériole, thon ponzu — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-crudo-st-jacques-ikura-passion-3-pcs",
+    "name": "Crudo St Jacques, ikura, passion (3 pcs)",
+    "brand": "Matsuri",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 95,
+    "protein": 11,
+    "carbs": 3,
     "fat": 4,
     "tags": [
       "japanese"
@@ -12151,20 +19465,130 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Salade Choux — Matsuri"
+      "Crudo St Jacques, ikura, passion — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-edamame",
-    "name": "Edamame",
+    "id": "fr-matsuri-salade-de-chou",
+    "name": "Salade de chou",
     "brand": "Matsuri",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 130,
+    "calories": 90,
+    "protein": 2,
+    "carbs": 8,
+    "fat": 6,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade de chou — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-riz-nature",
+    "name": "Riz nature",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 200,
+    "protein": 4,
+    "carbs": 44,
+    "fat": 1,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Riz nature — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-riz-vinaigre",
+    "name": "Riz vinaigré",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 210,
+    "protein": 4,
+    "carbs": 46,
+    "fat": 1,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Riz vinaigré — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-the-original-miso-soup",
+    "name": "The Original Miso Soup",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 60,
+    "protein": 4,
+    "carbs": 6,
+    "fat": 2,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "The Original Miso Soup — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-salade-concombre-ponzu",
+    "name": "Salade concombre ponzu",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 70,
+    "protein": 2,
+    "carbs": 8,
+    "fat": 3,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade concombre ponzu — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-wasabi-salt-edamame",
+    "name": "Wasabi salt edamame",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 140,
     "protein": 11,
-    "carbs": 10,
+    "carbs": 12,
     "fat": 5,
     "tags": [
       "vegetarian",
@@ -12173,242 +19597,311 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Edamame — Matsuri"
+      "Wasabi salt edamame — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-gyoza-poulet-5",
-    "name": "Gyoza Poulet (5)",
+    "id": "fr-matsuri-salade-dalgues-wakame-sauce-goma",
+    "name": "Salade d'algues wakame, sauce goma",
     "brand": "Matsuri",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 245,
-    "protein": 12,
-    "carbs": 28,
-    "fat": 9,
+    "calories": 120,
+    "protein": 4,
+    "carbs": 10,
+    "fat": 7,
     "tags": [
-      "chicken",
+      "vegetarian",
       "japanese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Gyoza Poulet (5) — Matsuri"
+      "Salade d'algues wakame, sauce goma — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-gyoza-crevettes-5",
-    "name": "Gyoza Crevettes (5)",
+    "id": "fr-matsuri-salade-hijiki-concombre-radis",
+    "name": "Salade hijiki, concombre, radis",
     "brand": "Matsuri",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 240,
+    "calories": 110,
+    "protein": 4,
+    "carbs": 12,
+    "fat": 5,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade hijiki, concombre, radis — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-salade-calamars",
+    "name": "Salade calamars",
+    "brand": "Matsuri",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 180,
     "protein": 14,
-    "carbs": 28,
-    "fat": 8,
+    "carbs": 8,
+    "fat": 10,
     "tags": [
-      "shrimp",
       "japanese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Gyoza Crevettes (5) — Matsuri"
+      "Salade calamars — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-tempura-crevettes-4",
-    "name": "Tempura Crevettes (4)",
-    "brand": "Matsuri",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 260,
-    "protein": 12,
-    "carbs": 22,
-    "fat": 14,
-    "tags": [
-      "shrimp",
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Tempura Crevettes (4) — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-salade-de-riz-vinaigre",
-    "name": "Salade de Riz Vinaigré",
+    "id": "fr-matsuri-pousses-depinards-avocat-snowcrab",
+    "name": "Pousses d'épinards, avocat, snowcrab",
     "brand": "Matsuri",
     "type": [
       "snack",
       "lunch"
     ],
     "calories": 220,
-    "protein": 4,
-    "carbs": 48,
+    "protein": 11,
+    "carbs": 10,
+    "fat": 15,
+    "tags": [
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pousses d'épinards, avocat, snowcrab — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-daifuku",
+    "name": "Daifuku",
+    "brand": "Matsuri",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 150,
+    "protein": 2,
+    "carbs": 33,
     "fat": 1,
     "tags": [
+      "vegetarian",
       "japanese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Salade de Riz Vinaigré — Matsuri"
+      "Daifuku — Matsuri"
     ]
   },
   {
-    "id": "fr-matsuri-katsu-poulet-sauce-tonkatsu",
-    "name": "Katsu Poulet Sauce Tonkatsu",
-    "brand": "Matsuri",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 560,
-    "protein": 36,
-    "carbs": 58,
-    "fat": 18,
-    "tags": [
-      "chicken",
-      "japanese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Katsu Poulet Sauce Tonkatsu — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-mochi-glace-coco",
-    "name": "Mochi Glacé Coco",
-    "brand": "Matsuri",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 105,
-    "protein": 1,
-    "carbs": 18,
-    "fat": 3,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Mochi Glacé Coco — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-mochi-glace-mangue",
-    "name": "Mochi Glacé Mangue",
-    "brand": "Matsuri",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 95,
-    "protein": 1,
-    "carbs": 17,
-    "fat": 2,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Mochi Glacé Mangue — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-mochi-glace-chocolat",
-    "name": "Mochi Glacé Chocolat",
-    "brand": "Matsuri",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 115,
-    "protein": 2,
-    "carbs": 18,
-    "fat": 4,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Mochi Glacé Chocolat — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-perles-de-coco",
-    "name": "Perles de Coco",
-    "brand": "Matsuri",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 120,
-    "protein": 2,
-    "carbs": 22,
-    "fat": 3,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Perles de Coco — Matsuri"
-    ]
-  },
-  {
-    "id": "fr-matsuri-litchi-au-sirop",
-    "name": "Litchi au Sirop",
+    "id": "fr-matsuri-mochi-glace-vanille-chocolat-parfums-de-saison",
+    "name": "Mochi glacé (vanille, chocolat, parfums de saison)",
     "brand": "Matsuri",
     "type": [
       "dessert",
       "snack"
     ],
     "calories": 110,
-    "protein": 1,
-    "carbs": 28,
-    "fat": 0,
+    "protein": 2,
+    "carbs": 18,
+    "fat": 4,
     "tags": [
-      "dessert"
+      "vegetarian",
+      "japanese"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Litchi au Sirop — Matsuri"
+      "Mochi glacé — Matsuri"
     ]
   },
   {
-    "id": "fr-louchebem-foie-gras-maison",
-    "name": "Foie Gras Maison",
+    "id": "fr-matsuri-perles-de-coco-tiedes-x2",
+    "name": "Perles de coco tièdes (x2)",
+    "brand": "Matsuri",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 220,
+    "protein": 3,
+    "carbs": 38,
+    "fat": 7,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Perles de coco tièdes — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-cookie-by-maison-savary-matcha-chocolat-noir-ou-ch",
+    "name": "Cookie by Maison Savary (matcha, chocolat noir ou chocolat blanc)",
+    "brand": "Matsuri",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 4,
+    "carbs": 40,
+    "fat": 16,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cookie by Maison Savary — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-fraises-coulis-fruits-rouges",
+    "name": "Fraises coulis fruits rouges",
+    "brand": "Matsuri",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 130,
+    "protein": 1,
+    "carbs": 28,
+    "fat": 2,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fraises coulis fruits rouges — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-fondant-chocolat-by-maison-savary-fusion-choco-noi",
+    "name": "Fondant chocolat by Maison Savary (fusion choco noir 65% choco lait 33,6%)",
+    "brand": "Matsuri",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 420,
+    "protein": 6,
+    "carbs": 45,
+    "fat": 24,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fondant chocolat by Maison Savary — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-flan-patissier-by-maison-savary-nature-vanille-ou-",
+    "name": "Flan pâtissier by Maison Savary (nature, vanille ou sésame noir)",
+    "brand": "Matsuri",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 340,
+    "protein": 7,
+    "carbs": 45,
+    "fat": 14,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Flan pâtissier by Maison Savary — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-matsuri-fluffy-cheesecake-japonais-by-takumi",
+    "name": "Fluffy cheesecake japonais by Takumi",
+    "brand": "Matsuri",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 280,
+    "protein": 6,
+    "carbs": 32,
+    "fat": 14,
+    "tags": [
+      "vegetarian",
+      "japanese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fluffy cheesecake japonais by Takumi — Matsuri"
+    ]
+  },
+  {
+    "id": "fr-louchebem-escargots-extra-gros-bourgogne-par-6",
+    "name": "Escargots Extra Gros Bourgogne (par 6)",
     "brand": "Le Louchebem",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 380,
-    "protein": 8,
-    "carbs": 6,
-    "fat": 35,
+    "calories": 320,
+    "protein": 10,
+    "carbs": 8,
+    "fat": 28,
     "tags": [
       "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Foie Gras Maison — Le Louchebem"
+      "Escargots Extra Gros Bourgogne — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-escargots-extra-gros-bourgogne-par-12",
+    "name": "Escargots Extra Gros Bourgogne (par 12)",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 620,
+    "protein": 19,
+    "carbs": 16,
+    "fat": 55,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Escargots Extra Gros Bourgogne — Le Louchebem"
     ]
   },
   {
@@ -12419,9 +19912,9 @@ module.exports = [
       "snack",
       "lunch"
     ],
-    "calories": 320,
-    "protein": 14,
-    "carbs": 4,
+    "calories": 340,
+    "protein": 18,
+    "carbs": 6,
     "fat": 28,
     "tags": [
       "french"
@@ -12433,29 +19926,177 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-louchebem-ufs-mayo",
-    "name": "Œufs Mayo",
+    "id": "fr-louchebem-rillettes-doie",
+    "name": "Rillettes d'Oie",
     "brand": "Le Louchebem",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 245,
-    "protein": 12,
-    "carbs": 2,
-    "fat": 20,
+    "calories": 380,
+    "protein": 14,
+    "carbs": 4,
+    "fat": 35,
     "tags": [
       "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Œufs Mayo — Le Louchebem"
+      "Rillettes d'Oie — Le Louchebem"
     ]
   },
   {
-    "id": "fr-louchebem-tartare-de-saumon",
-    "name": "Tartare de Saumon",
+    "id": "fr-louchebem-foie-gras-de-canard-francais-avec-verre-de-monbazi",
+    "name": "Foie gras de canard francais avec verre de Monbazillac",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 420,
+    "protein": 12,
+    "carbs": 14,
+    "fat": 36,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Foie gras de canard francais avec verre de Monbazillac — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-jambon-a-los-maison-beurre-normand",
+    "name": "Jambon a l'Os Maison Beurre Normand",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 310,
+    "protein": 22,
+    "carbs": 4,
+    "fat": 22,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Jambon a l'Os Maison Beurre Normand — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-les-os-a-moelle-maison",
+    "name": "Les os a moelle Maison",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 380,
+    "protein": 14,
+    "carbs": 6,
+    "fat": 34,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Les os a moelle Maison — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-la-planche-charcuterie-a-partager",
+    "name": "La planche charcuterie a partager",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 580,
+    "protein": 30,
+    "carbs": 12,
+    "fat": 45,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "La planche charcuterie a partager — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-oeufs-en-cocotte-au-foie-gras",
+    "name": "Oeufs en cocotte au foie gras",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 360,
+    "protein": 14,
+    "carbs": 6,
+    "fat": 30,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Oeufs en cocotte au foie gras — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-soupe-a-loignon-gratinee-traditionnelle",
+    "name": "Soupe a l'oignon gratinee Traditionnelle",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 340,
+    "protein": 14,
+    "carbs": 28,
+    "fat": 18,
+    "tags": [
+      "french",
+      "cheese"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Soupe a l'oignon gratinee Traditionnelle — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-bouillon-de-vermicelles",
+    "name": "Bouillon de vermicelles",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 180,
+    "protein": 6,
+    "carbs": 28,
+    "fat": 4,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Bouillon de vermicelles — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-mineuse-de-boeuf-vinaigrette-maison",
+    "name": "Mineuse de boeuf vinaigrette Maison",
     "brand": "Le Louchebem",
     "type": [
       "snack",
@@ -12464,224 +20105,6 @@ module.exports = [
     "calories": 290,
     "protein": 22,
     "carbs": 6,
-    "fat": 20,
-    "tags": [
-      "fish",
-      "french"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Tartare de Saumon — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-salade-de-chevre-chaud",
-    "name": "Salade de Chèvre Chaud",
-    "brand": "Le Louchebem",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 425,
-    "protein": 17,
-    "carbs": 22,
-    "fat": 30,
-    "tags": [
-      "vegetarian",
-      "cheese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Salade de Chèvre Chaud — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-carpaccio-de-buf",
-    "name": "Carpaccio de Bœuf",
-    "brand": "Le Louchebem",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 285,
-    "protein": 24,
-    "carbs": 5,
-    "fat": 19,
-    "tags": [
-      "beef",
-      "french"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Carpaccio de Bœuf — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-soupe-a-loignon-gratinee",
-    "name": "Soupe à l'Oignon Gratinée",
-    "brand": "Le Louchebem",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 320,
-    "protein": 12,
-    "carbs": 26,
-    "fat": 17,
-    "tags": [
-      "cheese",
-      "french"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Soupe à l'Oignon Gratinée — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-escargots-de-bourgogne-6",
-    "name": "Escargots de Bourgogne (6)",
-    "brand": "Le Louchebem",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 260,
-    "protein": 8,
-    "carbs": 6,
-    "fat": 22,
-    "tags": [
-      "french"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Escargots de Bourgogne (6) — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-charcuterie-maison",
-    "name": "Charcuterie Maison",
-    "brand": "Le Louchebem",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 480,
-    "protein": 25,
-    "carbs": 4,
-    "fat": 40,
-    "tags": [
-      "french"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Charcuterie Maison — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-entrecote-250g",
-    "name": "Entrecôte 250g",
-    "brand": "Le Louchebem",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 685,
-    "protein": 60,
-    "carbs": 0,
-    "fat": 48,
-    "tags": [
-      "beef",
-      "french"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Entrecôte 250g — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-faux-filet-250g",
-    "name": "Faux-filet 250g",
-    "brand": "Le Louchebem",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 640,
-    "protein": 58,
-    "carbs": 0,
-    "fat": 44,
-    "tags": [
-      "beef",
-      "french"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Faux-filet 250g — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-filet-de-buf-200g",
-    "name": "Filet de Bœuf 200g",
-    "brand": "Le Louchebem",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 520,
-    "protein": 50,
-    "carbs": 0,
-    "fat": 35,
-    "tags": [
-      "beef",
-      "french"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Filet de Bœuf 200g — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-pave-de-rumsteck-220g",
-    "name": "Pavé de Rumsteck 220g",
-    "brand": "Le Louchebem",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 580,
-    "protein": 55,
-    "carbs": 0,
-    "fat": 40,
-    "tags": [
-      "beef",
-      "french"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Pavé de Rumsteck 220g — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-cote-de-buf-par-100g",
-    "name": "Côte de Bœuf (par 100g)",
-    "brand": "Le Louchebem",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 260,
-    "protein": 24,
-    "carbs": 0,
     "fat": 18,
     "tags": [
       "beef",
@@ -12690,20 +20113,536 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Côte de Bœuf (par 100g) — Le Louchebem"
+      "Mineuse de boeuf vinaigrette Maison — Le Louchebem"
     ]
   },
   {
-    "id": "fr-louchebem-tartare-de-buf-au-couteau",
-    "name": "Tartare de Bœuf au Couteau",
+    "id": "fr-louchebem-poireaux-vinaigrette-maison",
+    "name": "Poireaux vinaigrette Maison",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 180,
+    "protein": 4,
+    "carbs": 14,
+    "fat": 12,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Poireaux vinaigrette Maison — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-artichaut-vinaigrette-maison",
+    "name": "Artichaut vinaigrette Maison",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 220,
+    "protein": 6,
+    "carbs": 18,
+    "fat": 14,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Artichaut vinaigrette Maison — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-chevre-chaud-roti-sur-salade",
+    "name": "Chevre chaud roti sur salade",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 420,
+    "protein": 18,
+    "carbs": 14,
+    "fat": 32,
+    "tags": [
+      "cheese",
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Chevre chaud roti sur salade — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-salade-du-louchebem",
+    "name": "Salade du Louchebem",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 480,
+    "protein": 26,
+    "carbs": 18,
+    "fat": 32,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade du Louchebem — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-filets-de-harengs",
+    "name": "Filets de harengs",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 320,
+    "protein": 18,
+    "carbs": 8,
+    "fat": 24,
+    "tags": [
+      "fish",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Filets de harengs — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-oeuf-mayonnaise-maison",
+    "name": "Oeuf mayonnaise Maison",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 240,
+    "protein": 10,
+    "carbs": 4,
+    "fat": 22,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Oeuf mayonnaise Maison — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-salade-verte-de-saison",
+    "name": "Salade verte de saison",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 90,
+    "protein": 2,
+    "carbs": 6,
+    "fat": 6,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade verte de saison — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-lundi---epaule-dagneau-rotie",
+    "name": "Lundi - Epaule d'agneau rotie",
     "brand": "Le Louchebem",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 615,
+    "calories": 720,
+    "protein": 52,
+    "carbs": 18,
+    "fat": 48,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Lundi - Epaule d'agneau rotie — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-mardi---pot-au-feu",
+    "name": "Mardi - Pot-au-feu",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 620,
+    "protein": 48,
+    "carbs": 32,
+    "fat": 30,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Mardi - Pot-au-feu — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-mercredi---cochon-de-lait-roti",
+    "name": "Mercredi - Cochon de lait roti",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 780,
     "protein": 50,
+    "carbs": 14,
+    "fat": 56,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Mercredi - Cochon de lait roti — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-jeudi---tete-de-veau",
+    "name": "Jeudi - Tete de veau",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 680,
+    "protein": 42,
     "carbs": 12,
+    "fat": 50,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Jeudi - Tete de veau — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-vendredi---la-suggestion-du-boucher",
+    "name": "Vendredi - La suggestion du boucher",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 48,
+    "carbs": 16,
+    "fat": 48,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Vendredi - La suggestion du boucher — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-samedi---souris-dagneau",
+    "name": "Samedi - Souris d'agneau",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 780,
+    "protein": 56,
+    "carbs": 14,
+    "fat": 54,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Samedi - Souris d'agneau — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-pied-de-cochon-pane-a-la-mode-des-halles",
+    "name": "Pied de cochon pane a la mode des Halles",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 38,
+    "carbs": 22,
+    "fat": 54,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pied de cochon pane a la mode des Halles — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-andouillette-a-la-ficelle-de-chez-bobosse",
+    "name": "Andouillette a la ficelle de chez Bobosse",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 760,
+    "protein": 40,
+    "carbs": 14,
+    "fat": 60,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Andouillette a la ficelle de chez Bobosse — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-tripes-au-vin-blanc-en-cocotte",
+    "name": "Tripes au vin blanc en cocotte",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 580,
+    "protein": 42,
+    "carbs": 12,
+    "fat": 38,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Tripes au vin blanc en cocotte — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-rognons-de-veau-entiers-sauce-armagnac",
+    "name": "Rognons de veau entiers (sauce armagnac)",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 640,
+    "protein": 48,
+    "carbs": 8,
+    "fat": 44,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Rognons de veau entiers — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-cotes-premieres-dagneau-grillees-la-doublette-550g",
+    "name": "Cotes premieres d'agneau grillees la doublette (550g)",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 920,
+    "protein": 70,
+    "carbs": 4,
+    "fat": 68,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cotes premieres d'agneau grillees la doublette — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-confit-de-canard-maison-entier-650g",
+    "name": "Confit de canard Maison entier (650g)",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 980,
+    "protein": 60,
+    "carbs": 8,
+    "fat": 78,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Confit de canard Maison entier — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-boeuf-bourguignon-maison",
+    "name": "Boeuf Bourguignon Maison",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 680,
+    "protein": 46,
+    "carbs": 22,
+    "fat": 40,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Boeuf Bourguignon Maison — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-salade-folle-foie-gras-de-canard-et-magret-fume",
+    "name": "Salade Folle (Foie gras de canard et magret fume)",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 520,
+    "protein": 22,
+    "carbs": 12,
+    "fat": 42,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Folle — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-salade-caesar",
+    "name": "Salade Caesar",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 480,
+    "protein": 28,
+    "carbs": 18,
+    "fat": 32,
+    "tags": [
+      "chicken",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Caesar — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-salade-caesar-du-louchebem",
+    "name": "Salade Caesar du Louchebem",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 540,
+    "protein": 32,
+    "carbs": 20,
+    "fat": 36,
+    "tags": [
+      "chicken",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade Caesar du Louchebem — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-salade-dendive",
+    "name": "Salade d'Endive",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 320,
+    "protein": 14,
+    "carbs": 12,
+    "fat": 24,
+    "tags": [
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade d'Endive — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-salade-du-louchebem-effiloche-de-boeuf-et-frites",
+    "name": "Salade du Louchebem (effiloche de boeuf et frites)",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 620,
+    "protein": 32,
+    "carbs": 38,
     "fat": 38,
     "tags": [
       "beef",
@@ -12712,12 +20651,189 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Tartare de Bœuf au Couteau — Le Louchebem"
+      "Salade du Louchebem — Le Louchebem"
     ]
   },
   {
-    "id": "fr-louchebem-steak-hache-maison-200g",
-    "name": "Steak Haché Maison 200g",
+    "id": "fr-louchebem-salade-de-chevre-chaud-roti",
+    "name": "Salade de chevre chaud roti",
+    "brand": "Le Louchebem",
+    "type": [
+      "snack",
+      "lunch"
+    ],
+    "calories": 460,
+    "protein": 18,
+    "carbs": 16,
+    "fat": 36,
+    "tags": [
+      "cheese",
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Salade de chevre chaud roti — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-le-burger-veggie",
+    "name": "Le Burger Veggie",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 22,
+    "carbs": 68,
+    "fat": 38,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Le Burger Veggie — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-lassiette-vegetarienne",
+    "name": "L'assiette vegetarienne",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 16,
+    "carbs": 52,
+    "fat": 24,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "L'assiette vegetarienne — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-laiguillette-de-boeuf-a-la-ficelle-sauce-raifort",
+    "name": "L'aiguillette de boeuf a la ficelle (sauce raifort)",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 620,
+    "protein": 52,
+    "carbs": 8,
+    "fat": 40,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "L'aiguillette de boeuf a la ficelle — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-la-broche-du-boucher-merlan-hampe-cote",
+    "name": "La broche du boucher (merlan, hampe, cote)",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1280,
+    "protein": 95,
+    "carbs": 6,
+    "fat": 95,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "La broche du boucher — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-la-pointe-de-chevillard-entiere-grillee-a-partager",
+    "name": "La pointe de chevillard entiere grillee (a partager)",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1620,
+    "protein": 130,
+    "carbs": 4,
+    "fat": 120,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "La pointe de chevillard entiere grillee — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-la-cote-de-boeuf-maturee-12kg-a-partager",
+    "name": "La cote de boeuf maturee 1.2kg (a partager)",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1840,
+    "protein": 145,
+    "carbs": 4,
+    "fat": 140,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "La cote de boeuf maturee 1.2kg — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-bavette-sangue-maigre-grand-modele",
+    "name": "Bavette (sangue & maigre) Grand modele",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 60,
+    "carbs": 4,
+    "fat": 52,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Bavette (sangue & maigre) Grand modele — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-bavette-petit-modele",
+    "name": "Bavette Petit modele",
     "brand": "Le Louchebem",
     "type": [
       "lunch",
@@ -12734,63 +20850,21 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Steak Haché Maison 200g — Le Louchebem"
+      "Bavette Petit modele — Le Louchebem"
     ]
   },
   {
-    "id": "fr-louchebem-magret-de-canard",
-    "name": "Magret de Canard",
+    "id": "fr-louchebem-culotte-de-rumsteck-grand-modele",
+    "name": "Culotte de Rumsteck Grand modele",
     "brand": "Le Louchebem",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 650,
-    "protein": 45,
-    "carbs": 6,
-    "fat": 48,
-    "tags": [
-      "french"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Magret de Canard — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-confit-de-canard",
-    "name": "Confit de Canard",
-    "brand": "Le Louchebem",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 720,
-    "protein": 42,
-    "carbs": 8,
-    "fat": 55,
-    "tags": [
-      "french"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Confit de Canard — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-onglet-a-lechalote",
-    "name": "Onglet à l'Échalote",
-    "brand": "Le Louchebem",
-    "type": [
-      "lunch",
-      "dinner"
-    ],
-    "calories": 560,
-    "protein": 48,
-    "carbs": 6,
-    "fat": 37,
+    "calories": 760,
+    "protein": 64,
+    "carbs": 4,
+    "fat": 54,
     "tags": [
       "beef",
       "french"
@@ -12798,62 +20872,392 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Onglet à l'Échalote — Le Louchebem"
+      "Culotte de Rumsteck Grand modele — Le Louchebem"
     ]
   },
   {
-    "id": "fr-louchebem-pave-de-saumon-grille",
-    "name": "Pavé de Saumon Grillé",
+    "id": "fr-louchebem-culotte-de-rumsteck-petit-modele",
+    "name": "Culotte de Rumsteck Petit modele",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 500,
+    "protein": 44,
+    "carbs": 4,
+    "fat": 34,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Culotte de Rumsteck Petit modele — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-entrecote-persillee-entiere-450g",
+    "name": "Entrecote Persillee Entiere 450g",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1080,
+    "protein": 88,
+    "carbs": 4,
+    "fat": 80,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Entrecote Persillee Entiere 450g — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-fart-de-boeuf-dans-la-pointe-grand-modele",
+    "name": "Fart de boeuf dans la pointe Grand modele",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 60,
+    "carbs": 4,
+    "fat": 52,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fart de boeuf dans la pointe Grand modele — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-fart-de-boeuf-petit-modele",
+    "name": "Fart de boeuf Petit modele",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 42,
+    "carbs": 4,
+    "fat": 32,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Fart de boeuf Petit modele — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-hampe-sangue-maigre-grand-modele",
+    "name": "Hampe (sangue & maigre) Grand modele",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 700,
+    "protein": 58,
+    "carbs": 4,
+    "fat": 52,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Hampe (sangue & maigre) Grand modele — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-hampe-petit-modele",
+    "name": "Hampe Petit modele",
     "brand": "Le Louchebem",
     "type": [
       "lunch",
       "dinner"
     ],
     "calories": 470,
-    "protein": 38,
+    "protein": 40,
     "carbs": 4,
     "fat": 32,
     "tags": [
-      "fish"
+      "beef",
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Pavé de Saumon Grillé — Le Louchebem"
+      "Hampe Petit modele — Le Louchebem"
     ]
   },
   {
-    "id": "fr-louchebem-filet-de-bar-plancha",
-    "name": "Filet de Bar Plancha",
+    "id": "fr-louchebem-merlan-maigre-gouteuse-grand-modele",
+    "name": "Merlan (maigre & gouteuse) Grand modele",
     "brand": "Le Louchebem",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 340,
-    "protein": 38,
-    "carbs": 2,
-    "fat": 20,
+    "calories": 720,
+    "protein": 62,
+    "carbs": 4,
+    "fat": 50,
     "tags": [
-      "fish"
+      "beef",
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Filet de Bar Plancha — Le Louchebem"
+      "Merlan (maigre & gouteuse) Grand modele — Le Louchebem"
     ]
   },
   {
-    "id": "fr-louchebem-supreme-de-volaille-fermiere",
-    "name": "Suprême de Volaille Fermière",
+    "id": "fr-louchebem-merlan-petit-modele",
+    "name": "Merlan Petit modele",
     "brand": "Le Louchebem",
     "type": [
       "lunch",
       "dinner"
     ],
-    "calories": 420,
+    "calories": 480,
     "protein": 42,
-    "carbs": 8,
+    "carbs": 4,
+    "fat": 32,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Merlan Petit modele — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-onglet-tendre-fameux-grand-modele",
+    "name": "Onglet (tendre & fameux) Grand modele",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 60,
+    "carbs": 4,
+    "fat": 52,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Onglet (tendre & fameux) Grand modele — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-onglet-petit-modele",
+    "name": "Onglet Petit modele",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 480,
+    "protein": 42,
+    "carbs": 4,
+    "fat": 32,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Onglet Petit modele — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-pave-fort-des-halles-grand-modele",
+    "name": "Pave Fort des Halles Grand modele",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 740,
+    "protein": 64,
+    "carbs": 4,
+    "fat": 52,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Pave Fort des Halles Grand modele — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-surprise-sangue-fameuse-grand-modele",
+    "name": "Surprise (sangue & fameuse) Grand modele",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 740,
+    "protein": 62,
+    "carbs": 4,
+    "fat": 54,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Surprise (sangue & fameuse) Grand modele — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-surprise-petit-modele",
+    "name": "Surprise Petit modele",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 490,
+    "protein": 42,
+    "carbs": 4,
+    "fat": 34,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Surprise Petit modele — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-cuisse-de-boeuf-rotisserie-rumsteck",
+    "name": "Cuisse de boeuf rotisserie (rumsteck)",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 720,
+    "protein": 60,
+    "carbs": 4,
+    "fat": 52,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cuisse de boeuf rotisserie — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-gigot-dagneau-rotisserie",
+    "name": "Gigot d'agneau rotisserie",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 740,
+    "protein": 56,
+    "carbs": 4,
+    "fat": 56,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gigot d'agneau rotisserie — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-jambon-roti-rotisserie",
+    "name": "Jambon roti rotisserie",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 540,
+    "protein": 48,
+    "carbs": 4,
+    "fat": 36,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Jambon roti rotisserie — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-poulet-fermier-12-piece",
+    "name": "Poulet fermier 1/2 piece",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 580,
+    "protein": 52,
+    "carbs": 4,
+    "fat": 38,
+    "tags": [
+      "chicken",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Poulet fermier 1/2 piece — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-poulet-fermier-14-piece",
+    "name": "Poulet fermier 1/4 piece",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 320,
+    "protein": 28,
+    "carbs": 2,
     "fat": 22,
     "tags": [
       "chicken",
@@ -12862,7 +21266,138 @@ module.exports = [
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Suprême de Volaille Fermière — Le Louchebem"
+      "Poulet fermier 1/4 piece — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-magret-de-canard",
+    "name": "Magret de canard",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 620,
+    "protein": 48,
+    "carbs": 4,
+    "fat": 46,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Magret de canard — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-confit-de-canard-maison",
+    "name": "Confit de canard Maison",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 780,
+    "protein": 50,
+    "carbs": 6,
+    "fat": 60,
+    "tags": [
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Confit de canard Maison — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-menu-enfant---steak-hache-jambon-roti-frites-et-pu",
+    "name": "Menu enfant - Steak hache, jambon roti, frites et puree",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 580,
+    "protein": 32,
+    "carbs": 48,
+    "fat": 28,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Menu enfant - Steak hache, jambon roti, frites et puree — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-le-louch-burger-cheddar-oignons-viande-hachee-sala",
+    "name": "Le Louch' Burger (cheddar, oignons, viande hachee, salade & frites Maison)",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 980,
+    "protein": 48,
+    "carbs": 72,
+    "fat": 56,
+    "tags": [
+      "beef",
+      "cheese",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Le Louch' Burger — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-steak-hache-430g-xxxl",
+    "name": "Steak hache 430g XXXL",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 1180,
+    "protein": 92,
+    "carbs": 38,
+    "fat": 78,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Steak hache 430g XXXL — Le Louchebem"
+    ]
+  },
+  {
+    "id": "fr-louchebem-steak-tartare-300g",
+    "name": "Steak tartare 300g",
+    "brand": "Le Louchebem",
+    "type": [
+      "lunch",
+      "dinner"
+    ],
+    "calories": 620,
+    "protein": 64,
+    "carbs": 8,
+    "fat": 38,
+    "tags": [
+      "beef",
+      "french"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Steak tartare 300g — Le Louchebem"
     ]
   },
   {
@@ -12873,11 +21408,14 @@ module.exports = [
       "snack",
       "lunch"
     ],
-    "calories": 310,
-    "protein": 5,
-    "carbs": 39,
-    "fat": 14,
-    "tags": [],
+    "calories": 320,
+    "protein": 4,
+    "carbs": 42,
+    "fat": 16,
+    "tags": [
+      "vegetarian",
+      "french"
+    ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
@@ -12885,69 +21423,30 @@ module.exports = [
     ]
   },
   {
-    "id": "fr-louchebem-pommes-sautees",
-    "name": "Pommes Sautées",
+    "id": "fr-louchebem-salade-verte",
+    "name": "Salade verte",
     "brand": "Le Louchebem",
     "type": [
       "snack",
       "lunch"
     ],
-    "calories": 260,
-    "protein": 4,
-    "carbs": 35,
-    "fat": 12,
-    "tags": [],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Pommes Sautées — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-gratin-dauphinois",
-    "name": "Gratin Dauphinois",
-    "brand": "Le Louchebem",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 320,
-    "protein": 9,
-    "carbs": 26,
-    "fat": 20,
-    "tags": [
-      "cheese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Gratin Dauphinois — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-legumes-du-jour",
-    "name": "Légumes du Jour",
-    "brand": "Le Louchebem",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 150,
-    "protein": 5,
-    "carbs": 18,
+    "calories": 90,
+    "protein": 2,
+    "carbs": 6,
     "fat": 6,
     "tags": [
-      "vegetarian"
+      "vegetarian",
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Légumes du Jour — Le Louchebem"
+      "Salade verte — Le Louchebem"
     ]
   },
   {
     "id": "fr-louchebem-haricots-verts",
-    "name": "Haricots Verts",
+    "name": "Haricots verts",
     "brand": "Le Louchebem",
     "type": [
       "snack",
@@ -12956,439 +21455,264 @@ module.exports = [
     "calories": 120,
     "protein": 4,
     "carbs": 14,
-    "fat": 5,
+    "fat": 6,
     "tags": [
-      "vegetarian"
+      "vegetarian",
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Haricots Verts — Le Louchebem"
+      "Haricots verts — Le Louchebem"
     ]
   },
   {
-    "id": "fr-louchebem-puree-maison",
-    "name": "Purée Maison",
+    "id": "fr-louchebem-puree-de-pommes-de-terre",
+    "name": "Puree de pommes de terre",
     "brand": "Le Louchebem",
     "type": [
       "snack",
       "lunch"
     ],
     "calories": 240,
-    "protein": 6,
-    "carbs": 30,
-    "fat": 10,
+    "protein": 4,
+    "carbs": 28,
+    "fat": 12,
     "tags": [
-      "vegetarian"
+      "vegetarian",
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Purée Maison — Le Louchebem"
+      "Puree de pommes de terre — Le Louchebem"
     ]
   },
   {
-    "id": "fr-louchebem-salade-verte",
-    "name": "Salade Verte",
-    "brand": "Le Louchebem",
-    "type": [
-      "snack",
-      "lunch"
-    ],
-    "calories": 85,
-    "protein": 2,
-    "carbs": 6,
-    "fat": 6,
-    "tags": [
-      "vegetarian"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Salade Verte — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-creme-brulee",
-    "name": "Crème Brûlée",
-    "brand": "Le Louchebem",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 420,
-    "protein": 6,
-    "carbs": 40,
-    "fat": 26,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Crème Brûlée — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-profiteroles-au-chocolat",
-    "name": "Profiteroles au Chocolat",
-    "brand": "Le Louchebem",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 520,
-    "protein": 9,
-    "carbs": 48,
-    "fat": 32,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Profiteroles au Chocolat — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-tarte-tatin-creme-fraiche",
-    "name": "Tarte Tatin Crème Fraîche",
-    "brand": "Le Louchebem",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 460,
-    "protein": 5,
-    "carbs": 60,
-    "fat": 21,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Tarte Tatin Crème Fraîche — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-mousse-au-chocolat",
-    "name": "Mousse au Chocolat",
-    "brand": "Le Louchebem",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 380,
-    "protein": 7,
-    "carbs": 35,
-    "fat": 22,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Mousse au Chocolat — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-cafe-gourmand",
-    "name": "Café Gourmand",
-    "brand": "Le Louchebem",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 410,
-    "protein": 6,
-    "carbs": 48,
-    "fat": 20,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Café Gourmand — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-ile-flottante",
-    "name": "Île Flottante",
-    "brand": "Le Louchebem",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 320,
-    "protein": 8,
-    "carbs": 45,
-    "fat": 11,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Île Flottante — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-louchebem-fromage-blanc-coulis",
-    "name": "Fromage Blanc Coulis",
+    "id": "fr-louchebem-le-trou-normand---sorbet-pomme-calvados",
+    "name": "Le Trou Normand - Sorbet pomme & Calvados",
     "brand": "Le Louchebem",
     "type": [
       "dessert",
       "snack"
     ],
     "calories": 220,
-    "protein": 12,
+    "protein": 1,
     "carbs": 28,
-    "fat": 6,
+    "fat": 0,
     "tags": [
-      "dessert"
+      "french"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Fromage Blanc Coulis — Le Louchebem"
+      "Le Trou Normand - Sorbet pomme & Calvados — Le Louchebem"
     ]
   },
   {
-    "id": "fr-louchebem-plateau-de-fromages",
-    "name": "Plateau de Fromages",
-    "brand": "Le Louchebem",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 380,
-    "protein": 24,
-    "carbs": 4,
-    "fat": 30,
-    "tags": [
-      "cheese"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Plateau de Fromages — Le Louchebem"
-    ]
-  },
-  {
-    "id": "fr-amorino-gelato-pistache-m",
-    "name": "Gelato Pistache (M)",
+    "id": "fr-amorino-gelato-stracciatella-medium",
+    "name": "Gelato Stracciatella (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
     "calories": 280,
-    "protein": 4,
+    "protein": 5,
     "carbs": 32,
     "fat": 14,
     "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Gelato Pistache (M) — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-gelato-stracciatella-m",
-    "name": "Gelato Stracciatella (M)",
-    "brand": "Amorino",
-    "type": [
       "dessert",
-      "snack"
-    ],
-    "calories": 265,
-    "protein": 4,
-    "carbs": 32,
-    "fat": 13,
-    "tags": [
-      "dessert"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Gelato Stracciatella (M) — Amorino"
+      "Gelato Stracciatella — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-gelato-chocolat-noir-m",
-    "name": "Gelato Chocolat Noir (M)",
+    "id": "fr-amorino-gelato-cioccolato-fondente-medium",
+    "name": "Gelato Cioccolato Fondente (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
     "calories": 290,
-    "protein": 4,
-    "carbs": 35,
+    "protein": 5,
+    "carbs": 34,
     "fat": 14,
     "tags": [
-      "dessert"
+      "dessert",
+      "vegetarian",
+      "chocolate"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Gelato Chocolat Noir (M) — Amorino"
+      "Gelato Cioccolato Fondente — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-gelato-chocolat-lait-m",
-    "name": "Gelato Chocolat Lait (M)",
+    "id": "fr-amorino-gelato-gianduia-medium",
+    "name": "Gelato Gianduia (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 285,
+    "calories": 310,
     "protein": 5,
-    "carbs": 35,
-    "fat": 13,
+    "carbs": 32,
+    "fat": 17,
     "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Gelato Chocolat Lait (M) — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-gelato-vanille-m",
-    "name": "Gelato Vanille (M)",
-    "brand": "Amorino",
-    "type": [
       "dessert",
-      "snack"
-    ],
-    "calories": 265,
-    "protein": 4,
-    "carbs": 31,
-    "fat": 13,
-    "tags": [
-      "dessert"
+      "vegetarian",
+      "chocolate"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Gelato Vanille (M) — Amorino"
+      "Gelato Gianduia — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-gelato-caramel-beurre-sale",
-    "name": "Gelato Caramel Beurre Salé",
+    "id": "fr-amorino-gelato-bacio-medium",
+    "name": "Gelato Bacio (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
     "calories": 305,
-    "protein": 4,
-    "carbs": 37,
-    "fat": 15,
+    "protein": 5,
+    "carbs": 32,
+    "fat": 16,
     "tags": [
-      "dessert"
+      "dessert",
+      "vegetarian",
+      "chocolate"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Gelato Caramel Beurre Salé — Amorino"
+      "Gelato Bacio — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-gelato-noisette-m",
-    "name": "Gelato Noisette (M)",
+    "id": "fr-amorino-gelato-nocciola-medium",
+    "name": "Gelato Nocciola (Medium)",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 295,
+    "protein": 5,
+    "carbs": 31,
+    "fat": 16,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gelato Nocciola — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-gelato-pistacchio-medium",
+    "name": "Gelato Pistacchio (Medium)",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 300,
+    "protein": 6,
+    "carbs": 30,
+    "fat": 17,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gelato Pistacchio — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-gelato-vaniglia-del-madagascar-medium",
+    "name": "Gelato Vaniglia del Madagascar (Medium)",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 270,
+    "protein": 4,
+    "carbs": 31,
+    "fat": 13,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gelato Vaniglia del Madagascar — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-gelato-caramello-al-sale-medium",
+    "name": "Gelato Caramello al Sale (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
     "calories": 285,
-    "protein": 5,
-    "carbs": 32,
-    "fat": 15,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Gelato Noisette (M) — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-gelato-cafe-m",
-    "name": "Gelato Café (M)",
-    "brand": "Amorino",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 260,
-    "protein": 4,
-    "carbs": 32,
-    "fat": 12,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Gelato Café (M) — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-gelato-tiramisu-m",
-    "name": "Gelato Tiramisu (M)",
-    "brand": "Amorino",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 290,
-    "protein": 4,
-    "carbs": 33,
-    "fat": 15,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Gelato Tiramisu (M) — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-gelato-speculoos-m",
-    "name": "Gelato Speculoos (M)",
-    "brand": "Amorino",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 290,
     "protein": 4,
     "carbs": 35,
-    "fat": 14,
+    "fat": 13,
     "tags": [
-      "dessert"
+      "dessert",
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Gelato Speculoos (M) — Amorino"
+      "Gelato Caramello al Sale — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-gelato-cookies-m",
-    "name": "Gelato Cookies (M)",
+    "id": "fr-amorino-gelato-tiramisu-medium",
+    "name": "Gelato Tiramisu (Medium)",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 290,
+    "protein": 5,
+    "carbs": 33,
+    "fat": 14,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gelato Tiramisu — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-gelato-cookies-medium",
+    "name": "Gelato Cookies (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
@@ -13397,343 +21721,1094 @@ module.exports = [
     "calories": 300,
     "protein": 4,
     "carbs": 36,
-    "fat": 15,
+    "fat": 14,
     "tags": [
-      "dessert"
+      "dessert",
+      "vegetarian",
+      "chocolate"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Gelato Cookies (M) — Amorino"
+      "Gelato Cookies — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-gelato-nutella-m",
-    "name": "Gelato Nutella (M)",
+    "id": "fr-amorino-gelato-speculoos-medium",
+    "name": "Gelato Speculoos (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
     "calories": 295,
-    "protein": 5,
-    "carbs": 34,
-    "fat": 15,
+    "protein": 4,
+    "carbs": 35,
+    "fat": 14,
     "tags": [
-      "dessert"
+      "dessert",
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Gelato Nutella (M) — Amorino"
+      "Gelato Speculoos — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-gelato-bacio-m",
-    "name": "Gelato Bacio (M)",
+    "id": "fr-amorino-gelato-cheesecake-medium",
+    "name": "Gelato Cheesecake (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 310,
+    "calories": 285,
     "protein": 5,
-    "carbs": 34,
-    "fat": 17,
+    "carbs": 33,
+    "fat": 14,
     "tags": [
-      "dessert"
+      "dessert",
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Gelato Bacio (M) — Amorino"
+      "Gelato Cheesecake — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-gelato-yaourt-m",
-    "name": "Gelato Yaourt (M)",
+    "id": "fr-amorino-gelato-yogurt-medium",
+    "name": "Gelato Yogurt (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 195,
+    "calories": 230,
     "protein": 6,
-    "carbs": 31,
-    "fat": 5,
+    "carbs": 32,
+    "fat": 8,
     "tags": [
-      "dessert"
+      "dessert",
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Gelato Yaourt (M) — Amorino"
+      "Gelato Yogurt — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-gelato-coco-m",
-    "name": "Gelato Coco (M)",
+    "id": "fr-amorino-gelato-ricotta-e-fichi-medium",
+    "name": "Gelato Ricotta e Fichi (Medium)",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 275,
+    "protein": 5,
+    "carbs": 33,
+    "fat": 12,
+    "tags": [
+      "dessert",
+      "vegetarian",
+      "fruit"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gelato Ricotta e Fichi — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-gelato-mascarpone-medium",
+    "name": "Gelato Mascarpone (Medium)",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 295,
+    "protein": 4,
+    "carbs": 31,
+    "fat": 16,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gelato Mascarpone — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-gelato-cocco-medium",
+    "name": "Gelato Cocco (Medium)",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 285,
+    "protein": 4,
+    "carbs": 33,
+    "fat": 14,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gelato Cocco — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-gelato-mandorla-medium",
+    "name": "Gelato Mandorla (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
     "calories": 290,
+    "protein": 5,
+    "carbs": 31,
+    "fat": 15,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Gelato Mandorla — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-gelato-caffe-medium",
+    "name": "Gelato Caffe (Medium)",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 270,
     "protein": 4,
     "carbs": 32,
-    "fat": 16,
+    "fat": 13,
     "tags": [
-      "dessert"
+      "dessert",
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Gelato Coco (M) — Amorino"
+      "Gelato Caffe — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-sorbet-fraise-m",
-    "name": "Sorbet Fraise (M)",
+    "id": "fr-amorino-gelato-menta-medium",
+    "name": "Gelato Menta (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 150,
-    "protein": 1,
-    "carbs": 37,
-    "fat": 0,
+    "calories": 275,
+    "protein": 4,
+    "carbs": 33,
+    "fat": 13,
     "tags": [
       "dessert",
-      "vegan"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sorbet Fraise (M) — Amorino"
+      "Gelato Menta — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-sorbet-citron-m",
-    "name": "Sorbet Citron (M)",
+    "id": "fr-amorino-gelato-zuppa-inglese-medium",
+    "name": "Gelato Zuppa Inglese (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 145,
-    "protein": 1,
-    "carbs": 36,
-    "fat": 0,
+    "calories": 285,
+    "protein": 4,
+    "carbs": 34,
+    "fat": 13,
     "tags": [
       "dessert",
-      "vegan"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sorbet Citron (M) — Amorino"
+      "Gelato Zuppa Inglese — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-sorbet-mangue-m",
-    "name": "Sorbet Mangue (M)",
+    "id": "fr-amorino-gelato-amarena-medium",
+    "name": "Gelato Amarena (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 155,
-    "protein": 1,
-    "carbs": 38,
-    "fat": 0,
-    "tags": [
-      "dessert",
-      "vegan"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Sorbet Mangue (M) — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-sorbet-framboise-m",
-    "name": "Sorbet Framboise (M)",
-    "brand": "Amorino",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 145,
-    "protein": 1,
+    "calories": 265,
+    "protein": 4,
     "carbs": 35,
-    "fat": 0,
+    "fat": 11,
     "tags": [
       "dessert",
-      "vegan"
+      "vegetarian",
+      "fruit"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sorbet Framboise (M) — Amorino"
+      "Gelato Amarena — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-sorbet-cassis-m",
-    "name": "Sorbet Cassis (M)",
+    "id": "fr-amorino-sorbet-fragola-medium",
+    "name": "Sorbet Fragola (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 150,
+    "calories": 170,
     "protein": 1,
-    "carbs": 36,
+    "carbs": 42,
     "fat": 0,
     "tags": [
       "dessert",
-      "vegan"
+      "vegan",
+      "fruit"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sorbet Cassis (M) — Amorino"
+      "Sorbet Fragola — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-sorbet-passion-m",
-    "name": "Sorbet Passion (M)",
+    "id": "fr-amorino-sorbet-lampone-medium",
+    "name": "Sorbet Lampone (Medium)",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 165,
+    "protein": 1,
+    "carbs": 41,
+    "fat": 0,
+    "tags": [
+      "dessert",
+      "vegan",
+      "fruit"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sorbet Lampone — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-sorbet-limone-medium",
+    "name": "Sorbet Limone (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
     "calories": 155,
-    "protein": 1,
-    "carbs": 37,
+    "protein": 0,
+    "carbs": 39,
     "fat": 0,
     "tags": [
       "dessert",
-      "vegan"
+      "vegan",
+      "fruit"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sorbet Passion (M) — Amorino"
+      "Sorbet Limone — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-sorbet-poire-m",
-    "name": "Sorbet Poire (M)",
+    "id": "fr-amorino-sorbet-mango-medium",
+    "name": "Sorbet Mango (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 150,
+    "calories": 175,
     "protein": 1,
-    "carbs": 37,
+    "carbs": 43,
     "fat": 0,
     "tags": [
       "dessert",
-      "vegan"
+      "vegan",
+      "fruit"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sorbet Poire (M) — Amorino"
+      "Sorbet Mango — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-sorbet-pomme-verte-m",
-    "name": "Sorbet Pomme Verte (M)",
+    "id": "fr-amorino-sorbet-passion-medium",
+    "name": "Sorbet Passion (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 145,
+    "calories": 170,
     "protein": 1,
-    "carbs": 36,
+    "carbs": 41,
     "fat": 0,
     "tags": [
       "dessert",
-      "vegan"
+      "vegan",
+      "fruit"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sorbet Pomme Verte (M) — Amorino"
+      "Sorbet Passion — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-sorbet-mojito-m",
-    "name": "Sorbet Mojito (M)",
+    "id": "fr-amorino-sorbet-pesca-medium",
+    "name": "Sorbet Pesca (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 155,
+    "calories": 160,
     "protein": 1,
-    "carbs": 38,
+    "carbs": 40,
     "fat": 0,
     "tags": [
       "dessert",
-      "vegan"
+      "vegan",
+      "fruit"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Sorbet Mojito (M) — Amorino"
+      "Sorbet Pesca — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-gelato-piccola-s-80g",
-    "name": "Gelato Piccola (S, ~80g)",
+    "id": "fr-amorino-sorbet-pera-medium",
+    "name": "Sorbet Pera (Medium)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 180,
-    "protein": 3,
-    "carbs": 21,
+    "calories": 165,
+    "protein": 1,
+    "carbs": 41,
+    "fat": 0,
+    "tags": [
+      "dessert",
+      "vegan",
+      "fruit"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sorbet Pera — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-sorbet-melone-medium",
+    "name": "Sorbet Melone (Medium)",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 160,
+    "protein": 1,
+    "carbs": 40,
+    "fat": 0,
+    "tags": [
+      "dessert",
+      "vegan",
+      "fruit"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sorbet Melone — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-sorbet-ananas-medium",
+    "name": "Sorbet Ananas (Medium)",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 170,
+    "protein": 1,
+    "carbs": 42,
+    "fat": 0,
+    "tags": [
+      "dessert",
+      "vegan",
+      "fruit"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Sorbet Ananas — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-sorbet-cocco-medium",
+    "name": "Sorbet Cocco (Medium)",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 220,
+    "protein": 2,
+    "carbs": 35,
     "fat": 9,
     "tags": [
-      "dessert"
+      "dessert",
+      "vegan"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Gelato Piccola (S, ~80g) — Amorino"
+      "Sorbet Cocco — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-gelato-grande-l-160g",
-    "name": "Gelato Grande (L, ~160g)",
+    "id": "fr-amorino-cone-small-1-2-flavours",
+    "name": "Cone Small (1-2 flavours)",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 365,
-    "protein": 5,
-    "carbs": 43,
-    "fat": 18,
+    "calories": 220,
+    "protein": 4,
+    "carbs": 28,
+    "fat": 10,
     "tags": [
-      "dessert"
+      "dessert",
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Gelato Grande (L, ~160g) — Amorino"
+      "Cone Small — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-crepe-nutella",
-    "name": "Crêpe Nutella",
+    "id": "fr-amorino-cone-regular-2-3-flavours",
+    "name": "Cone Regular (2-3 flavours)",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 5,
+    "carbs": 38,
+    "fat": 16,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cone Regular — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-cone-large-4-5-flavours",
+    "name": "Cone Large (4-5 flavours)",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 420,
+    "protein": 7,
+    "carbs": 50,
+    "fat": 21,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cone Large — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-cup-small",
+    "name": "Cup Small",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 200,
+    "protein": 4,
+    "carbs": 24,
+    "fat": 10,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cup Small — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-cup-regular",
+    "name": "Cup Regular",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 290,
+    "protein": 5,
+    "carbs": 34,
+    "fat": 15,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cup Regular — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-cup-large",
+    "name": "Cup Large",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 6,
+    "carbs": 45,
+    "fat": 19,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cup Large — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-cup-extra-large",
+    "name": "Cup Extra Large",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 520,
+    "protein": 8,
+    "carbs": 62,
+    "fat": 27,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Cup Extra Large — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-grandissimo-sharing-cup",
+    "name": "Grandissimo (sharing cup)",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 720,
+    "protein": 11,
+    "carbs": 86,
+    "fat": 36,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Grandissimo — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-take-away-box-550ml",
+    "name": "Take Away Box 550ml",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 1100,
+    "protein": 18,
+    "carbs": 130,
+    "fat": 56,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Take Away Box 550ml — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-take-away-box-1100ml",
+    "name": "Take Away Box 1100ml",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 2200,
+    "protein": 36,
+    "carbs": 260,
+    "fat": 112,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Take Away Box 1100ml — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-kids-ice-cream",
+    "name": "Kid's Ice Cream",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 150,
+    "protein": 3,
+    "carbs": 18,
+    "fat": 8,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Kid's Ice Cream — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-whipped-cream-topping",
+    "name": "Whipped Cream Topping",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 60,
+    "protein": 1,
+    "carbs": 2,
+    "fat": 6,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Whipped Cream Topping — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-macaron-al-gelato",
+    "name": "Macaron al Gelato",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 110,
+    "protein": 2,
+    "carbs": 14,
+    "fat": 5,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Macaron al Gelato — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-macaron-traditional",
+    "name": "Macaron Traditional",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 90,
+    "protein": 1,
+    "carbs": 13,
+    "fat": 4,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Macaron Traditional — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-focaccina-with-sugar",
+    "name": "Focaccina with Sugar",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 360,
+    "protein": 6,
+    "carbs": 56,
+    "fat": 12,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Focaccina with Sugar — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-focaccina-gianduia",
+    "name": "Focaccina Gianduia",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 460,
+    "protein": 7,
+    "carbs": 60,
+    "fat": 20,
+    "tags": [
+      "dessert",
+      "vegetarian",
+      "chocolate"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Focaccina Gianduia — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-focaccina-dark-chocolate-sauce",
+    "name": "Focaccina Dark Chocolate Sauce",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 470,
+    "protein": 7,
+    "carbs": 62,
+    "fat": 21,
+    "tags": [
+      "dessert",
+      "vegetarian",
+      "chocolate"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Focaccina Dark Chocolate Sauce — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-focaccina-salted-butter-caramel",
+    "name": "Focaccina Salted Butter Caramel",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 470,
+    "protein": 6,
+    "carbs": 65,
+    "fat": 20,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Focaccina Salted Butter Caramel — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-focaccina-apricot-jam",
+    "name": "Focaccina Apricot Jam",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 420,
+    "protein": 6,
+    "carbs": 70,
+    "fat": 12,
+    "tags": [
+      "dessert",
+      "vegetarian",
+      "fruit"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Focaccina Apricot Jam — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-focaccina-strawberry-jam",
+    "name": "Focaccina Strawberry Jam",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 420,
+    "protein": 6,
+    "carbs": 70,
+    "fat": 12,
+    "tags": [
+      "dessert",
+      "vegetarian",
+      "fruit"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Focaccina Strawberry Jam — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-focaccina-with-ice-cream-2-flavours",
+    "name": "Focaccina with Ice Cream (2 flavours)",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 620,
+    "protein": 10,
+    "carbs": 82,
+    "fat": 26,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Focaccina with Ice Cream — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-waffle-with-sugar",
+    "name": "Waffle with Sugar",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 7,
+    "carbs": 50,
+    "fat": 16,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Waffle with Sugar — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-waffle-gianduia",
+    "name": "Waffle Gianduia",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 480,
+    "protein": 8,
+    "carbs": 56,
+    "fat": 24,
+    "tags": [
+      "dessert",
+      "vegetarian",
+      "chocolate"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Waffle Gianduia — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-waffle-dark-chocolate-sauce",
+    "name": "Waffle Dark Chocolate Sauce",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 490,
+    "protein": 8,
+    "carbs": 58,
+    "fat": 24,
+    "tags": [
+      "dessert",
+      "vegetarian",
+      "chocolate"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Waffle Dark Chocolate Sauce — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-waffle-salted-butter-caramel",
+    "name": "Waffle Salted Butter Caramel",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 490,
+    "protein": 7,
+    "carbs": 62,
+    "fat": 23,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Waffle Salted Butter Caramel — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-waffle-with-ice-cream-2-flavours",
+    "name": "Waffle with Ice Cream (2 flavours)",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 650,
+    "protein": 11,
+    "carbs": 78,
+    "fat": 30,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Waffle with Ice Cream — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-crepe-sucre",
+    "name": "Crepe Sucre",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 320,
+    "protein": 7,
+    "carbs": 48,
+    "fat": 10,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crepe Sucre — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-crepe-gianduia",
+    "name": "Crepe Gianduia",
     "brand": "Amorino",
     "type": [
       "dessert",
@@ -13744,369 +22819,127 @@ module.exports = [
     "carbs": 52,
     "fat": 20,
     "tags": [
-      "dessert"
+      "dessert",
+      "vegetarian",
+      "chocolate"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Crêpe Nutella — Amorino"
+      "Crepe Gianduia — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-crepe-sucre",
-    "name": "Crêpe Sucre",
+    "id": "fr-amorino-crepe-dark-chocolate-sauce",
+    "name": "Crepe Dark Chocolate Sauce",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 245,
-    "protein": 6,
-    "carbs": 35,
-    "fat": 9,
+    "calories": 440,
+    "protein": 8,
+    "carbs": 54,
+    "fat": 20,
     "tags": [
-      "dessert"
+      "dessert",
+      "vegetarian",
+      "chocolate"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Crêpe Sucre — Amorino"
+      "Crepe Dark Chocolate Sauce — Amorino"
     ]
   },
   {
-    "id": "fr-amorino-crepe-citron",
-    "name": "Crêpe Citron",
+    "id": "fr-amorino-crepe-salted-butter-caramel",
+    "name": "Crepe Salted Butter Caramel",
     "brand": "Amorino",
     "type": [
       "dessert",
       "snack"
     ],
-    "calories": 255,
-    "protein": 6,
-    "carbs": 40,
-    "fat": 8,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Crêpe Citron — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-crepe-confiture",
-    "name": "Crêpe Confiture",
-    "brand": "Amorino",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 295,
-    "protein": 6,
-    "carbs": 46,
-    "fat": 9,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Crêpe Confiture — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-crepe-banane-nutella",
-    "name": "Crêpe Banane Nutella",
-    "brand": "Amorino",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 485,
-    "protein": 9,
-    "carbs": 62,
-    "fat": 22,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Crêpe Banane Nutella — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-crepe-pistache-glace",
-    "name": "Crêpe Pistache Glace",
-    "brand": "Amorino",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 495,
-    "protein": 9,
-    "carbs": 58,
-    "fat": 24,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Crêpe Pistache Glace — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-gaufre-sucre",
-    "name": "Gaufre Sucre",
-    "brand": "Amorino",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 320,
+    "calories": 440,
     "protein": 7,
-    "carbs": 46,
-    "fat": 12,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Gaufre Sucre — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-gaufre-nutella",
-    "name": "Gaufre Nutella",
-    "brand": "Amorino",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 480,
-    "protein": 9,
-    "carbs": 58,
-    "fat": 23,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Gaufre Nutella — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-gaufre-glace-vanille",
-    "name": "Gaufre Glace Vanille",
-    "brand": "Amorino",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 510,
-    "protein": 10,
     "carbs": 60,
+    "fat": 18,
+    "tags": [
+      "dessert",
+      "vegetarian"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crepe Salted Butter Caramel — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-crepe-apricot-jam",
+    "name": "Crepe Apricot Jam",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 7,
+    "carbs": 64,
+    "fat": 10,
+    "tags": [
+      "dessert",
+      "vegetarian",
+      "fruit"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crepe Apricot Jam — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-crepe-strawberry-jam",
+    "name": "Crepe Strawberry Jam",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 380,
+    "protein": 7,
+    "carbs": 64,
+    "fat": 10,
+    "tags": [
+      "dessert",
+      "vegetarian",
+      "fruit"
+    ],
+    "country": "France",
+    "source": "restaurant",
+    "shoppingItems": [
+      "Crepe Strawberry Jam — Amorino"
+    ]
+  },
+  {
+    "id": "fr-amorino-crepe-with-ice-cream-2-flavours",
+    "name": "Crepe with Ice Cream (2 flavours)",
+    "brand": "Amorino",
+    "type": [
+      "dessert",
+      "snack"
+    ],
+    "calories": 580,
+    "protein": 11,
+    "carbs": 76,
     "fat": 24,
     "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Gaufre Glace Vanille — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-gaufre-fruits-frais",
-    "name": "Gaufre Fruits Frais",
-    "brand": "Amorino",
-    "type": [
       "dessert",
-      "snack"
-    ],
-    "calories": 365,
-    "protein": 8,
-    "carbs": 52,
-    "fat": 13,
-    "tags": [
-      "dessert"
+      "vegetarian"
     ],
     "country": "France",
     "source": "restaurant",
     "shoppingItems": [
-      "Gaufre Fruits Frais — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-granita-citron",
-    "name": "Granita Citron",
-    "brand": "Amorino",
-    "type": [
-      "drink",
-      "snack"
-    ],
-    "calories": 135,
-    "protein": 0,
-    "carbs": 34,
-    "fat": 0,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Granita Citron — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-granita-cafe",
-    "name": "Granita Café",
-    "brand": "Amorino",
-    "type": [
-      "drink",
-      "snack"
-    ],
-    "calories": 125,
-    "protein": 1,
-    "carbs": 30,
-    "fat": 0,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Granita Café — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-granita-fraise",
-    "name": "Granita Fraise",
-    "brand": "Amorino",
-    "type": [
-      "drink",
-      "snack"
-    ],
-    "calories": 130,
-    "protein": 0,
-    "carbs": 33,
-    "fat": 0,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Granita Fraise — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-milkshake-vanille",
-    "name": "Milkshake Vanille",
-    "brand": "Amorino",
-    "type": [
-      "drink",
-      "snack"
-    ],
-    "calories": 355,
-    "protein": 9,
-    "carbs": 52,
-    "fat": 13,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Milkshake Vanille — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-milkshake-chocolat",
-    "name": "Milkshake Chocolat",
-    "brand": "Amorino",
-    "type": [
-      "drink",
-      "snack"
-    ],
-    "calories": 395,
-    "protein": 10,
-    "carbs": 58,
-    "fat": 14,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Milkshake Chocolat — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-milkshake-pistache",
-    "name": "Milkshake Pistache",
-    "brand": "Amorino",
-    "type": [
-      "drink",
-      "snack"
-    ],
-    "calories": 410,
-    "protein": 10,
-    "carbs": 56,
-    "fat": 17,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Milkshake Pistache — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-chocolat-chaud-italien",
-    "name": "Chocolat Chaud Italien",
-    "brand": "Amorino",
-    "type": [
-      "drink",
-      "snack"
-    ],
-    "calories": 295,
-    "protein": 8,
-    "carbs": 38,
-    "fat": 12,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Chocolat Chaud Italien — Amorino"
-    ]
-  },
-  {
-    "id": "fr-amorino-affogato",
-    "name": "Affogato",
-    "brand": "Amorino",
-    "type": [
-      "dessert",
-      "snack"
-    ],
-    "calories": 235,
-    "protein": 4,
-    "carbs": 26,
-    "fat": 12,
-    "tags": [
-      "dessert"
-    ],
-    "country": "France",
-    "source": "restaurant",
-    "shoppingItems": [
-      "Affogato — Amorino"
+      "Crepe with Ice Cream — Amorino"
     ]
   }
 ];
