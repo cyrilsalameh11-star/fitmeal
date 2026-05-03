@@ -818,6 +818,14 @@ const parser = new RSSParser();
 // Manually curated global FMCG articles — always surfaced at the top
 const PINNED_GLOBAL_ARTICLES = [
   {
+    title: "Tawlet s'invite au Domaine des Tourelles à Chtaura - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1478821/tawlet-sinvite-au-domaine-des-tourelles-a-chtaura.html',
+    pubDate: 'Sun, 3 May 2026 08:00:00 GMT',
+    contentSnippet: "Tawlet, l'institution beyrouthine de la cuisine libanaise authentique, s'invite le temps d'une expérience au Domaine des Tourelles à Chtaura, dans la Békaa...",
+    id: 'pinned-tawlet-tourelles-1478821',
+    photoUrl: '/news/tawlet-tourelles.jfif',
+  },
+  {
     title: "The new Spinneys in Antelias has its own Sephora section",
     link: 'https://www.beirut.com/en/773632/the-new-spinneys-in-antelias-has-its-own-sephora-section/',
     pubDate: 'Sat, 25 Apr 2026 09:00:00 GMT',
@@ -868,14 +876,6 @@ const PINNED_GLOBAL_ARTICLES = [
 ];
 
 const PINNED_LORIENT_ARTICLES = [
-  {
-    title: "Tawlet s'invite au Domaine des Tourelles à Chtaura - L'Orient-Le Jour",
-    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1478821/tawlet-sinvite-au-domaine-des-tourelles-a-chtaura.html',
-    pubDate: 'Sun, 3 May 2026 08:00:00 GMT',
-    contentSnippet: "Tawlet, l'institution beyrouthine de la cuisine libanaise authentique, s'invite le temps d'une expérience au Domaine des Tourelles à Chtaura, dans la Békaa...",
-    id: 'pinned-lorient-1478821',
-    photoUrl: '/news/tawlet-tourelles.jfif',
-  },
   {
     title: "Kiki's : manger sain sans renoncer au plaisir - L'Orient-Le Jour",
     link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1492564/kikis-manger-sain-sans-renoncer-au-plaisir.html',
