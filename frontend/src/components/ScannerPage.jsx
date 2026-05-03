@@ -1,7 +1,8 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, Upload, RotateCcw, Zap, Check, ScanLine, ChevronRight, X, Clock, Trash2, Sparkles, MessageSquare, Send, Barcode } from 'lucide-react';
+import { Camera, Upload, RotateCcw, Zap, Check, ScanLine, ChevronRight, X, Clock, Trash2, Sparkles, MessageSquare, Send, Barcode, FileText } from 'lucide-react';
 import { logMealToday } from './CalorieBar';
+import ParticleCanvas from './ParticleCanvas';
 
 const HISTORY_KEY = 'fitmeal_scan_history';
 
@@ -44,9 +45,9 @@ function MacroChip({ label, value, color }) {
   return (
     <div className="flex flex-col items-center gap-1">
       <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${color}`}>
-        <span className="text-xs font-black text-white">{value}</span>
+        <span className="text-xs font-bold text-white">{value}</span>
       </div>
-      <span className="text-[9px] font-black uppercase tracking-widest text-stone-400">{label}</span>
+      <span className="text-[9px] font-bold uppercase tracking-wider text-gray-400">{label}</span>
     </div>
   );
 }
@@ -63,36 +64,36 @@ function HistoryPanel({ onClose, onReLog }) {
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} className="p-6 space-y-4">
       <div className="flex items-center justify-between">
-        <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 flex items-center gap-1.5">
+        <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
           <Clock size={11} /> Scan History
         </p>
         <div className="flex items-center gap-3">
           {items.length > 0 && (
-            <button onClick={() => { localStorage.removeItem(HISTORY_KEY); setItems([]); }} className="text-stone-600 hover:text-red-400 transition-colors">
+            <button onClick={() => { localStorage.removeItem(HISTORY_KEY); setItems([]); }} className="text-gray-600 hover:text-red-400 transition-colors">
               <Trash2 size={13} />
             </button>
           )}
-          <button onClick={onClose} className="text-stone-600 hover:text-white transition-colors"><X size={16} /></button>
+          <button onClick={onClose} className="text-gray-600 hover:text-white transition-colors"><X size={16} /></button>
         </div>
       </div>
       {items.length === 0 ? (
-        <p className="text-stone-500 text-xs text-center py-8">No scans yet.</p>
+        <p className="text-gray-500 text-xs text-center py-8">No scans yet.</p>
       ) : (
         <div className="space-y-2 max-h-96 overflow-y-auto">
           {items.map(item => (
-            <div key={item.id} className="bg-stone-900 rounded-2xl p-4 flex items-center gap-3">
+            <div key={item.id} className="bg-gray-900 rounded-2xl p-4 flex items-center gap-3">
               <div className="flex-1 min-w-0">
-                <p className="text-white text-xs font-black truncate">{item.dish}</p>
-                <p className="text-stone-500 text-[10px] mt-0.5">{item.servingSize} · {formatRelative(item.ts)}</p>
+                <p className="text-white text-xs font-bold truncate">{item.dish}</p>
+                <p className="text-gray-500 text-[10px] mt-0.5">{item.servingSize} · {formatRelative(item.ts)}</p>
                 <div className="flex items-center gap-3 mt-1.5">
-                  <span className="text-amber-400 text-xs font-black">{item.calories} kcal</span>
-                  <span className="text-stone-600 text-[10px]">P {item.protein}g · C {item.carbs}g · F {item.fat}g</span>
+                  <span className="text-amber-400 text-xs font-bold">{item.calories} kcal</span>
+                  <span className="text-gray-600 text-[10px]">P {item.protein}g · C {item.carbs}g · F {item.fat}g</span>
                 </div>
               </div>
-              <button onClick={() => onReLog(item)} className="flex-shrink-0 px-3 py-1.5 bg-stone-800 hover:bg-amber-500 text-stone-400 hover:text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all">
+              <button onClick={() => onReLog(item)} className="flex-shrink-0 px-3 py-1.5 bg-gray-800 hover:bg-amber-500 text-gray-400 hover:text-white rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all">
                 Log
               </button>
-              <button onClick={() => deleteItem(item.id)} className="flex-shrink-0 w-7 h-7 flex items-center justify-center text-stone-600 hover:text-red-400 transition-colors">
+              <button onClick={() => deleteItem(item.id)} className="flex-shrink-0 w-7 h-7 flex items-center justify-center text-gray-600 hover:text-red-400 transition-colors">
                 <X size={14} />
               </button>
             </div>
@@ -112,15 +113,15 @@ function QuestionsStep({ dish, items, questions, answers, onChange, onSubmit, lo
           <Sparkles size={14} className="text-amber-400" />
         </div>
         <div>
-          <p className="text-white font-black text-base leading-tight">{dish}</p>
+          <p className="text-white font-bold text-base leading-tight">{dish}</p>
           {items?.length > 0 && (
-            <p className="text-stone-500 text-[10px] font-medium mt-0.5">{items.join(', ')}</p>
+            <p className="text-gray-500 text-[10px] font-medium mt-0.5">{items.join(', ')}</p>
           )}
         </div>
       </div>
 
-      <div className="border-t border-stone-800 pt-5 space-y-5">
-        <p className="text-stone-400 text-xs font-medium leading-relaxed">
+      <div className="border-t border-gray-800 pt-5 space-y-5">
+        <p className="text-gray-400 text-xs font-medium leading-relaxed">
           Before I estimate the calories, a few quick questions:
         </p>
         {questions.map((q, i) => (
@@ -136,7 +137,7 @@ function QuestionsStep({ dish, items, questions, answers, onChange, onSubmit, lo
                     className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all border ${
                       selected
                         ? 'bg-amber-500 border-amber-500 text-white shadow-lg shadow-amber-500/20'
-                        : 'bg-stone-800 border-stone-700 text-stone-300 hover:border-stone-500 hover:text-white'
+                        : 'bg-gray-800 border-gray-700 text-gray-300 hover:border-gray-500 hover:text-white'
                     }`}
                   >
                     {opt}
@@ -155,7 +156,7 @@ function QuestionsStep({ dish, items, questions, answers, onChange, onSubmit, lo
             animate={{ opacity: 1, y: 0 }}
             onClick={onSubmit}
             disabled={loading}
-            className="w-full py-4 bg-amber-500 text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-amber-400 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+            className="w-full py-4 bg-amber-500 text-white rounded-2xl text-xs font-bold uppercase tracking-wider hover:bg-amber-400 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
           >
             {loading ? (
               <>
@@ -176,9 +177,22 @@ function QuestionsStep({ dish, items, questions, answers, onChange, onSubmit, lo
 function BarcodeScannerView({ onDetected, onClose }) {
   const videoRef    = useRef(null);
   const readerRef   = useRef(null);
+  const controlsRef = useRef(null);
   const detectedRef = useRef(false);
   const [camError,  setCamError]  = useState(null);
   const [manualCode, setManualCode] = useState('');
+
+  // Aggressive shutdown: stops zxing controls + all media tracks + clears srcObject
+  const fullStop = () => {
+    try { controlsRef.current?.stop?.(); } catch {}
+    try { readerRef.current?.reset?.(); } catch {}
+    const video = videoRef.current;
+    if (video?.srcObject) {
+      try { video.srcObject.getTracks?.().forEach(t => t.stop()); } catch {}
+      try { video.srcObject = null; } catch {}
+    }
+    try { video?.pause?.(); } catch {}
+  };
 
   useEffect(() => {
     let mounted = true;
@@ -189,14 +203,19 @@ function BarcodeScannerView({ onDetected, onClose }) {
         if (!mounted || !videoRef.current) return;
         const reader = new BrowserMultiFormatReader();
         readerRef.current = reader;
-        // Note: do NOT await — decodeFromVideoDevice is continuous and never resolves
-        reader.decodeFromVideoDevice(undefined, videoRef.current, (result) => {
+        // decodeFromVideoDevice returns a Promise<IScannerControls> in @zxing/browser
+        const controls = await reader.decodeFromVideoDevice(undefined, videoRef.current, (result) => {
           if (!mounted) return;
           if (result && !detectedRef.current) {
             detectedRef.current = true;
+            // Stop the camera IMMEDIATELY, don't wait for React unmount
+            fullStop();
             onDetected(result.getText());
           }
         });
+        controlsRef.current = controls;
+        // If component already unmounted while awaiting, stop now
+        if (!mounted) fullStop();
       } catch {
         if (mounted) setCamError('Camera access denied or unavailable.');
       }
@@ -204,13 +223,7 @@ function BarcodeScannerView({ onDetected, onClose }) {
     start();
     return () => {
       mounted = false;
-      try { readerRef.current?.reset(); } catch {}
-      // Stop all camera tracks so the browser releases the camera
-      const video = videoRef.current;
-      if (video?.srcObject) {
-        video.srcObject.getTracks?.().forEach(t => t.stop());
-        video.srcObject = null;
-      }
+      fullStop();
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -245,9 +258,9 @@ function BarcodeScannerView({ onDetected, onClose }) {
           </div>
         </>
       ) : (
-        <div className="absolute inset-0 bg-stone-900 flex flex-col items-center justify-center gap-4 p-6">
-          <p className="text-stone-400 text-xs text-center">{camError}</p>
-          <p className="text-stone-500 text-[10px] font-bold uppercase tracking-widest">Enter barcode manually</p>
+        <div className="absolute inset-0 bg-gray-900 flex flex-col items-center justify-center gap-4 p-6">
+          <p className="text-gray-400 text-xs text-center">{camError}</p>
+          <p className="text-gray-500 text-[10px] font-bold uppercase tracking-wider">Enter barcode manually</p>
           <div className="flex gap-2 w-full max-w-xs">
             <input
               type="text"
@@ -255,13 +268,13 @@ function BarcodeScannerView({ onDetected, onClose }) {
               value={manualCode}
               onChange={e => setManualCode(e.target.value.replace(/\D/g, ''))}
               placeholder="e.g. 3017620425035"
-              className="flex-1 bg-stone-800 text-white text-xs px-3 py-2.5 rounded-xl outline-none focus:ring-1 focus:ring-amber-500/50"
+              className="flex-1 bg-gray-800 text-white text-xs px-3 py-2.5 rounded-xl outline-none focus:ring-1 focus:ring-amber-500/50"
               maxLength={14}
             />
             <button
               onClick={submitManual}
               disabled={!/^\d{8,14}$/.test(manualCode)}
-              className="px-4 py-2.5 bg-amber-500 text-white text-xs font-black rounded-xl disabled:opacity-30"
+              className="px-4 py-2.5 bg-amber-500 text-white text-xs font-bold rounded-xl disabled:opacity-30"
             >
               Go
             </button>
@@ -270,7 +283,7 @@ function BarcodeScannerView({ onDetected, onClose }) {
       )}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 w-9 h-9 bg-stone-900/80 backdrop-blur-sm rounded-full flex items-center justify-center text-stone-400 hover:text-white transition-colors"
+        className="absolute top-4 right-4 w-9 h-9 bg-gray-900/80 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-400 hover:text-white transition-colors"
       >
         <X size={16} />
       </button>
@@ -281,9 +294,10 @@ function BarcodeScannerView({ onDetected, onClose }) {
 export default function ScannerPage() {
   const fileInputRef   = useRef(null);
   const cameraInputRef = useRef(null);
+  const labelCamRef    = useRef(null);
   const lastBase64Ref  = useRef(null);
 
-  // view: 'photo' | 'describe' | 'barcode'
+  // view: 'photo' | 'describe' | 'barcode' | 'label'
   const [view,        setView]        = useState('photo');
   // phase: 'idle' | 'identifying' | 'questions' | 'estimating' | 'result' | 'error'
   const [phase,       setPhase]       = useState('idle');
@@ -354,6 +368,49 @@ export default function ScannerPage() {
     return data;
   }
 
+  // Analyze a nutrition label photo via the new /api/analyze-food-label endpoint
+  const analyzeLabel = useCallback(async (file) => {
+    setPhase('identifying');
+    setResult(null);
+    setIdentified(null);
+    setError(null);
+    setLogged(false);
+    setAnswers({});
+    setShowHistory(false);
+
+    if (file.size > 20 * 1024 * 1024) {
+      setError('Photo too large (max 20MB).');
+      setPhase('error');
+      return;
+    }
+    try {
+      const dataUrl = await compressImage(file);
+      setPreview(dataUrl);
+      const base64 = dataUrl.split(',')[1];
+      if (!base64) throw new Error('Could not read image data.');
+
+      const res = await fetch('/api/analyze-food-label', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ imageBase64: base64, mimeType: 'image/jpeg' }),
+      });
+      const text = await res.text();
+      let data;
+      try { data = JSON.parse(text); } catch { throw new Error(`Server error: ${text.slice(0, 100)}`); }
+      if (!res.ok) throw new Error(data.error || `Server error ${res.status}`);
+      setResult(data);
+      setPhase('result');
+    } catch (err) {
+      setError(err.message || 'Could not read label.');
+      setPhase('error');
+    }
+  }, [compressImage]);
+
+  function handleLabelFile(e) {
+    const file = e.target.files?.[0];
+    if (file) analyzeLabel(file);
+  }
+
   const analyzeImage = useCallback(async (file) => {
     setPhase('identifying');
     setResult(null);
@@ -380,7 +437,6 @@ export default function ScannerPage() {
       if (!data.questions?.length || data.dish === 'Not food detected') {
         const estimate = await callPhotoApi(base64, 'estimate', {});
         setResult(estimate);
-        saveToHistory(estimate);
         setPhase('result');
       } else {
         setIdentified(data);
@@ -398,7 +454,6 @@ export default function ScannerPage() {
     try {
       const data = await callPhotoApi(lastBase64Ref.current, 'estimate', answers);
       setResult(data);
-      saveToHistory(data);
       setPhase('result');
     } catch (err) {
       setError(err.message);
@@ -450,7 +505,6 @@ export default function ScannerPage() {
       try { data = JSON.parse(text); } catch { throw new Error(`Server error: ${text.slice(0, 100)}`); }
       if (!res.ok) throw new Error(data.error || `Server error ${res.status}`);
       setResult(data);
-      saveToHistory(data);
       setPhase('result');
     } catch (err) {
       clearTimeout(timeoutId);
@@ -465,7 +519,6 @@ export default function ScannerPage() {
     try {
       const data = await callDescribeApi('estimate', answers);
       setResult(data);
-      saveToHistory(data);
       setPhase('result');
     } catch (err) {
       setError(err.message);
@@ -492,7 +545,11 @@ export default function ScannerPage() {
       servingSize: qty > 1 ? `×${qty} ${base.label || result.servingSize}` : (base.label || result.servingSize),
     };
     const ok = logMealToday(entry);
-    if (ok) { setLogged(true); setTimeout(() => setLogged(false), 2500); }
+    if (ok) {
+      saveToHistory(entry); // history reflects what was actually logged (e.g. whole-bag macros)
+      setLogged(true);
+      setTimeout(() => setLogged(false), 2500);
+    }
   }
 
   function reset() {
@@ -517,6 +574,15 @@ export default function ScannerPage() {
     if (v === 'describe') setDescribeText('');
   }
 
+  // Label view: show the nutrition-facts mockup for 3s, then auto-open the camera
+  useEffect(() => {
+    if (view !== 'label' || phase !== 'idle') return;
+    const t = setTimeout(() => {
+      labelCamRef.current?.click();
+    }, 3000);
+    return () => clearTimeout(t);
+  }, [view, phase]);
+
   const isLoading = phase === 'identifying' || phase === 'estimating';
   const confidenceColor = { high: 'text-emerald-500', medium: 'text-amber-500', low: 'text-red-400' };
   const onEstimate = view === 'describe' ? handleDescribeEstimate : handlePhotoEstimate;
@@ -531,28 +597,28 @@ export default function ScannerPage() {
     >
       {/* Header */}
       <div className="max-w-sm">
-        <p className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+        <p className="text-xs font-bold text-amber-500 uppercase tracking-wider mb-2 flex items-center gap-2">
           <ScanLine size={13} /> AI Food Scanner
         </p>
-        <h1 className="text-4xl md:text-5xl leading-tight mb-2">
+        <h2 className="text-4xl lg:text-5xl tracking-tight text-gray-900">
+          {view === 'describe' ? <>Describe <span className="italic font-normal text-gray-400">& Estimate.</span></>
+            : view === 'barcode' ? <>Scan <span className="italic font-normal text-gray-400">& Look up.</span></>
+            : view === 'label'   ? <>Snap <span className="italic font-normal text-gray-400">the Label.</span></>
+            : <>Snap <span className="italic font-normal text-gray-400">& Estimate.</span></>}
+        </h2>
+        <p className="text-sm text-gray-500 font-medium leading-relaxed mt-3">
           {view === 'describe'
-            ? <>Describe &amp; <span className="italic font-normal text-stone-400">Estimate.</span></>
+            ? 'Tell the AI what you ate, answer 2 to 3 quick questions, and get an accurate calorie breakdown.'
             : view === 'barcode'
-            ? <>Scan &amp; <span className="italic font-normal text-stone-400">Look up.</span></>
-            : <>Snap &amp; <span className="italic font-normal text-stone-400">Estimate.</span></>
-          }
-        </h1>
-        <p className="text-sm text-stone-500 font-medium leading-relaxed">
-          {view === 'describe'
-            ? 'Tell the AI what you ate — answer 2–3 quick questions — get an accurate calorie breakdown.'
-            : view === 'barcode'
-            ? 'Scan any product barcode — instantly get the nutrition facts from the Open Food Facts database.'
-            : 'Take a photo of any meal — answer 2–3 quick questions — get an accurate calorie breakdown.'}
+            ? 'Scan any product barcode and instantly get the nutrition facts from the Open Food Facts database.'
+            : view === 'label'
+            ? "Take a clear photo of the nutrition facts label and we'll read the values directly off the package."
+            : 'Take a photo of any meal, answer 2 to 3 quick questions, and get an accurate calorie breakdown.'}
         </p>
       </div>
 
       {/* Main card */}
-      <div className="bg-stone-950 rounded-[2.5rem] overflow-hidden shadow-2xl">
+      <div className="bg-gray-950 rounded-2xl overflow-hidden shadow-2xl">
 
         {/* ── PHOTO VIEW: image area ─────────────────────── */}
         {view === 'photo' && (
@@ -560,40 +626,40 @@ export default function ScannerPage() {
             {preview ? (
               <img src={preview} alt="Food" className="w-full h-full object-cover" />
             ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center gap-4 bg-stone-900">
+              <div className="w-full h-full flex flex-col items-center justify-center gap-4 bg-gray-900">
                 <div className="relative w-40 h-32">
                   {[['top-0 left-0','border-t-2 border-l-2 rounded-tl-2xl'],
                     ['top-0 right-0','border-t-2 border-r-2 rounded-tr-2xl'],
                     ['bottom-0 left-0','border-b-2 border-l-2 rounded-bl-2xl'],
                     ['bottom-0 right-0','border-b-2 border-r-2 rounded-br-2xl']].map(([pos,cls],i) => (
-                    <div key={i} className={`absolute ${pos} w-8 h-8 border-stone-600 ${cls}`} />
+                    <div key={i} className={`absolute ${pos} w-8 h-8 border-gray-600 ${cls}`} />
                   ))}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <Camera size={36} className="text-stone-600" />
+                    <Camera size={36} className="text-gray-600" />
                   </div>
                 </div>
-                <p className="text-stone-500 text-xs font-medium">Point at your meal</p>
+                <p className="text-gray-500 text-xs font-medium">Point at your meal</p>
               </div>
             )}
 
             {isLoading && (
-              <div className="absolute inset-0 bg-stone-950/80 backdrop-blur-sm flex flex-col items-center justify-center gap-4">
+              <div className="absolute inset-0 bg-gray-950/80 backdrop-blur-sm flex flex-col items-center justify-center gap-4">
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 1.2, repeat: Infinity, ease: 'linear' }}
-                  className="w-12 h-12 border-2 border-stone-700 border-t-amber-400 rounded-full"
+                  className="w-12 h-12 border-2 border-gray-700 border-t-amber-400 rounded-full"
                 />
-                <p className="text-white text-xs font-black uppercase tracking-widest">
+                <p className="text-white text-xs font-bold uppercase tracking-wider">
                   {phase === 'identifying' ? 'Identifying food...' : 'Calculating calories...'}
                 </p>
-                <p className="text-stone-500 text-[10px]">
+                <p className="text-gray-500 text-[10px]">
                   {phase === 'identifying' ? 'Gemini AI is reading your photo' : 'Using your answers for accuracy'}
                 </p>
               </div>
             )}
 
             {preview && !isLoading && (
-              <button onClick={reset} className="absolute top-4 right-4 w-9 h-9 bg-stone-900/80 backdrop-blur-sm rounded-full flex items-center justify-center text-stone-400 hover:text-white transition-colors">
+              <button onClick={reset} className="absolute top-4 right-4 w-9 h-9 bg-gray-900/80 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-400 hover:text-white transition-colors">
                 <X size={16} />
               </button>
             )}
@@ -602,7 +668,7 @@ export default function ScannerPage() {
 
         {/* ── DESCRIBE VIEW: chat area ───────────────────── */}
         {view === 'describe' && (
-          <div className="bg-stone-900 min-h-[220px]">
+          <div className="bg-gray-900 min-h-[220px]">
             {phase === 'idle' ? (
               /* Input state */
               <div className="p-5 flex flex-col gap-4">
@@ -610,7 +676,7 @@ export default function ScannerPage() {
                   <div className="w-7 h-7 rounded-xl bg-amber-500/20 flex items-center justify-center flex-shrink-0">
                     <Sparkles size={12} className="text-amber-400" />
                   </div>
-                  <p className="text-stone-400 text-xs font-medium">What did you eat? Describe it in your own words.</p>
+                  <p className="text-gray-400 text-xs font-medium">What did you eat? Describe it in your own words.</p>
                 </div>
                 <textarea
                   value={describeText}
@@ -622,13 +688,13 @@ export default function ScannerPage() {
                     }
                   }}
                   placeholder="e.g. I had a chicken shawarma wrap from a local spot, with garlic sauce and a side of fries..."
-                  className="bg-stone-800 text-white text-sm placeholder-stone-600 rounded-2xl px-4 py-3 resize-none outline-none focus:ring-1 focus:ring-amber-500/40 transition-all leading-relaxed"
+                  className="bg-gray-800 text-white text-sm placeholder-gray-600 rounded-2xl px-4 py-3 resize-none outline-none focus:ring-1 focus:ring-amber-500/40 transition-all leading-relaxed"
                   rows={4}
                 />
                 <button
                   onClick={handleDescribeSubmit}
                   disabled={!describeText.trim()}
-                  className="w-full py-3.5 bg-amber-500 text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-amber-400 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full py-3.5 bg-amber-500 text-white rounded-2xl text-xs font-bold uppercase tracking-wider hover:bg-amber-400 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   <Send size={13} /> Analyze Meal
                 </button>
@@ -645,32 +711,32 @@ export default function ScannerPage() {
                 {/* AI status */}
                 {isLoading ? (
                   <div className="flex items-center gap-3">
-                    <div className="w-7 h-7 rounded-full bg-stone-800 flex items-center justify-center flex-shrink-0">
+                    <div className="w-7 h-7 rounded-full bg-gray-800 flex items-center justify-center flex-shrink-0">
                       <Sparkles size={11} className="text-amber-400" />
                     </div>
-                    <div className="flex items-center gap-2.5 bg-stone-800 px-4 py-3 rounded-2xl rounded-tl-sm">
+                    <div className="flex items-center gap-2.5 bg-gray-800 px-4 py-3 rounded-2xl rounded-tl-sm">
                       <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                        className="w-3.5 h-3.5 border border-stone-600 border-t-amber-400 rounded-full flex-shrink-0"
+                        className="w-3.5 h-3.5 border border-gray-600 border-t-amber-400 rounded-full flex-shrink-0"
                       />
-                      <span className="text-stone-400 text-xs font-medium">
+                      <span className="text-gray-400 text-xs font-medium">
                         {phase === 'identifying' ? 'Analyzing your meal...' : 'Calculating calories...'}
                       </span>
                     </div>
                   </div>
                 ) : (phase === 'questions' || phase === 'result' || phase === 'error') && (
                   <div className="flex items-start gap-3">
-                    <div className="w-7 h-7 rounded-full bg-stone-800 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="w-7 h-7 rounded-full bg-gray-800 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Sparkles size={11} className="text-amber-400" />
                     </div>
-                    <div className="bg-stone-800 px-4 py-3 rounded-2xl rounded-tl-sm">
-                      <p className="text-stone-300 text-xs font-medium leading-relaxed">
+                    <div className="bg-gray-800 px-4 py-3 rounded-2xl rounded-tl-sm">
+                      <p className="text-gray-300 text-xs font-medium leading-relaxed">
                         {phase === 'questions'
                           ? 'Got it! A few quick questions before I estimate:'
                           : phase === 'result'
                           ? 'Here\'s your estimate based on what you described:'
-                          : 'Something went wrong — please try again.'}
+                          : 'Something went wrong, please try again.'}
                       </p>
                     </div>
                   </div>
@@ -688,25 +754,100 @@ export default function ScannerPage() {
           />
         )}
         {view === 'barcode' && isLoading && (
-          <div className="relative bg-stone-900" style={{ aspectRatio: '4/3' }}>
+          <div className="relative bg-gray-900" style={{ aspectRatio: '4/3' }}>
             {isLoading && (
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 1.2, repeat: Infinity, ease: 'linear' }}
-                  className="w-12 h-12 border-2 border-stone-700 border-t-amber-400 rounded-full"
+                  className="w-12 h-12 border-2 border-gray-700 border-t-amber-400 rounded-full"
                 />
-                <p className="text-white text-xs font-black uppercase tracking-widest">Looking up product...</p>
-                <p className="text-stone-500 text-[10px]">Checking Open Food Facts database</p>
+                <p className="text-white text-xs font-bold uppercase tracking-wider">Looking up product...</p>
+                <p className="text-gray-500 text-[10px]">Checking Open Food Facts database</p>
               </div>
             )}
+          </div>
+        )}
+
+        {/* ── LABEL VIEW (camera-style guide overlay) ─────── */}
+        {view === 'label' && phase === 'idle' && (
+          <button
+            onClick={() => labelCamRef.current?.click()}
+            className="relative w-full bg-black overflow-hidden block group"
+            style={{ aspectRatio: '4/3' }}
+            aria-label="Open camera to scan label"
+          >
+            {/* dark gradient backdrop */}
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-950" />
+
+            {/* corner brackets, viewfinder feel */}
+            <div className="absolute inset-6">
+              {[['top-0 left-0','border-t-2 border-l-2 rounded-tl-xl'],
+                ['top-0 right-0','border-t-2 border-r-2 rounded-tr-xl'],
+                ['bottom-0 left-0','border-b-2 border-l-2 rounded-bl-xl'],
+                ['bottom-0 right-0','border-b-2 border-r-2 rounded-br-xl']].map(([pos,cls],i) => (
+                <div key={i} className={`absolute ${pos} w-10 h-10 border-amber-400/80 ${cls}`} />
+              ))}
+            </div>
+
+            {/* Content: realistic nutrition-facts mock + instruction */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 px-6 text-center pointer-events-none">
+              {/* Realistic nutrition label mockup */}
+              <div className="bg-white text-black rounded-md p-2 w-[120px] text-left shadow-xl"
+                   style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                <p className="font-extrabold text-[11px] leading-tight border-b-[3px] border-black pb-0.5">Nutrition Facts</p>
+                <p className="text-[6px] leading-tight">16 servings per container</p>
+                <p className="text-[7px] font-bold leading-tight border-b border-black pb-0.5">Serving size <span className="float-right">1 Tbsp (21g)</span></p>
+                <p className="text-[5px] mt-1 leading-tight">Amount per serving</p>
+                <div className="flex justify-between items-baseline border-b-[3px] border-black">
+                  <span className="text-[10px] font-extrabold leading-tight">Calories</span>
+                  <span className="text-[12px] font-extrabold leading-tight">60</span>
+                </div>
+                <p className="text-[5px] text-right border-b border-black pb-0.5">% Daily Value*</p>
+                <div className="flex justify-between text-[5.5px] border-b border-gray-400 py-0.5">
+                  <span><b>Total Fat</b> 0g</span><span>0%</span>
+                </div>
+                <div className="flex justify-between text-[5.5px] border-b border-gray-400 py-0.5">
+                  <span>Sodium 0mg</span><span>0%</span>
+                </div>
+                <div className="flex justify-between text-[5.5px] border-b border-gray-400 py-0.5">
+                  <span><b>Total Carbs</b> 17g</span><span>6%</span>
+                </div>
+                <div className="flex justify-between text-[5.5px] py-0.5">
+                  <span>Total Sugars 17g</span><span>34%</span>
+                </div>
+              </div>
+
+              <p className="text-white text-base font-medium leading-snug max-w-xs">
+                Look for the label and<br />take a clear picture.
+              </p>
+            </div>
+
+            {/* Capture indicator at bottom */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1">
+              <div className="w-14 h-14 rounded-full bg-white border-4 border-gray-300 group-active:scale-95 transition-transform shadow-2xl" />
+              <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/60">Tap to scan</span>
+            </div>
+          </button>
+        )}
+        {view === 'label' && (phase === 'identifying' || phase === 'estimating') && (
+          <div className="relative bg-gray-900" style={{ aspectRatio: '4/3' }}>
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1.2, repeat: Infinity, ease: 'linear' }}
+                className="w-12 h-12 border-2 border-gray-700 border-t-amber-400 rounded-full"
+              />
+              <p className="text-white text-xs font-bold uppercase tracking-wider">Reading label...</p>
+              <p className="text-gray-500 text-[10px]">Extracting nutrition facts</p>
+            </div>
           </div>
         )}
 
         {/* ── History panel (photo idle only) ───────────── */}
         <AnimatePresence>
           {showHistory && phase === 'idle' && view === 'photo' && (
-            <HistoryPanel onClose={() => setShowHistory(false)} onReLog={(item) => { logMealToday(item); setShowHistory(false); }} />
+            <HistoryPanel onClose={() => setShowHistory(false)} onReLog={(item) => { logMealToday(item); saveToHistory(item); setShowHistory(false); }} />
           )}
         </AnimatePresence>
 
@@ -741,25 +882,25 @@ export default function ScannerPage() {
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-6 space-y-5">
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <p className="text-white font-black text-lg leading-tight">{result.dish}</p>
-                    <p className="text-stone-500 text-[10px] font-medium mt-0.5">{base.label || result.servingSize}</p>
+                    <p className="text-white font-bold text-lg leading-tight">{result.dish}</p>
+                    <p className="text-gray-500 text-[10px] font-medium mt-0.5">{base.label || result.servingSize}</p>
                   </div>
-                  <span className={`text-[9px] font-black uppercase tracking-widest flex-shrink-0 ${confidenceColor[result.confidence] || 'text-stone-400'}`}>
+                  <span className={`text-[9px] font-bold uppercase tracking-wider flex-shrink-0 ${confidenceColor[result.confidence] || 'text-gray-400'}`}>
                     {result.confidence} confidence
                   </span>
                 </div>
 
-                {/* ── Serving picker — always shown ── */}
+                {/* ── Serving picker, always shown ── */}
                 <div className="space-y-3">
-                  {/* Per product / Whole bag toggle — barcode only */}
+                  {/* Per product / Whole bag toggle, barcode only */}
                   {hasServing && hasPackage && (
-                    <div className="flex gap-2 bg-stone-900 p-1 rounded-2xl">
+                    <div className="flex gap-2 bg-gray-900 p-1 rounded-2xl">
                       {[['serving', 'Per Product'], ['package', 'Whole Bag']].map(([mode, label]) => (
                         <button
                           key={mode}
                           onClick={() => { setServingMode(mode); setQty(1); setLogged(false); }}
-                          className={`flex-1 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
-                            servingMode === mode ? 'bg-amber-500 text-white' : 'text-stone-400 hover:text-white'
+                          className={`flex-1 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all ${
+                            servingMode === mode ? 'bg-amber-500 text-white' : 'text-gray-400 hover:text-white'
                           }`}
                         >
                           {label}
@@ -767,17 +908,17 @@ export default function ScannerPage() {
                       ))}
                     </div>
                   )}
-                  {/* Number of servings — presets + custom decimal input */}
+                  {/* Number of servings, presets + custom decimal input */}
                   {(!hasPackage || servingMode === 'serving') && (
                     <div className="space-y-1.5">
-                      <p className="text-[9px] font-black uppercase tracking-widest text-stone-500">Number of servings</p>
+                      <p className="text-[9px] font-bold uppercase tracking-wider text-gray-500">Number of servings</p>
                       <div className="flex gap-2 items-center">
                         {[0.5, 1, 2, 3].map(n => (
                           <button
                             key={n}
                             onClick={() => { setQty(n); setLogged(false); }}
-                            className={`h-9 px-3 rounded-xl text-xs font-black transition-all flex-shrink-0 ${
-                              qty === n ? 'bg-amber-500 text-white' : 'bg-stone-900 text-stone-400 hover:text-white'
+                            className={`h-9 px-3 rounded-xl text-xs font-bold transition-all flex-shrink-0 ${
+                              qty === n ? 'bg-amber-500 text-white' : 'bg-gray-900 text-gray-400 hover:text-white'
                             }`}
                           >
                             ×{n}
@@ -795,29 +936,29 @@ export default function ScannerPage() {
                             const v = parseFloat(e.target.value);
                             if (v >= 0.1 && v <= 20) { setQty(v); setLogged(false); }
                           }}
-                          className="flex-1 h-9 bg-stone-900 text-white text-xs font-black rounded-xl outline-none text-center focus:ring-1 focus:ring-amber-500/50 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none placeholder-stone-700"
+                          className="flex-1 h-9 bg-gray-900 text-white text-xs font-bold rounded-xl outline-none text-center focus:ring-1 focus:ring-amber-500/50 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none placeholder-gray-700"
                         />
                       </div>
                     </div>
                   )}
                 </div>
 
-                <div className="bg-stone-900 rounded-2xl p-5 flex items-center justify-between">
+                <div className="bg-gray-900 rounded-2xl p-5 flex items-center justify-between">
                   <div>
-                    <p className="text-5xl font-black text-white leading-none">{displayCals}</p>
-                    <p className="text-stone-500 text-[10px] font-black uppercase tracking-widest mt-1">kcal estimated</p>
+                    <p className="text-5xl font-bold text-white leading-none">{displayCals}</p>
+                    <p className="text-gray-500 text-[10px] font-bold uppercase tracking-wider mt-1">kcal estimated</p>
                   </div>
                   <div className="flex gap-4">
-                    <MacroChip label="Protein" value={`${displayProtein}g`} color="bg-stone-700" />
+                    <MacroChip label="Protein" value={`${displayProtein}g`} color="bg-gray-700" />
                     <MacroChip label="Carbs"   value={`${displayCarbs}g`}   color="bg-amber-600" />
-                    <MacroChip label="Fat"     value={`${displayFat}g`}     color="bg-stone-600" />
+                    <MacroChip label="Fat"     value={`${displayFat}g`}     color="bg-gray-600" />
                   </div>
                 </div>
 
                 {result.items?.length > 0 && (
                   <div className="flex flex-wrap gap-2">
                     {result.items.map((item, i) => (
-                      <span key={i} className="px-3 py-1 bg-stone-800 text-stone-300 rounded-full text-[10px] font-bold">{item}</span>
+                      <span key={i} className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-[10px] font-bold">{item}</span>
                     ))}
                   </div>
                 )}
@@ -831,7 +972,7 @@ export default function ScannerPage() {
 
                 <button
                   onClick={handleLog}
-                  className={`w-full py-4 rounded-2xl text-xs font-black uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${
+                  className={`w-full py-4 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
                     logged ? 'bg-emerald-500 text-white' : 'bg-amber-500 text-white hover:bg-amber-400'
                   }`}
                 >
@@ -845,96 +986,118 @@ export default function ScannerPage() {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-6 text-center space-y-4">
               {(error.includes('not found') || error.includes('No nutritional')) ? (
                 <>
-                  <div className="w-12 h-12 bg-stone-900 rounded-2xl flex items-center justify-center mx-auto">
-                    <Barcode size={20} className="text-stone-500" />
+                  <div className="w-12 h-12 bg-gray-900 rounded-2xl flex items-center justify-center mx-auto">
+                    <Barcode size={20} className="text-gray-500" />
                   </div>
                   <div>
                     <p className="text-white font-bold text-sm mb-1">Product not in database</p>
-                    <p className="text-stone-500 text-xs leading-relaxed">This product isn't in Open Food Facts yet.<br />Try one of these alternatives:</p>
+                    <p className="text-gray-500 text-xs leading-relaxed">This product isn't in Open Food Facts yet.<br />Try one of these alternatives:</p>
                   </div>
                   <div className="flex gap-3">
                     <button
                       onClick={() => { reset(); switchView('photo'); setTimeout(() => cameraInputRef.current?.click(), 150); }}
-                      className="flex-1 py-3 bg-amber-500 text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-amber-400 transition-colors flex items-center justify-center gap-1.5"
+                      className="flex-1 py-3 bg-amber-500 text-white rounded-2xl text-xs font-bold uppercase tracking-wider hover:bg-amber-400 transition-colors flex items-center justify-center gap-1.5"
                     >
                       <Camera size={12} /> Photo Label
                     </button>
                     <button
                       onClick={() => { reset(); switchView('describe'); }}
-                      className="flex-1 py-3 bg-stone-800 text-stone-300 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-stone-700 transition-colors flex items-center justify-center gap-1.5"
+                      className="flex-1 py-3 bg-gray-800 text-gray-300 rounded-2xl text-xs font-bold uppercase tracking-wider hover:bg-gray-700 transition-colors flex items-center justify-center gap-1.5"
                     >
                       <MessageSquare size={12} /> Describe It
                     </button>
                   </div>
-                  <button onClick={reset} className="text-stone-600 text-xs font-bold hover:text-stone-400 transition-colors">← Try another barcode</button>
+                  <button onClick={reset} className="text-gray-600 text-xs font-bold hover:text-gray-400 transition-colors">← Try another barcode</button>
                 </>
               ) : (
                 <>
-                  <p className="text-stone-400 text-sm font-medium">{error}</p>
-                  <button onClick={reset} className="px-5 py-2.5 bg-stone-800 text-stone-300 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-stone-700 transition-colors">Try Again</button>
+                  <p className="text-gray-400 text-sm font-medium">{error}</p>
+                  <button onClick={reset} className="px-5 py-2.5 bg-gray-800 text-gray-300 rounded-xl text-xs font-bold uppercase tracking-wider hover:bg-gray-700 transition-colors">Try Again</button>
                 </>
               )}
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* ── Action buttons — photo idle ─────────────────── */}
+        {/* ── Action buttons, photo idle ─────────────────── */}
         {phase === 'idle' && view === 'photo' && (
-          <div className="p-5 grid grid-cols-5 gap-2">
+          <div className="p-5 grid grid-cols-6 gap-1.5">
             <button
               onClick={() => switchView('describe')}
-              className="flex flex-col items-center justify-center gap-2 py-4 bg-stone-800 rounded-2xl hover:bg-stone-700 transition-all active:scale-95 border border-amber-500/20"
+              className="flex flex-col items-center justify-center gap-2 py-4 bg-gray-800 rounded-2xl hover:bg-gray-700 transition-all active:scale-95 border border-amber-500/20"
             >
               <MessageSquare size={16} className="text-amber-400" />
-              <span className="text-[8px] font-black uppercase tracking-widest text-amber-400">Describe</span>
+              <span className="text-[8px] font-bold uppercase tracking-wider text-amber-400">Describe</span>
             </button>
             <button
               onClick={() => cameraInputRef.current?.click()}
               className="flex flex-col items-center justify-center gap-2 py-4 bg-amber-500 rounded-2xl hover:bg-amber-400 transition-all active:scale-95"
             >
               <Camera size={16} className="text-white" />
-              <span className="text-[8px] font-black uppercase tracking-widest text-white">Camera</span>
+              <span className="text-[8px] font-bold uppercase tracking-wider text-white">Camera</span>
             </button>
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="flex flex-col items-center justify-center gap-2 py-4 bg-stone-800 rounded-2xl hover:bg-stone-700 transition-all active:scale-95"
+              className="flex flex-col items-center justify-center gap-2 py-4 bg-gray-800 rounded-2xl hover:bg-gray-700 transition-all active:scale-95"
             >
-              <Upload size={16} className="text-stone-300" />
-              <span className="text-[8px] font-black uppercase tracking-widest text-stone-300">Gallery</span>
+              <Upload size={16} className="text-gray-300" />
+              <span className="text-[8px] font-bold uppercase tracking-wider text-gray-300">Gallery</span>
+            </button>
+            <button
+              onClick={() => switchView('label')}
+              className="flex flex-col items-center justify-center gap-2 py-4 bg-gray-800 rounded-2xl hover:bg-gray-700 transition-all active:scale-95 border border-gray-700"
+            >
+              <FileText size={16} className="text-gray-300" />
+              <span className="text-[8px] font-bold uppercase tracking-wider text-gray-300">Label</span>
             </button>
             <button
               onClick={() => switchView('barcode')}
-              className="flex flex-col items-center justify-center gap-2 py-4 bg-stone-800 rounded-2xl hover:bg-stone-700 transition-all active:scale-95 border border-stone-700"
+              className="flex flex-col items-center justify-center gap-2 py-4 bg-gray-800 rounded-2xl hover:bg-gray-700 transition-all active:scale-95 border border-gray-700"
             >
-              <Barcode size={16} className="text-stone-300" />
-              <span className="text-[8px] font-black uppercase tracking-widest text-stone-300">Barcode</span>
+              <Barcode size={16} className="text-gray-300" />
+              <span className="text-[8px] font-bold uppercase tracking-wider text-gray-300">Barcode</span>
             </button>
             <button
               onClick={() => setShowHistory(v => !v)}
-              className={`flex flex-col items-center justify-center gap-2 py-4 rounded-2xl transition-all active:scale-95 ${showHistory ? 'bg-stone-600 text-white' : 'bg-stone-800 text-stone-300 hover:bg-stone-700'}`}
+              className={`flex flex-col items-center justify-center gap-2 py-4 rounded-2xl transition-all active:scale-95 ${showHistory ? 'bg-gray-600 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'}`}
             >
               <Clock size={16} />
-              <span className="text-[8px] font-black uppercase tracking-widest">History</span>
+              <span className="text-[8px] font-bold uppercase tracking-wider">History</span>
             </button>
-            <input ref={cameraInputRef} type="file" accept="image/*" capture="environment" className="hidden" onChange={handleFile} />
-            <input ref={fileInputRef}   type="file" accept="image/*"                        className="hidden" onChange={handleFile} />
           </div>
         )}
+
+        {/* Hidden file inputs — always mounted so refs are valid across all views */}
+        <input ref={cameraInputRef} type="file" accept="image/*" capture="environment" className="hidden" onChange={handleFile} />
+        <input ref={fileInputRef}   type="file" accept="image/*"                        className="hidden" onChange={handleFile} />
+        <input ref={labelCamRef}    type="file" accept="image/*" capture="environment" className="hidden" onChange={handleLabelFile} />
 
         {/* ── Describe idle footer: switch to photo ──────── */}
         {phase === 'idle' && view === 'describe' && (
           <div className="px-5 pb-5 flex items-center justify-between">
             <button
               onClick={() => switchView('photo')}
-              className="flex items-center gap-1.5 text-stone-500 hover:text-stone-300 text-xs font-bold transition-colors"
+              className="flex items-center gap-1.5 text-gray-500 hover:text-gray-300 text-xs font-bold transition-colors"
             >
               <Camera size={13} /> Use photo instead
             </button>
             <button
               onClick={() => setShowHistory(v => !v)}
-              className={`flex items-center gap-1.5 text-xs font-bold transition-colors ${showHistory ? 'text-white' : 'text-stone-500 hover:text-stone-300'}`}
+              className={`flex items-center gap-1.5 text-xs font-bold transition-colors ${showHistory ? 'text-white' : 'text-gray-500 hover:text-gray-300'}`}
             >
               <Clock size={13} /> History
+            </button>
+          </div>
+        )}
+
+        {/* ── Label idle footer: switch back to photo ────── */}
+        {phase === 'idle' && view === 'label' && (
+          <div className="px-5 py-4 flex items-center justify-center bg-gray-950">
+            <button
+              onClick={() => switchView('photo')}
+              className="flex items-center gap-1.5 text-gray-500 hover:text-gray-300 text-xs font-bold transition-colors"
+            >
+              <ChevronRight size={13} className="rotate-180" /> Back to scanner
             </button>
           </div>
         )}
@@ -949,7 +1112,7 @@ export default function ScannerPage() {
         {/* ── Re-scan / New description ─────────────────── */}
         {(phase === 'result' || phase === 'error') && (
           <div className="px-6 pb-6">
-            <button onClick={reset} className="w-full py-3 bg-stone-800 text-stone-400 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-stone-700 hover:text-white transition-all flex items-center justify-center gap-2">
+            <button onClick={reset} className="w-full py-3 bg-gray-800 text-gray-400 rounded-2xl text-xs font-bold uppercase tracking-wider hover:bg-gray-700 hover:text-white transition-all flex items-center justify-center gap-2">
               <RotateCcw size={13} />
               {view === 'describe' ? 'Describe Another Meal' : view === 'barcode' ? 'Scan Another Barcode' : 'Scan Another Meal'}
             </button>
@@ -957,7 +1120,7 @@ export default function ScannerPage() {
         )}
       </div>
 
-      <p className="text-center text-[10px] text-stone-400 font-medium px-4">
+      <p className="text-center text-[10px] text-gray-400 font-medium px-4">
         Estimates are AI-generated and may vary ±15%. For reference only.
       </p>
     </motion.div>
