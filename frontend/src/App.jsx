@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import MealForm from './components/MealForm';
-import MealCard from './components/MealCard';
 import ExplorePage from './components/ExplorePage';
 import CaloriePage from './components/CaloriePage';
 import ExercisePage from './components/ExercisePage';
@@ -14,8 +12,13 @@ import TrendsPage from './components/TrendsPage';
 import DeepDivePage from './components/DeepDivePage';
 import LoyaltyPage from './components/LoyaltyPage';
 import StepsWidget from './components/StepsWidget';
+import WaterTracker from './components/WaterTracker';
+import WeekStrip from './components/WeekStrip';
+import SplashScreen from './components/SplashScreen';
+import ParticleCanvas from './components/ParticleCanvas';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, X, Menu, Phone, Mail, Instagram, Twitter, User, ArrowRight, Users, Dumbbell, Map as MapIcon, Newspaper, Award, Flame, TrendingUp, CalendarDays, ScanLine, Scale, Search } from 'lucide-react';
+import { Drawer } from 'vaul';
+import { X, Menu, Instagram, Twitter, User, ArrowRight, Users, Map as MapIcon, Newspaper, Award, Flame, TrendingUp, CalendarDays, ScanLine, Scale, Search } from 'lucide-react';
 
 function App() {
   const [user, setUser] = useState(() => localStorage.getItem('fitmeal_username') || null);
@@ -23,47 +26,11 @@ function App() {
   const [userLastName, setUserLastName] = useState(() => localStorage.getItem('fitmeal_lastname') || '');
   const [userEmail, setUserEmail] = useState(() => localStorage.getItem('fitmeal_email') || '');
   const [userCount, setUserCount] = useState(0);
-  const [meals, setMeals] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [showShopModal, setShowShopModal] = useState(false);
-  const [shopItems, setShopItems] = useState([]);
-  const [activeTab, setActiveTab] = useState('planner');
+  const [splashDone, setSplashDone] = useState(() => !!sessionStorage.getItem('fitmeal_splash_v1'));
+  const [loginFocus, setLoginFocus] = useState(null);
+  const [loginParticleText, setLoginParticleText] = useState('FitMeal AI');
+  const [activeTab, setActiveTab] = useState('dashboard');
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [currentFilters, setCurrentFilters] = useState(null);
-  const [seenMealIds, setSeenMealIds] = useState(() => {
-    try {
-      const saved = localStorage.getItem('fitmeal_seen_ids');
-      return saved ? new Set(JSON.parse(saved)) : new Set();
-    } catch {
-      return new Set();
-    }
-  });
-
-  // Auto-reset seen meals every Sunday night
-  useEffect(() => {
-    const checkSundayReset = () => {
-      const now = new Date();
-      // Calculate the most recent Sunday at midnight
-      const lastSunday = new Date(now);
-      lastSunday.setDate(now.getDate() - now.getDay());
-      lastSunday.setHours(0, 0, 0, 0);
-
-      const lastResetStr = localStorage.getItem('fitmeal_last_reset');
-      const lastReset = lastResetStr ? new Date(lastResetStr) : null;
-
-      if (!lastReset || lastReset < lastSunday) {
-        setSeenMealIds(new Set());
-        localStorage.removeItem('fitmeal_seen_ids');
-        setMeals([]);
-        localStorage.setItem('fitmeal_last_reset', lastSunday.toISOString());
-      }
-    };
-
-    checkSundayReset();
-    const interval = setInterval(checkSundayReset, 60 * 60 * 1000); // check every hour
-    return () => clearInterval(interval);
-  }, []);
 
   // Fetch initial stats
   useEffect(() => {
@@ -71,6 +38,26 @@ function App() {
       .then(res => res.json())
       .then(data => setUserCount(data.count || 0))
       .catch(() => { });
+  }, []);
+
+  // Pre-load Instagram embed.js silently so Trends tab is instant
+  useEffect(() => {
+    if (!document.getElementById('ig-embed-script')) {
+      const s = document.createElement('script');
+      s.id = 'ig-embed-script';
+      s.src = 'https://www.instagram.com/embed.js';
+      s.async = true;
+      s.defer = true;
+      document.body.appendChild(s);
+    }
+    if (!document.getElementById('iframely-script')) {
+      const s = document.createElement('script');
+      s.id = 'iframely-script';
+      s.src = 'https://iframely.net/embed.js';
+      s.async = true;
+      s.defer = true;
+      document.body.appendChild(s);
+    }
   }, []);
 
   // Silently update last_login for returning users on every page load
@@ -89,6 +76,19 @@ function App() {
     }
   }, []);
 
+  // Particle text for login form, debounced 250ms
+  useEffect(() => {
+    if (user) return;
+    let text = 'FitMeal AI';
+    const full = [userName, userLastName].filter(Boolean).join(' ');
+    if (loginFocus === 'firstName') text = userName || 'Your name';
+    else if (loginFocus === 'lastName') text = full || userLastName || 'Your name';
+    else if (loginFocus === 'email') text = full || 'FitMeal AI';
+    else if (full) text = full;
+    const t = setTimeout(() => setLoginParticleText(text), 250);
+    return () => clearTimeout(t);
+  }, [loginFocus, userName, userLastName, user]);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     if (userName.trim().length < 2) return;
@@ -97,7 +97,6 @@ function App() {
 
     const fullName = `${userName.trim()} ${userLastName.trim()}`;
 
-    // Instantly log the user in locally (fixes Safari/mobile block if API fails)
     localStorage.setItem('fitmeal_username', fullName);
     localStorage.setItem('fitmeal_firstname', userName.trim());
     localStorage.setItem('fitmeal_lastname', userLastName.trim());
@@ -122,142 +121,91 @@ function App() {
     }
   };
 
-  const handleGenerate = async (target) => {
-    setIsLoading(true);
-    setError(null);
-    setMeals([]);
-
-    try {
-      const resp = await fetch('/api/suggestions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...target, excludeIds: Array.from(seenMealIds) })
-      });
-
-      const data = await resp.json();
-
-      if (!resp.ok) {
-        throw new Error(data.error || 'Failed to generate meals');
-      }
-
-      setCurrentFilters(target);
-      setMeals(data.suggestions || []);
-      setSeenMealIds(prev => {
-        const nextSet = new Set([...prev, ...(data.suggestions || []).map(m => m.id)]);
-        localStorage.setItem('fitmeal_seen_ids', JSON.stringify(Array.from(nextSet)));
-        return nextSet;
-      });
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleResetWeek = () => {
-    setSeenMealIds(new Set());
-    localStorage.removeItem('fitmeal_seen_ids');
-    setMeals([]);
-  };
-
-  const handleSwap = async (mealIndex) => {
-    const mealToSwap = meals[mealIndex];
-    try {
-      const excludeList = Array.from(seenMealIds);
-      const resp = await fetch('/api/swap', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          calorieTarget: mealToSwap.calories,
-          proteinTarget: mealToSwap.protein,
-          mealType: mealToSwap.type[0], // Use first type
-          country: mealToSwap.country,
-          dietary: currentFilters?.dietary || [],
-          brand: currentFilters?.brand || '',
-          excludeIds: excludeList
-        })
-      });
-      const data = await resp.json();
-      if (resp.ok && data.meal) {
-        const newMeals = [...meals];
-        newMeals[mealIndex] = data.meal;
-        setMeals(newMeals);
-        setSeenMealIds(prev => {
-          const updated = new Set(prev);
-          updated.add(data.meal.id);
-          localStorage.setItem('fitmeal_seen_ids', JSON.stringify(Array.from(updated)));
-          return updated;
-        });
-      }
-    } catch (err) {
-      console.error("Swap failed", err);
-    }
-  };
-
-  const handleShop = (meal) => {
-    setShopItems(meal.shoppingItems || []);
-    setShowShopModal(true);
-  };
-
   if (!user) {
     return (
-      <div className="min-h-screen bg-stone-50 flex flex-col items-center justify-center p-6 selection:bg-amber-100">
+      <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6 selection:bg-amber-50">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          className="max-w-md w-full text-center space-y-12"
+          className="max-w-md w-full text-center space-y-10"
         >
           <div className="space-y-4">
-            <div className="w-16 h-16 bg-stone-900 rounded-2xl flex items-center justify-center text-white font-serif italic text-3xl mx-auto shadow-xl">F</div>
-            <h1 className="text-4xl font-serif tracking-tight text-stone-900">Welcome to <span className="italic font-normal text-stone-400">FitMeal AI</span></h1>
-            <p className="text-stone-500 font-medium px-4">The intelligent nutrition companion for global residents and health enthusiasts.</p>
+            <div className="w-12 h-12 mx-auto rounded-xl overflow-hidden flex-shrink-0 shadow-lg">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="48" height="48" rx="11" fill="#0F0F0F"/>
+                <rect x="13" y="12" width="4.5" height="24" rx="2.25" fill="#F59E0B"/>
+                <rect x="13" y="12" width="22" height="4.5" rx="2.25" fill="#F59E0B"/>
+                <rect x="13" y="21" width="15" height="4.5" rx="2.25" fill="#F59E0B"/>
+              </svg>
+            </div>
+
+            {/* Particle hero, shows "FitMeal AI" then morphs to typed name */}
+            <div className="rounded-2xl overflow-hidden" style={{ background: '#080d1a' }}>
+              <ParticleCanvas
+                text={loginParticleText}
+                height={140}
+                color="#F59E0B"
+                sphereDelay={900}
+              />
+              <div className="px-4 pb-3 text-center">
+                <p className="text-[11px] text-slate-600">
+                  {loginFocus ? 'Type to see your name come alive' : 'The intelligent nutrition companion'}
+                </p>
+              </div>
+            </div>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
-            <div className="flex space-x-4">
-              <div className="text-left space-y-2 flex-1">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 ml-4">First name</label>
+            <div className="flex space-x-3">
+              <div className="text-left space-y-1.5 flex-1">
+                <label className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 ml-1">First name</label>
                 <input
                   type="text"
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
+                  onFocus={() => setLoginFocus('firstName')}
+                  onBlur={() => setLoginFocus(null)}
                   placeholder="e.g. Cyril"
-                  className="w-full bg-white border border-stone-200 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-serif text-lg text-stone-800 shadow-sm"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-amber-200 focus:border-amber-300 outline-none transition-all font-medium text-gray-800"
                   required
                 />
               </div>
-              <div className="text-left space-y-2 flex-1">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 ml-4">Last name</label>
+              <div className="text-left space-y-1.5 flex-1">
+                <label className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 ml-1">Last name</label>
                 <input
                   type="text"
                   value={userLastName}
                   onChange={(e) => setUserLastName(e.target.value)}
+                  onFocus={() => setLoginFocus('lastName')}
+                  onBlur={() => setLoginFocus(null)}
                   placeholder="e.g. Salameh"
-                  className="w-full bg-white border border-stone-200 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-serif text-lg text-stone-800 shadow-sm"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-amber-200 focus:border-amber-300 outline-none transition-all font-medium text-gray-800"
                   required
                 />
               </div>
             </div>
-            <div className="text-left space-y-2">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 ml-4">Email address</label>
+            <div className="text-left space-y-1.5">
+              <label className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 ml-1">Email address</label>
               <div className="relative">
                 <input
                   type="email"
                   value={userEmail}
                   onChange={(e) => setUserEmail(e.target.value)}
+                  onFocus={() => setLoginFocus('email')}
+                  onBlur={() => setLoginFocus(null)}
                   placeholder="e.g. cyril@gmail.com"
-                  className="w-full bg-white border border-stone-200 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-serif text-lg text-stone-800 shadow-sm"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-amber-200 focus:border-amber-300 outline-none transition-all font-medium text-gray-800"
                   required
                 />
-                <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-stone-900 rounded-xl flex items-center justify-center text-white hover:bg-stone-800 transition-colors shadow-lg">
-                  <ArrowRight className="w-5 h-5" />
+                <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 bg-gray-900 rounded-lg flex items-center justify-center text-white hover:bg-gray-700 transition-colors">
+                  <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
 
-            <div className="flex items-center justify-center space-x-2 text-stone-400 bg-white/50 py-3 rounded-full border border-stone-100 px-6">
+            <div className="flex items-center justify-center space-x-2 text-gray-400 bg-gray-50 py-3 rounded-lg border border-gray-100 px-6">
               <Users className="w-4 h-4" />
-              <span className="text-xs font-bold uppercase tracking-widest">Joined by <span className="text-stone-900">{userCount}</span> users globally</span>
+              <span className="text-xs font-semibold uppercase tracking-wider">Joined by <span className="text-gray-900">{userCount}</span> users globally</span>
             </div>
           </form>
         </motion.div>
@@ -266,9 +214,11 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen font-sans selection:bg-amber-100 selection:text-amber-900 bg-stone-50">
-      {/* Moving Band (Ticker) */}
-      <div className="ticker-wrap border-b border-stone-800">
+    <>
+    {!splashDone && <SplashScreen onDone={() => setSplashDone(true)} />}
+    <div className="min-h-screen font-sans selection:bg-amber-50 selection:text-amber-900 bg-gray-50">
+      {/* Moving Band (Ticker), mobile only */}
+      <div className="ticker-wrap border-b border-gray-800 md:hidden">
         <div className="ticker">
           <span className="mx-8 font-bold text-amber-500">NEWS:</span> DATA EXPANDED FOR LEBANON & SPAIN
           <span className="mx-8">•</span> DID YOU KNOW? PROTEIN HELPS WITH SATIETY
@@ -279,53 +229,57 @@ function App() {
       </div>
 
       <CalorieBar />
-      <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-stone-100 px-6 py-4 shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <button 
-            onClick={() => { setActiveTab('planner'); setShowMobileMenu(false); }}
-            className="flex items-center space-x-2 group hover:opacity-80 transition-opacity"
+      <nav className="sticky top-0 z-40 bg-[#0c1022] px-6 py-0 md:py-0">
+        <div className="max-w-7xl mx-auto flex justify-between items-center h-14 md:h-[52px]">
+          <button
+            onClick={() => { setActiveTab('dashboard'); setShowMobileMenu(false); }}
+            className="flex items-center space-x-2.5 group hover:opacity-80 transition-opacity flex-shrink-0"
           >
-            <div className="w-8 h-8 bg-stone-900 rounded-lg flex items-center justify-center text-white font-bold italic">F</div>
-            <span className="text-xl font-black font-serif tracking-tight">FitMeal AI</span>
+            <div className="w-7 h-7 rounded-md overflow-hidden flex-shrink-0">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="32" height="32" rx="7" fill="#1e2340"/>
+                <rect x="9" y="8" width="3" height="16" rx="1.5" fill="#F59E0B"/>
+                <rect x="9" y="8" width="14" height="3" rx="1.5" fill="#F59E0B"/>
+                <rect x="9" y="14" width="10" height="3" rx="1.5" fill="#F59E0B"/>
+              </svg>
+            </div>
+            <span className="text-[15px] font-semibold tracking-tight text-white">FitMeal <span className="text-amber-400">AI</span></span>
           </button>
 
-          <div className="hidden md:flex space-x-8 text-[11px] font-black uppercase tracking-widest text-stone-400">
+          <div className="hidden md:flex items-center space-x-1 text-[13px] font-medium text-gray-400">
             {[
-              ['planner', 'Planner', null],
-              ['explore', 'Explore', null],
-              ['scanner', 'Scanner', <ScanLine size={13} />],
-              ['calories', 'TDEE', <Flame size={13} />],
-              ['weekly', 'Weekly Cal.', <CalendarDays size={13} />],
-              ['progress', 'Progress', <Scale size={13} />],
-              ['exercise', 'Exercise', <Dumbbell size={13} />],
-              ['map', 'Map', <MapIcon size={13} />],
-              ['news', 'FMCG News', <Newspaper size={13} />],
-              ['trends', 'Trends', <TrendingUp size={13} />],
-              ['deepdive', 'Deep Dive', <Search size={13} />],
-              ['loyalty', 'Loyalty', <Award size={13} />],
-              ['contact', 'Contact', null],
-            ].map(([tab, label, icon]) => (
+              ['explore', 'Explore'],
+              ['scanner', 'Scanner'],
+              ['calories', 'TDEE'],
+              ['weekly', 'Weekly Cal.'],
+              ['progress', 'Progress'],
+              ['exercise', 'Exercise'],
+              ['map', 'Map'],
+              ['news', 'FMCG News'],
+              ['trends', 'Trends'],
+              ['deepdive', 'Deep Dive'],
+              ['loyalty', 'Loyalty'],
+            ].map(([tab, label]) => (
               <button
                 key={tab}
                 onClick={() => { setActiveTab(tab); setShowMobileMenu(false); }}
-                className={`relative flex items-center gap-1.5 pb-1 transition-all duration-200 hover:text-stone-900 ${activeTab === tab ? 'text-stone-900' : ''}`}
+                className={`relative px-3 py-[18px] transition-colors duration-150 ${activeTab === tab ? 'text-white' : 'hover:text-white'}`}
               >
-                {icon}
                 {label}
                 {activeTab === tab && (
-                  <motion.span layoutId="nav-underline" className="absolute -bottom-1 left-0 right-0 h-0.5 bg-amber-500 rounded-full" />
+                  <motion.span layoutId="nav-underline" className="absolute bottom-0 left-3 right-3 h-[2px] bg-amber-400 rounded-full" />
                 )}
               </button>
             ))}
           </div>
 
-          <div className="flex items-center space-x-2 sm:space-x-4">
-            <div className="flex items-center space-x-1 sm:space-x-2 bg-stone-100 px-2 sm:px-4 py-1.5 rounded-full border border-stone-200">
-              <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse flex-shrink-0" />
-              <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-stone-500 whitespace-nowrap">{userCount} users</span>
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            <div className="hidden sm:flex items-center space-x-1.5 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
+              <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse flex-shrink-0" />
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-400 whitespace-nowrap">{userCount} users</span>
             </div>
             <button
-              className="md:hidden flex items-center space-x-1.5 bg-stone-900 text-white px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-amber-500 transition-all duration-200 active:scale-95"
+              className="md:hidden flex items-center space-x-1.5 bg-white/10 text-white px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-amber-500 transition-all duration-200 active:scale-95"
               onClick={() => setShowMobileMenu(m => !m)}
             >
               {showMobileMenu ? <X className="w-3.5 h-3.5" /> : <Menu className="w-3.5 h-3.5" />}
@@ -334,33 +288,47 @@ function App() {
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu */}
-        <AnimatePresence>
-          {showMobileMenu && (
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-              className="md:hidden absolute top-full left-0 right-0 z-50 bg-stone-950 border-t border-stone-800 px-5 py-5 space-y-1 shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
-            >
-              <p className="text-[9px] font-black uppercase tracking-[0.2em] text-stone-600 px-3 mb-3">Navigate</p>
-              {[['planner', 'Planner'], ['explore', 'Explore'], ['scanner', 'Food Scanner'], ['calories', 'TDEE Calculator'], ['weekly', 'Weekly Calories'], ['progress', 'Progress'], ['exercise', 'Exercise'], ['map', 'Map'], ['news', 'FMCG News'], ['trends', 'Trends / Reels'], ['deepdive', 'Deep Dive'], ['loyalty', 'Loyalty Programs'], ['contact', 'Contact Us']].map(([tab, label]) => (
-                <button
-                  key={tab}
-                  onClick={() => { setActiveTab(tab); setShowMobileMenu(false); }}
-                  className={`w-full text-left px-4 py-3.5 rounded-xl text-sm font-bold uppercase tracking-widest transition-all duration-150 ${
-                    activeTab === tab
-                      ? 'bg-amber-500 text-white shadow-lg'
-                      : 'text-stone-400 hover:text-white hover:bg-stone-800'
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Mobile Menu, Vaul bottom drawer */}
+        <Drawer.Root open={showMobileMenu} onOpenChange={setShowMobileMenu}>
+          <Drawer.Portal>
+            <Drawer.Overlay className="fixed inset-0 bg-black/50 z-40 md:hidden" />
+            <Drawer.Content className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-gray-950 rounded-t-2xl outline-none">
+              <div className="mx-auto w-10 h-1 bg-gray-700 rounded-full mt-3 mb-1" />
+              <Drawer.Title className="sr-only">Navigation</Drawer.Title>
+              <div className="px-4 pb-2 pt-2">
+                <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-gray-600 px-3 mb-2">Navigate</p>
+                <div className="space-y-0.5 max-h-[70vh] overflow-y-auto pb-safe">
+                  {[
+                    ['explore', 'Explore'],
+                    ['scanner', 'Food Scanner'],
+                    ['calories', 'TDEE Calculator'],
+                    ['weekly', 'Weekly Calories'],
+                    ['progress', 'Progress'],
+                    ['exercise', 'Exercise'],
+                    ['map', 'Map'],
+                    ['news', 'FMCG News'],
+                    ['trends', 'Trends / Reels'],
+                    ['deepdive', 'Deep Dive'],
+                    ['loyalty', 'Loyalty Programs'],
+                  ].map(([tab, label]) => (
+                    <button
+                      key={tab}
+                      onClick={() => { setActiveTab(tab); setShowMobileMenu(false); }}
+                      className={`w-full text-left px-4 py-3 rounded-xl text-sm font-semibold uppercase tracking-wider transition-all duration-150 ${
+                        activeTab === tab
+                          ? 'bg-amber-500 text-white'
+                          : 'text-gray-400 active:text-white active:bg-gray-800'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+                <div className="pb-6" />
+              </div>
+            </Drawer.Content>
+          </Drawer.Portal>
+        </Drawer.Root>
       </nav>
 
       <main className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-16 lg:py-28">
@@ -369,80 +337,27 @@ function App() {
             <ExercisePage />
           )}
 
-          {activeTab === 'planner' && (
+          {activeTab === 'dashboard' && (
             <motion.div
-              key="planner"
+              key="dashboard"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="space-y-24"
+              className="space-y-6"
             >
               <div className="max-w-4xl">
-                <p className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-6 flex items-center">
+                <p className="text-xs font-bold text-amber-500 uppercase tracking-wider mb-6 flex items-center">
                   <User className="w-3 h-3 mr-2" /> Welcome back, {user}
                 </p>
-                <h1 className="text-3xl md:text-5xl lg:text-7xl mb-4 md:mb-8 leading-[1.08] tracking-tight">Professional nutrition <br /><span className="italic font-normal text-stone-400">simplified for everyone.</span></h1>
-                <p className="text-base md:text-xl text-stone-500 font-medium leading-[1.75] max-w-3xl">
+                <h1 className="text-3xl md:text-5xl lg:text-7xl mb-4 md:mb-8 leading-[1.08] tracking-tight font-bold">Professional nutrition <br /><span className="font-light text-gray-400">simplified for everyone.</span></h1>
+                <p className="text-base md:text-xl text-gray-500 font-medium leading-relaxed max-w-3xl">
                   FitMeal AI is a sophisticated nutritional engine designed for the modern lifestyle. We bridge the gap between regional food availability and individual fitness goals, providing clear, balanced, and actionable meal paths across the globe.
                 </p>
               </div>
 
+              <WeekStrip />
               <StepsWidget />
-
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-                {/* Fixed: Use lg:sticky to prevent mobile overlap */}
-                <div className="lg:col-span-4 lg:sticky lg:top-28 space-y-4">
-                  <div className="p-8 bg-white border border-stone-100 rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.07)] hover:shadow-[0_12px_48px_rgba(0,0,0,0.1)] transition-shadow duration-300">
-                    <h3 className="text-2xl mb-6 font-serif">Plan Your Day</h3>
-                    <MealForm onSubmit={handleGenerate} isLoading={isLoading} />
-                  </div>
-                </div>
-
-                <div className="lg:col-span-8 space-y-12">
-                  {error && (
-                    <div className="p-6 bg-red-50 text-red-700 rounded-2xl border border-red-100 font-medium">
-                      {error}
-                    </div>
-                  )}
-
-                  {isLoading && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      {[1, 2, 3, 4, 5, 6].map(i => (
-                        <div key={i} className="h-64 bg-white border border-stone-100 rounded-3xl animate-pulse"></div>
-                      ))}
-                    </div>
-                  )}
-
-                  {meals.length > 0 && (
-                    <div className="space-y-10">
-                      <div className="flex items-center space-x-4 border-b border-stone-100 pb-6">
-                        <span className="bg-stone-900 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Plan</span>
-                        <h2 className="text-3xl">Suggested Menu</h2>
-                      </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {meals.map((meal, idx) => (
-                          <MealCard key={idx} index={idx} meal={meal} onShop={handleShop} onSwap={() => handleSwap(idx)} />
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {!isLoading && meals.length === 0 && (
-                    <div className="h-72 md:h-96 border-2 border-dashed border-stone-200 rounded-3xl flex flex-col items-center justify-center text-stone-400 text-center px-6 md:px-12">
-                      <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm">
-                        <ShoppingBag className="w-8 h-8 opacity-20" />
-                      </div>
-                      <p className="text-lg">Select your targets to generate <br />your personalized meal suggestions.</p>
-                      <button
-                        onClick={() => setActiveTab('explore')}
-                        className="mt-6 flex items-center gap-2 text-sm font-bold text-amber-500 hover:text-amber-600 transition-colors"
-                      >
-                        Browse the food catalog <ArrowRight size={15} />
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
+              <WaterTracker />
             </motion.div>
           )}
 
@@ -470,93 +385,36 @@ function App() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="h-[80vh] w-full"
+              className="h-[72vh] w-[96%] mx-auto sm:h-[80vh] sm:w-full sm:mx-0"
             >
               <MapPage />
-            </motion.div>
-          )}
-
-          {activeTab === 'contact' && (
-            <motion.div
-              key="contact"
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              className="max-w-4xl mx-auto py-20 text-center space-y-12"
-            >
-              <h2 className="text-5xl lg:text-5xl mb-8">Let's stay <span className="italic font-normal text-stone-400">connected.</span></h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-                <div className="p-10 bg-white border border-stone-100 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-amber-200 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] hover:-translate-y-1 transition-all duration-300">
-                  <Phone className="w-8 h-8 mb-6 text-stone-400" />
-                  <h4 className="text-sm font-bold uppercase tracking-widest mb-2">WhatsApp</h4>
-                  <p className="text-lg font-serif">+961 70 000 000</p>
-                </div>
-                <div className="p-10 bg-white border border-stone-100 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-amber-200 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] hover:-translate-y-1 transition-all duration-300">
-                  <Mail className="w-8 h-8 mb-6 text-stone-400" />
-                  <h4 className="text-sm font-bold uppercase tracking-widest mb-2">Email</h4>
-                  <p className="text-lg font-serif">hello@fitmeal.ai</p>
-                </div>
-                <div className="p-10 bg-white border border-stone-100 rounded-3xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-amber-200 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] hover:-translate-y-1 transition-all duration-300">
-                  <Instagram className="w-8 h-8 mb-6 text-stone-400" />
-                  <h4 className="text-sm font-bold uppercase tracking-widest mb-2">Social</h4>
-                  <p className="text-lg font-serif">@fitmeal_ai</p>
-                </div>
-              </div>
             </motion.div>
           )}
         </AnimatePresence>
       </main>
 
-      <footer className="border-t border-stone-100 bg-white py-12 mt-20">
+      <footer className="border-t border-gray-200 bg-white py-10 mt-16">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
           <div className="flex items-center space-x-2">
-            <div className="w-6 h-6 bg-stone-900 rounded-md flex items-center justify-center text-white font-bold italic text-xs">F</div>
-            <span className="text-lg font-serif tracking-tight">FitMeal AI</span>
+            <div className="w-6 h-6 rounded overflow-hidden flex-shrink-0">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="24" rx="5" fill="#0F0F0F"/>
+                <rect x="6.5" y="6" width="2.25" height="12" rx="1.125" fill="#F59E0B"/>
+                <rect x="6.5" y="6" width="11" height="2.25" rx="1.125" fill="#F59E0B"/>
+                <rect x="6.5" y="10.75" width="7.5" height="2.25" rx="1.125" fill="#F59E0B"/>
+              </svg>
+            </div>
+            <span className="text-base font-semibold tracking-tight text-gray-900">FitMeal <span className="text-amber-500">AI</span></span>
           </div>
-          <p className="text-stone-400 text-sm italic">© 2026 Crafted with care for the global health community.</p>
-          <div className="flex space-x-6 text-stone-400">
-            <Twitter className="w-5 h-5 cursor-pointer hover:text-stone-900 transition-colors" />
-            <Instagram className="w-5 h-5 cursor-pointer hover:text-stone-900 transition-colors" />
+          <p className="text-gray-400 text-sm">© 2026 Crafted with care for the global health community.</p>
+          <div className="flex space-x-6 text-gray-400">
+            <Twitter className="w-5 h-5 cursor-pointer hover:text-gray-900 transition-colors" />
+            <Instagram className="w-5 h-5 cursor-pointer hover:text-gray-900 transition-colors" />
           </div>
         </div>
       </footer>
-
-      {/* Shopping Modal */}
-      <AnimatePresence>
-        {showShopModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/20 backdrop-blur-sm"
-            onClick={() => setShowShopModal(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              onClick={e => e.stopPropagation()}
-              className="bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden"
-            >
-              <div className="p-8 border-b border-stone-100 flex justify-between items-center">
-                <h3 className="text-2xl font-serif">Shopping Bag</h3>
-                <button onClick={() => setShowShopModal(false)} className="p-2 hover:bg-stone-50 rounded-full transition-colors">
-                  <X className="w-5 h-5 text-stone-400" />
-                </button>
-              </div>
-              <div className="p-8 space-y-4 max-h-[60vh] overflow-y-auto">
-                {shopItems.map((item, i) => (
-                  <div key={i} className="flex items-center py-4 border-b border-stone-50 last:border-0">
-                    <div className="w-2 h-2 rounded-full bg-amber-400 mr-4" />
-                    <p className="text-lg text-stone-700">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
+    </>
   );
 }
 

@@ -276,38 +276,38 @@ const MapPage = () => {
   };
 
   return (
-    <div className="flex flex-col h-full bg-stone-50 rounded-3xl overflow-hidden border border-stone-200 shadow-sm relative" style={{ minHeight: '80vh' }}>
+    <div className="flex flex-col h-full bg-gray-50 rounded-xl overflow-hidden border border-gray-200 shadow-sm relative min-h-[72vh] sm:min-h-[80vh]">
       
       {/* City Selector Header */}
-      <div className="bg-white px-6 py-4 border-b border-stone-100 flex flex-col md:flex-row justify-between items-center z-10 relative space-y-4 md:space-y-0 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)]">
+      <div className="bg-white px-6 py-4 border-b border-gray-100 flex flex-col md:flex-row justify-between items-center z-10 relative space-y-4 md:space-y-0 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)]">
         <div>
-          <h2 className="text-2xl font-serif text-stone-900 flex items-center">
+          <h2 className="text-2xl  text-gray-900 flex items-center">
             <MapPin className="mr-2 text-amber-600" />
             Explore like a Local
           </h2>
-          <p className="text-sm text-stone-500 font-medium">Click anywhere on the map to pin your favorite spots.</p>
+          <p className="text-sm text-gray-500 font-medium">Click anywhere on the map to pin your favorite spots.</p>
         </div>
         
         <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
           {/* Search Bar */}
           <div className="relative w-full md:w-64">
             <div className="relative flex items-center">
-              <Search className="absolute left-3 w-4 h-4 text-stone-400 pointer-events-none" />
+              <Search className="absolute left-3 w-4 h-4 text-gray-400 pointer-events-none" />
               <input
                 type="text"
                 placeholder={`Search in ${selectedCity.name}...`}
                 value={searchQuery}
                 onChange={handleSearchChange}
-                className="w-full bg-stone-100 border-none rounded-xl pl-9 pr-9 py-2 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all"
+                className="w-full bg-gray-100 border-none rounded-xl pl-9 pr-9 py-2 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all"
               />
               {isSearching && (
-                <Loader2 className="absolute right-3 w-4 h-4 text-stone-400 animate-spin" />
+                <Loader2 className="absolute right-3 w-4 h-4 text-gray-400 animate-spin" />
               )}
             </div>
 
             {/* Results dropdown */}
             {searchResults.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-xl border border-stone-100 overflow-hidden z-50 max-h-64 overflow-y-auto">
+              <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50 max-h-64 overflow-y-auto">
                 {searchResults.map((prediction, idx) => {
                   const name = prediction.structured_formatting?.main_text || prediction.description;
                   const sub = prediction.structured_formatting?.secondary_text || '';
@@ -318,10 +318,10 @@ const MapPage = () => {
                         e.preventDefault();
                         handleSelectResult(prediction);
                       }}
-                      className="w-full text-left px-4 py-3 hover:bg-amber-50 border-b border-stone-50 last:border-0 transition-colors"
+                      className="w-full text-left px-4 py-3 hover:bg-amber-50 border-b border-gray-50 last:border-0 transition-colors"
                     >
-                      <p className="text-sm font-semibold text-stone-800 truncate">{name}</p>
-                      {sub && <p className="text-xs text-stone-400 truncate capitalize">{sub}</p>}
+                      <p className="text-sm font-semibold text-gray-800 truncate">{name}</p>
+                      {sub && <p className="text-xs text-gray-400 truncate capitalize">{sub}</p>}
                     </button>
                   );
                 })}
@@ -329,7 +329,7 @@ const MapPage = () => {
             )}
           </div>
 
-          <div className="w-full md:w-auto flex space-x-2 bg-stone-100 p-1 rounded-xl overflow-x-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+          <div className="w-full md:w-auto flex space-x-2 bg-gray-100 p-1 rounded-xl overflow-x-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {Object.keys(cities).map(city => (
               <button
                 key={city}
@@ -337,7 +337,7 @@ const MapPage = () => {
                 className={`flex-shrink-0 px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wider transition-all duration-200 ${
                   activeCityId === city
                     ? 'bg-amber-600 text-white shadow-md'
-                    : 'text-stone-500 hover:text-stone-800 hover:bg-stone-200'
+                    : 'text-gray-500 hover:text-gray-800 hover:bg-gray-200'
                 }`}
               >
                 {city}
@@ -371,18 +371,18 @@ const MapPage = () => {
             >
               <Popup className="custom-popup">
                 <div className="p-1 min-w-[150px]">
-                  <h4 className="font-bold text-stone-900 border-b border-stone-100 pb-2 mb-2 flex items-center justify-between">
+                  <h4 className="font-bold text-gray-900 border-b border-gray-100 pb-2 mb-2 flex items-center justify-between">
                     <span>{pin.restaurant_name}</span>
                     {pin.emoji && <span className="text-lg ml-2">{pin.emoji}</span>}
                   </h4>
                   {pin.comment && (
-                    <p className="text-stone-600 text-sm italic mb-3 flex items-start">
+                    <p className="text-gray-600 text-sm italic mb-3 flex items-start">
                       <MessageCircle size={14} className="mr-1.5 mt-0.5 opacity-50 flex-shrink-0" />
                       "{pin.comment}"
                     </p>
                   )}
-                  <div className="text-xs text-stone-400 flex items-center justify-between">
-                    <span className="font-medium bg-stone-100 px-2 py-0.5 rounded-full" style={{ color: pin.user_color }}>
+                  <div className="text-xs text-gray-400 flex items-center justify-between">
+                    <span className="font-medium bg-gray-100 px-2 py-0.5 rounded-full" style={{ color: pin.user_color }}>
                       Added by {pin.user_initials}
                     </span>
                     {getInitials(userName) === pin.user_initials && (
@@ -399,7 +399,7 @@ const MapPage = () => {
         
         {isLoading && (
           <div className="absolute inset-0 bg-white/50 backdrop-blur-sm z-10 flex items-center justify-center">
-            <div className="bg-stone-900 text-white px-6 py-3 rounded-full font-bold text-sm tracking-widest animate-pulse shadow-xl">
+            <div className="bg-gray-900 text-white px-6 py-3 rounded-full font-bold text-sm tracking-wider animate-pulse shadow-xl">
               Loading Map Pins...
             </div>
           </div>
@@ -409,12 +409,12 @@ const MapPage = () => {
       {/* Add Pin Modal */}
       {showPinModal && pendingPin && (
         <div className="absolute inset-x-0 bottom-4 z-20 mx-auto px-4 w-full max-w-md pointer-events-none">
-          <div className="bg-white rounded-2xl shadow-2xl p-6 border border-stone-100 pointer-events-auto">
+          <div className="bg-white rounded-2xl shadow-2xl p-6 border border-gray-100 pointer-events-auto">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-serif">Pin a Spot</h3>
+              <h3 className="text-lg ">Pin a Spot</h3>
               <button 
                 onClick={() => { setShowPinModal(false); setPendingPin(null); }}
-                className="text-stone-400 hover:text-stone-700"
+                className="text-gray-400 hover:text-gray-700"
               >
                 Cancel
               </button>
@@ -429,17 +429,17 @@ const MapPage = () => {
                   autoFocus
                   value={restaurantName}
                   onChange={e => setRestaurantName(e.target.value)}
-                  className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium text-stone-800"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-amber-200 outline-none transition-all font-medium text-gray-800"
                 />
               </div>
               
               <div>
-                <label className="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2">Category Emoji (Optional)</label>
+                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Category Emoji (Optional)</label>
                 <div className="flex flex-wrap gap-2">
                   <button
                     type="button"
                     onClick={() => setSelectedEmoji(null)}
-                    className={`h-10 px-3 rounded-lg border flex items-center justify-center transition-all ${selectedEmoji === null ? 'bg-amber-100 border-amber-300 text-amber-800 font-medium' : 'bg-stone-50 border-stone-200 hover:bg-stone-100 text-stone-500'}`}
+                    className={`h-10 px-3 rounded-lg border flex items-center justify-center transition-all ${selectedEmoji === null ? 'bg-amber-100 border-amber-300 text-amber-800 font-medium' : 'bg-gray-50 border-gray-200 hover:bg-gray-100 text-gray-500'}`}
                   >
                     None
                   </button>
@@ -448,7 +448,7 @@ const MapPage = () => {
                       key={emoji}
                       type="button"
                       onClick={() => setSelectedEmoji(emoji)}
-                      className={`w-10 h-10 rounded-lg border text-lg flex items-center justify-center transition-all ${selectedEmoji === emoji ? 'bg-amber-100 border-amber-300 shadow-sm scale-110' : 'bg-stone-50 border-stone-200 hover:bg-stone-100'}`}
+                      className={`w-10 h-10 rounded-lg border text-lg flex items-center justify-center transition-all ${selectedEmoji === emoji ? 'bg-amber-100 border-amber-300 shadow-sm scale-110' : 'bg-gray-50 border-gray-200 hover:bg-gray-100'}`}
                     >
                       {emoji}
                     </button>
@@ -462,13 +462,13 @@ const MapPage = () => {
                   rows={2}
                   value={comment}
                   onChange={e => setComment(e.target.value)}
-                  className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-amber-200 outline-none transition-all text-sm text-stone-800 resize-none"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-amber-200 outline-none transition-all text-sm text-gray-800 resize-none"
                 />
               </div>
               
               <button 
                 type="submit"
-                className="w-full bg-stone-900 hover:bg-stone-800 text-white font-bold py-3 rounded-xl transition-colors shadow-lg flex items-center justify-center mt-2"
+                className="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-3 rounded-xl transition-colors shadow-lg flex items-center justify-center mt-2"
               >
                 <MapPin size={18} className="mr-2" />
                 Save Pin as {getInitials(userName)}
