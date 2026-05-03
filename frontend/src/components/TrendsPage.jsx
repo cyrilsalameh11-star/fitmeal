@@ -14,12 +14,13 @@ const ACCOUNTS_DATA = [
     color: '#e11d48',
     url: 'https://www.instagram.com/guide.lb/',
     reels: [
-      { shortcode: 'DWLqlhujWQn', type: 'p', carousel: true }, // page 1, newest, swipeable carousel
-      { shortcode: 'DUyUdKfDQfS', type: 'reel', localMedia: { kind: 'video', src: '/reels/guide-lb-DUyUdKfDQfS.mp4' } }, // page 2
-      { shortcode: 'DUgGrZDDYpl', type: 'reel', localMedia: { kind: 'video', src: '/reels/guide-lb-DUgGrZDDYpl.mp4' } }, // page 3
-      { shortcode: 'DSkvVRjjcMY', type: 'p',    carousel: true }, // page 4, swipeable carousel
-      { shortcode: 'DSC5LaRDTOI', type: 'reel', localMedia: { kind: 'video', src: '/reels/guide-lb-DSC5LaRDTOI.mp4' } }, // page 5
-      { shortcode: 'DRzc-I5jaoJ', type: 'reel', localMedia: { kind: 'video', src: '/reels/guide-lb-DRzc-I5jaoJ.mp4' } }, // page 6, oldest
+      { shortcode: 'DX3brd7NMV0', type: 'p',    localMedia: { kind: 'video', src: '/reels/guide-lb-DX3brd7NMV0.mp4' } }, // page 1, newest
+      { shortcode: 'DWLqlhujWQn', type: 'p',    carousel: true }, // page 2, swipeable carousel
+      { shortcode: 'DUyUdKfDQfS', type: 'reel', localMedia: { kind: 'video', src: '/reels/guide-lb-DUyUdKfDQfS.mp4' } }, // page 3
+      { shortcode: 'DUgGrZDDYpl', type: 'reel', localMedia: { kind: 'video', src: '/reels/guide-lb-DUgGrZDDYpl.mp4' } }, // page 4
+      { shortcode: 'DSkvVRjjcMY', type: 'p',    carousel: true }, // page 5, swipeable carousel
+      { shortcode: 'DSC5LaRDTOI', type: 'reel', localMedia: { kind: 'video', src: '/reels/guide-lb-DSC5LaRDTOI.mp4' } }, // page 6
+      { shortcode: 'DRzc-I5jaoJ', type: 'reel', localMedia: { kind: 'video', src: '/reels/guide-lb-DRzc-I5jaoJ.mp4' } }, // page 7, oldest
     ],
   },
   {
