@@ -818,6 +818,14 @@ const parser = new RSSParser();
 // Manually curated global FMCG articles — always surfaced at the top
 const PINNED_GLOBAL_ARTICLES = [
   {
+    title: "À Beyrouth, Stashh parie sur la qualité pour réinventer l'expérience café - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1506188/a-beyrouth-stashh-parie-sur-la-qualite-pour-reinventer-lexperience-cafe.html',
+    pubDate: 'Sun, 10 May 2026 08:00:00 GMT',
+    contentSnippet: "Stashh, nouvelle adresse beyrouthine, mise tout sur la qualité du grain et l'expérience client pour réinventer la culture café au Liban...",
+    id: 'pinned-stashh-1506188',
+    photoUrl: '/news/stashh.webp',
+  },
+  {
     title: "Tawlet s'invite au Domaine des Tourelles à Chtaura - L'Orient-Le Jour",
     link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1478821/tawlet-sinvite-au-domaine-des-tourelles-a-chtaura.html',
     pubDate: 'Sun, 3 May 2026 08:00:00 GMT',
@@ -876,14 +884,6 @@ const PINNED_GLOBAL_ARTICLES = [
 ];
 
 const PINNED_LORIENT_ARTICLES = [
-  {
-    title: "À Beyrouth, Stashh parie sur la qualité pour réinventer l'expérience café - L'Orient-Le Jour",
-    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1506188/a-beyrouth-stashh-parie-sur-la-qualite-pour-reinventer-lexperience-cafe.html',
-    pubDate: 'Sun, 10 May 2026 08:00:00 GMT',
-    contentSnippet: "Stashh, nouvelle adresse beyrouthine, mise tout sur la qualité du grain et l'expérience client pour réinventer la culture café au Liban...",
-    id: 'pinned-lorient-1506188',
-    photoUrl: '/news/stashh.webp',
-  },
   {
     title: "Kiki's : manger sain sans renoncer au plaisir - L'Orient-Le Jour",
     link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1492564/kikis-manger-sain-sans-renoncer-au-plaisir.html',
