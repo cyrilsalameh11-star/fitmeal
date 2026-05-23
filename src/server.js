@@ -1652,6 +1652,12 @@ Respond ONLY with this JSON (no markdown):
 
 Take your time (~20-30 seconds) to deeply analyze this food photo. You will NOT ask any clarifying questions — instead, you must reason carefully through the steps below internally, make confident assumptions, and produce the final answer in one shot.
 
+## TWO HARD RULES — READ BEFORE ANYTHING ELSE
+
+**RULE 1 — SYMMETRY / CONTEXT:** When you see multiple similar items on the same plate (e.g., two sandwich halves of the same bread, two identical-looking burgers, two same-shape rolls), ASSUME they are the same dish unless there is direct visual evidence to the contrary (clearly different bread type, different color, different shape, or a visibly empty interior). NEVER invent a "plain roll" or "empty bread" just because one item's filling isn't visible from the angle. Two half-baguettes of the same color and crust on the same plate are TWO of the same sandwich, even if only one shows its filling.
+
+**RULE 2 — UNDER-ESTIMATE WHEN UNCERTAIN:** Lean toward the LOWER realistic end of every estimate. Mass-market food-tracking apps consistently overestimate by 10-30% because they assume restaurant portions and generous fats. Counter this. If you are torn between 80g and 100g of bread, pick 80g. If you are torn between 10ml and 15ml of oil, pick 10ml. Better to under-estimate by 50 kcal than over by 200. Final kcal should feel TIGHT, not generous.
+
 ## INTERNAL REASONING (do this silently — do NOT include it in the JSON output)
 
 STEP 1 — IDENTIFY THE DISH
@@ -1712,6 +1718,18 @@ Does the total match the plate size? Small mezze plate <300 kcal, regular main 4
 - Tabbouleh: bright-green dominated, very fine parsley, red tomato specks
 - Hummus: smooth pale-beige dip, swirl in centre, olive oil pool, paprika
 
+## COMMON ITEM SIZES (use these — do NOT inflate)
+- A typical sandwich half-baguette / ciabatta roll: 60-80g of bread (not 150g+)
+- A standard pita: 60-90g
+- A sandwich filling layer (tuna + mayo, ham, chicken salad): 50-80g per sandwich, NOT 150g
+- A tbsp of mayonnaise / olive oil in a sandwich: ~10g, ~70-90 kcal — not a thick "pool"
+- A slice of cheese in a sandwich: 15-25g
+- A normal restaurant portion of rice: 150-200g (not 300g)
+- A grilled chicken breast filet portion: 120-180g (not 250g)
+- French fries small/medium/large: 80g / 120g / 180g
+- A burger patty (single): 90-120g
+- A piece of pizza (slice 1/8 of a 30cm pie): 100-130g
+
 ## REFERENCE KCAL / MACRO TABLES
 
 Lebanese specifics (per 100g):
@@ -1736,21 +1754,37 @@ Lebanese specifics (per 100g):
 
 International (per 100g):
 - Plain cooked rice: 130 / 2.5 / 28 / 0.3
-- Pita / lavash / white bread: 270 / 9 / 55 / 1
-- Grilled chicken breast: 165 / 31 / 0 / 4
-- Chicken thigh w/ skin: 230 / 26 / 0 / 13
-- Ground beef (15% fat): 240 / 26 / 0 / 15
-- French fries: 320 / 4 / 40 / 16
+- Ciabatta / baguette / sandwich bread: 260 / 9 / 50 / 2  (1 half-baguette ~70g ≈ 180 kcal)
+- Pita / lavash / flatbread: 260 / 9 / 53 / 1            (1 pita ~70g ≈ 180 kcal)
+- Toasted white bread / sliced bread: 280 / 9 / 52 / 3
+- Croissant: 380 / 8 / 42 / 21
+- Grilled chicken breast: 160 / 30 / 0 / 4
+- Chicken thigh w/ skin: 220 / 25 / 0 / 13
+- Tuna in oil (drained): 200 / 27 / 0 / 9
+- Tuna in water: 110 / 25 / 0 / 1
+- Tuna + mayo filling (typical sandwich mix): 180 / 18 / 1 / 12
+- Ground beef cooked (15% fat): 240 / 26 / 0 / 15
+- French fries: 310 / 4 / 40 / 15
 - Cheese (mozzarella/cheddar avg): 300 / 22 / 2 / 22
-- Olive oil: 884 / 0 / 0 / 100 (1 tbsp = 14g = 120 kcal)
-- Mayo / toum / aioli: 700 / 1 / 1 / 75
-- Tomato / cucumber / lettuce: 18 / 1 / 4 / 0
+- Olive oil: 884 / 0 / 0 / 100 (1 tbsp = 14g ≈ 120 kcal)
+- Mayonnaise: 680 / 1 / 1 / 75 (1 tbsp = 12g ≈ 80 kcal)
+- Tomato / cucumber / lettuce / cherry tomato: 18 / 1 / 4 / 0
 - Avocado: 160 / 2 / 9 / 15
 - Cooked pasta: 160 / 6 / 31 / 1
-- Pizza margherita: 270 / 12 / 33 / 10
-- Burger (beef patty + bun + cheese): 290 / 17 / 27 / 13
+- Pizza margherita: 250 / 11 / 30 / 9
+- Burger (beef patty + bun + cheese, ~180g): 290 / 17 / 27 / 13
 
-For dishes prepared with samneh/butter or generous olive oil add 80-150 kcal vs the bare reference. For "restaurant portion" (large plate, garnishes, extra sauce), assume the upper end.
+## TYPICAL FULL-DISH REFERENCES (anti-overestimation anchors)
+- 1 tuna sandwich on half-baguette/ciabatta (~150g total: 70g bread + 70g tuna-mayo + 10g tomato): ~250 kcal / 19p / 30c / 8f
+- 1 chicken-mayo sandwich on baguette half (~160g): ~280 kcal / 22p / 32c / 8f
+- 1 ham + cheese baguette (~180g): ~430 kcal / 22p / 40c / 19f
+- 1 burger (single patty + bun + cheese, ~180g): ~520 kcal / 25p / 36c / 28f
+- 1 medium plate pasta bolognese (~300g): ~480 kcal / 22p / 60c / 14f
+- 1 bowl Caesar salad with chicken (~300g): ~430 kcal / 32p / 12c / 28f
+
+If your computed total deviates significantly from a similar typical-dish anchor above, RE-CHECK your portion estimates downward.
+
+For dishes prepared with samneh/butter or visibly generous olive oil add 80-150 kcal. For obvious "restaurant indulgence portion" (huge plate, visible thick sauce pools, double protein), assume the upper end — but ONLY when visually evident, not by default.
 
 Use metric units only (grams, ml — never cups, oz, inches).
 

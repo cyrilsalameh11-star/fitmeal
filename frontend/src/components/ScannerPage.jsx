@@ -658,18 +658,68 @@ export default function ScannerPage() {
             )}
 
             {isLoading && (
-              <div className="absolute inset-0 bg-gray-950/80 backdrop-blur-sm flex flex-col items-center justify-center gap-4 px-6 text-center">
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/95 via-gray-950/60 to-gray-950/20 backdrop-blur-[2px] flex items-end justify-center pb-4 px-4">
                 <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 1.2, repeat: Infinity, ease: 'linear' }}
-                  className="w-12 h-12 border-2 border-gray-700 border-t-amber-400 rounded-full"
-                />
-                <p className="text-white text-xs font-bold uppercase tracking-wider">
-                  {deepAnalysisLabel}
-                </p>
-                <p className="text-gray-500 text-[10px] leading-relaxed max-w-[260px]">
-                  Deep analysis takes ~20-30 seconds — no questions, just precise macros.
-                </p>
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35 }}
+                  className="w-full max-w-sm bg-gray-900/95 border border-gray-800/80 rounded-2xl shadow-2xl px-4 py-3.5"
+                >
+                  <div className="flex items-center gap-3 mb-3 pb-3 border-b border-gray-800/80">
+                    <div className="relative w-6 h-6 flex items-center justify-center">
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1.4, repeat: Infinity, ease: 'linear' }}
+                        className="absolute inset-0 border-2 border-gray-800 border-t-gray-200 rounded-full"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-gray-100 text-[13px] font-semibold leading-tight">Analyzing your meal</p>
+                      <p className="text-gray-500 text-[10.5px] leading-tight mt-0.5">Deep analysis · about 25 seconds</p>
+                    </div>
+                  </div>
+
+                  <ul className="space-y-2">
+                    {DEEP_STAGES.map((step, i) => {
+                      const status = view === 'photo'
+                        ? (i < deepStage ? 'done' : i === deepStage ? 'active' : 'pending')
+                        : (i === 0 ? 'active' : 'pending');
+                      return (
+                        <li key={i} className="flex items-center gap-2.5 min-h-[20px]">
+                          <span className="w-4 h-4 flex-shrink-0 flex items-center justify-center">
+                            {status === 'done' && (
+                              <motion.div
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{ type: 'spring', stiffness: 360, damping: 22 }}
+                                className="w-4 h-4 rounded-full bg-emerald-500/15 flex items-center justify-center"
+                              >
+                                <Check size={10} className="text-emerald-400" strokeWidth={3.5} />
+                              </motion.div>
+                            )}
+                            {status === 'active' && (
+                              <motion.div
+                                animate={{ rotate: 360 }}
+                                transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                                className="w-3 h-3 border-[1.5px] border-gray-700 border-t-gray-200 rounded-full"
+                              />
+                            )}
+                            {status === 'pending' && (
+                              <span className="w-1.5 h-1.5 rounded-full bg-gray-700" />
+                            )}
+                          </span>
+                          <span className={`text-[12px] leading-snug ${
+                            status === 'done' ? 'text-gray-400'
+                            : status === 'active' ? 'text-gray-100 font-medium'
+                            : 'text-gray-600'
+                          }`}>
+                            {step}
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </motion.div>
               </div>
             )}
 
