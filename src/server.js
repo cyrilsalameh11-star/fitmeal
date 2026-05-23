@@ -885,6 +885,14 @@ const PINNED_GLOBAL_ARTICLES = [
 
 const PINNED_LORIENT_ARTICLES = [
   {
+    title: "Week-end à Beyrouth : Maison El Dada mise sur la gastronomie pour faire revivre une bâtisse historique - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1506951/weekend-a-beyrouth-maison-el-dada-mise-sur-la-gastronomie-pour-faire-revivre-une-batisse-historique.html',
+    pubDate: 'Sat, 23 May 2026 08:00:00 GMT',
+    contentSnippet: "Maison El Dada redonne vie à une bâtisse historique de Beyrouth en y installant une nouvelle adresse gastronomique qui mêle patrimoine et cuisine raffinée...",
+    id: 'pinned-lorient-1506951',
+    photoUrl: '/news/maisondada.jpg',
+  },
+  {
     title: "Kiki's : manger sain sans renoncer au plaisir - L'Orient-Le Jour",
     link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1492564/kikis-manger-sain-sans-renoncer-au-plaisir.html',
     pubDate: 'Sun, 25 Jan 2026 08:00:00 GMT',
