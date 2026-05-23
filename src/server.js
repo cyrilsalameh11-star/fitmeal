@@ -818,6 +818,14 @@ const parser = new RSSParser();
 // Manually curated global FMCG articles — always surfaced at the top
 const PINNED_GLOBAL_ARTICLES = [
   {
+    title: "Week-end à Beyrouth : Maison El Dada mise sur la gastronomie pour faire revivre une bâtisse historique - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1506951/weekend-a-beyrouth-maison-el-dada-mise-sur-la-gastronomie-pour-faire-revivre-une-batisse-historique.html',
+    pubDate: 'Sat, 23 May 2026 08:00:00 GMT',
+    contentSnippet: "Maison El Dada redonne vie à une bâtisse historique de Beyrouth en y installant une nouvelle adresse gastronomique qui mêle patrimoine et cuisine raffinée...",
+    id: 'pinned-maisondada-1506951',
+    photoUrl: '/news/maisondada.jpg',
+  },
+  {
     title: "À Beyrouth, Stashh parie sur la qualité pour réinventer l'expérience café - L'Orient-Le Jour",
     link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1506188/a-beyrouth-stashh-parie-sur-la-qualite-pour-reinventer-lexperience-cafe.html',
     pubDate: 'Sun, 10 May 2026 08:00:00 GMT',
@@ -884,14 +892,6 @@ const PINNED_GLOBAL_ARTICLES = [
 ];
 
 const PINNED_LORIENT_ARTICLES = [
-  {
-    title: "Week-end à Beyrouth : Maison El Dada mise sur la gastronomie pour faire revivre une bâtisse historique - L'Orient-Le Jour",
-    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1506951/weekend-a-beyrouth-maison-el-dada-mise-sur-la-gastronomie-pour-faire-revivre-une-batisse-historique.html',
-    pubDate: 'Sat, 23 May 2026 08:00:00 GMT',
-    contentSnippet: "Maison El Dada redonne vie à une bâtisse historique de Beyrouth en y installant une nouvelle adresse gastronomique qui mêle patrimoine et cuisine raffinée...",
-    id: 'pinned-lorient-1506951',
-    photoUrl: '/news/maisondada.jpg',
-  },
   {
     title: "Kiki's : manger sain sans renoncer au plaisir - L'Orient-Le Jour",
     link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1492564/kikis-manger-sain-sans-renoncer-au-plaisir.html',
