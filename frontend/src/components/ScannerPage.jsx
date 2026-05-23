@@ -311,6 +311,26 @@ export default function ScannerPage() {
   const [describeText, setDescribeText] = useState('');
   const [servingMode, setServingMode] = useState('serving'); // 'serving' | 'package'
   const [qty,         setQty]         = useState(1);
+  const [deepStage,   setDeepStage]   = useState(0); // 0..4 — cycles through reasoning labels
+
+  const DEEP_STAGES = [
+    'Looking at your photo...',
+    'Identifying the dish...',
+    'Estimating ingredients & portions...',
+    'Inferring hidden fats & sauces...',
+    'Computing macros...',
+  ];
+  const deepAnalysisLabel = view === 'photo' ? DEEP_STAGES[Math.min(deepStage, DEEP_STAGES.length - 1)]
+                                             : (phase === 'identifying' ? 'Analyzing your meal...' : 'Calculating calories...');
+
+  // While the photo flow is in deep analysis, cycle the loading label every ~5s.
+  useEffect(() => {
+    if (view !== 'photo' || phase !== 'identifying') { setDeepStage(0); return; }
+    const interval = setInterval(() => {
+      setDeepStage(s => (s + 1 < DEEP_STAGES.length ? s + 1 : DEEP_STAGES.length - 1));
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [view, phase]);
 
   const compressImage = useCallback((file) => {
     return new Promise((resolve, reject) => {
@@ -433,15 +453,10 @@ export default function ScannerPage() {
       if (!base64) throw new Error('Could not read image data.');
       lastBase64Ref.current = base64;
 
-      const data = await callPhotoApi(base64, 'identify');
-      if (!data.questions?.length || data.dish === 'Not food detected') {
-        const estimate = await callPhotoApi(base64, 'estimate', {});
-        setResult(estimate);
-        setPhase('result');
-      } else {
-        setIdentified(data);
-        setPhase('questions');
-      }
+      // Single-shot deep analysis (no clarifying questions). Takes 15-30s for max accuracy.
+      const data = await callPhotoApi(base64, 'deep_analyze', {});
+      setResult(data);
+      setPhase('result');
     } catch (err) {
       setError(err.message || 'Could not analyze image.');
       setPhase('error');
@@ -613,7 +628,7 @@ export default function ScannerPage() {
             ? 'Scan any product barcode and instantly get the nutrition facts from the Open Food Facts database.'
             : view === 'label'
             ? "Take a clear photo of the nutrition facts label and we'll read the values directly off the package."
-            : 'Take a photo of any meal, answer 2 to 3 quick questions, and get an accurate calorie breakdown.'}
+            : 'Take a photo of any meal. The AI takes ~20-30 seconds to deeply analyze every ingredient, portion, and hidden fat — no questions asked.'}
         </p>
       </div>
 
@@ -643,17 +658,17 @@ export default function ScannerPage() {
             )}
 
             {isLoading && (
-              <div className="absolute inset-0 bg-gray-950/80 backdrop-blur-sm flex flex-col items-center justify-center gap-4">
+              <div className="absolute inset-0 bg-gray-950/80 backdrop-blur-sm flex flex-col items-center justify-center gap-4 px-6 text-center">
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 1.2, repeat: Infinity, ease: 'linear' }}
                   className="w-12 h-12 border-2 border-gray-700 border-t-amber-400 rounded-full"
                 />
                 <p className="text-white text-xs font-bold uppercase tracking-wider">
-                  {phase === 'identifying' ? 'Identifying food...' : 'Calculating calories...'}
+                  {deepAnalysisLabel}
                 </p>
-                <p className="text-gray-500 text-[10px]">
-                  {phase === 'identifying' ? 'Gemini AI is reading your photo' : 'Using your answers for accuracy'}
+                <p className="text-gray-500 text-[10px] leading-relaxed max-w-[260px]">
+                  Deep analysis takes ~20-30 seconds — no questions, just precise macros.
                 </p>
               </div>
             )}

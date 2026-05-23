@@ -1467,7 +1467,10 @@ app.post('/api/analyze-food', async (req, res) => {
   if (!apiKey) return res.status(500).json({ error: 'AI API key not configured' });
 
   try {
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+    // Deep mode uses the heavier Pro model for higher accuracy (~15-25s).
+    // identify/estimate keep Flash for the legacy two-step flow.
+    const modelName = mode === 'deep_analyze' ? 'gemini-2.5-pro' : 'gemini-2.5-flash';
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
 
     // mode=identify: recognise dish + ask questions (no calorie estimate yet)
     // mode=estimate: user answered questions, now give full nutritional breakdown
@@ -1643,14 +1646,136 @@ Respond ONLY with this JSON (no markdown):
   "tip": "One short practical nutrition tip about this meal"
 }`;
 
-    const prompt = mode === 'estimate' ? estimatePrompt : identifyPrompt;
+    // Deep single-shot prompt: no clarifying questions, full CoT reasoning,
+    // returns the final macro estimate directly. Used by the camera/gallery flow.
+    const deepPrompt = `You are a nutrition expert with DEEP expertise in Lebanese, Levantine, French, and international cuisines. You can read Levantine-Arabic transliterations (where 2='ء/ق', 3='ع', 7='ح', 5/kh='خ').
+
+Take your time (~20-30 seconds) to deeply analyze this food photo. You will NOT ask any clarifying questions — instead, you must reason carefully through the steps below internally, make confident assumptions, and produce the final answer in one shot.
+
+## INTERNAL REASONING (do this silently — do NOT include it in the JSON output)
+
+STEP 1 — IDENTIFY THE DISH
+Look at colors, textures, presentation, plating, garnishes, sides, container shape. If Lebanese/Levantine, give the Lebanese name (transliterated) + English equivalent in parentheses. Example: "Wara2 3enab bi zeit (vegetarian stuffed grape leaves)".
+
+STEP 2 — INVENTORY VISIBLE COMPONENTS WITH ESTIMATED MASS
+List every visible element with mass in grams (ml for liquids). Use reference cues: a fork is ~20cm, a standard dinner plate is 25-28cm Ø, a small mezze plate 15-18cm, a pita ~120g, an egg ~50g. Examples:
+- 8 stuffed grape leaves @ ~22g each = ~175g
+- Lemon wedge ~10g
+- Pool of olive oil ~10ml = 9g
+
+STEP 3 — INFER COOKING METHOD AND HIDDEN FATS/SAUCES
+Was it grilled / fried / baked / raw / stewed? What invisible fats are likely present — olive oil, samneh, butter, deep-fry oil, toum, tahini, mayo, cream, dressings, sugar in glaze? These commonly add 100-400 kcal that aren't obvious from the photo. Assume the dish was prepared in a typical Lebanese / restaurant style.
+
+STEP 4 — COMPUTE PER-COMPONENT KCAL/MACROS, THEN SUM
+Use the reference tables below. Multiply mass × kcal/macros per gram for each item, sum, round to the nearest integer.
+
+STEP 5 — SANITY CHECK
+Does the total match the plate size? Small mezze plate <300 kcal, regular main 400-700, generous restaurant plate 700-1200, indulgent/oversized 1200-1800. If your number is off, recheck portion estimates.
+
+## OUTPUT — REPLY WITH ONLY THIS JSON (no markdown, no explanation, no commentary)
+{
+  "dish": "Lebanese name (English equivalent)",
+  "confidence": "high|medium|low",
+  "servingSize": "concrete metric description, e.g. 12 wara2 3enab (~240g) with lemon wedge",
+  "calories": <integer kcal>,
+  "protein": <integer grams>,
+  "carbs": <integer grams>,
+  "fat": <integer grams>,
+  "items": ["ingredient 1 with quantity", "ingredient 2 with quantity"],
+  "tip": "one short practical nutrition tip"
+}
+
+## LEBANESE / LEVANTINE DISH GLOSSARY (use these exact spellings)
+
+### Mezze, salads, dips
+- Hummus, Moutabal / Baba ghanouj, Mhammara, Labneh, Tabbouleh, Fattoush, Shanklish, Kibbeh nayyeh
+
+### Stuffed dishes
+- Wara2 3enab / Warak enab, Mehshi kousa, Mehshi batenjan, Sheikh el mehshi, Mahshi mlefoof
+
+### Stews and rice plates
+- Riz 3a djej / Hashweh, Mloukhieh, Yakhnet bazella/kousa/loubieh, Bemieh bi zeit/lahme, Loubieh bzeit, Mujaddara, Mdardara, Maqlooba, Sayadieh, Kafta bil sanieh, Kibbeh bil sanieh, Kibbeh labanieh
+
+### Grills and meats
+- Shish tawook, Lahem mishwi, Kafta mishwiyeh, Arayes, Shawarma (djej / lahmeh)
+
+### Bakery / street food
+- Manakish za3tar/jebneh/lahme b3ajin, Sfeeha, Fatayer sabanekh, Falafel, Foul mdammas, Balila, Knefeh bi jebn, Atayef, Maamoul
+
+### Visual cues
+- Wara2 3enab: dark-green tight cylinders, lemon wedge
+- Riz 3a djej: yellow-tinted rice mound, shredded chicken, pine nuts on top
+- Mloukhieh: dark-green soupy stew over white rice, lemon
+- Kibbeh: torpedo-shaped fried croquettes, golden-brown
+- Manakish: round flatbread with za3tar paste or melted cheese
+- Shawarma: pita wrap with shaved meat, tomato, pickle, garlic sauce
+- Tabbouleh: bright-green dominated, very fine parsley, red tomato specks
+- Hummus: smooth pale-beige dip, swirl in centre, olive oil pool, paprika
+
+## REFERENCE KCAL / MACRO TABLES
+
+Lebanese specifics (per 100g):
+- Wara2 3enab bi zeit: 180 kcal / 3p / 25c / 8f       (1 roll ≈ 20g)
+- Wara2 3enab with meat: 210 kcal / 9p / 22c / 10f
+- Riz 3a djej (yellow rice + chicken + nuts): 220 kcal / 12p / 28c / 7f
+- Mloukhieh stew alone: 70 kcal / 6p / 6c / 3f
+- Rice underneath mloukhieh: 150 kcal / 3p / 30c / 1f
+- Kibbeh fried (1 ball ~50g): 250 kcal / 12p / 18c / 14f
+- Manakish za3tar (1 ~120g): 430 kcal total / 9p / 50c / 22f
+- Manakish jebneh (1 ~120g): 480 kcal / 13p / 50c / 25f
+- Manakish lahme b3ajin (1 ~120g): 520 kcal / 16p / 52c / 27f
+- Shawarma chicken sandwich (~250g): 520 kcal / 28p / 50c / 22f
+- Shawarma beef sandwich (~250g): 620 kcal / 28p / 50c / 32f
+- Falafel sandwich (~250g): 480 kcal / 16p / 60c / 20f
+- Tabbouleh (per 100g): 110 kcal / 3p / 12c / 6f
+- Fattoush (per 100g): 100 kcal / 2p / 11c / 6f
+- Hummus: 170 kcal / 8p / 14c / 10f (+50 kcal w/ olive oil pool)
+- Mujaddara: 130 kcal / 4p / 20c / 4f
+- Knefeh w/ syrup: 320 kcal / 6p / 47c / 12f
+- Tawook plate w/ rice + toum (~400g total): 700 kcal / 45p / 55c / 30f
+
+International (per 100g):
+- Plain cooked rice: 130 / 2.5 / 28 / 0.3
+- Pita / lavash / white bread: 270 / 9 / 55 / 1
+- Grilled chicken breast: 165 / 31 / 0 / 4
+- Chicken thigh w/ skin: 230 / 26 / 0 / 13
+- Ground beef (15% fat): 240 / 26 / 0 / 15
+- French fries: 320 / 4 / 40 / 16
+- Cheese (mozzarella/cheddar avg): 300 / 22 / 2 / 22
+- Olive oil: 884 / 0 / 0 / 100 (1 tbsp = 14g = 120 kcal)
+- Mayo / toum / aioli: 700 / 1 / 1 / 75
+- Tomato / cucumber / lettuce: 18 / 1 / 4 / 0
+- Avocado: 160 / 2 / 9 / 15
+- Cooked pasta: 160 / 6 / 31 / 1
+- Pizza margherita: 270 / 12 / 33 / 10
+- Burger (beef patty + bun + cheese): 290 / 17 / 27 / 13
+
+For dishes prepared with samneh/butter or generous olive oil add 80-150 kcal vs the bare reference. For "restaurant portion" (large plate, garnishes, extra sauce), assume the upper end.
+
+Use metric units only (grams, ml — never cups, oz, inches).
+
+If the photo is NOT food: return {"dish":"Not food detected","confidence":"low","servingSize":"n/a","calories":0,"protein":0,"carbs":0,"fat":0,"items":[],"tip":""}.`;
+
+    const prompt = mode === 'deep_analyze' ? deepPrompt
+                 : mode === 'estimate'     ? estimatePrompt
+                 : identifyPrompt;
+
+    const requestBody = {
+      contents: [{ parts: [{ text: prompt }, { inline_data: { mime_type: mimeType, data: imageBase64 } }] }],
+    };
+    if (mode === 'deep_analyze') {
+      // Allow generous reasoning budget on Pro for thorough analysis.
+      requestBody.generationConfig = {
+        temperature: 0.2,
+        maxOutputTokens: 4096,
+        thinkingConfig: { thinkingBudget: -1 },
+      };
+    }
 
     const geminiRes = await fetch(geminiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }, { inline_data: { mime_type: mimeType, data: imageBase64 } }] }]
-      })
+      body: JSON.stringify(requestBody),
     });
 
     const geminiJson = await geminiRes.json();
@@ -1670,7 +1795,7 @@ Respond ONLY with this JSON (no markdown):
     const jsonMatch = clean.match(/\{[\s\S]*\}/);
     if (!jsonMatch) throw new Error('No JSON in AI response');
     const data = JSON.parse(jsonMatch[0]);
-    if (mode === 'estimate') {
+    if (mode === 'estimate' || mode === 'deep_analyze') {
       data.calories = Math.round(Number(data.calories) || 0);
       data.protein  = Math.round(Number(data.protein)  || 0);
       data.carbs    = Math.round(Number(data.carbs)    || 0);
