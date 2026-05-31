@@ -818,6 +818,14 @@ const parser = new RSSParser();
 // Manually curated global FMCG articles — always surfaced at the top
 const PINNED_GLOBAL_ARTICLES = [
   {
+    title: "Samedi à Beyrouth : Ma Ninou mise sur l'intime malgré l'incertitude - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1508365/samedi-a-beyrouth-ma-ninou-mise-sur-lintime-malgre-lincertitude.html',
+    pubDate: 'Sat, 30 May 2026 08:00:00 GMT',
+    contentSnippet: "Ma Ninou, nouvelle adresse beyrouthine, mise sur une expérience intime et chaleureuse malgré le contexte incertain pour offrir une cuisine soignée à ses convives...",
+    id: 'pinned-maninou-1508365',
+    photoUrl: '/news/ma-ninou.webp',
+  },
+  {
     title: "Week-end à Beyrouth : Maison El Dada mise sur la gastronomie pour faire revivre une bâtisse historique - L'Orient-Le Jour",
     link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1506951/weekend-a-beyrouth-maison-el-dada-mise-sur-la-gastronomie-pour-faire-revivre-une-batisse-historique.html',
     pubDate: 'Sat, 23 May 2026 08:00:00 GMT',
@@ -892,14 +900,6 @@ const PINNED_GLOBAL_ARTICLES = [
 ];
 
 const PINNED_LORIENT_ARTICLES = [
-  {
-    title: "Samedi à Beyrouth : Ma Ninou mise sur l'intime malgré l'incertitude - L'Orient-Le Jour",
-    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1508365/samedi-a-beyrouth-ma-ninou-mise-sur-lintime-malgre-lincertitude.html',
-    pubDate: 'Sat, 30 May 2026 08:00:00 GMT',
-    contentSnippet: "Ma Ninou, nouvelle adresse beyrouthine, mise sur une expérience intime et chaleureuse malgré le contexte incertain pour offrir une cuisine soignée à ses convives...",
-    id: 'pinned-lorient-1508365',
-    photoUrl: '/news/ma-ninou.webp',
-  },
   {
     title: "Kiki's : manger sain sans renoncer au plaisir - L'Orient-Le Jour",
     link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1492564/kikis-manger-sain-sans-renoncer-au-plaisir.html',
