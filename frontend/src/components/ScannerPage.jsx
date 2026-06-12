@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, Upload, RotateCcw, Zap, Check, ScanLine, ChevronRight, X, Clock, Trash2, Sparkles, MessageSquare, Send, Barcode, FileText } from 'lucide-react';
+import { Camera, Upload, RotateCcw, Zap, Check, ScanLine, ChevronRight, X, Clock, Trash2, Sparkles, MessageSquare, Send, Barcode, FileText, Search } from 'lucide-react';
 import { logMealToday } from './CalorieBar';
 import ParticleCanvas from './ParticleCanvas';
 
@@ -54,6 +54,7 @@ function MacroChip({ label, value, color }) {
 
 function HistoryPanel({ onClose, onReLog }) {
   const [items, setItems] = useState(readHistory);
+  const [query, setQuery] = useState('');
 
   function deleteItem(id) {
     const updated = items.filter(i => i.id !== id);
@@ -61,26 +62,58 @@ function HistoryPanel({ onClose, onReLog }) {
     localStorage.setItem(HISTORY_KEY, JSON.stringify(updated));
   }
 
+  const q = query.trim().toLowerCase();
+  const filtered = q
+    ? items.filter(i => (i.dish || '').toLowerCase().includes(q) || (i.servingSize || '').toLowerCase().includes(q))
+    : items;
+
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} className="p-6 space-y-4">
       <div className="flex items-center justify-between">
         <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
-          <Clock size={11} /> Scan History
+          <Clock size={11} /> Scan History {items.length > 0 && <span className="text-gray-600">· {items.length}</span>}
         </p>
         <div className="flex items-center gap-3">
           {items.length > 0 && (
-            <button onClick={() => { localStorage.removeItem(HISTORY_KEY); setItems([]); }} className="text-gray-600 hover:text-red-400 transition-colors">
+            <button onClick={() => { localStorage.removeItem(HISTORY_KEY); setItems([]); setQuery(''); }} className="text-gray-600 hover:text-red-400 transition-colors" title="Clear all">
               <Trash2 size={13} />
             </button>
           )}
           <button onClick={onClose} className="text-gray-600 hover:text-white transition-colors"><X size={16} /></button>
         </div>
       </div>
+
+      {items.length > 0 && (
+        <div className="relative">
+          <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 pointer-events-none" />
+          <input
+            type="text"
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            placeholder="Search past meals (e.g. cake, coffee)"
+            className="w-full bg-gray-900 border border-gray-800 rounded-2xl pl-9 pr-9 py-2.5 text-xs text-white placeholder:text-gray-600 focus:outline-none focus:border-amber-500/40 focus:bg-gray-950 transition-all"
+          />
+          {query && (
+            <button
+              onClick={() => setQuery('')}
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center text-gray-600 hover:text-gray-300 rounded-full hover:bg-gray-800 transition-colors"
+              aria-label="Clear search"
+            >
+              <X size={12} />
+            </button>
+          )}
+        </div>
+      )}
+
       {items.length === 0 ? (
         <p className="text-gray-500 text-xs text-center py-8">No scans yet.</p>
+      ) : filtered.length === 0 ? (
+        <p className="text-gray-500 text-xs text-center py-8">
+          No meals matching <span className="text-gray-300 font-semibold">"{query}"</span>.
+        </p>
       ) : (
         <div className="space-y-2 max-h-96 overflow-y-auto">
-          {items.map(item => (
+          {filtered.map(item => (
             <div key={item.id} className="bg-gray-900 rounded-2xl p-4 flex items-center gap-3">
               <div className="flex-1 min-w-0">
                 <p className="text-white text-xs font-bold truncate">{item.dish}</p>
