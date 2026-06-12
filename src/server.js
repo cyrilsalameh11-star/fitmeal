@@ -2067,6 +2067,84 @@ app.get('/api/ig-thumb', async (req, res) => {
   return res.status(404).json({ error: 'no thumbnail found' });
 });
 
+// ── YouTube channel videos (latest 5 per handle, RSS-feed based) ─────────────
+// In-memory cache: handle → { channelId, channelName, videos, fetchedAt }
+const youtubeCache = new Map();
+const YT_CACHE_TTL_MS = 6 * 60 * 60 * 1000; // 6 hours
+const YT_BROWSER_HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+  'Accept-Language': 'en-US,en;q=0.9',
+  'Cookie': 'CONSENT=YES+cb',
+};
+
+async function ytResolveChannelId(handle) {
+  const h = String(handle).replace(/^@/, '');
+  const url = `https://www.youtube.com/@${encodeURIComponent(h)}`;
+  const res = await fetch(url, { headers: YT_BROWSER_HEADERS, redirect: 'follow' });
+  if (!res.ok) throw new Error(`channel page HTTP ${res.status}`);
+  const html = await res.text();
+  const m = html.match(/"channelId":"(UC[\w-]+)"/)
+        || html.match(/<meta[^>]+itemprop="identifier"[^>]+content="(UC[\w-]+)"/)
+        || html.match(/\/channel\/(UC[\w-]+)/);
+  if (!m) throw new Error(`could not extract channelId for @${h}`);
+  return m[1];
+}
+
+async function ytFetchVideos(channelId, limit = 5) {
+  const url = `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(channelId)}`;
+  const res = await fetch(url, { headers: { 'User-Agent': YT_BROWSER_HEADERS['User-Agent'] } });
+  if (!res.ok) throw new Error(`RSS HTTP ${res.status}`);
+  const xml = await res.text();
+  // Channel name lives in the outer <author><name>...</name></author>
+  const nameMatch = xml.match(/<author>\s*<name>([^<]+)<\/name>/);
+  const channelName = nameMatch ? nameMatch[1].trim() : '';
+  const videos = [];
+  const entryRe = /<entry>([\s\S]*?)<\/entry>/g;
+  let em;
+  while ((em = entryRe.exec(xml)) && videos.length < limit) {
+    const block = em[1];
+    const videoId = (block.match(/<yt:videoId>([^<]+)<\/yt:videoId>/) || [])[1];
+    const title   = (block.match(/<title>([\s\S]*?)<\/title>/) || [])[1];
+    const published = (block.match(/<published>([^<]+)<\/published>/) || [])[1];
+    const thumb   = (block.match(/<media:thumbnail[^>]+url="([^"]+)"/) || [])[1];
+    if (videoId && title) {
+      videos.push({
+        videoId,
+        title: title.trim(),
+        published: published || null,
+        thumbnail: thumb || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+      });
+    }
+  }
+  return { channelName, videos };
+}
+
+app.get('/api/youtube', async (req, res) => {
+  const handles = String(req.query.handles || '').split(',').map(s => s.trim()).filter(Boolean);
+  if (!handles.length) return res.status(400).json({ error: 'Missing handles' });
+  const now = Date.now();
+  const channels = await Promise.all(handles.map(async handle => {
+    const cached = youtubeCache.get(handle);
+    if (cached && (now - cached.fetchedAt) < YT_CACHE_TTL_MS) {
+      return { handle, ...cached, cached: true };
+    }
+    try {
+      const channelId = cached?.channelId || await ytResolveChannelId(handle);
+      const { channelName, videos } = await ytFetchVideos(channelId, 5);
+      const entry = { channelId, channelName, videos, fetchedAt: now };
+      youtubeCache.set(handle, entry);
+      return { handle, ...entry };
+    } catch (err) {
+      console.error(`[/api/youtube] ${handle}:`, err.message);
+      if (cached) return { handle, ...cached, stale: true, error: err.message };
+      return { handle, channelId: null, channelName: handle, videos: [], error: err.message };
+    }
+  }));
+  // Cache hint for Vercel edge layer (helps cold-start cost too)
+  res.set('Cache-Control', 'public, s-maxage=21600, stale-while-revalidate=86400');
+  res.json({ channels });
+});
+
 // Fallback to index.html for SPA
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
