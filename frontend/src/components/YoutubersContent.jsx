@@ -10,7 +10,7 @@ const CHANNELS = [
   { handle: 'iWannaBurnFat',           color: '#10b981' },
 ];
 
-const LOCAL_CACHE_KEY = 'fitmeal_youtube_v1';
+const LOCAL_CACHE_KEY = 'fitmeal_youtube_v2';
 const LOCAL_TTL_MS = 6 * 60 * 60 * 1000;
 
 function readLocalCache() {
@@ -40,6 +40,15 @@ function formatRelative(iso) {
   if (d < 30)  return `${Math.floor(d / 7)}w ago`;
   if (d < 365) return `${Math.floor(d / 30)}mo ago`;
   return `${Math.floor(d / 365)}y ago`;
+}
+
+function formatDuration(sec) {
+  if (!sec || sec <= 0) return null;
+  const h = Math.floor(sec / 3600);
+  const m = Math.floor((sec % 3600) / 60);
+  const s = sec % 60;
+  if (h) return `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  return `${m}:${String(s).padStart(2, '0')}`;
 }
 
 export default function YoutubersContent() {
@@ -182,6 +191,12 @@ export default function YoutubersContent() {
                                 <Play size={20} className="text-white fill-white ml-0.5" strokeWidth={0} />
                               </div>
                             </div>
+                            {/* Duration badge (top-right) */}
+                            {formatDuration(v.durationSec) && (
+                              <div className="absolute top-2 right-2 bg-black/85 px-1.5 py-0.5 rounded text-white text-[10px] font-bold tabular-nums leading-none pointer-events-none">
+                                {formatDuration(v.durationSec)}
+                              </div>
+                            )}
                             {/* Title overlay */}
                             <div className="absolute bottom-0 left-0 right-0 p-2.5 pointer-events-none">
                               <p className="text-white text-[11px] font-semibold leading-tight line-clamp-2 mb-0.5 drop-shadow-md">

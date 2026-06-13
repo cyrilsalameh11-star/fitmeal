@@ -2090,7 +2090,20 @@ async function ytResolveChannelId(handle) {
   return m[1];
 }
 
-async function ytFetchVideos(channelId, limit = 5) {
+// Fetch a single video's duration in seconds by scraping the watch page
+// (YouTube RSS doesn't include duration). Returns null if it can't be determined.
+async function ytFetchVideoDuration(videoId) {
+  try {
+    const url = `https://www.youtube.com/watch?v=${encodeURIComponent(videoId)}`;
+    const res = await fetch(url, { headers: YT_BROWSER_HEADERS, redirect: 'follow' });
+    if (!res.ok) return null;
+    const html = await res.text();
+    const m = html.match(/"lengthSeconds":"(\d+)"/);
+    return m ? parseInt(m[1], 10) : null;
+  } catch { return null; }
+}
+
+async function ytFetchVideos(channelId, limit = 5, minDurationSec = 180) {
   const url = `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(channelId)}`;
   const res = await fetch(url, { headers: { 'User-Agent': YT_BROWSER_HEADERS['User-Agent'] } });
   if (!res.ok) throw new Error(`RSS HTTP ${res.status}`);
@@ -2098,17 +2111,17 @@ async function ytFetchVideos(channelId, limit = 5) {
   // Channel name lives in the outer <author><name>...</name></author>
   const nameMatch = xml.match(/<author>\s*<name>([^<]+)<\/name>/);
   const channelName = nameMatch ? nameMatch[1].trim() : '';
-  const videos = [];
+  const rawEntries = [];
   const entryRe = /<entry>([\s\S]*?)<\/entry>/g;
   let em;
-  while ((em = entryRe.exec(xml)) && videos.length < limit) {
+  while ((em = entryRe.exec(xml))) {
     const block = em[1];
     const videoId = (block.match(/<yt:videoId>([^<]+)<\/yt:videoId>/) || [])[1];
     const title   = (block.match(/<title>([\s\S]*?)<\/title>/) || [])[1];
     const published = (block.match(/<published>([^<]+)<\/published>/) || [])[1];
     const thumb   = (block.match(/<media:thumbnail[^>]+url="([^"]+)"/) || [])[1];
     if (videoId && title) {
-      videos.push({
+      rawEntries.push({
         videoId,
         title: title.trim(),
         published: published || null,
@@ -2116,7 +2129,14 @@ async function ytFetchVideos(channelId, limit = 5) {
       });
     }
   }
-  return { channelName, videos };
+  // RSS returns up to ~15 entries. Resolve durations in parallel, then filter
+  // out Shorts (anything shorter than minDurationSec). If duration can't be
+  // determined (YouTube throttle / page change), keep the entry to fail open.
+  const candidates = rawEntries.slice(0, 15);
+  const durations = await Promise.all(candidates.map(v => ytFetchVideoDuration(v.videoId)));
+  const enriched = candidates.map((v, i) => ({ ...v, durationSec: durations[i] }));
+  const filtered = enriched.filter(v => v.durationSec === null || v.durationSec >= minDurationSec);
+  return { channelName, videos: filtered.slice(0, limit) };
 }
 
 app.get('/api/youtube', async (req, res) => {
