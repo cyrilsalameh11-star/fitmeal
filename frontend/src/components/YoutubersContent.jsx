@@ -10,7 +10,7 @@ const CHANNELS = [
   { handle: 'iWannaBurnFat',           color: '#10b981' },
 ];
 
-const LOCAL_CACHE_KEY = 'fitmeal_youtube_v3';
+const LOCAL_CACHE_KEY = 'fitmeal_youtube_v4';
 const LOCAL_TTL_MS = 6 * 60 * 60 * 1000;
 
 function readLocalCache() {
@@ -95,7 +95,7 @@ export default function YoutubersContent() {
           Fitness <span className="italic font-normal text-gray-400">creators.</span>
         </h2>
         <p className="text-sm text-gray-500 font-medium leading-relaxed mt-3">
-          The latest long-form videos (over 8 minutes, no Shorts) from 5 fitness, podcast and routine creators we follow. Tap any thumbnail to watch in place.
+          The latest long-form videos (over 7 minutes, no Shorts) from 5 fitness, podcast and routine creators we follow. Tap any thumbnail to watch in place.
         </p>
       </div>
 
@@ -152,7 +152,7 @@ export default function YoutubersContent() {
             {/* Empty-state: no videos passed the 8-minute filter */}
             {!ch.error && !ch.videos?.length && (
               <p className="text-[11px] text-gray-500 italic ml-14">
-                Recent uploads are all under 8 minutes (mostly Shorts). Check the channel directly for older long-form videos.
+                Recent uploads are all under 7 minutes (mostly Shorts). Check the channel directly for older long-form videos.
               </p>
             )}
 

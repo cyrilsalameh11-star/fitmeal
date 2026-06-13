@@ -2164,37 +2164,83 @@ async function ytFetchDurations(videoIds) {
   return out;
 }
 
-async function ytFetchVideos(channelId, limit = 5, minDurationSec = 480) {
-  const url = `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(channelId)}`;
-  const res = await fetch(url, { headers: { 'User-Agent': YT_BROWSER_HEADERS['User-Agent'] } });
-  if (!res.ok) throw new Error(`RSS HTTP ${res.status}`);
-  const xml = await res.text();
-  const nameMatch = xml.match(/<author>\s*<name>([^<]+)<\/name>/);
-  const channelName = nameMatch ? nameMatch[1].trim() : '';
-  const rawEntries = [];
-  const entryRe = /<entry>([\s\S]*?)<\/entry>/g;
-  let em;
-  while ((em = entryRe.exec(xml))) {
-    const block = em[1];
-    const videoId = (block.match(/<yt:videoId>([^<]+)<\/yt:videoId>/) || [])[1];
-    const title   = (block.match(/<title>([\s\S]*?)<\/title>/) || [])[1];
-    const published = (block.match(/<published>([^<]+)<\/published>/) || [])[1];
-    const thumb   = (block.match(/<media:thumbnail[^>]+url="([^"]+)"/) || [])[1];
-    if (videoId && title) {
-      rawEntries.push({
-        videoId,
-        title: title.trim(),
-        published: published || null,
-        thumbnail: thumb || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
-      });
+// Pull up to 50 recent uploads from a channel via YouTube Data API (preferred,
+// 3x deeper than RSS so we have more candidates after the duration filter).
+async function ytFetchUploadsViaAPI(channelId, max = 50) {
+  const apiKey = process.env.YOUTUBE_API_KEY || process.env.GOOGLE_AI_API_KEY;
+  if (!apiKey) return null;
+  // The "uploads" playlist for a channel is its channelId with UC → UU prefix swap.
+  const uploadsId = 'UU' + channelId.slice(2);
+  const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${uploadsId}&maxResults=${Math.min(max, 50)}&key=${encodeURIComponent(apiKey)}`;
+  const res = await fetch(url);
+  if (!res.ok) {
+    const body = await res.text().catch(() => '');
+    throw new Error(`playlistItems API HTTP ${res.status}: ${body.slice(0, 180)}`);
+  }
+  const data = await res.json();
+  return (data.items || []).map(item => ({
+    videoId: item.contentDetails?.videoId || item.snippet?.resourceId?.videoId,
+    title: item.snippet?.title || '',
+    published: item.snippet?.publishedAt || null,
+    thumbnail: item.snippet?.thumbnails?.high?.url
+            || item.snippet?.thumbnails?.medium?.url
+            || item.snippet?.thumbnails?.default?.url
+            || `https://i.ytimg.com/vi/${item.contentDetails?.videoId}/hqdefault.jpg`,
+    channelTitle: item.snippet?.channelTitle || '',
+  })).filter(v => v.videoId);
+}
+
+async function ytFetchVideos(channelId, limit = 5, minDurationSec = 420) {
+  let rawEntries = null;
+  let channelName = '';
+
+  // Path A (preferred): YouTube Data API uploads playlist — gives 50 recent
+  // uploads vs only 15 from RSS. Crucial for Shorts-heavy channels where the
+  // most-recent long videos may sit deeper than the RSS window.
+  try {
+    const apiItems = await ytFetchUploadsViaAPI(channelId, 50);
+    if (apiItems && apiItems.length) {
+      rawEntries = apiItems;
+      channelName = apiItems[0]?.channelTitle || '';
+    }
+  } catch (err) {
+    ytLastApiError = err.message;
+    console.warn('[ytFetchVideos] uploads API failed, falling back to RSS:', err.message);
+  }
+
+  // Path B (fallback): RSS feed when API key/path is unavailable.
+  if (!rawEntries) {
+    const url = `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(channelId)}`;
+    const res = await fetch(url, { headers: { 'User-Agent': YT_BROWSER_HEADERS['User-Agent'] } });
+    if (!res.ok) throw new Error(`RSS HTTP ${res.status}`);
+    const xml = await res.text();
+    const nameMatch = xml.match(/<author>\s*<name>([^<]+)<\/name>/);
+    channelName = nameMatch ? nameMatch[1].trim() : '';
+    rawEntries = [];
+    const entryRe = /<entry>([\s\S]*?)<\/entry>/g;
+    let em;
+    while ((em = entryRe.exec(xml))) {
+      const block = em[1];
+      const videoId = (block.match(/<yt:videoId>([^<]+)<\/yt:videoId>/) || [])[1];
+      const title   = (block.match(/<title>([\s\S]*?)<\/title>/) || [])[1];
+      const published = (block.match(/<published>([^<]+)<\/published>/) || [])[1];
+      const thumb   = (block.match(/<media:thumbnail[^>]+url="([^"]+)"/) || [])[1];
+      if (videoId && title) {
+        rawEntries.push({
+          videoId,
+          title: title.trim(),
+          published: published || null,
+          thumbnail: thumb || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+        });
+      }
     }
   }
-  // Look 15 deep so Shorts-heavy channels still surface enough long videos.
-  const candidates = rawEntries.slice(0, 15);
+
+  // Resolve durations for the candidate pool (up to 50), filter to >= 7 minutes,
+  // return the top N (most recent that pass the filter).
+  const candidates = rawEntries.slice(0, 50);
   const durations = await ytFetchDurations(candidates.map(v => v.videoId));
   const enriched = candidates.map(v => ({ ...v, durationSec: durations[v.videoId] ?? null }));
-  // STRICT fail-closed filter: only keep videos with confirmed duration >= 8 min.
-  // If we couldn't determine duration we exclude rather than risk leaking a Short.
   const filtered = enriched.filter(v => typeof v.durationSec === 'number' && v.durationSec >= minDurationSec);
   return { channelName, videos: filtered.slice(0, limit) };
 }
