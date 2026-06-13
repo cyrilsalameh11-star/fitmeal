@@ -2090,25 +2090,83 @@ async function ytResolveChannelId(handle) {
   return m[1];
 }
 
-// Fetch a single video's duration in seconds by scraping the watch page
-// (YouTube RSS doesn't include duration). Returns null if it can't be determined.
-async function ytFetchVideoDuration(videoId) {
+// Parse ISO 8601 duration (PT3M30S) → seconds
+function ytParseIsoDuration(iso) {
+  if (!iso) return null;
+  const m = String(iso).match(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);
+  if (!m) return null;
+  return (parseInt(m[1] || 0, 10) * 3600) + (parseInt(m[2] || 0, 10) * 60) + parseInt(m[3] || 0, 10);
+}
+
+// Resolve durations via the YouTube Data API v3. Reliable from any IP and
+// quota-cheap (1 unit per call, batches of 50 IDs). Requires the YouTube Data
+// API v3 to be enabled on the project that owns the key.
+async function ytDurationsViaAPI(videoIds) {
+  const apiKey = process.env.YOUTUBE_API_KEY || process.env.GOOGLE_AI_API_KEY;
+  if (!apiKey || !videoIds.length) return null; // signal "no API path available"
+  const out = {};
+  for (let i = 0; i < videoIds.length; i += 50) {
+    const chunk = videoIds.slice(i, i + 50);
+    const url = `https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=${chunk.join(',')}&key=${encodeURIComponent(apiKey)}`;
+    const res = await fetch(url);
+    if (!res.ok) {
+      const body = await res.text().catch(() => '');
+      throw new Error(`YouTube Data API HTTP ${res.status}: ${body.slice(0, 180)}`);
+    }
+    const data = await res.json();
+    for (const item of (data.items || [])) {
+      out[item.id] = ytParseIsoDuration(item.contentDetails?.duration);
+    }
+  }
+  return out;
+}
+
+// Fallback: scrape a single watch page for lengthSeconds. Unreliable from
+// Vercel data-center IPs (often returns null), used only if Data API is
+// unavailable.
+async function ytDurationViaScrape(videoId) {
   try {
     const url = `https://www.youtube.com/watch?v=${encodeURIComponent(videoId)}`;
     const res = await fetch(url, { headers: YT_BROWSER_HEADERS, redirect: 'follow' });
     if (!res.ok) return null;
     const html = await res.text();
-    const m = html.match(/"lengthSeconds":"(\d+)"/);
-    return m ? parseInt(m[1], 10) : null;
+    let m;
+    if ((m = html.match(/"lengthSeconds":"(\d+)"/))) return parseInt(m[1], 10);
+    if ((m = html.match(/"approxDurationMs":"(\d+)"/))) return Math.round(parseInt(m[1], 10) / 1000);
+    if ((m = html.match(/<meta\s+itemprop="duration"\s+content="(PT[^"]+)"/))) return ytParseIsoDuration(m[1]);
+    return null;
   } catch { return null; }
 }
 
-async function ytFetchVideos(channelId, limit = 5, minDurationSec = 180) {
+async function ytFetchDurations(videoIds) {
+  // Try YouTube Data API v3 first
+  try {
+    const fromApi = await ytDurationsViaAPI(videoIds);
+    if (fromApi) {
+      // Backfill any missing IDs via scrape
+      const out = { ...fromApi };
+      const missing = videoIds.filter(id => !(id in out));
+      if (missing.length) {
+        const pairs = await Promise.all(missing.map(id => ytDurationViaScrape(id).then(d => [id, d])));
+        for (const [id, d] of pairs) out[id] = d;
+      }
+      return out;
+    }
+  } catch (err) {
+    console.warn('[ytFetchDurations] API failed, falling back to scrape:', err.message);
+  }
+  // Full fallback: scrape everything
+  const out = {};
+  const pairs = await Promise.all(videoIds.map(id => ytDurationViaScrape(id).then(d => [id, d])));
+  for (const [id, d] of pairs) out[id] = d;
+  return out;
+}
+
+async function ytFetchVideos(channelId, limit = 5, minDurationSec = 480) {
   const url = `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(channelId)}`;
   const res = await fetch(url, { headers: { 'User-Agent': YT_BROWSER_HEADERS['User-Agent'] } });
   if (!res.ok) throw new Error(`RSS HTTP ${res.status}`);
   const xml = await res.text();
-  // Channel name lives in the outer <author><name>...</name></author>
   const nameMatch = xml.match(/<author>\s*<name>([^<]+)<\/name>/);
   const channelName = nameMatch ? nameMatch[1].trim() : '';
   const rawEntries = [];
@@ -2129,13 +2187,13 @@ async function ytFetchVideos(channelId, limit = 5, minDurationSec = 180) {
       });
     }
   }
-  // RSS returns up to ~15 entries. Resolve durations in parallel, then filter
-  // out Shorts (anything shorter than minDurationSec). If duration can't be
-  // determined (YouTube throttle / page change), keep the entry to fail open.
+  // Look 15 deep so Shorts-heavy channels still surface enough long videos.
   const candidates = rawEntries.slice(0, 15);
-  const durations = await Promise.all(candidates.map(v => ytFetchVideoDuration(v.videoId)));
-  const enriched = candidates.map((v, i) => ({ ...v, durationSec: durations[i] }));
-  const filtered = enriched.filter(v => v.durationSec === null || v.durationSec >= minDurationSec);
+  const durations = await ytFetchDurations(candidates.map(v => v.videoId));
+  const enriched = candidates.map(v => ({ ...v, durationSec: durations[v.videoId] ?? null }));
+  // STRICT fail-closed filter: only keep videos with confirmed duration >= 8 min.
+  // If we couldn't determine duration we exclude rather than risk leaking a Short.
+  const filtered = enriched.filter(v => typeof v.durationSec === 'number' && v.durationSec >= minDurationSec);
   return { channelName, videos: filtered.slice(0, limit) };
 }
 
