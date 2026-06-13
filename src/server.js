@@ -2071,6 +2071,7 @@ app.get('/api/ig-thumb', async (req, res) => {
 // In-memory cache: handle → { channelId, channelName, videos, fetchedAt }
 const youtubeCache = new Map();
 const YT_CACHE_TTL_MS = 6 * 60 * 60 * 1000; // 6 hours
+let ytLastApiError = null; // surfaces in /api/youtube?debug=1
 const YT_BROWSER_HEADERS = {
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
   'Accept-Language': 'en-US,en;q=0.9',
@@ -2153,6 +2154,7 @@ async function ytFetchDurations(videoIds) {
       return out;
     }
   } catch (err) {
+    ytLastApiError = err.message;
     console.warn('[ytFetchDurations] API failed, falling back to scrape:', err.message);
   }
   // Full fallback: scrape everything
@@ -2200,10 +2202,14 @@ async function ytFetchVideos(channelId, limit = 5, minDurationSec = 480) {
 app.get('/api/youtube', async (req, res) => {
   const handles = String(req.query.handles || '').split(',').map(s => s.trim()).filter(Boolean);
   if (!handles.length) return res.status(400).json({ error: 'Missing handles' });
+  const debugMode = req.query.debug === '1';
+  const noCache = req.query.nocache === '1' || debugMode;
+  if (noCache) youtubeCache.clear();
+  ytLastApiError = null;
   const now = Date.now();
   const channels = await Promise.all(handles.map(async handle => {
     const cached = youtubeCache.get(handle);
-    if (cached && (now - cached.fetchedAt) < YT_CACHE_TTL_MS) {
+    if (!noCache && cached && (now - cached.fetchedAt) < YT_CACHE_TTL_MS) {
       return { handle, ...cached, cached: true };
     }
     try {
@@ -2218,9 +2224,20 @@ app.get('/api/youtube', async (req, res) => {
       return { handle, channelId: null, channelName: handle, videos: [], error: err.message };
     }
   }));
-  // Cache hint for Vercel edge layer (helps cold-start cost too)
-  res.set('Cache-Control', 'public, s-maxage=21600, stale-while-revalidate=86400');
-  res.json({ channels });
+  const payload = { channels };
+  if (debugMode) {
+    payload.debug = {
+      hasYoutubeApiKey: !!process.env.YOUTUBE_API_KEY,
+      hasGoogleAiApiKey: !!process.env.GOOGLE_AI_API_KEY,
+      lastApiError: ytLastApiError,
+      node: process.version,
+    };
+    // Don't cache debug responses
+    res.set('Cache-Control', 'no-store');
+  } else {
+    res.set('Cache-Control', 'public, s-maxage=21600, stale-while-revalidate=86400');
+  }
+  res.json(payload);
 });
 
 // Fallback to index.html for SPA
