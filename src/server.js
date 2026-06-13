@@ -2242,7 +2242,7 @@ async function ytFetchVideos(channelId, limit = 5, minDurationSec = 420) {
   const durations = await ytFetchDurations(candidates.map(v => v.videoId));
   const enriched = candidates.map(v => ({ ...v, durationSec: durations[v.videoId] ?? null }));
   const filtered = enriched.filter(v => typeof v.durationSec === 'number' && v.durationSec >= minDurationSec);
-  return { channelName, videos: filtered.slice(0, limit) };
+  return { channelName, videos: filtered.slice(0, limit), candidateCount: rawEntries.length, allCandidates: enriched };
 }
 
 app.get('/api/youtube', async (req, res) => {
@@ -2281,6 +2281,11 @@ app.get('/api/youtube', async (req, res) => {
     // Don't cache debug responses
     res.set('Cache-Control', 'no-store');
   } else {
+    // Strip the heavy allCandidates field outside debug mode
+    payload.channels = payload.channels.map(c => {
+      const { allCandidates, candidateCount, ...rest } = c;
+      return rest;
+    });
     res.set('Cache-Control', 'public, s-maxage=21600, stale-while-revalidate=86400');
   }
   res.json(payload);
