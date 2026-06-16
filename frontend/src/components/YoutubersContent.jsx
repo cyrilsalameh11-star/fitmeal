@@ -2,15 +2,17 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Youtube, Play, ExternalLink, Loader2 } from 'lucide-react';
 
+// minDurationSec = 0 means "no length filter, show 5 most recent uploads as-is".
+// Used for LeRoutin who posts mostly short-form / mid-form content lately,
+// so the user always sees his latest 5 even when none clear the 7-min bar.
 const CHANNELS = [
-  { handle: 'WillTennyson',           color: '#dc2626' },
-  { handle: 'LeRoutin',                color: '#0891b2' },
-  { handle: 'HighPerformancePodcast',  color: '#8b5cf6' },
-  { handle: 'bazinga.',                color: '#f97316' },
-  { handle: 'iWannaBurnFat',           color: '#10b981' },
+  { handle: 'WillTennyson',  color: '#dc2626', minDurationSec: 420 },
+  { handle: 'LeRoutin',      color: '#0891b2', minDurationSec: 0 },
+  { handle: 'bazinga.',      color: '#f97316', minDurationSec: 420 },
+  { handle: 'iWannaBurnFat', color: '#10b981', minDurationSec: 420 },
 ];
 
-const LOCAL_CACHE_KEY = 'fitmeal_youtube_v4';
+const LOCAL_CACHE_KEY = 'fitmeal_youtube_v5';
 const LOCAL_TTL_MS = 6 * 60 * 60 * 1000;
 
 function readLocalCache() {
@@ -59,7 +61,9 @@ export default function YoutubersContent() {
 
   useEffect(() => {
     let abort = false;
-    const handles = CHANNELS.map(c => c.handle).join(',');
+    // Encode handle plus optional minDurationSec as "handle:min" pairs so the
+    // backend can apply a different filter per channel (LeRoutin gets 0).
+    const handles = CHANNELS.map(c => `${c.handle}:${c.minDurationSec ?? 420}`).join(',');
     fetch(`/api/youtube?handles=${encodeURIComponent(handles)}`)
       .then(r => r.json())
       .then(d => {

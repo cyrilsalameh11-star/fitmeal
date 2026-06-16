@@ -2246,23 +2246,35 @@ async function ytFetchVideos(channelId, limit = 5, minDurationSec = 420) {
 }
 
 app.get('/api/youtube', async (req, res) => {
-  const handles = String(req.query.handles || '').split(',').map(s => s.trim()).filter(Boolean);
-  if (!handles.length) return res.status(400).json({ error: 'Missing handles' });
+  // Accept either bare handles ("WillTennyson,LeRoutin") or per-channel min-duration
+  // pairs ("WillTennyson:420,LeRoutin:0,bazinga.:420"). Defaults to 420s when no pair.
+  const rawHandles = String(req.query.handles || '').split(',').map(s => s.trim()).filter(Boolean);
+  const handleSpecs = rawHandles.map(spec => {
+    const colonAt = spec.lastIndexOf(':');
+    if (colonAt > 0 && /^\d+$/.test(spec.slice(colonAt + 1))) {
+      return { handle: spec.slice(0, colonAt), minDurationSec: parseInt(spec.slice(colonAt + 1), 10) };
+    }
+    return { handle: spec, minDurationSec: 420 };
+  });
+  if (!handleSpecs.length) return res.status(400).json({ error: 'Missing handles' });
   const debugMode = req.query.debug === '1';
   const noCache = req.query.nocache === '1' || debugMode;
   if (noCache) youtubeCache.clear();
   ytLastApiError = null;
   const now = Date.now();
-  const channels = await Promise.all(handles.map(async handle => {
-    const cached = youtubeCache.get(handle);
+  const channels = await Promise.all(handleSpecs.map(async ({ handle, minDurationSec }) => {
+    // Cache key includes the threshold so two callers with different filters get
+    // distinct entries.
+    const cacheKey = `${handle}::${minDurationSec}`;
+    const cached = youtubeCache.get(cacheKey);
     if (!noCache && cached && (now - cached.fetchedAt) < YT_CACHE_TTL_MS) {
       return { handle, ...cached, cached: true };
     }
     try {
       const channelId = cached?.channelId || await ytResolveChannelId(handle);
-      const { channelName, videos } = await ytFetchVideos(channelId, 5);
+      const { channelName, videos } = await ytFetchVideos(channelId, 5, minDurationSec);
       const entry = { channelId, channelName, videos, fetchedAt: now };
-      youtubeCache.set(handle, entry);
+      youtubeCache.set(cacheKey, entry);
       return { handle, ...entry };
     } catch (err) {
       console.error(`[/api/youtube] ${handle}:`, err.message);
