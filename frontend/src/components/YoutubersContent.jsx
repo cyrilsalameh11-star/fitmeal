@@ -2,17 +2,17 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Youtube, Play, ExternalLink, Loader2 } from 'lucide-react';
 
-// minDurationSec = 0 means "no length filter, show 5 most recent uploads as-is".
-// Used for LeRoutin who posts mostly short-form / mid-form content lately,
-// so the user always sees his latest 5 even when none clear the 7-min bar.
+// Per-channel minimum video length in seconds. Override per channel if you
+// want to allow shorter content (e.g. set to 0 for a channel that posts mostly
+// mid-form). All channels default to 420 (7 minutes).
 const CHANNELS = [
   { handle: 'WillTennyson',  color: '#dc2626', minDurationSec: 420 },
-  { handle: 'LeRoutin',      color: '#0891b2', minDurationSec: 0 },
+  { handle: 'LeRoutin',      color: '#0891b2', minDurationSec: 420 },
   { handle: 'bazinga.',      color: '#f97316', minDurationSec: 420 },
   { handle: 'iWannaBurnFat', color: '#10b981', minDurationSec: 420 },
 ];
 
-const LOCAL_CACHE_KEY = 'fitmeal_youtube_v5';
+const LOCAL_CACHE_KEY = 'fitmeal_youtube_v6';
 const LOCAL_TTL_MS = 6 * 60 * 60 * 1000;
 
 function readLocalCache() {

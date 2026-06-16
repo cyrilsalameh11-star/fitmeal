@@ -2084,9 +2084,16 @@ async function ytResolveChannelId(handle) {
   const res = await fetch(url, { headers: YT_BROWSER_HEADERS, redirect: 'follow' });
   if (!res.ok) throw new Error(`channel page HTTP ${res.status}`);
   const html = await res.text();
-  const m = html.match(/"channelId":"(UC[\w-]+)"/)
+  // Reliable extraction order: canonical link / og:url / externalId always point
+  // to THIS channel. Falling back to a bare "channelId" or /channel/UC... match
+  // is dangerous because the page can contain suggested-channels with their own
+  // IDs that win the first match (e.g. @LeRoutin previously returned the wrong
+  // channel because a sidebar UC… came before the canonical one).
+  const m = html.match(/<link[^>]+rel="canonical"[^>]+href="https?:\/\/www\.youtube\.com\/channel\/(UC[\w-]+)"/i)
+        || html.match(/<meta[^>]+property="og:url"[^>]+content="https?:\/\/www\.youtube\.com\/channel\/(UC[\w-]+)"/i)
+        || html.match(/"externalId":"(UC[\w-]+)"/)
         || html.match(/<meta[^>]+itemprop="identifier"[^>]+content="(UC[\w-]+)"/)
-        || html.match(/\/channel\/(UC[\w-]+)/);
+        || html.match(/"channelId":"(UC[\w-]+)"/);
   if (!m) throw new Error(`could not extract channelId for @${h}`);
   return m[1];
 }
