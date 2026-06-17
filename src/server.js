@@ -818,6 +818,22 @@ const parser = new RSSParser();
 // Manually curated global FMCG articles — always surfaced at the top
 const PINNED_GLOBAL_ARTICLES = [
   {
+    title: "À Beyrouth, Handow mise sur une cuisine asiatique inspirée - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1538056/a-beyrouth-handow-mise-sur-une-cuisine-asiatique-inspiree.html',
+    pubDate: 'Sat, 13 Jun 2026 08:00:00 GMT',
+    contentSnippet: "Handow s'installe à Beyrouth avec une carte d'inspiration asiatique soignée, pour offrir une expérience moderne et conviviale aux amateurs de saveurs venues d'ailleurs...",
+    id: 'pinned-handow-1538056',
+    photoUrl: '/news/handow.webp',
+  },
+  {
+    title: "À Achrafieh, Altero mise sur l'expérience gastronomique malgré les incertitudes - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1537232/a-achrafieh-altero-mise-sur-lexperience-gastronomique-malgre-les-incertitudes.html',
+    pubDate: 'Sat, 6 Jun 2026 08:00:00 GMT',
+    contentSnippet: "Altero ouvre à Achrafieh et parie sur une expérience gastronomique ambitieuse malgré le contexte incertain du pays, pour offrir à ses convives une cuisine raffinée et travaillée...",
+    id: 'pinned-altero-1537232',
+    photoUrl: '/news/altero.webp',
+  },
+  {
     title: "Samedi à Beyrouth : Ma Ninou mise sur l'intime malgré l'incertitude - L'Orient-Le Jour",
     link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1508365/samedi-a-beyrouth-ma-ninou-mise-sur-lintime-malgre-lincertitude.html',
     pubDate: 'Sat, 30 May 2026 08:00:00 GMT',
