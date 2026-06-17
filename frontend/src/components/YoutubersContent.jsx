@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Youtube, Play, ExternalLink, Loader2 } from 'lucide-react';
 
 // Per-channel minimum video length in seconds. Override per channel if you
@@ -168,56 +168,53 @@ export default function YoutubersContent() {
                   const isPlaying = playing === key;
                   return (
                     <div key={v.videoId} className="group relative rounded-2xl overflow-hidden bg-gray-900 aspect-video shadow-sm">
-                      <AnimatePresence mode="wait">
-                        {isPlaying ? (
-                          <motion.iframe
-                            key="player"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            src={`https://www.youtube.com/embed/${v.videoId}?autoplay=1&rel=0`}
-                            className="absolute inset-0 w-full h-full"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            title={v.title}
+                      {/* No AnimatePresence wrap: when the user taps the thumb the
+                         iframe must mount synchronously so the user-gesture token
+                         carries over to the embed and YouTube allows autoplay.
+                         An animated swap defers the iframe by ~200ms and the
+                         autoplay silently fails on iOS Safari. */}
+                      {isPlaying ? (
+                        <iframe
+                          src={`https://www.youtube.com/embed/${v.videoId}?autoplay=1&rel=0&playsinline=1&modestbranding=1`}
+                          className="absolute inset-0 w-full h-full"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                          title={v.title}
+                        />
+                      ) : (
+                        <button
+                          onClick={() => setPlaying(key)}
+                          className="absolute inset-0 w-full h-full text-left"
+                        >
+                          <img
+                            src={v.thumbnail}
+                            alt=""
+                            loading="lazy"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            onError={(e) => { e.currentTarget.src = `https://i.ytimg.com/vi/${v.videoId}/mqdefault.jpg`; }}
                           />
-                        ) : (
-                          <motion.button
-                            key="thumb"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            onClick={() => setPlaying(key)}
-                            className="absolute inset-0 w-full h-full text-left"
-                          >
-                            <img
-                              src={v.thumbnail}
-                              alt=""
-                              loading="lazy"
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                              onError={(e) => { e.currentTarget.src = `https://i.ytimg.com/vi/${v.videoId}/mqdefault.jpg`; }}
-                            />
-                            {/* Gradient + play button */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-gray-950/85 via-gray-950/20 to-transparent" />
-                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                              <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
-                                <Play size={20} className="text-white fill-white ml-0.5" strokeWidth={0} />
-                              </div>
+                          {/* Gradient + play button */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-gray-950/85 via-gray-950/20 to-transparent" />
+                          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                            <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
+                              <Play size={20} className="text-white fill-white ml-0.5" strokeWidth={0} />
                             </div>
-                            {/* Duration badge (top-right) */}
-                            {formatDuration(v.durationSec) && (
-                              <div className="absolute top-2 right-2 bg-black/85 px-1.5 py-0.5 rounded text-white text-[10px] font-bold tabular-nums leading-none pointer-events-none">
-                                {formatDuration(v.durationSec)}
-                              </div>
-                            )}
-                            {/* Title overlay */}
-                            <div className="absolute bottom-0 left-0 right-0 p-2.5 pointer-events-none">
-                              <p className="text-white text-[11px] font-semibold leading-tight line-clamp-2 mb-0.5 drop-shadow-md">
-                                {v.title}
-                              </p>
-                              <p className="text-gray-300 text-[9px] font-medium">{formatRelative(v.published)}</p>
+                          </div>
+                          {/* Duration badge (top-right) */}
+                          {formatDuration(v.durationSec) && (
+                            <div className="absolute top-2 right-2 bg-black/85 px-1.5 py-0.5 rounded text-white text-[10px] font-bold tabular-nums leading-none pointer-events-none">
+                              {formatDuration(v.durationSec)}
                             </div>
-                          </motion.button>
-                        )}
-                      </AnimatePresence>
+                          )}
+                          {/* Title overlay */}
+                          <div className="absolute bottom-0 left-0 right-0 p-2.5 pointer-events-none">
+                            <p className="text-white text-[11px] font-semibold leading-tight line-clamp-2 mb-0.5 drop-shadow-md">
+                              {v.title}
+                            </p>
+                            <p className="text-gray-300 text-[9px] font-medium">{formatRelative(v.published)}</p>
+                          </div>
+                        </button>
+                      )}
                     </div>
                   );
                 })}
