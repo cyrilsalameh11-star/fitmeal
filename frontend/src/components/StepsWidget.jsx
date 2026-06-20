@@ -330,40 +330,43 @@ export default function StepsWidget() {
 
           {platform === 'android' && (
             <div className="space-y-3">
-              <p className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Android, MacroDroid (free)</p>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Android, HTTP Shortcuts (free forever)</p>
 
               <div className="bg-amber-50 rounded-2xl p-3">
                 <p className="text-[11px] text-gray-700 leading-relaxed">
-                  MacroDroid reads your phone's <strong>built-in step counter</strong> and sends it to this page automatically. No Samsung Health or Google Fit API needed.
+                  Install one free open-source app, set up a home-screen widget once. Each day you tap the widget, type your step count from Samsung Health or Google Fit, done. <strong>5 seconds, no monthly fee, no automation that breaks.</strong>
                 </p>
               </div>
 
               <div className="bg-gray-50 rounded-2xl p-3">
-                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2">Part 1, Enable step counter</p>
-                <p className="text-[11px] text-gray-600 leading-relaxed">Install <strong>MacroDroid</strong> from Play Store, open it → tap the <strong>≡ menu</strong> → <strong>Settings</strong> → <strong>Sensor Settings</strong> → enable <strong>Step Counter</strong>. Grant the <strong>Physical Activity</strong> permission when asked. Restart MacroDroid once so the counter starts.</p>
+                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2">Part 1, Install the app</p>
+                <p className="text-[11px] text-gray-600 leading-relaxed">Play Store → search <strong>"HTTP Shortcuts"</strong> by Roland Stockfleth (yellow lightning icon). Install. Fully free, open source, no ads, never expires.</p>
               </div>
 
               <div className="space-y-2.5">
                 {[
-                  { n: 1, t: 'In MacroDroid, tap "Add Macro" (+ button).' },
-                  { n: 2, t: 'Triggers → + → "Date/Time" → "Regular Interval" → Every 30 Minutes → OK.' },
-                  {
-                    n: 3,
-                    t: (
-                      <span>
-                        Actions → + → <strong>Connectivity</strong> → <strong>HTTP Request</strong> → Method: <strong>GET</strong>. In the URL field, paste:
-                        <code className="bg-white px-1 mt-1 rounded text-[9px] font-mono break-all block">
-                          {`https://jismeh.fit/api/steps/sync?email=${email || 'YOUR_EMAIL'}&steps=`}
-                        </code>
-                        <span className="block mt-1 px-2 py-1.5 bg-amber-50 border-l-2 border-amber-300 rounded text-amber-900">
-                          <strong>Now insert the step variable, this is the key step:</strong> with your cursor at the end of the URL (right after <code className="text-[9px] font-mono">steps=</code>), tap the <strong>{'{x}'} braces button</strong> (or "+ Magic Text" / lightning icon, name varies by version) → scroll to <strong>Sensors</strong> → tap <strong>Step Count</strong>. A grey <strong>[step_count]</strong> tag appears. Do NOT type the brackets manually, they must be inserted as Magic Text or MacroDroid sends the literal text.
-                        </span>
-                      </span>
-                    )
-                  },
-                  { n: 4, t: 'Tap the ✓ to save the action. Constraints: leave empty. Name the macro "FitNas Steps" → save.' },
-                  { n: 5, t: 'Tap the macro → "Run Action Now" to test. Open this page, your steps should appear within a few seconds.' },
-                  { n: 6, t: 'Phone Settings → Apps → MacroDroid → Battery → set to "Unrestricted" so it keeps running in the background. Also disable battery optimization for MacroDroid.' },
+                  { n: 1, t: 'Open HTTP Shortcuts → tap the + (bottom right) → "Create Shortcut".' },
+                  { n: 2, t: (
+                    <span>
+                      Basic Settings → <strong>Name</strong>: FitNas Steps → <strong>Method</strong>: GET → <strong>URL</strong>: paste this exactly:
+                      <code className="bg-white px-1 mt-1 rounded text-[9px] font-mono break-all block">
+                        {`https://jismeh.fit/api/steps/sync?email=${email || 'YOUR_EMAIL'}&steps={steps}`}
+                      </code>
+                      The <code className="text-[9px] font-mono">{'{steps}'}</code> with curly braces is correct here, HTTP Shortcuts uses this syntax for variables.
+                    </span>
+                  )},
+                  { n: 3, t: (
+                    <span>
+                      Tap <strong>Variables</strong> tab (top) → + → <strong>Type</strong>: <strong>Number input</strong> → <strong>Variable key</strong>: <code className="text-[9px] font-mono">steps</code> → <strong>Title</strong>: "Steps today" → Save.
+                    </span>
+                  )},
+                  { n: 4, t: 'Back to the shortcut → tap the ✓ (top right) to save.' },
+                  { n: 5, t: 'Tap your new "FitNas Steps" shortcut once to test → it asks for a number → type your step count → Send. You should see a success toast.' },
+                  { n: 6, t: (
+                    <span>
+                      Long-press the shortcut → <strong>"Place on Home Screen"</strong> → confirm. A widget now sits on your home screen.
+                    </span>
+                  )},
                 ].map(s => (
                   <div key={s.n} className="flex gap-2.5 items-start">
                     <span className="flex-shrink-0 w-5 h-5 bg-gray-700 text-white rounded-full text-[8px] font-bold flex items-center justify-center mt-0.5">{s.n}</span>
@@ -372,19 +375,25 @@ export default function StepsWidget() {
                 ))}
               </div>
 
+              <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-3">
+                <p className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider mb-1">Daily use</p>
+                <p className="text-[11px] text-emerald-900 leading-relaxed">
+                  Open Samsung Health / Google Fit / your tracker app → note your step count → tap the FitNas Steps widget on your home screen → type the number → Send. Total time: 5 seconds.
+                </p>
+              </div>
+
               <div className="bg-rose-50 border border-rose-100 rounded-2xl p-3">
                 <p className="text-[10px] font-bold text-rose-700 uppercase tracking-wider mb-1">Troubleshooting</p>
                 <ul className="text-[11px] text-rose-900 leading-relaxed space-y-1.5 list-disc pl-4">
-                  <li><strong>Steps stay at 0 after running?</strong> The variable was typed instead of inserted. Edit the HTTP Request action → delete the <code className="text-[10px] font-mono">[step_count]</code> at the end → use the Magic Text / {'{x}'} button to insert <strong>Sensors → Step Count</strong>. The tag must appear as a coloured pill, not plain text.</li>
-                  <li><strong>"Step Count" missing in the Magic Text list?</strong> Settings → Sensor Settings → enable <strong>Step Counter</strong>, then force-stop and reopen MacroDroid.</li>
-                  <li><strong>Counter resets to a huge number?</strong> Android's raw step counter is cumulative since reboot. MacroDroid's <code className="text-[10px] font-mono">[step_count]</code> Magic Text already normalises to today's steps. If you see millions, you picked the raw sensor value instead, swap it for <strong>Step Count</strong> under Sensors.</li>
-                  <li><strong>Works manually but not on schedule?</strong> Battery saver killed MacroDroid. Set the app to Unrestricted and disable Adaptive Battery for it.</li>
+                  <li><strong>Toast shows an error?</strong> Re-check the URL has your email (no spaces) and ends with <code className="text-[10px] font-mono">&amp;steps={'{steps}'}</code> exactly, curly braces and all.</li>
+                  <li><strong>No prompt for steps?</strong> The variable key in step 3 must be exactly <code className="text-[10px] font-mono">steps</code> (lowercase, no quotes), matching <code className="text-[10px] font-mono">{'{steps}'}</code> in the URL.</li>
+                  <li><strong>Widget option missing?</strong> Some launchers (Nova, etc.) need "Allow widgets" enabled. Or skip the widget, just open HTTP Shortcuts and tap the shortcut, same result.</li>
                 </ul>
               </div>
 
               <div className="bg-gray-100 rounded-2xl p-3">
-                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Quick alternative</p>
-                <p className="text-[11px] text-gray-500 leading-relaxed">No automation, just tap the <strong>✏ pencil icon</strong> above, check your steps in Samsung Health or Google Fit, and type the number. Takes 5 seconds.</p>
+                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Even simpler</p>
+                <p className="text-[11px] text-gray-500 leading-relaxed">Skip HTTP Shortcuts entirely, just tap the <strong>✏ pencil icon</strong> above on this page, check your steps in Samsung Health or Google Fit, and type the number. Also 5 seconds, zero apps to install.</p>
               </div>
             </div>
           )}
