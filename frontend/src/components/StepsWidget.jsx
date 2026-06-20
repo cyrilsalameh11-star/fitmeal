@@ -388,24 +388,41 @@ export default function StepsWidget() {
 
               {/* PART 3 */}
               <div className="bg-gray-900 text-white rounded-2xl p-3 mt-3">
-                <p className="text-[10px] font-bold uppercase tracking-wider mb-1">Part 3 of 6, Add the "App started" trigger</p>
-                <p className="text-[10px] text-gray-300">Time: 1 minute. This is what fires the flow when you open your health app.</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider mb-1">Part 3 of 6, Add the "App in foreground" trigger</p>
+                <p className="text-[10px] text-gray-300">Time: 2 minutes. This is what fires the flow when you open your health app.</p>
               </div>
+
+              <div className="bg-amber-50 border border-amber-200 rounded-2xl p-3">
+                <p className="text-[11px] text-amber-900 leading-relaxed">
+                  <strong>Read this first.</strong> The block you want is called <strong>"App in foreground"</strong>. It WAITS until you bring a specific app to the screen, then continues the flow. There is ALSO a block called <strong>"App start"</strong>, that one LAUNCHES an app (the opposite of what we need), <strong>do not pick it.</strong>
+                </p>
+              </div>
+
               <div className="space-y-2">
                 {[
                   '13. Tap the + button at the bottom of the flow editor. A big list of categories appears (Apps, Bluetooth, Cloud, Datetime, Files, etc.).',
                   '14. Scroll until you see "Apps". Tap "Apps".',
-                  '15. A list of blocks appears (App in foreground, App installed, App started, etc.). Scroll until you see "App started". Tap "App started".',
-                  '16. A new block called "App started" is now on the canvas. Tap that block once. A settings panel slides up.',
-                  '17. In the settings, you see a field labelled "Application" or "Package". Tap it.',
-                  <span key="s18">18. A list of all installed apps appears. Scroll and tap <strong>your health app</strong>: Samsung Health, Google Fit, Mi Fitness, Fitbit, or whichever app you open to check your steps. Tap it once.</span>,
-                  '19. Tap the back arrow ←  (top left) or "Save" (top right) to close the block settings.',
+                  <span key="s15">15. A list of blocks appears. Look for <strong>"App in foreground"</strong> (NOT "App start"). Tap <strong>"App in foreground"</strong>.</span>,
+                  '16. A new block called "App in foreground" is now on the canvas. Tap that block once. A settings panel slides up.',
+                  <span key="s17">17. In the settings you see a field labelled <strong>"Package"</strong> (or "Application"). Tap it. A picker dialog opens.</span>,
+                  <span key="s18">18. <strong>The picker shows package names, NOT friendly names.</strong> Samsung Health is <code className="text-[10px] font-mono bg-white px-1 rounded">com.sec.android.app.shealth</code>. Google Fit is <code className="text-[10px] font-mono bg-white px-1 rounded">com.google.android.apps.fitness</code>. Mi Fitness is <code className="text-[10px] font-mono bg-white px-1 rounded">com.mi.health</code>. Fitbit is <code className="text-[10px] font-mono bg-white px-1 rounded">com.fitbit.FitbitMobile</code>.
+                    <span className="block mt-1.5 px-2 py-1.5 bg-amber-50 border-l-2 border-amber-400 rounded text-amber-900 text-[10px]">
+                      Most pickers in Automate have a <strong>search field</strong> at the top, or a <strong>magnifying-glass icon</strong>. Tap the search and type the start of the package name (e.g. <code className="font-mono">shealth</code> or <code className="font-mono">fitness</code> or <code className="font-mono">fitbit</code>) to filter. If there is no search, the list is alphabetical, scroll down to <strong>"com.s..."</strong> for Samsung or <strong>"com.g..."</strong> for Google.
+                    </span>
+                  </span>,
+                  <span key="s19">19. Tap the matching package name in the list. <strong>Pick exactly one</strong>. Then tap "OK" or "Select".</span>,
+                  '20. Tap the back arrow ← at the top left, or "Save" at the top right, to close the block settings.',
                 ].map((t, i) => (
                   <div key={i} className="px-3 py-2 bg-gray-50 rounded-lg text-[11px] text-gray-700 leading-relaxed">{t}</div>
                 ))}
               </div>
+
               <div className="bg-blue-50 border-l-4 border-blue-400 rounded-r-lg px-3 py-2">
-                <p className="text-[10px] text-blue-900"><strong>You should now see:</strong> the "App started" block now shows the name of your health app under it (e.g. "Samsung Health"). Good. One block down, two to go.</p>
+                <p className="text-[10px] text-blue-900"><strong>You should now see:</strong> the "App in foreground" block on the canvas, with the package name of your health app shown under it. <strong>One block down, two to go.</strong></p>
+              </div>
+
+              <div className="bg-rose-50 border border-rose-200 rounded-r-lg px-3 py-2">
+                <p className="text-[10px] text-rose-900"><strong>If your health app is NOT in the list at all:</strong> Automate may not have the permission to see all installed apps. Phone Settings → Apps → Automate → Permissions → make sure everything is allowed. Force-stop Automate and reopen. If still missing, skip this whole Part 3 entirely, delete the "App in foreground" block, and instead use a time-based trigger: tap + → <strong>"Date / Time"</strong> → <strong>"Periodic"</strong> → set every 30 minutes. The rest of the flow stays the same. You will still get auto-sync, just every half hour instead of every app open.</p>
               </div>
 
               {/* PART 4 */}
@@ -415,19 +432,19 @@ export default function StepsWidget() {
               </div>
               <div className="space-y-2">
                 {[
-                  '20. Tap the + button at the bottom of the canvas again.',
-                  '21. In the categories list, scroll and tap "Sensors".',
-                  '22. In the sensors list, scroll and tap "Step counter".',
-                  '23. A new "Step counter" block appears on the canvas. Tap it once to open its settings.',
-                  <span key="s24">24. You see a field called <strong>"Period"</strong> or <strong>"Reset interval"</strong>. Tap it. A list of options appears (Cumulative, 1 hour, 1 day, Today only, etc.). Tap the option that says <strong>"Today only"</strong>. If you don't see "Today only", pick <strong>"1 day"</strong>. <strong>Do NOT pick "Cumulative" or anything starting with "Since boot"</strong>, that gives the wrong number.</span>,
-                  <span key="s25">25. Look for a field labelled <strong>"Output steps"</strong> or just <strong>"Output"</strong>. Tap it. A small text field appears. Type exactly this lowercase word: <code className="text-[10px] font-mono bg-white px-1 rounded">steps</code> — no quotes, no spaces, no capital letters.</span>,
-                  '26. Tap back ← or Save to close the settings.',
+                  '21. Tap the + button at the bottom of the canvas again.',
+                  '22. In the categories list, scroll and tap "Sensors".',
+                  '23. In the sensors list, scroll and tap "Step counter".',
+                  '24. A new "Step counter" block appears on the canvas. Tap it once to open its settings.',
+                  <span key="s25">25. You see a field called <strong>"Period"</strong> or <strong>"Reset interval"</strong>. Tap it. A list of options appears (Cumulative, 1 hour, 1 day, Today only, etc.). Tap the option that says <strong>"Today only"</strong>. If you don't see "Today only", pick <strong>"1 day"</strong>. <strong>Do NOT pick "Cumulative" or anything starting with "Since boot"</strong>, that gives the wrong number.</span>,
+                  <span key="s26">26. Look for a field labelled <strong>"Output steps"</strong> or just <strong>"Output"</strong>. Tap it. A small text field appears. Type exactly this lowercase word: <code className="text-[10px] font-mono bg-white px-1 rounded">steps</code> — no quotes, no spaces, no capital letters.</span>,
+                  '27. Tap back ← or Save to close the settings.',
                 ].map((t, i) => (
                   <div key={i} className="px-3 py-2 bg-gray-50 rounded-lg text-[11px] text-gray-700 leading-relaxed">{t}</div>
                 ))}
               </div>
               <div className="bg-blue-50 border-l-4 border-blue-400 rounded-r-lg px-3 py-2">
-                <p className="text-[10px] text-blue-900"><strong>You should now see:</strong> a "Step counter" block next to the App started block. Two blocks done. Last block coming up.</p>
+                <p className="text-[10px] text-blue-900"><strong>You should now see:</strong> a "Step counter" block next to the "App in foreground" block. Two blocks done. Last block coming up.</p>
               </div>
 
               {/* PART 5 */}
@@ -437,12 +454,12 @@ export default function StepsWidget() {
               </div>
               <div className="space-y-2">
                 {[
-                  '27. Tap the + button at the bottom of the canvas.',
-                  '28. In categories, scroll and tap "Internet" (sometimes called "HTTP" or "Network").',
-                  '29. In the list, scroll and tap "HTTP request".',
-                  '30. A new HTTP request block appears. Tap it to open settings.',
-                  <span key="s31">31. Find the field labelled <strong>"Method"</strong>. Tap it. A list pops up (GET, POST, PUT, etc.). Tap <strong>GET</strong>.</span>,
-                  <span key="s32">32. Find the field labelled <strong>"URL"</strong>. Tap it. A long text box opens. Tap and hold inside the text box to get a "Paste" button if you copy the URL below. Otherwise type exactly:
+                  '28. Tap the + button at the bottom of the canvas.',
+                  '29. In categories, scroll and tap "Internet" (sometimes called "HTTP" or "Network").',
+                  '30. In the list, scroll and tap "HTTP request".',
+                  '31. A new HTTP request block appears. Tap it to open settings.',
+                  <span key="s32">32. Find the field labelled <strong>"Method"</strong>. Tap it. A list pops up (GET, POST, PUT, etc.). Tap <strong>GET</strong>.</span>,
+                  <span key="s33">33. Find the field labelled <strong>"URL"</strong>. Tap it. A long text box opens. Tap and hold inside the text box to get a "Paste" button if you copy the URL below. Otherwise type exactly:
                     <code className="bg-white px-1 py-1 mt-1 rounded text-[10px] font-mono break-all block border border-amber-200">
                       {`https://jismeh.fit/api/steps/sync?email=${email || 'YOUR_EMAIL'}&steps=$\{steps}`}
                     </code>
@@ -450,13 +467,13 @@ export default function StepsWidget() {
                       <strong>Read this carefully:</strong> at the end of the URL there is a dollar sign <code className="font-mono">$</code> followed by an open curly brace <code className="font-mono">{'{'}</code>, the word <code className="font-mono">steps</code>, and a close curly brace <code className="font-mono">{'}'}</code>. <strong>You must type those characters exactly.</strong> Automate replaces <code className="font-mono">{'${steps}'}</code> with the real number from the previous block. If you skip the <code className="font-mono">$</code> or the braces, the server gets the literal text and nothing saves.
                     </span>
                   </span>,
-                  '33. Tap back ← or Save to close the settings.',
+                  '34. Tap back ← or Save to close the settings.',
                 ].map((t, i) => (
                   <div key={i} className="px-3 py-2 bg-gray-50 rounded-lg text-[11px] text-gray-700 leading-relaxed">{t}</div>
                 ))}
               </div>
               <div className="bg-blue-50 border-l-4 border-blue-400 rounded-r-lg px-3 py-2">
-                <p className="text-[10px] text-blue-900"><strong>You should now see:</strong> three blocks on the canvas, App started, Step counter, HTTP request. <strong>They are not yet connected by arrows.</strong> Next step fixes that.</p>
+                <p className="text-[10px] text-blue-900"><strong>You should now see:</strong> three blocks on the canvas, "App in foreground", "Step counter", "HTTP request". <strong>They are not yet connected by arrows.</strong> Next step fixes that.</p>
               </div>
 
               {/* PART 6 */}
@@ -466,15 +483,15 @@ export default function StepsWidget() {
               </div>
               <div className="space-y-2">
                 {[
-                  <span key="s34">34. <strong>Wiring the blocks (this is the only visual step).</strong> Look at the "Flow beginning" block at the top, and the three blocks you just added. Each block has small circular dots on its edges. The dot on the <strong>bottom</strong> is the output. The dot on the <strong>top</strong> is the input.</span>,
-                  <span key="s35">35. Press and hold on the <strong>bottom dot of "Flow beginning"</strong>, then drag your finger to the <strong>top dot of "App started"</strong>, and release. A line appears connecting them.</span>,
-                  <span key="s36">36. Press and hold on the <strong>bottom dot of "App started"</strong>, drag to the <strong>top dot of "Step counter"</strong>, release. Another line.</span>,
-                  <span key="s37">37. Press and hold on the <strong>bottom dot of "Step counter"</strong>, drag to the <strong>top dot of "HTTP request"</strong>, release. Final line.</span>,
-                  <span key="s38">38. Check: arrows should now connect <strong>Flow beginning → App started → Step counter → HTTP request</strong>, in that order. If you got the order wrong, tap the wrong line and a delete button appears.</span>,
-                  '39. Tap the back arrow ← at the very top left of the screen to leave the editor. A dialog asks "Save changes?". Tap "Yes" or "Save".',
-                  <span key="s40">40. You are back on the "My flows" list. Your "FitNas Steps" flow is there but <strong>NOT running yet</strong>. To the left of the flow name there is a small triangle ▶ play button (or a power icon). Tap it.</span>,
-                  '41. A status label appears, "Running" or a green dot. The flow is now armed.',
-                  '42. Last step: phone Settings → Apps → find Automate → Battery → set to "Unrestricted" (or "Don\'t optimize"). This keeps Automate running in the background when your screen is off. Without this Android will kill it after a few hours.',
+                  <span key="s35">35. <strong>Wiring the blocks (this is the only visual step).</strong> Look at the "Flow beginning" block at the top, and the three blocks you just added. Each block has small circular dots on its edges. The dot on the <strong>bottom</strong> is the output. The dot on the <strong>top</strong> is the input.</span>,
+                  <span key="s36">36. Press and hold on the <strong>bottom dot of "Flow beginning"</strong>, then drag your finger to the <strong>top dot of "App in foreground"</strong>, and release. A line appears connecting them.</span>,
+                  <span key="s37">37. Press and hold on the <strong>bottom dot of "App in foreground"</strong>, drag to the <strong>top dot of "Step counter"</strong>, release. Another line.</span>,
+                  <span key="s38">38. Press and hold on the <strong>bottom dot of "Step counter"</strong>, drag to the <strong>top dot of "HTTP request"</strong>, release. Final line.</span>,
+                  <span key="s39">39. Check: arrows should now connect <strong>Flow beginning → App in foreground → Step counter → HTTP request</strong>, in that order. If you got the order wrong, tap the wrong line and a delete button appears.</span>,
+                  '40. Tap the back arrow ← at the very top left of the screen to leave the editor. A dialog asks "Save changes?". Tap "Yes" or "Save".',
+                  <span key="s41">41. You are back on the "My flows" list. Your "FitNas Steps" flow is there but <strong>NOT running yet</strong>. To the left of the flow name there is a small triangle ▶ play button (or a power icon). Tap it.</span>,
+                  '42. A status label appears, "Running" or a green dot. The flow is now armed.',
+                  '43. Last step: phone Settings → Apps → find Automate → Battery → set to "Unrestricted" (or "Don\'t optimize"). This keeps Automate running in the background when your screen is off. Without this Android will kill it after a few hours.',
                 ].map((t, i) => (
                   <div key={i} className="px-3 py-2 bg-gray-50 rounded-lg text-[11px] text-gray-700 leading-relaxed">{t}</div>
                 ))}
@@ -483,18 +500,19 @@ export default function StepsWidget() {
               <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-3">
                 <p className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider mb-1">Test it</p>
                 <p className="text-[11px] text-emerald-900 leading-relaxed">
-                  Open the health app you picked in step 18 (e.g. Samsung Health). Wait 5 seconds. Pull this page down to refresh, or close the browser tab and reopen <strong>jismeh.fit</strong>. Your real step count should be in the ring above. Done forever.
+                  Open the health app you picked in step 19 (e.g. Samsung Health). Wait 5 seconds. Pull this page down to refresh, or close the browser tab and reopen <strong>jismeh.fit</strong>. Your real step count should be in the ring above. Done forever.
                 </p>
               </div>
 
               <div className="bg-rose-50 border border-rose-100 rounded-2xl p-3">
                 <p className="text-[10px] font-bold text-rose-700 uppercase tracking-wider mb-1">If something is wrong</p>
                 <ul className="text-[11px] text-rose-900 leading-relaxed space-y-1.5 list-disc pl-4">
-                  <li><strong>Ring still shows 0 after opening health app.</strong> Open Automate → tap "FitNas Steps" → tap the small clock/log icon. The log shows every time the flow fired. If it never fired, your launcher doesn't broadcast app-start events. Fix: delete the "App started" block, add <strong>"Time / Date" → "Periodic"</strong> instead, set Period: every 30 minutes. Re-wire and re-start.</li>
-                  <li><strong>Ring shows a huge number (like 1,200,000).</strong> Step 24 was wrong. Open the flow editor → tap the Step counter block → change Period to <strong>"Today only"</strong> or <strong>"1 day"</strong>.</li>
-                  <li><strong>Ring shows the literal text <code className="text-[10px] font-mono">{'${steps}'}</code> or a server error.</strong> The URL in step 32 is missing the dollar sign or curly braces. Edit the HTTP request block, fix the URL to end exactly with <code className="text-[10px] font-mono">&amp;steps={'${steps}'}</code>.</li>
-                  <li><strong>"Step counter" missing in the Sensors list (step 22).</strong> Permission missing. Phone Settings → Apps → Automate → Permissions → enable Physical Activity. Force-stop Automate, reopen.</li>
-                  <li><strong>Worked for a day then stopped.</strong> Battery saver killed Automate. Redo step 42. Also check Settings → Battery → Adaptive Battery and either disable it or whitelist Automate.</li>
+                  <li><strong>Ring still shows 0 after opening the health app.</strong> Open Automate → tap "FitNas Steps" → tap the small clock/log icon. The log shows every time the flow fired. If it never fired, your launcher doesn't broadcast foreground events reliably. Fix: delete the "App in foreground" block, replace with <strong>"Date / Time" → "Periodic"</strong>, set Period: every 30 minutes. Re-wire and re-start.</li>
+                  <li><strong>Ring shows a huge number (like 1,200,000).</strong> Step 25 was wrong. Open the flow editor → tap the Step counter block → change Period to <strong>"Today only"</strong> or <strong>"1 day"</strong>.</li>
+                  <li><strong>Ring shows the literal text <code className="text-[10px] font-mono">{'${steps}'}</code> or a server error.</strong> The URL in step 33 is missing the dollar sign or curly braces. Edit the HTTP request block, fix the URL to end exactly with <code className="text-[10px] font-mono">&amp;steps={'${steps}'}</code>.</li>
+                  <li><strong>Health app not in the package picker (step 18).</strong> Phone Settings → Apps → Automate → Permissions → allow everything. Force-stop Automate, reopen. Still missing: use the periodic time trigger fallback described in the rose-coloured box at the end of Part 3.</li>
+                  <li><strong>"Step counter" missing from the Sensors list (step 23).</strong> Physical Activity permission missing. Phone Settings → Apps → Automate → Permissions → enable Physical Activity. Force-stop Automate, reopen.</li>
+                  <li><strong>Worked for a day then stopped.</strong> Battery saver killed Automate. Redo step 43. Also check Settings → Battery → Adaptive Battery and either disable it or whitelist Automate.</li>
                   <li><strong>Lost or confused.</strong> Use the pencil icon ✏ on this page as a fallback. Reading the number off your health app and typing it takes 5 seconds, no automation required.</li>
                 </ul>
               </div>
