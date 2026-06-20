@@ -537,7 +537,15 @@ app.get('/api/steps/sync', async (req, res) => {
   const { email, steps } = req.query;
   const today = new Date().toISOString().slice(0, 10);
   if (!email || steps == null) return res.status(400).json({ error: 'Missing email or steps' });
-  const count = Math.max(0, Math.round(Number(steps)));
+  const parsed = Number(steps);
+  if (!Number.isFinite(parsed)) {
+    return res.status(400).json({
+      error: 'steps must be a number',
+      hint: 'On Android/MacroDroid, insert [step_count] via the Magic Text button; do not type it. The literal placeholder was received instead of a value.',
+      received: String(steps).slice(0, 40),
+    });
+  }
+  const count = Math.max(0, Math.round(parsed));
   if (!supabase) return res.json({ ok: true, steps: count });
   try {
     await supabase.from('steps_log').upsert(
