@@ -334,90 +334,174 @@ export default function StepsWidget() {
 
               <div className="bg-amber-50 rounded-2xl p-3">
                 <p className="text-[11px] text-gray-700 leading-relaxed">
-                  Build a 4-block flow that fires <strong>every time you open Samsung Health / Google Fit</strong>, reads today's step count, and syncs it here. No trial, no Pro tier, no monthly fee. ~5 minutes one-time setup.
+                  Every time you open Samsung Health / Google Fit, your step count syncs here automatically. <strong>One-time setup, ~7 minutes. Every step below is a single tap.</strong> Read each step, do exactly that, then read the next one.
                 </p>
               </div>
 
-              <div className="bg-gray-50 rounded-2xl p-3">
-                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2">Part 1, Install Automate</p>
-                <p className="text-[11px] text-gray-600 leading-relaxed">Play Store → search <strong>"Automate"</strong> by <strong>LlamaLab</strong> (orange flow-diagram icon). Install. Open it → grant <strong>Physical Activity</strong> permission when asked → tap <strong>"Allow"</strong> on the Health Connect prompt if it appears.</p>
+              <div className="bg-amber-50 border border-amber-200 rounded-2xl p-3">
+                <p className="text-[11px] text-amber-900 leading-relaxed">
+                  <strong>Before you start:</strong> have your email <code className="text-[10px] font-mono bg-white px-1 rounded">{email || 'YOUR_EMAIL'}</code> handy. If <code className="text-[10px] font-mono">YOUR_EMAIL</code> shows here instead of a real email, scroll to the top of this page and log in / set your email first.
+                </p>
               </div>
 
-              <div className="bg-gray-50 rounded-2xl p-3">
-                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2">Part 2, Build the flow</p>
+              {/* PART 1 */}
+              <div className="bg-gray-900 text-white rounded-2xl p-3">
+                <p className="text-[10px] font-bold uppercase tracking-wider mb-1">Part 1 of 6, Install Automate</p>
+                <p className="text-[10px] text-gray-300">Time: 1 minute. You install one free app.</p>
               </div>
-
-              <div className="space-y-2.5">
+              <div className="space-y-2">
                 {[
-                  { n: 1, t: 'Tap the + button (bottom right) → name the flow "FitNas Steps" → tap "Edit".' },
-                  { n: 2, t: (
-                    <span>
-                      Tap the canvas → <strong>"Add block"</strong> → category <strong>Apps</strong> → <strong>"App started"</strong>. In its config, tap <strong>Application</strong> → pick your health app (<strong>Samsung Health</strong>, <strong>Google Fit</strong>, <strong>Mi Fitness</strong>, <strong>Fitbit</strong>, whichever you open daily). Save.
+                  '1. Unlock your phone. Find the Play Store app (the triangle with red, yellow, green, blue colours). Tap it.',
+                  '2. At the top of the Play Store screen you see a search bar. Tap inside that bar.',
+                  '3. With the keyboard now open, type the word: Automate',
+                  '4. Tap the magnifying-glass / search key on your keyboard.',
+                  <span key="s5">5. A list of results appears. Look for the result whose <strong>icon is orange</strong> with white connected shapes (looks like a flow diagram). Under the name it says <strong>"LlamaLab"</strong>. Tap that result. <strong>Do not tap any other Automate-named app.</strong></span>,
+                  '6. You are now on the app page. Tap the green "Install" button.',
+                  '7. Wait until the button changes to "Open". Tap "Open".',
+                  '8. If the app asks for permissions (Physical Activity, Notifications, etc.), tap "Allow" on every prompt.',
+                  '9. If a welcome screen or tutorial appears, tap through it until you see a mostly-empty screen.',
+                ].map((t, i) => (
+                  <div key={i} className="px-3 py-2 bg-gray-50 rounded-lg text-[11px] text-gray-700 leading-relaxed">{t}</div>
+                ))}
+              </div>
+              <div className="bg-blue-50 border-l-4 border-blue-400 rounded-r-lg px-3 py-2">
+                <p className="text-[10px] text-blue-900"><strong>You should now see:</strong> a screen titled "My flows" (or just empty space with no flows yet). There is a round <strong>orange + button</strong> at the bottom right of the screen. If you don't see this, close the app fully and reopen it.</p>
+              </div>
+
+              {/* PART 2 */}
+              <div className="bg-gray-900 text-white rounded-2xl p-3 mt-3">
+                <p className="text-[10px] font-bold uppercase tracking-wider mb-1">Part 2 of 6, Create an empty flow</p>
+                <p className="text-[10px] text-gray-300">Time: 30 seconds. You name a new flow.</p>
+              </div>
+              <div className="space-y-2">
+                {[
+                  '10. Tap the round orange + button at the bottom right of the "My flows" screen.',
+                  <span key="s11">11. A small box pops up asking for a flow name. Tap the text field. Type exactly: <strong>FitNas Steps</strong></span>,
+                  '12. Tap "Create" (or "OK", whichever button shows).',
+                ].map((t, i) => (
+                  <div key={i} className="px-3 py-2 bg-gray-50 rounded-lg text-[11px] text-gray-700 leading-relaxed">{t}</div>
+                ))}
+              </div>
+              <div className="bg-blue-50 border-l-4 border-blue-400 rounded-r-lg px-3 py-2">
+                <p className="text-[10px] text-blue-900"><strong>You should now see:</strong> a canvas (mostly empty grey/dark area) with one small block near the top labelled <strong>"Flow beginning"</strong>. This is the flow editor. At the bottom there is a + button. <strong>Do not panic if it looks like a circuit diagram, you only need to add 3 small blocks below "Flow beginning".</strong></p>
+              </div>
+
+              {/* PART 3 */}
+              <div className="bg-gray-900 text-white rounded-2xl p-3 mt-3">
+                <p className="text-[10px] font-bold uppercase tracking-wider mb-1">Part 3 of 6, Add the "App started" trigger</p>
+                <p className="text-[10px] text-gray-300">Time: 1 minute. This is what fires the flow when you open your health app.</p>
+              </div>
+              <div className="space-y-2">
+                {[
+                  '13. Tap the + button at the bottom of the flow editor. A big list of categories appears (Apps, Bluetooth, Cloud, Datetime, Files, etc.).',
+                  '14. Scroll until you see "Apps". Tap "Apps".',
+                  '15. A list of blocks appears (App in foreground, App installed, App started, etc.). Scroll until you see "App started". Tap "App started".',
+                  '16. A new block called "App started" is now on the canvas. Tap that block once. A settings panel slides up.',
+                  '17. In the settings, you see a field labelled "Application" or "Package". Tap it.',
+                  <span key="s18">18. A list of all installed apps appears. Scroll and tap <strong>your health app</strong>: Samsung Health, Google Fit, Mi Fitness, Fitbit, or whichever app you open to check your steps. Tap it once.</span>,
+                  '19. Tap the back arrow ←  (top left) or "Save" (top right) to close the block settings.',
+                ].map((t, i) => (
+                  <div key={i} className="px-3 py-2 bg-gray-50 rounded-lg text-[11px] text-gray-700 leading-relaxed">{t}</div>
+                ))}
+              </div>
+              <div className="bg-blue-50 border-l-4 border-blue-400 rounded-r-lg px-3 py-2">
+                <p className="text-[10px] text-blue-900"><strong>You should now see:</strong> the "App started" block now shows the name of your health app under it (e.g. "Samsung Health"). Good. One block down, two to go.</p>
+              </div>
+
+              {/* PART 4 */}
+              <div className="bg-gray-900 text-white rounded-2xl p-3 mt-3">
+                <p className="text-[10px] font-bold uppercase tracking-wider mb-1">Part 4 of 6, Add the "Step counter" block</p>
+                <p className="text-[10px] text-gray-300">Time: 1 minute. This reads today's step count from your phone.</p>
+              </div>
+              <div className="space-y-2">
+                {[
+                  '20. Tap the + button at the bottom of the canvas again.',
+                  '21. In the categories list, scroll and tap "Sensors".',
+                  '22. In the sensors list, scroll and tap "Step counter".',
+                  '23. A new "Step counter" block appears on the canvas. Tap it once to open its settings.',
+                  <span key="s24">24. You see a field called <strong>"Period"</strong> or <strong>"Reset interval"</strong>. Tap it. A list of options appears (Cumulative, 1 hour, 1 day, Today only, etc.). Tap the option that says <strong>"Today only"</strong>. If you don't see "Today only", pick <strong>"1 day"</strong>. <strong>Do NOT pick "Cumulative" or anything starting with "Since boot"</strong>, that gives the wrong number.</span>,
+                  <span key="s25">25. Look for a field labelled <strong>"Output steps"</strong> or just <strong>"Output"</strong>. Tap it. A small text field appears. Type exactly this lowercase word: <code className="text-[10px] font-mono bg-white px-1 rounded">steps</code> — no quotes, no spaces, no capital letters.</span>,
+                  '26. Tap back ← or Save to close the settings.',
+                ].map((t, i) => (
+                  <div key={i} className="px-3 py-2 bg-gray-50 rounded-lg text-[11px] text-gray-700 leading-relaxed">{t}</div>
+                ))}
+              </div>
+              <div className="bg-blue-50 border-l-4 border-blue-400 rounded-r-lg px-3 py-2">
+                <p className="text-[10px] text-blue-900"><strong>You should now see:</strong> a "Step counter" block next to the App started block. Two blocks done. Last block coming up.</p>
+              </div>
+
+              {/* PART 5 */}
+              <div className="bg-gray-900 text-white rounded-2xl p-3 mt-3">
+                <p className="text-[10px] font-bold uppercase tracking-wider mb-1">Part 5 of 6, Add the "HTTP request" block</p>
+                <p className="text-[10px] text-gray-300">Time: 2 minutes. This sends your steps to jismeh.fit.</p>
+              </div>
+              <div className="space-y-2">
+                {[
+                  '27. Tap the + button at the bottom of the canvas.',
+                  '28. In categories, scroll and tap "Internet" (sometimes called "HTTP" or "Network").',
+                  '29. In the list, scroll and tap "HTTP request".',
+                  '30. A new HTTP request block appears. Tap it to open settings.',
+                  <span key="s31">31. Find the field labelled <strong>"Method"</strong>. Tap it. A list pops up (GET, POST, PUT, etc.). Tap <strong>GET</strong>.</span>,
+                  <span key="s32">32. Find the field labelled <strong>"URL"</strong>. Tap it. A long text box opens. Tap and hold inside the text box to get a "Paste" button if you copy the URL below. Otherwise type exactly:
+                    <code className="bg-white px-1 py-1 mt-1 rounded text-[10px] font-mono break-all block border border-amber-200">
+                      {`https://jismeh.fit/api/steps/sync?email=${email || 'YOUR_EMAIL'}&steps=$\{steps}`}
+                    </code>
+                    <span className="block mt-1 px-2 py-1.5 bg-amber-50 border-l-2 border-amber-400 rounded text-amber-900 text-[10px]">
+                      <strong>Read this carefully:</strong> at the end of the URL there is a dollar sign <code className="font-mono">$</code> followed by an open curly brace <code className="font-mono">{'{'}</code>, the word <code className="font-mono">steps</code>, and a close curly brace <code className="font-mono">{'}'}</code>. <strong>You must type those characters exactly.</strong> Automate replaces <code className="font-mono">{'${steps}'}</code> with the real number from the previous block. If you skip the <code className="font-mono">$</code> or the braces, the server gets the literal text and nothing saves.
                     </span>
-                  )},
-                  { n: 3, t: (
-                    <span>
-                      Add another block → category <strong>Sensors</strong> → <strong>"Step counter"</strong>. Config:
-                      <span className="block mt-1 px-2 py-1.5 bg-amber-50 border-l-2 border-amber-300 rounded text-amber-900">
-                        <strong>Period</strong>: select <strong>"Today only"</strong> (or "1 day" depending on Automate version) so you get today's count, not the cumulative-since-reboot value.<br/>
-                        <strong>Output variable</strong>: type <code className="text-[10px] font-mono">steps</code> (lowercase). Save.
-                      </span>
-                    </span>
-                  )},
-                  { n: 4, t: (
-                    <span>
-                      Add another block → category <strong>Internet</strong> → <strong>"HTTP request"</strong>. Config:
-                      <span className="block mt-1 px-2 py-1.5 bg-amber-50 border-l-2 border-amber-300 rounded text-amber-900">
-                        <strong>Method</strong>: GET<br/>
-                        <strong>URL</strong>: paste exactly:
-                        <code className="bg-white px-1 mt-1 rounded text-[9px] font-mono break-all block">
-                          {`https://jismeh.fit/api/steps/sync?email=${email || 'YOUR_EMAIL'}&steps=$\{steps}`}
-                        </code>
-                        The <code className="text-[10px] font-mono">{'${steps}'}</code> is Automate's variable syntax, type it exactly as shown including the dollar sign and braces. Save.
-                      </span>
-                    </span>
-                  )},
-                  { n: 5, t: (
-                    <span>
-                      <strong>Wire the blocks:</strong> drag from "App started" → out port to "Step counter" → in port. Then "Step counter" → out to "HTTP request" → in. You should see arrows: App started → Step counter → HTTP request. Tap ✓ (top right) to save the flow.
-                    </span>
-                  )},
-                  { n: 6, t: (
-                    <span>
-                      Back on the Automate home screen, tap the <strong>▶ play button</strong> next to "FitNas Steps" to <strong>start the flow</strong>. The status badge should turn green / say "Running".
-                    </span>
-                  )},
-                  { n: 7, t: 'Phone Settings → Apps → Automate → Battery → set to "Unrestricted" so it keeps listening in the background. Also disable Adaptive Battery for it.' },
-                  { n: 8, t: 'Test: open Samsung Health (or whichever app you picked in step 2). Wait 2 seconds. Refresh this page, your steps should appear.' },
-                ].map(s => (
-                  <div key={s.n} className="flex gap-2.5 items-start">
-                    <span className="flex-shrink-0 w-5 h-5 bg-gray-700 text-white rounded-full text-[8px] font-bold flex items-center justify-center mt-0.5">{s.n}</span>
-                    <p className="text-[11px] text-gray-600 leading-relaxed">{s.t}</p>
-                  </div>
+                  </span>,
+                  '33. Tap back ← or Save to close the settings.',
+                ].map((t, i) => (
+                  <div key={i} className="px-3 py-2 bg-gray-50 rounded-lg text-[11px] text-gray-700 leading-relaxed">{t}</div>
+                ))}
+              </div>
+              <div className="bg-blue-50 border-l-4 border-blue-400 rounded-r-lg px-3 py-2">
+                <p className="text-[10px] text-blue-900"><strong>You should now see:</strong> three blocks on the canvas, App started, Step counter, HTTP request. <strong>They are not yet connected by arrows.</strong> Next step fixes that.</p>
+              </div>
+
+              {/* PART 6 */}
+              <div className="bg-gray-900 text-white rounded-2xl p-3 mt-3">
+                <p className="text-[10px] font-bold uppercase tracking-wider mb-1">Part 6 of 6, Connect the blocks and start the flow</p>
+                <p className="text-[10px] text-gray-300">Time: 2 minutes. You draw arrows between blocks, save, and turn it on.</p>
+              </div>
+              <div className="space-y-2">
+                {[
+                  <span key="s34">34. <strong>Wiring the blocks (this is the only visual step).</strong> Look at the "Flow beginning" block at the top, and the three blocks you just added. Each block has small circular dots on its edges. The dot on the <strong>bottom</strong> is the output. The dot on the <strong>top</strong> is the input.</span>,
+                  <span key="s35">35. Press and hold on the <strong>bottom dot of "Flow beginning"</strong>, then drag your finger to the <strong>top dot of "App started"</strong>, and release. A line appears connecting them.</span>,
+                  <span key="s36">36. Press and hold on the <strong>bottom dot of "App started"</strong>, drag to the <strong>top dot of "Step counter"</strong>, release. Another line.</span>,
+                  <span key="s37">37. Press and hold on the <strong>bottom dot of "Step counter"</strong>, drag to the <strong>top dot of "HTTP request"</strong>, release. Final line.</span>,
+                  <span key="s38">38. Check: arrows should now connect <strong>Flow beginning → App started → Step counter → HTTP request</strong>, in that order. If you got the order wrong, tap the wrong line and a delete button appears.</span>,
+                  '39. Tap the back arrow ← at the very top left of the screen to leave the editor. A dialog asks "Save changes?". Tap "Yes" or "Save".',
+                  <span key="s40">40. You are back on the "My flows" list. Your "FitNas Steps" flow is there but <strong>NOT running yet</strong>. To the left of the flow name there is a small triangle ▶ play button (or a power icon). Tap it.</span>,
+                  '41. A status label appears, "Running" or a green dot. The flow is now armed.',
+                  '42. Last step: phone Settings → Apps → find Automate → Battery → set to "Unrestricted" (or "Don\'t optimize"). This keeps Automate running in the background when your screen is off. Without this Android will kill it after a few hours.',
+                ].map((t, i) => (
+                  <div key={i} className="px-3 py-2 bg-gray-50 rounded-lg text-[11px] text-gray-700 leading-relaxed">{t}</div>
                 ))}
               </div>
 
-              <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-3">
-                <p className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider mb-1">Done</p>
+              <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-3">
+                <p className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider mb-1">Test it</p>
                 <p className="text-[11px] text-emerald-900 leading-relaxed">
-                  From now on, every time you open your health app, the flow auto-fires and pushes today's steps to this page. Zero taps, fully automatic.
+                  Open the health app you picked in step 18 (e.g. Samsung Health). Wait 5 seconds. Pull this page down to refresh, or close the browser tab and reopen <strong>jismeh.fit</strong>. Your real step count should be in the ring above. Done forever.
                 </p>
               </div>
 
               <div className="bg-rose-50 border border-rose-100 rounded-2xl p-3">
-                <p className="text-[10px] font-bold text-rose-700 uppercase tracking-wider mb-1">Troubleshooting</p>
+                <p className="text-[10px] font-bold text-rose-700 uppercase tracking-wider mb-1">If something is wrong</p>
                 <ul className="text-[11px] text-rose-900 leading-relaxed space-y-1.5 list-disc pl-4">
-                  <li><strong>Steps show as huge number (millions)?</strong> The Step counter block is in "Cumulative since boot" mode. Edit the block → set Period to <strong>"Today only"</strong> or <strong>"1 day"</strong>.</li>
-                  <li><strong>Steps show 0 or wrong?</strong> Server received the literal text <code className="text-[10px] font-mono">{'${steps}'}</code> because Automate didn't interpolate. Make sure the Step counter block's <strong>Output variable</strong> is exactly <code className="text-[10px] font-mono">steps</code> (matching <code className="text-[10px] font-mono">{'${steps}'}</code> in the URL), and that the HTTP request block is wired <strong>after</strong> the Step counter (the variable only exists once Step counter has run).</li>
-                  <li><strong>Flow doesn't fire when app opens?</strong> Some launchers don't broadcast the "app started" event reliably. Open Automate → tap the flow → check the log. If it never fires: replace the "App started" block with <strong>"Time / Date" → Periodic, every 30 minutes</strong> for time-based sync instead.</li>
-                  <li><strong>"Step counter" missing from Sensors?</strong> You didn't grant Physical Activity permission. Settings → Apps → Automate → Permissions → enable Physical Activity. Force-stop Automate, reopen.</li>
-                  <li><strong>Works manually but not after a few hours?</strong> Battery saver killed Automate. Settings → Apps → Automate → Battery: Unrestricted, and disable Adaptive Battery for it.</li>
+                  <li><strong>Ring still shows 0 after opening health app.</strong> Open Automate → tap "FitNas Steps" → tap the small clock/log icon. The log shows every time the flow fired. If it never fired, your launcher doesn't broadcast app-start events. Fix: delete the "App started" block, add <strong>"Time / Date" → "Periodic"</strong> instead, set Period: every 30 minutes. Re-wire and re-start.</li>
+                  <li><strong>Ring shows a huge number (like 1,200,000).</strong> Step 24 was wrong. Open the flow editor → tap the Step counter block → change Period to <strong>"Today only"</strong> or <strong>"1 day"</strong>.</li>
+                  <li><strong>Ring shows the literal text <code className="text-[10px] font-mono">{'${steps}'}</code> or a server error.</strong> The URL in step 32 is missing the dollar sign or curly braces. Edit the HTTP request block, fix the URL to end exactly with <code className="text-[10px] font-mono">&amp;steps={'${steps}'}</code>.</li>
+                  <li><strong>"Step counter" missing in the Sensors list (step 22).</strong> Permission missing. Phone Settings → Apps → Automate → Permissions → enable Physical Activity. Force-stop Automate, reopen.</li>
+                  <li><strong>Worked for a day then stopped.</strong> Battery saver killed Automate. Redo step 42. Also check Settings → Battery → Adaptive Battery and either disable it or whitelist Automate.</li>
+                  <li><strong>Lost or confused.</strong> Use the pencil icon ✏ on this page as a fallback. Reading the number off your health app and typing it takes 5 seconds, no automation required.</li>
                 </ul>
               </div>
 
               <div className="bg-gray-100 rounded-2xl p-3">
-                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Quick alternative</p>
-                <p className="text-[11px] text-gray-500 leading-relaxed">Don't want to install anything? Tap the <strong>✏ pencil icon</strong> above, check your steps in Samsung Health or Google Fit, type the number. Takes 5 seconds.</p>
+                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">No-app alternative</p>
+                <p className="text-[11px] text-gray-500 leading-relaxed">Don't want to install Automate at all? Just tap the <strong>✏ pencil icon</strong> above on this page, check your steps in Samsung Health or Google Fit, type the number. Takes 5 seconds, zero setup.</p>
               </div>
             </div>
           )}
