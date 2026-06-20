@@ -330,43 +330,65 @@ export default function StepsWidget() {
 
           {platform === 'android' && (
             <div className="space-y-3">
-              <p className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Android, HTTP Shortcuts (free forever)</p>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Android, Automate by LlamaLab (free forever, fully automatic)</p>
 
               <div className="bg-amber-50 rounded-2xl p-3">
                 <p className="text-[11px] text-gray-700 leading-relaxed">
-                  Install one free open-source app, set up a home-screen widget once. Each day you tap the widget, type your step count from Samsung Health or Google Fit, done. <strong>5 seconds, no monthly fee, no automation that breaks.</strong>
+                  Build a 4-block flow that fires <strong>every time you open Samsung Health / Google Fit</strong>, reads today's step count, and syncs it here. No trial, no Pro tier, no monthly fee. ~5 minutes one-time setup.
                 </p>
               </div>
 
               <div className="bg-gray-50 rounded-2xl p-3">
-                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2">Part 1, Install the app</p>
-                <p className="text-[11px] text-gray-600 leading-relaxed">Play Store → search <strong>"HTTP Shortcuts"</strong> by Roland Stockfleth (yellow lightning icon). Install. Fully free, open source, no ads, never expires.</p>
+                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2">Part 1, Install Automate</p>
+                <p className="text-[11px] text-gray-600 leading-relaxed">Play Store → search <strong>"Automate"</strong> by <strong>LlamaLab</strong> (orange flow-diagram icon). Install. Open it → grant <strong>Physical Activity</strong> permission when asked → tap <strong>"Allow"</strong> on the Health Connect prompt if it appears.</p>
+              </div>
+
+              <div className="bg-gray-50 rounded-2xl p-3">
+                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2">Part 2, Build the flow</p>
               </div>
 
               <div className="space-y-2.5">
                 {[
-                  { n: 1, t: 'Open HTTP Shortcuts → tap the + (bottom right) → "Create Shortcut".' },
+                  { n: 1, t: 'Tap the + button (bottom right) → name the flow "FitNas Steps" → tap "Edit".' },
                   { n: 2, t: (
                     <span>
-                      Basic Settings → <strong>Name</strong>: FitNas Steps → <strong>Method</strong>: GET → <strong>URL</strong>: paste this exactly:
-                      <code className="bg-white px-1 mt-1 rounded text-[9px] font-mono break-all block">
-                        {`https://jismeh.fit/api/steps/sync?email=${email || 'YOUR_EMAIL'}&steps={steps}`}
-                      </code>
-                      The <code className="text-[9px] font-mono">{'{steps}'}</code> with curly braces is correct here, HTTP Shortcuts uses this syntax for variables.
+                      Tap the canvas → <strong>"Add block"</strong> → category <strong>Apps</strong> → <strong>"App started"</strong>. In its config, tap <strong>Application</strong> → pick your health app (<strong>Samsung Health</strong>, <strong>Google Fit</strong>, <strong>Mi Fitness</strong>, <strong>Fitbit</strong>, whichever you open daily). Save.
                     </span>
                   )},
                   { n: 3, t: (
                     <span>
-                      Tap <strong>Variables</strong> tab (top) → + → <strong>Type</strong>: <strong>Number input</strong> → <strong>Variable key</strong>: <code className="text-[9px] font-mono">steps</code> → <strong>Title</strong>: "Steps today" → Save.
+                      Add another block → category <strong>Sensors</strong> → <strong>"Step counter"</strong>. Config:
+                      <span className="block mt-1 px-2 py-1.5 bg-amber-50 border-l-2 border-amber-300 rounded text-amber-900">
+                        <strong>Period</strong>: select <strong>"Today only"</strong> (or "1 day" depending on Automate version) so you get today's count, not the cumulative-since-reboot value.<br/>
+                        <strong>Output variable</strong>: type <code className="text-[10px] font-mono">steps</code> (lowercase). Save.
+                      </span>
                     </span>
                   )},
-                  { n: 4, t: 'Back to the shortcut → tap the ✓ (top right) to save.' },
-                  { n: 5, t: 'Tap your new "FitNas Steps" shortcut once to test → it asks for a number → type your step count → Send. You should see a success toast.' },
+                  { n: 4, t: (
+                    <span>
+                      Add another block → category <strong>Internet</strong> → <strong>"HTTP request"</strong>. Config:
+                      <span className="block mt-1 px-2 py-1.5 bg-amber-50 border-l-2 border-amber-300 rounded text-amber-900">
+                        <strong>Method</strong>: GET<br/>
+                        <strong>URL</strong>: paste exactly:
+                        <code className="bg-white px-1 mt-1 rounded text-[9px] font-mono break-all block">
+                          {`https://jismeh.fit/api/steps/sync?email=${email || 'YOUR_EMAIL'}&steps=$\{steps}`}
+                        </code>
+                        The <code className="text-[10px] font-mono">{'${steps}'}</code> is Automate's variable syntax, type it exactly as shown including the dollar sign and braces. Save.
+                      </span>
+                    </span>
+                  )},
+                  { n: 5, t: (
+                    <span>
+                      <strong>Wire the blocks:</strong> drag from "App started" → out port to "Step counter" → in port. Then "Step counter" → out to "HTTP request" → in. You should see arrows: App started → Step counter → HTTP request. Tap ✓ (top right) to save the flow.
+                    </span>
+                  )},
                   { n: 6, t: (
                     <span>
-                      Long-press the shortcut → <strong>"Place on Home Screen"</strong> → confirm. A widget now sits on your home screen.
+                      Back on the Automate home screen, tap the <strong>▶ play button</strong> next to "FitNas Steps" to <strong>start the flow</strong>. The status badge should turn green / say "Running".
                     </span>
                   )},
+                  { n: 7, t: 'Phone Settings → Apps → Automate → Battery → set to "Unrestricted" so it keeps listening in the background. Also disable Adaptive Battery for it.' },
+                  { n: 8, t: 'Test: open Samsung Health (or whichever app you picked in step 2). Wait 2 seconds. Refresh this page, your steps should appear.' },
                 ].map(s => (
                   <div key={s.n} className="flex gap-2.5 items-start">
                     <span className="flex-shrink-0 w-5 h-5 bg-gray-700 text-white rounded-full text-[8px] font-bold flex items-center justify-center mt-0.5">{s.n}</span>
@@ -376,24 +398,26 @@ export default function StepsWidget() {
               </div>
 
               <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-3">
-                <p className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider mb-1">Daily use</p>
+                <p className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider mb-1">Done</p>
                 <p className="text-[11px] text-emerald-900 leading-relaxed">
-                  Open Samsung Health / Google Fit / your tracker app → note your step count → tap the FitNas Steps widget on your home screen → type the number → Send. Total time: 5 seconds.
+                  From now on, every time you open your health app, the flow auto-fires and pushes today's steps to this page. Zero taps, fully automatic.
                 </p>
               </div>
 
               <div className="bg-rose-50 border border-rose-100 rounded-2xl p-3">
                 <p className="text-[10px] font-bold text-rose-700 uppercase tracking-wider mb-1">Troubleshooting</p>
                 <ul className="text-[11px] text-rose-900 leading-relaxed space-y-1.5 list-disc pl-4">
-                  <li><strong>Toast shows an error?</strong> Re-check the URL has your email (no spaces) and ends with <code className="text-[10px] font-mono">&amp;steps={'{steps}'}</code> exactly, curly braces and all.</li>
-                  <li><strong>No prompt for steps?</strong> The variable key in step 3 must be exactly <code className="text-[10px] font-mono">steps</code> (lowercase, no quotes), matching <code className="text-[10px] font-mono">{'{steps}'}</code> in the URL.</li>
-                  <li><strong>Widget option missing?</strong> Some launchers (Nova, etc.) need "Allow widgets" enabled. Or skip the widget, just open HTTP Shortcuts and tap the shortcut, same result.</li>
+                  <li><strong>Steps show as huge number (millions)?</strong> The Step counter block is in "Cumulative since boot" mode. Edit the block → set Period to <strong>"Today only"</strong> or <strong>"1 day"</strong>.</li>
+                  <li><strong>Steps show 0 or wrong?</strong> Server received the literal text <code className="text-[10px] font-mono">{'${steps}'}</code> because Automate didn't interpolate. Make sure the Step counter block's <strong>Output variable</strong> is exactly <code className="text-[10px] font-mono">steps</code> (matching <code className="text-[10px] font-mono">{'${steps}'}</code> in the URL), and that the HTTP request block is wired <strong>after</strong> the Step counter (the variable only exists once Step counter has run).</li>
+                  <li><strong>Flow doesn't fire when app opens?</strong> Some launchers don't broadcast the "app started" event reliably. Open Automate → tap the flow → check the log. If it never fires: replace the "App started" block with <strong>"Time / Date" → Periodic, every 30 minutes</strong> for time-based sync instead.</li>
+                  <li><strong>"Step counter" missing from Sensors?</strong> You didn't grant Physical Activity permission. Settings → Apps → Automate → Permissions → enable Physical Activity. Force-stop Automate, reopen.</li>
+                  <li><strong>Works manually but not after a few hours?</strong> Battery saver killed Automate. Settings → Apps → Automate → Battery: Unrestricted, and disable Adaptive Battery for it.</li>
                 </ul>
               </div>
 
               <div className="bg-gray-100 rounded-2xl p-3">
-                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Even simpler</p>
-                <p className="text-[11px] text-gray-500 leading-relaxed">Skip HTTP Shortcuts entirely, just tap the <strong>✏ pencil icon</strong> above on this page, check your steps in Samsung Health or Google Fit, and type the number. Also 5 seconds, zero apps to install.</p>
+                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Quick alternative</p>
+                <p className="text-[11px] text-gray-500 leading-relaxed">Don't want to install anything? Tap the <strong>✏ pencil icon</strong> above, check your steps in Samsung Health or Google Fit, type the number. Takes 5 seconds.</p>
               </div>
             </div>
           )}
