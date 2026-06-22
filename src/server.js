@@ -1544,11 +1544,9 @@ app.post('/api/analyze-food', async (req, res) => {
   if (!apiKey) return res.status(500).json({ error: 'AI API key not configured' });
 
   try {
-    // All modes use gemini-2.5-flash. Pro was 15-30s wall-clock which routinely
-    // exceeded Vercel's free-tier function budget, causing the random "error"
-    // toasts the user saw. Flash finishes in 5-15s and handles the detailed
-    // Lebanese-cuisine prompt with negligible accuracy loss.
-    const modelName = 'gemini-2.5-flash';
+    // Deep mode uses the heavier Pro model for higher accuracy (~25-40s wall-clock).
+    // identify/estimate keep Flash for the legacy two-step flow.
+    const modelName = mode === 'deep_analyze' ? 'gemini-2.5-pro' : 'gemini-2.5-flash';
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
 
     // mode=identify: recognise dish + ask questions (no calorie estimate yet)
@@ -1877,21 +1875,22 @@ If the photo is NOT food: return {"dish":"Not food detected","confidence":"low",
       contents: [{ parts: [{ text: prompt }, { inline_data: { mime_type: mimeType, data: imageBase64 } }] }],
     };
     if (mode === 'deep_analyze') {
-      // Bounded thinking budget keeps Flash's wall-clock predictable (~6-12s).
-      // Unbounded (-1) lets Flash burn 4000+ thinking tokens which can push past
-      // 20s on tricky photos.
+      // Generous reasoning budget on Pro for thorough analysis.
       requestBody.generationConfig = {
         temperature: 0.2,
         maxOutputTokens: 4096,
-        thinkingConfig: { thinkingBudget: 2048 },
+        thinkingConfig: { thinkingBudget: -1 },
       };
     }
 
-    // All modes run on Flash now. 22s timeout per attempt leaves room for one
-    // retry on transient 5xx/timeout while staying well under Vercel's 60s cap.
+    // deep_analyze on Pro routinely takes 25-40s; give it 50s budget with a
+    // single attempt so we don't double the wall-clock retrying a slow model.
+    // 4xx errors return immediately; transient 5xx/timeouts surface as a clean
+    // "AI is busy, try again" message rather than a half-closed connection.
+    // Flash modes get the standard 22s + retry treatment.
     const callResult = await callGeminiWithRetry(geminiUrl, requestBody, {
-      timeoutMs: 22000,
-      attempts: 2,
+      timeoutMs: mode === 'deep_analyze' ? 50000 : 22000,
+      attempts: mode === 'deep_analyze' ? 1 : 2,
     });
     if (!callResult.ok) {
       console.error('Gemini API error:', callResult.error);

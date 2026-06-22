@@ -661,7 +661,7 @@ export default function ScannerPage() {
             ? 'Scan any product barcode and instantly get the nutrition facts from the Open Food Facts database.'
             : view === 'label'
             ? "Take a clear photo of the nutrition facts label and we'll read the values directly off the package."
-            : 'Take a photo of any meal. The AI analyzes every ingredient, portion, and hidden fat in about 10 seconds — no questions asked.'}
+            : 'Take a photo of any meal. The AI takes ~30-40 seconds to deeply analyze every ingredient, portion, and hidden fat — no questions asked.'}
         </p>
       </div>
 
@@ -708,7 +708,7 @@ export default function ScannerPage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-gray-100 text-[13px] font-semibold leading-tight">Analyzing your meal</p>
-                      <p className="text-gray-500 text-[10.5px] leading-tight mt-0.5">Deep analysis · about 10 seconds</p>
+                      <p className="text-gray-500 text-[10.5px] leading-tight mt-0.5">Deep analysis · about 40 seconds</p>
                     </div>
                   </div>
 
