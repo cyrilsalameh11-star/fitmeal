@@ -1398,6 +1398,42 @@ app.get('/api/news', async (req, res) => {
   return res.json(pinned);
 });
 
+// ── Gemini call helper: per-attempt timeout + auto-retry on transient errors ──
+// Returns { ok: true, json } on success, or { ok: false, status, isQuota, error }.
+// Retriable: network errors, AbortError/TimeoutError, 5xx, 408. NOT retriable: 4xx,
+// quota (429 / RESOURCE_EXHAUSTED), parse errors. Keeps total wall-clock < ~58s so
+// we return a clean response before Vercel's 60s function timeout hits.
+async function callGeminiWithRetry(url, body, { timeoutMs = 50000, attempts = 2 } = {}) {
+  let lastErr = { ok: false, status: 500, isQuota: false, error: 'AI service unavailable' };
+  for (let i = 0; i < attempts; i++) {
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+        signal: AbortSignal.timeout(timeoutMs),
+      });
+      const json = await res.json().catch(() => null);
+      if (res.ok && json) return { ok: true, json };
+      const msg = json?.error?.message || `Gemini API error ${res.status}`;
+      const isQuota = res.status === 429 || /quota|RESOURCE_EXHAUSTED/i.test(msg);
+      const retriable = !isQuota && (res.status >= 500 || res.status === 408);
+      lastErr = { ok: false, status: res.status, isQuota, error: msg };
+      if (!retriable) return lastErr;
+    } catch (e) {
+      const isTimeout = e?.name === 'TimeoutError' || e?.name === 'AbortError';
+      lastErr = {
+        ok: false,
+        status: isTimeout ? 504 : 502,
+        isQuota: false,
+        error: isTimeout ? 'AI took too long, please try again.' : (e?.message || 'Network error'),
+      };
+    }
+    if (i < attempts - 1) await new Promise(r => setTimeout(r, 700));
+  }
+  return lastErr;
+}
+
 // ── Text-based Meal Describer (Gemini) ───────────────────────────────────────
 app.post('/api/describe-food', async (req, res) => {
   const { description, mode = 'identify', answers } = req.body;
@@ -1455,18 +1491,19 @@ Respond ONLY with this JSON (no markdown):
 
     const prompt = mode === 'estimate' ? estimatePrompt : identifyPrompt;
 
-    const geminiRes = await fetch(geminiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-    });
-
-    const geminiJson = await geminiRes.json();
-    if (!geminiRes.ok) {
-      const msg = geminiJson?.error?.message || `Gemini API error ${geminiRes.status}`;
-      const isQuota = msg.includes('quota') || msg.includes('RESOURCE_EXHAUSTED') || geminiRes.status === 429;
-      return res.status(500).json({ error: isQuota ? 'API quota exceeded — please try again in a moment.' : msg });
+    const callResult = await callGeminiWithRetry(
+      geminiUrl,
+      { contents: [{ parts: [{ text: prompt }] }] },
+      { timeoutMs: 22000, attempts: 2 },
+    );
+    if (!callResult.ok) {
+      return res.status(callResult.isQuota ? 429 : 502).json({
+        error: callResult.isQuota
+          ? 'AI quota exceeded, please try again in a moment.'
+          : (callResult.error || 'AI is busy right now. Try again in a few seconds.'),
+      });
     }
+    const geminiJson = callResult.json;
 
     const text = (geminiJson.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
     if (!text) throw new Error('Empty response from Gemini');
@@ -1846,21 +1883,22 @@ If the photo is NOT food: return {"dish":"Not food detected","confidence":"low",
       };
     }
 
-    const geminiRes = await fetch(geminiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(requestBody),
+    // deep_analyze runs gemini-2.5-pro with full thinking budget (~15-30s); the
+    // legacy identify/estimate flow uses Flash which is much faster. Allow more
+    // wall-clock for Pro and let the helper retry once on transient 5xx/timeout.
+    const callResult = await callGeminiWithRetry(geminiUrl, requestBody, {
+      timeoutMs: mode === 'deep_analyze' ? 52000 : 22000,
+      attempts: 2,
     });
-
-    const geminiJson = await geminiRes.json();
-    if (!geminiRes.ok) {
-      const msg = geminiJson?.error?.message || `Gemini API error ${geminiRes.status}`;
-      console.error('Gemini API error:', msg);
-      const isQuota = msg.includes('quota') || msg.includes('RESOURCE_EXHAUSTED') || geminiRes.status === 429;
-      return res.status(500).json({
-        error: isQuota ? 'API quota exceeded — please try again in a moment.' : msg
+    if (!callResult.ok) {
+      console.error('Gemini API error:', callResult.error);
+      return res.status(callResult.isQuota ? 429 : 502).json({
+        error: callResult.isQuota
+          ? 'AI quota exceeded, please try again in a moment.'
+          : (callResult.error || 'AI is busy right now. Try again in a few seconds.'),
       });
     }
+    const geminiJson = callResult.json;
 
     const text = (geminiJson.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
     if (!text) throw new Error('Empty response from Gemini');
@@ -1931,22 +1969,19 @@ Important rules:
 - Round all values to whole grams
 - If the label is unclear or this is NOT a nutrition facts label, return dish: "Not a label", and zeros.`;
 
-    const geminiRes = await fetch(geminiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }, { inline_data: { mime_type: mimeType, data: imageBase64 } }] }]
-      })
-    });
-
-    const geminiJson = await geminiRes.json();
-    if (!geminiRes.ok) {
-      const msg = geminiJson?.error?.message || `Gemini API error ${geminiRes.status}`;
-      const isQuota = msg.includes('quota') || msg.includes('RESOURCE_EXHAUSTED') || geminiRes.status === 429;
-      return res.status(500).json({
-        error: isQuota ? 'API quota exceeded — please try again in a moment.' : msg
+    const callResult = await callGeminiWithRetry(
+      geminiUrl,
+      { contents: [{ parts: [{ text: prompt }, { inline_data: { mime_type: mimeType, data: imageBase64 } }] }] },
+      { timeoutMs: 22000, attempts: 2 },
+    );
+    if (!callResult.ok) {
+      return res.status(callResult.isQuota ? 429 : 502).json({
+        error: callResult.isQuota
+          ? 'AI quota exceeded, please try again in a moment.'
+          : (callResult.error || 'AI is busy right now. Try again in a few seconds.'),
       });
     }
+    const geminiJson = callResult.json;
 
     const text = (geminiJson.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
     if (!text) throw new Error('Empty response from AI');
