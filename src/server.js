@@ -1875,23 +1875,39 @@ If the photo is NOT food: return {"dish":"Not food detected","confidence":"low",
       contents: [{ parts: [{ text: prompt }, { inline_data: { mime_type: mimeType, data: imageBase64 } }] }],
     };
     if (mode === 'deep_analyze') {
-      // Generous reasoning budget on Pro for thorough analysis.
+      // Bounded thinking (8192) preserves Pro's accuracy for our detailed
+      // Lebanese-cuisine prompt while keeping wall-clock predictable. Unbounded
+      // (-1) occasionally let Pro burn 50s+ and blow the Vercel function cap.
       requestBody.generationConfig = {
         temperature: 0.2,
         maxOutputTokens: 4096,
-        thinkingConfig: { thinkingBudget: -1 },
+        thinkingConfig: { thinkingBudget: 8192 },
       };
     }
 
-    // deep_analyze on Pro routinely takes 25-40s; give it 50s budget with a
-    // single attempt so we don't double the wall-clock retrying a slow model.
-    // 4xx errors return immediately; transient 5xx/timeouts surface as a clean
-    // "AI is busy, try again" message rather than a half-closed connection.
-    // Flash modes get the standard 22s + retry treatment.
-    const callResult = await callGeminiWithRetry(geminiUrl, requestBody, {
-      timeoutMs: mode === 'deep_analyze' ? 50000 : 22000,
+    // deep_analyze: try Pro with a 45s budget (single attempt — retrying a
+    // 30s call doubles wall-clock). If Pro fails or times out, fall back to
+    // Flash so the user gets an answer instead of an error toast. Total
+    // worst-case wall-clock ~56s, under Vercel's 60s function cap.
+    // Flash-only modes (identify/estimate) get the standard 22s + retry.
+    let callResult = await callGeminiWithRetry(geminiUrl, requestBody, {
+      timeoutMs: mode === 'deep_analyze' ? 45000 : 22000,
       attempts: mode === 'deep_analyze' ? 1 : 2,
     });
+    // Flash fallback: only for deep_analyze when Pro genuinely fails (not on
+    // quota/4xx — those would fail the same way on Flash). Keeps Pro accuracy
+    // as the norm; Flash is a safety net for the tail.
+    if (!callResult.ok && !callResult.isQuota && mode === 'deep_analyze') {
+      console.warn('Pro failed, falling back to Flash:', callResult.error);
+      const flashUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+      const flashBody = { ...requestBody };
+      // Flash needs a lighter thinking budget to fit the residual time budget.
+      flashBody.generationConfig = { ...(flashBody.generationConfig || {}), thinkingConfig: { thinkingBudget: 2048 } };
+      callResult = await callGeminiWithRetry(flashUrl, flashBody, {
+        timeoutMs: 10000,
+        attempts: 1,
+      });
+    }
     if (!callResult.ok) {
       console.error('Gemini API error:', callResult.error);
       return res.status(callResult.isQuota ? 429 : 502).json({
