@@ -1443,7 +1443,9 @@ app.post('/api/describe-food', async (req, res) => {
   if (!apiKey) return res.status(500).json({ error: 'AI API key not configured' });
 
   try {
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+    // Use Google's auto-tracking alias so we don't get burned when specific
+    // versions like "gemini-2.5-flash" get deprecated.
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
 
     const identifyPrompt = `You are a nutrition expert specialising in Lebanese, Middle Eastern, French and international cuisine.
 
@@ -1546,7 +1548,9 @@ app.post('/api/analyze-food', async (req, res) => {
   try {
     // Deep mode uses the heavier Pro model for higher accuracy (~25-40s wall-clock).
     // identify/estimate keep Flash for the legacy two-step flow.
-    const modelName = mode === 'deep_analyze' ? 'gemini-2.5-pro' : 'gemini-2.5-flash';
+    // Google's auto-tracking aliases so specific-version deprecations don't
+    // break us (e.g. gemini-2.5-flash was retired).
+    const modelName = mode === 'deep_analyze' ? 'gemini-pro-latest' : 'gemini-flash-latest';
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
 
     // mode=identify: recognise dish + ask questions (no calorie estimate yet)
@@ -1902,7 +1906,7 @@ If the photo is NOT food: return {"dish":"Not food detected","confidence":"low",
     // Pro already consumed most of the 60s Vercel budget.
     if (!callResult.ok && !callResult.isQuota && mode === 'deep_analyze') {
       console.warn('Pro failed, falling back to Flash:', callResult.error);
-      const flashUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+      const flashUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
       const flashBody = { ...requestBody };
       // Disable Flash thinking entirely — the 4s residual is not enough to
       // wait for it. Flash without thinking still analyses food photos well.
@@ -1962,7 +1966,8 @@ app.post('/api/analyze-food-label', async (req, res) => {
   if (!apiKey) return res.status(500).json({ error: 'AI API key not configured' });
 
   try {
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+    // Auto-tracking alias so we don't break on future model deprecations.
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
     const prompt = `You are reading a packaged-food NUTRITION FACTS label.
 
 Extract these values DIRECTLY from the label (do not estimate). Use metric units only (grams).
