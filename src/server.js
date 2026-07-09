@@ -1875,36 +1875,40 @@ If the photo is NOT food: return {"dish":"Not food detected","confidence":"low",
       contents: [{ parts: [{ text: prompt }, { inline_data: { mime_type: mimeType, data: imageBase64 } }] }],
     };
     if (mode === 'deep_analyze') {
-      // Bounded thinking (8192) preserves Pro's accuracy for our detailed
-      // Lebanese-cuisine prompt while keeping wall-clock predictable. Unbounded
-      // (-1) occasionally let Pro burn 50s+ and blow the Vercel function cap.
+      // Unbounded thinking budget so Pro has no quality ceiling on complex
+      // plates. Pairs with the Flash fallback below: if Pro genuinely can't
+      // finish inside our 55s window, Flash saves the user from an error, but
+      // the primary path never sacrifices Pro accuracy.
       requestBody.generationConfig = {
         temperature: 0.2,
         maxOutputTokens: 4096,
-        thinkingConfig: { thinkingBudget: 8192 },
+        thinkingConfig: { thinkingBudget: -1 },
       };
     }
 
-    // deep_analyze: try Pro with a 45s budget (single attempt — retrying a
-    // 30s call doubles wall-clock). If Pro fails or times out, fall back to
-    // Flash so the user gets an answer instead of an error toast. Total
-    // worst-case wall-clock ~56s, under Vercel's 60s function cap.
-    // Flash-only modes (identify/estimate) get the standard 22s + retry.
+    // deep_analyze: give Pro the full available budget (55s) so it can think
+    // as long as it needs on complex photos. Flash fallback catches the rare
+    // tail case (Pro exceeds 55s or errors) so the user gets a result instead
+    // of an error toast. Total worst-case wall-clock ~59.5s, just under
+    // Vercel's 60s function cap. Single Pro attempt — retrying a slow model
+    // doubles wall-clock and would blow the cap.
     let callResult = await callGeminiWithRetry(geminiUrl, requestBody, {
-      timeoutMs: mode === 'deep_analyze' ? 45000 : 22000,
+      timeoutMs: mode === 'deep_analyze' ? 55000 : 22000,
       attempts: mode === 'deep_analyze' ? 1 : 2,
     });
     // Flash fallback: only for deep_analyze when Pro genuinely fails (not on
     // quota/4xx — those would fail the same way on Flash). Keeps Pro accuracy
-    // as the norm; Flash is a safety net for the tail.
+    // as the norm; Flash is a safety net for the tail. Tight 4s window since
+    // Pro already consumed most of the 60s Vercel budget.
     if (!callResult.ok && !callResult.isQuota && mode === 'deep_analyze') {
       console.warn('Pro failed, falling back to Flash:', callResult.error);
       const flashUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
       const flashBody = { ...requestBody };
-      // Flash needs a lighter thinking budget to fit the residual time budget.
-      flashBody.generationConfig = { ...(flashBody.generationConfig || {}), thinkingConfig: { thinkingBudget: 2048 } };
+      // Disable Flash thinking entirely — the 4s residual is not enough to
+      // wait for it. Flash without thinking still analyses food photos well.
+      flashBody.generationConfig = { ...(flashBody.generationConfig || {}), thinkingConfig: { thinkingBudget: 0 } };
       callResult = await callGeminiWithRetry(flashUrl, flashBody, {
-        timeoutMs: 10000,
+        timeoutMs: 4000,
         attempts: 1,
       });
     }
