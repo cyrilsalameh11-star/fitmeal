@@ -393,33 +393,39 @@ export default function StepsWidget() {
                 </p>
               </div>
 
-              {/* Option 2: Tasker $3.49 */}
+              {/* Option 2: MacroDroid FREE tier */}
               <div className="bg-amber-50 border border-amber-100 rounded-2xl p-4 space-y-2.5">
                 <div className="flex items-center gap-2">
-                  <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-amber-500 text-white uppercase tracking-wider">$3.49 once</span>
-                  <p className="text-[11px] font-bold text-amber-900 uppercase tracking-wider">Option 2, full auto-sync with Tasker</p>
+                  <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500 text-white uppercase tracking-wider">100% free</span>
+                  <p className="text-[11px] font-bold text-amber-900 uppercase tracking-wider">Option 2, full auto-sync with MacroDroid</p>
                 </div>
                 <p className="text-[11px] text-amber-900 leading-relaxed">
-                  Tasker is the gold-standard Android automation app. One-time $3.49 (no monthly fee). This setup fires <strong>the moment you open Samsung Health or Google Fit</strong>, so jismeh.fit is always in sync with what your fitness app shows. Same UX as the iOS "when Health opens" automation.
+                  MacroDroid's <strong>free tier</strong> allows 5 macros. We only need 1. Fires <strong>the moment you open Samsung Health or Google Fit</strong>, so jismeh.fit auto-updates within a second. Same UX as the iOS "when Health opens" automation. Ads in the free app, ignore them.
                 </p>
                 <div className="bg-white rounded-xl p-3 space-y-2.5">
-                  <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Setup, 5 taps:</p>
+                  <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Setup, one time:</p>
                   <ol className="text-[11px] text-gray-700 leading-relaxed space-y-1.5 list-decimal pl-4">
-                    <li>Play Store → search <strong>"Tasker"</strong> by joaomgcd (blue lightning icon) → buy for $3.49 → open.</li>
-                    <li>Grant permissions when asked (especially <strong>Physical Activity</strong> and <strong>Notifications</strong>).</li>
-                    <li>Tap <strong>+ (bottom)</strong> → <strong>Application</strong> → pick <strong>Samsung Health</strong> (or <strong>Google Fit</strong>, or your health app of choice). Tap ← back arrow.</li>
-                    <li>Tasker asks for a Task → <strong>New Task</strong> → name it "FitNas Sync" → tap ✓ → tap <strong>+</strong> → <strong>Net</strong> → <strong>HTTP Request</strong>.</li>
-                    <li>Method: <strong>GET</strong>. URL: paste this exactly:</li>
+                    <li>Play Store → search <strong>"MacroDroid"</strong> by ArloSoft (yellow droid icon) → install (free) → open. Skip / decline the Pro upgrade nag.</li>
+                    <li>≡ menu → <strong>Settings</strong> → <strong>Sensor Settings</strong> → enable <strong>Step Counter</strong>. Grant <strong>Physical Activity</strong> permission when asked.</li>
+                    <li>Tap <strong>Add Macro (+)</strong>.</li>
+                    <li>Under <strong>Triggers</strong> tap + → <strong>Applications</strong> → <strong>Application Launched/Closed</strong> → tick <strong>Samsung Health</strong> (or Google Fit / Mi Fitness / whichever) → OK.</li>
+                    <li>Under <strong>Actions</strong> tap + → <strong>Connectivity</strong> → <strong>HTTP Request</strong> → Method <strong>GET</strong>. In the URL field, paste this exactly:</li>
                   </ol>
                   <code className="block bg-gray-50 px-2 py-1.5 rounded text-[9px] font-mono break-all border border-gray-200">
-                    {`https://jismeh.fit/api/steps/sync?email=${email || 'YOUR_EMAIL'}&steps=%STEPS`}
+                    {`https://jismeh.fit/api/steps/sync?email=${email || 'YOUR_EMAIL'}&steps=`}
                   </code>
                   <p className="text-[10px] text-gray-600 leading-relaxed">
-                    <strong>%STEPS</strong> is Tasker's built-in step counter variable, type it exactly as shown (percent sign + capital STEPS). Tap ← back arrow twice, done. Profile is now armed.
+                    <strong>Now the critical step:</strong> with the cursor at the end of the URL (right after <code className="font-mono">steps=</code>), tap the small <strong>{'{x}'} button</strong> (Magic Text) above the keyboard → scroll to <strong>Sensors</strong> → tap <strong>Step Count</strong>. A grey <code className="font-mono">[step_count]</code> pill appears. <strong>Do NOT type the brackets manually</strong>, they must be inserted as Magic Text or MacroDroid sends the literal text.
+                  </p>
+                  <p className="text-[10px] text-gray-600 leading-relaxed">
+                    Tap ✓ → name it "FitNas Sync" → save. Done.
                   </p>
                 </div>
                 <p className="text-[10px] text-amber-800 leading-relaxed">
-                  From now on: every time you open Samsung Health (or whichever app you picked in step 3), jismeh.fit auto-updates within a second. <strong>Zero taps on jismeh.fit ever.</strong>
+                  From now on: every time you open Samsung Health, jismeh.fit auto-updates within a second. <strong>Zero taps on jismeh.fit ever. Zero cost.</strong>
+                </p>
+                <p className="text-[10px] text-gray-500 leading-relaxed">
+                  <strong>Battery tip:</strong> phone Settings → Apps → MacroDroid → Battery → Unrestricted, so Android doesn't kill it in the background.
                 </p>
               </div>
 
