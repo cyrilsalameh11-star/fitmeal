@@ -186,3 +186,11 @@ npx @claude-flow/cli@latest doctor --fix
 
 - Documentation: https://github.com/ruvnet/claude-flow
 - Issues: https://github.com/ruvnet/claude-flow/issues
+
+## Project-specific: FMCG News article placement
+
+`/api/news` (in `src/server.js`) returns `[...PINNED_GLOBAL_ARTICLES, ...PINNED_LORIENT_ARTICLES]` — GLOBAL is always rendered above LORIENT.
+
+- **New Lorient articles the user wants visible at the top of the feed → add to `PINNED_GLOBAL_ARTICLES`** (top of the array), with a custom prefix ID like `pinned-<brand>-<article-id>` (e.g. `pinned-chubby-1540956`, `pinned-handow-1538056`). Do NOT use `pinned-lorient-*` for new recent articles — that array is a lower-priority archive and its entries render at position 13+.
+- Images must be placed in **both** `src/public/news/<slug>.<ext>` (canonical for Vercel) and `frontend/public/news/<slug>.<ext>` (source that survives Vite rebuilds). Use kebab-case filenames (no spaces).
+- Never add articles without an explicit user request (see memory: `feedback_no_auto_articles`).
