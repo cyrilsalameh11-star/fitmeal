@@ -826,6 +826,22 @@ const parser = new RSSParser();
 // Manually curated global FMCG articles — always surfaced at the top
 const PINNED_GLOBAL_ARTICLES = [
   {
+    title: "Chubby Fish introduit le hand roll à Gemmayzé - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1540956/chubby-fish-introduit-le-hand-roll-a-gemmayze.html',
+    pubDate: 'Sun, 20 Jul 2026 08:00:00 GMT',
+    contentSnippet: "Chubby Fish s'installe à Gemmayzé et introduit le hand roll, un nouveau concept de sushi à la beyrouthine...",
+    id: 'pinned-chubby-1540956',
+    photoUrl: '/news/chubby-fish.jpg',
+  },
+  {
+    title: "Ouverture de Stir Social House à Gemmayzé - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1538556/ouverture-de-stir-social-house-a-gemmayze.html',
+    pubDate: 'Sun, 13 Jul 2026 08:00:00 GMT',
+    contentSnippet: "Stir Social House ouvre ses portes à Gemmayzé, un nouveau lieu de rencontre alliant restauration et convivialité...",
+    id: 'pinned-stir-1538556',
+    photoUrl: '/news/stir-social-house.jpeg',
+  },
+  {
     title: "À Beyrouth, Handow mise sur une cuisine asiatique inspirée - L'Orient-Le Jour",
     link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1538056/a-beyrouth-handow-mise-sur-une-cuisine-asiatique-inspiree.html',
     pubDate: 'Sat, 13 Jun 2026 08:00:00 GMT',
@@ -924,22 +940,6 @@ const PINNED_GLOBAL_ARTICLES = [
 ];
 
 const PINNED_LORIENT_ARTICLES = [
-  {
-    title: "Chubby Fish introduit le hand roll à Gemmayzé - L'Orient-Le Jour",
-    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1540956/chubby-fish-introduit-le-hand-roll-a-gemmayze.html',
-    pubDate: 'Sun, 20 Jul 2026 08:00:00 GMT',
-    contentSnippet: "Chubby Fish s'installe à Gemmayzé et introduit le hand roll, un nouveau concept de sushi à la beyrouthine...",
-    id: 'pinned-lorient-1540956',
-    photoUrl: '/news/chubby-fish.jpg',
-  },
-  {
-    title: "Ouverture de Stir Social House à Gemmayzé - L'Orient-Le Jour",
-    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1538556/ouverture-de-stir-social-house-a-gemmayze.html',
-    pubDate: 'Sun, 13 Jul 2026 08:00:00 GMT',
-    contentSnippet: "Stir Social House ouvre ses portes à Gemmayzé, un nouveau lieu de rencontre alliant restauration et convivialité...",
-    id: 'pinned-lorient-1538556',
-    photoUrl: '/news/stir-social-house.jpeg',
-  },
   {
     title: "Kiki's : manger sain sans renoncer au plaisir - L'Orient-Le Jour",
     link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1492564/kikis-manger-sain-sans-renoncer-au-plaisir.html',
