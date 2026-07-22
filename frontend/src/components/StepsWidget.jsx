@@ -400,24 +400,26 @@ export default function StepsWidget() {
                   <p className="text-[11px] font-bold text-amber-900 uppercase tracking-wider">Option 2, full auto-sync with Tasker</p>
                 </div>
                 <p className="text-[11px] text-amber-900 leading-relaxed">
-                  Tasker is the gold-standard Android automation app. One-time $3.49 (about the price of a coffee, no monthly fee). Once set up, your steps sync every 30 minutes automatically, forever.
+                  Tasker is the gold-standard Android automation app. One-time $3.49 (no monthly fee). This setup fires <strong>the moment you open Samsung Health or Google Fit</strong>, so jismeh.fit is always in sync with what your fitness app shows. Same UX as the iOS "when Health opens" automation.
                 </p>
-                <div className="bg-white rounded-xl p-3 space-y-2">
-                  <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Setup, 3 steps:</p>
+                <div className="bg-white rounded-xl p-3 space-y-2.5">
+                  <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Setup, 5 taps:</p>
                   <ol className="text-[11px] text-gray-700 leading-relaxed space-y-1.5 list-decimal pl-4">
                     <li>Play Store → search <strong>"Tasker"</strong> by joaomgcd (blue lightning icon) → buy for $3.49 → open.</li>
                     <li>Grant permissions when asked (especially <strong>Physical Activity</strong> and <strong>Notifications</strong>).</li>
-                    <li>Create ONE profile: <strong>Time → Every 30 min → Task → HTTP Request → GET</strong> to this URL:</li>
+                    <li>Tap <strong>+ (bottom)</strong> → <strong>Application</strong> → pick <strong>Samsung Health</strong> (or <strong>Google Fit</strong>, or your health app of choice). Tap ← back arrow.</li>
+                    <li>Tasker asks for a Task → <strong>New Task</strong> → name it "FitNas Sync" → tap ✓ → tap <strong>+</strong> → <strong>Net</strong> → <strong>HTTP Request</strong>.</li>
+                    <li>Method: <strong>GET</strong>. URL: paste this exactly:</li>
                   </ol>
                   <code className="block bg-gray-50 px-2 py-1.5 rounded text-[9px] font-mono break-all border border-gray-200">
                     {`https://jismeh.fit/api/steps/sync?email=${email || 'YOUR_EMAIL'}&steps=%STEPS`}
                   </code>
                   <p className="text-[10px] text-gray-600 leading-relaxed">
-                    <strong>%STEPS</strong> is Tasker's built-in step counter variable, type it exactly as shown (percent sign + capital STEPS). Tasker replaces it with today's step count automatically. Save the profile, done.
+                    <strong>%STEPS</strong> is Tasker's built-in step counter variable, type it exactly as shown (percent sign + capital STEPS). Tap ← back arrow twice, done. Profile is now armed.
                   </p>
                 </div>
                 <p className="text-[10px] text-amber-800 leading-relaxed">
-                  Once set up: <strong>zero touches ever</strong>. Steps sync every 30 min in the background. Works even when the app is closed.
+                  From now on: every time you open Samsung Health (or whichever app you picked in step 3), jismeh.fit auto-updates within a second. <strong>Zero taps on jismeh.fit ever.</strong>
                 </p>
               </div>
 
