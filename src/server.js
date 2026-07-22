@@ -925,6 +925,22 @@ const PINNED_GLOBAL_ARTICLES = [
 
 const PINNED_LORIENT_ARTICLES = [
   {
+    title: "Chubby Fish introduit le hand roll à Gemmayzé - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1540956/chubby-fish-introduit-le-hand-roll-a-gemmayze.html',
+    pubDate: 'Sun, 20 Jul 2026 08:00:00 GMT',
+    contentSnippet: "Chubby Fish s'installe à Gemmayzé et introduit le hand roll, un nouveau concept de sushi à la beyrouthine...",
+    id: 'pinned-lorient-1540956',
+    photoUrl: '/news/chubby-fish.jpg',
+  },
+  {
+    title: "Ouverture de Stir Social House à Gemmayzé - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1538556/ouverture-de-stir-social-house-a-gemmayze.html',
+    pubDate: 'Sun, 13 Jul 2026 08:00:00 GMT',
+    contentSnippet: "Stir Social House ouvre ses portes à Gemmayzé, un nouveau lieu de rencontre alliant restauration et convivialité...",
+    id: 'pinned-lorient-1538556',
+    photoUrl: '/news/stir-social-house.jpeg',
+  },
+  {
     title: "Kiki's : manger sain sans renoncer au plaisir - L'Orient-Le Jour",
     link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1492564/kikis-manger-sain-sans-renoncer-au-plaisir.html',
     pubDate: 'Sun, 25 Jan 2026 08:00:00 GMT',
