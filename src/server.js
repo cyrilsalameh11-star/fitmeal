@@ -826,6 +826,14 @@ const parser = new RSSParser();
 // Manually curated global FMCG articles — always surfaced at the top
 const PINNED_GLOBAL_ARTICLES = [
   {
+    title: "À Saifi Village, Muun parie sur la gastronomie japonaise - L'Orient-Le Jour",
+    link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1541722/a-saifi-village-muun-parie-sur-la-gastronomie-japonaise.html',
+    pubDate: 'Sun, 27 Jul 2026 08:00:00 GMT',
+    contentSnippet: "Muun s'installe à Saifi Village et parie sur une gastronomie japonaise raffinée, apportant une nouvelle adresse haut de gamme au cœur de Beyrouth...",
+    id: 'pinned-muun-1541722',
+    photoUrl: '/news/muun.jpg',
+  },
+  {
     title: "Chubby Fish introduit le hand roll à Gemmayzé - L'Orient-Le Jour",
     link: 'https://www.lorientlejour.com/cuisine-liban-a-table/1540956/chubby-fish-introduit-le-hand-roll-a-gemmayze.html',
     pubDate: 'Sun, 20 Jul 2026 08:00:00 GMT',
