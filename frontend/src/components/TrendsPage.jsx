@@ -14,7 +14,8 @@ const ACCOUNTS_DATA = [
     color: '#e11d48',
     url: 'https://www.instagram.com/guide.lb/',
     reels: [
-      { shortcode: 'DYR_cO6NlOI', type: 'p',    localMedia: { kind: 'video', src: '/reels/guide-lb-DYR_cO6NlOI.mp4' } }, // page 1, newest
+      { shortcode: 'DaxkpijteoY', type: 'p',    localMedia: { kind: 'video', src: '/reels/guide-lb-DaxkpijteoY.mp4' } }, // page 1, newest — Parisian vibes @leschatsduquartier
+      { shortcode: 'DYR_cO6NlOI', type: 'p',    localMedia: { kind: 'video', src: '/reels/guide-lb-DYR_cO6NlOI.mp4' } }, // page 2
       { shortcode: 'DX3brd7NMV0', type: 'p',    localMedia: { kind: 'video', src: '/reels/guide-lb-DX3brd7NMV0.mp4' } }, // page 2
       { shortcode: 'DWLqlhujWQn', type: 'p',    carousel: true }, // page 3, swipeable carousel
       { shortcode: 'DUyUdKfDQfS', type: 'reel', localMedia: { kind: 'video', src: '/reels/guide-lb-DUyUdKfDQfS.mp4' } }, // page 4
@@ -29,7 +30,9 @@ const ACCOUNTS_DATA = [
     color: '#d97706',
     url: 'https://www.instagram.com/baroodiesfoodies/',
     reels: [
+      { shortcode: 'DaNq2Z0NNXK', type: 'p',    localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-DaNq2Z0NNXK.mp4' } }, // NEW — We finally tried the spot everyone talking about
       { shortcode: 'DZPQ7hbuoLm', type: 'p',    localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-DZPQ7hbuoLm.mp4' } }, // page 1, newest
+      { shortcode: 'DZ7jfUzNsVA', type: 'p',    localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-DZ7jfUzNsVA.mp4' } }, // NEW — The spots everyone's talking about this summer
       { shortcode: 'DYR9c38sv0G', type: 'p',    localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-DYR9c38sv0G.mp4' } }, // page 2
       { shortcode: 'DYHFaOENd6i', type: 'p',    localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-DYHFaOENd6i.mp4' } }, // page 3
       { shortcode: 'DX3pDLYNL_c', type: 'p',    localMedia: { kind: 'video', src: '/reels/baroodiesfoodies-DX3pDLYNL_c.mp4' } }, // page 4
@@ -59,7 +62,9 @@ const ACCOUNTS_DATA = [
     color: '#7c3aed',
     url: 'https://www.instagram.com/ellevousguide/',
     reels: [
+      { shortcode: 'DapKKqdqf8X', type: 'p',    localMedia: { kind: 'video', src: '/reels/ellevousguide-DapKKqdqf8X.mp4' } }, // NEW — viral ice-cream spot in Paris
       { shortcode: 'DZqGuTPgqAY', type: 'p',    localMedia: { kind: 'video', src: '/reels/ellevousguide-DZqGuTPgqAY.mp4' } }, // page 1, newest
+      { shortcode: 'DZ0yuKAqLGc', type: 'p',    localMedia: { kind: 'video', src: '/reels/ellevousguide-DZ0yuKAqLGc.mp4' } }, // NEW — rating everything I ate in NYC
       { shortcode: 'DY9KBilqeKX', type: 'p',    localMedia: { kind: 'video', src: '/reels/ellevousguide-DY9KBilqeKX.mp4' } }, // page 2
       { shortcode: 'DYM9_ikivUW', type: 'p',    localMedia: { kind: 'video', src: '/reels/ellevousguide-DYM9_ikivUW.mp4' }, carousel: true }, // page 3 (carousel)
       { shortcode: 'DXr8c5nDAYM', type: 'p',    localMedia: { kind: 'video', src: '/reels/ellevousguide-DXr8c5nDAYM.mp4' } }, // page 4
@@ -89,6 +94,9 @@ const ACCOUNTS_DATA = [
     color: '#f43f5e',
     url: 'https://www.instagram.com/wondersbyaline/',
     reels: [
+      { shortcode: 'DbFwZYStETM', type: 'p',    localMedia: { kind: 'video', src: '/reels/wondersbyaline-DbFwZYStETM.mp4' } }, // NEW — After 129 days @alaminute.lb finally opening
+      { shortcode: 'DaarbMTtMCf', type: 'p',    localMedia: { kind: 'video', src: '/reels/wondersbyaline-DaarbMTtMCf.mp4' } }, // NEW — @muun.lb Japanese restaurant in Beirut
+      { shortcode: 'DaFKJQ5tJtE', type: 'p',    localMedia: { kind: 'video', src: '/reels/wondersbyaline-DaFKJQ5tJtE.mp4' } }, // NEW — @buco.lb at Marea Batroun
       { shortcode: 'DZjp3v6NxVo', type: 'p',    localMedia: { kind: 'video', src: '/reels/wondersbyaline-DZjp3v6NxVo.mp4' } }, // page 1, newest
       { shortcode: 'DZVPjEYNBeL', type: 'p',    localMedia: { kind: 'video', src: '/reels/wondersbyaline-DZVPjEYNBeL.mp4' } }, // page 2
       { shortcode: 'DYmvVtHNEkF', type: 'p',    localMedia: { kind: 'video', src: '/reels/wondersbyaline-DYmvVtHNEkF.mp4' } }, // page 3
@@ -108,6 +116,9 @@ const ACCOUNTS_DATA = [
     color: '#f97316',
     url: 'https://www.instagram.com/newinbeirut/',
     reels: [
+      { shortcode: 'DbBLQ1MsGmD', type: 'p',    localMedia: { kind: 'video', src: '/reels/newinbeirut-DbBLQ1MsGmD.mp4' } }, // NEW — Butler's & Co new concept in Downtown
+      { shortcode: 'DaxvtlmMnNk', type: 'p',    localMedia: { kind: 'video', src: '/reels/newinbeirut-DaxvtlmMnNk.mp4' } }, // NEW — ABD EL WAHAB lands in Faqra
+      { shortcode: 'DalISmgM-cg', type: 'p',    localMedia: { kind: 'video', src: '/reels/newinbeirut-DalISmgM-cg.mp4' } }, // NEW — Mario E Mario back in Faqra
       { shortcode: 'DZcw8QiM5o_', type: 'p',    localMedia: { kind: 'video', src: '/reels/newinbeirut-DZcw8QiM5o_.mp4' } }, // page 1, newest
       { shortcode: 'DXkM8C7jWqw', type: 'p',    localMedia: { kind: 'image', src: '/reels/newinbeirut-DXkM8C7jWqw.jpg' } }, // page 2
       { shortcode: 'DXjpqghiPAM', type: 'p',    localMedia: { kind: 'image', src: '/reels/newinbeirut-DXjpqghiPAM.jpg', caption: '✈️ Beirut Flight Update, as of today (23.04.2026). 🟢 Currently operating: Middle East Airlines. Stay updated, save and share.' } }, // page 3
