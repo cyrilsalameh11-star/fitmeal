@@ -2288,34 +2288,58 @@ async function ytFetchUploadsViaAPI(channelId, max = 50) {
   if (!apiKey) return null;
   // The "uploads" playlist for a channel is its channelId with UC → UU prefix swap.
   const uploadsId = 'UU' + channelId.slice(2);
-  const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${uploadsId}&maxResults=${Math.min(max, 50)}&key=${encodeURIComponent(apiKey)}`;
-  const res = await fetch(url);
-  if (!res.ok) {
-    const body = await res.text().catch(() => '');
-    throw new Error(`playlistItems API HTTP ${res.status}: ${body.slice(0, 180)}`);
+
+  // YouTube caps maxResults at 50 per page. Paginate via pageToken to reach `max`.
+  // Needed for Shorts-heavy channels (Will Tennyson, etc.) whose recent 50 uploads
+  // are mostly <60s Shorts — long-form videos sit deeper in history.
+  const items = [];
+  let pageToken = '';
+  const pageSize = 50;
+  const maxPages = Math.ceil(Math.max(max, pageSize) / pageSize);
+  for (let page = 0; page < maxPages && items.length < max; page++) {
+    const url = `https://www.googleapis.com/youtube/v3/playlistItems`
+      + `?part=snippet,contentDetails`
+      + `&playlistId=${uploadsId}`
+      + `&maxResults=${pageSize}`
+      + `&key=${encodeURIComponent(apiKey)}`
+      + (pageToken ? `&pageToken=${encodeURIComponent(pageToken)}` : '');
+    const res = await fetch(url);
+    if (!res.ok) {
+      const body = await res.text().catch(() => '');
+      if (page === 0) throw new Error(`playlistItems API HTTP ${res.status}: ${body.slice(0, 180)}`);
+      break; // Later pages failing shouldn't kill the whole fetch.
+    }
+    const data = await res.json();
+    for (const item of (data.items || [])) {
+      const videoId = item.contentDetails?.videoId || item.snippet?.resourceId?.videoId;
+      if (!videoId) continue;
+      items.push({
+        videoId,
+        title: item.snippet?.title || '',
+        published: item.snippet?.publishedAt || null,
+        thumbnail: item.snippet?.thumbnails?.high?.url
+                || item.snippet?.thumbnails?.medium?.url
+                || item.snippet?.thumbnails?.default?.url
+                || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+        channelTitle: item.snippet?.channelTitle || '',
+      });
+    }
+    pageToken = data.nextPageToken || '';
+    if (!pageToken) break;
   }
-  const data = await res.json();
-  return (data.items || []).map(item => ({
-    videoId: item.contentDetails?.videoId || item.snippet?.resourceId?.videoId,
-    title: item.snippet?.title || '',
-    published: item.snippet?.publishedAt || null,
-    thumbnail: item.snippet?.thumbnails?.high?.url
-            || item.snippet?.thumbnails?.medium?.url
-            || item.snippet?.thumbnails?.default?.url
-            || `https://i.ytimg.com/vi/${item.contentDetails?.videoId}/hqdefault.jpg`,
-    channelTitle: item.snippet?.channelTitle || '',
-  })).filter(v => v.videoId);
+  return items.slice(0, max);
 }
 
 async function ytFetchVideos(channelId, limit = 5, minDurationSec = 420) {
   let rawEntries = null;
   let channelName = '';
 
-  // Path A (preferred): YouTube Data API uploads playlist — gives 50 recent
-  // uploads vs only 15 from RSS. Crucial for Shorts-heavy channels where the
-  // most-recent long videos may sit deeper than the RSS window.
+  // Path A (preferred): YouTube Data API uploads playlist — pull 100 recent
+  // uploads (2 pages of 50) vs only 15 from RSS. Crucial for Shorts-heavy
+  // channels like Will Tennyson where 90%+ of recent uploads are <60s Shorts,
+  // so the long-form videos we actually want sit deeper in history.
   try {
-    const apiItems = await ytFetchUploadsViaAPI(channelId, 50);
+    const apiItems = await ytFetchUploadsViaAPI(channelId, 100);
     if (apiItems && apiItems.length) {
       rawEntries = apiItems;
       channelName = apiItems[0]?.channelTitle || '';
@@ -2353,9 +2377,10 @@ async function ytFetchVideos(channelId, limit = 5, minDurationSec = 420) {
     }
   }
 
-  // Resolve durations for the candidate pool (up to 50), filter to >= 7 minutes,
-  // return the top N (most recent that pass the filter).
-  const candidates = rawEntries.slice(0, 50);
+  // Resolve durations for the candidate pool (up to 100), filter to >=minDur,
+  // return the top N (most recent that pass the filter). Pool size matches
+  // ytFetchUploadsViaAPI's fetch cap so we don't drop pages we paid to fetch.
+  const candidates = rawEntries.slice(0, 100);
   const durations = await ytFetchDurations(candidates.map(v => v.videoId));
   const enriched = candidates.map(v => ({ ...v, durationSec: durations[v.videoId] ?? null }));
   const filtered = enriched.filter(v => typeof v.durationSec === 'number' && v.durationSec >= minDurationSec);

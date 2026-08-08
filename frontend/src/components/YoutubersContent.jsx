@@ -13,7 +13,7 @@ const CHANNELS = [
   { handle: 'Browney',       color: '#8b5cf6', minDurationSec: 420 },
 ];
 
-const LOCAL_CACHE_KEY = 'fitmeal_youtube_v6';
+const LOCAL_CACHE_KEY = 'fitmeal_youtube_v7';
 const LOCAL_TTL_MS = 6 * 60 * 60 * 1000;
 
 function readLocalCache() {
