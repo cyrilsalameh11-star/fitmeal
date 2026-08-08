@@ -13,6 +13,32 @@ const DAYS = [
 ];
 
 const STORAGE_KEY = 'fitmeal_weekly_calories';
+const TDEE_PROFILE_KEY = 'fitmeal_tdee_profile';
+
+// Kept in sync with ACTIVITY_LEVELS in CaloriePage.jsx (sports-nutrition
+// baselines). If those change there, mirror here.
+const PROTEIN_PER_KG = {
+  sedentary:   1.0,
+  light:       1.4,
+  moderate:    1.6,
+  active:      1.8,
+  very_active: 2.0,
+};
+
+// Read the saved TDEE profile and compute today's protein target in grams.
+// Bumped 15% when the user set any real deficit (matches CaloriePage).
+function computeProteinTarget() {
+  try {
+    const raw = localStorage.getItem(TDEE_PROFILE_KEY);
+    if (!raw) return 0;
+    const p = JSON.parse(raw);
+    const w = parseFloat(p.weight) || 0;
+    const perKg = PROTEIN_PER_KG[p.activity] ?? 1.6;
+    if (!w) return 0;
+    const deficitBump = (parseFloat(p.deficitKg) || 0) >= 0.25 ? 1.15 : 1;
+    return Math.round(w * perKg * deficitBump);
+  } catch { return 0; }
+}
 
 function loadState() {
   try {
@@ -34,6 +60,20 @@ function getDefaultState() {
 export default function WeeklyCaloriesPage() {
   const [state, setState] = useState(() => loadState() || getDefaultState());
   const [showTargetInput, setShowTargetInput] = useState(!state.dailyTarget);
+  const [proteinTarget, setProteinTarget] = useState(computeProteinTarget);
+
+  // Keep protein target in sync with the TDEE profile even if the user updated
+  // it in another tab. Poll on focus is cheap and avoids storage-event edge
+  // cases across some browsers.
+  useEffect(() => {
+    const refresh = () => setProteinTarget(computeProteinTarget());
+    window.addEventListener('focus', refresh);
+    window.addEventListener('storage', refresh);
+    return () => {
+      window.removeEventListener('focus', refresh);
+      window.removeEventListener('storage', refresh);
+    };
+  }, []);
 
   const dailyTarget = parseInt(state.dailyTarget) || 0;
   const weeklyTarget = dailyTarget * 7;
@@ -107,14 +147,14 @@ export default function WeeklyCaloriesPage() {
     >
       {/* Header */}
       <div className="text-center space-y-3">
-        <h2 className="text-4xl lg:text-5xl font-serif tracking-tight text-stone-900">
-          Weekly <span className="italic font-normal text-stone-400">Calories.</span>
+        <h2 className="text-4xl lg:text-5xl  tracking-tight text-gray-900">
+          Weekly <span className="italic font-normal text-gray-400">Calories.</span>
         </h2>
-        <p className="text-stone-500 font-medium">Track your daily intake against your weekly calorie goal.</p>
+        <p className="text-gray-500 font-medium">Track your daily intake against your weekly calorie goal.</p>
       </div>
 
       {/* Daily Target Card */}
-      <div className="bg-white border border-stone-100 rounded-3xl p-6 shadow-sm">
+      <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm">
         <button
           onClick={() => setShowTargetInput(v => !v)}
           className="w-full flex items-center justify-between"
@@ -124,22 +164,27 @@ export default function WeeklyCaloriesPage() {
               <Target size={20} className="text-white" />
             </div>
             <div className="text-left">
-              <p className="text-[10px] font-black uppercase tracking-widest text-stone-400">Daily Target</p>
-              <p className="text-xl font-bold text-stone-900">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Daily Target</p>
+              <p className="text-xl font-bold text-gray-900">
                 {dailyTarget > 0 ? `${dailyTarget.toLocaleString()} kcal / day` : 'Set your target'}
               </p>
+              {proteinTarget > 0 && (
+                <p className="text-[11px] font-bold text-emerald-600 mt-0.5">
+                  🥩 {proteinTarget} g protein / day
+                </p>
+              )}
             </div>
           </div>
-          {showTargetInput ? <ChevronUp size={18} className="text-stone-400" /> : <ChevronDown size={18} className="text-stone-400" />}
+          {showTargetInput ? <ChevronUp size={18} className="text-gray-400" /> : <ChevronDown size={18} className="text-gray-400" />}
         </button>
 
         {showTargetInput && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
-            className="mt-4 pt-4 border-t border-stone-50"
+            className="mt-4 pt-4 border-t border-gray-50"
           >
-            <label className="text-[10px] font-black uppercase tracking-widest text-stone-400 mb-2 block">
+            <label className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2 block">
               Daily calorie target (kcal)
             </label>
             <div className="flex space-x-3">
@@ -148,12 +193,12 @@ export default function WeeklyCaloriesPage() {
                 value={state.dailyTarget}
                 onChange={e => setDailyTarget(e.target.value)}
                 placeholder="e.g. 1300"
-                className="flex-1 bg-stone-50 border border-stone-200 rounded-2xl px-5 py-3 text-lg font-bold text-stone-800 focus:ring-2 focus:ring-amber-200 outline-none"
+                className="flex-1 bg-gray-50 border border-gray-200 rounded-2xl px-5 py-3 text-lg font-bold text-gray-800 focus:ring-2 focus:ring-amber-200 outline-none"
               />
               {dailyTarget > 0 && (
                 <button
                   onClick={() => setShowTargetInput(false)}
-                  className="px-6 py-3 bg-stone-900 text-white rounded-2xl font-bold text-sm hover:bg-stone-800 transition-colors"
+                  className="px-6 py-3 bg-gray-900 text-white rounded-2xl font-bold text-sm hover:bg-gray-800 transition-colors"
                 >
                   Set
                 </button>
@@ -165,30 +210,30 @@ export default function WeeklyCaloriesPage() {
 
       {/* Weekly Summary */}
       {dailyTarget > 0 && (
-        <div className="bg-stone-900 text-white rounded-3xl p-6 space-y-4">
+        <div className="bg-gray-900 text-white rounded-xl p-6 space-y-4">
           <div className="flex justify-between items-start">
             <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 mb-1">Weekly Objective</p>
-              <p className="text-2xl font-black">
-                {dailyTarget.toLocaleString()}<span className="text-stone-400 text-base font-bold"> kcal × 7 = </span>
-                {weeklyTarget.toLocaleString()} <span className="text-stone-400 text-base font-bold">kcal</span>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Weekly Objective</p>
+              <p className="text-2xl font-bold">
+                {dailyTarget.toLocaleString()}<span className="text-gray-400 text-base font-bold"> kcal × 7 = </span>
+                {weeklyTarget.toLocaleString()} <span className="text-gray-400 text-base font-bold">kcal</span>
               </p>
             </div>
             <button
               onClick={resetWeek}
-              className="p-2 rounded-full bg-stone-800 hover:bg-stone-700 transition-colors"
+              className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
               title="Reset week"
             >
-              <RotateCcw size={16} className="text-stone-400" />
+              <RotateCcw size={16} className="text-gray-400" />
             </button>
           </div>
 
           <div className="space-y-2">
-            <div className="flex justify-between text-xs font-bold uppercase tracking-widest text-stone-400">
+            <div className="flex justify-between text-xs font-bold uppercase tracking-wider text-gray-400">
               <span>{totalLogged.toLocaleString()} kcal logged</span>
               <span>{Math.max(0, weeklyRemaining).toLocaleString()} remaining</span>
             </div>
-            <div className="h-2 bg-stone-800 rounded-full overflow-hidden">
+            <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${progressPct}%` }}
@@ -198,7 +243,7 @@ export default function WeeklyCaloriesPage() {
             </div>
           </div>
 
-          <div className="flex items-center space-x-2 text-stone-400 text-xs font-bold uppercase tracking-widest">
+          <div className="flex items-center space-x-2 text-gray-400 text-xs font-bold uppercase tracking-wider">
             <span className="text-white">{checkedCount}</span>
             <span>/ 7 days completed</span>
           </div>
@@ -223,7 +268,7 @@ export default function WeeklyCaloriesPage() {
               className={`bg-white border rounded-2xl p-5 transition-all ${
                 dayData.checked
                   ? 'border-amber-200 shadow-md ring-1 ring-amber-100'
-                  : 'border-stone-100 hover:border-stone-200 shadow-sm'
+                  : 'border-gray-100 hover:border-gray-200 shadow-sm'
               }`}
             >
               <div className="flex items-start mt-1 space-x-4">
@@ -234,15 +279,15 @@ export default function WeeklyCaloriesPage() {
                 >
                   {dayData.checked
                     ? <CheckCircle2 size={28} className="text-amber-500" fill="currentColor" />
-                    : <Circle size={28} className="text-stone-200" />
+                    : <Circle size={28} className="text-gray-200" />
                   }
                 </button>
 
                 {/* Day label */}
                 <div className="w-24 flex-shrink-0">
-                  <p className="font-black text-stone-800 text-base">{day.label}</p>
+                  <p className="font-bold text-gray-800 text-base">{day.label}</p>
                   {dailyTarget > 0 && (
-                    <p className="text-[10px] font-bold text-stone-400 uppercase tracking-widest">
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
                       / {dailyTarget.toLocaleString()} kcal
                     </p>
                   )}
@@ -255,10 +300,10 @@ export default function WeeklyCaloriesPage() {
                     value={dayData.calories || ''}
                     onChange={e => setDayCalories(day.key, e.target.value)}
                     placeholder="xxxx kcal"
-                    className={`w-full bg-stone-50 border rounded-xl px-4 py-2.5 text-base font-bold outline-none focus:ring-2 transition-all ${
+                    className={`w-full bg-gray-50 border rounded-xl px-4 py-2.5 text-base font-bold outline-none focus:ring-2 transition-all ${
                       isOver
                         ? 'border-red-200 text-red-600 focus:ring-red-100'
-                        : 'border-stone-100 text-stone-800 focus:ring-amber-100'
+                        : 'border-gray-100 text-gray-800 focus:ring-amber-100'
                     }`}
                   />
                 </div>
@@ -266,8 +311,8 @@ export default function WeeklyCaloriesPage() {
                 {/* Remaining arrow */}
                 {dailyTarget > 0 && hasCalories && (
                   <div className="flex-shrink-0 text-right min-w-[80px]">
-                    <p className="text-[10px] font-black uppercase tracking-widest text-stone-400">Remaining</p>
-                    <p className={`text-sm font-black ${remaining < 0 ? 'text-red-500' : 'text-stone-700'}`}>
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Remaining</p>
+                    <p className={`text-sm font-bold ${remaining < 0 ? 'text-red-500' : 'text-gray-700'}`}>
                       → {remaining >= 0 ? remaining.toLocaleString() : `-${Math.abs(remaining).toLocaleString()}`} kcal
                     </p>
                   </div>
@@ -276,23 +321,47 @@ export default function WeeklyCaloriesPage() {
 
               {/* Over budget warning */}
               {isOver && (
-                <p className="mt-2 ml-[136px] text-[11px] font-bold text-red-500 uppercase tracking-widest">
+                <p className="mt-2 ml-[136px] text-[11px] font-bold text-red-500 uppercase tracking-wider">
                   +{(consumed - dailyTarget).toLocaleString()} kcal over target
                 </p>
               )}
 
               {/* Macro inputs - Full width row */}
-              <div className="mt-4 pt-4 border-t border-stone-100/50 grid grid-cols-3 gap-3">
-                <div className="flex flex-col space-y-1">
-                  <input
-                    type="text" inputMode="numeric" pattern="[0-9]*"
-                    value={dayData.protein || ''}
-                    onChange={e => setDayMacro(day.key, 'protein', e.target.value)}
-                    placeholder="0"
-                    className="w-full text-center bg-stone-50 border border-stone-200 rounded-xl px-2 py-2 text-sm font-bold text-stone-800 outline-none focus:ring-2 focus:ring-emerald-200 transition-all placeholder:text-stone-300 border-b-4 border-b-stone-200"
-                  />
-                  <span className="text-[10px] font-extrabold tracking-widest text-center text-stone-500 uppercase">Protein</span>
-                </div>
+              <div className="mt-4 pt-4 border-t border-gray-100/50 grid grid-cols-3 gap-3">
+                {/* Protein: highlighted with progress vs daily target (see TDEE profile). */}
+                {(() => {
+                  const gLogged = parseInt(dayData.protein) || 0;
+                  const pct = proteinTarget > 0 ? gLogged / proteinTarget : 0;
+                  const hit = pct >= 1;
+                  const close = pct >= 0.8;
+                  const some = pct >= 0.5;
+                  const box = hit
+                    ? 'bg-emerald-500 border-emerald-600 text-white placeholder:text-emerald-100/60 border-b-4 border-b-emerald-700'
+                    : close
+                    ? 'bg-emerald-200 border-emerald-400 text-emerald-950 placeholder:text-emerald-500/60 border-b-4 border-b-emerald-400'
+                    : some
+                    ? 'bg-emerald-100 border-emerald-300 text-emerald-900 placeholder:text-emerald-400/60 border-b-4 border-b-emerald-300'
+                    : 'bg-emerald-50 border-emerald-200 text-emerald-900 placeholder:text-emerald-300/60 border-b-4 border-b-emerald-200';
+                  return (
+                    <div className="flex flex-col space-y-1">
+                      <div className="relative">
+                        <input
+                          type="text" inputMode="numeric" pattern="[0-9]*"
+                          value={dayData.protein || ''}
+                          onChange={e => setDayMacro(day.key, 'protein', e.target.value)}
+                          placeholder="0"
+                          className={`w-full text-center border rounded-xl px-2 py-2 text-sm font-bold outline-none focus:ring-2 focus:ring-emerald-400 transition-all ${box}`}
+                        />
+                        {hit && (
+                          <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-white rounded-full flex items-center justify-center shadow text-emerald-600 text-[10px] font-black leading-none">✓</span>
+                        )}
+                      </div>
+                      <span className={`text-[10px] font-extrabold tracking-wider text-center uppercase ${hit ? 'text-emerald-600' : 'text-emerald-500'}`}>
+                        {proteinTarget > 0 ? `Protein ${gLogged}/${proteinTarget}g` : 'Protein'}
+                      </span>
+                    </div>
+                  );
+                })()}
 
                 <div className="flex flex-col space-y-1">
                   <input
@@ -302,7 +371,7 @@ export default function WeeklyCaloriesPage() {
                     placeholder="0"
                     className="w-full text-center bg-amber-50 border border-amber-200 rounded-xl px-2 py-2 text-sm font-bold text-amber-900 outline-none focus:ring-2 focus:ring-amber-400 transition-all placeholder:text-amber-300/60 border-b-4 border-b-amber-200"
                   />
-                  <span className="text-[10px] font-extrabold tracking-widest text-center text-amber-500 uppercase">Carbs</span>
+                  <span className="text-[10px] font-extrabold tracking-wider text-center text-amber-500 uppercase">Carbs</span>
                 </div>
 
                 <div className="flex flex-col space-y-1">
@@ -311,9 +380,9 @@ export default function WeeklyCaloriesPage() {
                     value={dayData.fats || ''}
                     onChange={e => setDayMacro(day.key, 'fats', e.target.value)}
                     placeholder="0"
-                    className="w-full text-center bg-stone-100 border border-stone-200 rounded-xl px-2 py-2 text-sm font-bold text-stone-700 outline-none focus:ring-2 focus:ring-stone-300 transition-all placeholder:text-stone-400 border-b-4 border-b-stone-300"
+                    className="w-full text-center bg-purple-50 border border-purple-200 rounded-xl px-2 py-2 text-sm font-bold text-purple-900 outline-none focus:ring-2 focus:ring-purple-400 transition-all placeholder:text-purple-300/60 border-b-4 border-b-purple-200"
                   />
-                  <span className="text-[10px] font-extrabold tracking-widest text-center text-stone-400 uppercase">Fat</span>
+                  <span className="text-[10px] font-extrabold tracking-wider text-center text-purple-500 uppercase">Fat</span>
                 </div>
               </div>
             </motion.div>
@@ -324,9 +393,9 @@ export default function WeeklyCaloriesPage() {
       {/* Footer tip */}
       {dailyTarget > 0 && totalLogged > 0 && (
         <div className="text-center py-4">
-          <p className="text-stone-400 text-sm font-medium">
+          <p className="text-gray-400 text-sm font-medium">
             {weeklyRemaining > 0
-              ? `${weeklyRemaining.toLocaleString()} kcal left for the week — keep going!`
+              ? `${weeklyRemaining.toLocaleString()} kcal left for the week, keep going!`
               : `You've reached your weekly target of ${weeklyTarget.toLocaleString()} kcal.`}
           </p>
         </div>

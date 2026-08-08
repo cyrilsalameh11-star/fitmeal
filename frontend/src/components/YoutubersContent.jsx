@@ -10,6 +10,7 @@ const CHANNELS = [
   { handle: 'LeRoutin',      color: '#0891b2', minDurationSec: 420 },
   { handle: 'bazinga.',      color: '#f97316', minDurationSec: 420 },
   { handle: 'iWannaBurnFat', color: '#10b981', minDurationSec: 420 },
+  { handle: 'Browney',       color: '#8b5cf6', minDurationSec: 420 },
 ];
 
 const LOCAL_CACHE_KEY = 'fitmeal_youtube_v6';

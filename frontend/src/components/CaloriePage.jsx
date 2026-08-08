@@ -4,12 +4,16 @@ import { Flame, TrendingDown, Target, Zap, BookmarkCheck, Bookmark } from 'lucid
 
 const STORAGE_KEY = 'fitmeal_tdee_profile';
 
+// proteinPerKg values are standard sports-nutrition recommendations for daily
+// protein target based on training volume (Phillips & Van Loon 2011,
+// ISSN 2018 protein position stand): sedentary maintenance ~1 g/kg,
+// recreational training 1.6, serious training 1.8, hard training 2.0-2.2.
 const ACTIVITY_LEVELS = [
-  { id: 'sedentary',   label: 'Sedentary',  desc: 'Desk job, no exercise',   multiplier: 1.2   },
-  { id: 'light',       label: 'Light',      desc: '1–3 days/week',           multiplier: 1.375 },
-  { id: 'moderate',    label: 'Moderate',   desc: '3–5 days/week',           multiplier: 1.55  },
-  { id: 'active',      label: 'Active',     desc: '6–7 days/week',           multiplier: 1.725 },
-  { id: 'very_active', label: 'Athlete',    desc: 'Twice daily training',    multiplier: 1.9   },
+  { id: 'sedentary',   label: 'Sedentary',  desc: 'Desk job, no exercise',   multiplier: 1.2,   proteinPerKg: 1.0 },
+  { id: 'light',       label: 'Light',      desc: '1–3 days/week',           multiplier: 1.375, proteinPerKg: 1.4 },
+  { id: 'moderate',    label: 'Moderate',   desc: '3–5 days/week',           multiplier: 1.55,  proteinPerKg: 1.6 },
+  { id: 'active',      label: 'Active',     desc: '6–7 days/week',           multiplier: 1.725, proteinPerKg: 1.8 },
+  { id: 'very_active', label: 'Athlete',    desc: 'Twice daily training',    multiplier: 1.9,   proteinPerKg: 2.0 },
 ];
 
 function getBmiCategory(bmi) {
@@ -149,8 +153,8 @@ function PersonSVG({ gender, bmi }) {
         <ellipse cx="75" cy="191" rx="11" ry="5.5" fill={color} opacity="0.85" />
       </svg>
 
-      <div className={`text-sm font-black uppercase tracking-widest ${text}`}>{label}</div>
-      <div className="text-xs text-stone-400 font-bold">BMI {bmi}</div>
+      <div className={`text-sm font-bold uppercase tracking-wider ${text}`}>{label}</div>
+      <div className="text-xs text-gray-400 font-bold">BMI {bmi}</div>
     </div>
   );
 }
@@ -171,15 +175,15 @@ function BmiBar({ bmi }) {
   const { label, text } = getBmiCategory(bmi);
 
   return (
-    <div className="bg-white rounded-[2rem] p-6 border border-stone-100 shadow-sm space-y-4">
+    <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm space-y-4 w-full">
       {/* Header row */}
       <div className="flex items-center justify-between">
-        <p className="text-[10px] font-black uppercase tracking-widest text-stone-400">BMI</p>
-        <span className={`text-[10px] font-black uppercase tracking-widest ${text}`}>{label}</span>
+        <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">BMI</p>
+        <span className={`text-[10px] font-bold uppercase tracking-wider ${text}`}>{label}</span>
       </div>
 
       {/* Big value */}
-      <p className="text-5xl font-black text-stone-900 leading-none">{bmi}</p>
+      <p className="text-5xl font-bold text-gray-900 leading-none">{bmi}</p>
 
       {/* Colour bar */}
       <div className="relative">
@@ -200,7 +204,7 @@ function BmiBar({ bmi }) {
           {ticks.map(tick => (
             <span
               key={tick}
-              className="absolute text-[9px] font-bold text-stone-400 -translate-x-1/2"
+              className="absolute text-[9px] font-bold text-gray-400 -translate-x-1/2"
               style={{ left: `${((tick - MIN) / (MAX - MIN)) * 100}%` }}
             >
               {tick}
@@ -214,7 +218,7 @@ function BmiBar({ bmi }) {
         {segments.map((seg, i) => (
           <span
             key={i}
-            className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full"
+            className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
             style={{ background: seg.color + '33', color: seg.color === '#fcd34d' ? '#92400e' : seg.color }}
           >
             {seg.label}
@@ -278,8 +282,13 @@ export default function CaloriePage() {
     const dailyDeficit   = Math.round((deficitKg * 7700) / 7);
     const targetCalories = Math.max(1200, maintenance - dailyDeficit);
     const bmi = (w / ((h / 100) ** 2)).toFixed(1);
+    // Daily protein target based on bodyweight and training volume.
+    // Scales up when in a deficit (protein needs increase to preserve muscle
+    // when calories are restricted — bumped by 15% for any deficit >= 0.25 kg/wk).
+    const proteinBase = w * actLevel.proteinPerKg;
+    const proteinTarget = Math.round(proteinBase * (deficitKg >= 0.25 ? 1.15 : 1));
 
-    return { bmr: Math.round(bmr), maintenance, dailyDeficit, targetCalories, bmi };
+    return { bmr: Math.round(bmr), maintenance, dailyDeficit, targetCalories, bmi, proteinTarget };
   }, [gender, weight, height, age, activity, deficitKg]);
 
   return (
@@ -292,13 +301,13 @@ export default function CaloriePage() {
     >
       {/* Header */}
       <div className="max-w-3xl">
-        <p className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-3 flex items-center">
+        <p className="text-xs font-bold text-amber-500 uppercase tracking-wider mb-3 flex items-center">
           <Flame size={14} className="mr-2" /> Calorie Calculator
         </p>
         <h1 className="text-4xl md:text-5xl lg:text-6xl mb-4 leading-tight">
-          Know your <br /><span className="italic font-normal text-stone-400">maintenance.</span>
+          Know your <br /><span className="italic font-normal text-gray-400">maintenance.</span>
         </h1>
-        <p className="text-base md:text-lg text-stone-500 font-medium">
+        <p className="text-base md:text-lg text-gray-500 font-medium">
           Calculate your daily calorie needs, set a deficit, and see exactly how fast you'll reach your goal.
         </p>
       </div>
@@ -306,20 +315,20 @@ export default function CaloriePage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
 
         {/* ── Left: Inputs ── */}
-        <div className="bg-white rounded-[2rem] p-8 border border-stone-100 shadow-sm space-y-7">
+        <div className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm space-y-7">
 
           {/* Gender */}
           <div className="space-y-3">
-            <label className="text-[10px] font-black uppercase tracking-widest text-stone-400">Gender</label>
+            <label className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Gender</label>
             <div className="grid grid-cols-2 gap-2">
               {[['male', '♂ Man'], ['female', '♀ Woman']].map(([g, label]) => (
                 <button
                   key={g}
                   onClick={() => setGender(g)}
-                  className={`py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${
+                  className={`py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
                     gender === g
-                      ? 'bg-stone-900 text-white shadow-lg'
-                      : 'bg-stone-50 text-stone-500 hover:bg-stone-100'
+                      ? 'bg-gray-900 text-white shadow-lg'
+                      : 'bg-gray-50 text-gray-500 hover:bg-gray-100'
                   }`}
                 >
                   {label}
@@ -331,15 +340,15 @@ export default function CaloriePage() {
           {/* Weight */}
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <label className="text-[10px] font-black uppercase tracking-widest text-stone-400">Weight</label>
-              <span className="text-sm font-black text-stone-900">{weight} kg</span>
+              <label className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Weight</label>
+              <span className="text-sm font-bold text-gray-900">{weight} kg</span>
             </div>
             <input
               type="range" min="40" max="180" value={weight}
               onChange={e => setWeight(+e.target.value)}
               className="w-full h-1.5 rounded-full accent-amber-500 cursor-pointer"
             />
-            <div className="flex justify-between text-[10px] text-stone-300 font-bold uppercase tracking-wider">
+            <div className="flex justify-between text-[10px] text-gray-300 font-bold uppercase tracking-wider">
               <span>40 kg</span><span>180 kg</span>
             </div>
           </div>
@@ -347,15 +356,15 @@ export default function CaloriePage() {
           {/* Height */}
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <label className="text-[10px] font-black uppercase tracking-widest text-stone-400">Height</label>
-              <span className="text-sm font-black text-stone-900">{height} cm</span>
+              <label className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Height</label>
+              <span className="text-sm font-bold text-gray-900">{height} cm</span>
             </div>
             <input
               type="range" min="140" max="220" value={height}
               onChange={e => setHeight(+e.target.value)}
               className="w-full h-1.5 rounded-full accent-amber-500 cursor-pointer"
             />
-            <div className="flex justify-between text-[10px] text-stone-300 font-bold uppercase tracking-wider">
+            <div className="flex justify-between text-[10px] text-gray-300 font-bold uppercase tracking-wider">
               <span>140 cm</span><span>220 cm</span>
             </div>
           </div>
@@ -363,22 +372,22 @@ export default function CaloriePage() {
           {/* Age */}
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <label className="text-[10px] font-black uppercase tracking-widest text-stone-400">Age</label>
-              <span className="text-sm font-black text-stone-900">{age} yrs</span>
+              <label className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Age</label>
+              <span className="text-sm font-bold text-gray-900">{age} yrs</span>
             </div>
             <input
               type="range" min="15" max="80" value={age}
               onChange={e => setAge(+e.target.value)}
               className="w-full h-1.5 rounded-full accent-amber-500 cursor-pointer"
             />
-            <div className="flex justify-between text-[10px] text-stone-300 font-bold uppercase tracking-wider">
+            <div className="flex justify-between text-[10px] text-gray-300 font-bold uppercase tracking-wider">
               <span>15</span><span>80</span>
             </div>
           </div>
 
           {/* Activity */}
           <div className="space-y-3">
-            <label className="text-[10px] font-black uppercase tracking-widest text-stone-400">Activity Level</label>
+            <label className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Activity Level</label>
             <div className="space-y-1.5">
               {ACTIVITY_LEVELS.map(l => (
                 <button
@@ -386,12 +395,12 @@ export default function CaloriePage() {
                   onClick={() => setActivity(l.id)}
                   className={`w-full flex justify-between items-center px-4 py-2.5 rounded-xl text-xs transition-all ${
                     activity === l.id
-                      ? 'bg-stone-900 text-white'
-                      : 'bg-stone-50 text-stone-600 hover:bg-stone-100'
+                      ? 'bg-gray-900 text-white'
+                      : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
                   }`}
                 >
-                  <span className="font-black uppercase tracking-wider">{l.label}</span>
-                  <span className={`text-[10px] font-medium ${activity === l.id ? 'text-stone-400' : 'text-stone-400'}`}>{l.desc}</span>
+                  <span className="font-bold uppercase tracking-wider">{l.label}</span>
+                  <span className={`text-[10px] font-medium ${activity === l.id ? 'text-gray-400' : 'text-gray-400'}`}>{l.desc}</span>
                 </button>
               ))}
             </div>
@@ -399,8 +408,8 @@ export default function CaloriePage() {
         </div>
 
         {/* ── Center: 3D Person + deficit slider ── */}
-        <div className="flex flex-col items-center justify-start gap-8">
-          <div className="w-full bg-stone-900 rounded-[2.5rem] p-10 flex flex-col items-center shadow-2xl border border-stone-800">
+        <div className="flex flex-col items-stretch justify-start gap-8">
+          <div className="w-full bg-gray-900 rounded-xl p-10 flex flex-col items-center shadow-xl border border-gray-800">
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ repeat: Infinity, duration: 3.2, ease: 'easeInOut' }}
@@ -413,17 +422,17 @@ export default function CaloriePage() {
           <BmiBar bmi={parseFloat(results.bmi)} />
 
           {/* Weekly goal slider */}
-          <div className="w-full bg-white rounded-[1.5rem] p-6 border border-stone-100 shadow-sm space-y-4">
+          <div className="w-full bg-white rounded-xl p-6 border border-gray-100 shadow-sm space-y-4">
             <div className="flex justify-between items-center">
-              <label className="text-[10px] font-black uppercase tracking-widest text-stone-400">Weekly Loss Goal</label>
-              <span className="text-sm font-black text-amber-600">−{deficitKg} kg/week</span>
+              <label className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Weekly Loss Goal</label>
+              <span className="text-sm font-bold text-amber-600">−{deficitKg} kg/week</span>
             </div>
             <input
               type="range" min="0.1" max="1.0" step="0.1" value={deficitKg}
               onChange={e => setDeficitKg(+e.target.value)}
               className="w-full h-1.5 rounded-full accent-amber-500 cursor-pointer"
             />
-            <div className="flex justify-between text-[10px] text-stone-300 font-bold uppercase tracking-wider">
+            <div className="flex justify-between text-[10px] text-gray-300 font-bold uppercase tracking-wider">
               <span>Gentle</span><span>Aggressive</span>
             </div>
           </div>
@@ -432,59 +441,73 @@ export default function CaloriePage() {
         {/* ── Right: Results ── */}
         <div className="space-y-4">
 
-          {/* Maintenance — hero card */}
-          <div className="bg-stone-900 text-white rounded-[2rem] p-8 shadow-xl space-y-1">
-            <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 flex items-center gap-1.5">
+          {/* Maintenance, hero card */}
+          <div className="bg-gray-900 text-white rounded-xl p-8 shadow-xl space-y-1">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
               <Flame size={11} className="text-amber-500" /> Maintenance Calories
             </p>
-            <p className="text-6xl font-black tracking-tight leading-none">{results.maintenance.toLocaleString()}</p>
-            <p className="text-xs text-stone-400 font-medium pt-1">kcal/day — stay at current weight</p>
+            <p className="text-6xl font-bold tracking-tight leading-none">{results.maintenance.toLocaleString()}</p>
+            <p className="text-xs text-gray-400 font-medium pt-1">kcal/day, stay at current weight</p>
           </div>
 
           {/* Target calories */}
-          <div className="bg-amber-500 text-white rounded-[2rem] p-8 shadow-xl space-y-1">
-            <p className="text-[10px] font-black uppercase tracking-widest text-amber-200 flex items-center gap-1.5">
+          <div className="bg-amber-500 text-white rounded-xl p-8 shadow-xl space-y-1">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-amber-200 flex items-center gap-1.5">
               <Target size={11} /> Your Target
             </p>
-            <p className="text-6xl font-black tracking-tight leading-none">{results.targetCalories.toLocaleString()}</p>
+            <p className="text-6xl font-bold tracking-tight leading-none">{results.targetCalories.toLocaleString()}</p>
             <p className="text-xs text-amber-200 font-medium pt-1">kcal/day to lose {deficitKg} kg/week</p>
           </div>
 
+          {/* Protein target */}
+          <div className="bg-emerald-500 text-white rounded-xl p-8 shadow-xl space-y-1">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-100 flex items-center gap-1.5">
+              <Zap size={11} /> Protein Target
+            </p>
+            <p className="text-6xl font-bold tracking-tight leading-none">
+              {results.proteinTarget} <span className="text-2xl font-bold text-emerald-100">g</span>
+            </p>
+            <p className="text-xs text-emerald-100 font-medium pt-1">
+              {(results.proteinTarget / (parseFloat(weight) || 1)).toFixed(2)} g/kg bodyweight
+              {deficitKg >= 0.25 && <span className="opacity-80"> · +15% for the deficit</span>}
+            </p>
+          </div>
+
           {/* Daily deficit */}
-          <div className="bg-white rounded-[2rem] p-6 border border-stone-100 shadow-sm flex items-center justify-between">
+          <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm flex items-center justify-between">
             <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 mb-1">Daily Deficit</p>
-              <p className="text-3xl font-black text-stone-900">
-                {results.dailyDeficit} <span className="text-base font-bold text-stone-400">kcal</span>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Daily Deficit</p>
+              <p className="text-3xl font-bold text-gray-900">
+                {results.dailyDeficit} <span className="text-base font-bold text-gray-400">kcal</span>
               </p>
             </div>
-            <div className="bg-stone-50 p-3 rounded-2xl">
-              <TrendingDown size={22} className="text-stone-400" />
+            <div className="bg-gray-50 p-3 rounded-2xl">
+              <TrendingDown size={22} className="text-gray-400" />
             </div>
           </div>
 
           {/* BMR */}
-          <div className="bg-white rounded-[2rem] p-6 border border-stone-100 shadow-sm flex items-center justify-between">
+          <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm flex items-center justify-between">
             <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-stone-400 mb-1">Basal Metabolic Rate</p>
-              <p className="text-3xl font-black text-stone-900">
-                {results.bmr.toLocaleString()} <span className="text-base font-bold text-stone-400">kcal</span>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Basal Metabolic Rate</p>
+              <p className="text-3xl font-bold text-gray-900">
+                {results.bmr.toLocaleString()} <span className="text-base font-bold text-gray-400">kcal</span>
               </p>
             </div>
-            <div className="bg-stone-50 p-3 rounded-2xl">
-              <Zap size={22} className="text-stone-400" />
+            <div className="bg-gray-50 p-3 rounded-2xl">
+              <Zap size={22} className="text-gray-400" />
             </div>
           </div>
 
           {/* Save button */}
           <button
             onClick={handleSave}
-            className={`w-full flex items-center justify-center gap-2 py-4 rounded-[1.5rem] text-xs font-black uppercase tracking-widest transition-all ${
+            className={`w-full flex items-center justify-center gap-2 py-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
               justSaved
                 ? 'bg-emerald-500 text-white'
                 : hasUnsaved
-                ? 'bg-stone-900 text-white hover:bg-stone-700'
-                : 'bg-stone-50 text-stone-400 border border-stone-100'
+                ? 'bg-gray-900 text-white hover:bg-gray-700'
+                : 'bg-gray-50 text-gray-400 border border-gray-100'
             }`}
           >
             {justSaved ? (
