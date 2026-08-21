@@ -7,13 +7,15 @@ import { MapPin, Navigation, MessageCircle, Search, Loader2, Trash2 } from 'luci
 import { useMap } from 'react-leaflet';
 
 // Overpass bbox format: south,west,north,east
+// countryCode: ISO 3166-1 alpha-2 for Google Places `componentRestrictions.country`.
+// short: mobile-friendly placeholder label (avoids "Search in Beirut, Lebanon..." overflow).
 const cities = {
-  Lebanon:    { name: 'Beirut, Lebanon',  lat: 33.8938, lng: 35.5018,  zoom: 13, ovBbox: '33.05,35.10,34.69,36.63' },
-  Paris:      { name: 'Paris, France',    lat: 48.8566, lng: 2.3522,   zoom: 13, ovBbox: '41.33,-5.14,51.09,9.56'  },
-  Madrid:     { name: 'Madrid, Spain',    lat: 40.4168, lng: -3.7038,  zoom: 13, ovBbox: '35.17,-9.30,43.79,4.33'  },
-  'New York': { name: 'New York, USA',    lat: 40.7128, lng: -74.0060, zoom: 13, ovBbox: '24.4,-125.0,49.4,-66.9'  },
-  Dubai:      { name: 'Dubai, UAE',       lat: 25.2048, lng: 55.2708,  zoom: 13, ovBbox: '24.8,54.9,25.5,55.6'    },
-  Doha:       { name: 'Doha, Qatar',      lat: 25.2854, lng: 51.5310,  zoom: 13, ovBbox: '24.5,50.7,26.2,51.7'    },
+  Lebanon:    { name: 'Beirut, Lebanon',  short: 'Beirut',   countryCode: 'lb', lat: 33.8938, lng: 35.5018,  zoom: 13, ovBbox: '33.05,35.10,34.69,36.63' },
+  Paris:      { name: 'Paris, France',    short: 'Paris',    countryCode: 'fr', lat: 48.8566, lng: 2.3522,   zoom: 13, ovBbox: '41.33,-5.14,51.09,9.56'  },
+  Madrid:     { name: 'Madrid, Spain',    short: 'Madrid',   countryCode: 'es', lat: 40.4168, lng: -3.7038,  zoom: 13, ovBbox: '35.17,-9.30,43.79,4.33'  },
+  'New York': { name: 'New York, USA',    short: 'New York', countryCode: 'us', lat: 40.7128, lng: -74.0060, zoom: 13, ovBbox: '24.4,-125.0,49.4,-66.9'  },
+  Dubai:      { name: 'Dubai, UAE',       short: 'Dubai',    countryCode: 'ae', lat: 25.2048, lng: 55.2708,  zoom: 13, ovBbox: '24.8,54.9,25.5,55.6'    },
+  Doha:       { name: 'Doha, Qatar',      short: 'Doha',     countryCode: 'qa', lat: 25.2854, lng: 51.5310,  zoom: 13, ovBbox: '24.5,50.7,26.2,51.7'    },
 };
 
 // Create a custom div icon for the marker with initials and color
@@ -96,17 +98,30 @@ const MapPage = () => {
   const autocompleteService = React.useRef(null);
   const placesService = React.useRef(null);
 
-  // Initialize Google Services
-  useEffect(() => {
-    if (window.google) {
-      if (!autocompleteService.current) {
-        autocompleteService.current = new window.google.maps.places.AutocompleteService();
-      }
-      if (!placesService.current) {
-        placesService.current = new window.google.maps.places.PlacesService(document.createElement('div'));
-      }
+  // Try to init Google Places services. Runs on mount AND on every window focus
+  // in case the Maps JS script is still loading when the component mounts (very
+  // common on slow connections — previously the service stayed null forever and
+  // every search silently returned nothing).
+  const ensureGoogleServices = React.useCallback(() => {
+    if (!window.google?.maps?.places) return false;
+    if (!autocompleteService.current) {
+      autocompleteService.current = new window.google.maps.places.AutocompleteService();
     }
+    if (!placesService.current) {
+      placesService.current = new window.google.maps.places.PlacesService(document.createElement('div'));
+    }
+    return true;
   }, []);
+
+  useEffect(() => {
+    if (ensureGoogleServices()) return;
+    // Google not loaded yet — poll every 400ms up to ~10s.
+    const iv = setInterval(() => {
+      if (ensureGoogleServices()) clearInterval(iv);
+    }, 400);
+    const timeout = setTimeout(() => clearInterval(iv), 10000);
+    return () => { clearInterval(iv); clearTimeout(timeout); };
+  }, [ensureGoogleServices]);
 
   // Get user details for pins
   const userName = localStorage.getItem('fitmeal_username') || 'Guest';
@@ -208,23 +223,33 @@ const MapPage = () => {
     setSearchQuery(query);
 
     if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
-    if (!query.trim() || !autocompleteService.current) { setSearchResults([]); return; }
+    if (!query.trim()) { setSearchResults([]); return; }
+    // Lazy-init in case the Maps script finished loading after mount.
+    if (!ensureGoogleServices()) { setSearchResults([]); return; }
 
     searchTimeoutRef.current = setTimeout(() => {
       setIsSearching(true);
-      
+
       const request = {
         input: query,
         location: new window.google.maps.LatLng(selectedCity.lat, selectedCity.lng),
-        radius: 20000, // 20km radius preference
-        componentRestrictions: { country: activeCityId === 'Lebanon' ? 'lb' : activeCityId === 'Paris' ? 'fr' : activeCityId === 'Madrid' ? 'es' : 'us' }
+        radius: 20000, // 20km radius bias around the selected city centre
+        // Country restriction now covers all 6 cities. Previously Dubai and Doha
+        // fell through to 'us', so searching in Dubai actually queried the USA
+        // and never returned matches for local spots.
+        componentRestrictions: { country: selectedCity.countryCode },
       };
 
       autocompleteService.current.getPlacePredictions(request, (predictions, status) => {
         setIsSearching(false);
-        if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+        const S = window.google.maps.places.PlacesServiceStatus;
+        if (status === S.OK) {
           setSearchResults(predictions || []);
+        } else if (status === S.ZERO_RESULTS) {
+          setSearchResults([]);
         } else {
+          // Real API failure — surface via console instead of an alert (silent to user).
+          console.warn('[MapPage] autocomplete failed:', status);
           setSearchResults([]);
         }
       });
@@ -232,80 +257,73 @@ const MapPage = () => {
   };
 
   const handleSelectResult = (prediction) => {
-    if (!window.google) return;
-    
-    // Lazy init if not already done
-    if (!placesService.current) {
-      placesService.current = new window.google.maps.places.PlacesService(document.createElement('div'));
-    }
-    if (!placesService.current) return;
+    if (!ensureGoogleServices()) return;
 
     setIsSearching(true);
     placesService.current.getDetails({ placeId: prediction.place_id }, (place, status) => {
       setIsSearching(false);
-      
-      if (status === window.google.maps.places.PlacesServiceStatus.OK && place && place.geometry) {
-        const location = place.geometry.location;
-        const lat = typeof location.lat === 'function' ? location.lat() : location.lat;
-        const lng = typeof location.lng === 'function' ? location.lng() : location.lng;
-        
-        console.log("DEBUG: Resolved Lat/Lng", lat, lng);
-        
-        // Smart Emoji Detection
-        let detectedEmoji = null;
-        const types = place.types || [];
-        if (types.includes('restaurant')) detectedEmoji = '🍔';
-        else if (types.includes('cafe')) detectedEmoji = '☕';
-        else if (types.includes('bar')) detectedEmoji = '🍺';
-        else if (types.includes('bakery')) detectedEmoji = '🥐';
-        else if (types.includes('night_club')) detectedEmoji = '🍺';
-        
-        setSearchQuery('');
-        setSearchResults([]);
-        setSearchTarget({ lat, lng });
-        setPendingPin({ lat, lng });
-        setRestaurantName(place.name || 'Unknown');
-        setComment('');
-        setSelectedEmoji(detectedEmoji);
-        setShowPinModal(true);
-      } else {
-        setDebugStatus("Error: Google API status " + status);
-        alert("Google API Error: " + status);
+      const S = window.google.maps.places.PlacesServiceStatus;
+      if (status !== S.OK || !place?.geometry) {
+        console.warn('[MapPage] getDetails failed:', status);
+        return;
       }
+      const location = place.geometry.location;
+      const lat = typeof location.lat === 'function' ? location.lat() : location.lat;
+      const lng = typeof location.lng === 'function' ? location.lng() : location.lng;
+
+      // Smart emoji detection from place types.
+      let detectedEmoji = null;
+      const types = place.types || [];
+      if      (types.includes('restaurant'))  detectedEmoji = '🍔';
+      else if (types.includes('cafe'))        detectedEmoji = '☕';
+      else if (types.includes('bar'))         detectedEmoji = '🍺';
+      else if (types.includes('bakery'))      detectedEmoji = '🥐';
+      else if (types.includes('night_club'))  detectedEmoji = '🍺';
+
+      setSearchQuery('');
+      setSearchResults([]);
+      setSearchTarget({ lat, lng });
+      setPendingPin({ lat, lng });
+      setRestaurantName(place.name || 'Unknown');
+      setComment('');
+      setSelectedEmoji(detectedEmoji);
+      setShowPinModal(true);
     });
   };
 
   return (
     <div className="flex flex-col h-full bg-gray-50 rounded-xl overflow-hidden border border-gray-200 shadow-sm relative min-h-[72vh] sm:min-h-[80vh]">
       
-      {/* City Selector Header */}
-      <div className="bg-white px-6 py-4 border-b border-gray-100 flex flex-col md:flex-row justify-between items-center z-10 relative space-y-4 md:space-y-0 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)]">
-        <div>
-          <h2 className="text-2xl  text-gray-900 flex items-center">
-            <MapPin className="mr-2 text-amber-600" />
+      {/* City Selector Header, mobile-first: tighter padding, smaller title,
+          search + city chips take full width and stack. On md+ they sit inline
+          on the right of the title. */}
+      <div className="bg-white px-3 sm:px-6 py-3 sm:py-4 border-b border-gray-100 flex flex-col md:flex-row md:justify-between md:items-center z-10 relative gap-3 md:gap-4 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)]">
+        <div className="min-w-0">
+          <h2 className="text-lg sm:text-2xl text-gray-900 flex items-center leading-tight">
+            <MapPin className="mr-2 text-amber-600 w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
             Explore like a Local
           </h2>
-          <p className="text-sm text-gray-500 font-medium">Click anywhere on the map to pin your favorite spots.</p>
+          <p className="text-xs sm:text-sm text-gray-500 font-medium mt-0.5 hidden sm:block">Click anywhere on the map to pin your favorite spots.</p>
         </div>
-        
-        <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
-          {/* Search Bar */}
+
+        <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-3 md:flex-shrink-0">
+          {/* Search Bar — full width on mobile, fixed 260px on md+ */}
           <div className="relative w-full md:w-64">
             <div className="relative flex items-center">
               <Search className="absolute left-3 w-4 h-4 text-gray-400 pointer-events-none" />
               <input
                 type="text"
-                placeholder={`Search in ${selectedCity.name}...`}
+                placeholder={`Search in ${selectedCity.short}…`}
                 value={searchQuery}
                 onChange={handleSearchChange}
-                className="w-full bg-gray-100 border-none rounded-xl pl-9 pr-9 py-2 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all"
+                className="w-full bg-gray-100 border-none rounded-xl pl-9 pr-9 py-2.5 text-sm focus:ring-2 focus:ring-amber-200 outline-none transition-all"
               />
               {isSearching && (
                 <Loader2 className="absolute right-3 w-4 h-4 text-gray-400 animate-spin" />
               )}
             </div>
 
-            {/* Results dropdown */}
+            {/* Results dropdown — same width as input on all sizes */}
             {searchResults.length > 0 && (
               <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50 max-h-64 overflow-y-auto">
                 {searchResults.map((prediction, idx) => {
@@ -321,7 +339,7 @@ const MapPage = () => {
                       className="w-full text-left px-4 py-3 hover:bg-amber-50 border-b border-gray-50 last:border-0 transition-colors"
                     >
                       <p className="text-sm font-semibold text-gray-800 truncate">{name}</p>
-                      {sub && <p className="text-xs text-gray-400 truncate capitalize">{sub}</p>}
+                      {sub && <p className="text-xs text-gray-400 truncate">{sub}</p>}
                     </button>
                   );
                 })}
@@ -329,12 +347,13 @@ const MapPage = () => {
             )}
           </div>
 
-          <div className="w-full md:w-auto flex space-x-2 bg-gray-100 p-1 rounded-xl overflow-x-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+          {/* City chips — horizontal scroll on mobile, compact padding, no scrollbar */}
+          <div className="w-full md:w-auto flex space-x-1.5 bg-gray-100 p-1 rounded-xl overflow-x-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {Object.keys(cities).map(city => (
               <button
                 key={city}
                 onClick={() => setActiveCityId(city)}
-                className={`flex-shrink-0 px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wider transition-all duration-200 ${
+                className={`flex-shrink-0 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-[11px] sm:text-sm font-bold uppercase tracking-wider transition-all duration-200 ${
                   activeCityId === city
                     ? 'bg-amber-600 text-white shadow-md'
                     : 'text-gray-500 hover:text-gray-800 hover:bg-gray-200'
