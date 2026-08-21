@@ -89,39 +89,16 @@ const MapPage = () => {
   const [comment, setComment] = useState('');
   const [selectedEmoji, setSelectedEmoji] = useState(null);
   
-  // Search state
+  // Search state — powered by OpenStreetMap Nominatim (free, no API key).
+  // Google Places was returning REQUEST_DENIED because billing isn't enabled on
+  // the Cloud project. Nominatim needs no key, no billing, no rate quota beyond
+  // 1 req/sec per IP (our 400ms debounce is well under that).
   const [searchQuery, setSearchQuery]   = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching]   = useState(false);
   const [searchTarget, setSearchTarget] = useState(null);
   const searchTimeoutRef = React.useRef(null);
-  const autocompleteService = React.useRef(null);
-  const placesService = React.useRef(null);
-
-  // Try to init Google Places services. Runs on mount AND on every window focus
-  // in case the Maps JS script is still loading when the component mounts (very
-  // common on slow connections — previously the service stayed null forever and
-  // every search silently returned nothing).
-  const ensureGoogleServices = React.useCallback(() => {
-    if (!window.google?.maps?.places) return false;
-    if (!autocompleteService.current) {
-      autocompleteService.current = new window.google.maps.places.AutocompleteService();
-    }
-    if (!placesService.current) {
-      placesService.current = new window.google.maps.places.PlacesService(document.createElement('div'));
-    }
-    return true;
-  }, []);
-
-  useEffect(() => {
-    if (ensureGoogleServices()) return;
-    // Google not loaded yet — poll every 400ms up to ~10s.
-    const iv = setInterval(() => {
-      if (ensureGoogleServices()) clearInterval(iv);
-    }, 400);
-    const timeout = setTimeout(() => clearInterval(iv), 10000);
-    return () => { clearInterval(iv); clearTimeout(timeout); };
-  }, [ensureGoogleServices]);
+  const searchAbortRef = React.useRef(null);
 
   // Get user details for pins
   const userName = localStorage.getItem('fitmeal_username') || 'Guest';
@@ -218,77 +195,90 @@ const MapPage = () => {
     }
   };
 
+  // Nominatim viewbox uses west,north,east,south (opposite of Overpass's
+  // south,west,north,east that we store in city.ovBbox).
+  const nominatimViewbox = React.useMemo(() => {
+    const [s, w, n, e] = selectedCity.ovBbox.split(',').map(parseFloat);
+    return `${w},${n},${e},${s}`;
+  }, [selectedCity]);
+
   const handleSearchChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
 
     if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
+    if (searchAbortRef.current)   searchAbortRef.current.abort();
     if (!query.trim()) { setSearchResults([]); return; }
-    // Lazy-init in case the Maps script finished loading after mount.
-    if (!ensureGoogleServices()) { setSearchResults([]); return; }
 
-    searchTimeoutRef.current = setTimeout(() => {
+    searchTimeoutRef.current = setTimeout(async () => {
       setIsSearching(true);
-
-      const request = {
-        input: query,
-        location: new window.google.maps.LatLng(selectedCity.lat, selectedCity.lng),
-        radius: 20000, // 20km radius bias around the selected city centre
-        // Country restriction now covers all 6 cities. Previously Dubai and Doha
-        // fell through to 'us', so searching in Dubai actually queried the USA
-        // and never returned matches for local spots.
-        componentRestrictions: { country: selectedCity.countryCode },
-      };
-
-      autocompleteService.current.getPlacePredictions(request, (predictions, status) => {
-        setIsSearching(false);
-        const S = window.google.maps.places.PlacesServiceStatus;
-        if (status === S.OK) {
-          setSearchResults(predictions || []);
-        } else if (status === S.ZERO_RESULTS) {
-          setSearchResults([]);
-        } else {
-          // Real API failure — surface via console instead of an alert (silent to user).
-          console.warn('[MapPage] autocomplete failed:', status);
+      const ctrl = new AbortController();
+      searchAbortRef.current = ctrl;
+      const url = 'https://nominatim.openstreetmap.org/search'
+        + `?q=${encodeURIComponent(query)}`
+        + '&format=jsonv2'
+        + '&limit=8'
+        + '&bounded=1'
+        + `&viewbox=${nominatimViewbox}`
+        + `&countrycodes=${selectedCity.countryCode}`
+        + '&addressdetails=1';
+      try {
+        const res = await fetch(url, {
+          headers: { 'Accept-Language': 'en' },
+          signal: ctrl.signal,
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const items = await res.json();
+        // Normalise Nominatim's shape into what our dropdown expects.
+        const predictions = (items || []).map(r => {
+          const displayParts = (r.display_name || '').split(',').map(s => s.trim());
+          const name = r.name || r.namedetails?.name || displayParts[0] || 'Unknown';
+          const sub  = displayParts.slice(1, 3).join(', ');
+          return {
+            place_id: r.place_id,
+            lat: parseFloat(r.lat),
+            lng: parseFloat(r.lon),
+            osmClass: r.class,
+            osmType: r.type,
+            structured_formatting: { main_text: name, secondary_text: sub },
+            description: r.display_name,
+          };
+        });
+        setSearchResults(predictions);
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          console.warn('[MapPage] Nominatim search failed:', err);
           setSearchResults([]);
         }
-      });
+      } finally {
+        setIsSearching(false);
+      }
     }, 400);
   };
 
   const handleSelectResult = (prediction) => {
-    if (!ensureGoogleServices()) return;
+    if (!prediction || typeof prediction.lat !== 'number') return;
+    // Nominatim returned lat/lng directly on the prediction, no getDetails needed.
+    const { lat, lng } = prediction;
 
-    setIsSearching(true);
-    placesService.current.getDetails({ placeId: prediction.place_id }, (place, status) => {
-      setIsSearching(false);
-      const S = window.google.maps.places.PlacesServiceStatus;
-      if (status !== S.OK || !place?.geometry) {
-        console.warn('[MapPage] getDetails failed:', status);
-        return;
-      }
-      const location = place.geometry.location;
-      const lat = typeof location.lat === 'function' ? location.lat() : location.lat;
-      const lng = typeof location.lng === 'function' ? location.lng() : location.lng;
+    // Smart emoji detection from OSM tags.
+    let detectedEmoji = null;
+    const c = prediction.osmClass, t = prediction.osmType;
+    if      (t === 'restaurant' || t === 'fast_food')   detectedEmoji = '🍔';
+    else if (t === 'cafe' || t === 'coffee_shop')       detectedEmoji = '☕';
+    else if (t === 'bar' || t === 'pub' || t === 'nightclub') detectedEmoji = '🍺';
+    else if (t === 'bakery')                             detectedEmoji = '🥐';
+    else if (t === 'ice_cream')                          detectedEmoji = '🍦';
+    else if (c === 'amenity' && (t || '').includes('food')) detectedEmoji = '🍔';
 
-      // Smart emoji detection from place types.
-      let detectedEmoji = null;
-      const types = place.types || [];
-      if      (types.includes('restaurant'))  detectedEmoji = '🍔';
-      else if (types.includes('cafe'))        detectedEmoji = '☕';
-      else if (types.includes('bar'))         detectedEmoji = '🍺';
-      else if (types.includes('bakery'))      detectedEmoji = '🥐';
-      else if (types.includes('night_club'))  detectedEmoji = '🍺';
-
-      setSearchQuery('');
-      setSearchResults([]);
-      setSearchTarget({ lat, lng });
-      setPendingPin({ lat, lng });
-      setRestaurantName(place.name || 'Unknown');
-      setComment('');
-      setSelectedEmoji(detectedEmoji);
-      setShowPinModal(true);
-    });
+    setSearchQuery('');
+    setSearchResults([]);
+    setSearchTarget({ lat, lng });
+    setPendingPin({ lat, lng });
+    setRestaurantName(prediction.structured_formatting?.main_text || 'Unknown');
+    setComment('');
+    setSelectedEmoji(detectedEmoji);
+    setShowPinModal(true);
   };
 
   return (
