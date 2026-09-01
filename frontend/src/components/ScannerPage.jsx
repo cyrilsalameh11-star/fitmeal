@@ -609,6 +609,9 @@ export default function ScannerPage() {
       carbs:       Math.round(base.carbs    * qty),
       fat:         Math.round(base.fat      * qty),
       servingSize: qty > 1 ? `×${qty} ${base.label || result.servingSize}` : (base.label || result.servingSize),
+      // Pass the compressed camera/gallery preview so the daily-items slider
+      // can show the actual photo of what was logged.
+      image:       preview || null,
     };
     const ok = logMealToday(entry);
     if (ok) {
