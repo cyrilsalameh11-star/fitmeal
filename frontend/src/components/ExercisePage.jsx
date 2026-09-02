@@ -12,7 +12,7 @@ import YoutubersContent from './YoutubersContent';
 
 const EXERCISE_TABS = [
   { id: 'gym',         label: 'Gym' },
-  { id: 'home',        label: 'Home 🏠' },
+  { id: 'home',        label: 'Home' },
   { id: 'padel',       label: 'Padel' },
   { id: 'pilates',     label: 'Pilates' },
   { id: 'running',     label: 'Running' },
