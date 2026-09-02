@@ -1,6 +1,38 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Target, Play, CheckCircle2 } from 'lucide-react';
+import { useState, useEffect, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Target, Play, CheckCircle2, Minus, Plus, Save, TrendingUp, TrendingDown, Minus as Equal, History, X } from 'lucide-react';
+
+const WEIGHTS_KEY = 'fitmeal_gym_weights';
+const DEFAULT_WEIGHT = 20;
+
+function loadAllWeights() {
+  try {
+    const raw = localStorage.getItem(WEIGHTS_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveAllWeights(data) {
+  try {
+    localStorage.setItem(WEIGHTS_KEY, JSON.stringify(data));
+  } catch {}
+}
+
+function relativeDay(iso) {
+  if (!iso) return '';
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const then = new Date(iso);
+  then.setHours(0, 0, 0, 0);
+  const diff = Math.round((today - then) / 86400000);
+  if (diff === 0) return 'today';
+  if (diff === 1) return 'yesterday';
+  if (diff < 7) return `${diff}d ago`;
+  if (diff < 30) return `${Math.round(diff / 7)}w ago`;
+  return `${Math.round(diff / 30)}mo ago`;
+}
 
 const GYM_EXERCISES = {
   chest: [
@@ -196,7 +228,7 @@ const GYM_EXERCISES = {
       sets: 4,
       reps: '12-15',
       tips: ['Keep elbows tucked to sides', 'Spread rope at the bottom', 'Full lockout'],
-      color: 'from-stone-800 to-stone-600',
+      color: 'from-gray-800 to-gray-600',
       imageFolder: 'Triceps_Pushdown_-_Rope_Attachment'
     },
     {
@@ -207,7 +239,7 @@ const GYM_EXERCISES = {
       sets: 4,
       reps: '10-12',
       tips: ['Keep elbows strictly at sides', 'Squeeze at the top', 'Control weight down'],
-      color: 'from-stone-600 to-stone-500',
+      color: 'from-gray-600 to-gray-500',
       imageFolder: 'High_Cable_Curls'
     },
     {
@@ -218,7 +250,7 @@ const GYM_EXERCISES = {
       sets: 3,
       reps: '12-15',
       tips: ['Lean forward slightly', 'Keep elbows pointed forward', 'Full stretch behind head'],
-      color: 'from-stone-500 to-zinc-500',
+      color: 'from-gray-500 to-zinc-500',
       imageFolder: 'Triceps_Overhead_Extension_with_Rope'
     },
     {
@@ -243,6 +275,249 @@ const MUSCLE_GROUPS = [
   { id: 'arms', label: 'Arms' },
 ];
 
+function WeightTracker({ exerciseId, accentColor }) {
+  const [state, setState] = useState(() => {
+    const all = loadAllWeights();
+    return all[exerciseId] || { current: DEFAULT_WEIGHT, history: [] };
+  });
+  const [historyOpen, setHistoryOpen] = useState(false);
+  const [pulse, setPulse] = useState(false);
+
+  useEffect(() => {
+    const onStorage = (e) => {
+      if (e.key !== WEIGHTS_KEY) return;
+      const all = loadAllWeights();
+      setState(all[exerciseId] || { current: DEFAULT_WEIGHT, history: [] });
+    };
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
+  }, [exerciseId]);
+
+  const persist = (next) => {
+    const all = loadAllWeights();
+    all[exerciseId] = next;
+    saveAllWeights(all);
+    setState(next);
+  };
+
+  const adjust = (delta) => {
+    const next = { ...state, current: Math.max(0, Math.round((state.current + delta) * 10) / 10) };
+    persist(next);
+  };
+
+  const logToday = () => {
+    const today = new Date().toISOString().slice(0, 10);
+    const filtered = state.history.filter((h) => h.date !== today);
+    const history = [...filtered, { date: today, weight: state.current }]
+      .sort((a, b) => a.date.localeCompare(b.date))
+      .slice(-60);
+    persist({ ...state, history });
+    setPulse(true);
+    setTimeout(() => setPulse(false), 700);
+  };
+
+  const last = state.history.length > 0 ? state.history[state.history.length - 1] : null;
+  const previous = state.history.length > 1 ? state.history[state.history.length - 2] : null;
+  const trend = last && previous ? last.weight - previous.weight : 0;
+  const TrendIcon = trend > 0 ? TrendingUp : trend < 0 ? TrendingDown : Equal;
+  const trendColor = trend > 0 ? 'text-emerald-500' : trend < 0 ? 'text-rose-500' : 'text-gray-400';
+
+  return (
+    <div className="pt-4 mt-1 border-t border-gray-100">
+      <div className="flex items-center justify-between mb-2.5">
+        <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Working Weight</p>
+        {last ? (
+          <button
+            onClick={() => setHistoryOpen(true)}
+            className="flex items-center gap-1 text-[10px] font-semibold text-gray-500 hover:text-gray-900 transition"
+          >
+            <span className="tabular-nums">{last.weight} kg</span>
+            <TrendIcon size={10} className={trendColor} />
+            <span className="text-gray-400">· {relativeDay(last.date)}</span>
+            <History size={11} className="text-gray-400 ml-0.5" />
+          </button>
+        ) : (
+          <span className="text-[10px] font-medium text-gray-300 italic">not logged yet</span>
+        )}
+      </div>
+      <div className="flex items-center gap-1.5">
+        <button
+          onClick={() => adjust(-2)}
+          className="w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-700 active:scale-95 transition"
+          aria-label="Decrease 2 kg"
+        >
+          <Minus size={16} strokeWidth={2.5} />
+        </button>
+        <motion.div
+          animate={pulse ? { scale: [1, 1.05, 1] } : {}}
+          className={`flex-1 text-center bg-gradient-to-br ${accentColor} rounded-xl py-2 shadow-sm relative overflow-hidden`}
+        >
+          <span className="text-xl font-bold text-white tabular-nums drop-shadow-sm">{state.current}</span>
+          <span className="text-xs font-bold text-white/80 ml-1">kg</span>
+        </motion.div>
+        <button
+          onClick={() => adjust(2)}
+          className="w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-700 active:scale-95 transition"
+          aria-label="Increase 2 kg"
+        >
+          <Plus size={16} strokeWidth={2.5} />
+        </button>
+        <button
+          onClick={logToday}
+          className="h-10 px-3 rounded-xl bg-gray-900 hover:bg-black text-white text-[10px] font-bold uppercase tracking-wider active:scale-95 transition flex items-center gap-1"
+        >
+          <Save size={12} />
+          Log
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {historyOpen && (
+          <WeightHistoryModal
+            exerciseId={exerciseId}
+            history={state.history}
+            onClose={() => setHistoryOpen(false)}
+            onClear={() => {
+              persist({ ...state, history: [] });
+              setHistoryOpen(false);
+            }}
+          />
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function WeightHistoryModal({ history, onClose, onClear }) {
+  useEffect(() => {
+    const onKey = (e) => e.key === 'Escape' && onClose();
+    document.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [onClose]);
+
+  const sorted = useMemo(() => [...history].sort((a, b) => b.date.localeCompare(a.date)), [history]);
+  const max = useMemo(() => history.reduce((m, h) => Math.max(m, h.weight), 0) || 1, [history]);
+  const min = useMemo(() => history.reduce((m, h) => Math.min(m, h.weight), history[0]?.weight ?? 0), [history]);
+  const spark = useMemo(() => {
+    if (history.length < 2) return null;
+    const sortedAsc = [...history].sort((a, b) => a.date.localeCompare(b.date));
+    const w = 320;
+    const h = 80;
+    const pad = 6;
+    const range = Math.max(1, max - min);
+    const pts = sortedAsc.map((pt, i) => {
+      const x = pad + (i / (sortedAsc.length - 1)) * (w - pad * 2);
+      const y = h - pad - ((pt.weight - min) / range) * (h - pad * 2);
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
+    });
+    return { w, h, points: pts.join(' ') };
+  }, [history, max, min]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+      className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-6"
+    >
+      <motion.div
+        initial={{ y: 40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 40, opacity: 0 }}
+        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+        onClick={(e) => e.stopPropagation()}
+        className="bg-white w-full sm:max-w-md rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden"
+      >
+        <div className="flex items-center justify-between p-5 border-b border-gray-100">
+          <div>
+            <h3 className="text-lg font-bold text-gray-900">Weight History</h3>
+            <p className="text-xs text-gray-500 font-medium">{history.length} logged session{history.length === 1 ? '' : 's'}</p>
+          </div>
+          <button
+            onClick={onClose}
+            className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition"
+          >
+            <X size={16} className="text-gray-700" />
+          </button>
+        </div>
+
+        {spark && (
+          <div className="px-5 pt-4">
+            <svg viewBox={`0 0 ${spark.w} ${spark.h}`} className="w-full h-20">
+              <defs>
+                <linearGradient id="sparkFill" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.35" />
+                  <stop offset="100%" stopColor="#f59e0b" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+              <polyline
+                points={`${spark.points} ${spark.w - 6},${spark.h - 6} 6,${spark.h - 6}`}
+                fill="url(#sparkFill)"
+                stroke="none"
+              />
+              <polyline
+                points={spark.points}
+                fill="none"
+                stroke="#f59e0b"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider text-gray-400 mt-1">
+              <span>Min {min} kg</span>
+              <span>Max {max} kg</span>
+            </div>
+          </div>
+        )}
+
+        <div className="max-h-72 overflow-y-auto p-3">
+          {sorted.length === 0 ? (
+            <p className="text-center text-sm text-gray-400 italic py-8">No history yet. Tap Log to record a session.</p>
+          ) : (
+            <ul className="space-y-1.5">
+              {sorted.map((h, i) => {
+                const nextOlder = sorted[i + 1];
+                const delta = nextOlder ? h.weight - nextOlder.weight : 0;
+                return (
+                  <li key={h.date} className="flex items-center justify-between px-3 py-2.5 rounded-xl bg-gray-50">
+                    <div>
+                      <p className="text-sm font-bold text-gray-900 tabular-nums">{h.weight} kg</p>
+                      <p className="text-[10px] font-medium text-gray-500">{h.date} · {relativeDay(h.date)}</p>
+                    </div>
+                    {nextOlder && (
+                      <span className={`text-xs font-bold tabular-nums ${delta > 0 ? 'text-emerald-600' : delta < 0 ? 'text-rose-600' : 'text-gray-400'}`}>
+                        {delta > 0 ? '+' : ''}{delta} kg
+                      </span>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
+
+        {history.length > 0 && (
+          <div className="p-4 border-t border-gray-100">
+            <button
+              onClick={onClear}
+              className="w-full py-2.5 rounded-xl bg-rose-50 text-rose-600 text-xs font-bold uppercase tracking-wider hover:bg-rose-100 transition"
+            >
+              Clear history
+            </button>
+          </div>
+        )}
+      </motion.div>
+    </motion.div>
+  );
+}
+
 function ExerciseCard({ exercise, index }) {
   const [isHovered, setIsHovered] = useState(false);
   const baseUrl = `https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/${exercise.imageFolder}`;
@@ -252,7 +527,7 @@ function ExerciseCard({ exercise, index }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.4 }}
-      className="bg-white rounded-3xl overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all group flex flex-col"
+      className="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all group flex flex-col"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -265,42 +540,43 @@ function ExerciseCard({ exercise, index }) {
             loading="lazy"
           />
         )}
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-stone-900/60 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-gray-900/60 to-transparent pointer-events-none" />
         <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10 w-auto">
-          <span className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/10 shadow-sm">
+          <span className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border border-white/10 shadow-sm">
             {exercise.machine}
           </span>
           <div className="bg-white/20 backdrop-blur-md rounded-full p-2 border border-white/10 shadow-sm">
             <Play size={16} className={`text-white ml-0.5 transition-transform duration-300 ${isHovered ? 'scale-110' : ''}`} />
           </div>
         </div>
-        <h3 className="absolute bottom-4 left-4 right-4 text-xl md:text-2xl font-black text-white z-10 leading-tight drop-shadow-md">
+        <h3 className="absolute bottom-4 left-4 right-4 text-xl md:text-2xl font-bold text-white z-10 leading-tight drop-shadow-md">
           {exercise.name}
         </h3>
       </div>
 
       <div className="p-6 space-y-5 flex-1">
-        <div className="flex justify-between items-center pb-4 border-b border-stone-50">
-          <div className="flex items-center space-x-2 text-stone-500">
+        <div className="flex justify-between items-center pb-4 border-b border-gray-50">
+          <div className="flex items-center space-x-2 text-gray-500">
             <Target size={16} className="text-amber-500" />
-            <span className="text-xs font-bold uppercase tracking-widest">{exercise.focus}</span>
+            <span className="text-xs font-bold uppercase tracking-wider">{exercise.focus}</span>
           </div>
           <div className="flex space-x-2">
-            <div className="flex flex-col items-center bg-stone-50 px-3 py-1.5 rounded-xl">
-              <span className="text-sm font-black text-stone-900">{exercise.sets}</span>
-              <span className="text-[9px] font-bold uppercase tracking-widest text-stone-400">Sets</span>
+            <div className="flex flex-col items-center bg-gray-50 px-3 py-1.5 rounded-xl">
+              <span className="text-sm font-bold text-gray-900">{exercise.sets}</span>
+              <span className="text-[9px] font-bold uppercase tracking-wider text-gray-400">Sets</span>
             </div>
-            <div className="flex flex-col items-center bg-stone-50 px-3 py-1.5 rounded-xl">
-              <span className="text-sm font-black text-stone-900">{exercise.reps}</span>
-              <span className="text-[9px] font-bold uppercase tracking-widest text-stone-400">Reps</span>
+            <div className="flex flex-col items-center bg-gray-50 px-3 py-1.5 rounded-xl">
+              <span className="text-sm font-bold text-gray-900">{exercise.reps}</span>
+              <span className="text-[9px] font-bold uppercase tracking-wider text-gray-400">Reps</span>
             </div>
           </div>
         </div>
+        <WeightTracker exerciseId={exercise.id} accentColor={exercise.color} />
         <div>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-3">Form Check</p>
+          <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-3">Form Check</p>
           <ul className="space-y-2">
             {exercise.tips.map((tip, i) => (
-              <li key={i} className="flex items-start space-x-2 text-sm text-stone-600 font-medium">
+              <li key={i} className="flex items-start space-x-2 text-sm text-gray-600 font-medium">
                 <CheckCircle2 size={16} className="text-emerald-500 mt-0.5 flex-shrink-0" />
                 <span>{tip}</span>
               </li>
@@ -324,8 +600,8 @@ export default function GymContent() {
       className="space-y-10 md:space-y-12"
     >
       <div className="max-w-3xl">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl mb-4 leading-tight">Machine &amp; Cable <br /><span className="italic font-normal text-stone-400">Workouts.</span></h1>
-        <p className="text-base md:text-lg text-stone-500 font-medium">Safe, effective, and highly isolated exercises designed for machines and cables.</p>
+        <h1 className="text-4xl md:text-5xl lg:text-6xl mb-4 leading-tight">Machine &amp; Cable <br /><span className="italic font-normal text-gray-400">Workouts.</span></h1>
+        <p className="text-base md:text-lg text-gray-500 font-medium">Safe, effective, and highly isolated exercises designed for machines and cables.</p>
       </div>
 
       <div className="flex overflow-x-auto gap-3 pb-2 -mx-2 px-2 scrollbar-hide">
@@ -333,10 +609,10 @@ export default function GymContent() {
           <button
             key={group.id}
             onClick={() => setActiveGroup(group.id)}
-            className={`flex-shrink-0 px-6 py-3 rounded-2xl font-bold text-sm uppercase tracking-widest border transition-all ${
+            className={`flex-shrink-0 px-6 py-3 rounded-2xl font-bold text-sm uppercase tracking-wider border transition-all ${
               activeGroup === group.id
-                ? 'bg-stone-900 text-white border-stone-900 shadow-lg scale-[1.03]'
-                : 'bg-white text-stone-500 border-stone-200 hover:border-amber-200'
+                ? 'bg-gray-900 text-white border-gray-900 shadow-lg scale-[1.03]'
+                : 'bg-white text-gray-500 border-gray-200 hover:border-amber-200'
             }`}
           >
             {group.label}
