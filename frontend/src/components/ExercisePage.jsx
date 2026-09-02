@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ExerciseTracker from './ExerciseTracker';
 import GymContent from './GymContent';
+import HomeContent from './HomeContent';
 import PadelContent from './PadelContent';
 import PilatesContent from './PilatesContent';
 import RunningContent from './RunningPage';
@@ -11,6 +12,7 @@ import YoutubersContent from './YoutubersContent';
 
 const EXERCISE_TABS = [
   { id: 'gym',         label: 'Gym' },
+  { id: 'home',        label: 'Home 🏠' },
   { id: 'padel',       label: 'Padel' },
   { id: 'pilates',     label: 'Pilates' },
   { id: 'running',     label: 'Running' },
@@ -65,6 +67,7 @@ export default function ExercisePage() {
 
       <AnimatePresence mode="wait">
         {activeTab === 'gym' && <GymContent key="gym-content" />}
+        {activeTab === 'home' && <HomeContent key="home-content" />}
         {activeTab === 'padel' && <PadelContent key="padel-content" />}
         {activeTab === 'pilates' && <PilatesContent key="pilates-content" />}
         {activeTab === 'running' && <RunningContent key="running-content" />}
