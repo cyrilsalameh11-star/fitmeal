@@ -4,6 +4,16 @@ import { Target, Play, CheckCircle2, Minus, Plus, Save, TrendingUp, TrendingDown
 
 const WEIGHTS_KEY = 'fitmeal_gym_weights';
 const DEFAULT_WEIGHT = 20;
+const DEFAULT_STEP = 2;
+const STEP_OPTIONS = [0.5, 1, 2, 5];
+
+function formatWeight(n) {
+  const rounded = Math.round(n * 10) / 10;
+  return rounded % 1 === 0 ? String(rounded) : rounded.toFixed(1);
+}
+function formatStep(n) {
+  return n % 1 === 0 ? String(n) : n.toFixed(1);
+}
 
 function loadAllWeights() {
   try {
@@ -79,6 +89,39 @@ const GYM_EXERCISES = {
       tips: ['Bench at 30-45 degrees', 'Bar paths to upper chest', 'Drive through palms'],
       color: 'from-fuchsia-500 to-pink-500',
       imageFolder: 'Smith_Machine_Incline_Bench_Press'
+    },
+    {
+      id: 'db-flat-press',
+      name: 'Flat Dumbbell Press',
+      machine: 'Flat Bench + Dumbbells',
+      focus: 'Mid Chest',
+      sets: 4,
+      reps: '8-12',
+      tips: ['Palms facing forward at the press', 'Elbows at ~45°, not fully flared', 'Squeeze the dumbbells together at the top'],
+      color: 'from-pink-500 to-rose-500',
+      imageFolder: 'Dumbbell_Bench_Press'
+    },
+    {
+      id: 'db-incline-press',
+      name: 'Incline Dumbbell Press',
+      machine: 'Incline Bench + Dumbbells',
+      focus: 'Upper Chest',
+      sets: 3,
+      reps: '10-12',
+      tips: ['Bench at 30°, not steeper', 'Keep the dumbbells stacked over your elbows', 'Full range, no bouncing off the chest'],
+      color: 'from-rose-500 to-red-500',
+      imageFolder: 'Incline_Dumbbell_Press'
+    },
+    {
+      id: 'db-fly',
+      name: 'Dumbbell Fly',
+      machine: 'Flat Bench + Dumbbells',
+      focus: 'Chest Stretch',
+      sets: 3,
+      reps: '12-15',
+      tips: ['Slight fixed bend in the elbows', 'Wide arc, deep stretch across the pecs', 'Squeeze at the top without clanking'],
+      color: 'from-red-500 to-orange-500',
+      imageFolder: 'Dumbbell_Flyes'
     }
   ],
   back: [
@@ -125,6 +168,28 @@ const GYM_EXERCISES = {
       tips: ['Keep arms straight but not locked', 'Hinge slightly at hips', 'Pull bar to thighs'],
       color: 'from-sky-500 to-blue-500',
       imageFolder: 'Straight-Arm_Pulldown'
+    },
+    {
+      id: 'db-one-arm-row',
+      name: 'One-Arm Dumbbell Row',
+      machine: 'Flat Bench + Dumbbell',
+      focus: 'Lats & Mid Back',
+      sets: 4,
+      reps: '10-12',
+      tips: ['One knee and hand on the bench, flat back', 'Pull to the hip, elbow tight along the ribs', 'Full stretch at the bottom, no shrug'],
+      color: 'from-blue-500 to-indigo-500',
+      imageFolder: 'One-Arm_Dumbbell_Row'
+    },
+    {
+      id: 'db-pullover',
+      name: 'Dumbbell Pullover',
+      machine: 'Flat Bench + Dumbbell',
+      focus: 'Lats & Serratus',
+      sets: 3,
+      reps: '12-15',
+      tips: ['Lie across the bench, hips low', 'Cup one dumbbell with both hands', 'Deep stretch back, pull with the lats not the arms'],
+      color: 'from-indigo-500 to-purple-500',
+      imageFolder: 'Dumbbell_Pullover'
     }
   ],
   legs: [
@@ -171,6 +236,39 @@ const GYM_EXERCISES = {
       tips: ['Pause at the very top', 'Deep stretch at the bottom', 'Keep knees slightly bent'],
       color: 'from-lime-500 to-green-500',
       imageFolder: 'Standing_Calf_Raises'
+    },
+    {
+      id: 'goblet-squat',
+      name: 'Dumbbell Goblet Squat',
+      machine: 'Single Heavy Dumbbell',
+      focus: 'Quads & Glutes',
+      sets: 4,
+      reps: '10-12',
+      tips: ['Hold the dumbbell against the chest, elbows tucked', 'Feet just wider than the shoulders', 'Sit between the heels, torso tall'],
+      color: 'from-green-600 to-emerald-500',
+      imageFolder: 'Goblet_Squat'
+    },
+    {
+      id: 'db-rdl',
+      name: 'Dumbbell Romanian Deadlift',
+      machine: 'Pair of Dumbbells',
+      focus: 'Hamstrings & Glutes',
+      sets: 4,
+      reps: '10-12',
+      tips: ['Hinge at the hips with soft knees', 'Dumbbells slide down the thighs', 'Stretch to mid-shin, squeeze glutes on the way up'],
+      color: 'from-emerald-500 to-teal-500',
+      imageFolder: 'Romanian_Deadlift_With_Dumbbells'
+    },
+    {
+      id: 'db-lunge',
+      name: 'Dumbbell Walking Lunges',
+      machine: 'Pair of Dumbbells',
+      focus: 'Quads, Glutes, Balance',
+      sets: 3,
+      reps: '10-12 per leg',
+      tips: ['Take a long step, sink straight down', 'Front knee stacked over the ankle', 'Drive through the heel, chest tall'],
+      color: 'from-teal-500 to-cyan-500',
+      imageFolder: 'Dumbbell_Lunges'
     }
   ],
   shoulders: [
@@ -217,6 +315,39 @@ const GYM_EXERCISES = {
       tips: ['Pull rope towards eyes', 'Keep elbows high', 'Squeeze upper back'],
       color: 'from-fuchsia-500 to-purple-500',
       imageFolder: 'Face_Pull'
+    },
+    {
+      id: 'seated-db-press',
+      name: 'Seated Dumbbell Press',
+      machine: 'Upright Bench + Dumbbells',
+      focus: 'Front & Side Delts',
+      sets: 4,
+      reps: '8-12',
+      tips: ['Bench upright, back fully supported', 'Dumbbells at ear-level, press straight up', 'Don\'t lock out or clang overhead'],
+      color: 'from-orange-500 to-amber-500',
+      imageFolder: 'Seated_Dumbbell_Press'
+    },
+    {
+      id: 'db-lateral',
+      name: 'Dumbbell Lateral Raise',
+      machine: 'Pair of Dumbbells',
+      focus: 'Side Delts (Width)',
+      sets: 4,
+      reps: '12-15',
+      tips: ['Slight forward tilt of the dumbbell', 'Lead with the elbow, pinky slightly up', 'Stop at shoulder height, control the descent'],
+      color: 'from-amber-500 to-yellow-500',
+      imageFolder: 'Side_Lateral_Raise'
+    },
+    {
+      id: 'db-rear-fly',
+      name: 'Bent-Over Rear Delt Fly',
+      machine: 'Incline Bench + Dumbbells',
+      focus: 'Rear Delts',
+      sets: 3,
+      reps: '12-15',
+      tips: ['Chest supported on an incline bench, face down', 'Slight bend in the elbows, sweep out and up', 'Squeeze the shoulder blades without shrugging'],
+      color: 'from-yellow-500 to-lime-500',
+      imageFolder: 'Bent_Over_Dumbbell_Rear_Delt_Row_With_Head_On_Bench'
     }
   ],
   arms: [
@@ -263,6 +394,39 @@ const GYM_EXERCISES = {
       tips: ['Armpits snug against pad', 'Don\'t let tension off at bottom', 'Squeeze hard at top'],
       color: 'from-zinc-500 to-neutral-400',
       imageFolder: 'Machine_Preacher_Curls'
+    },
+    {
+      id: 'db-curl',
+      name: 'Dumbbell Bicep Curl',
+      machine: 'Pair of Dumbbells',
+      focus: 'Biceps',
+      sets: 4,
+      reps: '10-12',
+      tips: ['Elbows pinned to the sides', 'Supinate the wrist as you curl up', 'Full lower phase, no swinging'],
+      color: 'from-violet-500 to-purple-500',
+      imageFolder: 'Dumbbell_Bicep_Curl'
+    },
+    {
+      id: 'db-hammer',
+      name: 'Dumbbell Hammer Curl',
+      machine: 'Pair of Dumbbells',
+      focus: 'Brachialis & Forearms',
+      sets: 3,
+      reps: '10-12',
+      tips: ['Neutral grip, thumbs up throughout', 'Elbows fixed, shoulders quiet', 'Squeeze at the top for one second'],
+      color: 'from-purple-500 to-fuchsia-500',
+      imageFolder: 'Hammer_Curls'
+    },
+    {
+      id: 'skull-crusher',
+      name: 'Skull Crusher',
+      machine: 'Flat Bench + Dumbbells',
+      focus: 'Triceps (Long Head)',
+      sets: 3,
+      reps: '10-12',
+      tips: ['Elbows locked overhead, upper arms vertical', 'Lower the dumbbells beside the ears', 'Extend from the elbow only'],
+      color: 'from-fuchsia-500 to-pink-500',
+      imageFolder: 'Lying_Dumbbell_Tricep_Extension'
     }
   ]
 };
@@ -278,20 +442,23 @@ const MUSCLE_GROUPS = [
 function WeightTracker({ exerciseId, accentColor }) {
   const [state, setState] = useState(() => {
     const all = loadAllWeights();
-    return all[exerciseId] || { current: DEFAULT_WEIGHT, history: [] };
+    return all[exerciseId] || { current: DEFAULT_WEIGHT, step: DEFAULT_STEP, history: [] };
   });
   const [historyOpen, setHistoryOpen] = useState(false);
   const [pulse, setPulse] = useState(false);
+  const [justLogged, setJustLogged] = useState(false);
 
   useEffect(() => {
     const onStorage = (e) => {
       if (e.key !== WEIGHTS_KEY) return;
       const all = loadAllWeights();
-      setState(all[exerciseId] || { current: DEFAULT_WEIGHT, history: [] });
+      setState(all[exerciseId] || { current: DEFAULT_WEIGHT, step: DEFAULT_STEP, history: [] });
     };
     window.addEventListener('storage', onStorage);
     return () => window.removeEventListener('storage', onStorage);
   }, [exerciseId]);
+
+  const step = state.step ?? DEFAULT_STEP;
 
   const persist = (next) => {
     const all = loadAllWeights();
@@ -300,10 +467,15 @@ function WeightTracker({ exerciseId, accentColor }) {
     setState(next);
   };
 
-  const adjust = (delta) => {
-    const next = { ...state, current: Math.max(0, Math.round((state.current + delta) * 10) / 10) };
+  const adjust = (mult) => {
+    const raw = state.current + mult * step;
+    const next = { ...state, current: Math.max(0, Math.round(raw * 10) / 10) };
     persist(next);
+    setPulse(true);
+    setTimeout(() => setPulse(false), 180);
   };
+
+  const setStep = (nextStep) => persist({ ...state, step: nextStep });
 
   const logToday = () => {
     const today = new Date().toISOString().slice(0, 10);
@@ -312,8 +484,8 @@ function WeightTracker({ exerciseId, accentColor }) {
       .sort((a, b) => a.date.localeCompare(b.date))
       .slice(-60);
     persist({ ...state, history });
-    setPulse(true);
-    setTimeout(() => setPulse(false), 700);
+    setJustLogged(true);
+    setTimeout(() => setJustLogged(false), 1400);
   };
 
   const last = state.history.length > 0 ? state.history[state.history.length - 1] : null;
@@ -324,52 +496,91 @@ function WeightTracker({ exerciseId, accentColor }) {
 
   return (
     <div className="pt-4 mt-1 border-t border-gray-100">
-      <div className="flex items-center justify-between mb-2.5">
+      <div className="flex items-center justify-between mb-3">
         <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Working Weight</p>
         {last ? (
           <button
             onClick={() => setHistoryOpen(true)}
-            className="flex items-center gap-1 text-[10px] font-semibold text-gray-500 hover:text-gray-900 transition"
+            className="flex items-center gap-1.5 text-[11px] font-semibold text-gray-500 hover:text-gray-900 active:scale-95 transition px-2 py-1 -mr-2 rounded-lg"
           >
-            <span className="tabular-nums">{last.weight} kg</span>
-            <TrendIcon size={10} className={trendColor} />
-            <span className="text-gray-400">· {relativeDay(last.date)}</span>
-            <History size={11} className="text-gray-400 ml-0.5" />
+            <span className="tabular-nums">{formatWeight(last.weight)} kg</span>
+            <TrendIcon size={11} className={trendColor} strokeWidth={2.5} />
+            <span className="text-gray-400 hidden xs:inline">· {relativeDay(last.date)}</span>
+            <History size={12} className="text-gray-400" />
           </button>
         ) : (
           <span className="text-[10px] font-medium text-gray-300 italic">not logged yet</span>
         )}
       </div>
-      <div className="flex items-center gap-1.5">
+
+      <div className="flex items-center gap-2 mb-3">
         <button
-          onClick={() => adjust(-2)}
-          className="w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-700 active:scale-95 transition"
-          aria-label="Decrease 2 kg"
+          onClick={() => adjust(-1)}
+          className="h-14 w-14 sm:h-12 sm:w-12 shrink-0 rounded-2xl bg-gray-100 hover:bg-gray-200 active:bg-gray-300 flex items-center justify-center text-gray-800 active:scale-95 transition"
+          aria-label={`Decrease ${step} kg`}
         >
-          <Minus size={16} strokeWidth={2.5} />
+          <Minus size={22} strokeWidth={3} />
         </button>
         <motion.div
-          animate={pulse ? { scale: [1, 1.05, 1] } : {}}
-          className={`flex-1 text-center bg-gradient-to-br ${accentColor} rounded-xl py-2 shadow-sm relative overflow-hidden`}
+          animate={pulse ? { scale: [1, 1.04, 1] } : {}}
+          transition={{ duration: 0.18 }}
+          className={`flex-1 min-w-0 text-center bg-gradient-to-br ${accentColor} rounded-2xl py-3 shadow-md relative overflow-hidden`}
         >
-          <span className="text-xl font-bold text-white tabular-nums drop-shadow-sm">{state.current}</span>
-          <span className="text-xs font-bold text-white/80 ml-1">kg</span>
+          <div className="flex items-baseline justify-center gap-1">
+            <span className="text-2xl sm:text-xl font-bold text-white tabular-nums drop-shadow-sm">{formatWeight(state.current)}</span>
+            <span className="text-sm font-bold text-white/85">kg</span>
+          </div>
+          <div className="text-[9px] font-bold uppercase tracking-wider text-white/75 mt-0.5">step {formatStep(step)} kg</div>
         </motion.div>
         <button
-          onClick={() => adjust(2)}
-          className="w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-700 active:scale-95 transition"
-          aria-label="Increase 2 kg"
+          onClick={() => adjust(1)}
+          className="h-14 w-14 sm:h-12 sm:w-12 shrink-0 rounded-2xl bg-gray-100 hover:bg-gray-200 active:bg-gray-300 flex items-center justify-center text-gray-800 active:scale-95 transition"
+          aria-label={`Increase ${step} kg`}
         >
-          <Plus size={16} strokeWidth={2.5} />
-        </button>
-        <button
-          onClick={logToday}
-          className="h-10 px-3 rounded-xl bg-gray-900 hover:bg-black text-white text-[10px] font-bold uppercase tracking-wider active:scale-95 transition flex items-center gap-1"
-        >
-          <Save size={12} />
-          Log
+          <Plus size={22} strokeWidth={3} />
         </button>
       </div>
+
+      <div className="flex items-center gap-1.5 mb-3">
+        {STEP_OPTIONS.map((s) => {
+          const active = step === s;
+          return (
+            <button
+              key={s}
+              onClick={() => setStep(s)}
+              className={`flex-1 py-2 rounded-lg text-[11px] font-bold tabular-nums transition ${
+                active
+                  ? 'bg-gray-900 text-white shadow-sm'
+                  : 'bg-gray-50 text-gray-500 hover:bg-gray-100'
+              }`}
+              aria-pressed={active}
+            >
+              +{formatStep(s)}
+            </button>
+          );
+        })}
+      </div>
+
+      <button
+        onClick={logToday}
+        className={`w-full h-11 rounded-xl text-xs font-bold uppercase tracking-wider active:scale-[0.98] transition flex items-center justify-center gap-2 ${
+          justLogged
+            ? 'bg-emerald-500 text-white shadow-md'
+            : 'bg-gray-900 hover:bg-black text-white'
+        }`}
+      >
+        {justLogged ? (
+          <>
+            <CheckCircle2 size={14} strokeWidth={2.5} />
+            Saved
+          </>
+        ) : (
+          <>
+            <Save size={13} />
+            Log Today's Weight
+          </>
+        )}
+      </button>
 
       <AnimatePresence>
         {historyOpen && (
@@ -471,8 +682,8 @@ function WeightHistoryModal({ history, onClose, onClear }) {
               />
             </svg>
             <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider text-gray-400 mt-1">
-              <span>Min {min} kg</span>
-              <span>Max {max} kg</span>
+              <span>Min {formatWeight(min)} kg</span>
+              <span>Max {formatWeight(max)} kg</span>
             </div>
           </div>
         )}
@@ -488,12 +699,12 @@ function WeightHistoryModal({ history, onClose, onClear }) {
                 return (
                   <li key={h.date} className="flex items-center justify-between px-3 py-2.5 rounded-xl bg-gray-50">
                     <div>
-                      <p className="text-sm font-bold text-gray-900 tabular-nums">{h.weight} kg</p>
+                      <p className="text-sm font-bold text-gray-900 tabular-nums">{formatWeight(h.weight)} kg</p>
                       <p className="text-[10px] font-medium text-gray-500">{h.date} · {relativeDay(h.date)}</p>
                     </div>
                     {nextOlder && (
                       <span className={`text-xs font-bold tabular-nums ${delta > 0 ? 'text-emerald-600' : delta < 0 ? 'text-rose-600' : 'text-gray-400'}`}>
-                        {delta > 0 ? '+' : ''}{delta} kg
+                        {delta > 0 ? '+' : ''}{formatWeight(delta)} kg
                       </span>
                     )}
                   </li>
@@ -533,11 +744,13 @@ function ExerciseCard({ exercise, index }) {
     >
       <div className={`h-48 bg-gradient-to-br ${exercise.color} relative overflow-hidden flex justify-center items-center`}>
         {exercise.imageFolder && (
-          <img 
-            src={`${baseUrl}/${isHovered ? '1' : '0'}.jpg`} 
-            alt={exercise.name} 
+          <img
+            src={`${baseUrl}/${isHovered ? '1' : '0'}.jpg`}
+            alt={exercise.name}
             className="h-full object-cover mix-blend-multiply opacity-90 transition-opacity duration-300"
             loading="lazy"
+            onError={(e) => { e.currentTarget.style.visibility = 'hidden'; }}
+            onLoad={(e) => { e.currentTarget.style.visibility = 'visible'; }}
           />
         )}
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-gray-900/60 to-transparent pointer-events-none" />
