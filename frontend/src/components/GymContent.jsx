@@ -5,7 +5,7 @@ import { Target, Play, CheckCircle2, Minus, Plus, Save, TrendingUp, TrendingDown
 const WEIGHTS_KEY = 'fitmeal_gym_weights';
 const DEFAULT_WEIGHT = 20;
 const DEFAULT_STEP = 2;
-const STEP_OPTIONS = [0.5, 1, 2, 5];
+const STEP_OPTIONS = [0, 0.5, 1, 1.5, 2];
 
 function formatWeight(n) {
   const rounded = Math.round(n * 10) / 10;
@@ -180,17 +180,6 @@ const GYM_EXERCISES = {
       color: 'from-blue-500 to-indigo-500',
       imageFolder: 'One-Arm_Dumbbell_Row'
     },
-    {
-      id: 'db-pullover',
-      name: 'Dumbbell Pullover',
-      machine: 'Flat Bench + Dumbbell',
-      focus: 'Lats & Serratus',
-      sets: 3,
-      reps: '12-15',
-      tips: ['Lie across the bench, hips low', 'Cup one dumbbell with both hands', 'Deep stretch back, pull with the lats not the arms'],
-      color: 'from-indigo-500 to-purple-500',
-      imageFolder: 'Dumbbell_Pullover'
-    }
   ],
   legs: [
     {
@@ -247,17 +236,6 @@ const GYM_EXERCISES = {
       tips: ['Hold the dumbbell against the chest, elbows tucked', 'Feet just wider than the shoulders', 'Sit between the heels, torso tall'],
       color: 'from-green-600 to-emerald-500',
       imageFolder: 'Goblet_Squat'
-    },
-    {
-      id: 'db-rdl',
-      name: 'Dumbbell Romanian Deadlift',
-      machine: 'Pair of Dumbbells',
-      focus: 'Hamstrings & Glutes',
-      sets: 4,
-      reps: '10-12',
-      tips: ['Hinge at the hips with soft knees', 'Dumbbells slide down the thighs', 'Stretch to mid-shin, squeeze glutes on the way up'],
-      color: 'from-emerald-500 to-teal-500',
-      imageFolder: 'Romanian_Deadlift_With_Dumbbells'
     },
     {
       id: 'db-lunge',
@@ -338,17 +316,6 @@ const GYM_EXERCISES = {
       color: 'from-amber-500 to-yellow-500',
       imageFolder: 'Side_Lateral_Raise'
     },
-    {
-      id: 'db-rear-fly',
-      name: 'Bent-Over Rear Delt Fly',
-      machine: 'Incline Bench + Dumbbells',
-      focus: 'Rear Delts',
-      sets: 3,
-      reps: '12-15',
-      tips: ['Chest supported on an incline bench, face down', 'Slight bend in the elbows, sweep out and up', 'Squeeze the shoulder blades without shrugging'],
-      color: 'from-yellow-500 to-lime-500',
-      imageFolder: 'Bent_Over_Dumbbell_Rear_Delt_Row_With_Head_On_Bench'
-    }
   ],
   arms: [
     {
@@ -457,6 +424,7 @@ function WeightTracker({ exerciseId, accentColor }) {
   };
 
   const adjust = (mult) => {
+    if (!step) return;
     const raw = state.current + mult * step;
     const next = { ...state, current: Math.max(0, Math.round(raw * 10) / 10) };
     persist(next);
@@ -505,8 +473,13 @@ function WeightTracker({ exerciseId, accentColor }) {
       <div className="flex items-center gap-2 mb-3">
         <button
           onClick={() => adjust(-1)}
-          className="h-14 w-14 sm:h-12 sm:w-12 shrink-0 rounded-2xl bg-gray-100 hover:bg-gray-200 active:bg-gray-300 flex items-center justify-center text-gray-800 active:scale-95 transition"
-          aria-label={`Decrease ${step} kg`}
+          disabled={step === 0}
+          className={`h-14 w-14 sm:h-12 sm:w-12 shrink-0 rounded-2xl flex items-center justify-center transition ${
+            step === 0
+              ? 'bg-gray-50 text-gray-300 cursor-not-allowed'
+              : 'bg-gray-100 hover:bg-gray-200 active:bg-gray-300 text-gray-800 active:scale-95'
+          }`}
+          aria-label={step === 0 ? 'Adjustments locked' : `Decrease ${step} kg`}
         >
           <Minus size={22} strokeWidth={3} />
         </button>
@@ -519,32 +492,43 @@ function WeightTracker({ exerciseId, accentColor }) {
             <span className="text-2xl sm:text-xl font-bold text-white tabular-nums drop-shadow-sm">{formatWeight(state.current)}</span>
             <span className="text-sm font-bold text-white/85">kg</span>
           </div>
-          <div className="text-[9px] font-bold uppercase tracking-wider text-white/75 mt-0.5">step {formatStep(step)} kg</div>
+          <div className="text-[9px] font-bold uppercase tracking-wider text-white/75 mt-0.5">
+            {step === 0 ? 'locked · pick a step' : `step ${formatStep(step)} kg`}
+          </div>
         </motion.div>
         <button
           onClick={() => adjust(1)}
-          className="h-14 w-14 sm:h-12 sm:w-12 shrink-0 rounded-2xl bg-gray-100 hover:bg-gray-200 active:bg-gray-300 flex items-center justify-center text-gray-800 active:scale-95 transition"
-          aria-label={`Increase ${step} kg`}
+          disabled={step === 0}
+          className={`h-14 w-14 sm:h-12 sm:w-12 shrink-0 rounded-2xl flex items-center justify-center transition ${
+            step === 0
+              ? 'bg-gray-50 text-gray-300 cursor-not-allowed'
+              : 'bg-gray-100 hover:bg-gray-200 active:bg-gray-300 text-gray-800 active:scale-95'
+          }`}
+          aria-label={step === 0 ? 'Adjustments locked' : `Increase ${step} kg`}
         >
           <Plus size={22} strokeWidth={3} />
         </button>
       </div>
 
-      <div className="flex items-center gap-1.5 mb-3">
+      <div className="flex items-center gap-1 mb-3">
         {STEP_OPTIONS.map((s) => {
           const active = step === s;
+          const zero = s === 0;
           return (
             <button
               key={s}
               onClick={() => setStep(s)}
               className={`flex-1 py-2 rounded-lg text-[11px] font-bold tabular-nums transition ${
                 active
-                  ? 'bg-gray-900 text-white shadow-sm'
+                  ? zero
+                    ? 'bg-gray-500 text-white shadow-sm'
+                    : 'bg-gray-900 text-white shadow-sm'
                   : 'bg-gray-50 text-gray-500 hover:bg-gray-100'
               }`}
               aria-pressed={active}
+              title={zero ? 'Lock the weight (buttons disabled)' : `Step ${formatStep(s)} kg`}
             >
-              +{formatStep(s)}
+              {zero ? '0' : `+${formatStep(s)}`}
             </button>
           );
         })}
