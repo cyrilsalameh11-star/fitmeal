@@ -60,24 +60,13 @@ const HOME_EXERCISES = {
     {
       id: 'h-pushup',
       name: 'Push-Up',
-      focus: 'Mid Chest & Triceps',
+      focus: 'Horizontal Press (Baseline)',
       sets: 4,
       target: '10-20 reps',
       unit: 'reps',
       tips: ['Body in a straight line, glutes squeezed', 'Elbows at ~45°, not flared', 'Chest kisses the floor, full lockout at the top'],
       color: 'from-orange-400 to-rose-400',
       imageFolder: 'Pushups',
-    },
-    {
-      id: 'h-wide-pushup',
-      name: 'Wide Push-Up',
-      focus: 'Outer Chest',
-      sets: 3,
-      target: '10-15 reps',
-      unit: 'reps',
-      tips: ['Hands wider than shoulders', 'Elbows flare more, mind the shoulders', 'Focus on the pec stretch at the bottom'],
-      color: 'from-red-400 to-rose-500',
-      imageFolder: 'Push-Up_Wide',
     },
     {
       id: 'h-diamond-pushup',
@@ -93,7 +82,7 @@ const HOME_EXERCISES = {
     {
       id: 'h-plyo-pushup',
       name: 'Plyo Push-Up',
-      focus: 'Explosive Chest & Power',
+      focus: 'Chest Power (Explosive)',
       sets: 3,
       target: '6-10 reps',
       unit: 'reps',
@@ -107,7 +96,7 @@ const HOME_EXERCISES = {
     {
       id: 'h-superman',
       name: 'Superman Hold',
-      focus: 'Lower Back & Erectors',
+      focus: 'Posterior Chain (Iso)',
       sets: 3,
       target: '20-40 sec',
       unit: 'sec',
@@ -115,24 +104,13 @@ const HOME_EXERCISES = {
       color: 'from-emerald-400 to-teal-400',
       imageFolder: 'Superman',
     },
-    {
-      id: 'h-hyper-no-bench',
-      name: 'Prone Hyperextension',
-      focus: 'Lower Back & Glutes',
-      sets: 3,
-      target: '12-15 reps',
-      unit: 'reps',
-      tips: ['Lie face down, hands lightly behind the ears', 'Lift the chest by squeezing the lower back and glutes', 'Slow reps, no jerking, small range'],
-      color: 'from-teal-400 to-emerald-500',
-      imageFolder: 'Hyperextensions_With_No_Hyperextension_Bench',
-    },
   ],
 
   legs: [
     {
       id: 'h-squat',
       name: 'Bodyweight Squat',
-      focus: 'Quads & Glutes',
+      focus: 'Squat (Both Legs)',
       sets: 4,
       target: '15-25 reps',
       unit: 'reps',
@@ -143,7 +121,7 @@ const HOME_EXERCISES = {
     {
       id: 'h-jump-squat',
       name: 'Jump Squat',
-      focus: 'Explosive Power',
+      focus: 'Squat Power (Explosive)',
       sets: 3,
       target: '10-15 reps',
       unit: 'reps',
@@ -154,7 +132,7 @@ const HOME_EXERCISES = {
     {
       id: 'h-walking-lunge',
       name: 'Walking Lunge',
-      focus: 'Quads, Glutes, Balance',
+      focus: 'Squat (One Leg)',
       sets: 3,
       target: '10 reps / leg',
       unit: 'reps',
@@ -165,7 +143,7 @@ const HOME_EXERCISES = {
     {
       id: 'h-glute-bridge',
       name: 'Glute Bridge',
-      focus: 'Glutes & Hamstrings',
+      focus: 'Hinge (Both Legs)',
       sets: 3,
       target: '15-20 reps',
       unit: 'reps',
@@ -176,7 +154,7 @@ const HOME_EXERCISES = {
     {
       id: 'h-single-glute-bridge',
       name: 'Single-Leg Glute Bridge',
-      focus: 'Glute Isolation',
+      focus: 'Hinge (One Leg)',
       sets: 3,
       target: '10 reps / leg',
       unit: 'reps',
@@ -190,7 +168,7 @@ const HOME_EXERCISES = {
     {
       id: 'h-handstand-pushup',
       name: 'Handstand Push-Up',
-      focus: 'Overhead Strength',
+      focus: 'Vertical Press (Strength)',
       sets: 3,
       target: '5-8 reps',
       unit: 'reps',
@@ -201,7 +179,7 @@ const HOME_EXERCISES = {
     {
       id: 'h-arm-circles',
       name: 'Arm Circles',
-      focus: 'Warm-up & Endurance',
+      focus: 'Deltoid Endurance & Mobility',
       sets: 2,
       target: '30-45 sec',
       unit: 'sec',
@@ -215,7 +193,7 @@ const HOME_EXERCISES = {
     {
       id: 'h-plank',
       name: 'Plank',
-      focus: 'Full Core',
+      focus: 'Anti-Extension (Hold)',
       sets: 3,
       target: '30-60 sec',
       unit: 'sec',
@@ -224,9 +202,20 @@ const HOME_EXERCISES = {
       imageFolder: 'Plank',
     },
     {
+      id: 'h-dead-bug',
+      name: 'Dead Bug',
+      focus: 'Anti-Extension (Dynamic)',
+      sets: 3,
+      target: '10 reps / side',
+      unit: 'reps',
+      tips: ['On your back, arms straight up, knees bent at 90°', 'Lower opposite arm and leg together, hover just above the floor', 'Lower back stays pressed to the floor throughout'],
+      color: 'from-rose-400 to-pink-500',
+      imageFolder: 'Dead_Bug',
+    },
+    {
       id: 'h-side-plank',
       name: 'Side Plank',
-      focus: 'Obliques',
+      focus: 'Anti-Lateral Flexion',
       sets: 3,
       target: '20-40 sec / side',
       unit: 'sec',
@@ -235,20 +224,9 @@ const HOME_EXERCISES = {
       imageFolder: 'Side_Bridge',
     },
     {
-      id: 'h-mountain-climbers',
-      name: 'Mountain Climbers',
-      focus: 'Core & Cardio',
-      sets: 3,
-      target: '30-45 sec',
-      unit: 'sec',
-      tips: ['Strong plank position, hands under the shoulders', 'Drive one knee toward the chest, then switch', 'Keep the hips low, no bouncing bum'],
-      color: 'from-pink-300 to-rose-400',
-      imageFolder: 'Mountain_Climbers',
-    },
-    {
       id: 'h-bicycle-crunch',
       name: 'Bicycle Crunch',
-      focus: 'Abs & Obliques',
+      focus: 'Rotation',
       sets: 3,
       target: '20 reps / side',
       unit: 'reps',
@@ -257,15 +235,15 @@ const HOME_EXERCISES = {
       imageFolder: 'Air_Bike',
     },
     {
-      id: 'h-dead-bug',
-      name: 'Dead Bug',
-      focus: 'Deep Core & Anti-Extension',
+      id: 'h-mountain-climbers',
+      name: 'Mountain Climbers',
+      focus: 'Dynamic Full Core',
       sets: 3,
-      target: '10 reps / side',
-      unit: 'reps',
-      tips: ['On your back, arms straight up, knees bent at 90°', 'Lower opposite arm and leg together, hover just above the floor', 'Lower back stays pressed to the floor throughout'],
-      color: 'from-rose-400 to-pink-500',
-      imageFolder: 'Dead_Bug',
+      target: '30-45 sec',
+      unit: 'sec',
+      tips: ['Strong plank position, hands under the shoulders', 'Drive one knee toward the chest, then switch', 'Keep the hips low, no bouncing bum'],
+      color: 'from-pink-300 to-rose-400',
+      imageFolder: 'Mountain_Climbers',
     },
   ],
 };
@@ -689,7 +667,7 @@ export default function HomeContent() {
           <span className="italic font-normal text-gray-400">No gear.</span>
         </h1>
         <p className="text-base md:text-lg text-gray-500 font-medium">
-          Bodyweight routines for the living-room floor. Track reps and hold-times, not kilos.
+          One clean move per pattern, no duplicates, no gear. Track reps and hold-times to see progress.
         </p>
       </div>
 
