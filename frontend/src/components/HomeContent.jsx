@@ -15,7 +15,15 @@ import {
   Home,
   Clock,
   Repeat,
+  Armchair,
+  GlassWater,
 } from 'lucide-react';
+
+const EQUIPMENT_META = {
+  none:    { label: 'No Equipment', Icon: Home },
+  chair:   { label: 'Chair',        Icon: Armchair },
+  bottles: { label: 'Water Bottles', Icon: GlassWater },
+};
 
 const REPS_KEY = 'fitmeal_home_reps';
 const STEP_OPTIONS_REPS = [0, 1, 2, 5, 10];
@@ -67,17 +75,19 @@ const HOME_EXERCISES = {
       tips: ['Body in a straight line, glutes squeezed', 'Elbows at ~45°, not flared', 'Chest kisses the floor, full lockout at the top'],
       color: 'from-orange-400 to-rose-400',
       imageFolder: 'Pushups',
+      equipment: 'none',
     },
     {
-      id: 'h-diamond-pushup',
-      name: 'Diamond Push-Up',
-      focus: 'Triceps & Inner Chest',
+      id: 'h-decline-pushup',
+      name: 'Decline Push-Up',
+      focus: 'Upper Chest Emphasis',
       sets: 3,
       target: '8-12 reps',
       unit: 'reps',
-      tips: ['Thumbs and index fingers form a diamond', 'Elbows tucked to the ribs', 'Chest touches the hands, drive through the triceps'],
-      color: 'from-orange-500 to-red-400',
-      imageFolder: 'Push-Ups_-_Close_Triceps_Position',
+      tips: ['Feet elevated on a sturdy chair or couch', 'Same body line, elbows at ~45°', 'Higher elevation = harder'],
+      color: 'from-red-400 to-rose-500',
+      imageFolder: 'Decline_Push-Up',
+      equipment: 'chair',
     },
     {
       id: 'h-plyo-pushup',
@@ -89,20 +99,46 @@ const HOME_EXERCISES = {
       tips: ['Descend under control', 'Explode up so the hands leave the floor', 'Land soft, immediately into the next rep'],
       color: 'from-rose-500 to-pink-500',
       imageFolder: 'Plyo_Push-up',
+      equipment: 'none',
     },
   ],
 
   back: [
     {
+      id: 'h-bent-row',
+      name: 'Bent-Over Row',
+      focus: 'Horizontal Pull (Mid Back)',
+      sets: 4,
+      target: '10-15 reps',
+      unit: 'reps',
+      tips: ['Hinge at the hips, torso ~45°, flat back', 'One water bottle in each hand, arms hanging', 'Pull to the hips, squeeze the shoulder blades'],
+      color: 'from-teal-400 to-emerald-500',
+      imageFolder: 'Bent_Over_Two-Dumbbell_Row',
+      equipment: 'bottles',
+    },
+    {
+      id: 'h-reverse-fly',
+      name: 'Reverse Fly',
+      focus: 'Rear Delts',
+      sets: 3,
+      target: '12-15 reps',
+      unit: 'reps',
+      tips: ['Hinge forward, water bottles hanging, slight bend in elbows', 'Sweep arms out to the sides in a wide arc', 'Squeeze the shoulder blades, no shrug'],
+      color: 'from-emerald-400 to-teal-400',
+      imageFolder: 'Reverse_Flyes',
+      equipment: 'bottles',
+    },
+    {
       id: 'h-superman',
       name: 'Superman Hold',
-      focus: 'Posterior Chain (Iso)',
+      focus: 'Erectors (Iso)',
       sets: 3,
       target: '20-40 sec',
       unit: 'sec',
       tips: ['Face down, arms straight forward', 'Lift arms, chest and legs together', 'Squeeze the glutes, look at the floor'],
-      color: 'from-emerald-400 to-teal-400',
+      color: 'from-green-400 to-emerald-500',
       imageFolder: 'Superman',
+      equipment: 'none',
     },
   ],
 
@@ -117,6 +153,7 @@ const HOME_EXERCISES = {
       tips: ['Feet just wider than the shoulders, toes slightly out', 'Chest tall, sit between the heels', 'Drive through the mid-foot, no knee cave'],
       color: 'from-amber-400 to-orange-400',
       imageFolder: 'Bodyweight_Squat',
+      equipment: 'none',
     },
     {
       id: 'h-jump-squat',
@@ -128,6 +165,7 @@ const HOME_EXERCISES = {
       tips: ['Sink into a full squat', 'Explode straight up, arms swing to help', 'Land soft, immediately into the next rep'],
       color: 'from-orange-400 to-amber-500',
       imageFolder: 'Freehand_Jump_Squat',
+      equipment: 'none',
     },
     {
       id: 'h-walking-lunge',
@@ -139,6 +177,7 @@ const HOME_EXERCISES = {
       tips: ['Take a long step, drop the back knee toward the floor', 'Front shin stays vertical', 'Push through the front heel to walk into the next lunge'],
       color: 'from-yellow-400 to-amber-400',
       imageFolder: 'Bodyweight_Walking_Lunge',
+      equipment: 'none',
     },
     {
       id: 'h-glute-bridge',
@@ -150,6 +189,7 @@ const HOME_EXERCISES = {
       tips: ['On your back, heels close to the glutes', 'Drive through the heels, squeeze the glutes at the top', 'Pause one second, control the descent'],
       color: 'from-orange-300 to-orange-500',
       imageFolder: 'Butt_Lift_Bridge',
+      equipment: 'none',
     },
     {
       id: 'h-single-glute-bridge',
@@ -161,20 +201,46 @@ const HOME_EXERCISES = {
       tips: ['One foot planted, the other leg extended out', 'Drive through the working heel, keep the hips square', 'One-second squeeze at the top'],
       color: 'from-amber-500 to-yellow-500',
       imageFolder: 'Single_Leg_Glute_Bridge',
+      equipment: 'none',
+    },
+    {
+      id: 'h-calf-raise',
+      name: 'Calf Raise',
+      focus: 'Calves (Gastrocnemius)',
+      sets: 3,
+      target: '15-20 reps',
+      unit: 'reps',
+      tips: ['Stand tall, water bottles at your sides', 'Rise onto the balls of the feet, pause at the top', 'Slow descent, deep stretch at the bottom'],
+      color: 'from-yellow-500 to-amber-500',
+      imageFolder: 'Standing_Dumbbell_Calf_Raise',
+      equipment: 'bottles',
     },
   ],
 
   shoulders: [
     {
-      id: 'h-handstand-pushup',
-      name: 'Handstand Push-Up',
-      focus: 'Vertical Press (Strength)',
-      sets: 3,
-      target: '5-8 reps',
+      id: 'h-ohp',
+      name: 'Overhead Press',
+      focus: 'Vertical Press (Front & Side Delts)',
+      sets: 4,
+      target: '8-12 reps',
       unit: 'reps',
-      tips: ['Kick up into a handstand against a wall', 'Lower under control, head aims for the floor', 'Advanced move, scale by walking your hands closer to the wall'],
+      tips: ['Standing tall, water bottles at ear level', 'Press straight up, don\'t lock out or clang', 'Elbows finish under the wrists'],
       color: 'from-sky-400 to-cyan-400',
-      imageFolder: 'Handstand_Push-Ups',
+      imageFolder: 'Standing_Dumbbell_Press',
+      equipment: 'bottles',
+    },
+    {
+      id: 'h-lateral-raise',
+      name: 'Lateral Raise',
+      focus: 'Side Delts (Width)',
+      sets: 3,
+      target: '12-15 reps',
+      unit: 'reps',
+      tips: ['Slight forward tilt of the bottle', 'Lead with the elbow, pinky slightly up', 'Stop at shoulder height, control the descent'],
+      color: 'from-blue-400 to-sky-500',
+      imageFolder: 'Side_Lateral_Raise',
+      equipment: 'bottles',
     },
     {
       id: 'h-arm-circles',
@@ -186,6 +252,34 @@ const HOME_EXERCISES = {
       tips: ['Arms out in a T, palms down', 'Small controlled circles, forward then backward', 'Keep the shoulders down, not shrugged'],
       color: 'from-cyan-300 to-teal-400',
       imageFolder: 'Arm_Circles',
+      equipment: 'none',
+    },
+  ],
+
+  arms: [
+    {
+      id: 'h-bicep-curl',
+      name: 'Bicep Curl',
+      focus: 'Biceps',
+      sets: 4,
+      target: '10-15 reps',
+      unit: 'reps',
+      tips: ['Water bottle in each hand, elbows pinned to the sides', 'Supinate the wrist as you curl up', 'Full lower phase, no swinging'],
+      color: 'from-violet-400 to-purple-400',
+      imageFolder: 'Dumbbell_Bicep_Curl',
+      equipment: 'bottles',
+    },
+    {
+      id: 'h-chair-dip',
+      name: 'Chair Dip',
+      focus: 'Triceps',
+      sets: 4,
+      target: '10-15 reps',
+      unit: 'reps',
+      tips: ['Hands on the edge of a sturdy chair or couch', 'Lower until the elbows are ~90°', 'Push through the palms, don\'t shrug'],
+      color: 'from-purple-400 to-fuchsia-400',
+      imageFolder: 'Bench_Dips',
+      equipment: 'chair',
     },
   ],
 
@@ -253,6 +347,7 @@ const MUSCLE_GROUPS = [
   { id: 'back', label: 'Back' },
   { id: 'legs', label: 'Legs' },
   { id: 'shoulders', label: 'Shoulders' },
+  { id: 'arms', label: 'Arms' },
   { id: 'core', label: 'Core' },
 ];
 
@@ -603,10 +698,16 @@ function HomeExerciseCard({ exercise, index }) {
         )}
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-gray-900/60 to-transparent pointer-events-none" />
         <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10 w-auto">
-          <span className="bg-white/25 backdrop-blur-md text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border border-white/10 shadow-sm flex items-center gap-1.5">
-            <Home size={11} strokeWidth={2.5} />
-            No Equipment
-          </span>
+          {(() => {
+            const meta = EQUIPMENT_META[exercise.equipment] || EQUIPMENT_META.none;
+            const EquipIcon = meta.Icon;
+            return (
+              <span className="bg-white/25 backdrop-blur-md text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border border-white/10 shadow-sm flex items-center gap-1.5">
+                <EquipIcon size={11} strokeWidth={2.5} />
+                {meta.label}
+              </span>
+            );
+          })()}
           <div className="bg-white/25 backdrop-blur-md rounded-full p-2 border border-white/10 shadow-sm">
             <Play size={16} className={`text-white ml-0.5 transition-transform duration-300 ${isHovered ? 'scale-110' : ''}`} />
           </div>
@@ -667,7 +768,7 @@ export default function HomeContent() {
           <span className="italic font-normal text-gray-400">No gear.</span>
         </h1>
         <p className="text-base md:text-lg text-gray-500 font-medium">
-          One clean move per pattern, no duplicates, no gear. Track reps and hold-times to see progress.
+          One move per pattern, no gym. A chair or two water bottles are the most you'll need. Track reps and hold-times to see progress.
         </p>
       </div>
 
