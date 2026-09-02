@@ -363,17 +363,6 @@ const GYM_EXERCISES = {
       imageFolder: 'Triceps_Pushdown_-_Rope_Attachment'
     },
     {
-      id: 'cable-curl',
-      name: 'EZ-Bar Cable Curl',
-      machine: 'Low Cable Pulley',
-      focus: 'Biceps Brachii',
-      sets: 4,
-      reps: '10-12',
-      tips: ['Keep elbows strictly at sides', 'Squeeze at the top', 'Control weight down'],
-      color: 'from-gray-600 to-gray-500',
-      imageFolder: 'High_Cable_Curls'
-    },
-    {
       id: 'overhead-extension',
       name: 'Overhead Rope Extension',
       machine: 'Cable Station',
