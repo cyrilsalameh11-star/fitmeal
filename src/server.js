@@ -2389,7 +2389,7 @@ async function ytFetchVideos(channelId, limit = 5, minDurationSec = 420) {
 
 app.get('/api/youtube', async (req, res) => {
   // Accept either bare handles ("WillTennyson,LeRoutin") or per-channel min-duration
-  // pairs ("WillTennyson:420,LeRoutin:0,bazinga.:420"). Defaults to 420s when no pair.
+  // pairs ("WillTennyson:420,LeRoutin:0,Browney:420"). Defaults to 420s when no pair.
   const rawHandles = String(req.query.handles || '').split(',').map(s => s.trim()).filter(Boolean);
   const handleSpecs = rawHandles.map(spec => {
     const colonAt = spec.lastIndexOf(':');
