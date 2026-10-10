@@ -1423,10 +1423,13 @@ app.get('/api/news', async (req, res) => {
 });
 
 // ── Gemini call helper: per-attempt timeout + auto-retry on transient errors ──
-// Returns { ok: true, json } on success, or { ok: false, status, isQuota, error }.
-// Retriable: network errors, AbortError/TimeoutError, 5xx, 408. NOT retriable: 4xx,
-// quota (429 / RESOURCE_EXHAUSTED), parse errors. Keeps total wall-clock < ~58s so
-// we return a clean response before Vercel's 60s function timeout hits.
+// Returns { ok: true, json } on success, or
+// { ok: false, status, isQuota, quotaScope, error }.
+// Retriable here: network errors, AbortError/TimeoutError, 5xx, 408. NOT retried:
+// 4xx, quota (429 / RESOURCE_EXHAUSTED), parse errors. Retrying the SAME model on
+// a quota error is pointless, but callers can and do fail over to a DIFFERENT
+// model, since Gemini quotas are tracked per model. Keeps total wall-clock < ~58s
+// so we return a clean response before Vercel's 60s function timeout hits.
 async function callGeminiWithRetry(url, body, { timeoutMs = 50000, attempts = 2 } = {}) {
   let lastErr = { ok: false, status: 500, isQuota: false, error: 'AI service unavailable' };
   for (let i = 0; i < attempts; i++) {
@@ -1441,8 +1444,15 @@ async function callGeminiWithRetry(url, body, { timeoutMs = 50000, attempts = 2 
       if (res.ok && json) return { ok: true, json };
       const msg = json?.error?.message || `Gemini API error ${res.status}`;
       const isQuota = res.status === 429 || /quota|RESOURCE_EXHAUSTED/i.test(msg);
+      // A per-minute rate limit clears in ~60s; a daily cap needs hours. The
+      // message text is the only place Gemini tells the two apart, and the
+      // difference is what the user needs to know.
+      const quotaScope = !isQuota ? null
+        : /per[\s_-]*minute/i.test(msg) ? 'minute'
+        : /per[\s_-]*day|daily/i.test(msg) ? 'day'
+        : 'unknown';
       const retriable = !isQuota && (res.status >= 500 || res.status === 408);
-      lastErr = { ok: false, status: res.status, isQuota, error: msg };
+      lastErr = { ok: false, status: res.status, isQuota, quotaScope, error: msg };
       if (!retriable) return lastErr;
     } catch (e) {
       const isTimeout = e?.name === 'TimeoutError' || e?.name === 'AbortError';
@@ -1456,6 +1466,22 @@ async function callGeminiWithRetry(url, body, { timeoutMs = 50000, attempts = 2 
     if (i < attempts - 1) await new Promise(r => setTimeout(r, 700));
   }
   return lastErr;
+}
+
+// User-facing copy for a failed Gemini call. Quota text has to be honest about
+// the wait: "try again in a moment" is actively misleading when a daily cap is
+// what was hit, and it sends the user into a retry loop that cannot succeed.
+function aiErrorMessage(callResult) {
+  if (!callResult.isQuota) {
+    return callResult.error || 'AI is busy right now. Try again in a few seconds.';
+  }
+  if (callResult.quotaScope === 'minute') {
+    return 'Too many scans in the last minute. Wait about a minute and try again.';
+  }
+  if (callResult.quotaScope === 'day') {
+    return 'Daily AI limit reached. Use the barcode scanner or Describe instead, or try again tomorrow.';
+  }
+  return 'AI quota reached. Use the barcode scanner or Describe instead, or retry in a few minutes.';
 }
 
 // ── Text-based Meal Describer (Gemini) ───────────────────────────────────────
@@ -1524,9 +1550,7 @@ Respond ONLY with this JSON (no markdown):
     );
     if (!callResult.ok) {
       return res.status(callResult.isQuota ? 429 : 502).json({
-        error: callResult.isQuota
-          ? 'AI quota exceeded, please try again in a moment.'
-          : (callResult.error || 'AI is busy right now. Try again in a few seconds.'),
+        error: aiErrorMessage(callResult),
       });
     }
     const geminiJson = callResult.json;
@@ -1920,32 +1944,45 @@ If the photo is NOT food: return {"dish":"Not food detected","confidence":"low",
     // of an error toast. Total worst-case wall-clock ~59.5s, just under
     // Vercel's 60s function cap. Single Pro attempt — retrying a slow model
     // doubles wall-clock and would blow the cap.
+    const proStartedAt = Date.now();
     let callResult = await callGeminiWithRetry(geminiUrl, requestBody, {
       timeoutMs: mode === 'deep_analyze' ? 55000 : 22000,
       attempts: mode === 'deep_analyze' ? 1 : 2,
     });
-    // Flash fallback: only for deep_analyze when Pro genuinely fails (not on
-    // quota/4xx — those would fail the same way on Flash). Keeps Pro accuracy
-    // as the norm; Flash is a safety net for the tail. Tight 4s window since
-    // Pro already consumed most of the 60s Vercel budget.
-    if (!callResult.ok && !callResult.isQuota && mode === 'deep_analyze') {
-      console.warn('Pro failed, falling back to Flash:', callResult.error);
+    // Flash fallback for deep_analyze on ANY Pro failure, quota included.
+    // Gemini tracks quota per model, and gemini-pro-latest has a far smaller
+    // free-tier daily allowance than gemini-flash-latest, so a Pro 429 says
+    // nothing about whether Flash can serve the request. Pro stays the primary
+    // path, so normal scans keep Pro accuracy; Flash only steps in when Pro
+    // cannot answer at all.
+    if (!callResult.ok && mode === 'deep_analyze') {
+      // Budget from what Pro actually consumed, not a fixed guess. A 429 comes
+      // back in about a second, leaving room for Flash to think properly; a
+      // 55s timeout leaves only a sliver. 56s total keeps us inside Vercel's
+      // 60s cap with room to parse and respond.
+      const flashBudget = Math.max(3500, 56000 - (Date.now() - proStartedAt));
+      console.warn(
+        `Pro failed (${callResult.isQuota ? `quota:${callResult.quotaScope}` : callResult.status}), ` +
+        `falling back to Flash with ${flashBudget}ms: ${callResult.error}`
+      );
       const flashUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
       const flashBody = { ...requestBody };
-      // Disable Flash thinking entirely — the 4s residual is not enough to
-      // wait for it. Flash without thinking still analyses food photos well.
-      flashBody.generationConfig = { ...(flashBody.generationConfig || {}), thinkingConfig: { thinkingBudget: 0 } };
+      // Let Flash think when there is real budget left (Pro died fast), which
+      // keeps quality close to Pro. Only disable thinking when Pro already ate
+      // the window and a few seconds are all that remain.
+      flashBody.generationConfig = {
+        ...(flashBody.generationConfig || {}),
+        thinkingConfig: { thinkingBudget: flashBudget > 15000 ? -1 : 0 },
+      };
       callResult = await callGeminiWithRetry(flashUrl, flashBody, {
-        timeoutMs: 4000,
+        timeoutMs: flashBudget,
         attempts: 1,
       });
     }
     if (!callResult.ok) {
       console.error('Gemini API error:', callResult.error);
       return res.status(callResult.isQuota ? 429 : 502).json({
-        error: callResult.isQuota
-          ? 'AI quota exceeded, please try again in a moment.'
-          : (callResult.error || 'AI is busy right now. Try again in a few seconds.'),
+        error: aiErrorMessage(callResult),
       });
     }
     const geminiJson = callResult.json;
@@ -2027,9 +2064,7 @@ Important rules:
     );
     if (!callResult.ok) {
       return res.status(callResult.isQuota ? 429 : 502).json({
-        error: callResult.isQuota
-          ? 'AI quota exceeded, please try again in a moment.'
-          : (callResult.error || 'AI is busy right now. Try again in a few seconds.'),
+        error: aiErrorMessage(callResult),
       });
     }
     const geminiJson = callResult.json;
