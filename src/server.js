@@ -1472,8 +1472,15 @@ async function callGeminiWithRetry(url, body, { timeoutMs = 50000, attempts = 2 
 // the wait: "try again in a moment" is actively misleading when a daily cap is
 // what was hit, and it sends the user into a retry loop that cannot succeed.
 function aiErrorMessage(callResult) {
+  const raw = callResult.error || '';
+  // Account-level block (billing suspension, revoked key, API disabled). No
+  // model fallback and no retry can get past this, so say that plainly rather
+  // than letting Google's raw text read like a transient glitch.
+  if (isProjectBlocked(raw) || callResult.status === 403) {
+    return 'Google has blocked AI access for this project, usually a billing issue. Barcode scanning still works. Fix: restore billing, or add a backup key in GOOGLE_AI_API_KEY_2.';
+  }
   if (!callResult.isQuota) {
-    return callResult.error || 'AI is busy right now. Try again in a few seconds.';
+    return raw || 'AI is busy right now. Try again in a few seconds.';
   }
   if (callResult.quotaScope === 'minute') {
     return 'Too many scans in the last minute. Wait about a minute and try again.';
@@ -1484,18 +1491,66 @@ function aiErrorMessage(callResult) {
   return 'AI quota reached. Use the barcode scanner or Describe instead, or retry in a few minutes.';
 }
 
+// Google's wording for "this key or its project is not allowed to call us",
+// as opposed to anything about the request itself.
+function isProjectBlocked(msg) {
+  return /denied access|PERMISSION_DENIED|suspended|is disabled|has not been used in project|API key not valid|API_KEY_INVALID|SERVICE_DISABLED|billing/i.test(String(msg || ''));
+}
+
+// Gemini keys in priority order. A second key on a DIFFERENT Google account is
+// the only thing that survives a project suspension: model fallback cannot
+// help, because the block applies to every model on the blocked project.
+function geminiKeys() {
+  return [
+    process.env.GOOGLE_AI_API_KEY,
+    process.env.GOOGLE_AI_API_KEY_2,
+    process.env.GOOGLE_AI_API_KEY_3,
+  ]
+    .flatMap(v => String(v || '').split(','))
+    .map(s => s.trim())
+    .filter(Boolean);
+}
+
+// True when the failure is about the key or its project rather than the
+// request, so the same call with a different key can still succeed.
+function isKeyLevelFailure(callResult) {
+  return callResult.isQuota
+    || callResult.status === 403
+    || isProjectBlocked(callResult.error);
+}
+
+// Calls a model, walking the configured keys until one answers. Falls through
+// only on key-level failures; a bad request fails once and returns.
+async function callGeminiModel(model, body, opts = {}) {
+  const keys = geminiKeys();
+  if (!keys.length) {
+    return { ok: false, status: 500, isQuota: false, error: 'AI API key not configured' };
+  }
+  let last = null;
+  for (let i = 0; i < keys.length; i++) {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${keys[i]}`;
+    const result = await callGeminiWithRetry(url, body, opts);
+    if (result.ok) {
+      if (i > 0) console.warn(`Gemini served by backup key ${i + 1} for ${model}`);
+      return result;
+    }
+    last = result;
+    if (!isKeyLevelFailure(result)) return result;
+    if (i < keys.length - 1) {
+      console.warn(`Gemini key ${i + 1} unusable for ${model} (${result.status}: ${result.error}), trying key ${i + 2}`);
+    }
+  }
+  return last;
+}
+
 // ── Text-based Meal Describer (Gemini) ───────────────────────────────────────
 app.post('/api/describe-food', async (req, res) => {
   const { description, mode = 'identify', answers } = req.body;
   if (!description?.trim()) return res.status(400).json({ error: 'No description provided' });
 
-  const apiKey = process.env.GOOGLE_AI_API_KEY;
-  if (!apiKey) return res.status(500).json({ error: 'AI API key not configured' });
+  if (!geminiKeys().length) return res.status(500).json({ error: 'AI API key not configured' });
 
   try {
-    // Use Google's auto-tracking alias so we don't get burned when specific
-    // versions like "gemini-2.5-flash" get deprecated.
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
 
     const identifyPrompt = `You are a nutrition expert specialising in Lebanese, Middle Eastern, French and international cuisine.
 
@@ -1543,8 +1598,9 @@ Respond ONLY with this JSON (no markdown):
 
     const prompt = mode === 'estimate' ? estimatePrompt : identifyPrompt;
 
-    const callResult = await callGeminiWithRetry(
-      geminiUrl,
+    // Auto-tracking alias so specific-version deprecations don't break us.
+    const callResult = await callGeminiModel(
+      'gemini-flash-latest',
       { contents: [{ parts: [{ text: prompt }] }] },
       { timeoutMs: 22000, attempts: 2 },
     );
@@ -1590,8 +1646,7 @@ app.post('/api/analyze-food', async (req, res) => {
   const { imageBase64, mimeType = 'image/jpeg', mode = 'identify', answers } = req.body;
   if (!imageBase64) return res.status(400).json({ error: 'No image provided' });
 
-  const apiKey = process.env.GOOGLE_AI_API_KEY;
-  if (!apiKey) return res.status(500).json({ error: 'AI API key not configured' });
+  if (!geminiKeys().length) return res.status(500).json({ error: 'AI API key not configured' });
 
   try {
     // Deep mode uses the heavier Pro model for higher accuracy (~25-40s wall-clock).
@@ -1599,7 +1654,6 @@ app.post('/api/analyze-food', async (req, res) => {
     // Google's auto-tracking aliases so specific-version deprecations don't
     // break us (e.g. gemini-2.5-flash was retired).
     const modelName = mode === 'deep_analyze' ? 'gemini-pro-latest' : 'gemini-flash-latest';
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
 
     // mode=identify: recognise dish + ask questions (no calorie estimate yet)
     // mode=estimate: user answered questions, now give full nutritional breakdown
@@ -1945,7 +1999,7 @@ If the photo is NOT food: return {"dish":"Not food detected","confidence":"low",
     // Vercel's 60s function cap. Single Pro attempt — retrying a slow model
     // doubles wall-clock and would blow the cap.
     const proStartedAt = Date.now();
-    let callResult = await callGeminiWithRetry(geminiUrl, requestBody, {
+    let callResult = await callGeminiModel(modelName, requestBody, {
       timeoutMs: mode === 'deep_analyze' ? 55000 : 22000,
       attempts: mode === 'deep_analyze' ? 1 : 2,
     });
@@ -1965,7 +2019,6 @@ If the photo is NOT food: return {"dish":"Not food detected","confidence":"low",
         `Pro failed (${callResult.isQuota ? `quota:${callResult.quotaScope}` : callResult.status}), ` +
         `falling back to Flash with ${flashBudget}ms: ${callResult.error}`
       );
-      const flashUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
       const flashBody = { ...requestBody };
       // Let Flash think when there is real budget left (Pro died fast), which
       // keeps quality close to Pro. Only disable thinking when Pro already ate
@@ -1974,7 +2027,7 @@ If the photo is NOT food: return {"dish":"Not food detected","confidence":"low",
         ...(flashBody.generationConfig || {}),
         thinkingConfig: { thinkingBudget: flashBudget > 15000 ? -1 : 0 },
       };
-      callResult = await callGeminiWithRetry(flashUrl, flashBody, {
+      callResult = await callGeminiModel('gemini-flash-latest', flashBody, {
         timeoutMs: flashBudget,
         attempts: 1,
       });
@@ -2023,12 +2076,9 @@ app.post('/api/analyze-food-label', async (req, res) => {
   const { imageBase64, mimeType = 'image/jpeg' } = req.body;
   if (!imageBase64) return res.status(400).json({ error: 'No image provided' });
 
-  const apiKey = process.env.GOOGLE_AI_API_KEY;
-  if (!apiKey) return res.status(500).json({ error: 'AI API key not configured' });
+  if (!geminiKeys().length) return res.status(500).json({ error: 'AI API key not configured' });
 
   try {
-    // Auto-tracking alias so we don't break on future model deprecations.
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
     const prompt = `You are reading a packaged-food NUTRITION FACTS label.
 
 Extract these values DIRECTLY from the label (do not estimate). Use metric units only (grams).
@@ -2057,8 +2107,9 @@ Important rules:
 - Round all values to whole grams
 - If the label is unclear or this is NOT a nutrition facts label, return dish: "Not a label", and zeros.`;
 
-    const callResult = await callGeminiWithRetry(
-      geminiUrl,
+    // Auto-tracking alias so specific-version deprecations don't break us.
+    const callResult = await callGeminiModel(
+      'gemini-flash-latest',
       { contents: [{ parts: [{ text: prompt }, { inline_data: { mime_type: mimeType, data: imageBase64 } }] }] },
       { timeoutMs: 22000, attempts: 2 },
     );
