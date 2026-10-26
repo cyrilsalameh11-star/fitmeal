@@ -1497,18 +1497,40 @@ function isProjectBlocked(msg) {
   return /denied access|PERMISSION_DENIED|suspended|is disabled|has not been used in project|API key not valid|API_KEY_INVALID|SERVICE_DISABLED|billing/i.test(String(msg || ''));
 }
 
-// Gemini keys in priority order. A second key on a DIFFERENT Google account is
-// the only thing that survives a project suspension: model fallback cannot
-// help, because the block applies to every model on the blocked project.
+// Gemini keys in priority order, each tagged with the env var it came from.
+// A key in a DIFFERENT Cloud project is the only thing that survives a project
+// suspension: model fallback cannot help, because the block applies to every
+// model on the blocked project.
+const GEMINI_KEY_SOURCES = [
+  'GOOGLE_AI_API_KEY',
+  'GOOGLE_AI_API_KEY_2',
+  'GOOGLE_AI_API_KEY_3',
+];
+
 function geminiKeys() {
-  return [
-    process.env.GOOGLE_AI_API_KEY,
-    process.env.GOOGLE_AI_API_KEY_2,
-    process.env.GOOGLE_AI_API_KEY_3,
-  ]
-    .flatMap(v => String(v || '').split(','))
-    .map(s => s.trim())
-    .filter(Boolean);
+  const seen = new Set();
+  const out = [];
+  for (const source of GEMINI_KEY_SOURCES) {
+    for (const key of String(process.env[source] || '').split(',').map(s => s.trim())) {
+      if (key && !seen.has(key)) {
+        seen.add(key);
+        out.push({ key, source });
+      }
+    }
+  }
+  return out;
+}
+
+// Short, key-free label for why a key could not serve a request. Returned to
+// the client alongside the error so an outage can be diagnosed with one curl.
+function keyFailureKind(r) {
+  const m = String(r.error || '');
+  if (r.isQuota) return 'quota';
+  if (/has not been used in project|SERVICE_DISABLED|is disabled/i.test(m)) return 'api_not_enabled';
+  if (/API key not valid|API_KEY_INVALID/i.test(m)) return 'invalid_key';
+  if (/denied access|suspended/i.test(m)) return 'project_blocked';
+  if (/are blocked|referer|not authorized|API_KEY_SERVICE_BLOCKED/i.test(m)) return 'key_restricted';
+  return `http_${r.status}`;
 }
 
 // True when the failure is about the key or its project rather than the
@@ -1527,18 +1549,19 @@ async function callGeminiModel(model, body, opts = {}) {
     return { ok: false, status: 500, isQuota: false, error: 'AI API key not configured' };
   }
   let last = null;
+  const attempts = [];
   for (let i = 0; i < keys.length; i++) {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${keys[i]}`;
+    const { key, source } = keys[i];
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
     const result = await callGeminiWithRetry(url, body, opts);
     if (result.ok) {
-      if (i > 0) console.warn(`Gemini served by backup key ${i + 1} for ${model}`);
+      if (i > 0) console.warn(`Gemini ${model} served by ${source} after ${i} failed key(s)`);
       return result;
     }
-    last = result;
-    if (!isKeyLevelFailure(result)) return result;
-    if (i < keys.length - 1) {
-      console.warn(`Gemini key ${i + 1} unusable for ${model} (${result.status}: ${result.error}), trying key ${i + 2}`);
-    }
+    attempts.push({ source, outcome: keyFailureKind(result) });
+    console.warn(`Gemini ${model} via ${source} failed (${result.status}): ${String(result.error).slice(0, 240)}`);
+    last = { ...result, attempts };
+    if (!isKeyLevelFailure(result)) return last;
   }
   return last;
 }
@@ -1607,6 +1630,7 @@ Respond ONLY with this JSON (no markdown):
     if (!callResult.ok) {
       return res.status(callResult.isQuota ? 429 : 502).json({
         error: aiErrorMessage(callResult),
+        attempts: callResult.attempts,
       });
     }
     const geminiJson = callResult.json;
@@ -2036,6 +2060,7 @@ If the photo is NOT food: return {"dish":"Not food detected","confidence":"low",
       console.error('Gemini API error:', callResult.error);
       return res.status(callResult.isQuota ? 429 : 502).json({
         error: aiErrorMessage(callResult),
+        attempts: callResult.attempts,
       });
     }
     const geminiJson = callResult.json;
@@ -2116,6 +2141,7 @@ Important rules:
     if (!callResult.ok) {
       return res.status(callResult.isQuota ? 429 : 502).json({
         error: aiErrorMessage(callResult),
+        attempts: callResult.attempts,
       });
     }
     const geminiJson = callResult.json;
