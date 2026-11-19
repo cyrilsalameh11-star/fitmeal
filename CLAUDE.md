@@ -194,3 +194,12 @@ npx @claude-flow/cli@latest doctor --fix
 - **New Lorient articles the user wants visible at the top of the feed → add to `PINNED_GLOBAL_ARTICLES`** (top of the array), with a custom prefix ID like `pinned-<brand>-<article-id>` (e.g. `pinned-chubby-1540956`, `pinned-handow-1538056`). Do NOT use `pinned-lorient-*` for new recent articles — that array is a lower-priority archive and its entries render at position 13+.
 - Images must be placed in **both** `src/public/news/<slug>.<ext>` (canonical for Vercel) and `frontend/public/news/<slug>.<ext>` (source that survives Vite rebuilds). Use kebab-case filenames (no spaces).
 - Never add articles without an explicit user request (see memory: `feedback_no_auto_articles`).
+
+## Project-specific: "My Plan" tab is owner-only
+
+`frontend/src/components/LeanPlanPage.jsx` is Cyril's personal lean plan. It must **only appear for Cyril**, never for other users of jismeh.fit.
+
+- Gate: `isOwner` in `frontend/src/App.jsx` (logged-in user whose first name is "Cyril", case-insensitive). The nav entry (desktop + mobile drawer) and the render are both behind `isOwner`.
+- The page is `React.lazy`-loaded, so other users never download it. Keep it lazy; don't import it statically.
+- Any future personal feature for Cyril follows the same rule: owner-only, behind `isOwner`.
+- Plan content preferences: no skyr / yogurt, protein comes from protein bars (15 g protein, ~150 kcal); every gym exercise shows a picture (free-exercise-db start/end frames), never a name alone.

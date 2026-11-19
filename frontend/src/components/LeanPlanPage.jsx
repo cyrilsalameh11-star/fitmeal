@@ -1,21 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Target, Flame, CalendarDays, Utensils, Pizza, Drumstick, Coffee, Moon,
   Footprints, Dumbbell, TrendingDown, Brain, Scale, ExternalLink, CheckCircle2,
-  XCircle, ChefHat, Sandwich, Info,
+  XCircle, ChefHat, Sandwich, Info, Candy,
 } from 'lucide-react';
 
 const SOURCE_URL = 'https://www.youtube.com/watch?v=oc2E7TfpJ18';
+const EXERCISE_IMG = 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises';
 
 // Approximate values (±10%). Brands and countries vary; scan the real packet.
 const FOOD = {
   coffee:   { name: '3-in-1 coffee sachet',                  kcal: 70,  p: 1,  c: 12, f: 2 },
   biscuit:  { name: 'Chocolate digestive',                   kcal: 85,  p: 1,  c: 11, f: 4 },
-  skyr:     { name: 'Skyr 0% (150 g pot)',                   kcal: 95,  p: 16, c: 6,  f: 0 },
-  whey:     { name: 'Whey protein, 1 scoop',                 kcal: 120, p: 24, c: 3,  f: 2 },
-  banana:   { name: 'Banana',                                kcal: 105, p: 1,  c: 27, f: 0 },
-  crispy:   { name: 'Air-fryer crispy chicken (180 g breast)', kcal: 355, p: 47, c: 21, f: 8 },
+  bar:      { name: 'Protein bar (15 g protein)',            kcal: 150, p: 15, c: 13, f: 5 },
+  crispy:   { name: 'Air-fryer crispy chicken (200 g breast)', kcal: 377, p: 51, c: 21, f: 8 },
+  crispyXL: { name: 'Air-fryer crispy chicken (250 g breast)', kcal: 450, p: 62, c: 25, f: 8 },
   rice:     { name: 'Rice, cooked (150 g)',                  kcal: 195, p: 4,  c: 42, f: 0 },
   salad:    { name: 'Side salad + 1 tsp olive oil',          kcal: 60,  p: 1,  c: 4,  f: 5 },
   dcheese:  { name: "McDonald's Double Cheese",              kcal: 450, p: 26, c: 33, f: 23 },
@@ -29,8 +29,8 @@ const FOOD = {
 };
 
 const TARGETS = {
-  training: { kcal: 1950, p: 140, c: 210, f: 60 },
-  rest:     { kcal: 1600, p: 140, c: 135, f: 55 },
+  training: { kcal: 1950, p: 135 },
+  rest:     { kcal: 1600, p: 135 },
 };
 
 // [time, label, [[foodKey, qty], ...]]
@@ -40,10 +40,10 @@ const DAYS = {
     meals: [
       ['6:20', 'Pre-workout', [['coffee', 1], ['biscuit', 2]]],
       ['7:00', 'Gym: Full body (45 min)', []],
-      ['8:15', 'Post-workout', [['skyr', 1], ['whey', 1], ['banana', 1]]],
+      ['8:15', 'Post-workout', [['bar', 2]]],
       ['12:30', 'Lunch: the McDo order', [['dcheese', 1], ['fries', 1], ['tartare', 1], ['zero', 1]]],
-      ['20:00', 'Dinner', [['crispy', 1], ['rice', 1]]],
-      ['22:00', 'Evening', [['skyr', 1]]],
+      ['20:00', 'Dinner', [['crispyXL', 1], ['salad', 1]]],
+      ['22:00', 'Evening', [['bar', 1]]],
     ],
   },
   sat: {
@@ -51,9 +51,8 @@ const DAYS = {
     meals: [
       ['8:20', 'Pre-workout', [['coffee', 1], ['biscuit', 2]]],
       ['9:00', 'Gym: Lower body + abs (45 min)', []],
-      ['10:30', 'Post-workout', [['skyr', 1], ['whey', 1], ['banana', 1]]],
-      ['13:30', 'Lunch', [['crispy', 1], ['salad', 1]]],
-      ['17:00', 'Snack', [['skyr', 1]]],
+      ['10:30', 'Post-workout', [['bar', 2]]],
+      ['13:30', 'Lunch', [['crispyXL', 1], ['salad', 1]]],
       ['20:30', 'Pizza night: half a medium', [['pizza', 4], ['zero', 1]]],
     ],
   },
@@ -62,9 +61,9 @@ const DAYS = {
     meals: [
       ['9:15', 'Pre-workout', [['coffee', 1], ['biscuit', 2]]],
       ['10:00', 'Gym: Upper body (45 min)', []],
-      ['11:30', 'Post-workout', [['skyr', 1], ['whey', 1], ['banana', 1]]],
+      ['11:30', 'Post-workout', [['bar', 2]]],
       ['14:00', 'Lunch', [['crispy', 1], ['rice', 1]]],
-      ['16:30', 'Snack', [['skyr', 1]]],
+      ['16:30', 'Snack', [['bar', 1]]],
       ['19:30', 'Dinner: KFC', [['tender', 3], ['zero', 1]]],
       ['21:30', 'Sunday night treat', [['chips', 1], ['magnum', 1]]],
     ],
@@ -74,9 +73,9 @@ const DAYS = {
     meals: [
       ['9:00', 'Coffee break', [['coffee', 1], ['biscuit', 1]]],
       ['13:00', 'Lunch: KFC', [['tender', 4], ['zero', 1]]],
-      ['16:30', 'Snack', [['skyr', 1], ['whey', 1]]],
+      ['16:30', 'Snack', [['bar', 1]]],
       ['20:00', 'Dinner', [['crispy', 1], ['rice', 1], ['salad', 1]]],
-      ['22:00', 'Evening', [['biscuit', 1]]],
+      ['22:00', 'Evening', [['bar', 1]]],
     ],
   },
 };
@@ -111,9 +110,15 @@ const FAVOURITES = [
     skip: 'Buckets, large fries, 2+ dips. Tenders give the most protein per calorie of any fried chicken.',
   },
   {
+    icon: Candy, name: 'Protein bars', when: 'After the gym, and as your snacks',
+    order: '15 g protein for ~150 kcal. 2 right after training, 1-2 as snacks',
+    numbers: '2-3 a day ≈ 30-45 g protein',
+    skip: 'Bars under 12 g protein or over 220 kcal: that\'s a chocolate bar with a gym label.',
+  },
+  {
     icon: ChefHat, name: 'Crispy chicken at home', when: 'Your default dinner',
-    order: '180 g chicken breast, egg white, 25 g crushed cornflakes, oil spray, air fryer 12 min at 200°C',
-    numbers: '≈ 355 kcal · 47 g protein',
+    order: '200 g chicken breast, egg white, 25 g crushed cornflakes, oil spray, air fryer 12-14 min at 200°C',
+    numbers: '≈ 375 kcal · 51 g protein',
     skip: 'Deep frying. Same crunch, about a third of the fat of takeaway fried chicken.',
   },
   {
@@ -127,31 +132,31 @@ const FAVOURITES = [
 const PROGRAM = [
   {
     day: 'Wednesday 7:00', name: 'Full body', exercises: [
-      ['Dumbbell Goblet Squat', '3 × 8-12'],
-      ['Incline Dumbbell Press', '3 × 8-12'],
-      ['Lat Pulldown', '3 × 8-12'],
-      ['Seated Leg Curl', '2 × 10-15'],
-      ['Cable Lateral Raise', '2 × 12-15'],
-      ['Cable Crunch', '2 × 10-15'],
+      ['Dumbbell Goblet Squat', '3 × 8-12', 'Goblet_Squat'],
+      ['Incline Dumbbell Press', '3 × 8-12', 'Incline_Dumbbell_Press'],
+      ['Lat Pulldown', '3 × 8-12', 'Wide-Grip_Lat_Pulldown'],
+      ['Seated Leg Curl', '2 × 10-15', 'Seated_Leg_Curl'],
+      ['Cable Lateral Raise', '2 × 12-15', 'Cable_Seated_Lateral_Raise'],
+      ['Cable Crunch', '2 × 10-15', 'Cable_Crunch'],
     ],
   },
   {
     day: 'Saturday 9:00', name: 'Lower body + abs', exercises: [
-      ['Leg Press', '3 × 8-12'],
-      ['Seated Leg Curl', '3 × 10-12'],
-      ['Leg Extension', '2 × 12-15'],
-      ['Standing Calf Raise', '3 × 12-15'],
-      ['Cable Crunch', '3 × 10-15'],
+      ['Leg Press', '3 × 8-12', 'Leg_Press'],
+      ['Seated Leg Curl', '3 × 10-12', 'Seated_Leg_Curl'],
+      ['Leg Extension', '2 × 12-15', 'Leg_Extensions'],
+      ['Standing Calf Raise', '3 × 12-15', 'Standing_Calf_Raises'],
+      ['Cable Crunch', '3 × 10-15', 'Cable_Crunch'],
     ],
   },
   {
     day: 'Sunday 10:00', name: 'Upper body', exercises: [
-      ['Machine Chest Press', '3 × 8-12'],
-      ['Seated Cable Row', '3 × 8-12'],
-      ['Machine Shoulder Press', '2 × 8-12'],
-      ['Cable Lateral Raise', '2 × 12-15'],
-      ['Tricep Rope Pushdown', '2 × 10-15'],
-      ['Dumbbell Bicep Curl', '2 × 10-15'],
+      ['Machine Chest Press', '3 × 8-12', 'Leverage_Chest_Press'],
+      ['Seated Cable Row', '3 × 8-12', 'Seated_Cable_Rows'],
+      ['Machine Shoulder Press', '2 × 8-12', 'Machine_Shoulder_Military_Press'],
+      ['Cable Lateral Raise', '2 × 12-15', 'Cable_Seated_Lateral_Raise'],
+      ['Tricep Rope Pushdown', '2 × 10-15', 'Triceps_Pushdown_-_Rope_Attachment'],
+      ['Dumbbell Bicep Curl', '2 × 10-15', 'Dumbbell_Bicep_Curl'],
     ],
   },
 ];
@@ -207,12 +212,55 @@ function Card({ children, className = '' }) {
   );
 }
 
+// Exercise picture: start and end position stacked, cross-fading on a shared
+// tick so the whole program "plays" like a GIF and the machine is recognisable.
+function ExerciseThumb({ folder, name, frame }) {
+  const hide = (e) => { e.currentTarget.style.visibility = 'hidden'; };
+  return (
+    <div className="relative w-24 h-16 rounded-lg bg-gray-100 overflow-hidden flex-shrink-0">
+      <img src={`${EXERCISE_IMG}/${folder}/0.jpg`} alt={name} loading="lazy" onError={hide}
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${frame ? 'opacity-0' : 'opacity-100'}`} />
+      <img src={`${EXERCISE_IMG}/${folder}/1.jpg`} alt="" aria-hidden="true" loading="lazy" onError={hide}
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${frame ? 'opacity-100' : 'opacity-0'}`} />
+    </div>
+  );
+}
+
+function TrainingProgram() {
+  const [frame, setFrame] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setFrame((f) => 1 - f), 1100);
+    return () => clearInterval(id);
+  }, []);
+  return (
+    <div className="grid md:grid-cols-3 gap-3 mb-5">
+      {PROGRAM.map((s) => (
+        <div key={s.day} className="border border-gray-100 rounded-xl p-4">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-amber-600">{s.day}</p>
+          <p className="font-bold text-gray-900 mb-3">{s.name}</p>
+          <ul className="space-y-2.5">
+            {s.exercises.map(([name, sets, folder]) => (
+              <li key={name} className="flex items-center gap-3">
+                <ExerciseThumb folder={folder} name={name} frame={frame} />
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-gray-800 leading-tight">{name}</p>
+                  <p className="text-xs font-bold text-gray-500 tabular-nums mt-0.5">{sets}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function MacroRow({ t, target }) {
   const cells = [
     ['kcal', t.kcal, target?.kcal, 'text-gray-900'],
     ['Protein', `${t.p} g`, target && `${target.p} g`, 'text-emerald-600'],
-    ['Carbs', `${t.c} g`, target && `${target.c} g`, 'text-amber-600'],
-    ['Fat', `${t.f} g`, target && `${target.f} g`, 'text-purple-600'],
+    ['Carbs', `${t.c} g`, null, 'text-amber-600'],
+    ['Fat', `${t.f} g`, null, 'text-purple-600'],
   ];
   return (
     <div className="grid grid-cols-4 gap-2">
@@ -292,14 +340,23 @@ export default function LeanPlanPage() {
                 <p className="font-bold text-gray-900">{label}</p>
                 <p className="text-[11px] text-gray-400 font-semibold">{days}</p>
               </div>
-              <MacroRow t={t} />
+              <div className="grid grid-cols-2 gap-2">
+                <div className="bg-gray-50 rounded-xl py-3 text-center">
+                  <p className="text-2xl font-bold text-gray-900 tabular-nums">{t.kcal.toLocaleString()}</p>
+                  <p className="text-[9px] font-bold uppercase tracking-wider text-gray-400">kcal</p>
+                </div>
+                <div className="bg-emerald-50 rounded-xl py-3 text-center">
+                  <p className="text-2xl font-bold text-emerald-600 tabular-nums">{t.p} g</p>
+                  <p className="text-[9px] font-bold uppercase tracking-wider text-emerald-700/60">Protein</p>
+                </div>
+              </div>
             </div>
           ))}
         </div>
         <ul className="mt-5 space-y-2 text-sm text-gray-600">
-          <li><strong className="text-gray-900">Protein 140 g every day</strong> (2 g/kg, Matt's 0.9 g per pound): keeps your muscle while the fat comes off.</li>
-          <li><strong className="text-gray-900">More carbs on gym days</strong>: they fuel the session, like Matt's pre-workout carbs.</li>
-          <li><strong className="text-gray-900">Fat never below ~55 g</strong>: enough for your hormones.</li>
+          <li><strong className="text-gray-900">Only 2 numbers to hit: calories and protein.</strong> Carbs and fat land wherever your food puts them. Just keep fat above ~50 g for your hormones.</li>
+          <li><strong className="text-gray-900">Protein ~135 g every day</strong> (Matt's 0.9 g per pound): it keeps your muscle while the fat comes off. Your protein bars make it easy.</li>
+          <li><strong className="text-gray-900">More food on gym days</strong>: it fuels the session, like Matt's pre-workout carbs.</li>
           <li>Weekly average ≈ <strong className="text-gray-900">1,750 kcal/day</strong>.</li>
         </ul>
       </Card>
@@ -414,7 +471,7 @@ export default function LeanPlanPage() {
             ['It\'s planned, not a cheat.', '1 small bag of chips + 1 mini Magnum ≈ 300 kcal, already counted in your Sunday.'],
             ['Buy single-serve packs only.', 'The family bag is how 300 kcal turns into 900.'],
             ['Bowl, sofa, no bag in your lap.', 'Pour it, put the rest away, then sit down.'],
-            ['Protein first.', 'By the treat you\'ve had ~150 g of protein, so you\'re not starving for it.'],
+            ['Protein first.', 'By the treat you\'ve had ~140 g of protein, so you\'re not starving for it.'],
             ['If it goes over, nothing happens.', 'No guilt, no "Monday reset". Monday is a normal rest day.'],
           ].map(([k, v], i) => (
             <li key={k} className="flex gap-3">
@@ -448,22 +505,7 @@ export default function LeanPlanPage() {
       <Card>
         <SectionTitle step={7} icon={Dumbbell} title="Training: 3 × 45 min, low volume"
           sub="Matt got stronger on every lift in a deficit by doing less, not more." />
-        <div className="grid md:grid-cols-3 gap-3 mb-5">
-          {PROGRAM.map((s) => (
-            <div key={s.day} className="border border-gray-100 rounded-xl p-4">
-              <p className="text-[10px] font-bold uppercase tracking-wider text-amber-600">{s.day}</p>
-              <p className="font-bold text-gray-900 mb-3">{s.name}</p>
-              <ul className="space-y-1.5">
-                {s.exercises.map(([name, sets]) => (
-                  <li key={name} className="flex items-baseline justify-between gap-2 text-sm">
-                    <span className="text-gray-700">{name}</span>
-                    <span className="text-xs font-bold text-gray-900 tabular-nums whitespace-nowrap">{sets}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+        <TrainingProgram />
         <div className="bg-gray-50 rounded-xl p-4 text-sm text-gray-700 space-y-2">
           <p><strong className="text-gray-900">How to progress.</strong> Pick a weight where you reach the bottom of the rep range with 1-2 reps left.
             Add reps each session. When every set hits the top of the range, add the smallest step (+1 to 2 kg, or the next dumbbell).</p>

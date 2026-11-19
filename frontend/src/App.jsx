@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import ExplorePage from './components/ExplorePage';
 import CaloriePage from './components/CaloriePage';
 import ExercisePage from './components/ExercisePage';
@@ -11,7 +11,6 @@ import NewsPage from './components/NewsPage';
 import TrendsPage from './components/TrendsPage';
 import DeepDivePage from './components/DeepDivePage';
 import LoyaltyPage from './components/LoyaltyPage';
-import LeanPlanPage from './components/LeanPlanPage';
 import StepsWidget from './components/StepsWidget';
 import WaterTracker from './components/WaterTracker';
 import WeekStrip from './components/WeekStrip';
@@ -20,6 +19,9 @@ import ParticleCanvas from './components/ParticleCanvas';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Drawer } from 'vaul';
 import { X, Menu, Instagram, Twitter, User, ArrowRight, Users, Map as MapIcon, Newspaper, Award, Flame, TrendingUp, CalendarDays, ScanLine, Scale, Search } from 'lucide-react';
+
+// Cyril's personal lean plan. Lazy-loaded so other users never download it.
+const LeanPlanPage = lazy(() => import('./components/LeanPlanPage'));
 
 function App() {
   const [user, setUser] = useState(() => localStorage.getItem('fitmeal_username') || null);
@@ -32,6 +34,8 @@ function App() {
   const [loginParticleText, setLoginParticleText] = useState('FitMeal AI');
   const [activeTab, setActiveTab] = useState('dashboard');
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  // The "My Plan" tab is personal: only shown to the owner (first name Cyril).
+  const isOwner = !!user && userName.trim().toLowerCase() === 'cyril';
 
   // Fetch initial stats
   useEffect(() => {
@@ -249,7 +253,7 @@ function App() {
 
           <div className="hidden md:flex items-center space-x-1 text-[13px] font-medium text-gray-400">
             {[
-              ['plan', 'My Plan'],
+              ...(isOwner ? [['plan', 'My Plan']] : []),
               ['explore', 'Explore'],
               ['scanner', 'Scanner'],
               ['calories', 'TDEE'],
@@ -301,7 +305,7 @@ function App() {
                 <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-gray-600 px-3 mb-2">Navigate</p>
                 <div className="space-y-0.5 max-h-[70vh] overflow-y-auto pb-safe">
                   {[
-                    ['plan', 'My Lean Plan'],
+                    ...(isOwner ? [['plan', 'My Lean Plan']] : []),
                     ['explore', 'Explore'],
                     ['scanner', 'Food Scanner'],
                     ['calories', 'TDEE Calculator'],
@@ -364,7 +368,11 @@ function App() {
             </motion.div>
           )}
 
-          {activeTab === 'plan' && <LeanPlanPage />}
+          {isOwner && activeTab === 'plan' && (
+            <Suspense fallback={null}>
+              <LeanPlanPage />
+            </Suspense>
+          )}
 
           {activeTab === 'explore' && <ExplorePage />}
 
