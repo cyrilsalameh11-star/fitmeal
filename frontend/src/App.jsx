@@ -11,6 +11,7 @@ import NewsPage from './components/NewsPage';
 import TrendsPage from './components/TrendsPage';
 import DeepDivePage from './components/DeepDivePage';
 import LoyaltyPage from './components/LoyaltyPage';
+import LeanPlanPage from './components/LeanPlanPage';
 import StepsWidget from './components/StepsWidget';
 import WaterTracker from './components/WaterTracker';
 import WeekStrip from './components/WeekStrip';
@@ -248,6 +249,7 @@ function App() {
 
           <div className="hidden md:flex items-center space-x-1 text-[13px] font-medium text-gray-400">
             {[
+              ['plan', 'My Plan'],
               ['explore', 'Explore'],
               ['scanner', 'Scanner'],
               ['calories', 'TDEE'],
@@ -299,6 +301,7 @@ function App() {
                 <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-gray-600 px-3 mb-2">Navigate</p>
                 <div className="space-y-0.5 max-h-[70vh] overflow-y-auto pb-safe">
                   {[
+                    ['plan', 'My Lean Plan'],
                     ['explore', 'Explore'],
                     ['scanner', 'Food Scanner'],
                     ['calories', 'TDEE Calculator'],
@@ -360,6 +363,8 @@ function App() {
               <WaterTracker />
             </motion.div>
           )}
+
+          {activeTab === 'plan' && <LeanPlanPage />}
 
           {activeTab === 'explore' && <ExplorePage />}
 
