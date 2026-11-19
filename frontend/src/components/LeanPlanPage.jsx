@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { Fragment, useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Target, Flame, CalendarDays, Utensils, Pizza, Drumstick, Coffee, Moon,
   Footprints, Dumbbell, TrendingDown, Brain, Scale, ExternalLink, CheckCircle2,
   XCircle, ChefHat, Sandwich, Info, Candy, Salad, Hamburger, CookingPot,
+  ArrowRight, ArrowDown, ZoomIn, Circle, Youtube,
 } from 'lucide-react';
 
 const SOURCE_URL = 'https://www.youtube.com/watch?v=oc2E7TfpJ18';
@@ -14,9 +15,10 @@ const FOOD = {
   coffee:   { name: '3-in-1 coffee sachet',                  kcal: 70,  p: 1,  c: 12, f: 2 },
   biscuit:  { name: 'Chocolate digestive',                   kcal: 85,  p: 1,  c: 11, f: 4 },
   bar:      { name: 'Protein bar (15 g protein)',            kcal: 150, p: 15, c: 13, f: 5 },
-  crispy:   { name: 'Air-fryer crispy chicken (200 g breast)', kcal: 377, p: 50, c: 21, f: 8 },
-  crispyXL: { name: 'Air-fryer crispy chicken (250 g breast)', kcal: 450, p: 62, c: 25, f: 8 },
-  crispy3:  { name: 'Air-fryer crispy chicken (300 g breast)', kcal: 505, p: 73, c: 25, f: 9 },
+  crispy:   { name: 'Oven crispy chicken (200 g breast)',     kcal: 377, p: 50, c: 21, f: 8 },
+  crispyXL: { name: 'Oven crispy chicken (250 g breast)',     kcal: 450, p: 62, c: 25, f: 8 },
+  crispy3:  { name: 'Oven crispy chicken (300 g breast)',     kcal: 505, p: 73, c: 25, f: 9 },
+  nuggets:  { name: '4 Chicken McNuggets',                    kcal: 170, p: 9,  c: 10, f: 10 },
   allumettes: { name: 'Oven allumettes (250 g)',             kcal: 343, p: 7.5, c: 55, f: 10 },
   // Cyril's own logged values from the Food Scanner.
   famille:  { name: 'Famille sandwich',                      kcal: 850, p: 49, c: 73, f: 39 },
@@ -37,14 +39,15 @@ const TARGETS = {
   rest:     { kcal: 1700, p: 130 },
 };
 
-// [time, label, [[foodKey, qty], ...]]
+// [time, label, [[foodKey, qty], ...], optional alternative order]
 const DAYS = {
   wed: {
     tab: 'Wednesday', type: 'training', title: 'Gym 7:00 + McDo lunch',
     meals: [
       ['7:00', 'Gym: Full body (45 min)', []],
       ['7:50', 'Coffee + post-workout', [['coffee', 1], ['biscuit', 2], ['bar', 2]]],
-      ['12:30', 'Lunch: the McDo order', [['dcheese', 1], ['fries', 1], ['tartare', 1], ['zero', 1]]],
+      ['12:30', 'Lunch: the McDo order', [['dcheese', 1], ['fries', 1], ['tartare', 1], ['zero', 1]],
+        [['dcheese', 1], ['nuggets', 1], ['zero', 1]]],
       ['20:00', 'Dinner', [['crispyXL', 1], ['salad', 1]]],
       ['22:00', 'Evening', [['bar', 1]]],
     ],
@@ -116,8 +119,8 @@ const FAVOURITES = [
   },
   {
     icon: Hamburger, name: "McDonald's", when: 'Lunch on a gym day (Wednesday)',
-    order: 'Double Cheese + small fries + 1 sauce tartare + Coke Zero',
-    numbers: '≈ 760 kcal · 29 g protein',
+    order: 'Double Cheese + small fries & 1 sauce tartare, OR Double Cheese + 4 Chicken McNuggets. Coke Zero either way',
+    numbers: 'Fries ≈ 760 kcal · 29 g P  |  Nuggets ≈ 620 kcal · 35 g P',
     skip: 'Medium/large fries, a 2nd sauce, McFlurry, regular soda: +200 to 400 kcal you won\'t even notice eating.',
   },
   {
@@ -140,13 +143,13 @@ const FAVOURITES = [
   },
   {
     icon: ChefHat, name: 'Crispy chicken at home', when: 'Your default dinner',
-    order: '200-300 g chicken breast, egg white, 25-30 g crushed cornflakes, oil spray, air fryer 12-15 min at 200°C',
+    order: '200-300 g chicken breast, egg white, 25-30 g crushed cornflakes, oil spray. Oven at 220°C on a rack or baking paper, 20-25 min, flip halfway',
     numbers: '200 g ≈ 375 kcal · 50 g P, 300 g ≈ 505 kcal · 73 g P',
     skip: 'Deep frying. Same crunch, about a third of the fat of takeaway fried chicken.',
   },
   {
     icon: CookingPot, name: 'Oven allumettes', when: 'With chicken on Mr. Guardian days and Sundays',
-    order: '250 g in the oven or air fryer, no extra oil',
+    order: '250 g in the oven, no extra oil. Same oven as the chicken, so they cook together',
     numbers: '≈ 343 kcal · 55 g carbs',
     skip: 'Allumettes on a Famille day or a McDo day: you\'ve already had your carbs (or fries) at lunch.',
   },
@@ -198,6 +201,10 @@ const MINDSET = [
   ['Get stronger, not more tired', 'Few hard sets, more weight over time. Volume doesn\'t build muscle in a deficit, recovery does.'],
   ['One bad meal is one bad meal', 'Never "start again Monday". The next meal is normal.'],
 ];
+
+function foodList(items) {
+  return items.map(([key, qty]) => `${qty > 1 ? `${qty} × ` : ''}${FOOD[key].name}`).join(' + ');
+}
 
 function totals(meals) {
   const t = meals.reduce((acc, [, , items]) => {
@@ -305,8 +312,247 @@ function MacroRow({ t, target }) {
   );
 }
 
+// ── Visual building blocks ────────────────────────────────────────────────
+const TONES = {
+  plain: 'bg-gray-50 text-gray-900',
+  amber: 'bg-amber-500 text-white',
+  green: 'bg-emerald-50 text-emerald-900',
+  dark: 'bg-gray-900 text-white',
+};
+
+// Boxes joined by arrows (or "+" / "=" when a step sets `sep`).
+function Flow({ steps }) {
+  return (
+    <div className="flex items-center gap-1.5">
+      {steps.map((s, i) => (
+        <Fragment key={s.label + s.value}>
+          {i > 0 && (s.sep
+            ? <span className="text-amber-500 font-bold text-lg flex-shrink-0">{s.sep}</span>
+            : <ArrowRight size={18} strokeWidth={2.5} className="text-amber-500 flex-shrink-0" />)}
+          <div className={`flex-1 min-w-0 rounded-xl px-1.5 py-2.5 text-center ${TONES[s.tone || 'plain']}`}>
+            <p className="text-[9px] font-bold uppercase tracking-wider opacity-70 leading-tight">{s.label}</p>
+            <p className="text-sm sm:text-base font-bold tabular-nums leading-tight mt-0.5">{s.value}</p>
+            {s.sub && <p className="text-[9px] sm:text-[10px] opacity-70 leading-tight mt-0.5">{s.sub}</p>}
+          </div>
+        </Fragment>
+      ))}
+    </div>
+  );
+}
+
+function MiniTimeline({ items }) {
+  return (
+    <ol className="relative border-l-2 border-amber-200 ml-1.5 space-y-2.5">
+      {items.map(([time, text, accent]) => (
+        <li key={time + text} className="pl-4 relative">
+          <span className={`absolute -left-[7px] top-1 w-3 h-3 rounded-full ${accent ? 'bg-amber-500' : 'bg-white border-2 border-amber-300'}`} />
+          <p className="text-xs leading-snug">
+            <span className="font-bold tabular-nums text-gray-900">{time}</span>{' '}
+            <span className={accent ? 'font-semibold text-gray-900' : 'text-gray-600'}>{text}</span>
+          </p>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function Ticks({ items }) {
+  const icon = { yes: [CheckCircle2, 'text-emerald-500'], maybe: [Circle, 'text-gray-400'], no: [XCircle, 'text-rose-400'] };
+  return (
+    <ul className="space-y-2">
+      {items.map(([kind, text]) => {
+        const [Icon, color] = icon[kind];
+        return (
+          <li key={text} className="flex gap-2 text-sm text-gray-700">
+            <Icon size={16} className={`${color} flex-shrink-0 mt-0.5`} />{text}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+const Note = ({ children }) => <p className="text-xs text-gray-500 mt-3 leading-relaxed">{children}</p>;
+
+// Matt's screenshot (left) → arrow → your version (right).
+const COMPARE = [
+  {
+    topic: 'The starting point', img: '/plan/matt-problem.jpg',
+    matt: 'Strict all week, fell off every weekend, thought he lacked discipline.',
+    you: (
+      <>
+        <p className="font-bold text-gray-900 mb-3">Your weekend is already in the plan</p>
+        <div className="flex flex-wrap gap-1.5">
+          {['Wed · McDo', 'Sat · pepperoni pizza', 'Sun · chips + ice cream'].map((t) => (
+            <span key={t} className="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">{t}</span>
+          ))}
+        </div>
+        <Note>Nothing to "fall off" from, so you don't need discipline on Sunday night. You need a plan, and it's below.</Note>
+      </>
+    ),
+  },
+  {
+    topic: 'The numbers', img: '/plan/matt-numbers.jpg',
+    matt: 'Maintenance ~3,000, minus 500 = 2,500 kcal, 170 g protein.',
+    you: (
+      <>
+        <Flow steps={[
+          { label: 'You burn', value: '~2,400', sub: 'steps + gym' },
+          { label: 'Minus', value: '~600', sub: 'moderate' },
+          { label: 'You eat', value: '~1,800', sub: 'weekly avg', tone: 'amber' },
+        ]} />
+        <Note>Protein 130 g. Matt's 170 g looks bigger, but he's ~86 kg: you're both at <strong className="text-gray-900">~2 g per kg</strong>.</Note>
+      </>
+    ),
+  },
+  {
+    topic: 'The day', img: '/plan/matt-training-day.jpg',
+    matt: 'Fast until noon, pre-workout carbs (rice cakes + honey + banana), train 5:30 pm.',
+    you: (
+      <>
+        <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2.5">Your Saturday</p>
+        <MiniTimeline items={[
+          ['7:30', 'Coffee + 2 digestives = your pre-workout carbs', true],
+          ['9:00', 'Gym, 45 min', true],
+          ['10:30', '2 protein bars'],
+          ['13:30', 'Crispy chicken + salad'],
+          ['20:30', 'Pizza night, half a medium', true],
+        ]} />
+        <Note>Matt's rice cakes + honey → your coffee + digestives. Same job: quick sugar before training.</Note>
+      </>
+    ),
+  },
+  {
+    topic: 'The big lunch', img: '/plan/matt-eating-out.jpg',
+    matt: 'Jersey Mike\'s sub: 950 kcal, 47 g P, 48 g fat. Rule: go lean the rest of the day.',
+    you: (
+      <>
+        <Flow steps={[
+          { label: 'Matt · sub', value: '950', sub: '47 P · 48 F', tone: 'plain' },
+          { label: 'You · Famille', value: '850', sub: '49 P · 39 F', tone: 'amber', sep: '≈' },
+        ]} />
+        <div className="flex justify-center my-2"><ArrowDown size={18} strokeWidth={2.5} className="text-amber-500" /></div>
+        <div className="rounded-xl bg-gray-900 text-white px-3 py-2.5 text-center text-sm font-bold">
+          Same rule: dinner is chicken + salad, no fries
+        </div>
+      </>
+    ),
+  },
+  {
+    topic: 'The weak spot', img: '/plan/matt-drinking.jpg',
+    matt: 'Drinking game plan: ~600-700 kcal set aside for a night out.',
+    you: (
+      <>
+        <p className="font-bold text-gray-900 mb-3">Your Sunday night game plan</p>
+        <Flow steps={[
+          { label: 'Chips', value: '145', sub: 'small bag' },
+          { label: 'Magnum', value: '160', sub: 'mini', sep: '+' },
+          { label: 'Treat', value: '~300', sub: 'already counted', tone: 'amber', sep: '=' },
+        ]} />
+        <Note>Matt planned his drinks. You plan your chips and ice cream. Same idea: decide before, not in front of the fridge.</Note>
+      </>
+    ),
+  },
+  {
+    topic: 'Cardio', img: '/plan/matt-cardio.jpg',
+    matt: '10k steps a day + 4 × 20 min zone 2. No running, no HIIT.',
+    you: (
+      <Ticks items={[
+        ['yes', '10k steps a day: you already do it'],
+        ['maybe', 'Optional: 20 min incline walk after the gym'],
+        ['no', 'No running or HIIT: it just makes you hungrier'],
+      ]} />
+    ),
+  },
+  {
+    topic: 'Training', img: '/plan/matt-workout.jpg',
+    matt: '~48 min, 1-2 sets × 6-8 reps, +2.5 lb when he hits 8, 3 min rest.',
+    you: (
+      <>
+        <Flow steps={[
+          { label: 'Sessions', value: '3 × 45\'', sub: 'Wed · Sat · Sun', tone: 'dark' },
+          { label: 'Sets', value: '2-3', sub: '8-12 reps', sep: '·' },
+          { label: 'Top of range', value: '+1-2 kg', sub: 'then repeat', tone: 'amber' },
+        ]} />
+        <Note>Same low-volume idea as Matt. Log every session in Exercise → Gym so you can see each lift go up.</Note>
+      </>
+    ),
+  },
+];
+
+function MattVsYou({ onZoom }) {
+  return (
+    <Card>
+      <div className="flex items-start gap-3 mb-6">
+        <div className="w-10 h-10 rounded-2xl bg-red-600 text-white flex items-center justify-center flex-shrink-0">
+          <Youtube size={18} />
+        </div>
+        <div>
+          <p className="text-[10px] font-bold uppercase tracking-wider text-red-600">From the video</p>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">Matt's plan → your plan</h2>
+          <p className="text-sm text-gray-500 mt-1">The real screenshots from Carter's video, side by side with your version. Tap a screenshot to zoom.</p>
+        </div>
+      </div>
+      <div className="space-y-8">
+        {COMPARE.map((row, i) => (
+          <div key={row.topic}>
+            <p className="text-xs font-bold text-gray-900 mb-2.5">
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-gray-900 text-white text-[10px] mr-1.5">{i + 1}</span>
+              {row.topic}
+            </p>
+            <div className="grid md:grid-cols-[1fr_auto_1fr] gap-2 md:gap-3 items-center">
+              <figure className="bg-gray-50 rounded-xl p-2.5">
+                <span className="inline-block text-[9px] font-bold uppercase tracking-wider bg-gray-200 text-gray-600 rounded-full px-2 py-0.5 mb-2">Matt</span>
+                <button type="button" onClick={() => onZoom(row.img)} className="relative block w-full group">
+                  <img src={row.img} alt={`Matt: ${row.topic}`} loading="lazy"
+                    className="w-full rounded-lg border border-gray-200 bg-white" />
+                  <span className="absolute bottom-1.5 right-1.5 bg-black/60 text-white rounded-full p-1 opacity-80 group-hover:opacity-100">
+                    <ZoomIn size={13} />
+                  </span>
+                </button>
+                <figcaption className="text-[11px] text-gray-500 mt-2 leading-snug">{row.matt}</figcaption>
+              </figure>
+              <div className="flex justify-center">
+                <span className="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-md">
+                  <ArrowDown size={18} strokeWidth={2.5} className="md:hidden" />
+                  <ArrowRight size={18} strokeWidth={2.5} className="hidden md:block" />
+                </span>
+              </div>
+              <div className="border-2 border-amber-200 rounded-xl p-3.5 bg-white">
+                <span className="inline-block text-[9px] font-bold uppercase tracking-wider bg-amber-500 text-white rounded-full px-2 py-0.5 mb-2.5">You</span>
+                {row.you}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Card>
+  );
+}
+
+function Lightbox({ src, onClose }) {
+  useEffect(() => {
+    if (!src) return undefined;
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [src, onClose]);
+  return (
+    <AnimatePresence>
+      {src && (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}
+          className="fixed inset-0 z-[70] bg-black/90 flex flex-col items-center justify-center p-3">
+          <img src={src} alt="Screenshot from the video" className="max-w-full max-h-[80vh] rounded-lg bg-white" />
+          <p className="text-gray-400 text-xs mt-3">Tap anywhere to close</p>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 export default function LeanPlanPage() {
   const [dayTab, setDayTab] = useState('wed');
+  const [zoom, setZoom] = useState(null);
   const day = DAYS[dayTab];
   const dayTotals = totals(day.meals);
 
@@ -326,7 +572,7 @@ export default function LeanPlanPage() {
         </h1>
         <p className="text-sm sm:text-base text-gray-400 mt-4 max-w-2xl leading-relaxed">
           The exact method Carter Stockman used to get his client Matt lean in 90 days, rebuilt around you:
-          177 cm, 69 kg, 3 gym days, 10k steps, and McDo, pizza, KFC and Sunday-night ice cream still on the menu.
+          177 cm, 69 kg, 3 gym days, 10k steps, and your Famille sandwich, McDo, pizza and Sunday-night ice cream still on the menu.
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-6">
           {[
@@ -347,6 +593,8 @@ export default function LeanPlanPage() {
         </a>
       </div>
 
+      <MattVsYou onZoom={setZoom} />
+
       {/* 1. Numbers */}
       <Card>
         <SectionTitle step={1} icon={Flame} title="Your numbers"
@@ -360,10 +608,17 @@ export default function LeanPlanPage() {
             against. So the plan applies Matt's −500 to what you actually burn, and Step 8 corrects it within 2 weeks if it's off.
           </p>
         </div>
+        <div className="mb-5">
+          <Flow steps={[
+            { label: 'You burn', value: '~2,400', sub: '10k steps + gym' },
+            { label: 'You eat', value: '~1,800', sub: 'weekly average', tone: 'amber' },
+            { label: 'You lose', value: '~0.5 kg', sub: 'per week', tone: 'green' },
+          ]} />
+        </div>
         <div className="grid sm:grid-cols-2 gap-4">
           {[
             ['Gym days', 'Wed · Sat · Sun', TARGETS.training],
-            ['Rest days', 'Mon · Tue · Thu · Fri', TARGETS.rest],
+            ['Work days', 'Mon · Tue · Thu · Fri', TARGETS.rest],
           ].map(([label, days, t]) => (
             <div key={label} className="border border-gray-100 rounded-xl p-4">
               <div className="flex items-baseline justify-between mb-3">
@@ -438,8 +693,9 @@ export default function LeanPlanPage() {
         </div>
         <p className="text-sm font-bold text-gray-900 mb-3">{day.title}</p>
         <ol className="space-y-2 mb-4">
-          {day.meals.map(([time, label, items]) => {
+          {day.meals.map(([time, label, items, alt]) => {
             const t = totals([[time, label, items]]);
+            const a = alt && totals([[time, label, alt]]);
             const isGym = items.length === 0;
             return (
               <li key={time + label} className={`flex gap-3 rounded-xl p-3 ${isGym ? 'bg-gray-900 text-white' : 'bg-gray-50'}`}>
@@ -454,8 +710,12 @@ export default function LeanPlanPage() {
                     )}
                   </div>
                   {!isGym && (
-                    <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">
-                      {items.map(([key, qty]) => `${qty > 1 ? `${qty} × ` : ''}${FOOD[key].name}`).join(' + ')}
+                    <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{foodList(items)}</p>
+                  )}
+                  {a && (
+                    <p className="text-xs text-gray-500 mt-1.5 pt-1.5 border-t border-dashed border-gray-200 leading-relaxed">
+                      <span className="font-bold text-amber-600">or </span>{foodList(alt)}
+                      <span className="tabular-nums whitespace-nowrap"> · {a.kcal} kcal · <span className="text-emerald-600 font-semibold">{a.p} g P</span></span>
                     </p>
                   )}
                 </div>
@@ -588,6 +848,8 @@ export default function LeanPlanPage() {
       <p className="text-center text-[11px] text-gray-400 px-4">
         Calories are approximate (±10%) and vary by country and brand. Scan the real packets with the Food Scanner to log them exactly.
       </p>
+
+      <Lightbox src={zoom} onClose={() => setZoom(null)} />
     </motion.div>
   );
 }
