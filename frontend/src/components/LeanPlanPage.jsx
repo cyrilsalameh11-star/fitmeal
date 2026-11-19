@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import {
   Target, Flame, CalendarDays, Utensils, Pizza, Drumstick, Coffee, Moon,
   Footprints, Dumbbell, TrendingDown, Brain, Scale, ExternalLink, CheckCircle2,
-  XCircle, ChefHat, Sandwich, Info, Candy,
+  XCircle, ChefHat, Sandwich, Info, Candy, Salad, Hamburger, CookingPot,
 } from 'lucide-react';
 
 const SOURCE_URL = 'https://www.youtube.com/watch?v=oc2E7TfpJ18';
@@ -14,9 +14,13 @@ const FOOD = {
   coffee:   { name: '3-in-1 coffee sachet',                  kcal: 70,  p: 1,  c: 12, f: 2 },
   biscuit:  { name: 'Chocolate digestive',                   kcal: 85,  p: 1,  c: 11, f: 4 },
   bar:      { name: 'Protein bar (15 g protein)',            kcal: 150, p: 15, c: 13, f: 5 },
-  crispy:   { name: 'Air-fryer crispy chicken (200 g breast)', kcal: 377, p: 51, c: 21, f: 8 },
+  crispy:   { name: 'Air-fryer crispy chicken (200 g breast)', kcal: 377, p: 50, c: 21, f: 8 },
   crispyXL: { name: 'Air-fryer crispy chicken (250 g breast)', kcal: 450, p: 62, c: 25, f: 8 },
-  rice:     { name: 'Rice, cooked (150 g)',                  kcal: 195, p: 4,  c: 42, f: 0 },
+  crispy3:  { name: 'Air-fryer crispy chicken (300 g breast)', kcal: 505, p: 73, c: 25, f: 9 },
+  allumettes: { name: 'Oven allumettes (250 g)',             kcal: 343, p: 7.5, c: 55, f: 10 },
+  // Cyril's own logged values from the Food Scanner.
+  famille:  { name: 'Famille sandwich',                      kcal: 850, p: 49, c: 73, f: 39 },
+  guardian: { name: 'Mr. Guardian salad',                    kcal: 410, p: 14, c: 40, f: 21 },
   salad:    { name: 'Side salad + 1 tsp olive oil',          kcal: 60,  p: 1,  c: 4,  f: 5 },
   dcheese:  { name: "McDonald's Double Cheese",              kcal: 450, p: 26, c: 33, f: 23 },
   fries:    { name: "McDonald's small fries",                kcal: 230, p: 3,  c: 29, f: 11 },
@@ -29,8 +33,8 @@ const FOOD = {
 };
 
 const TARGETS = {
-  training: { kcal: 1950, p: 135 },
-  rest:     { kcal: 1600, p: 135 },
+  training: { kcal: 1950, p: 130 },
+  rest:     { kcal: 1700, p: 130 },
 };
 
 // [time, label, [[foodKey, qty], ...]]
@@ -38,9 +42,8 @@ const DAYS = {
   wed: {
     tab: 'Wednesday', type: 'training', title: 'Gym 7:00 + McDo lunch',
     meals: [
-      ['6:20', 'Pre-workout', [['coffee', 1], ['biscuit', 2]]],
       ['7:00', 'Gym: Full body (45 min)', []],
-      ['8:15', 'Post-workout', [['bar', 2]]],
+      ['7:50', 'Coffee + post-workout', [['coffee', 1], ['biscuit', 2], ['bar', 2]]],
       ['12:30', 'Lunch: the McDo order', [['dcheese', 1], ['fries', 1], ['tartare', 1], ['zero', 1]]],
       ['20:00', 'Dinner', [['crispyXL', 1], ['salad', 1]]],
       ['22:00', 'Evening', [['bar', 1]]],
@@ -49,7 +52,7 @@ const DAYS = {
   sat: {
     tab: 'Saturday', type: 'training', title: 'Gym 9:00 + pizza night',
     meals: [
-      ['8:20', 'Pre-workout', [['coffee', 1], ['biscuit', 2]]],
+      ['7:30', 'Coffee (your pre-workout)', [['coffee', 1], ['biscuit', 2]]],
       ['9:00', 'Gym: Lower body + abs (45 min)', []],
       ['10:30', 'Post-workout', [['bar', 2]]],
       ['13:30', 'Lunch', [['crispyXL', 1], ['salad', 1]]],
@@ -59,40 +62,60 @@ const DAYS = {
   sun: {
     tab: 'Sunday', type: 'training', title: 'Gym 10:00 + Sunday night treat',
     meals: [
-      ['9:15', 'Pre-workout', [['coffee', 1], ['biscuit', 2]]],
+      ['7:30', 'Coffee (your pre-workout)', [['coffee', 1], ['biscuit', 2]]],
       ['10:00', 'Gym: Upper body (45 min)', []],
       ['11:30', 'Post-workout', [['bar', 2]]],
-      ['14:00', 'Lunch', [['crispy', 1], ['rice', 1]]],
-      ['16:30', 'Snack', [['bar', 1]]],
-      ['19:30', 'Dinner: KFC', [['tender', 3], ['zero', 1]]],
+      ['14:00', 'Lunch: chicken & allumettes', [['crispy', 1], ['allumettes', 1]]],
+      ['19:30', 'Dinner: the occasional KFC', [['tender', 3], ['zero', 1]]],
       ['21:30', 'Sunday night treat', [['chips', 1], ['magnum', 1]]],
     ],
   },
-  rest: {
-    tab: 'Rest day', type: 'rest', title: 'Mon · Tue · Thu · Fri',
+  famille: {
+    tab: 'Famille day', type: 'rest', title: 'Work day · Famille lunch (e.g. Mon & Thu)',
     meals: [
-      ['9:00', 'Coffee break', [['coffee', 1], ['biscuit', 1]]],
-      ['13:00', 'Lunch: KFC', [['tender', 4], ['zero', 1]]],
+      ['7:30', 'Coffee', [['coffee', 1], ['biscuit', 1]]],
+      ['12:30', 'Lunch at work: Famille', [['famille', 1]]],
       ['16:30', 'Snack', [['bar', 1]]],
-      ['20:00', 'Dinner', [['crispy', 1], ['rice', 1], ['salad', 1]]],
+      ['20:00', 'Dinner: no fries tonight, the sandwich had the carbs', [['crispyXL', 1], ['salad', 1]]],
+    ],
+  },
+  guardian: {
+    tab: 'Mr. Guardian day', type: 'rest', title: 'Work day · Mr. Guardian lunch (e.g. Tue & Fri)',
+    meals: [
+      ['7:30', 'Coffee', [['coffee', 1], ['biscuit', 1]]],
+      ['12:30', 'Lunch at work: Mr. Guardian', [['guardian', 1]]],
+      ['16:30', 'Snack', [['bar', 1]]],
+      ['20:00', 'Dinner: the big one, the salad was light', [['crispy3', 1], ['allumettes', 1]]],
       ['22:00', 'Evening', [['bar', 1]]],
     ],
   },
 };
 
 const WEEK = [
-  { d: 'Mon', type: 'rest' },
-  { d: 'Tue', type: 'rest' },
+  { d: 'Mon', type: 'rest', extra: 'Famille' },
+  { d: 'Tue', type: 'rest', extra: 'Mr. Guardian' },
   { d: 'Wed', type: 'training', gym: '7:00', what: 'Full body', extra: 'McDo lunch' },
-  { d: 'Thu', type: 'rest' },
-  { d: 'Fri', type: 'rest' },
+  { d: 'Thu', type: 'rest', extra: 'Famille' },
+  { d: 'Fri', type: 'rest', extra: 'Mr. Guardian' },
   { d: 'Sat', type: 'training', gym: '9:00', what: 'Lower + abs', extra: 'Pizza night' },
   { d: 'Sun', type: 'training', gym: '10:00', what: 'Upper', extra: 'Sunday treat' },
 ];
 
 const FAVOURITES = [
   {
-    icon: Sandwich, name: "McDonald's", when: 'Lunch on a gym day (Wednesday)',
+    icon: Sandwich, name: 'Famille sandwich', when: 'Work lunch, about 2 days a week',
+    order: 'Your usual Famille sandwich',
+    numbers: '850 kcal · 49 g protein (your logged numbers)',
+    skip: 'Fries at dinner that day. The sandwich already covers your carbs, so dinner is chicken + salad.',
+  },
+  {
+    icon: Salad, name: 'Mr. Guardian salad', when: 'Work lunch, the other work days',
+    order: 'Your usual Mr. Guardian salad',
+    numbers: '410 kcal · 14 g protein (your logged numbers)',
+    skip: 'Treating it as a protein meal: it isn\'t. That\'s why dinner that day is the big one, 300 g chicken + allumettes.',
+  },
+  {
+    icon: Hamburger, name: "McDonald's", when: 'Lunch on a gym day (Wednesday)',
     order: 'Double Cheese + small fries + 1 sauce tartare + Coke Zero',
     numbers: '≈ 760 kcal · 29 g protein',
     skip: 'Medium/large fries, a 2nd sauce, McFlurry, regular soda: +200 to 400 kcal you won\'t even notice eating.',
@@ -104,7 +127,7 @@ const FAVOURITES = [
     skip: 'The whole pizza, garlic bread on the side. Pepperoni beats 4 fromages: similar calories, a bit more protein.',
   },
   {
-    icon: Drumstick, name: 'KFC / Wingstop', when: 'Any day, lunch or dinner',
+    icon: Drumstick, name: 'KFC / Wingstop', when: 'Occasionally, like a Sunday dinner',
     order: 'KFC: 3-4 Tenders. Wingstop: 6 classic wings + 1 dip',
     numbers: 'KFC 4 Tenders ≈ 500 kcal · 48 g protein',
     skip: 'Buckets, large fries, 2+ dips. Tenders give the most protein per calorie of any fried chicken.',
@@ -117,13 +140,19 @@ const FAVOURITES = [
   },
   {
     icon: ChefHat, name: 'Crispy chicken at home', when: 'Your default dinner',
-    order: '200 g chicken breast, egg white, 25 g crushed cornflakes, oil spray, air fryer 12-14 min at 200°C',
-    numbers: '≈ 375 kcal · 51 g protein',
+    order: '200-300 g chicken breast, egg white, 25-30 g crushed cornflakes, oil spray, air fryer 12-15 min at 200°C',
+    numbers: '200 g ≈ 375 kcal · 50 g P, 300 g ≈ 505 kcal · 73 g P',
     skip: 'Deep frying. Same crunch, about a third of the fat of takeaway fried chicken.',
   },
   {
-    icon: Coffee, name: '3-in-1 coffee + chocolate digestives', when: 'Every day',
-    order: '1 sachet + 2 biscuits. On gym days this IS your pre-workout',
+    icon: CookingPot, name: 'Oven allumettes', when: 'With chicken on Mr. Guardian days and Sundays',
+    order: '250 g in the oven or air fryer, no extra oil',
+    numbers: '≈ 343 kcal · 55 g carbs',
+    skip: 'Allumettes on a Famille day or a McDo day: you\'ve already had your carbs (or fries) at lunch.',
+  },
+  {
+    icon: Coffee, name: '3-in-1 coffee + chocolate digestives', when: 'Every day, around 7:30',
+    order: '1 sachet + 2 biscuits. On weekends it doubles as your pre-workout; on Wednesday, have it right after the gym',
     numbers: '≈ 240 kcal · fast sugar + caffeine',
     skip: 'Eating from the open pack. Take 2 out, put the pack away.',
   },
@@ -171,16 +200,17 @@ const MINDSET = [
 ];
 
 function totals(meals) {
-  return meals.reduce((t, [, , items]) => {
+  const t = meals.reduce((acc, [, , items]) => {
     for (const [key, qty] of items) {
       const food = FOOD[key];
-      t.kcal += food.kcal * qty;
-      t.p += food.p * qty;
-      t.c += food.c * qty;
-      t.f += food.f * qty;
+      acc.kcal += food.kcal * qty;
+      acc.p += food.p * qty;
+      acc.c += food.c * qty;
+      acc.f += food.f * qty;
     }
-    return t;
+    return acc;
   }, { kcal: 0, p: 0, c: 0, f: 0 });
+  return { kcal: Math.round(t.kcal), p: Math.round(t.p), c: Math.round(t.c), f: Math.round(t.f) };
 }
 
 function SectionTitle({ step, icon: Icon, title, sub }) {
@@ -355,9 +385,9 @@ export default function LeanPlanPage() {
         </div>
         <ul className="mt-5 space-y-2 text-sm text-gray-600">
           <li><strong className="text-gray-900">Only 2 numbers to hit: calories and protein.</strong> Carbs and fat land wherever your food puts them. Just keep fat above ~50 g for your hormones.</li>
-          <li><strong className="text-gray-900">Protein ~135 g every day</strong> (Matt's 0.9 g per pound): it keeps your muscle while the fat comes off. Your protein bars make it easy.</li>
+          <li><strong className="text-gray-900">Protein ~130 g every day</strong> (1.9 g per kg, in line with Matt's 0.9 g per pound): it keeps your muscle while the fat comes off. Chicken and your protein bars carry it.</li>
           <li><strong className="text-gray-900">More food on gym days</strong>: it fuels the session, like Matt's pre-workout carbs.</li>
-          <li>Weekly average ≈ <strong className="text-gray-900">1,750 kcal/day</strong>.</li>
+          <li>Weekly average ≈ <strong className="text-gray-900">1,800 kcal/day</strong>.</li>
         </ul>
       </Card>
 
@@ -381,6 +411,7 @@ export default function LeanPlanPage() {
                   <>
                     <Footprints size={14} className="mx-auto my-1.5 text-gray-400" />
                     <p className="text-[10px] sm:text-xs font-semibold leading-tight">Rest</p>
+                    <p className="text-[9px] sm:text-[10px] text-gray-400 leading-tight mt-1 hidden sm:block">{w.extra}</p>
                   </>
                 )}
                 <p className={`text-[9px] sm:text-[10px] tabular-nums mt-1 ${gym ? 'text-gray-400' : 'text-gray-400'}`}>
@@ -471,7 +502,7 @@ export default function LeanPlanPage() {
             ['It\'s planned, not a cheat.', '1 small bag of chips + 1 mini Magnum ≈ 300 kcal, already counted in your Sunday.'],
             ['Buy single-serve packs only.', 'The family bag is how 300 kcal turns into 900.'],
             ['Bowl, sofa, no bag in your lap.', 'Pour it, put the rest away, then sit down.'],
-            ['Protein first.', 'By the treat you\'ve had ~140 g of protein, so you\'re not starving for it.'],
+            ['Protein first.', 'By the treat you\'ve had ~125 g of protein, so you\'re not starving for it.'],
             ['If it goes over, nothing happens.', 'No guilt, no "Monday reset". Monday is a normal rest day.'],
           ].map(([k, v], i) => (
             <li key={k} className="flex gap-3">
@@ -523,7 +554,7 @@ export default function LeanPlanPage() {
         </ul>
         <div className="grid sm:grid-cols-3 gap-2 text-sm">
           <div className="bg-emerald-50 rounded-xl p-3"><p className="font-bold text-emerald-900">−0.4 to −0.7 kg/week</p><p className="text-xs text-emerald-800/80 mt-1">Perfect. Change nothing.</p></div>
-          <div className="bg-amber-50 rounded-xl p-3"><p className="font-bold text-amber-900">Less than −0.3 for 2 weeks</p><p className="text-xs text-amber-800/80 mt-1">Drop 150 kcal on rest days: skip the rice at dinner.</p></div>
+          <div className="bg-amber-50 rounded-xl p-3"><p className="font-bold text-amber-900">Less than −0.3 for 2 weeks</p><p className="text-xs text-amber-800/80 mt-1">Drop ~150 kcal on work days: 125 g of allumettes instead of 250, or skip the afternoon bar.</p></div>
           <div className="bg-rose-50 rounded-xl p-3"><p className="font-bold text-rose-900">Faster than −0.8 kg/week</p><p className="text-xs text-rose-800/80 mt-1">Add 150 kcal. Losing too fast costs muscle.</p></div>
         </div>
       </Card>
